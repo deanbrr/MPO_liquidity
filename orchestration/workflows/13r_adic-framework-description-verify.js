@@ -1,6 +1,9 @@
 export const meta = {
   name: 'adic-framework-description-verify',
-  description: 'Verify design/FRAMEWORK_DESCRIPTION.md (v1.0 draft) against the spec and the prototype code from two independent angles, fix it, and check closure; implementation details that the parallel prototype fix will change are deferred to a later sync',
+  // As run on 19 Oct: launched while a prototype fix was planned (CTX keeps that note so the verifiers replayed from
+  // cache); the user then decided not to rebuild, so the Fix and Closure prompts were redirected to describe the
+  // prototype as committed in 2aafbad and flag its unfixed verification findings as known issues.
+  description: 'Verify design/FRAMEWORK_DESCRIPTION.md (v1.0 draft) against the spec and the prototype code from two independent angles, fix it to describe the prototype as it is with its unfixed verification findings flagged as known issues, and check closure',
   phases: [
     { title: 'Verify', detail: 'two verifiers in parallel: mathematics and spec; variables, scenarios and IC readability' },
     { title: 'Fix', detail: 'apply every critical, high and medium finding' },
@@ -58,20 +61,25 @@ log(`Verification: fix-now ${cnt('fix-now')}; sync-later ${cnt('sync-later')}.`)
 
 phase('Fix')
 const f = await agent(`${CTX}
-TASK: fix ${DOC} using the two reviews, ${RA} and ${RB}.
-- Fix every fix-now issue of critical, high or medium severity, and the low ones where cheap. Keep the document's structure and its placeholder results section. Edit in place.
-- Do NOT fix sync-later issues. Write them all to ${SYNC} as a checklist (location, what will change, and what the prototype fix must settle first), for the sync pass after the prototype is corrected.
-- Update the header: version 1.1, 19 October 2026. Replace the "Draft" sentence with: "Verified against the specification and the prototype code (commit ${BASE}); the prototype is being corrected after its own verification, and implementation details will be re-synced when that finishes (see design/reviews/framework_description_sync_todo.md)."
+UPDATE, SUPERSEDING THE "PARALLEL FIX" NOTE ABOVE: on 19 October the user decided not to rebuild the prototype. The parallel fix was stopped before it changed any code, so the prototype stays exactly as committed in ${BASE}, and there will be no later sync pass. The document must therefore describe the prototype as it actually is, and say plainly where its independent verification found defects.
+TASK: fix ${DOC} using the two reviews, ${RA} and ${RB}. Edit in place and keep the document's structure.
+- Fix every issue of critical, high or medium severity, and the low ones where cheap, whether it is tagged fix-now or sync-later.
+- For a sync-later issue: describe what the ${BASE} code actually does. Where ${EX}\\verify_math.md or ${EX}\\verify_finance.md found a defect or an overstatement, add a short "Known issue (verification M# / F#)" note saying what is wrong and what the fix would be. Do not describe corrected behaviour as if it existed. Do not create a sync-todo file.
+- Fill the results placeholder section, retitled "Results from the prototype's first run, and what its verification found". Report the first run's out-of-sample headline as published in ${EX}\\RESULTS.md and results.json. Then give the verifiers' restatement: verify_finance.md section 1 and its restated-headline table, and the main verify_math.md findings. Use a short table plus a few sentences an IC member can follow. Copy every number exactly from those files, label it SYNTHETIC, and state that the fixes were not implemented.
+- Section 9 (assumptions and limitations) must list the unfixed verification findings briefly, with pointers to the two reports.
+- Update the header: version 1.1, 19 October 2026. Replace the "Draft" sentence with: "Verified against the specification and the prototype code (commit ${BASE}). The prototype's own independent verification found defects that are documented here as known issues; they have not been fixed (decision of 19 October 2026)." Remove any remaining statement that the prototype "is being verified now" or that results will be filled in later.
 - Add a one-line revision note at the end.
-Return the structured output.`, { label: 'fix', phase: 'Fix', schema: F_SCHEMA })
+Return the structured output; sync_later is the number of sync-later issues you resolved this way.`, { label: 'fix', phase: 'Fix', schema: F_SCHEMA })
 
 phase('Closure')
 const c = await agent(`You are an independent closure checker.
 ${CTX}
-TASK: confirm that every fix-now issue of critical, high or medium severity in ${RA} and ${RB} is actually fixed in ${DOC}. Read each issue and then the current text.
-- If one is not fixed, or the fix is wrong, fix it in place yourself.
+UPDATE, SUPERSEDING THE "PARALLEL FIX" NOTE ABOVE: the user decided not to rebuild the prototype. It stays as committed in ${BASE}, with no later sync pass. The document must describe the prototype as it is, and flag the verification's findings as known issues.
+TASK: confirm that every issue of critical, high or medium severity in ${RA} and ${RB} (fix-now and sync-later alike) is resolved in ${DOC}. Read each issue and then the current text.
+- If one is not resolved, or the fix is wrong, fix it in place yourself.
+- Check every number in the results section and in the known-issue notes against ${EX}\\RESULTS.md, results.json, verify_math.md and verify_finance.md. Correct any that differ.
+- Make sure no sentence still says the prototype is being corrected, that a sync will follow, or that results are pending.
 - Also look for problems the fixes introduced: broken LaTeX (GitHub renders $...$ and $$...$$), broken tables or mermaid, numbering, and symbols that are now inconsistent. Fix them.
-- Check that ${SYNC} exists and lists the sync-later items.
 Return the structured output.`, { label: 'closure', phase: 'Closure', schema: C_SCHEMA })
 
 return { verify: { math: va && va.verdict, scenarios: vb && vb.verdict, fix_now: cnt('fix-now'), sync_later: cnt('sync-later') }, fix: f, closure: c }

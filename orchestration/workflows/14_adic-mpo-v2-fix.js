@@ -1,4 +1,6 @@
 export const meta = {
+  // NOT RUN TO COMPLETION: launched 19 Oct (run wf_bb94343b-058), stopped during planning at the user's request
+  // ("do not rebuild") before it changed any code. Kept for the record; relaunch only if the user asks.
   name: 'adic-mpo-v2-fix',
   description: 'Fix the MPO v2 prototype against its independent math and finance verification: issue register and work plan with adversarial plan review, sequential work packages each reviewed in an isolated worktree, consolidated review fixes, then a full deterministic re-run with regenerated results',
   phases: [
