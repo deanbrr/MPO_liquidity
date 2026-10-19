@@ -1,0 +1,408 @@
+{
+ "cases": [
+  {
+   "expected": 0.1,
+   "fn": "xirr",
+   "inputs": {
+    "flows": [
+     [
+      "2020-01-01",
+      -100.0
+     ],
+     [
+      "2021-12-31",
+      121.0
+     ]
+    ]
+   },
+   "name": "xirr_2y_10pct",
+   "tol": 1e-09
+  },
+  {
+   "expected": null,
+   "fn": "xirr",
+   "inputs": {
+    "flows": [
+     [
+      "2020-01-01",
+      100.0
+     ],
+     [
+      "2021-01-01",
+      5.0
+     ]
+    ]
+   },
+   "name": "xirr_no_root_is_None",
+   "tol": null
+  },
+  {
+   "expected": 1.4,
+   "fn": "multiples",
+   "inputs": {
+    "flows": [
+     [
+      "2015-01-01",
+      -50.0
+     ],
+     [
+      "2016-01-01",
+      -50.0
+     ],
+     [
+      "2020-01-01",
+      60.0
+     ]
+    ],
+    "nav": 80.0
+   },
+   "name": "tvpi",
+   "output": "tvpi",
+   "tol": 1e-09
+  },
+  {
+   "expected": 0.6,
+   "fn": "multiples",
+   "inputs": {
+    "flows": [
+     [
+      "2015-01-01",
+      -50.0
+     ],
+     [
+      "2016-01-01",
+      -50.0
+     ],
+     [
+      "2020-01-01",
+      60.0
+     ]
+    ],
+    "nav": 80.0
+   },
+   "name": "dpi",
+   "output": "dpi",
+   "tol": 1e-09
+  },
+  {
+   "expected": 1.4,
+   "fn": "ks_pme",
+   "inputs": {
+    "asof": "2024-01-01",
+    "flows": [
+     [
+      "2015-01-01",
+      -50.0
+     ],
+     [
+      "2016-01-01",
+      -50.0
+     ],
+     [
+      "2020-01-01",
+      60.0
+     ]
+    ],
+    "index": {
+     "2015-01-01": 100.0,
+     "2016-01-01": 100.0,
+     "2020-01-01": 100.0,
+     "2024-01-01": 100.0
+    },
+    "nav": 80.0
+   },
+   "name": "kspme_flat_index_equals_tvpi",
+   "tol": 1e-09
+  },
+  {
+   "expected": 0.0502426454504137,
+   "fn": "direct_alpha",
+   "inputs": {
+    "asof": "2024-01-01",
+    "flows": [
+     [
+      "2015-01-01",
+      -50.0
+     ],
+     [
+      "2016-01-01",
+      -50.0
+     ],
+     [
+      "2020-01-01",
+      60.0
+     ]
+    ],
+    "index": {
+     "2015-01-01": 100.0,
+     "2016-01-01": 100.0,
+     "2020-01-01": 100.0,
+     "2024-01-01": 100.0
+    },
+    "nav": 80.0
+   },
+   "name": "direct_alpha_flat_index",
+   "tol": 1e-09
+  },
+  {
+   "expected": 0.0,
+   "fn": "direct_alpha",
+   "inputs": {
+    "asof": "2023-01-01",
+    "flows": [
+     [
+      "2018-01-01",
+      -100.0
+     ]
+    ],
+    "index": {
+     "2018-01-01": 100.0,
+     "2023-01-01": 161.051
+    },
+    "nav": 161.051
+   },
+   "name": "direct_alpha_index_tracker_zero",
+   "tol": 1e-09
+  },
+  {
+   "expected": 1.0,
+   "fn": "ks_pme",
+   "inputs": {
+    "asof": "2023-01-01",
+    "flows": [
+     [
+      "2018-01-01",
+      -100.0
+     ]
+    ],
+    "index": {
+     "2018-01-01": 100.0,
+     "2023-01-01": 161.051
+    },
+    "nav": 161.051
+   },
+   "name": "kspme_index_tracker_one",
+   "tol": 1e-12
+  },
+  {
+   "expected": 0.2100000000000002,
+   "fn": "twr",
+   "inputs": {
+    "flows": [
+     [
+      "2025-07-01",
+      50.0
+     ]
+    ],
+    "vals": [
+     [
+      "2025-01-01",
+      100.0
+     ],
+     [
+      "2025-07-01",
+      160.0
+     ],
+     [
+      "2026-01-01",
+      176.0
+     ]
+    ]
+   },
+   "name": "twr_flow_on_valuation_date",
+   "tol": 1e-12
+  },
+  {
+   "expected": "raises:ValueError",
+   "fn": "twr",
+   "inputs": {
+    "flows": [
+     [
+      "2025-06-30",
+      20.0
+     ]
+    ],
+    "vals": [
+     [
+      "2025-01-01",
+      100.0
+     ],
+     [
+      "2025-12-31",
+      130.0
+     ]
+    ]
+   },
+   "name": "twr_large_flow_requires_revaluation",
+   "tol": null
+  },
+  {
+   "expected": 0.08,
+   "fn": "credit_realized",
+   "inputs": {
+    "periods": [
+     {
+      "avg_par": 100.0,
+      "cash_interest": 8.0,
+      "charge_offs": 1.5,
+      "fees": 0.0,
+      "len": 1.0,
+      "pik_interest": 2.0,
+      "recoveries": 0.5
+     }
+    ]
+   },
+   "name": "credit_cash_yield",
+   "output": "cash_yield",
+   "tol": 1e-09
+  },
+  {
+   "expected": 0.2,
+   "fn": "credit_realized",
+   "inputs": {
+    "periods": [
+     {
+      "avg_par": 100.0,
+      "cash_interest": 8.0,
+      "charge_offs": 1.5,
+      "fees": 0.0,
+      "len": 1.0,
+      "pik_interest": 2.0,
+      "recoveries": 0.5
+     }
+    ]
+   },
+   "name": "credit_pik_share",
+   "output": "pik_share",
+   "tol": 1e-09
+  },
+  {
+   "expected": 0.01,
+   "fn": "credit_realized",
+   "inputs": {
+    "periods": [
+     {
+      "avg_par": 100.0,
+      "cash_interest": 8.0,
+      "charge_offs": 1.5,
+      "fees": 0.0,
+      "len": 1.0,
+      "pik_interest": 2.0,
+      "recoveries": 0.5
+     }
+    ]
+   },
+   "name": "credit_loss_rate",
+   "output": "loss_rate",
+   "tol": 1e-09
+  },
+  {
+   "expected": 0.07,
+   "fn": "credit_realized",
+   "inputs": {
+    "periods": [
+     {
+      "avg_par": 100.0,
+      "cash_interest": 8.0,
+      "charge_offs": 1.5,
+      "fees": 0.0,
+      "len": 1.0,
+      "pik_interest": 2.0,
+      "recoveries": 0.5
+     }
+    ]
+   },
+   "name": "credit_loss_adj_cash_yield",
+   "output": "loss_adj_cash_yield",
+   "tol": 1e-09
+  },
+  {
+   "expected": 6.0,
+   "fn": "overlay_pnl",
+   "inputs": {
+    "ftp_rate": 0.045,
+    "trades": [
+     {
+      "book": "tail",
+      "cash": -4.0,
+      "im_posted": 0.0,
+      "len": 1.0,
+      "mtm0": 0.0,
+      "mtm1": 10.0
+     },
+     {
+      "book": "opportunistic",
+      "cash": 1.0,
+      "im_posted": 20.0,
+      "len": 1.0,
+      "mtm0": 5.0,
+      "mtm1": 3.0
+     }
+    ]
+   },
+   "name": "overlay_tail_pnl",
+   "output": "tail",
+   "tol": 1e-09
+  },
+  {
+   "expected": -1.9,
+   "fn": "overlay_pnl",
+   "inputs": {
+    "ftp_rate": 0.045,
+    "trades": [
+     {
+      "book": "tail",
+      "cash": -4.0,
+      "im_posted": 0.0,
+      "len": 1.0,
+      "mtm0": 0.0,
+      "mtm1": 10.0
+     },
+     {
+      "book": "opportunistic",
+      "cash": 1.0,
+      "im_posted": 20.0,
+      "len": 1.0,
+      "mtm0": 5.0,
+      "mtm1": 3.0
+     }
+    ]
+   },
+   "name": "overlay_opp_pnl",
+   "output": "opportunistic",
+   "tol": 1e-09
+  },
+  {
+   "expected": 4.1,
+   "fn": "overlay_pnl",
+   "inputs": {
+    "ftp_rate": 0.045,
+    "trades": [
+     {
+      "book": "tail",
+      "cash": -4.0,
+      "im_posted": 0.0,
+      "len": 1.0,
+      "mtm0": 0.0,
+      "mtm1": 10.0
+     },
+     {
+      "book": "opportunistic",
+      "cash": 1.0,
+      "im_posted": 20.0,
+      "len": 1.0,
+      "mtm0": 5.0,
+      "mtm1": 3.0
+     }
+    ]
+   },
+   "name": "overlay_total_pnl",
+   "output": "total",
+   "tol": 1e-09
+  }
+ ],
+ "n_cases": 17,
+ "note": "SYNTHETIC \u2013 NOT ADIC DATA. Golden cases of the deterministic performance module O3 (perf-0.1.0): beliefs.perf must pass 17/17 (\u00a74.15). Dates ISO-8601 (ACT/365F); amounts in one currency; contributions negative. expected = null means 'returns None'; 'raises:ValueError' means the call must raise.",
+ "source": "research/groups/addenda/gap_02_calcs/perf_module.py",
+ "version": "perf-0.1.0"
+}

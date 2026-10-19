@@ -1,0 +1,132 @@
+{
+ "base_mc": [
+  {
+   "tranche": "SYN-RA-T0079",
+   "sleeve": "RE_DIR_GCC",
+   "segment": "OFF",
+   "lender": "gcc_bank",
+   "trap_dscr": 1.15,
+   "ltv_cov": 0.65,
+   "p_trigger_12m": 0.0498
+  },
+  {
+   "tranche": "SYN-RA-T0081",
+   "sleeve": "RE_DIR_GCC",
+   "segment": "HOT",
+   "lender": "gcc_bank",
+   "trap_dscr": 1.15,
+   "ltv_cov": 0.65,
+   "p_trigger_12m": 0.1082
+  },
+  {
+   "tranche": "SYN-RA-T0082",
+   "sleeve": "RE_DIR_GCC",
+   "segment": "RES",
+   "lender": "gcc_bank",
+   "trap_dscr": 1.15,
+   "ltv_cov": 0.65,
+   "p_trigger_12m": 0.0938
+  },
+  {
+   "tranche": "SYN-RA-T0183",
+   "sleeve": "INF_DIR",
+   "segment": "AIR",
+   "lender": "opco_bond_bank",
+   "trap_dscr": 1.2,
+   "ltv_cov": 0.0,
+   "p_trigger_12m": 0.0518
+  }
+ ],
+ "t4p_struct": [
+  {
+   "tranche": "SYN-RA-T0073",
+   "sleeve": "RE_DIR_GL",
+   "segment": "LOG",
+   "lender": "bank",
+   "trap_dscr": 1.1,
+   "ltv_cov": 0.65,
+   "p_trigger_12m": 0.0492
+  },
+  {
+   "tranche": "SYN-RA-T0074",
+   "sleeve": "RE_DIR_GL",
+   "segment": "RES",
+   "lender": "life",
+   "trap_dscr": 1.15,
+   "ltv_cov": 0.0,
+   "p_trigger_12m": 0.1296
+  },
+  {
+   "tranche": "SYN-RA-T0075",
+   "sleeve": "RE_DIR_GL",
+   "segment": "RES",
+   "lender": "bank",
+   "trap_dscr": 1.1,
+   "ltv_cov": 0.65,
+   "p_trigger_12m": 0.1556
+  },
+  {
+   "tranche": "SYN-RA-T0077",
+   "sleeve": "RE_DIR_GL",
+   "segment": "LOG",
+   "lender": "bank",
+   "trap_dscr": 1.1,
+   "ltv_cov": 0.65,
+   "p_trigger_12m": 0.095
+  },
+  {
+   "tranche": "SYN-RA-T0078",
+   "sleeve": "RE_DIR_GL",
+   "segment": "OFF",
+   "lender": "life",
+   "trap_dscr": 1.15,
+   "ltv_cov": 0.0,
+   "p_trigger_12m": 0.0414
+  },
+  {
+   "tranche": "SYN-RA-T0079",
+   "sleeve": "RE_DIR_GCC",
+   "segment": "OFF",
+   "lender": "gcc_bank",
+   "trap_dscr": 1.15,
+   "ltv_cov": 0.65,
+   "p_trigger_12m": 0.4318
+  },
+  {
+   "tranche": "SYN-RA-T0081",
+   "sleeve": "RE_DIR_GCC",
+   "segment": "HOT",
+   "lender": "gcc_bank",
+   "trap_dscr": 1.15,
+   "ltv_cov": 0.65,
+   "p_trigger_12m": 0.5588
+  },
+  {
+   "tranche": "SYN-RA-T0082",
+   "sleeve": "RE_DIR_GCC",
+   "segment": "RES",
+   "lender": "gcc_bank",
+   "trap_dscr": 1.15,
+   "ltv_cov": 0.65,
+   "p_trigger_12m": 0.2772
+  },
+  {
+   "tranche": "SYN-RA-T0175",
+   "sleeve": "INF_DIR",
+   "segment": "CON_FIX",
+   "lender": "pf_bank_club",
+   "trap_dscr": 1.2,
+   "ltv_cov": 0.0,
+   "p_trigger_12m": 0.0686
+  },
+  {
+   "tranche": "SYN-RA-T0183",
+   "sleeve": "INF_DIR",
+   "segment": "AIR",
+   "lender": "opco_bond_bank",
+   "trap_dscr": 1.2,
+   "ltv_cov": 0.0,
+   "p_trigger_12m": 0.2462
+  }
+ ]
+}

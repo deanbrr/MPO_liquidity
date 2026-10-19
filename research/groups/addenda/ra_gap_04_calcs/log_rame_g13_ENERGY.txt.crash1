@@ -1,0 +1,3 @@
+ENERGY g13 true SS params {'lam': 0.5, 'mu': -0.0008412668559151389, 'sv': 0.13483682403655967, 'sxi': 0.006831300510639732, 'beta': 1.0, 'phip': 0.8, 'sp': 0.07, 'sL': 0.02, 'st': 0.06, 'cL': 0.0}
+ENERGY g13 M0     ALT: R2 0.27 cov 0.764 sellbias -0.25 reg 0.416 | AL R2 0.59 cov 0.60 | ALT4 R2 0.54 | lam 0.518 | 267s
+ENERGY g13 TL1    ALT: R2 0.58 cov 0.489 sellbias -1.28 reg 1.003 | AL R2 0.59 cov 0.60 | ALT4 R2 0.58 | lam 0.337 | 291s

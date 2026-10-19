@@ -1,0 +1,243 @@
+{
+ "sample": [
+  "1987-06",
+  "2026-08"
+ ],
+ "n": 471,
+ "shock_regimes_12m": {
+  "share_of_12m_windows": {
+   "normal": 0.596,
+   "demand_boom(oil>=+30%,eq>=+10%)": 0.178,
+   "supply_glut(oil<=-20%,eq>0)": 0.135,
+   "supply_spike(oil>=+30%,eq<0)": 0.05,
+   "demand_bust(oil<=-20%,eq<=-10%)": 0.041
+  },
+  "episode_starts": {
+   "demand_bust(oil<=-20%,eq<=-10%)": [
+    "1988-07",
+    "2001-08",
+    "2002-01",
+    "2008-10"
+   ],
+   "supply_glut(oil<=-20%,eq>0)": [
+    "1988-10",
+    "1991-08",
+    "1993-11",
+    "1994-02",
+    "1997-09",
+    "1997-12",
+    "2014-10",
+    "2015-10",
+    "2016-05",
+    "2019-08",
+    "2020-02",
+    "2020-05",
+    "2023-04",
+    "2024-09",
+    "2025-04",
+    "2025-06"
+   ],
+   "demand_boom(oil>=+30%,eq>=+10%)": [
+    "1989-03",
+    "1989-09",
+    "1995-03",
+    "1996-09",
+    "1997-01",
+    "1999-06",
+    "2000-08",
+    "2004-04",
+    "2004-07",
+    "2004-11",
+    "2005-07",
+    "2006-01",
+    "2006-04",
+    "2007-09",
+    "2009-11",
+    "2011-01",
+    "2016-12",
+    "2017-10",
+    "2018-03",
+    "2019-12",
+    "2021-03",
+    "2026-03",
+    "2026-07"
+   ],
+   "supply_spike(oil>=+30%,eq<0)": [
+    "1990-08",
+    "2002-09",
+    "2002-11",
+    "2008-01",
+    "2022-04"
+   ]
+  },
+  "window_range": [
+   "1988-05",
+   "2026-08"
+  ]
+ },
+ "hmm_3state": {
+  "loglik": 1271.98,
+  "states_sorted_by_oil_vol": [
+   {
+    "oil_mean_ann": 0.093,
+    "eq_mean_ann": 0.178,
+    "oil_vol_ann": 0.26,
+    "eq_vol_ann": 0.11,
+    "corr": 0.024,
+    "stationary_prob": 0.741,
+    "expected_duration_months": 15.4
+   },
+   {
+    "oil_mean_ann": -14.879,
+    "eq_mean_ann": -1.706,
+    "oil_vol_ann": 0.346,
+    "eq_vol_ann": 0.346,
+    "corr": 1.0,
+    "stationary_prob": 0.002,
+    "expected_duration_months": 1.0
+   },
+   {
+    "oil_mean_ann": 0.009,
+    "eq_mean_ann": -0.097,
+    "oil_vol_ann": 0.624,
+    "eq_vol_ann": 0.238,
+    "corr": 0.138,
+    "stationary_prob": 0.257,
+    "expected_duration_months": 5.1
+   }
+  ],
+  "transmat_monthly": [
+   [
+    0.935,
+    0.0,
+    0.065
+   ],
+   [
+    0.0,
+    0.0,
+    1.0
+   ],
+   [
+    0.188,
+    0.008,
+    0.803
+   ]
+  ]
+ },
+ "hybrid_prices_calm_vol": {
+  "assumptions": {
+   "sig_oil": 0.35,
+   "sig_eq": 0.16,
+   "r": 0.04,
+   "T_years": 1.0,
+   "oil_strike_pct_spot": 0.8,
+   "eq_strike_pct_spot": 0.9,
+   "units": "premium as fraction of notional (puts normalised by strike)"
+  },
+  "prices": {
+   "rho=-0.4": {
+    "oil_put_80": 0.0495,
+    "eq_put_90": 0.0163,
+    "worst_of_put": 0.0647,
+    "best_of_put_dual_down": 0.0011,
+    "dual_digital": 0.0225,
+    "eq_put_90_if_oil_below_80": 0.0014,
+    "Q_prob_joint_down": 0.0235
+   },
+   "rho=-0.2": {
+    "oil_put_80": 0.0495,
+    "eq_put_90": 0.0163,
+    "worst_of_put": 0.0636,
+    "best_of_put_dual_down": 0.0022,
+    "dual_digital": 0.0381,
+    "eq_put_90_if_oil_below_80": 0.0029,
+    "Q_prob_joint_down": 0.0397
+   },
+   "rho=+0.0": {
+    "oil_put_80": 0.0495,
+    "eq_put_90": 0.0163,
+    "worst_of_put": 0.0622,
+    "best_of_put_dual_down": 0.0036,
+    "dual_digital": 0.0555,
+    "eq_put_90_if_oil_below_80": 0.0047,
+    "Q_prob_joint_down": 0.0578
+   },
+   "rho=+0.3": {
+    "oil_put_80": 0.0495,
+    "eq_put_90": 0.0164,
+    "worst_of_put": 0.0593,
+    "best_of_put_dual_down": 0.0065,
+    "dual_digital": 0.0852,
+    "eq_put_90_if_oil_below_80": 0.0079,
+    "Q_prob_joint_down": 0.0887
+   },
+   "rho=+0.6": {
+    "oil_put_80": 0.0495,
+    "eq_put_90": 0.0164,
+    "worst_of_put": 0.0556,
+    "best_of_put_dual_down": 0.0102,
+    "dual_digital": 0.1208,
+    "eq_put_90_if_oil_below_80": 0.0116,
+    "Q_prob_joint_down": 0.1257
+   }
+  }
+ },
+ "hybrid_prices_2026_vol": {
+  "assumptions": {
+   "sig_oil": 0.7,
+   "sig_eq": 0.2,
+   "r": 0.04,
+   "T_years": 1.0,
+   "oil_strike_pct_spot": 0.8,
+   "eq_strike_pct_spot": 0.9,
+   "units": "premium as fraction of notional (puts normalised by strike)"
+  },
+  "prices": {
+   "rho=-0.4": {
+    "oil_put_80": 0.1778,
+    "eq_put_90": 0.0281,
+    "worst_of_put": 0.2001,
+    "best_of_put_dual_down": 0.0058,
+    "dual_digital": 0.0743,
+    "eq_put_90_if_oil_below_80": 0.0068,
+    "Q_prob_joint_down": 0.0774
+   },
+   "rho=-0.2": {
+    "oil_put_80": 0.1778,
+    "eq_put_90": 0.0281,
+    "worst_of_put": 0.1969,
+    "best_of_put_dual_down": 0.009,
+    "dual_digital": 0.0998,
+    "eq_put_90_if_oil_below_80": 0.0103,
+    "Q_prob_joint_down": 0.1039
+   },
+   "rho=+0.0": {
+    "oil_put_80": 0.1778,
+    "eq_put_90": 0.0282,
+    "worst_of_put": 0.1935,
+    "best_of_put_dual_down": 0.0124,
+    "dual_digital": 0.1251,
+    "eq_put_90_if_oil_below_80": 0.0139,
+    "Q_prob_joint_down": 0.1302
+   },
+   "rho=+0.3": {
+    "oil_put_80": 0.1778,
+    "eq_put_90": 0.0282,
+    "worst_of_put": 0.1881,
+    "best_of_put_dual_down": 0.0178,
+    "dual_digital": 0.1629,
+    "eq_put_90_if_oil_below_80": 0.0193,
+    "Q_prob_joint_down": 0.1695
+   },
+   "rho=+0.6": {
+    "oil_put_80": 0.1778,
+    "eq_put_90": 0.0282,
+    "worst_of_put": 0.1825,
+    "best_of_put_dual_down": 0.0234,
+    "dual_digital": 0.2036,
+    "eq_put_90_if_oil_below_80": 0.0243,
+    "Q_prob_joint_down": 0.2119
+   }
+  }
+ }
+}

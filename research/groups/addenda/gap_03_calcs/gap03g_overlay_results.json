@@ -1,0 +1,775 @@
+{
+ "note": "SYNTHETIC / ILLUSTRATIVE [I-calc]; not ADIC data. Public inputs: Cboe index files to 2026-10-16; Fama-French RF (CRSP 202608).",
+ "A_market_2026_10_16": {
+  "SPX": 7659.44,
+  "VIX": 19.99,
+  "VIX3M": 20.5,
+  "VIX6M": 21.67,
+  "VIX1Y": 22.61,
+  "SKEW": 168.59,
+  "SKEW_mean_1990_2026": 123.25960648648648,
+  "SKEW_max": 183.12,
+  "SKEW_max_date": "2025-02-18"
+ },
+ "A_pricer": {
+  "c_ATM": 0.9,
+  "q_div": 0.015,
+  "r": 0.0389,
+  "strikes_pct_fwd": [
+   0.9,
+   0.72
+  ],
+  "skew_slope_validation": [
+   {
+    "T": 0.25,
+    "b_numeric": 0.5206,
+    "b_closed_form": 0.5592
+   },
+   {
+    "T": 0.5,
+    "b_numeric": 0.3797,
+    "b_closed_form": 0.3954
+   },
+   {
+    "T": 1.0,
+    "b_numeric": 0.2785,
+    "b_closed_form": 0.2796
+   }
+  ],
+  "ladder_today": {
+   "3": {
+    "weight": 0.25,
+    "atm_vol": 0.18456,
+    "b": 0.51936,
+    "vol_90": 0.2365,
+    "vol_72": 0.32998,
+    "premium_per_notional": 0.01019,
+    "vega_per_volpt_per_notional": 0.00103,
+    "delta_per_notional": -0.10097
+   },
+   "6": {
+    "weight": 0.5,
+    "atm_vol": 0.19508,
+    "b": 0.38071,
+    "vol_90": 0.23315,
+    "vol_72": 0.30168,
+    "premium_per_notional": 0.01973,
+    "vega_per_volpt_per_notional": 0.00144,
+    "delta_per_notional": -0.12997
+   },
+   "12": {
+    "weight": 0.25,
+    "atm_vol": 0.20349,
+    "b": 0.28077,
+    "vol_90": 0.23157,
+    "vol_72": 0.2821,
+    "premium_per_notional": 0.03161,
+    "vega_per_volpt_per_notional": 0.00166,
+    "delta_per_notional": -0.13494
+   }
+  },
+  "cost_per_notional_yr": {
+   "cATM0.90": 0.03743,
+   "cATM0.95": 0.0396,
+   "cATM0.85": 0.03473,
+   "G7_assumption": 0.0354
+  }
+ },
+ "B_sizing": {
+  "0.15%": {
+   "budget_pct_nav": 0.15,
+   "premium_bn_yr": 0.2655,
+   "notional_bn": 7.093,
+   "notional_by_tenor_bn": {
+    "3": 1.629,
+    "6": 3.364,
+    "12": 2.1
+   },
+   "cost_per_notional_yr": 0.0374,
+   "s1_payoff_bn": 1.1774,
+   "payoff_multiple_of_annual_premium": 4.4348,
+   "vega_bn_per_volpt": 0.01,
+   "vix_equiv_vega_bn_per_vixpt_alldays": 0.0043,
+   "vix_equiv_vega_bn_per_vixpt_spikes": 0.0041,
+   "dollar_delta_bn": -0.8851,
+   "L1_opp_short_vix_vega_cap_bn_per_vixpt": 0.001,
+   "L2_opp_named_stress_loss_cap_bn": 0.2944,
+   "tail_IM_if_OTC_under_UMR_bn": 0.1863,
+   "tail_IM_if_listed_bn": 0.0
+  },
+  "0.25%": {
+   "budget_pct_nav": 0.25,
+   "premium_bn_yr": 0.4425,
+   "notional_bn": 11.8216,
+   "notional_by_tenor_bn": {
+    "3": 2.715,
+    "6": 5.607,
+    "12": 3.5
+   },
+   "cost_per_notional_yr": 0.0374,
+   "s1_payoff_bn": 1.9624,
+   "payoff_multiple_of_annual_premium": 4.4348,
+   "vega_bn_per_volpt": 0.0167,
+   "vix_equiv_vega_bn_per_vixpt_alldays": 0.0072,
+   "vix_equiv_vega_bn_per_vixpt_spikes": 0.0068,
+   "dollar_delta_bn": -1.4751,
+   "L1_opp_short_vix_vega_cap_bn_per_vixpt": 0.0017,
+   "L2_opp_named_stress_loss_cap_bn": 0.4906,
+   "tail_IM_if_OTC_under_UMR_bn": 0.3105,
+   "tail_IM_if_listed_bn": 0.0
+  },
+  "0.40%": {
+   "budget_pct_nav": 0.4,
+   "premium_bn_yr": 0.708,
+   "notional_bn": 18.9146,
+   "notional_by_tenor_bn": {
+    "3": 4.343,
+    "6": 8.971,
+    "12": 5.6
+   },
+   "cost_per_notional_yr": 0.0374,
+   "s1_payoff_bn": 3.1398,
+   "payoff_multiple_of_annual_premium": 4.4348,
+   "vega_bn_per_volpt": 0.0267,
+   "vix_equiv_vega_bn_per_vixpt_alldays": 0.0115,
+   "vix_equiv_vega_bn_per_vixpt_spikes": 0.0108,
+   "dollar_delta_bn": -2.3602,
+   "L1_opp_short_vix_vega_cap_bn_per_vixpt": 0.0027,
+   "L2_opp_named_stress_loss_cap_bn": 0.785,
+   "tail_IM_if_OTC_under_UMR_bn": 0.4967,
+   "tail_IM_if_listed_bn": 0.0
+  },
+  "0.50%": {
+   "budget_pct_nav": 0.5,
+   "premium_bn_yr": 0.885,
+   "notional_bn": 23.6432,
+   "notional_by_tenor_bn": {
+    "3": 5.429,
+    "6": 11.214,
+    "12": 7.0
+   },
+   "cost_per_notional_yr": 0.0374,
+   "s1_payoff_bn": 3.9248,
+   "payoff_multiple_of_annual_premium": 4.4348,
+   "vega_bn_per_volpt": 0.0334,
+   "vix_equiv_vega_bn_per_vixpt_alldays": 0.0144,
+   "vix_equiv_vega_bn_per_vixpt_spikes": 0.0135,
+   "dollar_delta_bn": -2.9502,
+   "L1_opp_short_vix_vega_cap_bn_per_vixpt": 0.0034,
+   "L2_opp_named_stress_loss_cap_bn": 0.9812,
+   "tail_IM_if_OTC_under_UMR_bn": 0.6209,
+   "tail_IM_if_listed_bn": 0.0
+  }
+ },
+ "B_sizing_notional_range": {
+  "0.15%": {
+   "notional_flat_skew_cATM0.95": 6.7,
+   "notional_steep_skew_cATM0.85": 7.64
+  },
+  "0.25%": {
+   "notional_flat_skew_cATM0.95": 11.17,
+   "notional_steep_skew_cATM0.85": 12.74
+  },
+  "0.40%": {
+   "notional_flat_skew_cATM0.95": 17.88,
+   "notional_steep_skew_cATM0.85": 20.39
+  },
+  "0.50%": {
+   "notional_flat_skew_cATM0.95": 22.35,
+   "notional_steep_skew_cATM0.85": 25.48
+  }
+ },
+ "B_G7_ladder_equivalent_budget_pct_nav": 0.423,
+ "B_s1_payoff_per_notional": {
+  "90/72": 0.166,
+  "90/70": 0.176
+ },
+ "B_simm_vega_ratio": 5.347,
+ "B_opportunistic_IM": {
+  "vol_1.00%": {
+   "vol_bn": 1.77,
+   "IM_k1.0_bn": 0.82,
+   "IM_k1.5_bn": 1.23,
+   "DD_stop_2x_bn": 3.54
+  },
+  "vol_1.25%": {
+   "vol_bn": 2.212,
+   "IM_k1.0_bn": 1.025,
+   "IM_k1.5_bn": 1.538,
+   "DD_stop_2x_bn": 4.425
+  },
+  "vol_1.50%": {
+   "vol_bn": 2.655,
+   "IM_k1.0_bn": 1.23,
+   "IM_k1.5_bn": 1.846,
+   "DD_stop_2x_bn": 5.31
+  }
+ },
+ "C_cashmap_overlay_row": {
+  "old_2.2": {
+   "normal": {
+    "vm": 0.906,
+    "d_im": 0.036,
+    "prem": -0.708,
+    "mon": 0.0,
+    "opp": 0.0,
+    "opp_im": 0.0,
+    "services_synthetic_beta": 0.87,
+    "own_books_tail_opp": -0.708,
+    "net": 0.162,
+    "private_net_census": 9.614,
+    "before_payout": 9.599,
+    "liquid_funding_5_7.5_10": [
+     -0.75,
+     3.68,
+     8.1
+    ]
+   },
+   "drought": {
+    "vm": 0.906,
+    "d_im": 0.036,
+    "prem": -0.708,
+    "mon": 0.0,
+    "opp": 0.0,
+    "opp_im": 0.0,
+    "services_synthetic_beta": 0.87,
+    "own_books_tail_opp": -0.708,
+    "net": 0.162,
+    "private_net_census": 2.229,
+    "before_payout": 2.214,
+    "liquid_funding_5_7.5_10": [
+     6.64,
+     11.06,
+     15.49
+    ]
+   },
+   "S1": {
+    "vm": -5.868,
+    "d_im": 0.313,
+    "prem": -0.708,
+    "mon": 3.52,
+    "opp": -2.655,
+    "opp_im": -0.0,
+    "services_synthetic_beta": -6.182,
+    "own_books_tail_opp": 0.157,
+    "net": -6.025,
+    "private_net_census": -11.984,
+    "before_payout": -18.186,
+    "liquid_funding_5_7.5_10": [
+     27.04,
+     31.46,
+     35.89
+    ]
+   },
+   "T4": {
+    "vm": -5.868,
+    "d_im": 0.313,
+    "prem": -0.708,
+    "mon": 3.52,
+    "opp": -2.655,
+    "opp_im": -0.0,
+    "services_synthetic_beta": -6.182,
+    "own_books_tail_opp": 0.157,
+    "net": -6.025,
+    "private_net_census": -18.397,
+    "before_payout": -24.599,
+    "liquid_funding_5_7.5_10": [
+     33.45,
+     37.87,
+     42.3
+    ]
+   }
+  },
+  "recon_floor_0.15": {
+   "normal": {
+    "vm": 0.604,
+    "d_im": 0.024,
+    "prem": -0.266,
+    "mon": 0.0,
+    "opp": 0.0,
+    "opp_im": 0.0,
+    "services_synthetic_beta": 0.58,
+    "own_books_tail_opp": -0.266,
+    "net": 0.314,
+    "private_net_census": 9.614,
+    "before_payout": 9.751,
+    "liquid_funding_5_7.5_10": [
+     -0.9,
+     3.52,
+     7.95
+    ]
+   },
+   "drought": {
+    "vm": 0.604,
+    "d_im": 0.024,
+    "prem": -0.266,
+    "mon": 0.0,
+    "opp": 0.0,
+    "opp_im": 0.0,
+    "services_synthetic_beta": 0.58,
+    "own_books_tail_opp": -0.266,
+    "net": 0.314,
+    "private_net_census": 2.229,
+    "before_payout": 2.366,
+    "liquid_funding_5_7.5_10": [
+     6.48,
+     10.91,
+     15.33
+    ]
+   },
+   "S1": {
+    "vm": -3.912,
+    "d_im": 0.209,
+    "prem": -0.266,
+    "mon": 1.177,
+    "opp": -0.294,
+    "opp_im": -0.5,
+    "services_synthetic_beta": -4.121,
+    "own_books_tail_opp": 0.118,
+    "net": -4.003,
+    "private_net_census": -11.984,
+    "before_payout": -16.164,
+    "liquid_funding_5_7.5_10": [
+     25.01,
+     29.44,
+     33.86
+    ]
+   },
+   "T4": {
+    "vm": -3.912,
+    "d_im": 0.209,
+    "prem": -0.266,
+    "mon": 1.177,
+    "opp": -0.294,
+    "opp_im": -0.5,
+    "services_synthetic_beta": -4.121,
+    "own_books_tail_opp": 0.118,
+    "net": -4.003,
+    "private_net_census": -18.397,
+    "before_payout": -22.577,
+    "liquid_funding_5_7.5_10": [
+     31.43,
+     35.85,
+     40.28
+    ]
+   }
+  },
+  "recon_mid_0.25": {
+   "normal": {
+    "vm": 0.604,
+    "d_im": 0.024,
+    "prem": -0.442,
+    "mon": 0.0,
+    "opp": 0.0,
+    "opp_im": 0.0,
+    "services_synthetic_beta": 0.58,
+    "own_books_tail_opp": -0.442,
+    "net": 0.137,
+    "private_net_census": 9.614,
+    "before_payout": 9.574,
+    "liquid_funding_5_7.5_10": [
+     -0.72,
+     3.7,
+     8.13
+    ]
+   },
+   "drought": {
+    "vm": 0.604,
+    "d_im": 0.024,
+    "prem": -0.442,
+    "mon": 0.0,
+    "opp": 0.0,
+    "opp_im": 0.0,
+    "services_synthetic_beta": 0.58,
+    "own_books_tail_opp": -0.442,
+    "net": 0.137,
+    "private_net_census": 2.229,
+    "before_payout": 2.189,
+    "liquid_funding_5_7.5_10": [
+     6.66,
+     11.09,
+     15.51
+    ]
+   },
+   "S1": {
+    "vm": -3.912,
+    "d_im": 0.209,
+    "prem": -0.442,
+    "mon": 1.962,
+    "opp": -0.491,
+    "opp_im": -0.5,
+    "services_synthetic_beta": -4.121,
+    "own_books_tail_opp": 0.529,
+    "net": -3.592,
+    "private_net_census": -11.984,
+    "before_payout": -15.753,
+    "liquid_funding_5_7.5_10": [
+     24.6,
+     29.03,
+     33.45
+    ]
+   },
+   "T4": {
+    "vm": -3.912,
+    "d_im": 0.209,
+    "prem": -0.442,
+    "mon": 1.962,
+    "opp": -0.491,
+    "opp_im": -0.5,
+    "services_synthetic_beta": -4.121,
+    "own_books_tail_opp": 0.529,
+    "net": -3.592,
+    "private_net_census": -18.397,
+    "before_payout": -22.166,
+    "liquid_funding_5_7.5_10": [
+     31.02,
+     35.44,
+     39.87
+    ]
+   }
+  },
+  "recon_cap_0.50": {
+   "normal": {
+    "vm": 0.604,
+    "d_im": 0.024,
+    "prem": -0.885,
+    "mon": 0.0,
+    "opp": 0.0,
+    "opp_im": 0.0,
+    "services_synthetic_beta": 0.58,
+    "own_books_tail_opp": -0.885,
+    "net": -0.305,
+    "private_net_census": 9.614,
+    "before_payout": 9.132,
+    "liquid_funding_5_7.5_10": [
+     -0.28,
+     4.14,
+     8.57
+    ]
+   },
+   "drought": {
+    "vm": 0.604,
+    "d_im": 0.024,
+    "prem": -0.885,
+    "mon": 0.0,
+    "opp": 0.0,
+    "opp_im": 0.0,
+    "services_synthetic_beta": 0.58,
+    "own_books_tail_opp": -0.885,
+    "net": -0.305,
+    "private_net_census": 2.229,
+    "before_payout": 1.747,
+    "liquid_funding_5_7.5_10": [
+     7.1,
+     11.53,
+     15.95
+    ]
+   },
+   "S1": {
+    "vm": -3.912,
+    "d_im": 0.209,
+    "prem": -0.885,
+    "mon": 3.925,
+    "opp": -0.981,
+    "opp_im": -0.5,
+    "services_synthetic_beta": -4.121,
+    "own_books_tail_opp": 1.559,
+    "net": -2.562,
+    "private_net_census": -11.984,
+    "before_payout": -14.723,
+    "liquid_funding_5_7.5_10": [
+     23.57,
+     28.0,
+     32.42
+    ]
+   },
+   "T4": {
+    "vm": -3.912,
+    "d_im": 0.209,
+    "prem": -0.885,
+    "mon": 3.925,
+    "opp": -0.981,
+    "opp_im": -0.5,
+    "services_synthetic_beta": -4.121,
+    "own_books_tail_opp": 1.559,
+    "net": -2.562,
+    "private_net_census": -18.397,
+    "before_payout": -21.136,
+    "liquid_funding_5_7.5_10": [
+     29.99,
+     34.41,
+     38.84
+    ]
+   }
+  }
+ },
+ "C_p2s_red_lever_memo_S1": {
+  "cash_from_physical_sale": 5.0,
+  "IM_at_execution": -0.2,
+  "VM_12m": -1.956,
+  "IM_change_to_month12": -0.104,
+  "net_12m_cash": 2.739,
+  "note": "booked to Public Markets as client: physical sale proceeds and contingent VM/IM; excluded from the Overlay row"
+ },
+ "D_ledger_v2": {
+  "benign_B0": {
+   "entity_pnl_bn": {
+    "OVL": -0.0382,
+    "TPA": 0.5626,
+    "CF": 0.0248,
+    "PUB": 0.2768,
+    "COI": -0.0176,
+    "PCR": 0.0304
+   },
+   "external_bn": 0.8388,
+   "sum_entities_bn": 0.8388,
+   "max_abs_internal_sum": 0.0,
+   "max_abs_identity_error": 0.0,
+   "naive_convention_double_count_bn": 0.882
+  },
+  "S1": {
+   "entity_pnl_bn": {
+    "OVL": -0.0213,
+    "TPA": -5.2542,
+    "CF": 0.0248,
+    "PUB": -2.3672,
+    "COI": 0.5112,
+    "PCR": -0.5645
+   },
+   "external_bn": -7.6711,
+   "sum_entities_bn": -7.6711,
+   "max_abs_internal_sum": 0.0,
+   "max_abs_identity_error": 0.0,
+   "naive_convention_double_count_bn": -7.05
+  },
+  "monte_carlo_2000_paths": {
+   "max_abs_internal_sum": 0.0,
+   "max_abs_identity_error": 0.0
+  }
+ },
+ "E_dva": {
+  "premium_floor_bn": 0.2655,
+  "old_convention_calm_year_desk_dva_bn": -0.2655,
+  "old_convention_s1_year_desk_dva_bn": 0.9119327425219803,
+  "ex_ante_value_per_usd_premium": {
+   "KV": 0.55,
+   "LV_EV_E1_duals": 0.0895,
+   "LV_cbuf_parity": 0.0665
+  },
+  "policy_residual_per_usd_premium_E1": -0.3605,
+  "policy_residual_bn_yr_floor": -0.0957,
+  "policy_residual_bn_yr_cap": -0.319,
+  "unmodelled_EV_needed_to_break_even_bn_yr_floor": 0.0957,
+  "replay_years_negative": 11,
+  "replay_longest_negative_run": 4,
+  "old_convention_5yr_calm_stretch_bn_floor": -1.3275000000000001,
+  "old_convention_5yr_calm_stretch_bn_cap": -4.425
+ },
+ "F_replay": {
+  "monetize_cATM0.90": {
+   "net_by_year_per_1usd_budget": {
+    "2010": -0.2956,
+    "2011": 0.4981,
+    "2012": -0.9361,
+    "2013": -1.0,
+    "2014": -0.9346,
+    "2015": 0.1208,
+    "2016": -0.8705,
+    "2017": -1.0,
+    "2018": 1.2454,
+    "2019": -1.0,
+    "2020": 0.3104,
+    "2021": -0.8523,
+    "2022": -0.153,
+    "2023": -0.9357,
+    "2024": -0.1843,
+    "2025": 0.5863
+   },
+   "years_negative": 11,
+   "years": 16,
+   "longest_negative_run_years": 4,
+   "realized_payoff_to_premium": 0.647,
+   "share_of_rungs_paying": 0.307,
+   "top3_payoff_years": [
+    [
+     2018,
+     0.217
+    ],
+    [
+     2011,
+     0.145
+    ],
+    [
+     2025,
+     0.129
+    ]
+   ],
+   "max_cumulative_drawdown_years_of_budget": -6.19,
+   "rungs": 576
+  },
+  "expiry_only_cATM0.90": {
+   "net_by_year_per_1usd_budget": {
+    "2010": -0.946,
+    "2011": -0.6657,
+    "2012": -1.0,
+    "2013": -1.0,
+    "2014": -1.0,
+    "2015": -1.0,
+    "2016": -1.0,
+    "2017": -1.0,
+    "2018": -1.0,
+    "2019": -0.8263,
+    "2020": -0.2679,
+    "2021": -1.0,
+    "2022": -0.5561,
+    "2023": -0.951,
+    "2024": -1.0,
+    "2025": -0.75
+   },
+   "years_negative": 16,
+   "years": 16,
+   "longest_negative_run_years": 16,
+   "realized_payoff_to_premium": 0.112,
+   "share_of_rungs_paying": 0.028,
+   "top3_payoff_years": [
+    [
+     2020,
+     0.41
+    ],
+    [
+     2022,
+     0.248
+    ],
+    [
+     2011,
+     0.187
+    ]
+   ],
+   "max_cumulative_drawdown_years_of_budget": -13.963,
+   "rungs": 576
+  },
+  "monetize_cATM0.85": {
+   "net_by_year_per_1usd_budget": {
+    "2010": -0.2776,
+    "2011": 0.5969,
+    "2012": -0.9322,
+    "2013": -1.0,
+    "2014": -0.9308,
+    "2015": 0.1816,
+    "2016": -0.7367,
+    "2017": -1.0,
+    "2018": 1.2912,
+    "2019": -1.0,
+    "2020": 0.3545,
+    "2021": -0.8523,
+    "2022": -0.0561,
+    "2023": -0.9375,
+    "2024": -0.1513,
+    "2025": 0.6766
+   },
+   "years_negative": 11,
+   "years": 16,
+   "longest_negative_run_years": 4,
+   "realized_payoff_to_premium": 0.686,
+   "share_of_rungs_paying": 0.311,
+   "top3_payoff_years": [
+    [
+     2018,
+     0.209
+    ],
+    [
+     2011,
+     0.145
+    ],
+    [
+     2025,
+     0.13
+    ]
+   ],
+   "max_cumulative_drawdown_years_of_budget": -5.77,
+   "rungs": 576
+  },
+  "monetize_cATM0.95": {
+   "net_by_year_per_1usd_budget": {
+    "2010": -0.3112,
+    "2011": 0.3946,
+    "2012": -0.9373,
+    "2013": -1.0,
+    "2014": -0.938,
+    "2015": 0.0689,
+    "2016": -0.9363,
+    "2017": -1.0,
+    "2018": 1.2008,
+    "2019": -1.0,
+    "2020": 0.2724,
+    "2021": -0.8522,
+    "2022": -0.1603,
+    "2023": -1.0,
+    "2024": -0.213,
+    "2025": 0.5736
+   },
+   "years_negative": 11,
+   "years": 16,
+   "longest_negative_run_years": 4,
+   "realized_payoff_to_premium": 0.62,
+   "share_of_rungs_paying": 0.302,
+   "top3_payoff_years": [
+    [
+     2018,
+     0.222
+    ],
+    [
+     2011,
+     0.141
+    ],
+    [
+     2025,
+     0.134
+    ]
+   ],
+   "max_cumulative_drawdown_years_of_budget": -6.495,
+   "rungs": 576
+  },
+  "monetize_5x_vix45_cATM0.90": {
+   "net_by_year_per_1usd_budget": {
+    "2010": -0.3018,
+    "2011": 0.6086,
+    "2012": -1.0,
+    "2013": -1.0,
+    "2014": -1.0,
+    "2015": -0.8537,
+    "2016": -1.0,
+    "2017": -1.0,
+    "2018": 0.174,
+    "2019": -1.0,
+    "2020": 0.6317,
+    "2021": -1.0,
+    "2022": -0.4921,
+    "2023": -0.951,
+    "2024": -0.8855,
+    "2025": 0.7562
+   },
+   "years_negative": 12,
+   "years": 16,
+   "longest_negative_run_years": 6,
+   "realized_payoff_to_premium": 0.465,
+   "share_of_rungs_paying": 0.161,
+   "top3_payoff_years": [
+    [
+     2020,
+     0.219
+    ],
+    [
+     2011,
+     0.216
+    ],
+    [
+     2025,
+     0.203
+    ]
+   ],
+   "max_cumulative_drawdown_years_of_budget": -9.377,
+   "rungs": 576
+  }
+ }
+}

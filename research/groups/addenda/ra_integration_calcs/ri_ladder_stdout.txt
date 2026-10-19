@@ -1,0 +1,25 @@
+﻿theta* {'v1pub': 0.7595, 'v1': 0.8302, 'v2u16': 0.8347, 'v2u11': 0.8771} pooled {'v1pub': 0.782391184955634, 'v1': 0.8505529434148099, 'v2u16': 0.8500177668371853, 'v2u11': 0.8966290360044251}
+v1pub@theta*                                     G*  11.11 SH_TP 17 fac  13.88 | rule SH 20 fac  6.09 | band SH 29 fac 0.00 | rule+band SH None | MixA SHTPF None head 12.0 | MixB SHTPF None head 10.8 | d0 11.27
+v1pub@0.76                                       G*  11.12 SH_TP 17 fac  13.90 | rule SH 20 fac  6.10 | band SH 29 fac 0.00 | rule+band SH None | MixA SHTPF None head 12.0 | MixB SHTPF None head 10.8 | d0 11.29
+v1pub@pooled                                     G*  11.57 SH_TP 17 fac  14.46 | rule SH 20 fac  6.61 | band SH 28 fac 0.00 | rule+band SH None | MixA SHTPF None head 11.6 | MixB SHTPF None head 10.7 | d0 11.74
+v1@theta*                                        G*   5.34 SH_TP 21 fac   6.68 | rule SH 30 fac  0.00 | band SH None fac 0.00 | rule+band SH None | MixA SHTPF None head 17.3 | MixB SHTPF None head 11.0 | d0 5.51
+v1@0.76                                          G*   4.07 SH_TP 22 fac   5.08 | rule SH 33 fac  0.00 | band SH None fac 0.00 | rule+band SH None | MixA SHTPF None head 17.5 | MixB SHTPF None head 11.2 | d0 4.23
+v1@pooled                                        G*   5.71 SH_TP 20 fac   7.14 | rule SH 28 fac  0.00 | band SH None fac 0.00 | rule+band SH None | MixA SHTPF None head 17.3 | MixB SHTPF None head 11.0 | d0 5.88
+v2u16@theta*                                     G*   9.30 SH_TP 18 fac  11.63 | rule SH 22 fac  3.68 | band SH 32 fac 0.00 | rule+band SH None | MixA SHTPF None head 14.0 | MixB SHTPF None head 10.8 | d0 9.47
+v2u16@0.76                                       G*   7.81 SH_TP 19 fac   9.76 | rule SH 23 fac  1.98 | band SH 35 fac 0.00 | rule+band SH None | MixA SHTPF None head 15.3 | MixB SHTPF None head 11.0 | d0 7.98
+v2u16@pooled                                     G*   9.61 SH_TP 18 fac  12.01 | rule SH 22 fac  4.02 | band SH 32 fac 0.00 | rule+band SH None | MixA SHTPF None head 13.7 | MixB SHTPF None head 10.7 | d0 9.78
+v2u11@theta*                                     G*   6.62 SH_TP 20 fac   8.28 | rule SH 24 fac  0.24 | band SH None fac 0.00 | rule+band SH None | MixA SHTPF None head 16.8 | MixB SHTPF None head 10.9 | d0 6.80
+v2u11@0.76                                       G*   4.42 SH_TP 21 fac   5.52 | rule SH 31 fac  0.00 | band SH None fac 0.00 | rule+band SH None | MixA SHTPF None head 17.5 | MixB SHTPF None head 11.2 | d0 4.59
+v2u11@pooled                                     G*   6.99 SH_TP 20 fac   8.74 | rule SH 24 fac  0.65 | band SH None fac 0.00 | rule+band SH None | MixA SHTPF None head 16.5 | MixB SHTPF None head 10.8 | d0 7.16
+v2u16@theta*|RA leg G15 (reproduction mode)      G*   7.36 SH_TP 19 fac   9.20 | rule SH 23 fac  1.27 | band SH 35 fac 0.00 | rule+band SH None | MixA SHTPF None head 15.9 | MixB SHTPF None head 10.9 | d0 7.53
+v2u16@theta*|RA extension 0                      G*   9.39 SH_TP 18 fac  11.73 | rule SH 22 fac  3.78 | band SH 32 fac 0.00 | rule+band SH None | MixA SHTPF None head 13.9 | MixB SHTPF None head 10.8 | d0 9.56
+v2u16@theta*|RA calls x1.0                       G*   8.60 SH_TP 19 fac  10.75 | rule SH 22 fac  3.00 | band SH 33 fac 0.00 | rule+band SH None | MixA SHTPF None head 14.5 | MixB SHTPF None head 10.8 | d0 8.78
+v2u11@theta*|RA leg G15 (reproduction mode)      G*   4.54 SH_TP 21 fac   5.67 | rule SH 31 fac  0.00 | band SH None fac 0.00 | rule+band SH None | MixA SHTPF None head 17.3 | MixB SHTPF None head 11.0 | d0 4.71
+v2u11@theta*|RA extension 0                      G*   6.69 SH_TP 20 fac   8.36 | rule SH 24 fac  0.32 | band SH None fac 0.00 | rule+band SH None | MixA SHTPF None head 16.7 | MixB SHTPF None head 10.9 | d0 6.86
+v2u11@theta*|RA calls x1.0                       G*   5.90 SH_TP 20 fac   7.37 | rule SH 26 fac  0.00 | band SH None fac 0.00 | rule+band SH None | MixA SHTPF None head 17.2 | MixB SHTPF None head 10.9 | d0 6.07
+phase1 v1pub@theta* {'R0x': 0.0, 'R0': 0.0, 'R1': 0.0} d0 11.27
+phase1 v1@theta* {'R0x': 0.0, 'R0': 0.0, 'R1': 0.0} d0 5.51
+phase1 v2u16@theta* {'R0x': 0.0, 'R0': 0.0, 'R1': 0.0} d0 9.47
+phase1 v2u11@theta* {'R0x': 0.0, 'R0': 0.0, 'R1': 0.0} d0 6.8
+L8 {'v1pub': (0.814, -2.4), 'v1': (0.751, 8.6), 'v2u16': (0.774, 4.6), 'v2u11': (0.743, 10.1)}
+carve-out effect (v2u16 - v1) {'fac_need_24|0.76': 4.68, 'fac_need_24|theta*': 4.95, 'gstar|0.76': 3.74, 'gstar|theta*': 3.96, 'd0|0.76': 3.74, 'd0|theta*': 3.96}

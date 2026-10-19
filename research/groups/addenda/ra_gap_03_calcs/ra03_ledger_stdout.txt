@@ -1,0 +1,203 @@
+﻿{
+ "state_curves_m12": {
+  "SG": {
+   "share": 0.3594,
+   "front_month": 75.99,
+   "1y_fwd": 62.43,
+   "3y_avg": 64.5
+  },
+  "DB": {
+   "share": 0.056,
+   "front_month": 79.5,
+   "1y_fwd": 65.39,
+   "3y_avg": 67.63
+  },
+  "GW": {
+   "share": 0.1144,
+   "front_month": 96.18,
+   "1y_fwd": 81.25,
+   "3y_avg": 79.08
+  },
+  "N": {
+   "share": 0.3229,
+   "front_month": 87.53,
+   "1y_fwd": 79.75,
+   "3y_avg": 78.97
+  },
+  "SG24": {
+   "share": 0.2622,
+   "front_month": 60.67,
+   "1y_fwd": 54.54,
+   "3y_avg": 57.63
+  },
+  "DB24": {
+   "share": 0.0763,
+   "front_month": 62.73,
+   "1y_fwd": 56.73,
+   "3y_avg": 60.11
+  }
+ },
+ "current_curve": {
+  "front_month": 105.92,
+  "1y_fwd": 86.19,
+  "3y_avg": 83.39
+ },
+ "enr_elasticities": {
+  "canonical_now": {
+   "pdp": 0.501,
+   "roy": 0.407,
+   "mid": 0.127,
+   "lev": 0.835
+  },
+  "SG_m12": {
+   "pdp": 0.482,
+   "roy": 0.382,
+   "mid": 0.127,
+   "lev": 0.982
+  },
+  "DB_m12": {
+   "pdp": 0.478,
+   "roy": 0.383,
+   "mid": 0.127,
+   "lev": 0.928
+  },
+  "GW_m12": {
+   "pdp": 0.497,
+   "roy": 0.401,
+   "mid": 0.127,
+   "lev": 0.859
+  },
+  "N_m12": {
+   "pdp": 0.482,
+   "roy": 0.394,
+   "mid": 0.127,
+   "lev": 0.829
+  },
+  "SG24_m12": {
+   "pdp": 0.472,
+   "roy": 0.371,
+   "mid": 0.126,
+   "lev": 1.09
+  },
+  "DB24_m12": {
+   "pdp": 0.467,
+   "roy": 0.372,
+   "mid": 0.126,
+   "lev": 1.02
+  },
+  "G12_N_at_70": {
+   "pdp": 0.386,
+   "roy": 0.305,
+   "mid": 0.099,
+   "lev": 0.643
+  },
+  "G12_GW_at_95": {
+   "pdp": 0.395,
+   "roy": 0.311,
+   "mid": 0.099,
+   "lev": 0.659
+  }
+ },
+ "gcc_regression": {
+  "lag0q": {
+   "beta": 0.125,
+   "nw_se": 0.056,
+   "corr": 0.32,
+   "n": 81
+  },
+  "lag1q": {
+   "beta": 0.142,
+   "nw_se": 0.054,
+   "corr": 0.363,
+   "n": 80
+  },
+  "lag2q": {
+   "beta": 0.122,
+   "nw_se": 0.046,
+   "corr": 0.312,
+   "n": 79
+  },
+  "sample": "2003-01-01..2024-01-01 (BIS series ends here)"
+ },
+ "totals": {
+  "RA_ENR_only": {
+   "now": 10.41,
+   "SG": 11.32,
+   "DB": 11.23,
+   "SG24": 12.67,
+   "DB24": 12.65
+  },
+  "RA_total (ENR + infra midstream + GCC RE)": {
+   "now": 11.19,
+   "SG": 15.03,
+   "DB": 14.81,
+   "SG24": 17.13,
+   "DB24": 17.0
+  },
+  "total_portfolio_assets_ex_overlay_derivatives": {
+   "now": 21.19,
+   "SG": 28.8,
+   "DB": 28.15,
+   "SG24": 33.29,
+   "DB24": 32.78
+  },
+  "overlay_opportunistic_templates_now": 5.54,
+  "total_incl_opportunistic_now": 26.73,
+  "G12_reference_ENR": {
+   "$70 N basis": 12.22,
+   "$95 GW basis": 9.2
+  }
+ },
+ "liability_in_barrels": {
+  "L_eff_t0_pct_nav": 4.74,
+  "PV_draw_delta_m_bbl": 79.2,
+  "first_year_2027_draw_delta_m_bbl": 22.2,
+  "first_year_conditional_on_in_band_m_bbl": 56.4,
+  "stream03_reference_first_year_m_bbl": 100
+ },
+ "overlay_opportunistic_templates": {
+  "assumptions": {
+   "vol_budget_usd_bn": 1.95,
+   "trend_share": 0.35,
+   "carry_share": 0.25,
+   "crude_vol_3m": 0.452,
+   "markets": "trend 40 futures equal risk; carry 4 asset buckets x ~10 markets; Brent+WTI rho 0.95 [I]"
+  },
+  "trend_m_bbl_now": 4.08,
+  "carry_m_bbl_now": 1.46,
+  "sign_now": "long: 12-month Brent return strongly positive (4Q25 avg $63.65 -> Oct-26 front $105.92) and the curve is in steep backwardation (Dec-26 to Dec-27 -$20.84)",
+  "sign_SG_DB": "short: trend flips after a sustained fall; carry flips if the curve moves to contango"
+ },
+ "groups_gap04_brent_ladder": {
+  "premium_usd_bn_a_year": 0.053,
+  "notional_m_bbl": 10.6,
+  "spot_equiv_m_bbl": -0.85
+ }
+}
+RA ENR levered upstream (funds 0.80 + direct 0.27)             nav   1.07 eps  0.835 d_now   8.44 d_SG   8.88 d_DB   8.85 d_SG24   9.79 d_DB24   9.80
+RA ENR royalties                                               nav   0.18 eps  0.407 d_now   0.69 d_SG   0.75 d_DB   0.74 d_SG24   0.83 d_DB24   0.84
+RA ENR fee midstream (funds 0.40 + JV 0.45)                    nav   0.85 eps  0.127 d_now   1.02 d_SG   1.33 d_DB   1.29 d_SG24   1.61 d_DB24   1.58
+RA ENR other (services, metals, transition)                    nav   0.40 eps  0.070 d_now   0.26 d_SG   0.36 d_DB   0.35 d_SG24   0.44 d_DB24   0.43
+RA infrastructure midstream (10% of $6.5bn, energy_link)       nav   0.65 eps  0.127 d_now   0.78 d_SG   1.02 d_DB   0.99 d_SG24   1.23 d_DB24   1.21
+RA GCC real estate (fiscal/oil channel)                        nav   1.20 eps  0.000 d_now   0.00 d_SG   2.69 d_DB   2.59 d_SG24   3.23 d_DB24   3.14
+PE funds energy look-through (2.0% of $34bn)                   nav   0.68 eps  0.378 d_now   2.43 d_SG   2.98 d_DB   2.90 d_SG24   3.43 d_DB24   3.36
+Co-investment energy look-through (3% of $18bn)                nav   0.54 eps  0.378 d_now   1.93 d_SG   2.37 d_DB   2.30 d_SG24   2.73 d_DB24   2.67
+Secondaries energy look-through (2% of $14bn)                  nav   0.28 eps  0.378 d_now   1.00 d_SG   1.23 d_DB   1.19 d_SG24   1.41 d_DB24   1.38
+Capital Solutions energy (3% of $8bn)                          nav   0.24 eps  0.120 d_now   0.27 d_SG   0.62 d_DB   0.60 d_SG24   0.74 d_DB24   0.72
+Private Credit energy loans (2% of $14bn)                      nav   0.28 eps  0.048 d_now   0.13 d_SG   0.53 d_DB   0.51 d_SG24   0.64 d_DB24   0.62
+Long-only equity energy (3.96% of $28bn)                       nav   1.11 eps  0.240 d_now   2.51 d_SG   3.23 d_DB   3.12 d_SG24   3.84 d_DB24   3.74
+Long-only fixed income energy (8% of $8bn)                     nav   0.64 eps  0.048 d_now   0.29 d_SG   0.97 d_DB   0.93 d_SG24   1.18 d_DB24   1.15
+Hedge funds energy (net beta 0.3 x 3.96% of $20bn)             nav   0.24 eps  0.240 d_now   0.54 d_SG   0.69 d_DB   0.67 d_SG24   0.82 d_DB24   0.80
+Overlay completion beta energy (3.96% of $10bn)                nav   0.40 eps  0.240 d_now   0.90 d_SG   1.15 d_DB   1.12 d_SG24   1.37 d_DB24   1.34
+log kinks 64/31 | 1y (Dec-27) | 20m bbl notional -1.56 -0.169 3.86 | SG -3.81 | DB -3.44 | SG24 -5.26 | DB24 -4.97
+log kinks 64/31 | 1y (Dec-27) | 40m bbl notional -3.12 -0.169 3.86 | SG -7.63 | DB -6.88 | SG24 -10.51 | DB24 -9.95
+log kinks 64/31 | 2y (Dec-28) | 20m bbl notional -1.14 -0.227 7.02 | SG -1.93 | DB -1.76 | SG24 -2.54 | DB24 -2.38
+log kinks 64/31 | 2y (Dec-28) | 40m bbl notional -2.27 -0.227 7.02 | SG -3.87 | DB -3.52 | SG24 -5.08 | DB24 -4.77
+linear kinks 67/23 | 1y (Dec-27) | 20m bbl notional -1.87 -0.203 4.79 | SG -4.46 | DB -4.03 | SG24 -6.15 | DB24 -5.81
+linear kinks 67/23 | 1y (Dec-27) | 40m bbl notional -3.75 -0.203 4.79 | SG -8.92 | DB -8.07 | SG24 -12.31 | DB24 -11.63
+linear kinks 67/23 | 2y (Dec-28) | 20m bbl notional -1.36 -0.272 8.53 | SG -2.32 | DB -2.11 | SG24 -3.06 | DB24 -2.86
+linear kinks 67/23 | 2y (Dec-28) | 40m bbl notional -2.72 -0.272 8.53 | SG -4.64 | DB -4.22 | SG24 -6.12 | DB24 -5.73
+canonical linear kinks 65/26 (P_BE 55, 2027 volumes) | 1y (Dec-27) | 20m bbl notional -1.71 -0.185 4.27 | SG -4.15 | DB -3.75 | SG24 -5.76 | DB24 -5.44
+canonical linear kinks 65/26 (P_BE 55, 2027 volumes) | 1y (Dec-27) | 40m bbl notional -3.41 -0.185 4.27 | SG -8.31 | DB -7.49 | SG24 -11.52 | DB24 -10.88
+canonical linear kinks 65/26 (P_BE 55, 2027 volumes) | 2y (Dec-28) | 20m bbl notional -1.25 -0.25 7.74 | SG -2.14 | DB -1.95 | SG24 -2.83 | DB24 -2.65
+canonical linear kinks 65/26 (P_BE 55, 2027 volumes) | 2y (Dec-28) | 40m bbl notional -2.5 -0.25 7.74 | SG -4.29 | DB -3.89 | SG24 -5.65 | DB24 -5.29

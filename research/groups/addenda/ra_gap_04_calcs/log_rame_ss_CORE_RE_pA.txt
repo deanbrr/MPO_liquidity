@@ -1,0 +1,7 @@
+CORE_RE ss true SS params {'lam': 0.75, 'mu': 0.0033357329104412247, 'sv': 0.05781881563717437, 'sxi': 0.004269562819149833, 'beta': 1.0, 'phip': 0.85, 'sp': 0.05, 'sL': 0.01, 'st': 0.025, 'cL': 0.0}
+resuming; done: ['M0', 'M1', 'M2', 'M3', 'M4', 'M5']
+CORE_RE ss M5s    ALT: R2 0.30 xsCRPS +27.7% xsReg +49.7% cov 0.779 sellbias +1.02 reg 0.156 | AL R2 0.63 cov 0.62 | ALT4 R2 0.53 | lam 0.734 | 498s
+CORE_RE ss M6     ALT: R2 0.24 xsCRPS -0.2% xsReg -4.6% cov 0.792 sellbias +0.01 reg 0.118 | AL R2 0.51 cov 0.74 | ALT4 R2 0.42 | lam 0.749 | 391s
+CORE_RE ss MALL   ALT: R2 0.41 xsCRPS +101.1% xsReg +107.6% cov 0.475 sellbias +1.70 reg 0.470 | AL R2 0.59 cov 0.56 | ALT4 R2 0.55 | lam 0.774 | 447s
+CORE_RE SBC {'n_rep': 300, 'n_pit': 600, 'cov80': 0.725, 'ks_p': 0.14396852928445558, 'chi2_10bins': 27.9, 'chi2_p': 0.0009912624570893591, 'pit_hist': [79, 63, 53, 53, 65, 58, 44, 53, 46, 86], 'pit_tail_share': 0.155}
+wrote C:\Users\dean\ai_envs\adic_tpa_lab\research\groups\addenda\ra_gap_04_calcs\rame_ens_ss_CORE_RE_pA.json 1793.2 s SYNTHETIC - NOT ADIC DATA

@@ -1,0 +1,7 @@
+VA_RE ss true SS params {'lam': 0.7, 'mu': 0.004591229648625266, 'sv': 0.06996309209704783, 'sxi': 0.005977387946809766, 'beta': 1.0, 'phip': 0.85, 'sp': 0.05, 'sL': 0.01, 'st': 0.03, 'cL': 0.0}
+VA_RE ss M0     ALT: R2 0.24 xsCRPS +0.1% xsReg +4.0% cov 0.795 sellbias -0.09 reg 0.142 | AL R2 0.45 cov 0.76 | ALT4 R2 0.39 | lam 0.701 | 313s
+VA_RE ss M1     ALT: R2 0.24 xsCRPS +1.2% xsReg +5.0% cov 0.798 sellbias -0.08 reg 0.143 | AL R2 0.46 cov 0.73 | ALT4 R2 0.39 | lam 0.724 | 245s
+VA_RE ss M2     ALT: R2 0.23 xsCRPS +10.2% xsReg +13.6% cov 0.806 sellbias +0.52 reg 0.153 | AL R2 0.51 cov 0.67 | ALT4 R2 0.41 | lam 0.773 | 308s
+VA_RE ss M3     ALT: R2 0.24 xsCRPS -1.6% xsReg -4.2% cov 0.817 sellbias -0.06 reg 0.186 | AL R2 0.44 cov 0.80 | ALT4 R2 0.38 | lam 0.698 | 342s
+VA_RE ss M4     ALT: R2 0.41 xsCRPS +43.3% xsReg +77.6% cov 0.526 sellbias -0.75 reg 0.334 | AL R2 0.45 cov 0.76 | ALT4 R2 0.46 | lam 0.588 | 307s
+VA_RE ss M5     ALT: R2 0.24 xsCRPS +0.6% xsReg -0.7% cov 0.800 sellbias +0.14 reg 0.143 | AL R2 0.47 cov 0.76 | ALT4 R2 0.40 | lam 0.706 | 328s

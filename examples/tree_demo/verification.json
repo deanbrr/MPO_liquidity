@@ -1,0 +1,511 @@
+{
+ "results_sha256": "eec513b66e7a1dfb058a5646fdcaabd249ba7025f4e5b8f5a7a866e178f4a3fc",
+ "checked_on": "2026-10-19",
+ "method": "verify_independent.py: an independent re-implementation of the tree program that checks results.json.",
+ "objective_and_decisions": {
+  "with_revolver": {
+   "author_objective": -0.338692698011,
+   "independent_objective_highs_own_tangents": -0.3386926980107951,
+   "status_highs": "optimal",
+   "independent_objective_clarabel_own_tangents": -0.33869269804145025,
+   "status_clarabel": "optimal",
+   "independent_objective_highs_author_tangents": -0.3386926980108273,
+   "rel_diff_highs": 6.049485577864988e-13,
+   "rel_diff_clarabel": 8.990525514328893e-11,
+   "rel_diff_author_tangents": 5.09887554395502e-13,
+   "max_tangent_rel_diff": 3.886191671285935e-12,
+   "max_abs_decision_or_state_diff_bn": 9.901413022816996e-11,
+   "where": "D>C>C>N L"
+  },
+  "no_revolver": {
+   "author_objective": -0.338499473967,
+   "independent_objective_highs_own_tangents": -0.33849947396686697,
+   "status_highs": "optimal",
+   "independent_objective_clarabel_own_tangents": -0.3384994740967483,
+   "status_clarabel": "optimal",
+   "independent_objective_highs_author_tangents": -0.33849947396688645,
+   "rel_diff_highs": 3.92924446207737e-13,
+   "rel_diff_clarabel": 3.8330435694920683e-10,
+   "rel_diff_author_tangents": 3.353633107240493e-13,
+   "max_tangent_rel_diff": 3.48433347530995e-12,
+   "max_abs_decision_or_state_diff_bn": 2.4637358819745714e-09,
+   "where": "D>N>N>N L"
+  }
+ },
+ "published_values": {
+  "with_revolver": {
+   "max_residual_by_identity": {
+    "closing NAV as published": 5.645688361255452e-10,
+    "closing cash = opening cash + trades": 8.244960270076263e-11,
+    "closing liquid = opening liquid + trades": 8.000000661922968e-11,
+    "closing PE = opening PE - sales": 0.0,
+    "closing unfunded = opening - transferred": 0.0,
+    "owner draw = rate x parent's NAV": 4.5501380441237416e-11,
+    "opening cash = parent's closing cash + the year's flows": 6.73665567774151e-11,
+    "opening liquid = parent's liquid x (1 + return)": 9.320899607700994e-11,
+    "opening PE = parent's PE x (1 + return - distributions) + calls": 8.907363735488616e-11,
+    "opening unfunded = parent's x (1 - call rate) + new commitments": 3.552713678800501e-15,
+    "probabilities sum to 1 at each stage": 1.1102230246251565e-16,
+    "node probability = parent's x branch probability": 5.551115123125783e-17
+   },
+   "min_slack_by_limit": {
+    "cash floor 4%": -5.5999649362092896e-12,
+    "8% target with priced shortfall": -4.800071451427357e-11,
+    "NAV-loan capacity": 1.008363377033,
+    "revolver availability": 1.2169199386400003,
+    "IC range upper edge": 0.560554202011005,
+    "IC range lower edge with priced shortfall": -4.420286359163583e-11,
+    "exposure cap": 40.112599242417005,
+    "synthetic budget": 0.0,
+    "pacing cut <= 75% of plan": 3.75,
+    "non-negative stocks": 0.0
+   },
+   "max_residual_bn": 5.645688361255452e-10,
+   "min_slack_bn": -4.800071451427357e-11
+  },
+  "no_revolver": {
+   "max_residual_by_identity": {
+    "closing NAV as published": 5.600213626166806e-10,
+    "closing cash = opening cash + trades": 6.416200903913705e-11,
+    "closing liquid = opening liquid + trades": 1.000017846308765e-10,
+    "closing PE = opening PE - sales": 0.0,
+    "closing unfunded = opening - transferred": 0.0,
+    "owner draw = rate x parent's NAV": 4.999911595859885e-11,
+    "opening cash = parent's closing cash + the year's flows": 5.971934058379702e-11,
+    "opening liquid = parent's liquid x (1 + return)": 9.249845334124984e-11,
+    "opening PE = parent's PE x (1 + return - distributions) + calls": 8.907363735488616e-11,
+    "opening unfunded = parent's x (1 - call rate) + new commitments": 3.552713678800501e-15,
+    "probabilities sum to 1 at each stage": 1.1102230246251565e-16,
+    "node probability = parent's x branch probability": 5.551115123125783e-17
+   },
+   "min_slack_by_limit": {
+    "cash floor 4%": -2.3998580900297384e-12,
+    "8% target with priced shortfall": -4.800071451427357e-11,
+    "NAV-loan capacity": 1.008363377033,
+    "revolver availability": 0.0,
+    "IC range upper edge": 1.9562831329070036,
+    "IC range lower edge with priced shortfall": -8.549960739401286e-11,
+    "exposure cap": 46.07407424497198,
+    "synthetic budget": 0.0,
+    "pacing cut <= 75% of plan": 3.75,
+    "non-negative stocks": 0.0
+   },
+   "max_residual_bn": 5.600213626166806e-10,
+   "min_slack_bn": -8.549960739401286e-11
+  }
+ },
+ "duals": {
+  "rows": [
+   {
+    "path": "D",
+    "mu_published": 0.00372182868356,
+    "mu_right": 0.0037218286838003323,
+    "mu_left": 0.003721828683356243,
+    "rel_err": 5.4746515050871766e-11,
+    "lambda_published": 0.00680228941208,
+    "lambda_resolve": 0.006802289281370118,
+    "lambda_abs_diff": 1.3070988215402313e-10
+   },
+   {
+    "path": "D>N",
+    "mu_published": 0.000843598015599,
+    "mu_right": 0.0008435980157761591,
+    "mu_left": 0.0008435980156096257,
+    "rel_err": 1.2595590286781529e-11,
+    "lambda_published": 0.00336492044277,
+    "lambda_resolve": 0.0033649204367171646,
+    "lambda_abs_diff": 6.052835316294747e-12
+   },
+   {
+    "path": "D>N>N",
+    "mu_published": 0.000472727573949,
+    "mu_right": 0.00047272757414118516,
+    "mu_left": 0.0004727275737526071,
+    "rel_err": 4.065452188207411e-10,
+    "lambda_published": 0.00279572623603,
+    "lambda_resolve": 0.0027957265045997367,
+    "lambda_abs_diff": 2.6856973676242513e-10
+   },
+   {
+    "path": "D>N>D",
+    "mu_published": 0.000183934929142,
+    "mu_right": 0.00018393492923207688,
+    "mu_left": 0.00018393492912105458,
+    "rel_err": 1.1387413373527445e-10,
+    "lambda_published": 0.00372125550584,
+    "lambda_resolve": 0.0037212546283672,
+    "lambda_abs_diff": 8.774727997158671e-10
+   },
+   {
+    "path": "D>N>C",
+    "mu_published": 0.000152129952744,
+    "mu_right": 0.00015212995280178276,
+    "mu_left": 0.0001521299527462716,
+    "rel_err": 1.493210476186927e-11,
+    "lambda_published": 7.78458000749e-05,
+    "lambda_resolve": 7.784539401594832e-05,
+    "lambda_abs_diff": 4.060589516810976e-10
+   },
+   {
+    "path": "D>D",
+    "mu_published": 0.00188808977274,
+    "mu_right": 0.0018880897728612567,
+    "mu_left": 0.001888089772639212,
+    "rel_err": 5.3380866254499076e-11,
+    "lambda_published": 0.00957109526683,
+    "lambda_resolve": 0.009571095152691963,
+    "lambda_abs_diff": 1.1413803756299412e-10
+   },
+   {
+    "path": "D>D>N",
+    "mu_published": 0.00045223192478,
+    "mu_right": 0.00045223192490784214,
+    "mu_left": 0.0004522319247413087,
+    "rel_err": 8.55563804725147e-11,
+    "lambda_published": 0.00373288209628,
+    "lambda_resolve": 0.003732880902687789,
+    "lambda_abs_diff": 1.1935922107457475e-09
+   },
+   {
+    "path": "D>D>D",
+    "mu_published": 0.00092754441638,
+    "mu_right": 0.0009275444163847624,
+    "mu_left": 0.0009275444163847624,
+    "rel_err": 5.134371959489557e-12,
+    "lambda_published": 0.00399819018165,
+    "lambda_resolve": 0.003998190208866784,
+    "lambda_abs_diff": 2.7216783514416587e-11
+   },
+   {
+    "path": "D>D>C",
+    "mu_published": 0.000419592483257,
+    "mu_right": 0.00041959248336942423,
+    "mu_left": 0.0004195924832028908,
+    "rel_err": 1.2895660854578177e-10,
+    "lambda_published": 0.000367202910605,
+    "lambda_resolve": 0.00036720210405820705,
+    "lambda_abs_diff": 8.065467929489235e-10
+   },
+   {
+    "path": "D>C",
+    "mu_published": 0.000822580958934,
+    "mu_right": 0.0008225809589590405,
+    "mu_left": 0.0008225809589035293,
+    "rel_err": 3.04414006467415e-11,
+    "lambda_published": 0.00646923621846,
+    "lambda_resolve": 0.006469236079914483,
+    "lambda_abs_diff": 1.385455170727079e-10
+   },
+   {
+    "path": "D>C>N",
+    "mu_published": 0.000183312100792,
+    "mu_right": 0.00018331210083211147,
+    "mu_left": 0.0001833121003325111,
+    "rel_err": 2.1881517183330424e-10,
+    "lambda_published": 0.00408735096279,
+    "lambda_resolve": 0.004087348851772632,
+    "lambda_abs_diff": 2.1110173678562383e-09
+   },
+   {
+    "path": "D>C>D",
+    "mu_published": 0.000277666213127,
+    "mu_right": 0.0002776662131331875,
+    "mu_left": 0.00027766621263358715,
+    "rel_err": 2.2283905263749513e-11,
+    "lambda_published": 0.0175541547548,
+    "lambda_resolve": 0.017554152929455898,
+    "lambda_abs_diff": 1.825344101563653e-09
+   },
+   {
+    "path": "D>C>C",
+    "mu_published": 0.0003258172158,
+    "mu_right": 0.00032581721587376933,
+    "mu_left": 0.00032581721620683624,
+    "rel_err": 2.2641324361948653e-10,
+    "lambda_published": 0.00538756979706,
+    "lambda_resolve": 0.005387570022218129,
+    "lambda_abs_diff": 2.2515812912043964e-10
+   }
+  ],
+  "max_rel_err_mu": 4.065452188207411e-10,
+  "max_abs_diff_lambda": 2.1110173678562383e-09,
+  "right_left_max_rel_gap": 2.7254085187109685e-09
+ },
+ "uniqueness": {
+  "rows": [
+   {
+    "path": "D",
+    "decision": "sL",
+    "min": 0.0,
+    "max": 8.956171188974583e-06,
+    "range": 8.956171188974583e-06
+   },
+   {
+    "path": "D",
+    "decision": "bL",
+    "min": 0.8388387438889381,
+    "max": 0.838858941384003,
+    "range": 2.0197495064877558e-05
+   },
+   {
+    "path": "D",
+    "decision": "sP",
+    "min": 0.0,
+    "max": 1.3492396007037582e-07,
+    "range": 1.3492396007037582e-07
+   },
+   {
+    "path": "D",
+    "decision": "cv",
+    "min": 0.0,
+    "max": 1.74640246647439e-05,
+    "range": 1.74640246647439e-05
+   },
+   {
+    "path": "D",
+    "decision": "uw",
+    "min": 0.0,
+    "max": 0.0,
+    "range": 0.0
+   },
+   {
+    "path": "D",
+    "decision": "BR",
+    "min": 0.0,
+    "max": 4.019311963442036e-06,
+    "range": 4.019311963442036e-06
+   },
+   {
+    "path": "D",
+    "decision": "BN",
+    "min": 0.0,
+    "max": 8.038623929748106e-07,
+    "range": 8.038623929748106e-07
+   },
+   {
+    "path": "D",
+    "decision": "X",
+    "min": 0.0,
+    "max": 1.74640246647439e-05,
+    "range": 1.74640246647439e-05
+   },
+   {
+    "path": "D",
+    "decision": "cut",
+    "min": 0.0,
+    "max": 4.78035481421557e-07,
+    "range": 4.78035481421557e-07
+   },
+   {
+    "path": "D>N",
+    "decision": "sL",
+    "min": 1.1504871025484769,
+    "max": 1.1507022755144656,
+    "range": 0.00021517296598871916
+   },
+   {
+    "path": "D>N",
+    "decision": "bL",
+    "min": 0.0,
+    "max": 3.951330285190121e-05,
+    "range": 3.951330285190121e-05
+   },
+   {
+    "path": "D>N",
+    "decision": "sP",
+    "min": 0.0,
+    "max": 1.1264044117196033e-06,
+    "range": 1.1264044117196033e-06
+   },
+   {
+    "path": "D>N",
+    "decision": "cv",
+    "min": 0.0,
+    "max": 0.00018480339212836476,
+    "range": 0.00018480339212836476
+   },
+   {
+    "path": "D>N",
+    "decision": "uw",
+    "min": 0.0,
+    "max": 1.2960483222285754e-05,
+    "range": 1.2960483222285754e-05
+   },
+   {
+    "path": "D>N",
+    "decision": "BR",
+    "min": 0.0,
+    "max": 1.7663027510723195e-05,
+    "range": 1.7663027510723195e-05
+   },
+   {
+    "path": "D>N",
+    "decision": "BN",
+    "min": 0.0,
+    "max": 4.121373085835792e-06,
+    "range": 4.121373085835792e-06
+   },
+   {
+    "path": "D>N",
+    "decision": "X",
+    "min": 0.0,
+    "max": 0.00018480339212836476,
+    "range": 0.00018480339212836476
+   },
+   {
+    "path": "D>N",
+    "decision": "cut",
+    "min": 0.0,
+    "max": 2.1290194408505076e-06,
+    "range": 2.1290194408505076e-06
+   },
+   {
+    "path": "D>D",
+    "decision": "sL",
+    "min": 6.444409578235133,
+    "max": 6.445031190907589,
+    "range": 0.0006216126724556403
+   },
+   {
+    "path": "D>D",
+    "decision": "bL",
+    "min": 0.0,
+    "max": 1.7654548045697976e-05,
+    "range": 1.7654548045697976e-05
+   },
+   {
+    "path": "D>D",
+    "decision": "sP",
+    "min": 0.0,
+    "max": 3.1295175833494995e-07,
+    "range": 3.1295175833494995e-07
+   },
+   {
+    "path": "D>D",
+    "decision": "cv",
+    "min": 0.0,
+    "max": 0.000635740439601113,
+    "range": 0.000635740439601113
+   },
+   {
+    "path": "D>D",
+    "decision": "uw",
+    "min": 0.0,
+    "max": 8.90231719905078e-06,
+    "range": 8.90231719905078e-06
+   },
+   {
+    "path": "D>D",
+    "decision": "BR",
+    "min": 0.0,
+    "max": 7.93929699991609e-06,
+    "range": 7.93929699991609e-06
+   },
+   {
+    "path": "D>D",
+    "decision": "BN",
+    "min": 0.0,
+    "max": 1.587859399983276e-06,
+    "range": 1.587859399983276e-06
+   },
+   {
+    "path": "D>D",
+    "decision": "X",
+    "min": 0.0,
+    "max": 0.000635740439601113,
+    "range": 0.000635740439601113
+   },
+   {
+    "path": "D>D",
+    "decision": "cut",
+    "min": 0.0,
+    "max": 9.845352053616807e-07,
+    "range": 9.845352053616807e-07
+   },
+   {
+    "path": "D>C",
+    "decision": "sL",
+    "min": 0.0,
+    "max": 5.8296721292094844e-05,
+    "range": 5.8296721292094844e-05
+   },
+   {
+    "path": "D>C",
+    "decision": "bL",
+    "min": 0.0,
+    "max": 0.0,
+    "range": 0.0
+   },
+   {
+    "path": "D>C",
+    "decision": "sP",
+    "min": 0.0,
+    "max": 3.435273464868226e-07,
+    "range": 3.435273464868226e-07
+   },
+   {
+    "path": "D>C",
+    "decision": "cv",
+    "min": 0.0,
+    "max": 1.02181712967485e-05,
+    "range": 1.02181712967485e-05
+   },
+   {
+    "path": "D>C",
+    "decision": "uw",
+    "min": 0.0,
+    "max": 1.7463999508953504e-05,
+    "range": 1.7463999508953504e-05
+   },
+   {
+    "path": "D>C",
+    "decision": "BR",
+    "min": 6.283021848578344,
+    "max": 6.283099901119901,
+    "range": 7.80525415571276e-05
+   },
+   {
+    "path": "D>C",
+    "decision": "BN",
+    "min": 0.0,
+    "max": 3.4350782922485393e-06,
+    "range": 3.4350782922485393e-06
+   },
+   {
+    "path": "D>C",
+    "decision": "X",
+    "min": 0.0,
+    "max": 1.0218172680918053e-05,
+    "range": 1.0218172680918053e-05
+   },
+   {
+    "path": "D>C",
+    "decision": "cut",
+    "min": 0.0,
+    "max": 2.415772216397926e-06,
+    "range": 2.415772216397926e-06
+   }
+  ],
+  "root_max_range_bn": 2.0197495064877558e-05,
+  "stage1_max_range_bn": 0.000635740439601113,
+  "stage1_worst": "D>D cv"
+ },
+ "runtime_seconds_not_hashed": 36.9,
+ "passed": true,
+ "markdown_lines": [
+  "`verify_independent.py` re-implements the program from section 9 and `params.json` without calling `tree_demo.py`'s model code. The tree is built depth-first and keyed by path, every row is a cvxpy expression, and the program is solved with CLARABEL (interior point) and with HiGHS through cvxpy. It checked results.json `eec513b66e7a1dfb…` on 2026-10-19. **Result: all three checks pass.**",
+  "",
+  "| Check | What was compared | Result |",
+  "|---|---|---|",
+  "| 1. Objective agreement, revolver signed | E[Û]: author -0.338692698011; independent HiGHS -0.338692698011, CLARABEL -0.338692698041 (each with its own two-pass tangents) | relative difference 6.0e-13 / 9.0e-11; tangents agree to 3.9e-12 |",
+  "| 1. Objective agreement, no revolver | author -0.338499473967; HiGHS -0.338499473967, CLARABEL -0.338499474097 | relative difference 3.9e-13 / 3.8e-10 |",
+  "| 1. Decisions and states at all 40 nodes | sells, buys, PE sales, P2S, closing C, L, P, U, BR, BN, X (HiGHS vertex, author's tangents) | largest difference $9.9e-11bn (D>C>C>N L); no revolver $2.5e-09bn |",
+  "| 2. Identities at every node, from the published values | opening stocks from the parent's closing stocks and the year's rates; closing stocks from the trades; owner draw = rate × parent's NAV; probabilities | largest residual 5.6e-10 (revolver) / 5.6e-10 (no revolver) |",
+  "| 2. Limits at every node, from the published values | 4% floor, 8% target with its priced shortfall, NAV-loan capacity, revolver availability, IC range edges, exposure cap, synthetic budget, pacing cap, non-negative stocks | smallest slack -4.8e-11 / -8.5e-11 (≥ 0 holds) |",
+  "| 3. Cash price at all 13 decision nodes | μ published against ± $0.001bn re-solves (HiGHS) | largest relative error 4.1e-10; right and left slopes agree to 2.7e-09 |",
+  "| 3. λ at all 13 decision nodes | λ published against a carry re-solve (inject $1, tighten the floor and target by (1 − f) and (1 − 0.08)) | largest absolute difference 2.1e-09 |",
+  "| Uniqueness of the decisions that matter | the range of each decision at t = 0 and t = 1 over the whole optimal face (objective held at its optimum) | root: $2.0e-05bn; year 1: $6.4e-04bn (D>D cv) |",
+  "",
+  "What this does and does not show: an independently written program with the same inputs reaches the same optimum, decisions and prices, and the published numbers satisfy every row. It does not test whether the inputs are right. That is what the sensitivities in section 7 are for. Details are in `verification.json`."
+ ]
+}

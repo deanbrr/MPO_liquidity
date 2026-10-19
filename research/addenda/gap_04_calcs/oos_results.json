@@ -1,0 +1,5731 @@
+{
+ "protocol": {
+  "embargo_months": 3,
+  "oos_start": "1990-01",
+  "train_start": "1975-01",
+  "logistic_C": 1.0,
+  "hac_lags": "2h+3"
+ },
+ "baseline_K3": {
+  "DD3": {
+   "h": 3,
+   "n_oos": 437,
+   "events_oos": 85,
+   "base_rate_oos": 0.195,
+   "oos_window": [
+    "1990-01",
+    "2026-05"
+   ],
+   "scores": {
+    "M0": {
+     "brier": 0.1601,
+     "logscore": -0.5064,
+     "auc": 0.4535,
+     "bss_vs_clim": 0.0
+    },
+    "RV": {
+     "brier": 0.1485,
+     "logscore": -0.467,
+     "auc": 0.6878,
+     "bss_vs_clim": 0.0725
+    },
+    "C": {
+     "brier": 0.1471,
+     "logscore": -0.4621,
+     "auc": 0.6982,
+     "bss_vs_clim": 0.0812
+    },
+    "C+T": {
+     "brier": 0.1468,
+     "logscore": -0.4605,
+     "auc": 0.7045,
+     "bss_vs_clim": 0.0831
+    },
+    "C+A": {
+     "brier": 0.1487,
+     "logscore": -0.469,
+     "auc": 0.6857,
+     "bss_vs_clim": 0.0712
+    },
+    "C+T+A": {
+     "brier": 0.1481,
+     "logscore": -0.4667,
+     "auc": 0.6916,
+     "bss_vs_clim": 0.075
+    },
+    "T": {
+     "brier": 0.1508,
+     "logscore": -0.475,
+     "auc": 0.6629,
+     "bss_vs_clim": 0.0581
+    },
+    "A": {
+     "brier": 0.1646,
+     "logscore": -0.5265,
+     "auc": 0.4332,
+     "bss_vs_clim": -0.0281
+    },
+    "C+RV": {
+     "brier": 0.1465,
+     "logscore": -0.4593,
+     "auc": 0.7036,
+     "bss_vs_clim": 0.0849
+    }
+   },
+   "comparisons": {
+    "C+T vs C": {
+     "dlog_mean": 0.0016,
+     "dlog_hac_t": 0.31,
+     "p_one_sided": 0.3791,
+     "dbrier_ci90": [
+      -0.0032,
+      0.0027
+     ],
+     "dauc_ci90": [
+      -0.018,
+      0.032
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0028,
+       "dbrier": 0.0018,
+       "dauc": 0.023,
+       "n": 216,
+       "events": 36
+      },
+      "2008-2026": {
+       "dlog": 0.006,
+       "dbrier": -0.0022,
+       "dauc": 0.022,
+       "n": 221,
+       "events": 49
+      }
+     }
+    },
+    "C+A vs C": {
+     "dlog_mean": -0.0069,
+     "dlog_hac_t": -1.11,
+     "p_one_sided": 0.866,
+     "dbrier_ci90": [
+      -0.0016,
+      0.0049
+     ],
+     "dauc_ci90": [
+      -0.041,
+      0.014
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0176,
+       "dbrier": 0.0052,
+       "dauc": -0.029,
+       "n": 216,
+       "events": 36
+      },
+      "2008-2026": {
+       "dlog": 0.0036,
+       "dbrier": -0.0018,
+       "dauc": 0.011,
+       "n": 221,
+       "events": 49
+      }
+     }
+    },
+    "C+T+A vs C": {
+     "dlog_mean": -0.0046,
+     "dlog_hac_t": -0.52,
+     "p_one_sided": 0.6983,
+     "dbrier_ci90": [
+      -0.0033,
+      0.0058
+     ],
+     "dauc_ci90": [
+      -0.046,
+      0.027
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0239,
+       "dbrier": 0.0087,
+       "dauc": -0.012,
+       "n": 216,
+       "events": 36
+      },
+      "2008-2026": {
+       "dlog": 0.0144,
+       "dbrier": -0.0064,
+       "dauc": 0.035,
+       "n": 221,
+       "events": 49
+      }
+     }
+    },
+    "C vs M0": {
+     "dlog_mean": 0.0444,
+     "dlog_hac_t": 1.47,
+     "p_one_sided": 0.0705,
+     "dbrier_ci90": [
+      -0.0326,
+      0.0041
+     ],
+     "dauc_ci90": [
+      0.101,
+      0.361
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0807,
+       "dbrier": -0.0228,
+       "dauc": 0.306,
+       "n": 216,
+       "events": 36
+      },
+      "2008-2026": {
+       "dlog": 0.0088,
+       "dbrier": -0.0036,
+       "dauc": 0.316,
+       "n": 221,
+       "events": 49
+      }
+     }
+    },
+    "C vs RV": {
+     "dlog_mean": 0.0049,
+     "dlog_hac_t": 0.36,
+     "p_one_sided": 0.3604,
+     "dbrier_ci90": [
+      -0.0096,
+      0.007
+     ],
+     "dauc_ci90": [
+      -0.038,
+      0.048
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0211,
+       "dbrier": -0.0073,
+       "dauc": -0.017,
+       "n": 216,
+       "events": 36
+      },
+      "2008-2026": {
+       "dlog": -0.011,
+       "dbrier": 0.0042,
+       "dauc": -0.02,
+       "n": 221,
+       "events": 49
+      }
+     }
+    },
+    "C+RV vs C": {
+     "dlog_mean": 0.0028,
+     "dlog_hac_t": 0.9,
+     "p_one_sided": 0.1835,
+     "dbrier_ci90": [
+      -0.0022,
+      0.0008
+     ],
+     "dauc_ci90": [
+      -0.012,
+      0.025
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0065,
+       "dbrier": -0.0016,
+       "dauc": 0.03,
+       "n": 216,
+       "events": 36
+      },
+      "2008-2026": {
+       "dlog": -0.0009,
+       "dbrier": 0.0004,
+       "dauc": 0.006,
+       "n": 221,
+       "events": 49
+      }
+     }
+    },
+    "T vs C": {
+     "dlog_mean": -0.013,
+     "dlog_hac_t": -0.62,
+     "p_one_sided": 0.7312,
+     "dbrier_ci90": [
+      -0.0085,
+      0.0161
+     ],
+     "dauc_ci90": [
+      -0.107,
+      0.039
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0539,
+       "dbrier": 0.0166,
+       "dauc": -0.075,
+       "n": 216,
+       "events": 36
+      },
+      "2008-2026": {
+       "dlog": 0.0271,
+       "dbrier": -0.0088,
+       "dauc": 0.053,
+       "n": 221,
+       "events": 49
+      }
+     }
+    },
+    "A vs M0": {
+     "dlog_mean": -0.02,
+     "dlog_hac_t": -2.09,
+     "p_one_sided": 0.9819,
+     "dbrier_ci90": [
+      0.0012,
+      0.0079
+     ],
+     "dauc_ci90": [
+      -0.104,
+      0.064
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0177,
+       "dbrier": 0.0033,
+       "dauc": -0.031,
+       "n": 216,
+       "events": 36
+      },
+      "2008-2026": {
+       "dlog": -0.0224,
+       "dbrier": 0.0056,
+       "dauc": 0.079,
+       "n": 221,
+       "events": 49
+      }
+     }
+    },
+    "T vs M0": {
+     "dlog_mean": 0.0314,
+     "dlog_hac_t": 1.68,
+     "p_one_sided": 0.0468,
+     "dbrier_ci90": [
+      -0.0215,
+      0.0008
+     ],
+     "dauc_ci90": [
+      0.09,
+      0.317
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0268,
+       "dbrier": -0.0062,
+       "dauc": 0.231,
+       "n": 216,
+       "events": 36
+      },
+      "2008-2026": {
+       "dlog": 0.0359,
+       "dbrier": -0.0124,
+       "dauc": 0.369,
+       "n": 221,
+       "events": 49
+      }
+     }
+    },
+    "RV vs M0": {
+     "dlog_mean": 0.0395,
+     "dlog_hac_t": 1.65,
+     "p_one_sided": 0.05,
+     "dbrier_ci90": [
+      -0.0263,
+      0.0022
+     ],
+     "dauc_ci90": [
+      0.108,
+      0.335
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0596,
+       "dbrier": -0.0156,
+       "dauc": 0.323,
+       "n": 216,
+       "events": 36
+      },
+      "2008-2026": {
+       "dlog": 0.0198,
+       "dbrier": -0.0078,
+       "dauc": 0.336,
+       "n": 221,
+       "events": 49
+      }
+     }
+    }
+   }
+  },
+  "VM1": {
+   "h": 1,
+   "n_oos": 439,
+   "events_oos": 69,
+   "base_rate_oos": 0.157,
+   "oos_window": [
+    "1990-01",
+    "2026-07"
+   ],
+   "scores": {
+    "M0": {
+     "brier": 0.1354,
+     "logscore": -0.4442,
+     "auc": 0.4205,
+     "bss_vs_clim": 0.0
+    },
+    "RV": {
+     "brier": 0.1284,
+     "logscore": -0.4206,
+     "auc": 0.6875,
+     "bss_vs_clim": 0.0517
+    },
+    "C": {
+     "brier": 0.1289,
+     "logscore": -0.4234,
+     "auc": 0.6474,
+     "bss_vs_clim": 0.048
+    },
+    "C+T": {
+     "brier": 0.1305,
+     "logscore": -0.4222,
+     "auc": 0.6811,
+     "bss_vs_clim": 0.0362
+    },
+    "C+A": {
+     "brier": 0.1306,
+     "logscore": -0.427,
+     "auc": 0.6521,
+     "bss_vs_clim": 0.0355
+    },
+    "C+T+A": {
+     "brier": 0.1324,
+     "logscore": -0.4278,
+     "auc": 0.6622,
+     "bss_vs_clim": 0.0222
+    },
+    "T": {
+     "brier": 0.1308,
+     "logscore": -0.4248,
+     "auc": 0.6604,
+     "bss_vs_clim": 0.034
+    },
+    "A": {
+     "brier": 0.1361,
+     "logscore": -0.4481,
+     "auc": 0.4977,
+     "bss_vs_clim": -0.0052
+    },
+    "C+RV": {
+     "brier": 0.128,
+     "logscore": -0.4196,
+     "auc": 0.6761,
+     "bss_vs_clim": 0.0547
+    }
+   },
+   "comparisons": {
+    "C+T vs C": {
+     "dlog_mean": 0.0012,
+     "dlog_hac_t": 0.18,
+     "p_one_sided": 0.4299,
+     "dbrier_ci90": [
+      -0.0026,
+      0.0064
+     ],
+     "dauc_ci90": [
+      -0.014,
+      0.09
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0078,
+       "dbrier": 0.0059,
+       "dauc": 0.037,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.0099,
+       "dbrier": -0.0025,
+       "dauc": 0.028,
+       "n": 223,
+       "events": 36
+      }
+     }
+    },
+    "C+A vs C": {
+     "dlog_mean": -0.0036,
+     "dlog_hac_t": -0.59,
+     "p_one_sided": 0.7228,
+     "dbrier_ci90": [
+      -0.0014,
+      0.0056
+     ],
+     "dauc_ci90": [
+      -0.029,
+      0.045
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0006,
+       "dbrier": 0.0001,
+       "dauc": 0.005,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": -0.0078,
+       "dbrier": 0.0033,
+       "dauc": -0.007,
+       "n": 223,
+       "events": 36
+      }
+     }
+    },
+    "C+T+A vs C": {
+     "dlog_mean": -0.0044,
+     "dlog_hac_t": -0.45,
+     "p_one_sided": 0.6722,
+     "dbrier_ci90": [
+      -0.0023,
+      0.0097
+     ],
+     "dauc_ci90": [
+      -0.041,
+      0.079
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0143,
+       "dbrier": 0.0079,
+       "dauc": -0.013,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.0052,
+       "dbrier": -0.0007,
+       "dauc": 0.029,
+       "n": 223,
+       "events": 36
+      }
+     }
+    },
+    "C vs M0": {
+     "dlog_mean": 0.0208,
+     "dlog_hac_t": 1.8,
+     "p_one_sided": 0.0363,
+     "dbrier_ci90": [
+      -0.0136,
+      0.0003
+     ],
+     "dauc_ci90": [
+      0.13,
+      0.339
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0318,
+       "dbrier": -0.0113,
+       "dauc": 0.291,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.0102,
+       "dbrier": -0.0018,
+       "dauc": 0.194,
+       "n": 223,
+       "events": 36
+      }
+     }
+    },
+    "C vs RV": {
+     "dlog_mean": -0.0028,
+     "dlog_hac_t": -0.37,
+     "p_one_sided": 0.6452,
+     "dbrier_ci90": [
+      -0.0038,
+      0.0046
+     ],
+     "dauc_ci90": [
+      -0.105,
+      0.007
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0095,
+       "dbrier": -0.0044,
+       "dauc": -0.056,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": -0.0146,
+       "dbrier": 0.0052,
+       "dauc": -0.037,
+       "n": 223,
+       "events": 36
+      }
+     }
+    },
+    "C+RV vs C": {
+     "dlog_mean": 0.0038,
+     "dlog_hac_t": 1.56,
+     "p_one_sided": 0.0598,
+     "dbrier_ci90": [
+      -0.0029,
+      0.0004
+     ],
+     "dauc_ci90": [
+      0.009,
+      0.054
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0008,
+       "dbrier": 0.0005,
+       "dauc": 0.034,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.0068,
+       "dbrier": -0.0022,
+       "dauc": 0.02,
+       "n": 223,
+       "events": 36
+      }
+     }
+    },
+    "T vs C": {
+     "dlog_mean": -0.0014,
+     "dlog_hac_t": -0.15,
+     "p_one_sided": 0.5588,
+     "dbrier_ci90": [
+      -0.0032,
+      0.0077
+     ],
+     "dauc_ci90": [
+      -0.049,
+      0.084
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0187,
+       "dbrier": 0.0092,
+       "dauc": -0.021,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.0154,
+       "dbrier": -0.0051,
+       "dauc": 0.033,
+       "n": 223,
+       "events": 36
+      }
+     }
+    },
+    "A vs M0": {
+     "dlog_mean": -0.0039,
+     "dlog_hac_t": -0.45,
+     "p_one_sided": 0.6733,
+     "dbrier_ci90": [
+      -0.0037,
+      0.0055
+     ],
+     "dauc_ci90": [
+      -0.006,
+      0.187
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0014,
+       "dbrier": -0.0006,
+       "dauc": 0.122,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": -0.0064,
+       "dbrier": 0.0021,
+       "dauc": 0.047,
+       "n": 223,
+       "events": 36
+      }
+     }
+    },
+    "T vs M0": {
+     "dlog_mean": 0.0194,
+     "dlog_hac_t": 1.78,
+     "p_one_sided": 0.0379,
+     "dbrier_ci90": [
+      -0.0117,
+      0.0023
+     ],
+     "dauc_ci90": [
+      0.133,
+      0.375
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.013,
+       "dbrier": -0.0021,
+       "dauc": 0.27,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.0256,
+       "dbrier": -0.0069,
+       "dauc": 0.227,
+       "n": 223,
+       "events": 36
+      }
+     }
+    },
+    "RV vs M0": {
+     "dlog_mean": 0.0236,
+     "dlog_hac_t": 2.44,
+     "p_one_sided": 0.0074,
+     "dbrier_ci90": [
+      -0.0136,
+      -0.0008
+     ],
+     "dauc_ci90": [
+      0.174,
+      0.389
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0223,
+       "dbrier": -0.0069,
+       "dauc": 0.347,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.0248,
+       "dbrier": -0.007,
+       "dauc": 0.231,
+       "n": 223,
+       "events": 36
+      }
+     }
+    }
+   }
+  },
+  "CRED6": {
+   "h": 6,
+   "n_oos": 435,
+   "events_oos": 69,
+   "base_rate_oos": 0.159,
+   "oos_window": [
+    "1990-01",
+    "2026-03"
+   ],
+   "scores": {
+    "M0": {
+     "brier": 0.1363,
+     "logscore": -0.4514,
+     "auc": 0.4357,
+     "bss_vs_clim": 0.0
+    },
+    "RV": {
+     "brier": 0.1304,
+     "logscore": -0.4229,
+     "auc": 0.6535,
+     "bss_vs_clim": 0.0433
+    },
+    "C": {
+     "brier": 0.133,
+     "logscore": -0.4341,
+     "auc": 0.6287,
+     "bss_vs_clim": 0.0242
+    },
+    "C+T": {
+     "brier": 0.1297,
+     "logscore": -0.4237,
+     "auc": 0.6568,
+     "bss_vs_clim": 0.0484
+    },
+    "C+A": {
+     "brier": 0.1375,
+     "logscore": -0.4567,
+     "auc": 0.5889,
+     "bss_vs_clim": -0.0088
+    },
+    "C+T+A": {
+     "brier": 0.1352,
+     "logscore": -0.4479,
+     "auc": 0.5999,
+     "bss_vs_clim": 0.0081
+    },
+    "T": {
+     "brier": 0.1294,
+     "logscore": -0.4256,
+     "auc": 0.6332,
+     "bss_vs_clim": 0.0506
+    },
+    "A": {
+     "brier": 0.1361,
+     "logscore": -0.4609,
+     "auc": 0.5509,
+     "bss_vs_clim": 0.0015
+    },
+    "C+RV": {
+     "brier": 0.1321,
+     "logscore": -0.4263,
+     "auc": 0.6572,
+     "bss_vs_clim": 0.0308
+    }
+   },
+   "comparisons": {
+    "C+T vs C": {
+     "dlog_mean": 0.0105,
+     "dlog_hac_t": 1.28,
+     "p_one_sided": 0.101,
+     "dbrier_ci90": [
+      -0.0074,
+      0.0007
+     ],
+     "dauc_ci90": [
+      -0.02,
+      0.069
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0145,
+       "dbrier": -0.0038,
+       "dauc": 0.048,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.0065,
+       "dbrier": -0.0027,
+       "dauc": 0.034,
+       "n": 219,
+       "events": 36
+      }
+     }
+    },
+    "C+A vs C": {
+     "dlog_mean": -0.0226,
+     "dlog_hac_t": -1.19,
+     "p_one_sided": 0.8822,
+     "dbrier_ci90": [
+      0.0001,
+      0.0102
+     ],
+     "dauc_ci90": [
+      -0.109,
+      0.022
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0377,
+       "dbrier": 0.0054,
+       "dauc": -0.042,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": -0.0076,
+       "dbrier": 0.0037,
+       "dauc": 0.004,
+       "n": 219,
+       "events": 36
+      }
+     }
+    },
+    "C+T+A vs C": {
+     "dlog_mean": -0.0138,
+     "dlog_hac_t": -0.91,
+     "p_one_sided": 0.8183,
+     "dbrier_ci90": [
+      -0.0033,
+      0.0084
+     ],
+     "dauc_ci90": [
+      -0.1,
+      0.035
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0243,
+       "dbrier": 0.0026,
+       "dauc": -0.029,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": -0.0034,
+       "dbrier": 0.002,
+       "dauc": 0.033,
+       "n": 219,
+       "events": 36
+      }
+     }
+    },
+    "C vs M0": {
+     "dlog_mean": 0.0173,
+     "dlog_hac_t": 1.22,
+     "p_one_sided": 0.1104,
+     "dbrier_ci90": [
+      -0.0113,
+      0.0041
+     ],
+     "dauc_ci90": [
+      0.079,
+      0.295
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0158,
+       "dbrier": -0.0019,
+       "dauc": 0.199,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.0188,
+       "dbrier": -0.0048,
+       "dauc": 0.347,
+       "n": 219,
+       "events": 36
+      }
+     }
+    },
+    "C vs RV": {
+     "dlog_mean": -0.0112,
+     "dlog_hac_t": -1.18,
+     "p_one_sided": 0.8811,
+     "dbrier_ci90": [
+      -0.0022,
+      0.0071
+     ],
+     "dauc_ci90": [
+      -0.073,
+      0.031
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0223,
+       "dbrier": 0.0049,
+       "dauc": -0.055,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": -0.0003,
+       "dbrier": 0.0002,
+       "dauc": -0.023,
+       "n": 219,
+       "events": 36
+      }
+     }
+    },
+    "C+RV vs C": {
+     "dlog_mean": 0.0078,
+     "dlog_hac_t": 0.92,
+     "p_one_sided": 0.1797,
+     "dbrier_ci90": [
+      -0.0055,
+      0.0033
+     ],
+     "dauc_ci90": [
+      -0.015,
+      0.068
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0191,
+       "dbrier": -0.0032,
+       "dauc": 0.061,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": -0.0032,
+       "dbrier": 0.0013,
+       "dauc": 0.018,
+       "n": 219,
+       "events": 36
+      }
+     }
+    },
+    "T vs C": {
+     "dlog_mean": 0.0086,
+     "dlog_hac_t": 0.83,
+     "p_one_sided": 0.2035,
+     "dbrier_ci90": [
+      -0.0091,
+      0.0017
+     ],
+     "dauc_ci90": [
+      -0.067,
+      0.064
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0075,
+       "dbrier": -0.0029,
+       "dauc": 0.005,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.0096,
+       "dbrier": -0.0043,
+       "dauc": 0.034,
+       "n": 219,
+       "events": 36
+      }
+     }
+    },
+    "A vs M0": {
+     "dlog_mean": -0.0095,
+     "dlog_hac_t": -0.45,
+     "p_one_sided": 0.6732,
+     "dbrier_ci90": [
+      -0.0045,
+      0.0044
+     ],
+     "dauc_ci90": [
+      0.031,
+      0.193
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.03,
+       "dbrier": 0.0024,
+       "dauc": 0.099,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.0107,
+       "dbrier": -0.0028,
+       "dauc": 0.298,
+       "n": 219,
+       "events": 36
+      }
+     }
+    },
+    "T vs M0": {
+     "dlog_mean": 0.0259,
+     "dlog_hac_t": 1.69,
+     "p_one_sided": 0.0451,
+     "dbrier_ci90": [
+      -0.015,
+      -0.0002
+     ],
+     "dauc_ci90": [
+      0.081,
+      0.299
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0234,
+       "dbrier": -0.0048,
+       "dauc": 0.203,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.0283,
+       "dbrier": -0.009,
+       "dauc": 0.381,
+       "n": 219,
+       "events": 36
+      }
+     }
+    },
+    "RV vs M0": {
+     "dlog_mean": 0.0285,
+     "dlog_hac_t": 1.76,
+     "p_one_sided": 0.0391,
+     "dbrier_ci90": [
+      -0.014,
+      0.0025
+     ],
+     "dauc_ci90": [
+      0.089,
+      0.321
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0381,
+       "dbrier": -0.0069,
+       "dauc": 0.254,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.019,
+       "dbrier": -0.0049,
+       "dauc": 0.37,
+       "n": 219,
+       "events": 36
+      }
+     }
+    }
+   }
+  },
+  "EXIT6": {
+   "h": 6,
+   "n_oos": 322,
+   "events_oos": 72,
+   "base_rate_oos": 0.224,
+   "oos_window": [
+    "1990-01",
+    "2025-06"
+   ],
+   "scores": {
+    "M0": {
+     "brier": 0.1773,
+     "logscore": -0.5441,
+     "auc": 0.4619,
+     "bss_vs_clim": 0.0
+    },
+    "RV": {
+     "brier": 0.1698,
+     "logscore": -0.5259,
+     "auc": 0.6099,
+     "bss_vs_clim": 0.0423
+    },
+    "C": {
+     "brier": 0.1649,
+     "logscore": -0.5141,
+     "auc": 0.65,
+     "bss_vs_clim": 0.0699
+    },
+    "C+T": {
+     "brier": 0.1728,
+     "logscore": -0.5321,
+     "auc": 0.634,
+     "bss_vs_clim": 0.0254
+    },
+    "C+A": {
+     "brier": 0.1728,
+     "logscore": -0.5303,
+     "auc": 0.6635,
+     "bss_vs_clim": 0.0254
+    },
+    "C+T+A": {
+     "brier": 0.1828,
+     "logscore": -0.5555,
+     "auc": 0.6584,
+     "bss_vs_clim": -0.031
+    },
+    "T": {
+     "brier": 0.1738,
+     "logscore": -0.5343,
+     "auc": 0.5356,
+     "bss_vs_clim": 0.0197
+    },
+    "A": {
+     "brier": 0.1729,
+     "logscore": -0.538,
+     "auc": 0.6081,
+     "bss_vs_clim": 0.0248
+    },
+    "C+RV": {
+     "brier": 0.1663,
+     "logscore": -0.5155,
+     "auc": 0.6467,
+     "bss_vs_clim": 0.062
+    }
+   },
+   "comparisons": {
+    "C+T vs C": {
+     "dlog_mean": -0.0179,
+     "dlog_hac_t": -1.84,
+     "p_one_sided": 0.9669,
+     "dbrier_ci90": [
+      0.0021,
+      0.0141
+     ],
+     "dauc_ci90": [
+      -0.046,
+      0.014
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.005,
+       "dbrier": 0.0026,
+       "dauc": 0.022,
+       "n": 171,
+       "events": 29
+      },
+      "2008-2026": {
+       "dlog": -0.0326,
+       "dbrier": 0.0139,
+       "dauc": -0.045,
+       "n": 151,
+       "events": 43
+      }
+     }
+    },
+    "C+A vs C": {
+     "dlog_mean": -0.0162,
+     "dlog_hac_t": -0.75,
+     "p_one_sided": 0.7728,
+     "dbrier_ci90": [
+      -0.0044,
+      0.0221
+     ],
+     "dauc_ci90": [
+      -0.047,
+      0.068
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0008,
+       "dbrier": 0.0018,
+       "dauc": 0.046,
+       "n": 171,
+       "events": 29
+      },
+      "2008-2026": {
+       "dlog": -0.0354,
+       "dbrier": 0.0148,
+       "dauc": 0.007,
+       "n": 151,
+       "events": 43
+      }
+     }
+    },
+    "C+T+A vs C": {
+     "dlog_mean": -0.0414,
+     "dlog_hac_t": -1.38,
+     "p_one_sided": 0.9159,
+     "dbrier_ci90": [
+      0.0011,
+      0.037
+     ],
+     "dauc_ci90": [
+      -0.066,
+      0.082
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0015,
+       "dbrier": 0.0024,
+       "dauc": 0.073,
+       "n": 171,
+       "events": 29
+      },
+      "2008-2026": {
+       "dlog": -0.0901,
+       "dbrier": 0.0353,
+       "dauc": -0.023,
+       "n": 151,
+       "events": 43
+      }
+     }
+    },
+    "C vs M0": {
+     "dlog_mean": 0.03,
+     "dlog_hac_t": 1.19,
+     "p_one_sided": 0.1177,
+     "dbrier_ci90": [
+      -0.0289,
+      -0.0003
+     ],
+     "dauc_ci90": [
+      0.079,
+      0.332
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0678,
+       "dbrier": -0.0245,
+       "dauc": 0.385,
+       "n": 171,
+       "events": 29
+      },
+      "2008-2026": {
+       "dlog": -0.0128,
+       "dbrier": 0.0014,
+       "dauc": 0.104,
+       "n": 151,
+       "events": 43
+      }
+     }
+    },
+    "C vs RV": {
+     "dlog_mean": 0.0118,
+     "dlog_hac_t": 0.59,
+     "p_one_sided": 0.2791,
+     "dbrier_ci90": [
+      -0.0164,
+      0.0048
+     ],
+     "dauc_ci90": [
+      -0.032,
+      0.116
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0273,
+       "dbrier": -0.013,
+       "dauc": 0.007,
+       "n": 171,
+       "events": 29
+      },
+      "2008-2026": {
+       "dlog": -0.0058,
+       "dbrier": 0.0043,
+       "dauc": -0.015,
+       "n": 151,
+       "events": 43
+      }
+     }
+    },
+    "C+RV vs C": {
+     "dlog_mean": -0.0014,
+     "dlog_hac_t": -0.37,
+     "p_one_sided": 0.646,
+     "dbrier_ci90": [
+      -0.0005,
+      0.0035
+     ],
+     "dauc_ci90": [
+      -0.02,
+      0.014
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0006,
+       "dbrier": 0.0011,
+       "dauc": 0.016,
+       "n": 171,
+       "events": 29
+      },
+      "2008-2026": {
+       "dlog": -0.0035,
+       "dbrier": 0.0016,
+       "dauc": -0.008,
+       "n": 151,
+       "events": 43
+      }
+     }
+    },
+    "T vs C": {
+     "dlog_mean": -0.0202,
+     "dlog_hac_t": -0.79,
+     "p_one_sided": 0.7864,
+     "dbrier_ci90": [
+      -0.0034,
+      0.0258
+     ],
+     "dauc_ci90": [
+      -0.261,
+      -0.016
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0698,
+       "dbrier": 0.025,
+       "dauc": -0.381,
+       "n": 171,
+       "events": 29
+      },
+      "2008-2026": {
+       "dlog": 0.036,
+       "dbrier": -0.0094,
+       "dauc": 0.122,
+       "n": 151,
+       "events": 43
+      }
+     }
+    },
+    "A vs M0": {
+     "dlog_mean": 0.0061,
+     "dlog_hac_t": 0.21,
+     "p_one_sided": 0.4163,
+     "dbrier_ci90": [
+      -0.0168,
+      0.0071
+     ],
+     "dauc_ci90": [
+      0.014,
+      0.282
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0115,
+       "dbrier": -0.0072,
+       "dauc": 0.281,
+       "n": 171,
+       "events": 29
+      },
+      "2008-2026": {
+       "dlog": -0.0,
+       "dbrier": -0.0012,
+       "dauc": 0.113,
+       "n": 151,
+       "events": 43
+      }
+     }
+    },
+    "T vs M0": {
+     "dlog_mean": 0.0098,
+     "dlog_hac_t": 2.3,
+     "p_one_sided": 0.0106,
+     "dbrier_ci90": [
+      -0.0061,
+      -0.0011
+     ],
+     "dauc_ci90": [
+      0.016,
+      0.134
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.002,
+       "dbrier": 0.0005,
+       "dauc": 0.005,
+       "n": 171,
+       "events": 29
+      },
+      "2008-2026": {
+       "dlog": 0.0233,
+       "dbrier": -0.008,
+       "dauc": 0.226,
+       "n": 151,
+       "events": 43
+      }
+     }
+    },
+    "RV vs M0": {
+     "dlog_mean": 0.0182,
+     "dlog_hac_t": 1.33,
+     "p_one_sided": 0.0914,
+     "dbrier_ci90": [
+      -0.0167,
+      -0.0001
+     ],
+     "dauc_ci90": [
+      0.025,
+      0.291
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0404,
+       "dbrier": -0.0116,
+       "dauc": 0.379,
+       "n": 171,
+       "events": 29
+      },
+      "2008-2026": {
+       "dlog": -0.007,
+       "dbrier": -0.0029,
+       "dauc": 0.119,
+       "n": 151,
+       "events": 43
+      }
+     }
+    }
+   }
+  },
+  "DD6": {
+   "h": 6,
+   "n_oos": 434,
+   "events_oos": 92,
+   "base_rate_oos": 0.212,
+   "oos_window": [
+    "1990-01",
+    "2026-02"
+   ],
+   "scores": {
+    "M0": {
+     "brier": 0.173,
+     "logscore": -0.5394,
+     "auc": 0.406,
+     "bss_vs_clim": 0.0
+    },
+    "RV": {
+     "brier": 0.1668,
+     "logscore": -0.5182,
+     "auc": 0.5933,
+     "bss_vs_clim": 0.0358
+    },
+    "C": {
+     "brier": 0.1687,
+     "logscore": -0.5224,
+     "auc": 0.5928,
+     "bss_vs_clim": 0.0249
+    },
+    "C+T": {
+     "brier": 0.1684,
+     "logscore": -0.5259,
+     "auc": 0.5833,
+     "bss_vs_clim": 0.0266
+    },
+    "C+A": {
+     "brier": 0.1731,
+     "logscore": -0.5469,
+     "auc": 0.4989,
+     "bss_vs_clim": -0.0006
+    },
+    "C+T+A": {
+     "brier": 0.1747,
+     "logscore": -0.5536,
+     "auc": 0.4919,
+     "bss_vs_clim": -0.0098
+    },
+    "T": {
+     "brier": 0.1662,
+     "logscore": -0.5196,
+     "auc": 0.5645,
+     "bss_vs_clim": 0.0393
+    },
+    "A": {
+     "brier": 0.1821,
+     "logscore": -0.5786,
+     "auc": 0.2946,
+     "bss_vs_clim": -0.0526
+    },
+    "C+RV": {
+     "brier": 0.1686,
+     "logscore": -0.5216,
+     "auc": 0.6003,
+     "bss_vs_clim": 0.0254
+    }
+   },
+   "comparisons": {
+    "C+T vs C": {
+     "dlog_mean": -0.0035,
+     "dlog_hac_t": -0.43,
+     "p_one_sided": 0.665,
+     "dbrier_ci90": [
+      -0.0047,
+      0.0027
+     ],
+     "dauc_ci90": [
+      -0.046,
+      0.038
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0111,
+       "dbrier": 0.0018,
+       "dauc": -0.027,
+       "n": 216,
+       "events": 44
+      },
+      "2008-2026": {
+       "dlog": 0.004,
+       "dbrier": -0.0023,
+       "dauc": 0.02,
+       "n": 218,
+       "events": 48
+      }
+     }
+    },
+    "C+A vs C": {
+     "dlog_mean": -0.0245,
+     "dlog_hac_t": -1.77,
+     "p_one_sided": 0.9617,
+     "dbrier_ci90": [
+      -0.0013,
+      0.0105
+     ],
+     "dauc_ci90": [
+      -0.168,
+      -0.022
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0495,
+       "dbrier": 0.0095,
+       "dauc": -0.216,
+       "n": 216,
+       "events": 44
+      },
+      "2008-2026": {
+       "dlog": 0.0003,
+       "dbrier": -0.0007,
+       "dauc": 0.02,
+       "n": 218,
+       "events": 48
+      }
+     }
+    },
+    "C+T+A vs C": {
+     "dlog_mean": -0.0312,
+     "dlog_hac_t": -1.82,
+     "p_one_sided": 0.9658,
+     "dbrier_ci90": [
+      -0.0012,
+      0.0131
+     ],
+     "dauc_ci90": [
+      -0.187,
+      -0.021
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0721,
+       "dbrier": 0.0176,
+       "dauc": -0.252,
+       "n": 216,
+       "events": 44
+      },
+      "2008-2026": {
+       "dlog": 0.0094,
+       "dbrier": -0.0056,
+       "dauc": 0.043,
+       "n": 218,
+       "events": 48
+      }
+     }
+    },
+    "C vs M0": {
+     "dlog_mean": 0.017,
+     "dlog_hac_t": 0.67,
+     "p_one_sided": 0.2506,
+     "dbrier_ci90": [
+      -0.0212,
+      0.0105
+     ],
+     "dauc_ci90": [
+      0.038,
+      0.317
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0238,
+       "dbrier": -0.0042,
+       "dauc": 0.218,
+       "n": 216,
+       "events": 44
+      },
+      "2008-2026": {
+       "dlog": 0.0103,
+       "dbrier": -0.0044,
+       "dauc": 0.268,
+       "n": 218,
+       "events": 48
+      }
+     }
+    },
+    "C vs RV": {
+     "dlog_mean": -0.0041,
+     "dlog_hac_t": -0.45,
+     "p_one_sided": 0.6746,
+     "dbrier_ci90": [
+      -0.0051,
+      0.0095
+     ],
+     "dauc_ci90": [
+      -0.031,
+      0.036
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0076,
+       "dbrier": 0.0041,
+       "dauc": 0.019,
+       "n": 216,
+       "events": 44
+      },
+      "2008-2026": {
+       "dlog": -0.0007,
+       "dbrier": -0.0003,
+       "dauc": -0.034,
+       "n": 218,
+       "events": 48
+      }
+     }
+    },
+    "C+RV vs C": {
+     "dlog_mean": 0.0008,
+     "dlog_hac_t": 0.29,
+     "p_one_sided": 0.3844,
+     "dbrier_ci90": [
+      -0.0016,
+      0.0013
+     ],
+     "dauc_ci90": [
+      -0.011,
+      0.023
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0029,
+       "dbrier": -0.0007,
+       "dauc": 0.008,
+       "n": 216,
+       "events": 44
+      },
+      "2008-2026": {
+       "dlog": -0.0013,
+       "dbrier": 0.0005,
+       "dauc": 0.016,
+       "n": 218,
+       "events": 48
+      }
+     }
+    },
+    "T vs C": {
+     "dlog_mean": 0.0028,
+     "dlog_hac_t": 0.2,
+     "p_one_sided": 0.4218,
+     "dbrier_ci90": [
+      -0.012,
+      0.0066
+     ],
+     "dauc_ci90": [
+      -0.105,
+      0.052
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0064,
+       "dbrier": -0.0006,
+       "dauc": -0.068,
+       "n": 216,
+       "events": 44
+      },
+      "2008-2026": {
+       "dlog": 0.012,
+       "dbrier": -0.0044,
+       "dauc": 0.031,
+       "n": 218,
+       "events": 48
+      }
+     }
+    },
+    "A vs M0": {
+     "dlog_mean": -0.0392,
+     "dlog_hac_t": -2.83,
+     "p_one_sided": 0.9977,
+     "dbrier_ci90": [
+      0.0041,
+      0.0142
+     ],
+     "dauc_ci90": [
+      -0.247,
+      0.015
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0413,
+       "dbrier": 0.0085,
+       "dauc": -0.116,
+       "n": 216,
+       "events": 44
+      },
+      "2008-2026": {
+       "dlog": -0.0371,
+       "dbrier": 0.0097,
+       "dauc": -0.009,
+       "n": 218,
+       "events": 48
+      }
+     }
+    },
+    "T vs M0": {
+     "dlog_mean": 0.0198,
+     "dlog_hac_t": 0.99,
+     "p_one_sided": 0.1614,
+     "dbrier_ci90": [
+      -0.0193,
+      0.0031
+     ],
+     "dauc_ci90": [
+      0.006,
+      0.299
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0173,
+       "dbrier": -0.0048,
+       "dauc": 0.15,
+       "n": 216,
+       "events": 44
+      },
+      "2008-2026": {
+       "dlog": 0.0223,
+       "dbrier": -0.0088,
+       "dauc": 0.299,
+       "n": 218,
+       "events": 48
+      }
+     }
+    },
+    "RV vs M0": {
+     "dlog_mean": 0.0211,
+     "dlog_hac_t": 0.95,
+     "p_one_sided": 0.1721,
+     "dbrier_ci90": [
+      -0.0207,
+      0.0061
+     ],
+     "dauc_ci90": [
+      0.046,
+      0.307
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0314,
+       "dbrier": -0.0083,
+       "dauc": 0.198,
+       "n": 216,
+       "events": 44
+      },
+      "2008-2026": {
+       "dlog": 0.011,
+       "dbrier": -0.0041,
+       "dauc": 0.302,
+       "n": 218,
+       "events": 48
+      }
+     }
+    }
+   }
+  },
+  "VMEQ1": {
+   "h": 1,
+   "n_oos": 439,
+   "events_oos": 34,
+   "base_rate_oos": 0.077,
+   "oos_window": [
+    "1990-01",
+    "2026-07"
+   ],
+   "scores": {
+    "M0": {
+     "brier": 0.072,
+     "logscore": -0.2776,
+     "auc": 0.416,
+     "bss_vs_clim": 0.0
+    },
+    "RV": {
+     "brier": 0.0672,
+     "logscore": -0.2454,
+     "auc": 0.7571,
+     "bss_vs_clim": 0.0667
+    },
+    "C": {
+     "brier": 0.0686,
+     "logscore": -0.2548,
+     "auc": 0.6932,
+     "bss_vs_clim": 0.0472
+    },
+    "C+T": {
+     "brier": 0.0681,
+     "logscore": -0.2519,
+     "auc": 0.7118,
+     "bss_vs_clim": 0.0542
+    },
+    "C+A": {
+     "brier": 0.0692,
+     "logscore": -0.2574,
+     "auc": 0.6762,
+     "bss_vs_clim": 0.0389
+    },
+    "C+T+A": {
+     "brier": 0.0685,
+     "logscore": -0.2531,
+     "auc": 0.7104,
+     "bss_vs_clim": 0.0486
+    },
+    "T": {
+     "brier": 0.069,
+     "logscore": -0.2542,
+     "auc": 0.7222,
+     "bss_vs_clim": 0.0417
+    },
+    "A": {
+     "brier": 0.0728,
+     "logscore": -0.2861,
+     "auc": 0.4104,
+     "bss_vs_clim": -0.0111
+    },
+    "C+RV": {
+     "brier": 0.0681,
+     "logscore": -0.2484,
+     "auc": 0.7465,
+     "bss_vs_clim": 0.0542
+    }
+   },
+   "comparisons": {
+    "C+T vs C": {
+     "dlog_mean": 0.0028,
+     "dlog_hac_t": 0.62,
+     "p_one_sided": 0.2666,
+     "dbrier_ci90": [
+      -0.0026,
+      0.0015
+     ],
+     "dauc_ci90": [
+      -0.024,
+      0.066
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0029,
+       "dbrier": 0.0006,
+       "dauc": 0.01,
+       "n": 216,
+       "events": 16
+      },
+      "2008-2026": {
+       "dlog": 0.0084,
+       "dbrier": -0.0017,
+       "dauc": 0.028,
+       "n": 223,
+       "events": 18
+      }
+     }
+    },
+    "C+A vs C": {
+     "dlog_mean": -0.0026,
+     "dlog_hac_t": -0.44,
+     "p_one_sided": 0.6718,
+     "dbrier_ci90": [
+      -0.0017,
+      0.0035
+     ],
+     "dauc_ci90": [
+      -0.048,
+      0.013
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0016,
+       "dbrier": -0.0002,
+       "dauc": -0.033,
+       "n": 216,
+       "events": 16
+      },
+      "2008-2026": {
+       "dlog": -0.0035,
+       "dbrier": 0.0012,
+       "dauc": 0.002,
+       "n": 223,
+       "events": 18
+      }
+     }
+    },
+    "C+T+A vs C": {
+     "dlog_mean": 0.0017,
+     "dlog_hac_t": 0.29,
+     "p_one_sided": 0.387,
+     "dbrier_ci90": [
+      -0.0021,
+      0.0019
+     ],
+     "dauc_ci90": [
+      -0.033,
+      0.061
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0077,
+       "dbrier": 0.0016,
+       "dauc": -0.004,
+       "n": 216,
+       "events": 16
+      },
+      "2008-2026": {
+       "dlog": 0.0107,
+       "dbrier": -0.0018,
+       "dauc": 0.036,
+       "n": 223,
+       "events": 18
+      }
+     }
+    },
+    "C vs M0": {
+     "dlog_mean": 0.0229,
+     "dlog_hac_t": 1.76,
+     "p_one_sided": 0.0394,
+     "dbrier_ci90": [
+      -0.0081,
+      0.0007
+     ],
+     "dauc_ci90": [
+      0.157,
+      0.387
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0192,
+       "dbrier": -0.0029,
+       "dauc": 0.165,
+       "n": 216,
+       "events": 16
+      },
+      "2008-2026": {
+       "dlog": 0.0264,
+       "dbrier": -0.0038,
+       "dauc": 0.474,
+       "n": 223,
+       "events": 18
+      }
+     }
+    },
+    "C vs RV": {
+     "dlog_mean": -0.0094,
+     "dlog_hac_t": -1.53,
+     "p_one_sided": 0.9371,
+     "dbrier_ci90": [
+      -0.001,
+      0.0043
+     ],
+     "dauc_ci90": [
+      -0.116,
+      -0.02
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0014,
+       "dbrier": -0.0006,
+       "dauc": -0.095,
+       "n": 216,
+       "events": 16
+      },
+      "2008-2026": {
+       "dlog": -0.017,
+       "dbrier": 0.0034,
+       "dauc": -0.057,
+       "n": 223,
+       "events": 18
+      }
+     }
+    },
+    "C+RV vs C": {
+     "dlog_mean": 0.0064,
+     "dlog_hac_t": 2.0,
+     "p_one_sided": 0.0229,
+     "dbrier_ci90": [
+      -0.0018,
+      0.0007
+     ],
+     "dauc_ci90": [
+      0.022,
+      0.091
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0045,
+       "dbrier": -0.0001,
+       "dauc": 0.087,
+       "n": 216,
+       "events": 16
+      },
+      "2008-2026": {
+       "dlog": 0.0083,
+       "dbrier": -0.001,
+       "dauc": 0.035,
+       "n": 223,
+       "events": 18
+      }
+     }
+    },
+    "T vs C": {
+     "dlog_mean": 0.0006,
+     "dlog_hac_t": 0.09,
+     "p_one_sided": 0.4657,
+     "dbrier_ci90": [
+      -0.0018,
+      0.0024
+     ],
+     "dauc_ci90": [
+      -0.034,
+      0.093
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0064,
+       "dbrier": 0.0017,
+       "dauc": 0.057,
+       "n": 216,
+       "events": 16
+      },
+      "2008-2026": {
+       "dlog": 0.0074,
+       "dbrier": -0.001,
+       "dauc": 0.034,
+       "n": 223,
+       "events": 18
+      }
+     }
+    },
+    "A vs M0": {
+     "dlog_mean": -0.0085,
+     "dlog_hac_t": -1.51,
+     "p_one_sided": 0.9342,
+     "dbrier_ci90": [
+      -0.0001,
+      0.0019
+     ],
+     "dauc_ci90": [
+      -0.107,
+      0.102
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0031,
+       "dbrier": 0.0002,
+       "dauc": -0.008,
+       "n": 216,
+       "events": 16
+      },
+      "2008-2026": {
+       "dlog": -0.0137,
+       "dbrier": 0.0014,
+       "dauc": 0.085,
+       "n": 223,
+       "events": 18
+      }
+     }
+    },
+    "T vs M0": {
+     "dlog_mean": 0.0234,
+     "dlog_hac_t": 2.12,
+     "p_one_sided": 0.0171,
+     "dbrier_ci90": [
+      -0.0075,
+      0.0004
+     ],
+     "dauc_ci90": [
+      0.185,
+      0.411
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0128,
+       "dbrier": -0.0013,
+       "dauc": 0.222,
+       "n": 216,
+       "events": 16
+      },
+      "2008-2026": {
+       "dlog": 0.0338,
+       "dbrier": -0.0048,
+       "dauc": 0.507,
+       "n": 223,
+       "events": 18
+      }
+     }
+    },
+    "RV vs M0": {
+     "dlog_mean": 0.0322,
+     "dlog_hac_t": 2.31,
+     "p_one_sided": 0.0105,
+     "dbrier_ci90": [
+      -0.0113,
+      0.0003
+     ],
+     "dauc_ci90": [
+      0.235,
+      0.442
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0206,
+       "dbrier": -0.0023,
+       "dauc": 0.26,
+       "n": 216,
+       "events": 16
+      },
+      "2008-2026": {
+       "dlog": 0.0435,
+       "dbrier": -0.0072,
+       "dauc": 0.531,
+       "n": 223,
+       "events": 18
+      }
+     }
+    }
+   }
+  },
+  "VMRT1": {
+   "h": 1,
+   "n_oos": 439,
+   "events_oos": 41,
+   "base_rate_oos": 0.093,
+   "oos_window": [
+    "1990-01",
+    "2026-07"
+   ],
+   "scores": {
+    "M0": {
+     "brier": 0.0908,
+     "logscore": -0.3346,
+     "auc": 0.4184,
+     "bss_vs_clim": 0.0
+    },
+    "RV": {
+     "brier": 0.0904,
+     "logscore": -0.331,
+     "auc": 0.5602,
+     "bss_vs_clim": 0.0044
+    },
+    "C": {
+     "brier": 0.0937,
+     "logscore": -0.3399,
+     "auc": 0.4848,
+     "bss_vs_clim": -0.0319
+    },
+    "C+T": {
+     "brier": 0.0959,
+     "logscore": -0.3439,
+     "auc": 0.5336,
+     "bss_vs_clim": -0.0562
+    },
+    "C+A": {
+     "brier": 0.0931,
+     "logscore": -0.3386,
+     "auc": 0.531,
+     "bss_vs_clim": -0.0253
+    },
+    "C+T+A": {
+     "brier": 0.0954,
+     "logscore": -0.3447,
+     "auc": 0.5406,
+     "bss_vs_clim": -0.0507
+    },
+    "T": {
+     "brier": 0.0929,
+     "logscore": -0.3338,
+     "auc": 0.5783,
+     "bss_vs_clim": -0.0231
+    },
+    "A": {
+     "brier": 0.0911,
+     "logscore": -0.3335,
+     "auc": 0.5415,
+     "bss_vs_clim": -0.0033
+    },
+    "C+RV": {
+     "brier": 0.0937,
+     "logscore": -0.3385,
+     "auc": 0.5232,
+     "bss_vs_clim": -0.0319
+    }
+   },
+   "comparisons": {
+    "C+T vs C": {
+     "dlog_mean": -0.004,
+     "dlog_hac_t": -0.53,
+     "p_one_sided": 0.7023,
+     "dbrier_ci90": [
+      -0.001,
+      0.0059
+     ],
+     "dauc_ci90": [
+      -0.038,
+      0.147
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0124,
+       "dbrier": 0.0044,
+       "dauc": 0.007,
+       "n": 216,
+       "events": 17
+      },
+      "2008-2026": {
+       "dlog": 0.0042,
+       "dbrier": -0.0001,
+       "dauc": 0.038,
+       "n": 223,
+       "events": 24
+      }
+     }
+    },
+    "C+A vs C": {
+     "dlog_mean": 0.0013,
+     "dlog_hac_t": 0.14,
+     "p_one_sided": 0.4438,
+     "dbrier_ci90": [
+      -0.0066,
+      0.0052
+     ],
+     "dauc_ci90": [
+      -0.038,
+      0.128
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0261,
+       "dbrier": -0.0096,
+       "dauc": 0.053,
+       "n": 216,
+       "events": 17
+      },
+      "2008-2026": {
+       "dlog": -0.0227,
+       "dbrier": 0.008,
+       "dauc": -0.023,
+       "n": 223,
+       "events": 24
+      }
+     }
+    },
+    "C+T+A vs C": {
+     "dlog_mean": -0.0048,
+     "dlog_hac_t": -0.41,
+     "p_one_sided": 0.6581,
+     "dbrier_ci90": [
+      -0.005,
+      0.0082
+     ],
+     "dauc_ci90": [
+      -0.059,
+      0.168
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0054,
+       "dbrier": -0.0034,
+       "dauc": -0.02,
+       "n": 216,
+       "events": 17
+      },
+      "2008-2026": {
+       "dlog": -0.0147,
+       "dbrier": 0.0065,
+       "dauc": 0.024,
+       "n": 223,
+       "events": 24
+      }
+     }
+    },
+    "C vs M0": {
+     "dlog_mean": -0.0053,
+     "dlog_hac_t": -0.75,
+     "p_one_sided": 0.7742,
+     "dbrier_ci90": [
+      -0.0014,
+      0.0081
+     ],
+     "dauc_ci90": [
+      -0.038,
+      0.165
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0135,
+       "dbrier": 0.0064,
+       "dauc": 0.05,
+       "n": 216,
+       "events": 17
+      },
+      "2008-2026": {
+       "dlog": 0.0026,
+       "dbrier": -0.0005,
+       "dauc": 0.139,
+       "n": 223,
+       "events": 24
+      }
+     }
+    },
+    "C vs RV": {
+     "dlog_mean": -0.0089,
+     "dlog_hac_t": -1.33,
+     "p_one_sided": 0.9081,
+     "dbrier_ci90": [
+      -0.0005,
+      0.0078
+     ],
+     "dauc_ci90": [
+      -0.164,
+      -0.002
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0142,
+       "dbrier": 0.006,
+       "dauc": -0.087,
+       "n": 216,
+       "events": 17
+      },
+      "2008-2026": {
+       "dlog": -0.0038,
+       "dbrier": 0.0008,
+       "dauc": -0.043,
+       "n": 223,
+       "events": 24
+      }
+     }
+    },
+    "C+RV vs C": {
+     "dlog_mean": 0.0014,
+     "dlog_hac_t": 0.59,
+     "p_one_sided": 0.2761,
+     "dbrier_ci90": [
+      -0.0013,
+      0.001
+     ],
+     "dauc_ci90": [
+      -0.002,
+      0.083
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0001,
+       "dbrier": 0.0004,
+       "dauc": 0.005,
+       "n": 216,
+       "events": 17
+      },
+      "2008-2026": {
+       "dlog": 0.0026,
+       "dbrier": -0.0004,
+       "dauc": 0.026,
+       "n": 223,
+       "events": 24
+      }
+     }
+    },
+    "T vs C": {
+     "dlog_mean": 0.0061,
+     "dlog_hac_t": 0.72,
+     "p_one_sided": 0.2361,
+     "dbrier_ci90": [
+      -0.0057,
+      0.0046
+     ],
+     "dauc_ci90": [
+      0.009,
+      0.192
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0079,
+       "dbrier": -0.0018,
+       "dauc": 0.076,
+       "n": 216,
+       "events": 17
+      },
+      "2008-2026": {
+       "dlog": 0.0043,
+       "dbrier": 0.0002,
+       "dauc": 0.046,
+       "n": 223,
+       "events": 24
+      }
+     }
+    },
+    "A vs M0": {
+     "dlog_mean": 0.0011,
+     "dlog_hac_t": 0.13,
+     "p_one_sided": 0.4486,
+     "dbrier_ci90": [
+      -0.0037,
+      0.0046
+     ],
+     "dauc_ci90": [
+      -0.012,
+      0.255
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0226,
+       "dbrier": -0.0064,
+       "dauc": 0.114,
+       "n": 216,
+       "events": 17
+      },
+      "2008-2026": {
+       "dlog": -0.0196,
+       "dbrier": 0.0067,
+       "dauc": 0.085,
+       "n": 223,
+       "events": 24
+      }
+     }
+    },
+    "T vs M0": {
+     "dlog_mean": 0.0008,
+     "dlog_hac_t": 0.1,
+     "p_one_sided": 0.4593,
+     "dbrier_ci90": [
+      -0.0018,
+      0.0063
+     ],
+     "dauc_ci90": [
+      0.05,
+      0.287
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0056,
+       "dbrier": 0.0046,
+       "dauc": 0.127,
+       "n": 216,
+       "events": 17
+      },
+      "2008-2026": {
+       "dlog": 0.0069,
+       "dbrier": -0.0003,
+       "dauc": 0.184,
+       "n": 223,
+       "events": 24
+      }
+     }
+    },
+    "RV vs M0": {
+     "dlog_mean": 0.0036,
+     "dlog_hac_t": 0.87,
+     "p_one_sided": 0.1932,
+     "dbrier_ci90": [
+      -0.0028,
+      0.0017
+     ],
+     "dauc_ci90": [
+      0.061,
+      0.24
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0007,
+       "dbrier": 0.0004,
+       "dauc": 0.137,
+       "n": 216,
+       "events": 17
+      },
+      "2008-2026": {
+       "dlog": 0.0064,
+       "dbrier": -0.0012,
+       "dauc": 0.182,
+       "n": 223,
+       "events": 24
+      }
+     }
+    }
+   }
+  },
+  "holm_primary_family": {
+   "CRED6:C+T vs C": 1.0,
+   "DD3:C+T vs C": 1.0,
+   "VM1:C+T vs C": 1.0,
+   "VM1:C+T+A vs C": 1.0,
+   "DD3:C+T+A vs C": 1.0,
+   "VM1:C+A vs C": 1.0,
+   "EXIT6:C+A vs C": 1.0,
+   "CRED6:C+T+A vs C": 1.0,
+   "DD3:C+A vs C": 1.0,
+   "CRED6:C+A vs C": 1.0,
+   "EXIT6:C+T+A vs C": 1.0,
+   "EXIT6:C+T vs C": 1.0
+  }
+ },
+ "baseline_K4": {
+  "DD3": {
+   "h": 3,
+   "n_oos": 437,
+   "events_oos": 85,
+   "base_rate_oos": 0.195,
+   "oos_window": [
+    "1990-01",
+    "2026-05"
+   ],
+   "scores": {
+    "M0": {
+     "brier": 0.1601,
+     "logscore": -0.5064,
+     "auc": 0.4535,
+     "bss_vs_clim": 0.0
+    },
+    "RV": {
+     "brier": 0.1485,
+     "logscore": -0.467,
+     "auc": 0.6878,
+     "bss_vs_clim": 0.0725
+    },
+    "C": {
+     "brier": 0.1615,
+     "logscore": -0.5106,
+     "auc": 0.5753,
+     "bss_vs_clim": -0.0087
+    },
+    "C+T": {
+     "brier": 0.156,
+     "logscore": -0.4907,
+     "auc": 0.6404,
+     "bss_vs_clim": 0.0256
+    },
+    "C+A": {
+     "brier": 0.1673,
+     "logscore": -0.5268,
+     "auc": 0.5418,
+     "bss_vs_clim": -0.045
+    },
+    "C+T+A": {
+     "brier": 0.1602,
+     "logscore": -0.5021,
+     "auc": 0.6079,
+     "bss_vs_clim": -0.0006
+    },
+    "T": {
+     "brier": 0.1508,
+     "logscore": -0.475,
+     "auc": 0.6629,
+     "bss_vs_clim": 0.0581
+    },
+    "A": {
+     "brier": 0.1646,
+     "logscore": -0.5265,
+     "auc": 0.4332,
+     "bss_vs_clim": -0.0281
+    },
+    "C+RV": {
+     "brier": 0.1553,
+     "logscore": -0.4879,
+     "auc": 0.64,
+     "bss_vs_clim": 0.03
+    }
+   },
+   "comparisons": {
+    "C+T vs C": {
+     "dlog_mean": 0.0199,
+     "dlog_hac_t": 1.7,
+     "p_one_sided": 0.0449,
+     "dbrier_ci90": [
+      -0.0119,
+      0.0004
+     ],
+     "dauc_ci90": [
+      0.01,
+      0.122
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0105,
+       "dbrier": -0.0021,
+       "dauc": 0.037,
+       "n": 216,
+       "events": 36
+      },
+      "2008-2026": {
+       "dlog": 0.029,
+       "dbrier": -0.0087,
+       "dauc": 0.103,
+       "n": 221,
+       "events": 49
+      }
+     }
+    },
+    "C+A vs C": {
+     "dlog_mean": -0.0163,
+     "dlog_hac_t": -2.38,
+     "p_one_sided": 0.9914,
+     "dbrier_ci90": [
+      0.0017,
+      0.0106
+     ],
+     "dauc_ci90": [
+      -0.066,
+      -0.003
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0246,
+       "dbrier": 0.0079,
+       "dauc": -0.059,
+       "n": 216,
+       "events": 36
+      },
+      "2008-2026": {
+       "dlog": -0.0081,
+       "dbrier": 0.0037,
+       "dauc": 0.008,
+       "n": 221,
+       "events": 49
+      }
+     }
+    },
+    "C+T+A vs C": {
+     "dlog_mean": 0.0084,
+     "dlog_hac_t": 0.61,
+     "p_one_sided": 0.2717,
+     "dbrier_ci90": [
+      -0.0072,
+      0.0051
+     ],
+     "dauc_ci90": [
+      -0.035,
+      0.098
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0162,
+       "dbrier": 0.0065,
+       "dauc": -0.037,
+       "n": 216,
+       "events": 36
+      },
+      "2008-2026": {
+       "dlog": 0.0325,
+       "dbrier": -0.0089,
+       "dauc": 0.116,
+       "n": 221,
+       "events": 49
+      }
+     }
+    },
+    "C vs M0": {
+     "dlog_mean": -0.0041,
+     "dlog_hac_t": -0.16,
+     "p_one_sided": 0.563,
+     "dbrier_ci90": [
+      -0.0124,
+      0.0155
+     ],
+     "dauc_ci90": [
+      -0.016,
+      0.247
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0283,
+       "dbrier": -0.009,
+       "dauc": 0.18,
+       "n": 216,
+       "events": 36
+      },
+      "2008-2026": {
+       "dlog": -0.0358,
+       "dbrier": 0.0115,
+       "dauc": 0.19,
+       "n": 221,
+       "events": 49
+      }
+     }
+    },
+    "C vs RV": {
+     "dlog_mean": -0.0436,
+     "dlog_hac_t": -1.7,
+     "p_one_sided": 0.9558,
+     "dbrier_ci90": [
+      0.0012,
+      0.026
+     ],
+     "dauc_ci90": [
+      -0.217,
+      -0.006
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0312,
+       "dbrier": 0.0065,
+       "dauc": -0.143,
+       "n": 216,
+       "events": 36
+      },
+      "2008-2026": {
+       "dlog": -0.0557,
+       "dbrier": 0.0192,
+       "dauc": -0.147,
+       "n": 221,
+       "events": 49
+      }
+     }
+    },
+    "C+RV vs C": {
+     "dlog_mean": 0.0226,
+     "dlog_hac_t": 1.99,
+     "p_one_sided": 0.0232,
+     "dbrier_ci90": [
+      -0.0118,
+      -0.0005
+     ],
+     "dauc_ci90": [
+      0.018,
+      0.111
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0228,
+       "dbrier": -0.0059,
+       "dauc": 0.061,
+       "n": 216,
+       "events": 36
+      },
+      "2008-2026": {
+       "dlog": 0.0225,
+       "dbrier": -0.0064,
+       "dauc": 0.081,
+       "n": 221,
+       "events": 49
+      }
+     }
+    },
+    "T vs C": {
+     "dlog_mean": 0.0355,
+     "dlog_hac_t": 1.32,
+     "p_one_sided": 0.0942,
+     "dbrier_ci90": [
+      -0.0247,
+      0.0016
+     ],
+     "dauc_ci90": [
+      -0.023,
+      0.203
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0016,
+       "dbrier": 0.0028,
+       "dauc": 0.05,
+       "n": 216,
+       "events": 36
+      },
+      "2008-2026": {
+       "dlog": 0.0717,
+       "dbrier": -0.0238,
+       "dauc": 0.18,
+       "n": 221,
+       "events": 49
+      }
+     }
+    },
+    "A vs M0": {
+     "dlog_mean": -0.02,
+     "dlog_hac_t": -2.09,
+     "p_one_sided": 0.9819,
+     "dbrier_ci90": [
+      0.0012,
+      0.0079
+     ],
+     "dauc_ci90": [
+      -0.104,
+      0.064
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0177,
+       "dbrier": 0.0033,
+       "dauc": -0.031,
+       "n": 216,
+       "events": 36
+      },
+      "2008-2026": {
+       "dlog": -0.0224,
+       "dbrier": 0.0056,
+       "dauc": 0.079,
+       "n": 221,
+       "events": 49
+      }
+     }
+    },
+    "T vs M0": {
+     "dlog_mean": 0.0314,
+     "dlog_hac_t": 1.68,
+     "p_one_sided": 0.0468,
+     "dbrier_ci90": [
+      -0.0215,
+      0.0008
+     ],
+     "dauc_ci90": [
+      0.09,
+      0.317
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0268,
+       "dbrier": -0.0062,
+       "dauc": 0.231,
+       "n": 216,
+       "events": 36
+      },
+      "2008-2026": {
+       "dlog": 0.0359,
+       "dbrier": -0.0124,
+       "dauc": 0.369,
+       "n": 221,
+       "events": 49
+      }
+     }
+    },
+    "RV vs M0": {
+     "dlog_mean": 0.0395,
+     "dlog_hac_t": 1.65,
+     "p_one_sided": 0.05,
+     "dbrier_ci90": [
+      -0.0263,
+      0.0022
+     ],
+     "dauc_ci90": [
+      0.108,
+      0.335
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0596,
+       "dbrier": -0.0156,
+       "dauc": 0.323,
+       "n": 216,
+       "events": 36
+      },
+      "2008-2026": {
+       "dlog": 0.0198,
+       "dbrier": -0.0078,
+       "dauc": 0.336,
+       "n": 221,
+       "events": 49
+      }
+     }
+    }
+   }
+  },
+  "VM1": {
+   "h": 1,
+   "n_oos": 439,
+   "events_oos": 69,
+   "base_rate_oos": 0.157,
+   "oos_window": [
+    "1990-01",
+    "2026-07"
+   ],
+   "scores": {
+    "M0": {
+     "brier": 0.1354,
+     "logscore": -0.4442,
+     "auc": 0.4205,
+     "bss_vs_clim": 0.0
+    },
+    "RV": {
+     "brier": 0.1284,
+     "logscore": -0.4206,
+     "auc": 0.6875,
+     "bss_vs_clim": 0.0517
+    },
+    "C": {
+     "brier": 0.136,
+     "logscore": -0.445,
+     "auc": 0.5331,
+     "bss_vs_clim": -0.0044
+    },
+    "C+T": {
+     "brier": 0.1312,
+     "logscore": -0.4248,
+     "auc": 0.6556,
+     "bss_vs_clim": 0.031
+    },
+    "C+A": {
+     "brier": 0.1393,
+     "logscore": -0.4545,
+     "auc": 0.5311,
+     "bss_vs_clim": -0.0288
+    },
+    "C+T+A": {
+     "brier": 0.1346,
+     "logscore": -0.4351,
+     "auc": 0.6291,
+     "bss_vs_clim": 0.0059
+    },
+    "T": {
+     "brier": 0.1308,
+     "logscore": -0.4248,
+     "auc": 0.6604,
+     "bss_vs_clim": 0.034
+    },
+    "A": {
+     "brier": 0.1361,
+     "logscore": -0.4481,
+     "auc": 0.4977,
+     "bss_vs_clim": -0.0052
+    },
+    "C+RV": {
+     "brier": 0.1292,
+     "logscore": -0.4225,
+     "auc": 0.6527,
+     "bss_vs_clim": 0.0458
+    }
+   },
+   "comparisons": {
+    "C+T vs C": {
+     "dlog_mean": 0.0202,
+     "dlog_hac_t": 2.05,
+     "p_one_sided": 0.0203,
+     "dbrier_ci90": [
+      -0.0108,
+      0.0011
+     ],
+     "dauc_ci90": [
+      0.041,
+      0.209
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0082,
+       "dbrier": -0.0008,
+       "dauc": 0.071,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.0318,
+       "dbrier": -0.0087,
+       "dauc": 0.19,
+       "n": 223,
+       "events": 36
+      }
+     }
+    },
+    "C+A vs C": {
+     "dlog_mean": -0.0095,
+     "dlog_hac_t": -1.6,
+     "p_one_sided": 0.9447,
+     "dbrier_ci90": [
+      -0.0001,
+      0.0074
+     ],
+     "dauc_ci90": [
+      -0.027,
+      0.023
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0057,
+       "dbrier": 0.0007,
+       "dauc": -0.014,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": -0.0133,
+       "dbrier": 0.0058,
+       "dauc": 0.011,
+       "n": 223,
+       "events": 36
+      }
+     }
+    },
+    "C+T+A vs C": {
+     "dlog_mean": 0.0098,
+     "dlog_hac_t": 0.87,
+     "p_one_sided": 0.1918,
+     "dbrier_ci90": [
+      -0.0082,
+      0.0057
+     ],
+     "dauc_ci90": [
+      0.015,
+      0.182
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0032,
+       "dbrier": 0.0025,
+       "dauc": 0.03,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.0225,
+       "dbrier": -0.0052,
+       "dauc": 0.183,
+       "n": 223,
+       "events": 36
+      }
+     }
+    },
+    "C vs M0": {
+     "dlog_mean": -0.0008,
+     "dlog_hac_t": -0.1,
+     "p_one_sided": 0.5391,
+     "dbrier_ci90": [
+      -0.0041,
+      0.005
+     ],
+     "dauc_ci90": [
+      0.056,
+      0.201
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0135,
+       "dbrier": -0.0041,
+       "dauc": 0.21,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": -0.0146,
+       "dbrier": 0.0053,
+       "dauc": 0.023,
+       "n": 223,
+       "events": 36
+      }
+     }
+    },
+    "C vs RV": {
+     "dlog_mean": -0.0243,
+     "dlog_hac_t": -2.39,
+     "p_one_sided": 0.9916,
+     "dbrier_ci90": [
+      0.0021,
+      0.0144
+     ],
+     "dauc_ci90": [
+      -0.242,
+      -0.07
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0088,
+       "dbrier": 0.0028,
+       "dauc": -0.137,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": -0.0394,
+       "dbrier": 0.0123,
+       "dauc": -0.209,
+       "n": 223,
+       "events": 36
+      }
+     }
+    },
+    "C+RV vs C": {
+     "dlog_mean": 0.0225,
+     "dlog_hac_t": 2.91,
+     "p_one_sided": 0.0018,
+     "dbrier_ci90": [
+      -0.0122,
+      -0.0025
+     ],
+     "dauc_ci90": [
+      0.054,
+      0.197
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0094,
+       "dbrier": -0.0027,
+       "dauc": 0.049,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.0352,
+       "dbrier": -0.0108,
+       "dauc": 0.203,
+       "n": 223,
+       "events": 36
+      }
+     }
+    },
+    "T vs C": {
+     "dlog_mean": 0.0202,
+     "dlog_hac_t": 1.63,
+     "p_one_sided": 0.0515,
+     "dbrier_ci90": [
+      -0.0125,
+      0.0021
+     ],
+     "dauc_ci90": [
+      0.021,
+      0.236
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0005,
+       "dbrier": 0.002,
+       "dauc": 0.059,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.0402,
+       "dbrier": -0.0122,
+       "dauc": 0.204,
+       "n": 223,
+       "events": 36
+      }
+     }
+    },
+    "A vs M0": {
+     "dlog_mean": -0.0039,
+     "dlog_hac_t": -0.45,
+     "p_one_sided": 0.6733,
+     "dbrier_ci90": [
+      -0.0037,
+      0.0055
+     ],
+     "dauc_ci90": [
+      -0.006,
+      0.187
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0014,
+       "dbrier": -0.0006,
+       "dauc": 0.122,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": -0.0064,
+       "dbrier": 0.0021,
+       "dauc": 0.047,
+       "n": 223,
+       "events": 36
+      }
+     }
+    },
+    "T vs M0": {
+     "dlog_mean": 0.0194,
+     "dlog_hac_t": 1.78,
+     "p_one_sided": 0.0379,
+     "dbrier_ci90": [
+      -0.0117,
+      0.0023
+     ],
+     "dauc_ci90": [
+      0.133,
+      0.375
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.013,
+       "dbrier": -0.0021,
+       "dauc": 0.27,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.0256,
+       "dbrier": -0.0069,
+       "dauc": 0.227,
+       "n": 223,
+       "events": 36
+      }
+     }
+    },
+    "RV vs M0": {
+     "dlog_mean": 0.0236,
+     "dlog_hac_t": 2.44,
+     "p_one_sided": 0.0074,
+     "dbrier_ci90": [
+      -0.0136,
+      -0.0008
+     ],
+     "dauc_ci90": [
+      0.174,
+      0.389
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0223,
+       "dbrier": -0.0069,
+       "dauc": 0.347,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.0248,
+       "dbrier": -0.007,
+       "dauc": 0.231,
+       "n": 223,
+       "events": 36
+      }
+     }
+    }
+   }
+  },
+  "CRED6": {
+   "h": 6,
+   "n_oos": 435,
+   "events_oos": 69,
+   "base_rate_oos": 0.159,
+   "oos_window": [
+    "1990-01",
+    "2026-03"
+   ],
+   "scores": {
+    "M0": {
+     "brier": 0.1363,
+     "logscore": -0.4514,
+     "auc": 0.4357,
+     "bss_vs_clim": 0.0
+    },
+    "RV": {
+     "brier": 0.1304,
+     "logscore": -0.4229,
+     "auc": 0.6535,
+     "bss_vs_clim": 0.0433
+    },
+    "C": {
+     "brier": 0.133,
+     "logscore": -0.4344,
+     "auc": 0.6176,
+     "bss_vs_clim": 0.0242
+    },
+    "C+T": {
+     "brier": 0.1285,
+     "logscore": -0.4194,
+     "auc": 0.6578,
+     "bss_vs_clim": 0.0572
+    },
+    "C+A": {
+     "brier": 0.1429,
+     "logscore": -0.4665,
+     "auc": 0.6163,
+     "bss_vs_clim": -0.0484
+    },
+    "C+T+A": {
+     "brier": 0.1384,
+     "logscore": -0.4495,
+     "auc": 0.6286,
+     "bss_vs_clim": -0.0154
+    },
+    "T": {
+     "brier": 0.1294,
+     "logscore": -0.4256,
+     "auc": 0.6332,
+     "bss_vs_clim": 0.0506
+    },
+    "A": {
+     "brier": 0.1361,
+     "logscore": -0.4609,
+     "auc": 0.5509,
+     "bss_vs_clim": 0.0015
+    },
+    "C+RV": {
+     "brier": 0.1307,
+     "logscore": -0.4213,
+     "auc": 0.6669,
+     "bss_vs_clim": 0.0411
+    }
+   },
+   "comparisons": {
+    "C+T vs C": {
+     "dlog_mean": 0.015,
+     "dlog_hac_t": 1.32,
+     "p_one_sided": 0.093,
+     "dbrier_ci90": [
+      -0.0098,
+      -0.0001
+     ],
+     "dauc_ci90": [
+      -0.024,
+      0.111
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.015,
+       "dbrier": -0.0024,
+       "dauc": 0.067,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.0149,
+       "dbrier": -0.0065,
+       "dauc": 0.046,
+       "n": 219,
+       "events": 36
+      }
+     }
+    },
+    "C+A vs C": {
+     "dlog_mean": -0.0322,
+     "dlog_hac_t": -1.59,
+     "p_one_sided": 0.9444,
+     "dbrier_ci90": [
+      0.0014,
+      0.0217
+     ],
+     "dauc_ci90": [
+      -0.033,
+      0.028
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0343,
+       "dbrier": 0.0056,
+       "dauc": -0.002,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": -0.03,
+       "dbrier": 0.0142,
+       "dauc": 0.004,
+       "n": 219,
+       "events": 36
+      }
+     }
+    },
+    "C+T+A vs C": {
+     "dlog_mean": -0.0151,
+     "dlog_hac_t": -1.0,
+     "p_one_sided": 0.8407,
+     "dbrier_ci90": [
+      -0.0041,
+      0.0182
+     ],
+     "dauc_ci90": [
+      -0.035,
+      0.058
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.014,
+       "dbrier": 0.0034,
+       "dauc": 0.058,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": -0.0162,
+       "dbrier": 0.0074,
+       "dauc": 0.032,
+       "n": 219,
+       "events": 36
+      }
+     }
+    },
+    "C vs M0": {
+     "dlog_mean": 0.017,
+     "dlog_hac_t": 0.75,
+     "p_one_sided": 0.2253,
+     "dbrier_ci90": [
+      -0.0147,
+      0.008
+     ],
+     "dauc_ci90": [
+      0.061,
+      0.292
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0215,
+       "dbrier": -0.0058,
+       "dauc": 0.149,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.0126,
+       "dbrier": -0.001,
+       "dauc": 0.354,
+       "n": 219,
+       "events": 36
+      }
+     }
+    },
+    "C vs RV": {
+     "dlog_mean": -0.0115,
+     "dlog_hac_t": -0.61,
+     "p_one_sided": 0.7291,
+     "dbrier_ci90": [
+      -0.0051,
+      0.0116
+     ],
+     "dauc_ci90": [
+      -0.133,
+      0.056
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0166,
+       "dbrier": 0.0011,
+       "dauc": -0.105,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": -0.0064,
+       "dbrier": 0.004,
+       "dauc": -0.016,
+       "n": 219,
+       "events": 36
+      }
+     }
+    },
+    "C+RV vs C": {
+     "dlog_mean": 0.0131,
+     "dlog_hac_t": 1.35,
+     "p_one_sided": 0.0891,
+     "dbrier_ci90": [
+      -0.006,
+      0.0012
+     ],
+     "dauc_ci90": [
+      0.002,
+      0.111
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0192,
+       "dbrier": -0.0018,
+       "dauc": 0.099,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.007,
+       "dbrier": -0.0028,
+       "dauc": 0.035,
+       "n": 219,
+       "events": 36
+      }
+     }
+    },
+    "T vs C": {
+     "dlog_mean": 0.0088,
+     "dlog_hac_t": 0.4,
+     "p_one_sided": 0.3444,
+     "dbrier_ci90": [
+      -0.0137,
+      0.0059
+     ],
+     "dauc_ci90": [
+      -0.093,
+      0.124
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0018,
+       "dbrier": 0.001,
+       "dauc": 0.054,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.0157,
+       "dbrier": -0.008,
+       "dauc": 0.027,
+       "n": 219,
+       "events": 36
+      }
+     }
+    },
+    "A vs M0": {
+     "dlog_mean": -0.0095,
+     "dlog_hac_t": -0.45,
+     "p_one_sided": 0.6732,
+     "dbrier_ci90": [
+      -0.0045,
+      0.0044
+     ],
+     "dauc_ci90": [
+      0.031,
+      0.193
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.03,
+       "dbrier": 0.0024,
+       "dauc": 0.099,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.0107,
+       "dbrier": -0.0028,
+       "dauc": 0.298,
+       "n": 219,
+       "events": 36
+      }
+     }
+    },
+    "T vs M0": {
+     "dlog_mean": 0.0259,
+     "dlog_hac_t": 1.69,
+     "p_one_sided": 0.0451,
+     "dbrier_ci90": [
+      -0.015,
+      -0.0002
+     ],
+     "dauc_ci90": [
+      0.081,
+      0.299
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0234,
+       "dbrier": -0.0048,
+       "dauc": 0.203,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.0283,
+       "dbrier": -0.009,
+       "dauc": 0.381,
+       "n": 219,
+       "events": 36
+      }
+     }
+    },
+    "RV vs M0": {
+     "dlog_mean": 0.0285,
+     "dlog_hac_t": 1.76,
+     "p_one_sided": 0.0391,
+     "dbrier_ci90": [
+      -0.014,
+      0.0025
+     ],
+     "dauc_ci90": [
+      0.089,
+      0.321
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0381,
+       "dbrier": -0.0069,
+       "dauc": 0.254,
+       "n": 216,
+       "events": 33
+      },
+      "2008-2026": {
+       "dlog": 0.019,
+       "dbrier": -0.0049,
+       "dauc": 0.37,
+       "n": 219,
+       "events": 36
+      }
+     }
+    }
+   }
+  },
+  "EXIT6": {
+   "h": 6,
+   "n_oos": 322,
+   "events_oos": 72,
+   "base_rate_oos": 0.224,
+   "oos_window": [
+    "1990-01",
+    "2025-06"
+   ],
+   "scores": {
+    "M0": {
+     "brier": 0.1773,
+     "logscore": -0.5441,
+     "auc": 0.4619,
+     "bss_vs_clim": 0.0
+    },
+    "RV": {
+     "brier": 0.1698,
+     "logscore": -0.5259,
+     "auc": 0.6099,
+     "bss_vs_clim": 0.0423
+    },
+    "C": {
+     "brier": 0.1806,
+     "logscore": -0.556,
+     "auc": 0.4329,
+     "bss_vs_clim": -0.0186
+    },
+    "C+T": {
+     "brier": 0.1803,
+     "logscore": -0.5562,
+     "auc": 0.4456,
+     "bss_vs_clim": -0.0169
+    },
+    "C+A": {
+     "brier": 0.1866,
+     "logscore": -0.5735,
+     "auc": 0.5617,
+     "bss_vs_clim": -0.0525
+    },
+    "C+T+A": {
+     "brier": 0.188,
+     "logscore": -0.5766,
+     "auc": 0.565,
+     "bss_vs_clim": -0.0603
+    },
+    "T": {
+     "brier": 0.1738,
+     "logscore": -0.5343,
+     "auc": 0.5356,
+     "bss_vs_clim": 0.0197
+    },
+    "A": {
+     "brier": 0.1729,
+     "logscore": -0.538,
+     "auc": 0.6081,
+     "bss_vs_clim": 0.0248
+    },
+    "C+RV": {
+     "brier": 0.1743,
+     "logscore": -0.5364,
+     "auc": 0.574,
+     "bss_vs_clim": 0.0169
+    }
+   },
+   "comparisons": {
+    "C+T vs C": {
+     "dlog_mean": -0.0002,
+     "dlog_hac_t": -0.06,
+     "p_one_sided": 0.5231,
+     "dbrier_ci90": [
+      -0.0019,
+      0.0014
+     ],
+     "dauc_ci90": [
+      -0.016,
+      0.045
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.009,
+       "dbrier": 0.0025,
+       "dauc": -0.012,
+       "n": 171,
+       "events": 29
+      },
+      "2008-2026": {
+       "dlog": 0.0097,
+       "dbrier": -0.0034,
+       "dauc": 0.053,
+       "n": 151,
+       "events": 43
+      }
+     }
+    },
+    "C+A vs C": {
+     "dlog_mean": -0.0175,
+     "dlog_hac_t": -0.54,
+     "p_one_sided": 0.7047,
+     "dbrier_ci90": [
+      -0.0096,
+      0.0227
+     ],
+     "dauc_ci90": [
+      0.047,
+      0.225
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0082,
+       "dbrier": -0.0066,
+       "dauc": 0.234,
+       "n": 171,
+       "events": 29
+      },
+      "2008-2026": {
+       "dlog": -0.0466,
+       "dbrier": 0.0203,
+       "dauc": 0.034,
+       "n": 151,
+       "events": 43
+      }
+     }
+    },
+    "C+T+A vs C": {
+     "dlog_mean": -0.0205,
+     "dlog_hac_t": -0.6,
+     "p_one_sided": 0.727,
+     "dbrier_ci90": [
+      -0.0088,
+      0.0255
+     ],
+     "dauc_ci90": [
+      0.051,
+      0.231
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0019,
+       "dbrier": -0.005,
+       "dauc": 0.224,
+       "n": 171,
+       "events": 29
+      },
+      "2008-2026": {
+       "dlog": -0.046,
+       "dbrier": 0.0215,
+       "dauc": 0.051,
+       "n": 151,
+       "events": 43
+      }
+     }
+    },
+    "C vs M0": {
+     "dlog_mean": -0.0119,
+     "dlog_hac_t": -0.64,
+     "p_one_sided": 0.7391,
+     "dbrier_ci90": [
+      -0.009,
+      0.0137
+     ],
+     "dauc_ci90": [
+      -0.141,
+      0.092
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0179,
+       "dbrier": 0.005,
+       "dauc": -0.014,
+       "n": 171,
+       "events": 29
+      },
+      "2008-2026": {
+       "dlog": -0.0051,
+       "dbrier": 0.0013,
+       "dauc": 0.048,
+       "n": 151,
+       "events": 43
+      }
+     }
+    },
+    "C vs RV": {
+     "dlog_mean": -0.0301,
+     "dlog_hac_t": -1.27,
+     "p_one_sided": 0.8986,
+     "dbrier_ci90": [
+      -0.0004,
+      0.023
+     ],
+     "dauc_ci90": [
+      -0.322,
+      -0.055
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0583,
+       "dbrier": 0.0166,
+       "dauc": -0.392,
+       "n": 171,
+       "events": 29
+      },
+      "2008-2026": {
+       "dlog": 0.0019,
+       "dbrier": 0.0042,
+       "dauc": -0.071,
+       "n": 151,
+       "events": 43
+      }
+     }
+    },
+    "C+RV vs C": {
+     "dlog_mean": 0.0196,
+     "dlog_hac_t": 1.25,
+     "p_one_sided": 0.1058,
+     "dbrier_ci90": [
+      -0.0153,
+      0.0018
+     ],
+     "dauc_ci90": [
+      0.042,
+      0.255
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0402,
+       "dbrier": -0.0108,
+       "dauc": 0.32,
+       "n": 171,
+       "events": 29
+      },
+      "2008-2026": {
+       "dlog": -0.0036,
+       "dbrier": -0.0011,
+       "dauc": 0.056,
+       "n": 151,
+       "events": 43
+      }
+     }
+    },
+    "T vs C": {
+     "dlog_mean": 0.0217,
+     "dlog_hac_t": 1.24,
+     "p_one_sided": 0.1079,
+     "dbrier_ci90": [
+      -0.0167,
+      0.0044
+     ],
+     "dauc_ci90": [
+      0.0,
+      0.202
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0159,
+       "dbrier": -0.0045,
+       "dauc": 0.019,
+       "n": 171,
+       "events": 29
+      },
+      "2008-2026": {
+       "dlog": 0.0284,
+       "dbrier": -0.0093,
+       "dauc": 0.178,
+       "n": 151,
+       "events": 43
+      }
+     }
+    },
+    "A vs M0": {
+     "dlog_mean": 0.0061,
+     "dlog_hac_t": 0.21,
+     "p_one_sided": 0.4163,
+     "dbrier_ci90": [
+      -0.0168,
+      0.0071
+     ],
+     "dauc_ci90": [
+      0.014,
+      0.282
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0115,
+       "dbrier": -0.0072,
+       "dauc": 0.281,
+       "n": 171,
+       "events": 29
+      },
+      "2008-2026": {
+       "dlog": -0.0,
+       "dbrier": -0.0012,
+       "dauc": 0.113,
+       "n": 151,
+       "events": 43
+      }
+     }
+    },
+    "T vs M0": {
+     "dlog_mean": 0.0098,
+     "dlog_hac_t": 2.3,
+     "p_one_sided": 0.0106,
+     "dbrier_ci90": [
+      -0.0061,
+      -0.0011
+     ],
+     "dauc_ci90": [
+      0.016,
+      0.134
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.002,
+       "dbrier": 0.0005,
+       "dauc": 0.005,
+       "n": 171,
+       "events": 29
+      },
+      "2008-2026": {
+       "dlog": 0.0233,
+       "dbrier": -0.008,
+       "dauc": 0.226,
+       "n": 151,
+       "events": 43
+      }
+     }
+    },
+    "RV vs M0": {
+     "dlog_mean": 0.0182,
+     "dlog_hac_t": 1.33,
+     "p_one_sided": 0.0914,
+     "dbrier_ci90": [
+      -0.0167,
+      -0.0001
+     ],
+     "dauc_ci90": [
+      0.025,
+      0.291
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0404,
+       "dbrier": -0.0116,
+       "dauc": 0.379,
+       "n": 171,
+       "events": 29
+      },
+      "2008-2026": {
+       "dlog": -0.007,
+       "dbrier": -0.0029,
+       "dauc": 0.119,
+       "n": 151,
+       "events": 43
+      }
+     }
+    }
+   }
+  },
+  "DD6": {
+   "h": 6,
+   "n_oos": 434,
+   "events_oos": 92,
+   "base_rate_oos": 0.212,
+   "oos_window": [
+    "1990-01",
+    "2026-02"
+   ],
+   "scores": {
+    "M0": {
+     "brier": 0.173,
+     "logscore": -0.5394,
+     "auc": 0.406,
+     "bss_vs_clim": 0.0
+    },
+    "RV": {
+     "brier": 0.1668,
+     "logscore": -0.5182,
+     "auc": 0.5933,
+     "bss_vs_clim": 0.0358
+    },
+    "C": {
+     "brier": 0.1772,
+     "logscore": -0.5507,
+     "auc": 0.5171,
+     "bss_vs_clim": -0.0243
+    },
+    "C+T": {
+     "brier": 0.1726,
+     "logscore": -0.5363,
+     "auc": 0.5591,
+     "bss_vs_clim": 0.0023
+    },
+    "C+A": {
+     "brier": 0.1859,
+     "logscore": -0.5825,
+     "auc": 0.4222,
+     "bss_vs_clim": -0.0746
+    },
+    "C+T+A": {
+     "brier": 0.1819,
+     "logscore": -0.5679,
+     "auc": 0.4732,
+     "bss_vs_clim": -0.0514
+    },
+    "T": {
+     "brier": 0.1662,
+     "logscore": -0.5196,
+     "auc": 0.5645,
+     "bss_vs_clim": 0.0393
+    },
+    "A": {
+     "brier": 0.1821,
+     "logscore": -0.5786,
+     "auc": 0.2946,
+     "bss_vs_clim": -0.0526
+    },
+    "C+RV": {
+     "brier": 0.176,
+     "logscore": -0.5462,
+     "auc": 0.5439,
+     "bss_vs_clim": -0.0173
+    }
+   },
+   "comparisons": {
+    "C+T vs C": {
+     "dlog_mean": 0.0144,
+     "dlog_hac_t": 1.29,
+     "p_one_sided": 0.0985,
+     "dbrier_ci90": [
+      -0.0112,
+      0.0014
+     ],
+     "dauc_ci90": [
+      -0.011,
+      0.101
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0076,
+       "dbrier": -0.0018,
+       "dauc": 0.033,
+       "n": 216,
+       "events": 44
+      },
+      "2008-2026": {
+       "dlog": 0.0212,
+       "dbrier": -0.0072,
+       "dauc": 0.087,
+       "n": 218,
+       "events": 48
+      }
+     }
+    },
+    "C+A vs C": {
+     "dlog_mean": -0.0318,
+     "dlog_hac_t": -2.11,
+     "p_one_sided": 0.9824,
+     "dbrier_ci90": [
+      0.0019,
+      0.0172
+     ],
+     "dauc_ci90": [
+      -0.165,
+      -0.041
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0591,
+       "dbrier": 0.0171,
+       "dauc": -0.132,
+       "n": 216,
+       "events": 44
+      },
+      "2008-2026": {
+       "dlog": -0.0047,
+       "dbrier": 0.0003,
+       "dauc": -0.01,
+       "n": 218,
+       "events": 48
+      }
+     }
+    },
+    "C+T+A vs C": {
+     "dlog_mean": -0.0172,
+     "dlog_hac_t": -0.89,
+     "p_one_sided": 0.8121,
+     "dbrier_ci90": [
+      -0.004,
+      0.0151
+     ],
+     "dauc_ci90": [
+      -0.137,
+      0.028
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0629,
+       "dbrier": 0.0202,
+       "dauc": -0.12,
+       "n": 216,
+       "events": 44
+      },
+      "2008-2026": {
+       "dlog": 0.028,
+       "dbrier": -0.0106,
+       "dauc": 0.092,
+       "n": 218,
+       "events": 48
+      }
+     }
+    },
+    "C vs M0": {
+     "dlog_mean": -0.0113,
+     "dlog_hac_t": -0.37,
+     "p_one_sided": 0.6437,
+     "dbrier_ci90": [
+      -0.0143,
+      0.0199
+     ],
+     "dauc_ci90": [
+      -0.021,
+      0.247
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0212,
+       "dbrier": -0.008,
+       "dauc": 0.122,
+       "n": 216,
+       "events": 44
+      },
+      "2008-2026": {
+       "dlog": -0.0436,
+       "dbrier": 0.0161,
+       "dauc": 0.145,
+       "n": 218,
+       "events": 48
+      }
+     }
+    },
+    "C vs RV": {
+     "dlog_mean": -0.0325,
+     "dlog_hac_t": -1.43,
+     "p_one_sided": 0.9243,
+     "dbrier_ci90": [
+      -0.0026,
+      0.0218
+     ],
+     "dauc_ci90": [
+      -0.154,
+      0.01
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0101,
+       "dbrier": 0.0004,
+       "dauc": -0.076,
+       "n": 216,
+       "events": 44
+      },
+      "2008-2026": {
+       "dlog": -0.0546,
+       "dbrier": 0.0202,
+       "dauc": -0.157,
+       "n": 218,
+       "events": 48
+      }
+     }
+    },
+    "C+RV vs C": {
+     "dlog_mean": 0.0045,
+     "dlog_hac_t": 0.55,
+     "p_one_sided": 0.2897,
+     "dbrier_ci90": [
+      -0.0051,
+      0.003
+     ],
+     "dauc_ci90": [
+      -0.014,
+      0.069
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0025,
+       "dbrier": 0.0004,
+       "dauc": 0.01,
+       "n": 216,
+       "events": 44
+      },
+      "2008-2026": {
+       "dlog": 0.0114,
+       "dbrier": -0.0027,
+       "dauc": 0.065,
+       "n": 218,
+       "events": 48
+      }
+     }
+    },
+    "T vs C": {
+     "dlog_mean": 0.0312,
+     "dlog_hac_t": 1.15,
+     "p_one_sided": 0.1258,
+     "dbrier_ci90": [
+      -0.0249,
+      0.0033
+     ],
+     "dauc_ci90": [
+      -0.067,
+      0.166
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0039,
+       "dbrier": 0.0032,
+       "dauc": 0.027,
+       "n": 216,
+       "events": 44
+      },
+      "2008-2026": {
+       "dlog": 0.0659,
+       "dbrier": -0.0249,
+       "dauc": 0.155,
+       "n": 218,
+       "events": 48
+      }
+     }
+    },
+    "A vs M0": {
+     "dlog_mean": -0.0392,
+     "dlog_hac_t": -2.83,
+     "p_one_sided": 0.9977,
+     "dbrier_ci90": [
+      0.0041,
+      0.0142
+     ],
+     "dauc_ci90": [
+      -0.247,
+      0.015
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0413,
+       "dbrier": 0.0085,
+       "dauc": -0.116,
+       "n": 216,
+       "events": 44
+      },
+      "2008-2026": {
+       "dlog": -0.0371,
+       "dbrier": 0.0097,
+       "dauc": -0.009,
+       "n": 218,
+       "events": 48
+      }
+     }
+    },
+    "T vs M0": {
+     "dlog_mean": 0.0198,
+     "dlog_hac_t": 0.99,
+     "p_one_sided": 0.1614,
+     "dbrier_ci90": [
+      -0.0193,
+      0.0031
+     ],
+     "dauc_ci90": [
+      0.006,
+      0.299
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0173,
+       "dbrier": -0.0048,
+       "dauc": 0.15,
+       "n": 216,
+       "events": 44
+      },
+      "2008-2026": {
+       "dlog": 0.0223,
+       "dbrier": -0.0088,
+       "dauc": 0.299,
+       "n": 218,
+       "events": 48
+      }
+     }
+    },
+    "RV vs M0": {
+     "dlog_mean": 0.0211,
+     "dlog_hac_t": 0.95,
+     "p_one_sided": 0.1721,
+     "dbrier_ci90": [
+      -0.0207,
+      0.0061
+     ],
+     "dauc_ci90": [
+      0.046,
+      0.307
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0314,
+       "dbrier": -0.0083,
+       "dauc": 0.198,
+       "n": 216,
+       "events": 44
+      },
+      "2008-2026": {
+       "dlog": 0.011,
+       "dbrier": -0.0041,
+       "dauc": 0.302,
+       "n": 218,
+       "events": 48
+      }
+     }
+    }
+   }
+  },
+  "VMEQ1": {
+   "h": 1,
+   "n_oos": 439,
+   "events_oos": 34,
+   "base_rate_oos": 0.077,
+   "oos_window": [
+    "1990-01",
+    "2026-07"
+   ],
+   "scores": {
+    "M0": {
+     "brier": 0.072,
+     "logscore": -0.2776,
+     "auc": 0.416,
+     "bss_vs_clim": 0.0
+    },
+    "RV": {
+     "brier": 0.0672,
+     "logscore": -0.2454,
+     "auc": 0.7571,
+     "bss_vs_clim": 0.0667
+    },
+    "C": {
+     "brier": 0.0723,
+     "logscore": -0.2795,
+     "auc": 0.5583,
+     "bss_vs_clim": -0.0042
+    },
+    "C+T": {
+     "brier": 0.0698,
+     "logscore": -0.2603,
+     "auc": 0.6851,
+     "bss_vs_clim": 0.0306
+    },
+    "C+A": {
+     "brier": 0.0729,
+     "logscore": -0.2829,
+     "auc": 0.5381,
+     "bss_vs_clim": -0.0125
+    },
+    "C+T+A": {
+     "brier": 0.0703,
+     "logscore": -0.2618,
+     "auc": 0.6773,
+     "bss_vs_clim": 0.0236
+    },
+    "T": {
+     "brier": 0.069,
+     "logscore": -0.2542,
+     "auc": 0.7222,
+     "bss_vs_clim": 0.0417
+    },
+    "A": {
+     "brier": 0.0728,
+     "logscore": -0.2861,
+     "auc": 0.4104,
+     "bss_vs_clim": -0.0111
+    },
+    "C+RV": {
+     "brier": 0.0689,
+     "logscore": -0.256,
+     "auc": 0.6932,
+     "bss_vs_clim": 0.0431
+    }
+   },
+   "comparisons": {
+    "C+T vs C": {
+     "dlog_mean": 0.0192,
+     "dlog_hac_t": 2.5,
+     "p_one_sided": 0.0062,
+     "dbrier_ci90": [
+      -0.0059,
+      0.0006
+     ],
+     "dauc_ci90": [
+      0.06,
+      0.187
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0105,
+       "dbrier": -0.0007,
+       "dauc": 0.085,
+       "n": 216,
+       "events": 16
+      },
+      "2008-2026": {
+       "dlog": 0.0276,
+       "dbrier": -0.0043,
+       "dauc": 0.169,
+       "n": 223,
+       "events": 18
+      }
+     }
+    },
+    "C+A vs C": {
+     "dlog_mean": -0.0034,
+     "dlog_hac_t": -0.51,
+     "p_one_sided": 0.6945,
+     "dbrier_ci90": [
+      -0.0012,
+      0.0028
+     ],
+     "dauc_ci90": [
+      -0.087,
+      0.047
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.001,
+       "dbrier": 0.0,
+       "dauc": -0.02,
+       "n": 216,
+       "events": 16
+      },
+      "2008-2026": {
+       "dlog": -0.0077,
+       "dbrier": 0.0012,
+       "dauc": -0.024,
+       "n": 223,
+       "events": 18
+      }
+     }
+    },
+    "C+T+A vs C": {
+     "dlog_mean": 0.0177,
+     "dlog_hac_t": 1.88,
+     "p_one_sided": 0.0297,
+     "dbrier_ci90": [
+      -0.0044,
+      0.0003
+     ],
+     "dauc_ci90": [
+      0.01,
+      0.213
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0066,
+       "dbrier": -0.0001,
+       "dauc": 0.037,
+       "n": 216,
+       "events": 16
+      },
+      "2008-2026": {
+       "dlog": 0.0285,
+       "dbrier": -0.0039,
+       "dauc": 0.182,
+       "n": 223,
+       "events": 18
+      }
+     }
+    },
+    "C vs M0": {
+     "dlog_mean": -0.0019,
+     "dlog_hac_t": -0.18,
+     "p_one_sided": 0.5697,
+     "dbrier_ci90": [
+      -0.0024,
+      0.003
+     ],
+     "dauc_ci90": [
+      0.023,
+      0.262
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0,
+       "dbrier": -0.0005,
+       "dauc": 0.094,
+       "n": 216,
+       "events": 16
+      },
+      "2008-2026": {
+       "dlog": -0.0036,
+       "dbrier": 0.0011,
+       "dauc": 0.291,
+       "n": 223,
+       "events": 18
+      }
+     }
+    },
+    "C vs RV": {
+     "dlog_mean": -0.0341,
+     "dlog_hac_t": -2.82,
+     "p_one_sided": 0.9976,
+     "dbrier_ci90": [
+      0.001,
+      0.0097
+     ],
+     "dauc_ci90": [
+      -0.287,
+      -0.106
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0206,
+       "dbrier": 0.0018,
+       "dauc": -0.166,
+       "n": 216,
+       "events": 16
+      },
+      "2008-2026": {
+       "dlog": -0.0471,
+       "dbrier": 0.0083,
+       "dauc": -0.24,
+       "n": 223,
+       "events": 18
+      }
+     }
+    },
+    "C+RV vs C": {
+     "dlog_mean": 0.0235,
+     "dlog_hac_t": 2.83,
+     "p_one_sided": 0.0024,
+     "dbrier_ci90": [
+      -0.0068,
+      -0.0006
+     ],
+     "dauc_ci90": [
+      0.071,
+      0.2
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0111,
+       "dbrier": -0.0011,
+       "dauc": 0.073,
+       "n": 216,
+       "events": 16
+      },
+      "2008-2026": {
+       "dlog": 0.0356,
+       "dbrier": -0.0058,
+       "dauc": 0.204,
+       "n": 223,
+       "events": 18
+      }
+     }
+    },
+    "T vs C": {
+     "dlog_mean": 0.0253,
+     "dlog_hac_t": 2.28,
+     "p_one_sided": 0.0114,
+     "dbrier_ci90": [
+      -0.0066,
+      -0.0003
+     ],
+     "dauc_ci90": [
+      0.052,
+      0.265
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0128,
+       "dbrier": -0.0008,
+       "dauc": 0.128,
+       "n": 216,
+       "events": 16
+      },
+      "2008-2026": {
+       "dlog": 0.0374,
+       "dbrier": -0.0059,
+       "dauc": 0.216,
+       "n": 223,
+       "events": 18
+      }
+     }
+    },
+    "A vs M0": {
+     "dlog_mean": -0.0085,
+     "dlog_hac_t": -1.51,
+     "p_one_sided": 0.9342,
+     "dbrier_ci90": [
+      -0.0001,
+      0.0019
+     ],
+     "dauc_ci90": [
+      -0.107,
+      0.102
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0031,
+       "dbrier": 0.0002,
+       "dauc": -0.008,
+       "n": 216,
+       "events": 16
+      },
+      "2008-2026": {
+       "dlog": -0.0137,
+       "dbrier": 0.0014,
+       "dauc": 0.085,
+       "n": 223,
+       "events": 18
+      }
+     }
+    },
+    "T vs M0": {
+     "dlog_mean": 0.0234,
+     "dlog_hac_t": 2.12,
+     "p_one_sided": 0.0171,
+     "dbrier_ci90": [
+      -0.0075,
+      0.0004
+     ],
+     "dauc_ci90": [
+      0.185,
+      0.411
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0128,
+       "dbrier": -0.0013,
+       "dauc": 0.222,
+       "n": 216,
+       "events": 16
+      },
+      "2008-2026": {
+       "dlog": 0.0338,
+       "dbrier": -0.0048,
+       "dauc": 0.507,
+       "n": 223,
+       "events": 18
+      }
+     }
+    },
+    "RV vs M0": {
+     "dlog_mean": 0.0322,
+     "dlog_hac_t": 2.31,
+     "p_one_sided": 0.0105,
+     "dbrier_ci90": [
+      -0.0113,
+      0.0003
+     ],
+     "dauc_ci90": [
+      0.235,
+      0.442
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0206,
+       "dbrier": -0.0023,
+       "dauc": 0.26,
+       "n": 216,
+       "events": 16
+      },
+      "2008-2026": {
+       "dlog": 0.0435,
+       "dbrier": -0.0072,
+       "dauc": 0.531,
+       "n": 223,
+       "events": 18
+      }
+     }
+    }
+   }
+  },
+  "VMRT1": {
+   "h": 1,
+   "n_oos": 439,
+   "events_oos": 41,
+   "base_rate_oos": 0.093,
+   "oos_window": [
+    "1990-01",
+    "2026-07"
+   ],
+   "scores": {
+    "M0": {
+     "brier": 0.0908,
+     "logscore": -0.3346,
+     "auc": 0.4184,
+     "bss_vs_clim": 0.0
+    },
+    "RV": {
+     "brier": 0.0904,
+     "logscore": -0.331,
+     "auc": 0.5602,
+     "bss_vs_clim": 0.0044
+    },
+    "C": {
+     "brier": 0.0894,
+     "logscore": -0.3285,
+     "auc": 0.4533,
+     "bss_vs_clim": 0.0154
+    },
+    "C+T": {
+     "brier": 0.0891,
+     "logscore": -0.3234,
+     "auc": 0.5613,
+     "bss_vs_clim": 0.0187
+    },
+    "C+A": {
+     "brier": 0.0921,
+     "logscore": -0.3355,
+     "auc": 0.5511,
+     "bss_vs_clim": -0.0143
+    },
+    "C+T+A": {
+     "brier": 0.0925,
+     "logscore": -0.3327,
+     "auc": 0.5841,
+     "bss_vs_clim": -0.0187
+    },
+    "T": {
+     "brier": 0.0929,
+     "logscore": -0.3338,
+     "auc": 0.5783,
+     "bss_vs_clim": -0.0231
+    },
+    "A": {
+     "brier": 0.0911,
+     "logscore": -0.3335,
+     "auc": 0.5415,
+     "bss_vs_clim": -0.0033
+    },
+    "C+RV": {
+     "brier": 0.0872,
+     "logscore": -0.3192,
+     "auc": 0.5834,
+     "bss_vs_clim": 0.0396
+    }
+   },
+   "comparisons": {
+    "C+T vs C": {
+     "dlog_mean": 0.0051,
+     "dlog_hac_t": 0.67,
+     "p_one_sided": 0.252,
+     "dbrier_ci90": [
+      -0.0039,
+      0.0033
+     ],
+     "dauc_ci90": [
+      -0.019,
+      0.241
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0064,
+       "dbrier": 0.0024,
+       "dauc": -0.027,
+       "n": 216,
+       "events": 17
+      },
+      "2008-2026": {
+       "dlog": 0.0163,
+       "dbrier": -0.003,
+       "dauc": 0.221,
+       "n": 223,
+       "events": 24
+      }
+     }
+    },
+    "C+A vs C": {
+     "dlog_mean": -0.007,
+     "dlog_hac_t": -0.89,
+     "p_one_sided": 0.813,
+     "dbrier_ci90": [
+      -0.0012,
+      0.0074
+     ],
+     "dauc_ci90": [
+      0.025,
+      0.177
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0068,
+       "dbrier": -0.0026,
+       "dauc": 0.082,
+       "n": 216,
+       "events": 17
+      },
+      "2008-2026": {
+       "dlog": -0.0204,
+       "dbrier": 0.0077,
+       "dauc": 0.11,
+       "n": 223,
+       "events": 24
+      }
+     }
+    },
+    "C+T+A vs C": {
+     "dlog_mean": -0.0042,
+     "dlog_hac_t": -0.44,
+     "p_one_sided": 0.669,
+     "dbrier_ci90": [
+      -0.0015,
+      0.0085
+     ],
+     "dauc_ci90": [
+      0.026,
+      0.244
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.005,
+       "dbrier": 0.0021,
+       "dauc": 0.035,
+       "n": 216,
+       "events": 17
+      },
+      "2008-2026": {
+       "dlog": -0.0034,
+       "dbrier": 0.0041,
+       "dauc": 0.218,
+       "n": 223,
+       "events": 24
+      }
+     }
+    },
+    "C vs M0": {
+     "dlog_mean": 0.0061,
+     "dlog_hac_t": 1.34,
+     "p_one_sided": 0.0902,
+     "dbrier_ci90": [
+      -0.0034,
+      0.0005
+     ],
+     "dauc_ci90": [
+      -0.094,
+      0.154
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0158,
+       "dbrier": -0.0037,
+       "dauc": 0.054,
+       "n": 216,
+       "events": 17
+      },
+      "2008-2026": {
+       "dlog": -0.0033,
+       "dbrier": 0.0008,
+       "dauc": -0.016,
+       "n": 223,
+       "events": 24
+      }
+     }
+    },
+    "C vs RV": {
+     "dlog_mean": 0.0025,
+     "dlog_hac_t": 0.38,
+     "p_one_sided": 0.3536,
+     "dbrier_ci90": [
+      -0.0041,
+      0.0023
+     ],
+     "dauc_ci90": [
+      -0.233,
+      0.019
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0151,
+       "dbrier": -0.0041,
+       "dauc": -0.083,
+       "n": 216,
+       "events": 17
+      },
+      "2008-2026": {
+       "dlog": -0.0097,
+       "dbrier": 0.0021,
+       "dauc": -0.198,
+       "n": 223,
+       "events": 24
+      }
+     }
+    },
+    "C+RV vs C": {
+     "dlog_mean": 0.0093,
+     "dlog_hac_t": 1.91,
+     "p_one_sided": 0.0281,
+     "dbrier_ci90": [
+      -0.0049,
+      -0.0001
+     ],
+     "dauc_ci90": [
+      0.014,
+      0.248
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0006,
+       "dbrier": -0.0001,
+       "dauc": 0.003,
+       "n": 216,
+       "events": 17
+      },
+      "2008-2026": {
+       "dlog": 0.0178,
+       "dbrier": -0.0042,
+       "dauc": 0.252,
+       "n": 223,
+       "events": 24
+      }
+     }
+    },
+    "T vs C": {
+     "dlog_mean": -0.0053,
+     "dlog_hac_t": -0.55,
+     "p_one_sided": 0.7084,
+     "dbrier_ci90": [
+      -0.0011,
+      0.0086
+     ],
+     "dauc_ci90": [
+      -0.005,
+      0.261
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0213,
+       "dbrier": 0.0083,
+       "dauc": 0.072,
+       "n": 216,
+       "events": 17
+      },
+      "2008-2026": {
+       "dlog": 0.0102,
+       "dbrier": -0.0011,
+       "dauc": 0.201,
+       "n": 223,
+       "events": 24
+      }
+     }
+    },
+    "A vs M0": {
+     "dlog_mean": 0.0011,
+     "dlog_hac_t": 0.13,
+     "p_one_sided": 0.4486,
+     "dbrier_ci90": [
+      -0.0037,
+      0.0046
+     ],
+     "dauc_ci90": [
+      -0.012,
+      0.255
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0226,
+       "dbrier": -0.0064,
+       "dauc": 0.114,
+       "n": 216,
+       "events": 17
+      },
+      "2008-2026": {
+       "dlog": -0.0196,
+       "dbrier": 0.0067,
+       "dauc": 0.085,
+       "n": 223,
+       "events": 24
+      }
+     }
+    },
+    "T vs M0": {
+     "dlog_mean": 0.0008,
+     "dlog_hac_t": 0.1,
+     "p_one_sided": 0.4593,
+     "dbrier_ci90": [
+      -0.0018,
+      0.0063
+     ],
+     "dauc_ci90": [
+      0.05,
+      0.287
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": -0.0056,
+       "dbrier": 0.0046,
+       "dauc": 0.127,
+       "n": 216,
+       "events": 17
+      },
+      "2008-2026": {
+       "dlog": 0.0069,
+       "dbrier": -0.0003,
+       "dauc": 0.184,
+       "n": 223,
+       "events": 24
+      }
+     }
+    },
+    "RV vs M0": {
+     "dlog_mean": 0.0036,
+     "dlog_hac_t": 0.87,
+     "p_one_sided": 0.1932,
+     "dbrier_ci90": [
+      -0.0028,
+      0.0017
+     ],
+     "dauc_ci90": [
+      0.061,
+      0.24
+     ],
+     "subperiods": {
+      "1990-2007": {
+       "dlog": 0.0007,
+       "dbrier": 0.0004,
+       "dauc": 0.137,
+       "n": 216,
+       "events": 17
+      },
+      "2008-2026": {
+       "dlog": 0.0064,
+       "dbrier": -0.0012,
+       "dauc": 0.182,
+       "n": 223,
+       "events": 24
+      }
+     }
+    }
+   }
+  },
+  "holm_primary_family": {
+   "VM1:C+T vs C": 0.2436,
+   "DD3:C+T vs C": 0.4939,
+   "CRED6:C+T vs C": 0.93,
+   "VM1:C+T+A vs C": 1.0,
+   "DD3:C+T+A vs C": 1.0,
+   "EXIT6:C+T vs C": 1.0,
+   "EXIT6:C+A vs C": 1.0,
+   "EXIT6:C+T+A vs C": 1.0,
+   "CRED6:C+T+A vs C": 1.0,
+   "CRED6:C+A vs C": 1.0,
+   "VM1:C+A vs C": 1.0,
+   "DD3:C+A vs C": 1.0
+  }
+ },
+ "robustness_turbx_1998on": {
+  "DD3": {
+   "n_oos": 331,
+   "events": 78,
+   "scores": {
+    "C": {
+     "brier": 0.1649,
+     "logscore": -0.5099,
+     "auc": 0.696
+    },
+    "C+TX": {
+     "brier": 0.1696,
+     "logscore": -0.5168,
+     "auc": 0.7107
+    },
+    "M0": {
+     "brier": 0.1907,
+     "logscore": -0.5848,
+     "auc": 0.2862
+    }
+   },
+   "C+TX vs C": {
+    "dlog_mean": -0.0068,
+    "dlog_hac_t": -0.61,
+    "p_one_sided": 0.7302,
+    "dbrier_ci90": [
+     -0.0019,
+     0.0124
+    ],
+    "dauc_ci90": [
+     -0.01,
+     0.049
+    ],
+    "subperiods": {
+     "1990-2007": {
+      "dlog": -0.0137,
+      "dbrier": 0.012,
+      "dauc": 0.008,
+      "n": 110,
+      "events": 29
+     },
+     "2008-2026": {
+      "dlog": -0.0034,
+      "dbrier": 0.0011,
+      "dauc": 0.019,
+      "n": 221,
+      "events": 49
+     }
+    }
+   }
+  },
+  "VM1": {
+   "n_oos": 343,
+   "events": 61,
+   "scores": {
+    "C": {
+     "brier": 0.1437,
+     "logscore": -0.476,
+     "auc": 0.6609
+    },
+    "C+TX": {
+     "brier": 0.1428,
+     "logscore": -0.4799,
+     "auc": 0.6689
+    },
+    "M0": {
+     "brier": 0.1486,
+     "logscore": -0.4768,
+     "auc": 0.434
+    }
+   },
+   "C+TX vs C": {
+    "dlog_mean": -0.004,
+    "dlog_hac_t": -0.64,
+    "p_one_sided": 0.738,
+    "dbrier_ci90": [
+     -0.0031,
+     0.0012
+    ],
+    "dauc_ci90": [
+     -0.018,
+     0.03
+    ],
+    "subperiods": {
+     "1990-2007": {
+      "dlog": -0.0138,
+      "dbrier": -0.0025,
+      "dauc": 0.033,
+      "n": 120,
+      "events": 25
+     },
+     "2008-2026": {
+      "dlog": 0.0013,
+      "dbrier": -0.0001,
+      "dauc": 0.007,
+      "n": 223,
+      "events": 36
+     }
+    }
+   }
+  },
+  "CRED6": {
+   "n_oos": 326,
+   "events": 65,
+   "scores": {
+    "C": {
+     "brier": 0.1802,
+     "logscore": -0.5756,
+     "auc": 0.4783
+    },
+    "C+TX": {
+     "brier": 0.1734,
+     "logscore": -0.556,
+     "auc": 0.5072
+    },
+    "M0": {
+     "brier": 0.1706,
+     "logscore": -0.5544,
+     "auc": 0.3202
+    }
+   },
+   "C+TX vs C": {
+    "dlog_mean": 0.0196,
+    "dlog_hac_t": 1.1,
+    "p_one_sided": 0.1358,
+    "dbrier_ci90": [
+     -0.0181,
+     0.0015
+    ],
+    "dauc_ci90": [
+     -0.027,
+     0.086
+    ],
+    "subperiods": {
+     "1990-2007": {
+      "dlog": 0.0574,
+      "dbrier": -0.0221,
+      "dauc": 0.069,
+      "n": 107,
+      "events": 29
+     },
+     "2008-2026": {
+      "dlog": 0.001,
+      "dbrier": 0.0005,
+      "dauc": 0.026,
+      "n": 219,
+      "events": 36
+     }
+    }
+   }
+  },
+  "EXIT6": {
+   "n_oos": 222,
+   "events": 60,
+   "scores": {
+    "C": {
+     "brier": 0.1976,
+     "logscore": -0.6005,
+     "auc": 0.6138
+    },
+    "C+TX": {
+     "brier": 0.199,
+     "logscore": -0.6001,
+     "auc": 0.6353
+    },
+    "M0": {
+     "brier": 0.21,
+     "logscore": -0.6295,
+     "auc": 0.4686
+    }
+   },
+   "C+TX vs C": {
+    "dlog_mean": 0.0004,
+    "dlog_hac_t": 0.01,
+    "p_one_sided": 0.4941,
+    "dbrier_ci90": [
+     -0.0128,
+     0.0182
+    ],
+    "dauc_ci90": [
+     -0.039,
+     0.063
+    ],
+    "subperiods": {
+     "1990-2007": {
+      "dlog": -0.0814,
+      "dbrier": 0.0329,
+      "dauc": -0.063,
+      "n": 71,
+      "events": 17
+     },
+     "2008-2026": {
+      "dlog": 0.0388,
+      "dbrier": -0.0133,
+      "dauc": 0.101,
+      "n": 151,
+      "events": 43
+     }
+    }
+   }
+  }
+ },
+ "in_sample_hac_logit_K3final_1975on": {
+  "DD3": {
+   "crisis": {
+    "coef": 0.596,
+    "z": 3.43
+   },
+   "turb6": {
+    "coef": 0.4,
+    "z": 2.36
+   },
+   "ar": {
+    "coef": -0.145,
+    "z": -0.9
+   },
+   "dar": {
+    "coef": -0.366,
+    "z": -1.66
+   }
+  },
+  "VM1": {
+   "crisis": {
+    "coef": 0.259,
+    "z": 1.73
+   },
+   "turb6": {
+    "coef": 0.52,
+    "z": 3.21
+   },
+   "ar": {
+    "coef": 0.016,
+    "z": 0.14
+   },
+   "dar": {
+    "coef": -0.202,
+    "z": -1.35
+   }
+  },
+  "CRED6": {
+   "crisis": {
+    "coef": 0.158,
+    "z": 0.95
+   },
+   "turb6": {
+    "coef": 0.48,
+    "z": 3.88
+   },
+   "ar": {
+    "coef": 0.035,
+    "z": 0.17
+   },
+   "dar": {
+    "coef": 0.1,
+    "z": 0.48
+   }
+  },
+  "EXIT6": {
+   "crisis": {
+    "coef": 0.511,
+    "z": 2.39
+   },
+   "turb6": {
+    "coef": 0.008,
+    "z": 0.03
+   },
+   "ar": {
+    "coef": 0.185,
+    "z": 0.79
+   },
+   "dar": {
+    "coef": 0.268,
+    "z": 1.28
+   }
+  }
+ },
+ "episodes_K3": {
+  "DD3": {
+   "2007-07": {
+    "M0": 0.143,
+    "C": 0.112,
+    "C+T": 0.109,
+    "C+A": 0.11,
+    "y": 0.0
+   },
+   "2008-06": {
+    "M0": 0.146,
+    "C": 0.464,
+    "C+T": 0.48,
+    "C+A": 0.419,
+    "y": 1.0
+   },
+   "2008-08": {
+    "M0": 0.146,
+    "C": 0.557,
+    "C+T": 0.567,
+    "C+A": 0.509,
+    "y": 1.0
+   },
+   "2011-06": {
+    "M0": 0.164,
+    "C": 0.125,
+    "C+T": 0.115,
+    "C+A": 0.114,
+    "y": 1.0
+   },
+   "2015-07": {
+    "M0": 0.158,
+    "C": 0.107,
+    "C+T": 0.115,
+    "C+A": 0.096,
+    "y": 1.0
+   },
+   "2018-09": {
+    "M0": 0.158,
+    "C": 0.078,
+    "C+T": 0.073,
+    "C+A": 0.085,
+    "y": 1.0
+   },
+   "2019-12": {
+    "M0": 0.163,
+    "C": 0.082,
+    "C+T": 0.082,
+    "C+A": 0.078,
+    "y": 1.0
+   },
+   "2020-01": {
+    "M0": 0.163,
+    "C": 0.091,
+    "C+T": 0.087,
+    "C+A": 0.09,
+    "y": 1.0
+   },
+   "2020-02": {
+    "M0": 0.162,
+    "C": 0.257,
+    "C+T": 0.316,
+    "C+A": 0.284,
+    "y": 1.0
+   },
+   "2021-12": {
+    "M0": 0.163,
+    "C": 0.134,
+    "C+T": 0.165,
+    "C+A": 0.122,
+    "y": 1.0
+   },
+   "2022-03": {
+    "M0": 0.162,
+    "C": 0.193,
+    "C+T": 0.229,
+    "C+A": 0.211,
+    "y": 1.0
+   },
+   "2022-06": {
+    "M0": 0.167,
+    "C": 0.318,
+    "C+T": 0.406,
+    "C+A": 0.345,
+    "y": 1.0
+   },
+   "2025-02": {
+    "M0": 0.173,
+    "C": 0.13,
+    "C+T": 0.112,
+    "C+A": 0.174,
+    "y": 1.0
+   },
+   "2026-02": {
+    "M0": 0.176,
+    "C": 0.121,
+    "C+T": 0.101,
+    "C+A": 0.135,
+    "y": 0.0
+   },
+   "2026-03": {
+    "M0": 0.176,
+    "C": 0.155,
+    "C+T": 0.135,
+    "C+A": 0.197,
+    "y": 0.0
+   },
+   "2026-05": {
+    "M0": 0.175,
+    "C": 0.138,
+    "C+T": 0.107,
+    "C+A": 0.174,
+    "y": 0.0
+   }
+  },
+  "VM1": {
+   "2007-07": {
+    "M0": 0.196,
+    "C": 0.185,
+    "C+T": 0.169,
+    "C+A": 0.195,
+    "y": 0.0
+   },
+   "2008-06": {
+    "M0": 0.193,
+    "C": 0.367,
+    "C+T": 0.401,
+    "C+A": 0.432,
+    "y": 0.0
+   },
+   "2008-08": {
+    "M0": 0.193,
+    "C": 0.398,
+    "C+T": 0.419,
+    "C+A": 0.461,
+    "y": 1.0
+   },
+   "2011-06": {
+    "M0": 0.198,
+    "C": 0.18,
+    "C+T": 0.152,
+    "C+A": 0.207,
+    "y": 0.0
+   },
+   "2015-07": {
+    "M0": 0.19,
+    "C": 0.159,
+    "C+T": 0.178,
+    "C+A": 0.161,
+    "y": 1.0
+   },
+   "2018-09": {
+    "M0": 0.182,
+    "C": 0.123,
+    "C+T": 0.109,
+    "C+A": 0.121,
+    "y": 0.0
+   },
+   "2019-12": {
+    "M0": 0.179,
+    "C": 0.119,
+    "C+T": 0.117,
+    "C+A": 0.119,
+    "y": 0.0
+   },
+   "2020-01": {
+    "M0": 0.179,
+    "C": 0.125,
+    "C+T": 0.116,
+    "C+A": 0.125,
+    "y": 1.0
+   },
+   "2020-02": {
+    "M0": 0.178,
+    "C": 0.252,
+    "C+T": 0.349,
+    "C+A": 0.252,
+    "y": 1.0
+   },
+   "2021-12": {
+    "M0": 0.177,
+    "C": 0.159,
+    "C+T": 0.234,
+    "C+A": 0.159,
+    "y": 1.0
+   },
+   "2022-03": {
+    "M0": 0.176,
+    "C": 0.203,
+    "C+T": 0.279,
+    "C+A": 0.21,
+    "y": 1.0
+   },
+   "2022-06": {
+    "M0": 0.178,
+    "C": 0.288,
+    "C+T": 0.446,
+    "C+A": 0.301,
+    "y": 0.0
+   },
+   "2025-02": {
+    "M0": 0.186,
+    "C": 0.157,
+    "C+T": 0.128,
+    "C+A": 0.169,
+    "y": 0.0
+   },
+   "2026-02": {
+    "M0": 0.185,
+    "C": 0.146,
+    "C+T": 0.112,
+    "C+A": 0.15,
+    "y": 0.0
+   },
+   "2026-03": {
+    "M0": 0.185,
+    "C": 0.173,
+    "C+T": 0.139,
+    "C+A": 0.187,
+    "y": 0.0
+   },
+   "2026-05": {
+    "M0": 0.184,
+    "C": 0.16,
+    "C+T": 0.108,
+    "C+A": 0.171,
+    "y": 0.0
+   }
+  },
+  "CRED6": {
+   "2007-07": {
+    "M0": 0.113,
+    "C": 0.101,
+    "C+T": 0.089,
+    "C+A": 0.104,
+    "y": 1.0
+   },
+   "2008-06": {
+    "M0": 0.125,
+    "C": 0.269,
+    "C+T": 0.297,
+    "C+A": 0.3,
+    "y": 1.0
+   },
+   "2008-08": {
+    "M0": 0.129,
+    "C": 0.33,
+    "C+T": 0.353,
+    "C+A": 0.376,
+    "y": 1.0
+   },
+   "2011-06": {
+    "M0": 0.142,
+    "C": 0.124,
+    "C+T": 0.1,
+    "C+A": 0.118,
+    "y": 1.0
+   },
+   "2015-07": {
+    "M0": 0.146,
+    "C": 0.115,
+    "C+T": 0.128,
+    "C+A": 0.125,
+    "y": 1.0
+   },
+   "2018-09": {
+    "M0": 0.151,
+    "C": 0.097,
+    "C+T": 0.085,
+    "C+A": 0.078,
+    "y": 0.0
+   },
+   "2019-12": {
+    "M0": 0.149,
+    "C": 0.09,
+    "C+T": 0.089,
+    "C+A": 0.095,
+    "y": 1.0
+   },
+   "2020-01": {
+    "M0": 0.148,
+    "C": 0.102,
+    "C+T": 0.093,
+    "C+A": 0.102,
+    "y": 1.0
+   },
+   "2020-02": {
+    "M0": 0.148,
+    "C": 0.209,
+    "C+T": 0.302,
+    "C+A": 0.172,
+    "y": 1.0
+   },
+   "2021-12": {
+    "M0": 0.155,
+    "C": 0.137,
+    "C+T": 0.211,
+    "C+A": 0.123,
+    "y": 0.0
+   },
+   "2022-03": {
+    "M0": 0.154,
+    "C": 0.178,
+    "C+T": 0.256,
+    "C+A": 0.134,
+    "y": 0.0
+   },
+   "2022-06": {
+    "M0": 0.153,
+    "C": 0.254,
+    "C+T": 0.417,
+    "C+A": 0.218,
+    "y": 0.0
+   },
+   "2025-02": {
+    "M0": 0.148,
+    "C": 0.123,
+    "C+T": 0.099,
+    "C+A": 0.1,
+    "y": 0.0
+   },
+   "2026-02": {
+    "M0": 0.145,
+    "C": 0.112,
+    "C+T": 0.084,
+    "C+A": 0.103,
+    "y": 0.0
+   },
+   "2026-03": {
+    "M0": 0.145,
+    "C": 0.134,
+    "C+T": 0.105,
+    "C+A": 0.114,
+    "y": 0.0
+   }
+  },
+  "EXIT6": {
+   "2007-07": {
+    "M0": 0.167,
+    "C": 0.17,
+    "C+T": 0.185,
+    "C+A": 0.181,
+    "y": 0.0
+   },
+   "2011-06": {
+    "M0": 0.172,
+    "C": 0.178,
+    "C+T": 0.2,
+    "C+A": 0.165,
+    "y": 1.0
+   },
+   "2015-07": {
+    "M0": 0.171,
+    "C": 0.145,
+    "C+T": 0.14,
+    "C+A": 0.162,
+    "y": 1.0
+   },
+   "2018-09": {
+    "M0": 0.199,
+    "C": 0.112,
+    "C+T": 0.113,
+    "C+A": 0.068,
+    "y": 1.0
+   },
+   "2019-12": {
+    "M0": 0.209,
+    "C": 0.114,
+    "C+T": 0.113,
+    "C+A": 0.126,
+    "y": 1.0
+   },
+   "2020-01": {
+    "M0": 0.208,
+    "C": 0.129,
+    "C+T": 0.129,
+    "C+A": 0.126,
+    "y": 1.0
+   },
+   "2020-02": {
+    "M0": 0.208,
+    "C": 0.472,
+    "C+T": 0.464,
+    "C+A": 0.369,
+    "y": 1.0
+   },
+   "2021-12": {
+    "M0": 0.212,
+    "C": 0.21,
+    "C+T": 0.198,
+    "C+A": 0.165,
+    "y": 1.0
+   },
+   "2025-02": {
+    "M0": 0.22,
+    "C": 0.194,
+    "C+T": 0.193,
+    "C+A": 0.137,
+    "y": 0.0
+   }
+  }
+ }
+}

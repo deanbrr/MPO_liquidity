@@ -1,0 +1,1310 @@
+{
+ "note": "SYNTHETIC - NOT ADIC DATA; linearised H liquidity block; lever costs [I]",
+ "ig_short_t0": 0.5600000000000005,
+ "caps": {
+  "rcf": 15.0,
+  "reserve": 10.62,
+  "amber": 6.0,
+  "pace": 6.0,
+  "band": 1.0
+ },
+ "costs": {
+  "rcf": 0.009,
+  "reserve": 0.075,
+  "amber": 0.21,
+  "pace": 0.16,
+  "band": 0.065
+ },
+ "T4_as_written": {
+  "stress": "T4 literal (C1 T1.4)",
+  "coef": {
+   "h0": -20.730033450648833,
+   "slope": {
+    "rcf": 0.49618560000000117,
+    "reserve": 0.31226195738437923,
+    "amber": 0.7322776816861799,
+    "pace": 0.8529118483153203,
+    "band": 13.35519712703303
+   }
+  },
+  "case1_elastic_modeB": {
+   "status": "optimal",
+   "obj": -3.1524934816796857,
+   "duals": {
+    "T4": 0.2867764582370492,
+    "IG": 0.0
+   },
+   "x": {
+    "rcf": 15.0,
+    "reserve": 10.62,
+    "amber": 5.480921341331839,
+    "pace": 6.0,
+    "band": 0.0
+   },
+   "sell": [
+    0.5,
+    0.5,
+    0.0
+   ],
+   "u_S": 0.0,
+   "u_IG": 0.0,
+   "penalty_scale": 1.0,
+   "relax": [
+    0.0,
+    0.0
+   ],
+   "elastic": true,
+   "cards": [
+    {
+     "fund": "2018 buyout fund (report s4.4 example)",
+     "bid": 0.88,
+     "hold": 0.95,
+     "y_cash": 0.2867764582370492,
+     "reservation_price": 0.7382789713930183,
+     "action": "SELL"
+    },
+    {
+     "fund": "late-life buyout fund",
+     "bid": 0.8,
+     "hold": 0.95,
+     "y_cash": 0.2867764582370492,
+     "reservation_price": 0.7382789713930183,
+     "action": "SELL"
+    },
+    {
+     "fund": "tail-end fund",
+     "bid": 0.7,
+     "hold": 0.95,
+     "y_cash": 0.2867764582370492,
+     "reservation_price": 0.7382789713930183,
+     "action": "HOLD"
+    }
+   ]
+  },
+  "case1_pinned_rows": [],
+  "case1_dual_T4_penalty_x10": 0.2867764582370492,
+  "modeB": {
+   "phase1": {
+    "u_S_star": 0.45989028321770675,
+    "u_IG_star": 0.0,
+    "levers": {
+     "rcf": 15.0,
+     "reserve": 10.62,
+     "amber": 6.0,
+     "pace": 6.0,
+     "band": 0.0
+    },
+    "iis": [
+     "T4 row",
+     "cap:rcf",
+     "cap:reserve",
+     "cap:amber",
+     "cap:pace",
+     "Mode B (no band)"
+    ]
+   },
+   "restored": {
+    "status": "optimal",
+    "obj": -3.02060748830442,
+    "duals": {
+     "T4": 0.2867764582370492,
+     "IG": 0.0
+    },
+    "x": {
+     "rcf": 15.0,
+     "reserve": 10.62,
+     "amber": 4.85289280144962,
+     "pace": 6.0,
+     "band": 0.0
+    },
+    "sell": [
+     0.5,
+     0.5,
+     0.0
+    ],
+    "u_S": 0.0,
+    "u_IG": 0.0,
+    "penalty_scale": 1.0,
+    "relax": [
+     0.4598912832177067,
+     0.0
+    ],
+    "elastic": false,
+    "cards": [
+     {
+      "fund": "2018 buyout fund (report s4.4 example)",
+      "bid": 0.88,
+      "hold": 0.95,
+      "y_cash": 0.2867764582370492,
+      "reservation_price": 0.7382789713930183,
+      "action": "SELL"
+     },
+     {
+      "fund": "late-life buyout fund",
+      "bid": 0.8,
+      "hold": 0.95,
+      "y_cash": 0.2867764582370492,
+      "reservation_price": 0.7382789713930183,
+      "action": "SELL"
+     },
+     {
+      "fund": "tail-end fund",
+      "bid": 0.7,
+      "hold": 0.95,
+      "y_cash": 0.2867764582370492,
+      "reservation_price": 0.7382789713930183,
+      "action": "HOLD"
+     }
+    ]
+   },
+   "restored_elastic_x1": {
+    "status": "optimal",
+    "obj": -3.02060748830442,
+    "duals": {
+     "T4": 0.2867764582370492,
+     "IG": 0.0
+    },
+    "x": {
+     "rcf": 15.0,
+     "reserve": 10.62,
+     "amber": 4.85289280144962,
+     "pace": 6.0,
+     "band": 0.0
+    },
+    "sell": [
+     0.5,
+     0.5,
+     0.0
+    ],
+    "u_S": 0.0,
+    "u_IG": 0.0,
+    "penalty_scale": 1.0,
+    "relax": [
+     0.4598912832177067,
+     0.0
+    ],
+    "elastic": true,
+    "cards": [
+     {
+      "fund": "2018 buyout fund (report s4.4 example)",
+      "bid": 0.88,
+      "hold": 0.95,
+      "y_cash": 0.2867764582370492,
+      "reservation_price": 0.7382789713930183,
+      "action": "SELL"
+     },
+     {
+      "fund": "late-life buyout fund",
+      "bid": 0.8,
+      "hold": 0.95,
+      "y_cash": 0.2867764582370492,
+      "reservation_price": 0.7382789713930183,
+      "action": "SELL"
+     },
+     {
+      "fund": "tail-end fund",
+      "bid": 0.7,
+      "hold": 0.95,
+      "y_cash": 0.2867764582370492,
+      "reservation_price": 0.7382789713930183,
+      "action": "HOLD"
+     }
+    ]
+   },
+   "restored_elastic_x10": {
+    "status": "optimal",
+    "obj": -3.02060748830442,
+    "duals": {
+     "T4": 0.2867764582370492,
+     "IG": 0.0
+    },
+    "x": {
+     "rcf": 15.0,
+     "reserve": 10.62,
+     "amber": 4.85289280144962,
+     "pace": 6.0,
+     "band": 0.0
+    },
+    "sell": [
+     0.5,
+     0.5,
+     0.0
+    ],
+    "u_S": 0.0,
+    "u_IG": 0.0,
+    "penalty_scale": 10.0,
+    "relax": [
+     0.4598912832177067,
+     0.0
+    ],
+    "elastic": true,
+    "cards": [
+     {
+      "fund": "2018 buyout fund (report s4.4 example)",
+      "bid": 0.88,
+      "hold": 0.95,
+      "y_cash": 0.2867764582370492,
+      "reservation_price": 0.7382789713930183,
+      "action": "SELL"
+     },
+     {
+      "fund": "late-life buyout fund",
+      "bid": 0.8,
+      "hold": 0.95,
+      "y_cash": 0.2867764582370492,
+      "reservation_price": 0.7382789713930183,
+      "action": "SELL"
+     },
+     {
+      "fund": "tail-end fund",
+      "bid": 0.7,
+      "hold": 0.95,
+      "y_cash": 0.2867764582370492,
+      "reservation_price": 0.7382789713930183,
+      "action": "HOLD"
+     }
+    ]
+   },
+   "cushion_on_glide_path": -4.704334850106595e-18
+  },
+  "modeH": {
+   "phase1": {
+    "u_S_star": 0.0,
+    "u_IG_star": 0.0,
+    "levers": {
+     "rcf": 15.0,
+     "reserve": 10.62,
+     "amber": 6.0,
+     "pace": 6.0,
+     "band": 0.03443530476138133
+    },
+    "iis": []
+   },
+   "restored": {
+    "status": "optimal",
+    "obj": -1.0116355710245748,
+    "duals": {
+     "T4": 0.065,
+     "IG": 0.054702972770015346
+    },
+    "x": {
+     "rcf": 15.0,
+     "reserve": 0.1200000000000005,
+     "amber": 0.0,
+     "pace": 0.0,
+     "band": 0.9591605345782335
+    },
+    "sell": [
+     0.5,
+     0.0,
+     0.0
+    ],
+    "u_S": 0.0,
+    "u_IG": 0.0,
+    "penalty_scale": 1.0,
+    "relax": [
+     0.0,
+     0.0
+    ],
+    "elastic": false,
+    "cards": [
+     {
+      "fund": "2018 buyout fund (report s4.4 example)",
+      "bid": 0.88,
+      "hold": 0.95,
+      "y_cash": 0.11970297277001535,
+      "reservation_price": 0.8484392942619506,
+      "action": "SELL"
+     },
+     {
+      "fund": "late-life buyout fund",
+      "bid": 0.8,
+      "hold": 0.95,
+      "y_cash": 0.11970297277001535,
+      "reservation_price": 0.8484392942619506,
+      "action": "HOLD"
+     },
+     {
+      "fund": "tail-end fund",
+      "bid": 0.7,
+      "hold": 0.95,
+      "y_cash": 0.11970297277001535,
+      "reservation_price": 0.8484392942619506,
+      "action": "HOLD"
+     }
+    ]
+   },
+   "restored_elastic_x1": {
+    "status": "optimal",
+    "obj": -1.0116355710245748,
+    "duals": {
+     "T4": 0.065,
+     "IG": 0.054702972770015346
+    },
+    "x": {
+     "rcf": 15.0,
+     "reserve": 0.1200000000000005,
+     "amber": 0.0,
+     "pace": 0.0,
+     "band": 0.9591605345782335
+    },
+    "sell": [
+     0.5,
+     0.0,
+     0.0
+    ],
+    "u_S": 0.0,
+    "u_IG": 0.0,
+    "penalty_scale": 1.0,
+    "relax": [
+     0.0,
+     0.0
+    ],
+    "elastic": true,
+    "cards": [
+     {
+      "fund": "2018 buyout fund (report s4.4 example)",
+      "bid": 0.88,
+      "hold": 0.95,
+      "y_cash": 0.11970297277001535,
+      "reservation_price": 0.8484392942619506,
+      "action": "SELL"
+     },
+     {
+      "fund": "late-life buyout fund",
+      "bid": 0.8,
+      "hold": 0.95,
+      "y_cash": 0.11970297277001535,
+      "reservation_price": 0.8484392942619506,
+      "action": "HOLD"
+     },
+     {
+      "fund": "tail-end fund",
+      "bid": 0.7,
+      "hold": 0.95,
+      "y_cash": 0.11970297277001535,
+      "reservation_price": 0.8484392942619506,
+      "action": "HOLD"
+     }
+    ]
+   },
+   "restored_elastic_x10": {
+    "status": "optimal",
+    "obj": -1.0116355710245748,
+    "duals": {
+     "T4": 0.065,
+     "IG": 0.054702972770015346
+    },
+    "x": {
+     "rcf": 15.0,
+     "reserve": 0.1200000000000005,
+     "amber": 0.0,
+     "pace": 0.0,
+     "band": 0.9591605345782335
+    },
+    "sell": [
+     0.5,
+     0.0,
+     0.0
+    ],
+    "u_S": 0.0,
+    "u_IG": 0.0,
+    "penalty_scale": 10.0,
+    "relax": [
+     0.0,
+     0.0
+    ],
+    "elastic": true,
+    "cards": [
+     {
+      "fund": "2018 buyout fund (report s4.4 example)",
+      "bid": 0.88,
+      "hold": 0.95,
+      "y_cash": 0.11970297277001535,
+      "reservation_price": 0.8484392942619506,
+      "action": "SELL"
+     },
+     {
+      "fund": "late-life buyout fund",
+      "bid": 0.8,
+      "hold": 0.95,
+      "y_cash": 0.11970297277001535,
+      "reservation_price": 0.8484392942619506,
+      "action": "HOLD"
+     },
+     {
+      "fund": "tail-end fund",
+      "bid": 0.7,
+      "hold": 0.95,
+      "y_cash": 0.11970297277001535,
+      "reservation_price": 0.8484392942619506,
+      "action": "HOLD"
+     }
+    ]
+   },
+   "cushion_on_glide_path": -7.213313436830113e-18
+  }
+ },
+ "T4_critic_reading": {
+  "stress": "T4 literal (C1 T1.4)",
+  "coef": {
+   "h0": -45.84480042991447,
+   "slope": {
+    "rcf": 0.49590760000000245,
+    "reserve": 0.3492172012053544,
+    "amber": 0.8858092124899978,
+    "pace": 0.8677704554805246,
+    "band": 16.34300000000001
+   }
+  },
+  "case1_elastic_modeB": {
+   "status": "optimal",
+   "obj": -2301.9886745290437,
+   "duals": {
+    "T4": 100.0,
+    "IG": 0.0
+   },
+   "x": {
+    "rcf": 15.0,
+    "reserve": 10.62,
+    "amber": 6.0,
+    "pace": 6.0,
+    "band": 0.0
+   },
+   "sell": [
+    0.5,
+    0.5,
+    0.5
+   ],
+   "u_S": 22.986021745290437,
+   "u_IG": 0.0,
+   "penalty_scale": 1.0,
+   "relax": [
+    0.0,
+    0.0
+   ],
+   "elastic": true,
+   "cards": [
+    {
+     "fund": "2018 buyout fund (report s4.4 example)",
+     "bid": 0.88,
+     "hold": 0.95,
+     "y_cash": 100.0,
+     "reservation_price": 0.009405940594059406,
+     "action": "SELL"
+    },
+    {
+     "fund": "late-life buyout fund",
+     "bid": 0.8,
+     "hold": 0.95,
+     "y_cash": 100.0,
+     "reservation_price": 0.009405940594059406,
+     "action": "SELL"
+    },
+    {
+     "fund": "tail-end fund",
+     "bid": 0.7,
+     "hold": 0.95,
+     "y_cash": 100.0,
+     "reservation_price": 0.009405940594059406,
+     "action": "SELL"
+    }
+   ]
+  },
+  "case1_pinned_rows": [
+   "T4"
+  ],
+  "case1_dual_T4_penalty_x10": 1000.0,
+  "modeB": {
+   "phase1": {
+    "u_S_star": 24.176021745290438,
+    "u_IG_star": 0.0,
+    "levers": {
+     "rcf": 15.0,
+     "reserve": 10.62,
+     "amber": 6.0,
+     "pace": 6.0,
+     "band": 0.0
+    },
+    "iis": [
+     "T4 row",
+     "cap:rcf",
+     "cap:reserve",
+     "cap:amber",
+     "cap:pace",
+     "Mode B (no band)"
+    ]
+   },
+   "restored": {
+    "status": "optimal",
+    "obj": -3.062359815507967,
+    "duals": {
+     "T4": 0.23707136597698372,
+     "IG": 0.0
+    },
+    "x": {
+     "rcf": 15.0,
+     "reserve": 10.62,
+     "amber": 5.051713407180798,
+     "pace": 6.0,
+     "band": 0.0
+    },
+    "sell": [
+     0.5,
+     0.5,
+     0.0
+    ],
+    "u_S": 0.0,
+    "u_IG": 0.0,
+    "penalty_scale": 1.0,
+    "relax": [
+     24.17602274529044,
+     0.0
+    ],
+    "elastic": false,
+    "cards": [
+     {
+      "fund": "2018 buyout fund (report s4.4 example)",
+      "bid": 0.88,
+      "hold": 0.95,
+      "y_cash": 0.23707136597698372,
+      "reservation_price": 0.7679427607232121,
+      "action": "SELL"
+     },
+     {
+      "fund": "late-life buyout fund",
+      "bid": 0.8,
+      "hold": 0.95,
+      "y_cash": 0.23707136597698372,
+      "reservation_price": 0.7679427607232121,
+      "action": "SELL"
+     },
+     {
+      "fund": "tail-end fund",
+      "bid": 0.7,
+      "hold": 0.95,
+      "y_cash": 0.23707136597698372,
+      "reservation_price": 0.7679427607232121,
+      "action": "HOLD"
+     }
+    ]
+   },
+   "restored_elastic_x1": {
+    "status": "optimal",
+    "obj": -3.062359815507967,
+    "duals": {
+     "T4": 0.23707136597698372,
+     "IG": 0.0
+    },
+    "x": {
+     "rcf": 15.0,
+     "reserve": 10.62,
+     "amber": 5.051713407180798,
+     "pace": 6.0,
+     "band": 0.0
+    },
+    "sell": [
+     0.5,
+     0.5,
+     0.0
+    ],
+    "u_S": 0.0,
+    "u_IG": 0.0,
+    "penalty_scale": 1.0,
+    "relax": [
+     24.17602274529044,
+     0.0
+    ],
+    "elastic": true,
+    "cards": [
+     {
+      "fund": "2018 buyout fund (report s4.4 example)",
+      "bid": 0.88,
+      "hold": 0.95,
+      "y_cash": 0.23707136597698372,
+      "reservation_price": 0.7679427607232121,
+      "action": "SELL"
+     },
+     {
+      "fund": "late-life buyout fund",
+      "bid": 0.8,
+      "hold": 0.95,
+      "y_cash": 0.23707136597698372,
+      "reservation_price": 0.7679427607232121,
+      "action": "SELL"
+     },
+     {
+      "fund": "tail-end fund",
+      "bid": 0.7,
+      "hold": 0.95,
+      "y_cash": 0.23707136597698372,
+      "reservation_price": 0.7679427607232121,
+      "action": "HOLD"
+     }
+    ]
+   },
+   "restored_elastic_x10": {
+    "status": "optimal",
+    "obj": -3.062359815507967,
+    "duals": {
+     "T4": 0.23707136597698372,
+     "IG": 0.0
+    },
+    "x": {
+     "rcf": 15.0,
+     "reserve": 10.62,
+     "amber": 5.051713407180798,
+     "pace": 6.0,
+     "band": 0.0
+    },
+    "sell": [
+     0.5,
+     0.5,
+     0.0
+    ],
+    "u_S": 0.0,
+    "u_IG": 0.0,
+    "penalty_scale": 10.0,
+    "relax": [
+     24.17602274529044,
+     0.0
+    ],
+    "elastic": true,
+    "cards": [
+     {
+      "fund": "2018 buyout fund (report s4.4 example)",
+      "bid": 0.88,
+      "hold": 0.95,
+      "y_cash": 0.23707136597698372,
+      "reservation_price": 0.7679427607232121,
+      "action": "SELL"
+     },
+     {
+      "fund": "late-life buyout fund",
+      "bid": 0.8,
+      "hold": 0.95,
+      "y_cash": 0.23707136597698372,
+      "reservation_price": 0.7679427607232121,
+      "action": "SELL"
+     },
+     {
+      "fund": "tail-end fund",
+      "bid": 0.7,
+      "hold": 0.95,
+      "y_cash": 0.23707136597698372,
+      "reservation_price": 0.7679427607232121,
+      "action": "HOLD"
+     }
+    ]
+   },
+   "cushion_on_glide_path": 0.0
+  },
+  "modeH": {
+   "phase1": {
+    "u_S_star": 7.833021745290427,
+    "u_IG_star": 0.0,
+    "levers": {
+     "rcf": 15.0,
+     "reserve": 10.62,
+     "amber": 6.0,
+     "pace": 6.0,
+     "band": 1.0
+    },
+    "iis": [
+     "T4 row",
+     "cap:rcf",
+     "cap:reserve",
+     "cap:amber",
+     "cap:pace",
+     "cap:band"
+    ]
+   },
+   "restored": {
+    "status": "optimal",
+    "obj": -4.124654815507969,
+    "duals": {
+     "T4": 0.23707136597698372,
+     "IG": 0.0
+    },
+    "x": {
+     "rcf": 15.0,
+     "reserve": 10.62,
+     "amber": 5.051713407180801,
+     "pace": 6.0,
+     "band": 1.0
+    },
+    "sell": [
+     0.5,
+     0.5,
+     0.0
+    ],
+    "u_S": 0.0,
+    "u_IG": 0.0,
+    "penalty_scale": 1.0,
+    "relax": [
+     7.833022745290427,
+     0.0
+    ],
+    "elastic": false,
+    "cards": [
+     {
+      "fund": "2018 buyout fund (report s4.4 example)",
+      "bid": 0.88,
+      "hold": 0.95,
+      "y_cash": 0.23707136597698372,
+      "reservation_price": 0.7679427607232121,
+      "action": "SELL"
+     },
+     {
+      "fund": "late-life buyout fund",
+      "bid": 0.8,
+      "hold": 0.95,
+      "y_cash": 0.23707136597698372,
+      "reservation_price": 0.7679427607232121,
+      "action": "SELL"
+     },
+     {
+      "fund": "tail-end fund",
+      "bid": 0.7,
+      "hold": 0.95,
+      "y_cash": 0.23707136597698372,
+      "reservation_price": 0.7679427607232121,
+      "action": "HOLD"
+     }
+    ]
+   },
+   "restored_elastic_x1": {
+    "status": "optimal",
+    "obj": -4.124654815507969,
+    "duals": {
+     "T4": 0.23707136597698372,
+     "IG": 0.0
+    },
+    "x": {
+     "rcf": 15.0,
+     "reserve": 10.62,
+     "amber": 5.051713407180801,
+     "pace": 6.0,
+     "band": 1.0
+    },
+    "sell": [
+     0.5,
+     0.5,
+     0.0
+    ],
+    "u_S": 0.0,
+    "u_IG": 0.0,
+    "penalty_scale": 1.0,
+    "relax": [
+     7.833022745290427,
+     0.0
+    ],
+    "elastic": true,
+    "cards": [
+     {
+      "fund": "2018 buyout fund (report s4.4 example)",
+      "bid": 0.88,
+      "hold": 0.95,
+      "y_cash": 0.23707136597698372,
+      "reservation_price": 0.7679427607232121,
+      "action": "SELL"
+     },
+     {
+      "fund": "late-life buyout fund",
+      "bid": 0.8,
+      "hold": 0.95,
+      "y_cash": 0.23707136597698372,
+      "reservation_price": 0.7679427607232121,
+      "action": "SELL"
+     },
+     {
+      "fund": "tail-end fund",
+      "bid": 0.7,
+      "hold": 0.95,
+      "y_cash": 0.23707136597698372,
+      "reservation_price": 0.7679427607232121,
+      "action": "HOLD"
+     }
+    ]
+   },
+   "restored_elastic_x10": {
+    "status": "optimal",
+    "obj": -4.124654815507969,
+    "duals": {
+     "T4": 0.23707136597698372,
+     "IG": 0.0
+    },
+    "x": {
+     "rcf": 15.0,
+     "reserve": 10.62,
+     "amber": 5.051713407180801,
+     "pace": 6.0,
+     "band": 1.0
+    },
+    "sell": [
+     0.5,
+     0.5,
+     0.0
+    ],
+    "u_S": 0.0,
+    "u_IG": 0.0,
+    "penalty_scale": 10.0,
+    "relax": [
+     7.833022745290427,
+     0.0
+    ],
+    "elastic": true,
+    "cards": [
+     {
+      "fund": "2018 buyout fund (report s4.4 example)",
+      "bid": 0.88,
+      "hold": 0.95,
+      "y_cash": 0.23707136597698372,
+      "reservation_price": 0.7679427607232121,
+      "action": "SELL"
+     },
+     {
+      "fund": "late-life buyout fund",
+      "bid": 0.8,
+      "hold": 0.95,
+      "y_cash": 0.23707136597698372,
+      "reservation_price": 0.7679427607232121,
+      "action": "SELL"
+     },
+     {
+      "fund": "tail-end fund",
+      "bid": 0.7,
+      "hold": 0.95,
+      "y_cash": 0.23707136597698372,
+      "reservation_price": 0.7679427607232121,
+      "action": "HOLD"
+     }
+    ]
+   },
+   "cushion_on_glide_path": 1.5053871520341106e-17
+  }
+ },
+ "s_star_canonical": {
+  "stress": "s*(theta=0.76)",
+  "coef": {
+   "h0": -11.117083876320478,
+   "slope": {
+    "rcf": 0.7960216000000017,
+    "reserve": 0.30072420447982323,
+    "amber": 0.7255602999301232,
+    "pace": 0.8031886565869945,
+    "band": 13.418083668483824
+   }
+  },
+  "case1_elastic_modeB": {
+   "status": "optimal",
+   "obj": -0.16430951515140532,
+   "duals": {
+    "T4": 0.011306225861207763,
+    "IG": 0.07159994422221909
+   },
+   "x": {
+    "rcf": 13.367723905711703,
+    "reserve": 0.1200000000000005,
+    "amber": 0.0,
+    "pace": 0.0,
+    "band": 0.0
+   },
+   "sell": [
+    0.5,
+    0.0,
+    0.0
+   ],
+   "u_S": 0.0,
+   "u_IG": 0.0,
+   "penalty_scale": 1.0,
+   "relax": [
+    0.0,
+    0.0
+   ],
+   "elastic": true,
+   "cards": [
+    {
+     "fund": "2018 buyout fund (report s4.4 example)",
+     "bid": 0.88,
+     "hold": 0.95,
+     "y_cash": 0.08290617008342685,
+     "reservation_price": 0.8772689880664474,
+     "action": "SELL"
+    },
+    {
+     "fund": "late-life buyout fund",
+     "bid": 0.8,
+     "hold": 0.95,
+     "y_cash": 0.08290617008342685,
+     "reservation_price": 0.8772689880664474,
+     "action": "HOLD"
+    },
+    {
+     "fund": "tail-end fund",
+     "bid": 0.7,
+     "hold": 0.95,
+     "y_cash": 0.08290617008342685,
+     "reservation_price": 0.8772689880664474,
+     "action": "HOLD"
+    }
+   ]
+  },
+  "case1_pinned_rows": [],
+  "case1_dual_T4_penalty_x10": 0.011306225861207763,
+  "modeB": {
+   "phase1": {
+    "u_S_star": 0.0,
+    "u_IG_star": 0.0,
+    "levers": {
+     "rcf": 15.0,
+     "reserve": 10.62,
+     "amber": 6.0,
+     "pace": 0.0,
+     "band": 0.0
+    },
+    "iis": []
+   },
+   "restored": {
+    "status": "optimal",
+    "obj": -0.16430951515140532,
+    "duals": {
+     "T4": 0.011306225861207763,
+     "IG": 0.07159994422221909
+    },
+    "x": {
+     "rcf": 13.367723905711703,
+     "reserve": 0.1200000000000005,
+     "amber": 0.0,
+     "pace": 0.0,
+     "band": 0.0
+    },
+    "sell": [
+     0.5,
+     0.0,
+     0.0
+    ],
+    "u_S": 0.0,
+    "u_IG": 0.0,
+    "penalty_scale": 1.0,
+    "relax": [
+     0.0,
+     0.0
+    ],
+    "elastic": false,
+    "cards": [
+     {
+      "fund": "2018 buyout fund (report s4.4 example)",
+      "bid": 0.88,
+      "hold": 0.95,
+      "y_cash": 0.08290617008342685,
+      "reservation_price": 0.8772689880664474,
+      "action": "SELL"
+     },
+     {
+      "fund": "late-life buyout fund",
+      "bid": 0.8,
+      "hold": 0.95,
+      "y_cash": 0.08290617008342685,
+      "reservation_price": 0.8772689880664474,
+      "action": "HOLD"
+     },
+     {
+      "fund": "tail-end fund",
+      "bid": 0.7,
+      "hold": 0.95,
+      "y_cash": 0.08290617008342685,
+      "reservation_price": 0.8772689880664474,
+      "action": "HOLD"
+     }
+    ]
+   },
+   "restored_elastic_x1": {
+    "status": "optimal",
+    "obj": -0.16430951515140532,
+    "duals": {
+     "T4": 0.011306225861207763,
+     "IG": 0.07159994422221909
+    },
+    "x": {
+     "rcf": 13.367723905711703,
+     "reserve": 0.1200000000000005,
+     "amber": 0.0,
+     "pace": 0.0,
+     "band": 0.0
+    },
+    "sell": [
+     0.5,
+     0.0,
+     0.0
+    ],
+    "u_S": 0.0,
+    "u_IG": 0.0,
+    "penalty_scale": 1.0,
+    "relax": [
+     0.0,
+     0.0
+    ],
+    "elastic": true,
+    "cards": [
+     {
+      "fund": "2018 buyout fund (report s4.4 example)",
+      "bid": 0.88,
+      "hold": 0.95,
+      "y_cash": 0.08290617008342685,
+      "reservation_price": 0.8772689880664474,
+      "action": "SELL"
+     },
+     {
+      "fund": "late-life buyout fund",
+      "bid": 0.8,
+      "hold": 0.95,
+      "y_cash": 0.08290617008342685,
+      "reservation_price": 0.8772689880664474,
+      "action": "HOLD"
+     },
+     {
+      "fund": "tail-end fund",
+      "bid": 0.7,
+      "hold": 0.95,
+      "y_cash": 0.08290617008342685,
+      "reservation_price": 0.8772689880664474,
+      "action": "HOLD"
+     }
+    ]
+   },
+   "restored_elastic_x10": {
+    "status": "optimal",
+    "obj": -0.16430951515140532,
+    "duals": {
+     "T4": 0.011306225861207763,
+     "IG": 0.07159994422221909
+    },
+    "x": {
+     "rcf": 13.367723905711703,
+     "reserve": 0.1200000000000005,
+     "amber": 0.0,
+     "pace": 0.0,
+     "band": 0.0
+    },
+    "sell": [
+     0.5,
+     0.0,
+     0.0
+    ],
+    "u_S": 0.0,
+    "u_IG": 0.0,
+    "penalty_scale": 10.0,
+    "relax": [
+     0.0,
+     0.0
+    ],
+    "elastic": true,
+    "cards": [
+     {
+      "fund": "2018 buyout fund (report s4.4 example)",
+      "bid": 0.88,
+      "hold": 0.95,
+      "y_cash": 0.08290617008342685,
+      "reservation_price": 0.8772689880664474,
+      "action": "SELL"
+     },
+     {
+      "fund": "late-life buyout fund",
+      "bid": 0.8,
+      "hold": 0.95,
+      "y_cash": 0.08290617008342685,
+      "reservation_price": 0.8772689880664474,
+      "action": "HOLD"
+     },
+     {
+      "fund": "tail-end fund",
+      "bid": 0.7,
+      "hold": 0.95,
+      "y_cash": 0.08290617008342685,
+      "reservation_price": 0.8772689880664474,
+      "action": "HOLD"
+     }
+    ]
+   },
+   "cushion_on_glide_path": 2.8226009100639575e-18
+  },
+  "modeH": {
+   "phase1": {
+    "u_S_star": 0.0,
+    "u_IG_star": 0.0,
+    "levers": {
+     "rcf": 15.0,
+     "reserve": 10.62,
+     "amber": 6.0,
+     "pace": 6.0,
+     "band": 0.0
+    },
+    "iis": []
+   },
+   "restored": {
+    "status": "optimal",
+    "obj": -0.16430951515140532,
+    "duals": {
+     "T4": 0.011306225861207763,
+     "IG": 0.07159994422221909
+    },
+    "x": {
+     "rcf": 13.367723905711703,
+     "reserve": 0.1200000000000005,
+     "amber": 0.0,
+     "pace": 0.0,
+     "band": 0.0
+    },
+    "sell": [
+     0.5,
+     0.0,
+     0.0
+    ],
+    "u_S": 0.0,
+    "u_IG": 0.0,
+    "penalty_scale": 1.0,
+    "relax": [
+     0.0,
+     0.0
+    ],
+    "elastic": false,
+    "cards": [
+     {
+      "fund": "2018 buyout fund (report s4.4 example)",
+      "bid": 0.88,
+      "hold": 0.95,
+      "y_cash": 0.08290617008342685,
+      "reservation_price": 0.8772689880664474,
+      "action": "SELL"
+     },
+     {
+      "fund": "late-life buyout fund",
+      "bid": 0.8,
+      "hold": 0.95,
+      "y_cash": 0.08290617008342685,
+      "reservation_price": 0.8772689880664474,
+      "action": "HOLD"
+     },
+     {
+      "fund": "tail-end fund",
+      "bid": 0.7,
+      "hold": 0.95,
+      "y_cash": 0.08290617008342685,
+      "reservation_price": 0.8772689880664474,
+      "action": "HOLD"
+     }
+    ]
+   },
+   "restored_elastic_x1": {
+    "status": "optimal",
+    "obj": -0.16430951515140532,
+    "duals": {
+     "T4": 0.011306225861207763,
+     "IG": 0.07159994422221909
+    },
+    "x": {
+     "rcf": 13.367723905711703,
+     "reserve": 0.1200000000000005,
+     "amber": 0.0,
+     "pace": 0.0,
+     "band": 0.0
+    },
+    "sell": [
+     0.5,
+     0.0,
+     0.0
+    ],
+    "u_S": 0.0,
+    "u_IG": 0.0,
+    "penalty_scale": 1.0,
+    "relax": [
+     0.0,
+     0.0
+    ],
+    "elastic": true,
+    "cards": [
+     {
+      "fund": "2018 buyout fund (report s4.4 example)",
+      "bid": 0.88,
+      "hold": 0.95,
+      "y_cash": 0.08290617008342685,
+      "reservation_price": 0.8772689880664474,
+      "action": "SELL"
+     },
+     {
+      "fund": "late-life buyout fund",
+      "bid": 0.8,
+      "hold": 0.95,
+      "y_cash": 0.08290617008342685,
+      "reservation_price": 0.8772689880664474,
+      "action": "HOLD"
+     },
+     {
+      "fund": "tail-end fund",
+      "bid": 0.7,
+      "hold": 0.95,
+      "y_cash": 0.08290617008342685,
+      "reservation_price": 0.8772689880664474,
+      "action": "HOLD"
+     }
+    ]
+   },
+   "restored_elastic_x10": {
+    "status": "optimal",
+    "obj": -0.16430951515140532,
+    "duals": {
+     "T4": 0.011306225861207763,
+     "IG": 0.07159994422221909
+    },
+    "x": {
+     "rcf": 13.367723905711703,
+     "reserve": 0.1200000000000005,
+     "amber": 0.0,
+     "pace": 0.0,
+     "band": 0.0
+    },
+    "sell": [
+     0.5,
+     0.0,
+     0.0
+    ],
+    "u_S": 0.0,
+    "u_IG": 0.0,
+    "penalty_scale": 10.0,
+    "relax": [
+     0.0,
+     0.0
+    ],
+    "elastic": true,
+    "cards": [
+     {
+      "fund": "2018 buyout fund (report s4.4 example)",
+      "bid": 0.88,
+      "hold": 0.95,
+      "y_cash": 0.08290617008342685,
+      "reservation_price": 0.8772689880664474,
+      "action": "SELL"
+     },
+     {
+      "fund": "late-life buyout fund",
+      "bid": 0.8,
+      "hold": 0.95,
+      "y_cash": 0.08290617008342685,
+      "reservation_price": 0.8772689880664474,
+      "action": "HOLD"
+     },
+     {
+      "fund": "tail-end fund",
+      "bid": 0.7,
+      "hold": 0.95,
+      "y_cash": 0.08290617008342685,
+      "reservation_price": 0.8772689880664474,
+      "action": "HOLD"
+     }
+    ]
+   },
+   "cushion_on_glide_path": 2.8226009100639575e-18
+  }
+ }
+}

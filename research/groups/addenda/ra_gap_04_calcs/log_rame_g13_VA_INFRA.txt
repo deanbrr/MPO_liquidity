@@ -1,0 +1,8 @@
+VA_INFRA g13 true SS params {'lam': 0.8, 'mu': 0.007319083340028353, 'sv': 0.06967306518108606, 'sxi': 0.004269562819149833, 'beta': 1.0, 'phip': 0.88, 'sp': 0.06, 'sL': 0.01, 'st': 0.04, 'cL': 0.0}
+resuming; done: ['M0', 'TL1', 'TL2', 'TA3', 'TA5']
+VA_INFRA g13 TB     ALT: R2 0.46 cov 0.616 sellbias +1.94 reg 0.506 | AL R2 0.69 cov 0.51 | ALT4 R2 0.61 | lam 0.798 | 415s
+VA_INFRA g13 TBC    ALT: R2 0.47 cov 0.637 sellbias +0.16 reg 0.477 | AL R2 0.69 cov 0.51 | ALT4 R2 0.61 | lam 0.777 | 412s
+VA_INFRA g13 TW     ALT: R2 0.69 cov 0.331 sellbias -2.24 reg 0.874 | AL R2 0.69 cov 0.51 | ALT4 R2 0.68 | lam 0.615 | 420s
+VA_INFRA g13 MALL   ALT: R2 0.63 cov 0.381 sellbias +1.97 reg 0.927 | AL R2 1.13 cov 0.41 | ALT4 R2 0.80 | lam 0.777 | 426s
+VA_INFRA g13 MALL_T ALT: R2 0.79 cov 0.253 sellbias +1.18 reg 1.141 | AL R2 1.13 cov 0.41 | ALT4 R2 0.86 | lam 0.669 | 385s
+wrote C:\Users\dean\ai_envs\adic_tpa_lab\research\groups\addenda\ra_gap_04_calcs\rame_ens_g13_VA_INFRA.json 2059.1 s SYNTHETIC - NOT ADIC DATA

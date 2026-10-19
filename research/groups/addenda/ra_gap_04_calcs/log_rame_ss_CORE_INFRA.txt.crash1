@@ -1,0 +1,9 @@
+CORE_INFRA ss true SS params {'lam': 0.85, 'mu': 0.0034151223615480992, 'sv': 0.04923234375190278, 'sxi': 0.0025617376914898998, 'beta': 1.0, 'phip': 0.88, 'sp': 0.06, 'sL': 0.01, 'st': 0.035, 'cL': 0.0}
+CORE_INFRA ss M0     ALT: R2 0.27 xsCRPS -0.6% xsReg -4.0% cov 0.786 sellbias +0.02 reg 0.181 | AL R2 0.52 cov 0.70 | ALT4 R2 0.39 | lam 0.849 | 272s
+CORE_INFRA ss M1     ALT: R2 0.29 xsCRPS +11.2% xsReg +18.1% cov 0.782 sellbias +0.09 reg 0.222 | AL R2 0.58 cov 0.64 | ALT4 R2 0.44 | lam 0.863 | 203s
+CORE_INFRA ss M2     ALT: R2 0.32 xsCRPS +40.0% xsReg +49.7% cov 0.716 sellbias +1.61 reg 0.284 | AL R2 0.62 cov 0.55 | ALT4 R2 0.45 | lam 0.886 | 291s
+CORE_INFRA ss M3     ALT: R2 0.27 xsCRPS -3.7% xsReg -8.8% cov 0.823 sellbias -0.04 reg 0.206 | AL R2 0.57 cov 0.74 | ALT4 R2 0.38 | lam 0.850 | 236s
+CORE_INFRA ss M4     ALT: R2 0.43 xsCRPS +41.1% xsReg +64.6% cov 0.511 sellbias -0.88 reg 0.396 | AL R2 0.52 cov 0.70 | ALT4 R2 0.47 | lam 0.787 | 292s
+CORE_INFRA ss M5     ALT: R2 0.28 xsCRPS +3.2% xsReg +3.7% cov 0.788 sellbias +0.31 reg 0.184 | AL R2 0.57 cov 0.66 | ALT4 R2 0.42 | lam 0.850 | 248s
+CORE_INFRA ss M5s    ALT: R2 0.35 xsCRPS +31.0% xsReg +42.7% cov 0.727 sellbias +1.38 reg 0.247 | AL R2 0.62 cov 0.52 | ALT4 R2 0.52 | lam 0.830 | 261s
+CORE_INFRA ss M6     ALT: R2 0.27 xsCRPS -0.6% xsReg -2.0% cov 0.788 sellbias +0.02 reg 0.184 | AL R2 0.52 cov 0.69 | ALT4 R2 0.39 | lam 0.849 | 261s

@@ -1,0 +1,8 @@
+﻿do_nothing cash_before_topup {'p_star_M1M4M5': 0.7542, 'E_dW_at_0.85_bn': 0.033}
+do_nothing rebuild_before_topup {'p_star_M1M4M5': 0.8938, 'E_dW_at_0.85_bn': 0.0367}
+do_nothing cash_after_topup {'p_star_M1M4M5': 0.6303, 'E_dW_at_0.85_bn': 0.027}
+do_nothing rebuild_after_topup {'p_star_M1M4M5': 0.7428, 'E_dW_at_0.85_bn': 0.0319}
+mix_B cash_before_topup {'p_star_M1M4M5': 0.8773, 'E_dW_at_0.85_bn': 0.0682}
+mix_B rebuild_before_topup {'p_star_M1M4M5': 1.0131, 'E_dW_at_0.85_bn': 0.0788}
+mix_B cash_after_topup {'p_star_M1M4M5': 0.7426, 'E_dW_at_0.85_bn': 0.0525}
+mix_B rebuild_after_topup {'p_star_M1M4M5': 0.8619, 'E_dW_at_0.85_bn': 0.0637}

@@ -1,0 +1,2268 @@
+{
+ "note": "SYNTHETIC / ILLUSTRATIVE ONLY - not ADIC data (sections A-E). Section F uses public data.",
+ "conventions": {
+  "theta": 0.76,
+  "t4p_realization_factor": 0.108,
+  "t4p_call_mult": 1.38,
+  "s1_realization_factor": 0.3182,
+  "call_table": {
+   "boom": 0.39,
+   "normal": 0.29,
+   "drought": 0.28,
+   "crisis": 0.3
+  },
+  "maturity_pa": 0.17,
+  "new_commit_pa": 1.2
+ },
+ "book": [
+  {
+   "id": "RE_OE",
+   "sector": "RE",
+   "vehicle": "open-end core fund",
+   "nav": 2.7,
+   "unf": 0.0,
+   "ltv": 0.27,
+   "inc": 0.0325,
+   "real_n": 0.0,
+   "real_d": 0.0,
+   "g_n": 0.01,
+   "direct": false,
+   "commit": 0.0
+  },
+  {
+   "id": "RE_CE",
+   "sector": "RE",
+   "vehicle": "closed-end VA/opp fund",
+   "nav": 2.6,
+   "unf": 1.2,
+   "ltv": 0.6,
+   "inc": 0.01,
+   "real_n": 0.18,
+   "real_d": 0.06,
+   "g_n": 0.02,
+   "direct": false,
+   "commit": 0.375
+  },
+  {
+   "id": "RE_DIR_GL",
+   "sector": "RE",
+   "vehicle": "JV / direct (global)",
+   "nav": 1.7,
+   "unf": 0.2,
+   "ltv": 0.45,
+   "inc": 0.03,
+   "real_n": 0.0,
+   "real_d": 0.0,
+   "g_n": 0.01,
+   "direct": true,
+   "commit": 0.0
+  },
+  {
+   "id": "RE_DIR_GCC",
+   "sector": "RE_GCC",
+   "vehicle": "JV / direct (GCC)",
+   "nav": 1.2,
+   "unf": 0.2,
+   "ltv": 0.45,
+   "inc": 0.045,
+   "real_n": 0.0,
+   "real_d": 0.0,
+   "g_n": 0.02,
+   "direct": true,
+   "commit": 0.0
+  },
+  {
+   "id": "RE_COI",
+   "sector": "RE",
+   "vehicle": "co-investment",
+   "nav": 0.8,
+   "unf": 0.0,
+   "ltv": 0.6,
+   "inc": 0.015,
+   "real_n": 0.12,
+   "real_d": 0.04,
+   "g_n": 0.02,
+   "direct": true,
+   "commit": 0.0
+  },
+  {
+   "id": "INF_OE",
+   "sector": "INF",
+   "vehicle": "open-end core fund",
+   "nav": 2.0,
+   "unf": 0.0,
+   "ltv": 0.5,
+   "inc": 0.055,
+   "real_n": 0.0,
+   "real_d": 0.0,
+   "g_n": 0.025,
+   "direct": false,
+   "commit": 0.0
+  },
+  {
+   "id": "INF_CE",
+   "sector": "INF",
+   "vehicle": "closed-end core-plus/VA fund",
+   "nav": 2.5,
+   "unf": 1.3,
+   "ltv": 0.55,
+   "inc": 0.04,
+   "real_n": 0.08,
+   "real_d": 0.04,
+   "g_n": 0.04,
+   "direct": false,
+   "commit": 0.4375
+  },
+  {
+   "id": "INF_DIR",
+   "sector": "INF",
+   "vehicle": "direct / co-investment",
+   "nav": 2.0,
+   "unf": 0.3,
+   "ltv": 0.55,
+   "inc": 0.05,
+   "real_n": 0.02,
+   "real_d": 0.01,
+   "g_n": 0.03,
+   "direct": true,
+   "commit": 0.0
+  },
+  {
+   "id": "ENR_CE",
+   "sector": "ENR",
+   "vehicle": "closed-end fund",
+   "nav": 1.6,
+   "unf": 0.6,
+   "ltv": 0.35,
+   "inc": 0.04,
+   "real_n": 0.1,
+   "real_d": 0.06,
+   "g_n": 0.03,
+   "direct": false,
+   "commit": 0.1875
+  },
+  {
+   "id": "ENR_DIR",
+   "sector": "ENR",
+   "vehicle": "direct / co-investment",
+   "nav": 0.9,
+   "unf": 0.2,
+   "ltv": 0.4,
+   "inc": 0.07,
+   "real_n": 0.0,
+   "real_d": 0.0,
+   "g_n": 0.02,
+   "direct": true,
+   "commit": 0.0
+  }
+ ],
+ "leverage": {
+  "look_through_gross_asset_value": 35.43,
+  "look_through_debt": 17.43,
+  "look_through_LTV": 0.492,
+  "debt_on_directly_held_sleeves": 6.62,
+  "annual_maturities_direct": 1.12,
+  "annual_maturities_all": 2.96
+ },
+ "cash_map": {
+  "normal": {
+   "12m": {
+    "RE_OE": {
+     "income": 0.088,
+     "realiz": 0.0,
+     "dist": 0.088,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.088
+    },
+    "RE_CE": {
+     "income": 0.026,
+     "realiz": 0.508,
+     "dist": 0.534,
+     "calls": 0.412,
+     "cures": 0.0,
+     "net": 0.122
+    },
+    "RE_DIR_GL": {
+     "income": 0.052,
+     "realiz": 0.0,
+     "dist": 0.052,
+     "calls": 0.058,
+     "cures": 0.0,
+     "net": -0.006
+    },
+    "RE_DIR_GCC": {
+     "income": 0.056,
+     "realiz": 0.0,
+     "dist": 0.056,
+     "calls": 0.058,
+     "cures": 0.0,
+     "net": -0.002
+    },
+    "RE_COI": {
+     "income": 0.011,
+     "realiz": 0.097,
+     "dist": 0.108,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.108
+    },
+    "INF_OE": {
+     "income": 0.112,
+     "realiz": 0.0,
+     "dist": 0.112,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.112
+    },
+    "INF_CE": {
+     "income": 0.106,
+     "realiz": 0.221,
+     "dist": 0.328,
+     "calls": 0.451,
+     "cures": 0.0,
+     "net": -0.123
+    },
+    "INF_DIR": {
+     "income": 0.103,
+     "realiz": 0.042,
+     "dist": 0.144,
+     "calls": 0.087,
+     "cures": 0.0,
+     "net": 0.057
+    },
+    "ENR_CE": {
+     "income": 0.066,
+     "realiz": 0.172,
+     "dist": 0.238,
+     "calls": 0.206,
+     "cures": 0.0,
+     "net": 0.032
+    },
+    "ENR_DIR": {
+     "income": 0.066,
+     "realiz": 0.0,
+     "dist": 0.066,
+     "calls": 0.058,
+     "cures": 0.0,
+     "net": 0.008
+    },
+    "TOTAL": {
+     "income": 0.686,
+     "realiz": 1.04,
+     "dist": 1.726,
+     "calls": 1.329,
+     "cures": 0.0,
+     "net": 0.396
+    },
+    "NET_BY_SECTOR": {
+     "RE": 0.31,
+     "INF": 0.046,
+     "ENR": 0.04
+    }
+   },
+   "24m": {
+    "RE_OE": {
+     "income": 0.177,
+     "realiz": 0.0,
+     "dist": 0.177,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.177
+    },
+    "RE_CE": {
+     "income": 0.051,
+     "realiz": 1.009,
+     "dist": 1.06,
+     "calls": 0.834,
+     "cures": 0.0,
+     "net": 0.226
+    },
+    "RE_DIR_GL": {
+     "income": 0.106,
+     "realiz": 0.0,
+     "dist": 0.106,
+     "calls": 0.099,
+     "cures": 0.0,
+     "net": 0.007
+    },
+    "RE_DIR_GCC": {
+     "income": 0.115,
+     "realiz": 0.0,
+     "dist": 0.115,
+     "calls": 0.099,
+     "cures": 0.0,
+     "net": 0.016
+    },
+    "RE_COI": {
+     "income": 0.022,
+     "realiz": 0.184,
+     "dist": 0.206,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.206
+    },
+    "INF_OE": {
+     "income": 0.226,
+     "realiz": 0.0,
+     "dist": 0.226,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.226
+    },
+    "INF_CE": {
+     "income": 0.227,
+     "realiz": 0.471,
+     "dist": 0.697,
+     "calls": 0.924,
+     "cures": 0.0,
+     "net": -0.226
+    },
+    "INF_DIR": {
+     "income": 0.21,
+     "realiz": 0.085,
+     "dist": 0.295,
+     "calls": 0.149,
+     "cures": 0.0,
+     "net": 0.147
+    },
+    "ENR_CE": {
+     "income": 0.135,
+     "realiz": 0.353,
+     "dist": 0.488,
+     "calls": 0.417,
+     "cures": 0.0,
+     "net": 0.071
+    },
+    "ENR_DIR": {
+     "income": 0.136,
+     "realiz": 0.0,
+     "dist": 0.136,
+     "calls": 0.099,
+     "cures": 0.0,
+     "net": 0.037
+    },
+    "TOTAL": {
+     "income": 1.405,
+     "realiz": 2.102,
+     "dist": 3.508,
+     "calls": 2.621,
+     "cures": 0.0,
+     "net": 0.886
+    },
+    "NET_BY_SECTOR": {
+     "RE": 0.632,
+     "INF": 0.147,
+     "ENR": 0.108
+    }
+   }
+  },
+  "drought": {
+   "12m": {
+    "RE_OE": {
+     "income": 0.088,
+     "realiz": 0.0,
+     "dist": 0.088,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.088
+    },
+    "RE_CE": {
+     "income": 0.027,
+     "realiz": 0.169,
+     "dist": 0.196,
+     "calls": 0.397,
+     "cures": 0.0,
+     "net": -0.201
+    },
+    "RE_DIR_GL": {
+     "income": 0.052,
+     "realiz": 0.0,
+     "dist": 0.052,
+     "calls": 0.056,
+     "cures": 0.0,
+     "net": -0.004
+    },
+    "RE_DIR_GCC": {
+     "income": 0.056,
+     "realiz": 0.0,
+     "dist": 0.056,
+     "calls": 0.056,
+     "cures": 0.0,
+     "net": -0.0
+    },
+    "RE_COI": {
+     "income": 0.012,
+     "realiz": 0.032,
+     "dist": 0.044,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.044
+    },
+    "INF_OE": {
+     "income": 0.112,
+     "realiz": 0.0,
+     "dist": 0.112,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.112
+    },
+    "INF_CE": {
+     "income": 0.108,
+     "realiz": 0.11,
+     "dist": 0.218,
+     "calls": 0.435,
+     "cures": 0.0,
+     "net": -0.217
+    },
+    "INF_DIR": {
+     "income": 0.103,
+     "realiz": 0.021,
+     "dist": 0.124,
+     "calls": 0.084,
+     "cures": 0.0,
+     "net": 0.04
+    },
+    "ENR_CE": {
+     "income": 0.067,
+     "realiz": 0.103,
+     "dist": 0.17,
+     "calls": 0.199,
+     "cures": 0.0,
+     "net": -0.029
+    },
+    "ENR_DIR": {
+     "income": 0.066,
+     "realiz": 0.0,
+     "dist": 0.066,
+     "calls": 0.056,
+     "cures": 0.0,
+     "net": 0.01
+    },
+    "TOTAL": {
+     "income": 0.691,
+     "realiz": 0.435,
+     "dist": 1.126,
+     "calls": 1.283,
+     "cures": 0.0,
+     "net": -0.157
+    },
+    "NET_BY_SECTOR": {
+     "RE": -0.073,
+     "INF": -0.065,
+     "ENR": -0.019
+    }
+   },
+   "24m": {
+    "RE_OE": {
+     "income": 0.177,
+     "realiz": 0.0,
+     "dist": 0.177,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.177
+    },
+    "RE_CE": {
+     "income": 0.058,
+     "realiz": 0.355,
+     "dist": 0.413,
+     "calls": 0.809,
+     "cures": 0.0,
+     "net": -0.397
+    },
+    "RE_DIR_GL": {
+     "income": 0.106,
+     "realiz": 0.0,
+     "dist": 0.106,
+     "calls": 0.096,
+     "cures": 0.0,
+     "net": 0.01
+    },
+    "RE_DIR_GCC": {
+     "income": 0.115,
+     "realiz": 0.0,
+     "dist": 0.115,
+     "calls": 0.096,
+     "cures": 0.0,
+     "net": 0.019
+    },
+    "RE_COI": {
+     "income": 0.024,
+     "realiz": 0.064,
+     "dist": 0.088,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.088
+    },
+    "INF_OE": {
+     "income": 0.226,
+     "realiz": 0.0,
+     "dist": 0.226,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.226
+    },
+    "INF_CE": {
+     "income": 0.234,
+     "realiz": 0.239,
+     "dist": 0.473,
+     "calls": 0.896,
+     "cures": 0.0,
+     "net": -0.423
+    },
+    "INF_DIR": {
+     "income": 0.212,
+     "realiz": 0.043,
+     "dist": 0.255,
+     "calls": 0.144,
+     "cures": 0.0,
+     "net": 0.11
+    },
+    "ENR_CE": {
+     "income": 0.14,
+     "realiz": 0.215,
+     "dist": 0.355,
+     "calls": 0.405,
+     "cures": 0.0,
+     "net": -0.05
+    },
+    "ENR_DIR": {
+     "income": 0.136,
+     "realiz": 0.0,
+     "dist": 0.136,
+     "calls": 0.096,
+     "cures": 0.0,
+     "net": 0.04
+    },
+    "TOTAL": {
+     "income": 1.427,
+     "realiz": 0.916,
+     "dist": 2.343,
+     "calls": 2.543,
+     "cures": 0.0,
+     "net": -0.2
+    },
+    "NET_BY_SECTOR": {
+     "RE": -0.103,
+     "INF": -0.087,
+     "ENR": -0.01
+    }
+   }
+  },
+  "S1": {
+   "12m": {
+    "RE_OE": {
+     "income": 0.075,
+     "realiz": 0.0,
+     "dist": 0.075,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.075
+    },
+    "RE_CE": {
+     "income": 0.024,
+     "realiz": 0.051,
+     "dist": 0.075,
+     "calls": 0.534,
+     "cures": 0.0,
+     "net": -0.459
+    },
+    "RE_DIR_GL": {
+     "income": 0.045,
+     "realiz": 0.0,
+     "dist": 0.045,
+     "calls": 0.075,
+     "cures": 0.013,
+     "net": -0.043
+    },
+    "RE_DIR_GCC": {
+     "income": 0.047,
+     "realiz": 0.0,
+     "dist": 0.047,
+     "calls": 0.075,
+     "cures": 0.024,
+     "net": -0.052
+    },
+    "RE_COI": {
+     "income": 0.011,
+     "realiz": 0.01,
+     "dist": 0.02,
+     "calls": 0.0,
+     "cures": 0.055,
+     "net": -0.035
+    },
+    "INF_OE": {
+     "income": 0.103,
+     "realiz": 0.0,
+     "dist": 0.103,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.103
+    },
+    "INF_CE": {
+     "income": 0.104,
+     "realiz": 0.034,
+     "dist": 0.138,
+     "calls": 0.585,
+     "cures": 0.0,
+     "net": -0.448
+    },
+    "INF_DIR": {
+     "income": 0.097,
+     "realiz": 0.006,
+     "dist": 0.103,
+     "calls": 0.112,
+     "cures": 0.028,
+     "net": -0.037
+    },
+    "ENR_CE": {
+     "income": 0.039,
+     "realiz": 0.029,
+     "dist": 0.069,
+     "calls": 0.267,
+     "cures": 0.0,
+     "net": -0.198
+    },
+    "ENR_DIR": {
+     "income": 0.038,
+     "realiz": 0.0,
+     "dist": 0.038,
+     "calls": 0.075,
+     "cures": 0.011,
+     "net": -0.049
+    },
+    "TOTAL": {
+     "income": 0.583,
+     "realiz": 0.13,
+     "dist": 0.713,
+     "calls": 1.724,
+     "cures": 0.131,
+     "net": -1.142
+    },
+    "NET_BY_SECTOR": {
+     "RE": -0.514,
+     "INF": -0.382,
+     "ENR": -0.247
+    }
+   },
+   "24m": {
+    "RE_OE": {
+     "income": 0.149,
+     "realiz": 0.0,
+     "dist": 0.149,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.149
+    },
+    "RE_CE": {
+     "income": 0.052,
+     "realiz": 0.169,
+     "dist": 0.22,
+     "calls": 0.92,
+     "cures": 0.0,
+     "net": -0.699
+    },
+    "RE_DIR_GL": {
+     "income": 0.091,
+     "realiz": 0.0,
+     "dist": 0.091,
+     "calls": 0.111,
+     "cures": 0.026,
+     "net": -0.046
+    },
+    "RE_DIR_GCC": {
+     "income": 0.097,
+     "realiz": 0.0,
+     "dist": 0.097,
+     "calls": 0.111,
+     "cures": 0.042,
+     "net": -0.056
+    },
+    "RE_COI": {
+     "income": 0.022,
+     "realiz": 0.03,
+     "dist": 0.052,
+     "calls": 0.0,
+     "cures": 0.106,
+     "net": -0.054
+    },
+    "INF_OE": {
+     "income": 0.206,
+     "realiz": 0.0,
+     "dist": 0.206,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.206
+    },
+    "INF_CE": {
+     "income": 0.225,
+     "realiz": 0.118,
+     "dist": 0.344,
+     "calls": 1.017,
+     "cures": 0.0,
+     "net": -0.674
+    },
+    "INF_DIR": {
+     "income": 0.199,
+     "realiz": 0.02,
+     "dist": 0.219,
+     "calls": 0.167,
+     "cures": 0.048,
+     "net": 0.004
+    },
+    "ENR_CE": {
+     "income": 0.093,
+     "realiz": 0.095,
+     "dist": 0.188,
+     "calls": 0.46,
+     "cures": 0.0,
+     "net": -0.272
+    },
+    "ENR_DIR": {
+     "income": 0.087,
+     "realiz": 0.0,
+     "dist": 0.087,
+     "calls": 0.111,
+     "cures": 0.024,
+     "net": -0.048
+    },
+    "TOTAL": {
+     "income": 1.221,
+     "realiz": 0.432,
+     "dist": 1.653,
+     "calls": 2.898,
+     "cures": 0.246,
+     "net": -1.49
+    },
+    "NET_BY_SECTOR": {
+     "RE": -0.706,
+     "INF": -0.464,
+     "ENR": -0.32
+    }
+   }
+  },
+  "T4prime": {
+   "12m": {
+    "RE_OE": {
+     "income": 0.068,
+     "realiz": 0.0,
+     "dist": 0.068,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.068
+    },
+    "RE_CE": {
+     "income": 0.022,
+     "realiz": 0.017,
+     "dist": 0.039,
+     "calls": 0.55,
+     "cures": 0.0,
+     "net": -0.511
+    },
+    "RE_DIR_GL": {
+     "income": 0.041,
+     "realiz": 0.0,
+     "dist": 0.041,
+     "calls": 0.077,
+     "cures": 0.013,
+     "net": -0.05
+    },
+    "RE_DIR_GCC": {
+     "income": 0.041,
+     "realiz": 0.0,
+     "dist": 0.041,
+     "calls": 0.077,
+     "cures": 0.027,
+     "net": -0.063
+    },
+    "RE_COI": {
+     "income": 0.01,
+     "realiz": 0.003,
+     "dist": 0.013,
+     "calls": 0.0,
+     "cures": 0.056,
+     "net": -0.043
+    },
+    "INF_OE": {
+     "income": 0.097,
+     "realiz": 0.0,
+     "dist": 0.097,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.097
+    },
+    "INF_CE": {
+     "income": 0.098,
+     "realiz": 0.012,
+     "dist": 0.109,
+     "calls": 0.603,
+     "cures": 0.0,
+     "net": -0.494
+    },
+    "INF_DIR": {
+     "income": 0.091,
+     "realiz": 0.002,
+     "dist": 0.093,
+     "calls": 0.116,
+     "cures": 0.027,
+     "net": -0.05
+    },
+    "ENR_CE": {
+     "income": 0.036,
+     "realiz": 0.01,
+     "dist": 0.046,
+     "calls": 0.275,
+     "cures": 0.0,
+     "net": -0.229
+    },
+    "ENR_DIR": {
+     "income": 0.035,
+     "realiz": 0.0,
+     "dist": 0.035,
+     "calls": 0.077,
+     "cures": 0.008,
+     "net": -0.05
+    },
+    "TOTAL": {
+     "income": 0.539,
+     "realiz": 0.044,
+     "dist": 0.583,
+     "calls": 1.777,
+     "cures": 0.131,
+     "net": -1.325
+    },
+    "NET_BY_SECTOR": {
+     "RE": -0.599,
+     "INF": -0.447,
+     "ENR": -0.279
+    }
+   },
+   "24m": {
+    "RE_OE": {
+     "income": 0.131,
+     "realiz": 0.0,
+     "dist": 0.131,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.131
+    },
+    "RE_CE": {
+     "income": 0.047,
+     "realiz": 0.05,
+     "dist": 0.096,
+     "calls": 1.062,
+     "cures": 0.0,
+     "net": -0.965
+    },
+    "RE_DIR_GL": {
+     "income": 0.08,
+     "realiz": 0.0,
+     "dist": 0.08,
+     "calls": 0.125,
+     "cures": 0.052,
+     "net": -0.097
+    },
+    "RE_DIR_GCC": {
+     "income": 0.081,
+     "realiz": 0.0,
+     "dist": 0.081,
+     "calls": 0.125,
+     "cures": 0.074,
+     "net": -0.118
+    },
+    "RE_COI": {
+     "income": 0.019,
+     "realiz": 0.009,
+     "dist": 0.028,
+     "calls": 0.0,
+     "cures": 0.127,
+     "net": -0.099
+    },
+    "INF_OE": {
+     "income": 0.191,
+     "realiz": 0.0,
+     "dist": 0.191,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.191
+    },
+    "INF_CE": {
+     "income": 0.214,
+     "realiz": 0.035,
+     "dist": 0.249,
+     "calls": 1.177,
+     "cures": 0.0,
+     "net": -0.927
+    },
+    "INF_DIR": {
+     "income": 0.185,
+     "realiz": 0.006,
+     "dist": 0.191,
+     "calls": 0.187,
+     "cures": 0.076,
+     "net": -0.071
+    },
+    "ENR_CE": {
+     "income": 0.077,
+     "realiz": 0.028,
+     "dist": 0.106,
+     "calls": 0.531,
+     "cures": 0.0,
+     "net": -0.425
+    },
+    "ENR_DIR": {
+     "income": 0.071,
+     "realiz": 0.0,
+     "dist": 0.071,
+     "calls": 0.125,
+     "cures": 0.029,
+     "net": -0.082
+    },
+    "TOTAL": {
+     "income": 1.097,
+     "realiz": 0.128,
+     "dist": 1.225,
+     "calls": 3.331,
+     "cures": 0.357,
+     "net": -2.463
+    },
+    "NET_BY_SECTOR": {
+     "RE": -1.148,
+     "INF": -0.807,
+     "ENR": -0.507
+    }
+   }
+  },
+  "SG_supply_glut": {
+   "12m": {
+    "RE_OE": {
+     "income": 0.088,
+     "realiz": 0.0,
+     "dist": 0.088,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.088
+    },
+    "RE_CE": {
+     "income": 0.027,
+     "realiz": 0.167,
+     "dist": 0.194,
+     "calls": 0.397,
+     "cures": 0.0,
+     "net": -0.203
+    },
+    "RE_DIR_GL": {
+     "income": 0.052,
+     "realiz": 0.0,
+     "dist": 0.052,
+     "calls": 0.056,
+     "cures": 0.0,
+     "net": -0.004
+    },
+    "RE_DIR_GCC": {
+     "income": 0.051,
+     "realiz": 0.0,
+     "dist": 0.051,
+     "calls": 0.056,
+     "cures": 0.0,
+     "net": -0.005
+    },
+    "RE_COI": {
+     "income": 0.012,
+     "realiz": 0.032,
+     "dist": 0.044,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.044
+    },
+    "INF_OE": {
+     "income": 0.11,
+     "realiz": 0.0,
+     "dist": 0.11,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.11
+    },
+    "INF_CE": {
+     "income": 0.106,
+     "realiz": 0.108,
+     "dist": 0.214,
+     "calls": 0.435,
+     "cures": 0.0,
+     "net": -0.221
+    },
+    "INF_DIR": {
+     "income": 0.102,
+     "realiz": 0.02,
+     "dist": 0.122,
+     "calls": 0.084,
+     "cures": 0.0,
+     "net": 0.038
+    },
+    "ENR_CE": {
+     "income": 0.04,
+     "realiz": 0.027,
+     "dist": 0.067,
+     "calls": 0.199,
+     "cures": 0.0,
+     "net": -0.132
+    },
+    "ENR_DIR": {
+     "income": 0.039,
+     "realiz": 0.0,
+     "dist": 0.039,
+     "calls": 0.056,
+     "cures": 0.0,
+     "net": -0.017
+    },
+    "TOTAL": {
+     "income": 0.626,
+     "realiz": 0.354,
+     "dist": 0.98,
+     "calls": 1.283,
+     "cures": 0.0,
+     "net": -0.303
+    },
+    "NET_BY_SECTOR": {
+     "RE": -0.08,
+     "INF": -0.073,
+     "ENR": -0.149
+    }
+   },
+   "24m": {
+    "RE_OE": {
+     "income": 0.176,
+     "realiz": 0.0,
+     "dist": 0.176,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.176
+    },
+    "RE_CE": {
+     "income": 0.056,
+     "realiz": 0.348,
+     "dist": 0.405,
+     "calls": 0.809,
+     "cures": 0.0,
+     "net": -0.405
+    },
+    "RE_DIR_GL": {
+     "income": 0.105,
+     "realiz": 0.0,
+     "dist": 0.105,
+     "calls": 0.096,
+     "cures": 0.0,
+     "net": 0.009
+    },
+    "RE_DIR_GCC": {
+     "income": 0.096,
+     "realiz": 0.0,
+     "dist": 0.096,
+     "calls": 0.096,
+     "cures": 0.0,
+     "net": -0.001
+    },
+    "RE_COI": {
+     "income": 0.023,
+     "realiz": 0.063,
+     "dist": 0.086,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.086
+    },
+    "INF_OE": {
+     "income": 0.22,
+     "realiz": 0.0,
+     "dist": 0.22,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.22
+    },
+    "INF_CE": {
+     "income": 0.225,
+     "realiz": 0.229,
+     "dist": 0.455,
+     "calls": 0.896,
+     "cures": 0.0,
+     "net": -0.441
+    },
+    "INF_DIR": {
+     "income": 0.206,
+     "realiz": 0.041,
+     "dist": 0.247,
+     "calls": 0.144,
+     "cures": 0.0,
+     "net": 0.103
+    },
+    "ENR_CE": {
+     "income": 0.082,
+     "realiz": 0.055,
+     "dist": 0.137,
+     "calls": 0.405,
+     "cures": 0.0,
+     "net": -0.268
+    },
+    "ENR_DIR": {
+     "income": 0.077,
+     "realiz": 0.0,
+     "dist": 0.077,
+     "calls": 0.096,
+     "cures": 0.0,
+     "net": -0.019
+    },
+    "TOTAL": {
+     "income": 1.266,
+     "realiz": 0.736,
+     "dist": 2.002,
+     "calls": 2.543,
+     "cures": 0.0,
+     "net": -0.541
+    },
+    "NET_BY_SECTOR": {
+     "RE": -0.135,
+     "INF": -0.118,
+     "ENR": -0.287
+    }
+   }
+  },
+  "GW_gulf_war": {
+   "12m": {
+    "RE_OE": {
+     "income": 0.088,
+     "realiz": 0.0,
+     "dist": 0.088,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.088
+    },
+    "RE_CE": {
+     "income": 0.027,
+     "realiz": 0.169,
+     "dist": 0.196,
+     "calls": 0.397,
+     "cures": 0.0,
+     "net": -0.201
+    },
+    "RE_DIR_GL": {
+     "income": 0.052,
+     "realiz": 0.0,
+     "dist": 0.052,
+     "calls": 0.056,
+     "cures": 0.0,
+     "net": -0.004
+    },
+    "RE_DIR_GCC": {
+     "income": 0.049,
+     "realiz": 0.0,
+     "dist": 0.049,
+     "calls": 0.056,
+     "cures": 0.0,
+     "net": -0.007
+    },
+    "RE_COI": {
+     "income": 0.012,
+     "realiz": 0.032,
+     "dist": 0.044,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.044
+    },
+    "INF_OE": {
+     "income": 0.112,
+     "realiz": 0.0,
+     "dist": 0.112,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.112
+    },
+    "INF_CE": {
+     "income": 0.108,
+     "realiz": 0.11,
+     "dist": 0.218,
+     "calls": 0.435,
+     "cures": 0.0,
+     "net": -0.217
+    },
+    "INF_DIR": {
+     "income": 0.103,
+     "realiz": 0.021,
+     "dist": 0.124,
+     "calls": 0.084,
+     "cures": 0.0,
+     "net": 0.04
+    },
+    "ENR_CE": {
+     "income": 0.088,
+     "realiz": 0.109,
+     "dist": 0.197,
+     "calls": 0.199,
+     "cures": 0.0,
+     "net": -0.001
+    },
+    "ENR_DIR": {
+     "income": 0.087,
+     "realiz": 0.0,
+     "dist": 0.087,
+     "calls": 0.056,
+     "cures": 0.0,
+     "net": 0.031
+    },
+    "TOTAL": {
+     "income": 0.727,
+     "realiz": 0.441,
+     "dist": 1.168,
+     "calls": 1.283,
+     "cures": 0.0,
+     "net": -0.115
+    },
+    "NET_BY_SECTOR": {
+     "RE": -0.08,
+     "INF": -0.065,
+     "ENR": 0.03
+    }
+   },
+   "24m": {
+    "RE_OE": {
+     "income": 0.177,
+     "realiz": 0.0,
+     "dist": 0.177,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.177
+    },
+    "RE_CE": {
+     "income": 0.058,
+     "realiz": 0.355,
+     "dist": 0.413,
+     "calls": 0.809,
+     "cures": 0.0,
+     "net": -0.397
+    },
+    "RE_DIR_GL": {
+     "income": 0.106,
+     "realiz": 0.0,
+     "dist": 0.106,
+     "calls": 0.096,
+     "cures": 0.0,
+     "net": 0.01
+    },
+    "RE_DIR_GCC": {
+     "income": 0.099,
+     "realiz": 0.0,
+     "dist": 0.099,
+     "calls": 0.096,
+     "cures": 0.0,
+     "net": 0.002
+    },
+    "RE_COI": {
+     "income": 0.024,
+     "realiz": 0.064,
+     "dist": 0.088,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.088
+    },
+    "INF_OE": {
+     "income": 0.226,
+     "realiz": 0.0,
+     "dist": 0.226,
+     "calls": 0.0,
+     "cures": 0.0,
+     "net": 0.226
+    },
+    "INF_CE": {
+     "income": 0.234,
+     "realiz": 0.239,
+     "dist": 0.473,
+     "calls": 0.896,
+     "cures": 0.0,
+     "net": -0.423
+    },
+    "INF_DIR": {
+     "income": 0.212,
+     "realiz": 0.043,
+     "dist": 0.255,
+     "calls": 0.144,
+     "cures": 0.0,
+     "net": 0.11
+    },
+    "ENR_CE": {
+     "income": 0.186,
+     "realiz": 0.229,
+     "dist": 0.415,
+     "calls": 0.405,
+     "cures": 0.0,
+     "net": 0.01
+    },
+    "ENR_DIR": {
+     "income": 0.182,
+     "realiz": 0.0,
+     "dist": 0.182,
+     "calls": 0.096,
+     "cures": 0.0,
+     "net": 0.085
+    },
+    "TOTAL": {
+     "income": 1.503,
+     "realiz": 0.93,
+     "dist": 2.432,
+     "calls": 2.543,
+     "cures": 0.0,
+     "net": -0.111
+    },
+    "NET_BY_SECTOR": {
+     "RE": -0.12,
+     "INF": -0.087,
+     "ENR": 0.095
+    }
+   }
+  }
+ },
+ "cash_map_T4prime_no_new_commitments": {
+  "12m": {
+   "income": 0.537,
+   "realiz": 0.043,
+   "dist": 0.581,
+   "calls": 1.546,
+   "cures": 0.131,
+   "net": -1.095
+  },
+  "24m": {
+   "income": 1.084,
+   "realiz": 0.122,
+   "dist": 1.206,
+   "calls": 2.494,
+   "cures": 0.357,
+   "net": -1.646
+  }
+ },
+ "cash_map_T4prime_calls_x1": {
+  "12m": {
+   "income": 0.533,
+   "realiz": 0.043,
+   "dist": 0.576,
+   "calls": 1.283,
+   "cures": 0.131,
+   "net": -0.838
+  },
+  "24m": {
+   "income": 1.075,
+   "realiz": 0.122,
+   "dist": 1.196,
+   "calls": 2.543,
+   "cures": 0.357,
+   "net": -1.704
+  }
+ },
+ "true_value_impact_12m": {
+  "S1": {
+   "by_sector_bn": {
+    "RE": -3.058,
+    "RE_GCC": -0.48,
+    "INF": -1.4,
+    "ENR": -1.188
+   },
+   "total_bn": -6.126,
+   "total_pct_of_RA_NAV": -0.3404
+  },
+  "T4prime": {
+   "by_sector_bn": {
+    "RE": -3.822,
+    "RE_GCC": -0.655,
+    "INF": -1.68,
+    "ENR": -1.188
+   },
+   "total_bn": -7.345,
+   "total_pct_of_RA_NAV": -0.4081
+  },
+  "SG_supply_glut": {
+   "by_sector_bn": {
+    "RE": 0.0,
+    "RE_GCC": -0.218,
+    "INF": 0.0,
+    "ENR": -0.792
+   },
+   "total_bn": -1.01,
+   "total_pct_of_RA_NAV": -0.0561
+  },
+  "GW_gulf_war": {
+   "by_sector_bn": {
+    "RE": 0.0,
+    "RE_GCC": -0.218,
+    "INF": 0.0,
+    "ENR": 0.0
+   },
+   "total_bn": -0.218,
+   "total_pct_of_RA_NAV": -0.0121
+  }
+ },
+ "true_value_impact_24m": {
+  "SG_supply_glut": {
+   "by_sector_bn": {
+    "RE": 0.0,
+    "RE_GCC": -0.327,
+    "INF": 0.0,
+    "ENR": -0.792
+   },
+   "total_bn": -1.12,
+   "total_pct_of_RA_NAV": -0.0622
+  }
+ },
+ "pe_relabel": {
+  "normal": {
+   "PE_rates_U4.0": {
+    "12m": {
+     "dist": 3.727,
+     "calls": 1.329,
+     "net": 2.398
+    },
+    "24m": {
+     "dist": 6.972,
+     "calls": 2.621,
+     "net": 4.35
+    }
+   },
+   "PE_rates_U5.8_(0.32xNAV)": {
+    "12m": {
+     "dist": 3.779,
+     "calls": 1.84,
+     "net": 1.939
+    },
+    "24m": {
+     "dist": 7.152,
+     "calls": 3.494,
+     "net": 3.658
+    }
+   },
+   "PE_rates_U9.5_(0.53xNAV)": {
+    "12m": {
+     "dist": 3.89,
+     "calls": 2.936,
+     "net": 0.954
+    },
+    "24m": {
+     "dist": 7.538,
+     "calls": 5.368,
+     "net": 2.17
+    }
+   }
+  },
+  "drought": {
+   "PE_rates_U4.0": {
+    "12m": {
+     "dist": 2.046,
+     "calls": 1.283,
+     "net": 0.763
+    },
+    "24m": {
+     "dist": 4.007,
+     "calls": 2.543,
+     "net": 1.464
+    }
+   },
+   "PE_rates_U5.8_(0.32xNAV)": {
+    "12m": {
+     "dist": 2.073,
+     "calls": 1.776,
+     "net": 0.297
+    },
+    "24m": {
+     "dist": 4.105,
+     "calls": 3.391,
+     "net": 0.714
+    }
+   },
+   "PE_rates_U9.5_(0.53xNAV)": {
+    "12m": {
+     "dist": 2.131,
+     "calls": 2.834,
+     "net": -0.704
+    },
+    "24m": {
+     "dist": 4.314,
+     "calls": 5.211,
+     "net": -0.897
+    }
+   }
+  },
+  "S1": {
+   "PE_rates_U4.0": {
+    "12m": {
+     "dist": 0.659,
+     "calls": 1.724,
+     "net": -1.065
+    },
+    "24m": {
+     "dist": 2.107,
+     "calls": 2.898,
+     "net": -0.79
+    }
+   },
+   "PE_rates_U5.8_(0.32xNAV)": {
+    "12m": {
+     "dist": 0.67,
+     "calls": 2.384,
+     "net": -1.714
+    },
+    "24m": {
+     "dist": 2.181,
+     "calls": 3.877,
+     "net": -1.696
+    }
+   },
+   "PE_rates_U9.5_(0.53xNAV)": {
+    "12m": {
+     "dist": 0.695,
+     "calls": 3.801,
+     "net": -3.106
+    },
+    "24m": {
+     "dist": 2.34,
+     "calls": 5.98,
+     "net": -3.64
+    }
+   }
+  },
+  "T4prime": {
+   "PE_rates_U4.0": {
+    "12m": {
+     "dist": 0.224,
+     "calls": 1.777,
+     "net": -1.553
+    },
+    "24m": {
+     "dist": 0.645,
+     "calls": 3.331,
+     "net": -2.686
+    }
+   },
+   "PE_rates_U5.8_(0.32xNAV)": {
+    "12m": {
+     "dist": 0.228,
+     "calls": 2.457,
+     "net": -2.229
+    },
+    "24m": {
+     "dist": 0.668,
+     "calls": 4.428,
+     "net": -3.76
+    }
+   },
+   "PE_rates_U9.5_(0.53xNAV)": {
+    "12m": {
+     "dist": 0.237,
+     "calls": 3.917,
+     "net": -3.681
+    },
+    "24m": {
+     "dist": 0.719,
+     "calls": 6.785,
+     "net": -6.066
+    }
+   }
+  }
+ },
+ "ladder_sell_routes": {
+  "normal": {
+   "RE_OE_secondary": {
+    "3m": 0.913,
+    "12m": 2.718,
+    "24m": 2.718,
+    "price": 0.96,
+    "ttc_m": 3,
+    "redemption_route": {
+     "3m": 0.913,
+     "12m": 2.718,
+     "24m": 2.718
+    },
+    "secondary_route": {
+     "3m": 0.04,
+     "12m": 0.403,
+     "24m": 0.886
+    }
+   },
+   "RE_CE": {
+    "3m": 0.0,
+    "12m": 0.249,
+    "24m": 0.624,
+    "price": 0.71,
+    "ttc_m": 5
+   },
+   "RE_DIR_GL": {
+    "3m": 0.0,
+    "12m": 0.814,
+    "24m": 1.454,
+    "price": 0.95,
+    "ttc_m": 6
+   },
+   "RE_DIR_GCC": {
+    "3m": 0.0,
+    "12m": 0.562,
+    "24m": 1.004,
+    "price": 0.93,
+    "ttc_m": 6
+   },
+   "RE_COI": {
+    "3m": 0.0,
+    "12m": 0.251,
+    "24m": 0.598,
+    "price": 0.88,
+    "ttc_m": 6
+   },
+   "INF_OE_secondary": {
+    "3m": 0.676,
+    "12m": 2.013,
+    "24m": 2.013,
+    "price": 0.97,
+    "ttc_m": 3,
+    "redemption_route": {
+     "3m": 0.676,
+     "12m": 2.013,
+     "24m": 2.013
+    },
+    "secondary_route": {
+     "3m": 0.038,
+     "12m": 0.384,
+     "24m": 0.845
+    }
+   },
+   "INF_CE": {
+    "3m": 0.0,
+    "12m": 0.921,
+    "24m": 2.047,
+    "price": 0.91,
+    "ttc_m": 4
+   },
+   "INF_DIR": {
+    "3m": 0.0,
+    "12m": 0.968,
+    "24m": 1.728,
+    "price": 0.96,
+    "ttc_m": 6
+   },
+   "ENR_CE": {
+    "3m": 0.0,
+    "12m": 0.232,
+    "24m": 0.581,
+    "price": 0.82,
+    "ttc_m": 5
+   },
+   "ENR_DIR": {
+    "3m": 0.0,
+    "12m": 0.289,
+    "24m": 0.689,
+    "price": 0.9,
+    "ttc_m": 6
+   },
+   "TOTAL_SELL_ROUTES": {
+    "3m": 1.589,
+    "12m": 9.017,
+    "24m": 13.456
+   }
+  },
+  "drought": {
+   "RE_OE_secondary": {
+    "3m": 0.194,
+    "12m": 0.727,
+    "24m": 1.324,
+    "price": 0.94,
+    "ttc_m": 3,
+    "redemption_route": {
+     "3m": 0.194,
+     "12m": 0.727,
+     "24m": 1.324
+    },
+    "secondary_route": {
+     "3m": 0.037,
+     "12m": 0.374,
+     "24m": 0.822
+    }
+   },
+   "RE_CE": {
+    "3m": 0.0,
+    "12m": 0.225,
+    "24m": 0.562,
+    "price": 0.68,
+    "ttc_m": 5
+   },
+   "RE_DIR_GL": {
+    "3m": 0.0,
+    "12m": 0.441,
+    "24m": 1.224,
+    "price": 0.9,
+    "ttc_m": 7
+   },
+   "RE_DIR_GCC": {
+    "3m": 0.0,
+    "12m": 0.311,
+    "24m": 0.864,
+    "price": 0.9,
+    "ttc_m": 7
+   },
+   "RE_COI": {
+    "3m": 0.0,
+    "12m": 0.148,
+    "24m": 0.443,
+    "price": 0.82,
+    "ttc_m": 7
+   },
+   "INF_OE_secondary": {
+    "3m": 0.144,
+    "12m": 0.539,
+    "24m": 0.98,
+    "price": 0.96,
+    "ttc_m": 3,
+    "redemption_route": {
+     "3m": 0.144,
+     "12m": 0.539,
+     "24m": 0.98
+    },
+    "secondary_route": {
+     "3m": 0.036,
+     "12m": 0.36,
+     "24m": 0.792
+    }
+   },
+   "INF_CE": {
+    "3m": 0.0,
+    "12m": 0.861,
+    "24m": 1.912,
+    "price": 0.9,
+    "ttc_m": 4
+   },
+   "INF_DIR": {
+    "3m": 0.0,
+    "12m": 0.575,
+    "24m": 1.598,
+    "price": 0.94,
+    "ttc_m": 7
+   },
+   "ENR_CE": {
+    "3m": 0.0,
+    "12m": 0.213,
+    "24m": 0.533,
+    "price": 0.8,
+    "ttc_m": 5
+   },
+   "ENR_DIR": {
+    "3m": 0.0,
+    "12m": 0.266,
+    "24m": 0.634,
+    "price": 0.88,
+    "ttc_m": 6
+   },
+   "TOTAL_SELL_ROUTES": {
+    "3m": 0.338,
+    "12m": 4.306,
+    "24m": 10.074
+   }
+  },
+  "T4prime": {
+   "RE_OE_secondary": {
+    "3m": 0.072,
+    "12m": 0.275,
+    "24m": 0.714,
+    "price": 0.82,
+    "ttc_m": 4,
+    "redemption_route": {
+     "3m": 0.072,
+     "12m": 0.275,
+     "24m": 0.714
+    },
+    "secondary_route": {
+     "3m": 0.0,
+     "12m": 0.196,
+     "24m": 0.456
+    }
+   },
+   "RE_CE": {
+    "3m": 0.0,
+    "12m": 0.074,
+    "24m": 0.221,
+    "price": 0.475,
+    "ttc_m": 7
+   },
+   "RE_DIR_GL": {
+    "3m": 0.0,
+    "12m": 0.019,
+    "24m": 0.242,
+    "price": 0.73,
+    "ttc_m": 12
+   },
+   "RE_DIR_GCC": {
+    "3m": 0.0,
+    "12m": 0.011,
+    "24m": 0.147,
+    "price": 0.7,
+    "ttc_m": 12
+   },
+   "RE_COI": {
+    "3m": 0.0,
+    "12m": 0.004,
+    "24m": 0.056,
+    "price": 0.6,
+    "ttc_m": 12
+   },
+   "INF_OE_secondary": {
+    "3m": 0.053,
+    "12m": 0.21,
+    "24m": 0.529,
+    "price": 0.86,
+    "ttc_m": 4,
+    "redemption_route": {
+     "3m": 0.053,
+     "12m": 0.204,
+     "24m": 0.529
+    },
+    "secondary_route": {
+     "3m": 0.0,
+     "12m": 0.21,
+     "24m": 0.489
+    }
+   },
+   "INF_CE": {
+    "3m": 0.0,
+    "12m": 0.238,
+    "24m": 0.713,
+    "price": 0.72,
+    "ttc_m": 7
+   },
+   "INF_DIR": {
+    "3m": 0.0,
+    "12m": 0.027,
+    "24m": 0.352,
+    "price": 0.82,
+    "ttc_m": 12
+   },
+   "ENR_CE": {
+    "3m": 0.0,
+    "12m": 0.052,
+    "24m": 0.175,
+    "price": 0.55,
+    "ttc_m": 8
+   },
+   "ENR_DIR": {
+    "3m": 0.0,
+    "12m": 0.005,
+    "24m": 0.065,
+    "price": 0.62,
+    "ttc_m": 12
+   },
+   "TOTAL_SELL_ROUTES": {
+    "3m": 0.125,
+    "12m": 0.915,
+    "24m": 3.214
+   }
+  },
+  "SG_supply_glut": {
+   "RE_OE_secondary": {
+    "3m": 0.194,
+    "12m": 0.727,
+    "24m": 1.324,
+    "price": 0.94,
+    "ttc_m": 3,
+    "redemption_route": {
+     "3m": 0.194,
+     "12m": 0.727,
+     "24m": 1.324
+    },
+    "secondary_route": {
+     "3m": 0.037,
+     "12m": 0.374,
+     "24m": 0.822
+    }
+   },
+   "RE_CE": {
+    "3m": 0.0,
+    "12m": 0.225,
+    "24m": 0.562,
+    "price": 0.68,
+    "ttc_m": 5
+   },
+   "RE_DIR_GL": {
+    "3m": 0.0,
+    "12m": 0.441,
+    "24m": 1.224,
+    "price": 0.9,
+    "ttc_m": 7
+   },
+   "RE_DIR_GCC": {
+    "3m": 0.0,
+    "12m": 0.013,
+    "24m": 0.175,
+    "price": 0.75,
+    "ttc_m": 12
+   },
+   "RE_COI": {
+    "3m": 0.0,
+    "12m": 0.148,
+    "24m": 0.443,
+    "price": 0.82,
+    "ttc_m": 7
+   },
+   "INF_OE_secondary": {
+    "3m": 0.144,
+    "12m": 0.539,
+    "24m": 0.98,
+    "price": 0.96,
+    "ttc_m": 3,
+    "redemption_route": {
+     "3m": 0.144,
+     "12m": 0.539,
+     "24m": 0.98
+    },
+    "secondary_route": {
+     "3m": 0.036,
+     "12m": 0.36,
+     "24m": 0.792
+    }
+   },
+   "INF_CE": {
+    "3m": 0.0,
+    "12m": 0.861,
+    "24m": 1.912,
+    "price": 0.9,
+    "ttc_m": 4
+   },
+   "INF_DIR": {
+    "3m": 0.0,
+    "12m": 0.575,
+    "24m": 1.598,
+    "price": 0.94,
+    "ttc_m": 7
+   },
+   "ENR_CE": {
+    "3m": 0.0,
+    "12m": 0.062,
+    "24m": 0.212,
+    "price": 0.6,
+    "ttc_m": 8
+   },
+   "ENR_DIR": {
+    "3m": 0.0,
+    "12m": 0.005,
+    "24m": 0.068,
+    "price": 0.65,
+    "ttc_m": 12
+   },
+   "TOTAL_SELL_ROUTES": {
+    "3m": 0.338,
+    "12m": 3.596,
+    "24m": 8.498
+   }
+  }
+ },
+ "refinance_capacity": {
+  "normal": {
+   "RE_DIR_GL": {
+    "cash_out_refi": 0.309,
+    "jv_selldown_40pct": 0.646
+   },
+   "RE_DIR_GCC": {
+    "cash_out_refi": 0.218,
+    "jv_selldown_40pct": 0.456
+   },
+   "RE_COI": {
+    "cash_out_refi": 0.0,
+    "jv_selldown_40pct": 0.304
+   },
+   "INF_DIR": {
+    "cash_out_refi": 0.222,
+    "jv_selldown_40pct": 0.76
+   },
+   "ENR_DIR": {
+    "cash_out_refi": 0.15,
+    "jv_selldown_40pct": 0.342
+   },
+   "TOTAL": {
+    "cash_out_refi": 0.899,
+    "jv_selldown": 2.508
+   }
+  },
+  "drought": {
+   "RE_DIR_GL": {
+    "cash_out_refi": 0.309,
+    "jv_selldown_40pct": 0.626
+   },
+   "RE_DIR_GCC": {
+    "cash_out_refi": 0.218,
+    "jv_selldown_40pct": 0.442
+   },
+   "RE_COI": {
+    "cash_out_refi": 0.0,
+    "jv_selldown_40pct": 0.294
+   },
+   "INF_DIR": {
+    "cash_out_refi": 0.222,
+    "jv_selldown_40pct": 0.736
+   },
+   "ENR_DIR": {
+    "cash_out_refi": 0.15,
+    "jv_selldown_40pct": 0.331
+   },
+   "TOTAL": {
+    "cash_out_refi": 0.899,
+    "jv_selldown": 2.429
+   }
+  },
+  "T4prime": {
+   "RE_DIR_GL": {
+    "cash_out_refi": 0.0,
+    "jv_selldown_40pct": 0.272
+   },
+   "RE_DIR_GCC": {
+    "cash_out_refi": 0.0,
+    "jv_selldown_40pct": 0.192
+   },
+   "RE_COI": {
+    "cash_out_refi": 0.0,
+    "jv_selldown_40pct": 0.128
+   },
+   "INF_DIR": {
+    "cash_out_refi": 0.0,
+    "jv_selldown_40pct": 0.32
+   },
+   "ENR_DIR": {
+    "cash_out_refi": 0.0,
+    "jv_selldown_40pct": 0.144
+   },
+   "TOTAL": {
+    "cash_out_refi": 0.0,
+    "jv_selldown": 1.056
+   }
+  },
+  "SG_supply_glut": {
+   "RE_DIR_GL": {
+    "cash_out_refi": 0.309,
+    "jv_selldown_40pct": 0.626
+   },
+   "RE_DIR_GCC": {
+    "cash_out_refi": 0.0,
+    "jv_selldown_40pct": 0.18
+   },
+   "RE_COI": {
+    "cash_out_refi": 0.0,
+    "jv_selldown_40pct": 0.294
+   },
+   "INF_DIR": {
+    "cash_out_refi": 0.222,
+    "jv_selldown_40pct": 0.736
+   },
+   "ENR_DIR": {
+    "cash_out_refi": 0.0,
+    "jv_selldown_40pct": 0.135
+   },
+   "TOTAL": {
+    "cash_out_refi": 0.531,
+    "jv_selldown": 1.971
+   }
+  }
+ },
+ "queue_machine": {
+  "normal": {
+   "cum_value_received_by_quarter": [
+    0.3381,
+    0.6321,
+    0.8696,
+    1.0065,
+    1.0065,
+    1.0065,
+    1.0065,
+    1.0065
+   ],
+   "by_3m": 0.3381,
+   "by_12m": 1.0065,
+   "by_24m": 1.0065,
+   "share_of_units_redeemed_24m": 1.0
+  },
+  "drought": {
+   "cum_value_received_by_quarter": [
+    0.0719,
+    0.1408,
+    0.2066,
+    0.2694,
+    0.3291,
+    0.3858,
+    0.4395,
+    0.4902
+   ],
+   "by_3m": 0.0719,
+   "by_12m": 0.2694,
+   "by_24m": 0.4902,
+   "share_of_units_redeemed_24m": 0.4882
+  },
+  "T4prime": {
+   "cum_value_received_by_quarter": [
+    0.0267,
+    0.0485,
+    0.0736,
+    0.1019,
+    0.1349,
+    0.1745,
+    0.2187,
+    0.2646
+   ],
+   "by_3m": 0.0267,
+   "by_12m": 0.1019,
+   "by_24m": 0.2646,
+   "share_of_units_redeemed_24m": 0.3097
+  },
+  "SG_supply_glut": {
+   "cum_value_received_by_quarter": [
+    0.0719,
+    0.1408,
+    0.2066,
+    0.2694,
+    0.3291,
+    0.3858,
+    0.4395,
+    0.4902
+   ],
+   "by_3m": 0.0719,
+   "by_12m": 0.2694,
+   "by_24m": 0.4902,
+   "share_of_units_redeemed_24m": 0.4882
+  }
+ },
+ "open_end_redemption_cash": {
+  "normal": {
+   "3m": 1.589,
+   "12m": 4.731,
+   "24m": 4.731
+  },
+  "drought": {
+   "3m": 0.338,
+   "12m": 1.266,
+   "24m": 2.304
+  },
+  "T4prime": {
+   "3m": 0.125,
+   "12m": 0.479,
+   "24m": 1.244
+  },
+  "SG_supply_glut": {
+   "3m": 0.338,
+   "12m": 1.266,
+   "24m": 2.304
+  }
+ },
+ "public_checks": {
+  "odce_geltner": {
+   "reported": {
+    "drawdown": -0.1877,
+    "vol_q": 0.0309,
+    "ac1": 0.722
+   },
+   "phi_0.5": {
+    "drawdown": -0.2421,
+    "vol_q": 0.0396,
+    "min_q": -0.105,
+    "min_q_label": "2022Q4"
+   },
+   "phi_0.6": {
+    "drawdown": -0.2819,
+    "vol_q": 0.0471,
+    "min_q": -0.1325,
+    "min_q_label": "2022Q4"
+   },
+   "phi_0.7": {
+    "drawdown": -0.3547,
+    "vol_q": 0.0617,
+    "min_q": -0.1783,
+    "min_q_label": "2022Q4"
+   }
+  },
+  "inflation": {
+   "cpi_dec_dec": {
+    "2021": 0.0704,
+    "2022": 0.0645,
+    "2023": 0.0335,
+    "2024": 0.0289,
+    "2025": 0.0268
+   },
+   "cpi_2026_ytd_sep": 0.0398,
+   "cpi_yoy_sep2026": 0.0374,
+   "odce_calendar_nominal": {
+    "2022": 0.0746,
+    "2023": -0.1204,
+    "2024": -0.0143,
+    "2025": 0.0379
+   },
+   "real_returns": {
+    "ODCE": {
+     "2022": 0.0095,
+     "2023": -0.1489,
+     "2024": -0.0419,
+     "2025": 0.0108
+    },
+    "private_RE": {
+     "2023": -0.0905,
+     "2024": -0.0533,
+     "2025": -0.0037
+    },
+    "private_infra": {
+     "2023": 0.0498,
+     "2024": 0.0341,
+     "2025": 0.0966
+    },
+    "private_NR": {
+     "2023": -0.017,
+     "2024": 0.0079,
+     "2025": 0.0216
+    },
+    "ACWI_RE": {
+     "2023": 0.0595,
+     "2024": 0.0021,
+     "2025": 0.045
+    },
+    "ACWI_infra": {
+     "2023": 0.014,
+     "2024": 0.1226,
+     "2025": 0.1892
+    }
+   },
+   "odce_cum_real_2022_24": -0.1769,
+   "msci_private_infra_cum_real_2023_25": 0.1906,
+   "msci_private_RE_cum_real_2023_25": -0.1422
+  },
+  "uae_property": {
+   "cycles": {
+    "2008_2011": {
+     "peak": [
+      "2008-04-01",
+      151.366
+     ],
+     "trough": [
+      "2010-10-01",
+      96.1115
+     ],
+     "change": -0.365
+    },
+    "2014_2020": {
+     "peak": [
+      "2014-10-01",
+      174.7548
+     ],
+     "trough": [
+      "2020-07-01",
+      121.9808
+     ],
+     "change": -0.302
+    },
+    "rise_2020Q3_2024Q1": 0.4378
+   },
+   "corr_4q_change_uae_vs_brent_lagged_L_quarters": {
+    "0": 0.32,
+    "1": 0.363,
+    "2": 0.312,
+    "3": 0.216,
+    "4": 0.158,
+    "5": 0.146,
+    "6": 0.17,
+    "7": 0.216,
+    "8": 0.25
+   },
+   "sample": "2003-01-01..2024-01-01, n_quarters=85 (overlapping 4q changes)"
+  }
+ }
+}

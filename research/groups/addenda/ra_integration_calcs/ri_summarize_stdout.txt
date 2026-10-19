@@ -1,0 +1,91 @@
+﻿wrote C:\users\dean\ai_envs\adic_tpa_lab\research\groups\addenda\ra_integration_calcs\ra_integration_results.json
+
+## theta*
+| v1 published (census v1.0) | 0.759 | M6 11.10 | 0.759-0.802 (0.782) | None |
+| v1 (7 groups, census v1.1) | 0.830 | M6 5.34 | 0.830-0.878 (0.851) | 0.6176750719756935 |
+| v2 U16 | 0.835 | M6 9.30 | 0.835-0.869 (0.850) | 0.6433152696061011 |
+| v2 U11 | 0.877 | M6 6.62 | 0.877-0.916 (0.897) | 0.6736537248439094 |
+
+## cash map (net $bn): base 12/24 | drought 12/24 | T4' 12/24
+### v1 (7 groups, census v1.1) (theta* 0.830)
+| PE funds | +3.62 / +7.10 | -0.85 / -1.37 | -7.54 / -14.77 |
+| Secondaries | +2.19 / +4.38 | +1.17 / +2.64 | -1.90 / -3.22 |
+| Co-investment | +3.02 / +5.48 | +1.74 / +3.23 | -1.68 / -3.13 |
+| Capital Solutions | +0.58 / +0.96 | +0.51 / +0.84 | -0.19 / -0.56 |
+| Private Credit | +1.22 / +2.41 | +1.12 / +2.21 | -0.67 / -0.77 |
+| Private book | +10.64 / +20.34 | +3.70 / +7.54 | -11.98 / -22.46 |
+| Overlay (unchanged v1 to v2) | +0.31 / +0.62 | +0.31 / +0.62 | -3.01 / -1.40 |
+| Before payout | +10.77 / +20.60 | +3.83 / +7.81 | -15.16 / -24.22 |
+| Liquid-book funding (7.5% payout; T4': canonical draws) | +2.51 / +5.95 | +9.44 / +18.74 | +32.86 / +54.26 |
+### v2 U16 (theta* 0.835)
+| PE funds | +0.46 / +0.96 | -2.44 / -4.61 | -7.45 / -14.19 |
+| Secondaries | +2.19 / +4.38 | +1.17 / +2.64 | -1.90 / -3.23 |
+| Co-investment | +3.02 / +5.48 | +1.74 / +3.23 | -1.69 / -3.14 |
+| Capital Solutions | +0.58 / +0.96 | +0.51 / +0.84 | -0.19 / -0.56 |
+| Private Credit | +1.22 / +2.41 | +1.12 / +2.21 | -0.67 / -0.78 |
+| Real Assets | +0.40 / +0.89 | -0.16 / -0.20 | -2.50 / -4.49 |
+| Private book | +7.87 / +15.07 | +1.95 / +4.11 | -14.40 / -26.39 |
+| Overlay (unchanged v1 to v2) | +0.31 / +0.62 | +0.31 / +0.62 | -3.01 / -1.41 |
+| Before payout | +8.00 / +15.34 | +2.08 / +4.37 | -17.59 / -28.15 |
+| Liquid-book funding (7.5% payout; T4': canonical draws) | +5.27 / +11.21 | +11.19 / +22.18 | +35.29 / +58.29 |
+### v2 U11 (theta* 0.877)
+| PE funds | +2.31 / +4.53 | -0.61 / -1.01 | -5.42 / -10.98 |
+| Secondaries | +2.19 / +4.38 | +1.17 / +2.64 | -1.96 / -3.34 |
+| Co-investment | +3.02 / +5.48 | +1.74 / +3.23 | -1.72 / -3.21 |
+| Capital Solutions | +0.58 / +0.96 | +0.51 / +0.84 | -0.20 / -0.58 |
+| Private Credit | +1.22 / +2.41 | +1.12 / +2.21 | -0.69 / -0.81 |
+| Real Assets | +0.40 / +0.89 | -0.16 / -0.20 | -2.60 / -4.64 |
+| Private book | +9.72 / +18.65 | +3.78 / +7.70 | -12.60 / -23.54 |
+| Overlay (unchanged v1 to v2) | +0.31 / +0.62 | +0.31 / +0.62 | -3.05 / -1.46 |
+| Before payout | +9.85 / +18.91 | +3.91 / +7.97 | -15.82 / -25.36 |
+| Liquid-book funding (7.5% payout; T4': canonical draws) | +3.42 / +7.64 | +9.37 / +18.58 | +33.52 / +55.47 |
+
+## T4' readings
+v1pub@theta* {'gstar': 11.11, 'SH_TP': 17, 'SH_TPF': 17, 'facility_do_nothing': 13.88, 'facility_pacing_rule': 6.09, 'SH_TP_pacing_rule': 20, 'facility_band': 0.0, 'SH_TP_band': 29, 'SH_TP_rule_band': None, 'mixA_head24': 11.96, 'mixB_head24': 10.75, 'hard_row_gap_d0': 11.27, 'd0_month': 24}
+v1@theta* {'gstar': 5.34, 'SH_TP': 21, 'SH_TPF': 21, 'facility_do_nothing': 6.68, 'facility_pacing_rule': 0.0, 'SH_TP_pacing_rule': 30, 'facility_band': 0.0, 'SH_TP_band': None, 'SH_TP_rule_band': None, 'mixA_head24': 17.31, 'mixB_head24': 11.03, 'hard_row_gap_d0': 5.51, 'd0_month': 24}
+v2u16@theta* {'gstar': 9.3, 'SH_TP': 18, 'SH_TPF': 18, 'facility_do_nothing': 11.63, 'facility_pacing_rule': 3.68, 'SH_TP_pacing_rule': 22, 'facility_band': 0.0, 'SH_TP_band': 32, 'SH_TP_rule_band': None, 'mixA_head24': 13.99, 'mixB_head24': 10.76, 'hard_row_gap_d0': 9.47, 'd0_month': 24}
+v2u11@theta* {'gstar': 6.62, 'SH_TP': 20, 'SH_TPF': 20, 'facility_do_nothing': 8.28, 'facility_pacing_rule': 0.24, 'SH_TP_pacing_rule': 24, 'facility_band': 0.0, 'SH_TP_band': None, 'SH_TP_rule_band': None, 'mixA_head24': 16.8, 'mixB_head24': 10.87, 'hard_row_gap_d0': 6.8, 'd0_month': 24}
+v1pub@0.76 {'gstar': 11.12, 'SH_TP': 17, 'SH_TPF': 17, 'facility_do_nothing': 13.9, 'facility_pacing_rule': 6.1, 'SH_TP_pacing_rule': 20, 'facility_band': 0.0, 'SH_TP_band': 29, 'SH_TP_rule_band': None, 'mixA_head24': 11.95, 'mixB_head24': 10.75, 'hard_row_gap_d0': 11.29, 'd0_month': 24}
+v1@0.76 {'gstar': 4.07, 'SH_TP': 22, 'SH_TPF': 22, 'facility_do_nothing': 5.08, 'facility_pacing_rule': 0.0, 'SH_TP_pacing_rule': 33, 'facility_band': 0.0, 'SH_TP_band': None, 'SH_TP_rule_band': None, 'mixA_head24': 17.47, 'mixB_head24': 11.22, 'hard_row_gap_d0': 4.23, 'd0_month': 24}
+v2u16@0.76 {'gstar': 7.81, 'SH_TP': 19, 'SH_TPF': 19, 'facility_do_nothing': 9.76, 'facility_pacing_rule': 1.98, 'SH_TP_pacing_rule': 23, 'facility_band': 0.0, 'SH_TP_band': 35, 'SH_TP_rule_band': None, 'mixA_head24': 15.25, 'mixB_head24': 10.99, 'hard_row_gap_d0': 7.98, 'd0_month': 24}
+v2u11@0.76 {'gstar': 4.42, 'SH_TP': 21, 'SH_TPF': 21, 'facility_do_nothing': 5.52, 'facility_pacing_rule': 0.0, 'SH_TP_pacing_rule': 31, 'facility_band': 0.0, 'SH_TP_band': None, 'SH_TP_rule_band': None, 'mixA_head24': 17.46, 'mixB_head24': 11.21, 'hard_row_gap_d0': 4.59, 'd0_month': 24}
+v1@pooled {'gstar': 5.71, 'SH_TP': 20, 'SH_TPF': 20, 'facility_do_nothing': 7.14, 'facility_pacing_rule': 0.0, 'SH_TP_pacing_rule': 28, 'facility_band': 0.0, 'SH_TP_band': None, 'SH_TP_rule_band': None, 'mixA_head24': 17.26, 'mixB_head24': 10.97, 'hard_row_gap_d0': 5.88, 'd0_month': 24}
+v2u16@pooled {'gstar': 9.61, 'SH_TP': 18, 'SH_TPF': 18, 'facility_do_nothing': 12.01, 'facility_pacing_rule': 4.02, 'SH_TP_pacing_rule': 22, 'facility_band': 0.0, 'SH_TP_band': 32, 'SH_TP_rule_band': None, 'mixA_head24': 13.74, 'mixB_head24': 10.71, 'hard_row_gap_d0': 9.78, 'd0_month': 24}
+v2u11@pooled {'gstar': 6.99, 'SH_TP': 20, 'SH_TPF': 20, 'facility_do_nothing': 8.74, 'facility_pacing_rule': 0.65, 'SH_TP_pacing_rule': 24, 'facility_band': 0.0, 'SH_TP_band': None, 'SH_TP_rule_band': None, 'mixA_head24': 16.5, 'mixB_head24': 10.82, 'hard_row_gap_d0': 7.16, 'd0_month': 24}
+v2u16@theta*|RA leg G15 (reproduction mode) {'gstar': 7.36, 'SH_TP': 19, 'facility_do_nothing': 9.2, 'facility_pacing_rule': 1.27, 'hard_row_gap_d0': 7.53}
+v2u16@theta*|RA extension 0 {'gstar': 9.39, 'SH_TP': 18, 'facility_do_nothing': 11.73, 'facility_pacing_rule': 3.78, 'hard_row_gap_d0': 9.56}
+v2u16@theta*|RA calls x1.0 {'gstar': 8.6, 'SH_TP': 19, 'facility_do_nothing': 10.75, 'facility_pacing_rule': 3.0, 'hard_row_gap_d0': 8.78}
+v2u11@theta*|RA leg G15 (reproduction mode) {'gstar': 4.54, 'SH_TP': 21, 'facility_do_nothing': 5.67, 'facility_pacing_rule': 0.0, 'hard_row_gap_d0': 4.71}
+v2u11@theta*|RA calls x1.0 {'gstar': 5.9, 'SH_TP': 20, 'facility_do_nothing': 7.37, 'facility_pacing_rule': 0.0, 'hard_row_gap_d0': 6.07}
+
+## P(red) %
+| t1|v1pub|dn | M1 7.77 | M6 37.18 (CP 37.54) | max CP M1-M5 21.10 |
+| t1|v1pub|mixA | M1 0.20 | M6 5.80 (CP 5.97) | max CP M1-M5 0.98 |
+| t1|v1pub|mixB | M1 0.15 | M6 6.46 (CP 6.64) | max CP M1-M5 0.79 |
+| t1|v1|dn | M1 4.95 | M6 28.83 (CP 29.17) | max CP M1-M5 14.18 |
+| t1|v1|mixA | M1 0.05 | M6 3.30 (CP 3.44) | max CP M1-M5 0.39 |
+| t1|v1|mixB | M1 0.06 | M6 4.05 (CP 4.20) | max CP M1-M5 0.32 |
+| t1|v2u16|dn | M1 8.36 | M6 36.20 (CP 36.56) | max CP M1-M5 19.64 |
+| t1|v2u16|mixA | M1 0.23 | M6 5.37 (CP 5.53) | max CP M1-M5 0.94 |
+| t1|v2u16|mixB | M1 0.17 | M6 6.16 (CP 6.34) | max CP M1-M5 0.81 |
+| t1|v2u11|dn | M1 6.77 | M6 31.98 (CP 32.33) | max CP M1-M5 16.23 |
+| t1|v2u11|mixA | M1 0.13 | M6 4.08 (CP 4.23) | max CP M1-M5 0.61 |
+| t1|v2u11|mixB | M1 0.10 | M6 4.95 (CP 5.12) | max CP M1-M5 0.52 |
+| integrated|v1pub|dn | M1 1.52 | M6 14.74 (CP 15.15) | max CP M1-M5 6.68 |
+| integrated|v1pub|mixA | M1 0.00 | M6 0.07 (CP 0.10) | max CP M1-M5 0.01 |
+| integrated|v1pub|mixB | M1 0.00 | M6 0.07 (CP 0.12) | max CP M1-M5 0.02 |
+| integrated|v1|dn | M1 0.50 | M6 7.94 (CP 8.26) | max CP M1-M5 3.18 |
+| integrated|v1|mixA | M1 0.00 | M6 0.01 (CP 0.03) | max CP M1-M5 0.01 |
+| integrated|v1|mixB | M1 0.00 | M6 0.02 (CP 0.05) | max CP M1-M5 0.01 |
+| integrated|v2u16|dn | M1 1.41 | M6 11.73 (CP 12.12) | max CP M1-M5 5.65 |
+| integrated|v2u16|mixA | M1 0.00 | M6 0.03 (CP 0.06) | max CP M1-M5 0.01 |
+| integrated|v2u16|mixB | M1 0.00 | M6 0.04 (CP 0.08) | max CP M1-M5 0.02 |
+| integrated|v2u11|dn | M1 0.79 | M6 8.14 (CP 8.47) | max CP M1-M5 3.68 |
+| integrated|v2u11|mixA | M1 0.00 | M6 0.01 (CP 0.02) | max CP M1-M5 0.01 |
+| integrated|v2u11|mixB | M1 0.00 | M6 0.03 (CP 0.05) | max CP M1-M5 0.01 |
+| integrated_raoff|v2u16|dn | M1 2.23 | M6 15.51 (CP 15.94) | max CP M1-M5 7.50 |
+| integrated_raoff|v2u16|mixA | M1 0.00 | M6 0.12 (CP 0.17) | max CP M1-M5 0.02 |
+| integrated_raoff|v2u16|mixB | M1 0.00 | M6 0.11 (CP 0.16) | max CP M1-M5 0.02 |
+| integrated_raoff|v2u11|dn | M1 1.21 | M6 11.05 (CP 11.42) | max CP M1-M5 5.21 |
+| integrated_raoff|v2u11|mixA | M1 0.00 | M6 0.04 (CP 0.08) | max CP M1-M5 0.01 |
+| integrated_raoff|v2u11|mixB | M1 0.00 | M6 0.05 (CP 0.08) | max CP M1-M5 0.01 |

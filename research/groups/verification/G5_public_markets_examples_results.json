@@ -1,0 +1,347 @@
+﻿{
+ "sqrt_impact": {
+  "US large cap (S&P 500 basket)": {
+   "Q=1bn,Y=0.5": {
+    "participation_pct_of_ADV": 0.25,
+    "impact_bps": 2.5,
+    "all_in_sell_bps": 4.0
+   },
+   "Q=1bn,Y=0.7": {
+    "participation_pct_of_ADV": 0.25,
+    "impact_bps": 3.5,
+    "all_in_sell_bps": 5.0
+   },
+   "Q=1bn,Y=1.0": {
+    "participation_pct_of_ADV": 0.25,
+    "impact_bps": 5.0,
+    "all_in_sell_bps": 6.5
+   },
+   "Q=2bn,Y=0.5": {
+    "participation_pct_of_ADV": 0.5,
+    "impact_bps": 3.5,
+    "all_in_sell_bps": 5.0
+   },
+   "Q=2bn,Y=0.7": {
+    "participation_pct_of_ADV": 0.5,
+    "impact_bps": 4.9,
+    "all_in_sell_bps": 6.4
+   },
+   "Q=2bn,Y=1.0": {
+    "participation_pct_of_ADV": 0.5,
+    "impact_bps": 7.1,
+    "all_in_sell_bps": 8.6
+   },
+   "Q=5bn,Y=0.5": {
+    "participation_pct_of_ADV": 1.25,
+    "impact_bps": 5.6,
+    "all_in_sell_bps": 7.1
+   },
+   "Q=5bn,Y=0.7": {
+    "participation_pct_of_ADV": 1.25,
+    "impact_bps": 7.8,
+    "all_in_sell_bps": 9.3
+   },
+   "Q=5bn,Y=1.0": {
+    "participation_pct_of_ADV": 1.25,
+    "impact_bps": 11.2,
+    "all_in_sell_bps": 12.7
+   }
+  },
+  "Developed ex-US large cap": {
+   "Q=1bn,Y=0.5": {
+    "participation_pct_of_ADV": 0.67,
+    "impact_bps": 4.1,
+    "all_in_sell_bps": 9.1
+   },
+   "Q=1bn,Y=0.7": {
+    "participation_pct_of_ADV": 0.67,
+    "impact_bps": 5.7,
+    "all_in_sell_bps": 10.7
+   },
+   "Q=1bn,Y=1.0": {
+    "participation_pct_of_ADV": 0.67,
+    "impact_bps": 8.2,
+    "all_in_sell_bps": 13.2
+   },
+   "Q=2bn,Y=0.5": {
+    "participation_pct_of_ADV": 1.33,
+    "impact_bps": 5.8,
+    "all_in_sell_bps": 10.8
+   },
+   "Q=2bn,Y=0.7": {
+    "participation_pct_of_ADV": 1.33,
+    "impact_bps": 8.1,
+    "all_in_sell_bps": 13.1
+   },
+   "Q=2bn,Y=1.0": {
+    "participation_pct_of_ADV": 1.33,
+    "impact_bps": 11.5,
+    "all_in_sell_bps": 16.5
+   },
+   "Q=5bn,Y=0.5": {
+    "participation_pct_of_ADV": 3.33,
+    "impact_bps": 9.1,
+    "all_in_sell_bps": 14.1
+   },
+   "Q=5bn,Y=0.7": {
+    "participation_pct_of_ADV": 3.33,
+    "impact_bps": 12.8,
+    "all_in_sell_bps": 17.8
+   },
+   "Q=5bn,Y=1.0": {
+    "participation_pct_of_ADV": 3.33,
+    "impact_bps": 18.3,
+    "all_in_sell_bps": 23.3
+   }
+  },
+  "EM equity (MSCI EM basket)": {
+   "Q=1bn,Y=0.5": {
+    "participation_pct_of_ADV": 0.67,
+    "impact_bps": 4.9,
+    "all_in_sell_bps": 22.9
+   },
+   "Q=1bn,Y=0.7": {
+    "participation_pct_of_ADV": 0.67,
+    "impact_bps": 6.9,
+    "all_in_sell_bps": 24.9
+   },
+   "Q=1bn,Y=1.0": {
+    "participation_pct_of_ADV": 0.67,
+    "impact_bps": 9.8,
+    "all_in_sell_bps": 27.8
+   },
+   "Q=2bn,Y=0.5": {
+    "participation_pct_of_ADV": 1.33,
+    "impact_bps": 6.9,
+    "all_in_sell_bps": 24.9
+   },
+   "Q=2bn,Y=0.7": {
+    "participation_pct_of_ADV": 1.33,
+    "impact_bps": 9.7,
+    "all_in_sell_bps": 27.7
+   },
+   "Q=2bn,Y=1.0": {
+    "participation_pct_of_ADV": 1.33,
+    "impact_bps": 13.9,
+    "all_in_sell_bps": 31.9
+   },
+   "Q=5bn,Y=0.5": {
+    "participation_pct_of_ADV": 3.33,
+    "impact_bps": 11.0,
+    "all_in_sell_bps": 29.0
+   },
+   "Q=5bn,Y=0.7": {
+    "participation_pct_of_ADV": 3.33,
+    "impact_bps": 15.3,
+    "all_in_sell_bps": 33.3
+   },
+   "Q=5bn,Y=1.0": {
+    "participation_pct_of_ADV": 3.33,
+    "impact_bps": 21.9,
+    "all_in_sell_bps": 39.9
+   }
+  },
+  "US small cap (Russell 2000 basket)": {
+   "Q=1bn,Y=0.5": {
+    "participation_pct_of_ADV": 2.5,
+    "impact_bps": 12.6,
+    "all_in_sell_bps": 20.6
+   },
+   "Q=1bn,Y=0.7": {
+    "participation_pct_of_ADV": 2.5,
+    "impact_bps": 17.7,
+    "all_in_sell_bps": 25.7
+   },
+   "Q=1bn,Y=1.0": {
+    "participation_pct_of_ADV": 2.5,
+    "impact_bps": 25.3,
+    "all_in_sell_bps": 33.3
+   },
+   "Q=2bn,Y=0.5": {
+    "participation_pct_of_ADV": 5.0,
+    "impact_bps": 17.9,
+    "all_in_sell_bps": 25.9
+   },
+   "Q=2bn,Y=0.7": {
+    "participation_pct_of_ADV": 5.0,
+    "impact_bps": 25.0,
+    "all_in_sell_bps": 33.0
+   },
+   "Q=2bn,Y=1.0": {
+    "participation_pct_of_ADV": 5.0,
+    "impact_bps": 35.8,
+    "all_in_sell_bps": 43.8
+   },
+   "Q=5bn,Y=0.5": {
+    "participation_pct_of_ADV": 12.5,
+    "impact_bps": 28.3,
+    "all_in_sell_bps": 36.3
+   },
+   "Q=5bn,Y=0.7": {
+    "participation_pct_of_ADV": 12.5,
+    "impact_bps": 39.6,
+    "all_in_sell_bps": 47.6
+   },
+   "Q=5bn,Y=1.0": {
+    "participation_pct_of_ADV": 12.5,
+    "impact_bps": 56.6,
+    "all_in_sell_bps": 64.6
+   }
+  }
+ },
+ "glm_smoothing": {
+  "liquid (macro/CTA)": {
+   "theta": [
+    1.0,
+    0.0,
+    0.0
+   ],
+   "reported_vol_over_true": 1.0,
+   "sharpe_inflation_x": 1.0,
+   "contemporaneous_beta_over_true": 1.0,
+   "lag1_autocorr_reported": 0.0
+  },
+  "equity L/S": {
+   "theta": [
+    0.85,
+    0.15,
+    0.0
+   ],
+   "reported_vol_over_true": 0.863,
+   "sharpe_inflation_x": 1.159,
+   "contemporaneous_beta_over_true": 0.85,
+   "lag1_autocorr_reported": 0.171
+  },
+  "event/credit": {
+   "theta": [
+    0.7,
+    0.2,
+    0.1
+   ],
+   "reported_vol_over_true": 0.735,
+   "sharpe_inflation_x": 1.361,
+   "contemporaneous_beta_over_true": 0.7,
+   "lag1_autocorr_reported": 0.296
+  },
+  "illiquid credit/RV": {
+   "theta": [
+    0.55,
+    0.3,
+    0.15
+   ],
+   "reported_vol_over_true": 0.644,
+   "sharpe_inflation_x": 1.552,
+   "contemporaneous_beta_over_true": 0.55,
+   "lag1_autocorr_reported": 0.506
+  }
+ },
+ "fund_gate_queue_cumulative_fraction_paid_to_ADIC_by_quarter": {
+  "calm: others request 5%/q, gate 25%": [
+   1.0
+  ],
+  "crisis: others request 40% then 20%,10%, gate 25%": [
+   0.581,
+   0.848,
+   0.989,
+   1.0
+  ],
+  "crisis: others request 40% then 20%,10%, gate 10%": [
+   0.233,
+   0.388,
+   0.512,
+   0.617,
+   0.712,
+   0.796,
+   0.873,
+   0.942,
+   1.0
+  ]
+ },
+ "investor_level_gate_quarters_to_full_exit": {
+  "1/4 per quarter (e.g. 25%)": 4,
+  "1/8 per quarter": 8,
+  "1/16 per quarter (6.25%)": 16,
+  "1/20 per quarter (5%)": 20
+ },
+ "physical_to_synthetic": {
+  "normal": {
+   "cash_freed_usd_m": 4115.0,
+   "freed_pct_notional": 82.3,
+   "tc_amortised_usd_m_per_yr": 4.0,
+   "annual_carry_cost_usd_m[alpha_net=-fee]": 12.5,
+   "cost_pct_per_yr_of_cash_freed[alpha_net=-fee]": 0.4,
+   "annual_carry_cost_usd_m[alpha_net=0]": 25.0,
+   "cost_pct_per_yr_of_cash_freed[alpha_net=0]": 0.7
+  },
+  "tight (Jun-2026-like)": {
+   "cash_freed_usd_m": 4015.0,
+   "freed_pct_notional": 80.3,
+   "tc_amortised_usd_m_per_yr": 4.0,
+   "annual_carry_cost_usd_m[alpha_net=-fee]": 28.0,
+   "cost_pct_per_yr_of_cash_freed[alpha_net=-fee]": 0.8,
+   "annual_carry_cost_usd_m[alpha_net=0]": 40.5,
+   "cost_pct_per_yr_of_cash_freed[alpha_net=0]": 1.11
+  },
+  "stress": {
+   "cash_freed_usd_m": 2750.0,
+   "freed_pct_notional": 55.0,
+   "tc_amortised_usd_m_per_yr": 4.0,
+   "annual_carry_cost_usd_m[alpha_net=-fee]": 75.0,
+   "cost_pct_per_yr_of_cash_freed[alpha_net=-fee]": 2.87,
+   "annual_carry_cost_usd_m[alpha_net=0]": 87.5,
+   "cost_pct_per_yr_of_cash_freed[alpha_net=0]": 3.33
+  }
+ },
+ "credibility": {
+  "LO: TE 3%, tau 1%": {
+   "k_years": 9.0,
+   "Z(3y)": 0.25,
+   "Z(5y)": 0.357,
+   "Z(10y)": 0.526
+  },
+  "HF: idio 6%, tau 2.5%": {
+   "k_years": 5.76,
+   "Z(3y)": 0.342,
+   "Z(5y)": 0.465,
+   "Z(10y)": 0.635
+  }
+ },
+ "barclay_cta_2009_2025": {
+  "mean_pct": 1.89,
+  "stdev_pct": 3.79
+ },
+ "comparators_pct_per_yr": {
+  "NAV loan (SOFR+5.45% mid + 1.25% fee/4y)": 5.76,
+  "LP secondary at 12% discount amortised 3y": 4.55
+ },
+ "portable_alpha_stress": {
+  "hf_mark_change_usd_m": -198.0,
+  "vm_outflow_usd_m": -660.0,
+  "im_increase_usd_m": 120.0,
+  "cash_needed_within_days_usd_m": 780.0,
+  "expected_hf_cash_available_within_90d_if_gated_with_p": {
+   "0.0": 649.0,
+   "0.2": 519.0,
+   "0.5": 324.0
+  }
+ },
+ "hf_book_contractual_liquidity_usd_bn": {
+  "<=7d": 1.68,
+  "8-90d": 5.46,
+  ">90d": 12.88
+ },
+ "hf_book_crisis_within_90d_usd_bn": 5.78,
+ "crisis_beta_ratios": {
+  "2008 HFRI FWC -19.03% vs S&P 500 TR -37.0% [nrv]": 0.51,
+  "Q1-2020 HFRI FWC -9.4% vs S&P 500 -19.6%": 0.48,
+  "Q1-2020 HFRI EH -12.9% vs S&P 500 -19.6%": 0.66,
+  "Q1-2020 HFRI ED -15.3% vs S&P 500 -19.6%": 0.78,
+  "2022 HFRI FWC -4.2% vs S&P 500 TR -18.1% [nrv]": 0.23,
+  "2022 HFRI EH -10.2% vs S&P 500 TR -18.1% [nrv]": 0.56
+ },
+ "synthetic_manager_mc": {
+  "true_ann_vol_mean": 0.118,
+  "reported_ann_vol_mean": 0.1019,
+  "reported_lag1_ac_mean": 0.167
+ }
+}

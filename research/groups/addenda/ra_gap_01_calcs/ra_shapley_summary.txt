@@ -1,0 +1,50 @@
+﻿book v2u16 theta 0.8347 models ['M1', 'M4', 'M6']
+
+== M1  (1628s)
+  R: v(N) 0.0000  v(empty) 26.9300  total -26.9300  sum phi -26.9300  efficiency err 0.00e+00  interaction idx 1.64  perm32 cover min 0.915 rmse max 0.448
+     path SE range 0.017 - 0.123  RA SE 0.036
+     RA: phi -2.272  first-in (alone) -6.920  share of total 0.084
+  CE: v(N) 246.4463  v(empty) 243.2733  total 3.1730  sum phi 3.1730  efficiency err 4.44e-16  interaction idx 2.13  perm32 cover min 0.920 rmse max 0.095
+     path SE range 0.007 - 0.107  RA SE 0.025
+     RA: phi 0.263  first-in (alone) 1.078  share of total 0.083
+  W: v(N) 280.7545  v(empty) 281.0214  total -0.2668  sum phi -0.2668  efficiency err 5.55e-17  interaction idx 0.48  perm32 cover min 0.920 rmse max 0.049
+     path SE range 0.002 - 0.054  RA SE 0.009
+     RA: phi -0.207  first-in (alone) -0.020  share of total 0.777
+  RA cures24 full / empty: {'mean': 0.7276034212711269, 'p95': 1.9724312431421624, 'cvar95': 2.311127815052591} {'mean': 0.7666599846764186, 'p95': 2.0498518879455765, 'cvar95': 2.3856305162517373}
+
+== M4  (1620s)
+  R: v(N) 0.0000  v(empty) 47.9900  total -47.9900  sum phi -47.9900  efficiency err 0.00e+00  interaction idx 1.49  perm32 cover min 0.900 rmse max 0.629
+     path SE range 0.023 - 0.182  RA SE 0.06
+     RA: phi -4.330  first-in (alone) -12.000  share of total 0.090
+  CE: v(N) 243.7900  v(empty) 237.7647  total 6.0253  sum phi 6.0253  efficiency err 0.00e+00  interaction idx 1.84  perm32 cover min 0.945 rmse max 0.092
+     path SE range 0.01 - 0.14  RA SE 0.03
+     RA: phi 0.501  first-in (alone) 1.659  share of total 0.083
+  W: v(N) 282.0304  v(empty) 280.8339  total 1.1965  sum phi 1.1965  efficiency err 0.00e+00  interaction idx 0.62  perm32 cover min 0.945 rmse max 0.071
+     path SE range 0.002 - 0.059  RA SE 0.009
+     RA: phi -0.024  first-in (alone) 0.310  share of total -0.020
+  RA cures24 full / empty: {'mean': 0.8380697315125588, 'p95': 2.0486547274214986, 'cvar95': 2.3678433215170602} {'mean': 0.8845012319692173, 'p95': 2.1142699498823156, 'cvar95': 2.443866518758857}
+
+== M6  (1506s)
+  R: v(N) 0.0400  v(empty) 66.8200  total -66.7800  sum phi -66.7800  efficiency err 1.42e-14  interaction idx 0.88  perm32 cover min 0.905 rmse max 0.533
+     path SE range 0.02 - 0.174  RA SE 0.039
+     RA: phi -5.230  first-in (alone) -11.270  share of total 0.078
+  CE: v(N) 195.1437  v(empty) 177.4887  total 17.6550  sum phi 17.6550  efficiency err 0.00e+00  interaction idx 1.16  perm32 cover min 0.975 rmse max 0.101
+     path SE range 0.014 - 0.346  RA SE 0.037
+     RA: phi 1.093  first-in (alone) 2.770  share of total 0.062
+  W: v(N) 220.7298  v(empty) 217.2295  total 3.5004  sum phi 3.5004  efficiency err 0.00e+00  interaction idx 1.92  perm32 cover min 0.900 rmse max 0.093
+     path SE range 0.002 - 0.059  RA SE 0.011
+     RA: phi 0.165  first-in (alone) 0.911  share of total 0.047
+  RA cures24 full / empty: {'mean': 0.883181772396243, 'p95': 2.1656532701728617, 'cvar95': 2.4386309151807883} {'mean': 0.9230750631220282, 'p95': 2.242083314016448, 'cvar95': 2.5116703453730764}
+
+| Player | dP(red), pp: M1 / M4 / M6 | dCE, $bn: M1 / M4 / M6 | dE[W~], $bn: M1 / M4 / M6 |
+| CF | -7.4 / -13.5 / -18.0 | +0.06 / +0.17 / +0.11 | +0.42 / +0.52 / +0.40 |
+| PM | -7.0 / -12.7 / -16.9 | -0.67 / -0.64 / -1.60 | +0.49 / +1.58 / -0.56 |
+| PE | -3.3 / -6.3 / -8.0 | +0.61 / +1.08 / +2.06 | -0.24 / -0.18 / +0.21 |
+| RA | -2.3 / -4.3 / -5.2 | +0.26 / +0.50 / +1.09 | -0.21 / -0.02 / +0.17 |
+| PC | -1.9 / -3.4 / -4.3 | -0.02 / +0.11 / +0.29 | +0.12 / +0.26 / +0.07 |
+| OVL | -1.1 / -1.1 / -3.6 | +1.66 / +2.31 / +6.23 | -0.24 / -0.07 / +1.86 |
+| CO | -1.5 / -2.5 / -3.1 | +0.18 / +0.40 / +0.94 | -0.43 / -0.44 / -0.15 |
+| TPA | -0.5 / -0.4 / -3.0 | +0.97 / +1.93 / +8.00 | -0.21 / -0.46 / +1.43 |
+| CS | -1.2 / -2.2 / -2.7 | -0.05 / -0.06 / +0.07 | -0.01 / -0.00 / -0.02 |
+| SEC | -0.8 / -1.5 / -1.9 | +0.16 / +0.23 / +0.46 | +0.05 / +0.01 / +0.09 |
+| Total v(N) - v(empty) | -26.9 / -48.0 / -66.8 | +3.17 / +6.03 / +17.65 | -0.27 / +1.20 / +3.50 |

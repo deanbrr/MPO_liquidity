@@ -1,0 +1,5184 @@
+{
+ "note": "SYNTHETIC - NOT ADIC DATA",
+ "conventions": "\nri_mc (item 3): red-event probability (T6: any liquidity-driven red sale or failed attempt, or a payout below the\nowner's call, within 5 years) for do-nothing, Mix A and Mix B, M1-M6, v1 versus v2. SYNTHETIC - NOT ADIC DATA.\n\nTwo engines, both the local copy of ra_gap_01's ra_engine (itself gap_04's engine extended with the RA module):\n  playbook-free ('t1'): gap_02's certification engine - rate-mode groups, t1 overlay and stage, gap_02 initial\n     state (drought, Z0 = GW with p 0.7), no group playbooks, no contingent budgets. For v2 the Real Assets cash flows\n     run (RA state machine) and RA follows the policy's pacing rule, but RA's own playbook (open-end notices, JV\n     sell-downs, cash-outs, ENR SELL) is off, so the engine stays playbook-free. 50,000 paths; one-sided 95%\n     Clopper-Pearson bounds. Reproduces gap_02's certified mixes on the published v1 book (Cfg.t1()).\n  integrated: groups gap_04's engine with group playbooks (cohort groups, L1 overlay, CFP stage machine with the\n     T4' survival proxy at the book's own theta*, current contingent-budget triggers, links), the October-2026\n     initial state; v2 adds Real Assets as the tenth player with its playbook. 20,000 paths.\nPolicies (gap_02 s2.3): Mix A = revolver $15bn, pacing $6bn + stage cut, reserve 14%; Mix B = revolver $10bn,\npacing $12bn + stage cut, owner band, reserve 8%, $5bn hedge-fund notice; do-nothing = $12bn pacing, 8% reserve,\nhedge-fund notices at Amber. Seed 20261018 everywhere (common random numbers across books and policies).\nThe 'stressed class' is M6 (BlackRock risk-premia-rise + persistent drought + overlay stress), as in gap_02.\nRun: <venv>/python.exe -I -B ri_mc.py  -> ri_mc_results.json\n",
+ "theta_star": {
+  "v1pub": 0.7594775358182917,
+  "v1": 0.8301951681483172,
+  "v2u16": 0.8346798010174658,
+  "v2u11": 0.8770648445577699
+ },
+ "n_t1": 50000,
+ "n_integrated": 20000,
+ "secs": 434.59474635124207,
+ "runs": {
+  "t1|v1pub|M1|dn": {
+   "p_red": 0.07774,
+   "k_red": 3887,
+   "cp_upper_red": 0.07973783712295239,
+   "p_black": 0.03924,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 283.64085009663063,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 0.0,
+   "mean_red_sales": 0.5249759478064921,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 241.94648041948102,
+   "secs": 4.082905054092407
+  },
+  "t1|v1pub|M1|mixA": {
+   "p_red": 0.00202,
+   "k_red": 101,
+   "cp_upper_red": 0.0023827871148446927,
+   "p_black": 0.00072,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 278.9121552465684,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 38.44607249999995,
+   "mean_red_sales": 0.004431876932726956,
+   "p_covenant": 0.00036,
+   "max_debt_ratio_p99": 0.12055440958942923,
+   "ce": 246.60109445078487,
+   "secs": 3.3772945404052734
+  },
+  "t1|v1pub|M1|mixB": {
+   "p_red": 0.00146,
+   "k_red": 73,
+   "cp_upper_red": 0.0017736190206442276,
+   "p_black": 0.0005,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.14338,
+   "mean_wtilde": 283.1375608991635,
+   "mean_withheld": 3.443157325463403,
+   "mean_commit_forgone": 17.949240000000014,
+   "mean_red_sales": 0.003430259673144774,
+   "p_covenant": 0.0001,
+   "max_debt_ratio_p99": 0.03948295959697226,
+   "ce": 243.3645856608195,
+   "secs": 3.3471012115478516
+  },
+  "t1|v1pub|M2|dn": {
+   "p_red": 0.06144,
+   "k_red": 3072,
+   "cp_upper_red": 0.06323534643022745,
+   "p_black": 0.03032,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 308.67018508075927,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 0.0,
+   "mean_red_sales": 0.39860708953302215,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 264.4635453731601,
+   "secs": 4.0406458377838135
+  },
+  "t1|v1pub|M2|mixA": {
+   "p_red": 0.00158,
+   "k_red": 79,
+   "cp_upper_red": 0.0019048547353053822,
+   "p_black": 0.00056,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 301.66666004859155,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 38.549999999999955,
+   "mean_red_sales": 0.0034938162343002865,
+   "p_covenant": 0.00028,
+   "max_debt_ratio_p99": 0.10413759112353152,
+   "ce": 267.0460955846553,
+   "secs": 4.134350776672363
+  },
+  "t1|v1pub|M2|mixB": {
+   "p_red": 0.00106,
+   "k_red": 53,
+   "cp_upper_red": 0.001332386979537143,
+   "p_black": 0.00038,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.1205,
+   "mean_wtilde": 307.86177503518087,
+   "mean_withheld": 3.197242728656077,
+   "mean_commit_forgone": 17.826525000000014,
+   "mean_red_sales": 0.002271453456664158,
+   "p_covenant": 0.0001,
+   "max_debt_ratio_p99": 0.022004165610732235,
+   "ce": 265.2928702619034,
+   "secs": 2.414679527282715
+  },
+  "t1|v1pub|M3|dn": {
+   "p_red": 0.10136,
+   "k_red": 5068,
+   "cp_upper_red": 0.10360721270560441,
+   "p_black": 0.05354,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 258.51509269089996,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 0.0,
+   "mean_red_sales": 0.7249716764615792,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 218.695760429509,
+   "secs": 3.410263776779175
+  },
+  "t1|v1pub|M3|mixA": {
+   "p_red": 0.00292,
+   "k_red": 146,
+   "cp_upper_red": 0.0033491779224942685,
+   "p_black": 0.00136,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 255.68265517679995,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 38.33156999999996,
+   "mean_red_sales": 0.007713623599504797,
+   "p_covenant": 0.00066,
+   "max_debt_ratio_p99": 0.14828690827972169,
+   "ce": 225.28886969516586,
+   "secs": 2.669013261795044
+  },
+  "t1|v1pub|M3|mixB": {
+   "p_red": 0.00232,
+   "k_red": 116,
+   "cp_upper_red": 0.0027063148981567487,
+   "p_black": 0.00102,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.16646,
+   "mean_wtilde": 258.46787130594157,
+   "mean_withheld": 3.632459182929152,
+   "mean_commit_forgone": 17.899785000000016,
+   "mean_red_sales": 0.006604469656351309,
+   "p_covenant": 0.00036,
+   "max_debt_ratio_p99": 0.06659509149103923,
+   "ce": 220.89544880307952,
+   "secs": 3.8617148399353027
+  },
+  "t1|v1pub|M4|dn": {
+   "p_red": 0.20804,
+   "k_red": 10402,
+   "cp_upper_red": 0.21104833681256938,
+   "p_black": 0.10432,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 285.71559906680477,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 0.0,
+   "mean_red_sales": 1.7319186199349066,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 235.39222854251753,
+   "secs": 4.081283092498779
+  },
+  "t1|v1pub|M4|mixA": {
+   "p_red": 0.009,
+   "k_red": 450,
+   "cp_upper_red": 0.009726253944597975,
+   "p_black": 0.00396,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 281.8368504072912,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 46.181752500000016,
+   "mean_red_sales": 0.0275437630487546,
+   "p_covenant": 0.00172,
+   "max_debt_ratio_p99": 0.1694862365718413,
+   "ce": 243.5487535297044,
+   "secs": 4.254620552062988
+  },
+  "t1|v1pub|M4|mixB": {
+   "p_red": 0.00626,
+   "k_red": 313,
+   "cp_upper_red": 0.006871971085219277,
+   "p_black": 0.0021,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.18756,
+   "mean_wtilde": 285.2469574230331,
+   "mean_withheld": 6.955183305687042,
+   "mean_commit_forgone": 33.074685000000045,
+   "mean_red_sales": 0.016572584793732324,
+   "p_covenant": 0.0004,
+   "max_debt_ratio_p99": 0.11969037927756682,
+   "ce": 239.51498520331194,
+   "secs": 4.284302711486816
+  },
+  "t1|v1pub|M5|dn": {
+   "p_red": 0.18626,
+   "k_red": 9313,
+   "cp_upper_red": 0.1891472488298122,
+   "p_black": 0.10456,
+   "p_black_12m": 2e-05,
+   "cp_upper_black_12m": 9.487373836465913e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 266.43670150826233,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 0.0,
+   "mean_red_sales": 1.5759377159009198,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 218.16542116984738,
+   "secs": 2.677687644958496
+  },
+  "t1|v1pub|M5|mixA": {
+   "p_red": 0.00906,
+   "k_red": 453,
+   "cp_upper_red": 0.009788540087607888,
+   "p_black": 0.00392,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 263.5862640882976,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 42.09575249999998,
+   "mean_red_sales": 0.026718749306404742,
+   "p_covenant": 0.00212,
+   "max_debt_ratio_p99": 0.1752867707915078,
+   "ce": 227.21839175938555,
+   "secs": 3.013745069503784
+  },
+  "t1|v1pub|M5|mixB": {
+   "p_red": 0.00728,
+   "k_red": 364,
+   "cp_upper_red": 0.007937038072708515,
+   "p_black": 0.00256,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.21482,
+   "mean_wtilde": 265.97451685358317,
+   "mean_withheld": 5.362450546582034,
+   "mean_commit_forgone": 25.399620000000027,
+   "mean_red_sales": 0.02064840127404442,
+   "p_covenant": 0.0006,
+   "max_debt_ratio_p99": 0.1382175475167999,
+   "ce": 221.80140533699623,
+   "secs": 2.5842621326446533
+  },
+  "t1|v1pub|M6|dn": {
+   "p_red": 0.3718,
+   "k_red": 18590,
+   "cp_upper_red": 0.3753704866773892,
+   "p_black": 0.2472,
+   "p_black_12m": 0.00112,
+   "cp_upper_black_12m": 0.0013990123702467435,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 215.9316414200059,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 0.0,
+   "mean_red_sales": 5.300483732205278,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 166.69575012761268,
+   "secs": 2.5458037853240967
+  },
+  "t1|v1pub|M6|mixA": {
+   "p_red": 0.05798,
+   "k_red": 2899,
+   "cp_upper_red": 0.05972820340174904,
+   "p_black": 0.03688,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 219.08129952321016,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 44.521905,
+   "mean_red_sales": 0.40732244114437505,
+   "p_covenant": 0.01792,
+   "max_debt_ratio_p99": 0.32433928045100424,
+   "ce": 186.34769775591917,
+   "secs": 3.764671802520752
+  },
+  "t1|v1pub|M6|mixB": {
+   "p_red": 0.06456,
+   "k_red": 3228,
+   "cp_upper_red": 0.06639648953052919,
+   "p_black": 0.0385,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.2058,
+   "mean_wtilde": 217.21161524357333,
+   "mean_withheld": 6.504239978218246,
+   "mean_commit_forgone": 31.954860000000036,
+   "mean_red_sales": 0.46039731595144534,
+   "p_covenant": 0.01032,
+   "max_debt_ratio_p99": 0.2529949540570231,
+   "ce": 177.28945874401904,
+   "secs": 3.4033491611480713
+  },
+  "t1|v1|M1|dn": {
+   "p_red": 0.04952,
+   "k_red": 2476,
+   "cp_upper_red": 0.051145341861210177,
+   "p_black": 0.02368,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 282.8021644443815,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 0.0,
+   "mean_red_sales": 0.27595002060794865,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 243.44392735412907,
+   "secs": 2.659789800643921
+  },
+  "t1|v1|M1|mixA": {
+   "p_red": 0.00054,
+   "k_red": 27,
+   "cp_upper_red": 0.0007446070250829342,
+   "p_black": 0.00014,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 278.00399349187865,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 35.832404999999945,
+   "mean_red_sales": 0.0007568557786553515,
+   "p_covenant": 8e-05,
+   "max_debt_ratio_p99": 0.050422842538606474,
+   "ce": 246.99393380284837,
+   "secs": 3.5561065673828125
+  },
+  "t1|v1|M1|mixB": {
+   "p_red": 0.00056,
+   "k_red": 28,
+   "cp_upper_red": 0.0007676982629288185,
+   "p_black": 0.00018,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.14152,
+   "mean_wtilde": 282.45716826392686,
+   "mean_withheld": 3.064136435275,
+   "mean_commit_forgone": 12.695445000000005,
+   "mean_red_sales": 0.0009373306544311121,
+   "p_covenant": 2e-05,
+   "max_debt_ratio_p99": 0.0032192094760525817,
+   "ce": 243.8047009359944,
+   "secs": 4.300583600997925
+  },
+  "t1|v1|M2|dn": {
+   "p_red": 0.03864,
+   "k_red": 1932,
+   "cp_upper_red": 0.04008771600263261,
+   "p_black": 0.01806,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 306.9445389032064,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 0.0,
+   "mean_red_sales": 0.20855738626082,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 265.0702774798555,
+   "secs": 3.415083646774292
+  },
+  "t1|v1|M2|mixA": {
+   "p_red": 0.00044,
+   "k_red": 22,
+   "cp_upper_red": 0.0006282370488848469,
+   "p_black": 0.0001,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 299.929460713186,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 35.801557499999944,
+   "mean_red_sales": 0.0006233695535379498,
+   "p_covenant": 8e-05,
+   "max_debt_ratio_p99": 0.041426525068783485,
+   "ce": 266.6663696324017,
+   "secs": 2.5684831142425537
+  },
+  "t1|v1|M2|mixB": {
+   "p_red": 0.00042,
+   "k_red": 21,
+   "cp_upper_red": 0.0006047529768004748,
+   "p_black": 0.00014,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.11788,
+   "mean_wtilde": 306.4945369435196,
+   "mean_withheld": 2.8009888768954925,
+   "mean_commit_forgone": 12.469950000000004,
+   "mean_red_sales": 0.0006230902338400749,
+   "p_covenant": 2e-05,
+   "max_debt_ratio_p99": 7.586762258408603e-35,
+   "ce": 265.1111266971583,
+   "secs": 4.142124176025391
+  },
+  "t1|v1|M3|dn": {
+   "p_red": 0.06524,
+   "k_red": 3262,
+   "cp_upper_red": 0.06708529367168836,
+   "p_black": 0.03286,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 258.3994943590301,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 0.0,
+   "mean_red_sales": 0.3857426014753076,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 220.9751996355309,
+   "secs": 2.6188836097717285
+  },
+  "t1|v1|M3|mixA": {
+   "p_red": 0.0009,
+   "k_red": 45,
+   "cp_upper_red": 0.001153751392117179,
+   "p_black": 0.00036,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 255.37458501005162,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 35.82873749999995,
+   "mean_red_sales": 0.0014410669969486538,
+   "p_covenant": 0.00018,
+   "max_debt_ratio_p99": 0.06589976058067001,
+   "ce": 226.28223454822015,
+   "secs": 4.438225507736206
+  },
+  "t1|v1|M3|mixB": {
+   "p_red": 0.00108,
+   "k_red": 54,
+   "cp_upper_red": 0.0013546155975247831,
+   "p_black": 0.00048,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.16516,
+   "mean_wtilde": 258.2937910772691,
+   "mean_withheld": 3.2751608053946133,
+   "mean_commit_forgone": 12.785040000000004,
+   "mean_red_sales": 0.0021809281205513497,
+   "p_covenant": 0.0001,
+   "max_debt_ratio_p99": 0.02024554911694838,
+   "ce": 221.84671305043082,
+   "secs": 4.196749925613403
+  },
+  "t1|v1|M4|dn": {
+   "p_red": 0.13926,
+   "k_red": 6963,
+   "cp_upper_red": 0.1418322558250393,
+   "p_black": 0.06686,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 284.99686312772377,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 0.0,
+   "mean_red_sales": 0.9468973676036933,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 238.0161665261897,
+   "secs": 3.6998870372772217
+  },
+  "t1|v1|M4|mixA": {
+   "p_red": 0.00342,
+   "k_red": 171,
+   "cp_upper_red": 0.003881610210398146,
+   "p_black": 0.00112,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 280.5892525916539,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 42.14894249999998,
+   "mean_red_sales": 0.007164281994111725,
+   "p_covenant": 0.00048,
+   "max_debt_ratio_p99": 0.15000125079976748,
+   "ce": 244.24602081419283,
+   "secs": 4.142916202545166
+  },
+  "t1|v1|M4|mixB": {
+   "p_red": 0.00214,
+   "k_red": 107,
+   "cp_upper_red": 0.002512394951198947,
+   "p_black": 0.00078,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.16546,
+   "mean_wtilde": 284.53564283343076,
+   "mean_withheld": 4.834028882976657,
+   "mean_commit_forgone": 26.897715000000026,
+   "mean_red_sales": 0.004751494497557055,
+   "p_covenant": 0.00016,
+   "max_debt_ratio_p99": 0.0756913434646807,
+   "ce": 240.35706733621743,
+   "secs": 4.614986181259155
+  },
+  "t1|v1|M5|dn": {
+   "p_red": 0.12994,
+   "k_red": 6497,
+   "cp_upper_red": 0.13243924760480458,
+   "p_black": 0.07008,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 265.90558822849573,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 0.0,
+   "mean_red_sales": 0.9096093693810864,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 220.8531251985455,
+   "secs": 3.963899850845337
+  },
+  "t1|v1|M5|mixA": {
+   "p_red": 0.0034,
+   "k_red": 170,
+   "cp_upper_red": 0.0038603606507974244,
+   "p_black": 0.00134,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 262.66317434105264,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 38.828752499999965,
+   "mean_red_sales": 0.007042963758202911,
+   "p_covenant": 0.00058,
+   "max_debt_ratio_p99": 0.15000857402000958,
+   "ce": 227.87934845857188,
+   "secs": 2.806791067123413
+  },
+  "t1|v1|M5|mixB": {
+   "p_red": 0.0028,
+   "k_red": 140,
+   "cp_upper_red": 0.00322098708875007,
+   "p_black": 0.0011,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.20958,
+   "mean_wtilde": 265.4556355072154,
+   "mean_withheld": 4.483220178523539,
+   "mean_commit_forgone": 19.459035000000014,
+   "mean_red_sales": 0.006698540899786858,
+   "p_covenant": 0.00026,
+   "max_debt_ratio_p99": 0.09587565786884944,
+   "ce": 222.640706273304,
+   "secs": 2.6642205715179443
+  },
+  "t1|v1|M6|dn": {
+   "p_red": 0.2883,
+   "k_red": 14415,
+   "cp_upper_red": 0.2916510896606047,
+   "p_black": 0.19084,
+   "p_black_12m": 0.0002,
+   "cp_upper_black_12m": 0.00033922076580498095,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 216.44849685148716,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 0.0,
+   "mean_red_sales": 3.5374895128491657,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 172.4791981368249,
+   "secs": 2.6271724700927734
+  },
+  "t1|v1|M6|mixA": {
+   "p_red": 0.03302,
+   "k_red": 1651,
+   "cp_upper_red": 0.03436465575293779,
+   "p_black": 0.02088,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 218.87250273250623,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 40.86421499999998,
+   "mean_red_sales": 0.191248848324008,
+   "p_covenant": 0.0101,
+   "max_debt_ratio_p99": 0.2509931538003659,
+   "ce": 189.35260873713295,
+   "secs": 4.295349597930908
+  },
+  "t1|v1|M6|mixB": {
+   "p_red": 0.04052,
+   "k_red": 2026,
+   "cp_upper_red": 0.0420002880205463,
+   "p_black": 0.02312,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.18758,
+   "mean_wtilde": 217.22426725679014,
+   "mean_withheld": 4.901627830142737,
+   "mean_commit_forgone": 26.50549500000003,
+   "mean_red_sales": 0.24010983300541863,
+   "p_covenant": 0.00698,
+   "max_debt_ratio_p99": 0.21347530655674044,
+   "ce": 181.10041232382838,
+   "secs": 2.640442132949829
+  },
+  "t1|v2u16|M1|dn": {
+   "p_red": 0.0836,
+   "k_red": 4180,
+   "cp_upper_red": 0.08566396496055838,
+   "p_black": 0.04318,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 279.8364985817323,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 0.0,
+   "mean_red_sales": 0.5797520387500378,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 241.8322630282797,
+   "secs": 20.787415027618408,
+   "ra": {
+    "cures24": {
+     "mean": 0.7515096178040537,
+     "p95": 1.942384666228865,
+     "cvar95": 2.3009046091634358
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.022036339633302395,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u16|M1|mixA": {
+   "p_red": 0.0023,
+   "k_red": 115,
+   "cp_upper_red": 0.0026847955806617177,
+   "p_black": 0.001,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 275.34185558572545,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 38.02489499999995,
+   "mean_red_sales": 0.005357196855526394,
+   "p_covenant": 0.00046,
+   "max_debt_ratio_p99": 0.13249907038785635,
+   "ce": 246.26354720711015,
+   "secs": 25.433982610702515,
+   "ra": {
+    "cures24": {
+     "mean": 0.7449870479351739,
+     "p95": 1.9251789242981052,
+     "cvar95": 2.278339370927687
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.00011663352039431705,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u16|M1|mixB": {
+   "p_red": 0.00172,
+   "k_red": 86,
+   "cp_upper_red": 0.0020574386173175074,
+   "p_black": 0.00068,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.14186,
+   "mean_wtilde": 279.52447212337927,
+   "mean_withheld": 3.4781542467938955,
+   "mean_commit_forgone": 17.777430000000013,
+   "mean_red_sales": 0.004041936752286706,
+   "p_covenant": 0.0001,
+   "max_debt_ratio_p99": 0.050789069800728975,
+   "ce": 243.283813180101,
+   "secs": 21.963573932647705,
+   "ra": {
+    "cures24": {
+     "mean": 0.7495625672974441,
+     "p95": 1.9342234896135082,
+     "cvar95": 2.2871718714004072
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.00012107088654396631,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u16|M2|dn": {
+   "p_red": 0.06702,
+   "k_red": 3351,
+   "cp_upper_red": 0.0688880745980236,
+   "p_black": 0.03352,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 300.96298107880307,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 0.0,
+   "mean_red_sales": 0.4468662248143437,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 261.0576748574643,
+   "secs": 22.220882654190063,
+   "ra": {
+    "cures24": {
+     "mean": 0.7173316102915921,
+     "p95": 1.8218345922720747,
+     "cvar95": 2.2420276189136166
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.015378168281848438,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u16|M2|mixA": {
+   "p_red": 0.0018,
+   "k_red": 90,
+   "cp_upper_red": 0.002144400670924453,
+   "p_black": 0.0007,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 294.3285100942819,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 37.96247999999996,
+   "mean_red_sales": 0.00436261319234696,
+   "p_covenant": 0.00034,
+   "max_debt_ratio_p99": 0.11536661211039774,
+   "ce": 263.53926316465095,
+   "secs": 27.46836256980896,
+   "ra": {
+    "cures24": {
+     "mean": 0.7111299759942002,
+     "p95": 1.8038437794128495,
+     "cvar95": 2.2202381104998907
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 7.751133140104437e-05,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u16|M2|mixB": {
+   "p_red": 0.00122,
+   "k_red": 61,
+   "cp_upper_red": 0.0015096754027185753,
+   "p_black": 0.00046,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.11826,
+   "mean_wtilde": 300.4485443621175,
+   "mean_withheld": 3.1851332644666916,
+   "mean_commit_forgone": 17.323155000000014,
+   "mean_red_sales": 0.0028712901433195362,
+   "p_covenant": 0.0001,
+   "max_debt_ratio_p99": 0.03261817092530179,
+   "ce": 262.0427075053064,
+   "secs": 24.717283010482788,
+   "ra": {
+    "cures24": {
+     "mean": 0.7155005842476743,
+     "p95": 1.8148740030442947,
+     "cvar95": 2.2292900017601047
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 6.980112563938501e-05,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u16|M3|dn": {
+   "p_red": 0.10912,
+   "k_red": 5456,
+   "cp_upper_red": 0.11144032090024203,
+   "p_black": 0.05746,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 258.2386081602722,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 0.0,
+   "mean_red_sales": 0.7902250611543702,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 221.59164970622263,
+   "secs": 26.702245473861694,
+   "ra": {
+    "cures24": {
+     "mean": 0.7847483323522262,
+     "p95": 2.0115359948709433,
+     "cvar95": 2.345567783312247
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.033757788768038956,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u16|M3|mixA": {
+   "p_red": 0.00346,
+   "k_red": 173,
+   "cp_upper_red": 0.003924098343621471,
+   "p_black": 0.00152,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 255.5005131763329,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 38.06593499999996,
+   "mean_red_sales": 0.00886293590784721,
+   "p_covenant": 0.00076,
+   "max_debt_ratio_p99": 0.15000661618006958,
+   "ce": 227.80659332932728,
+   "secs": 25.680103063583374,
+   "ra": {
+    "cures24": {
+     "mean": 0.7779522783417842,
+     "p95": 1.9911649636321227,
+     "cvar95": 2.3225365067304997
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.00026594649480411546,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u16|M3|mixB": {
+   "p_red": 0.00266,
+   "k_red": 133,
+   "cp_upper_red": 0.003071205133681019,
+   "p_black": 0.00116,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.16538,
+   "mean_wtilde": 258.27338724941677,
+   "mean_withheld": 3.724552703803118,
+   "mean_commit_forgone": 18.062595000000012,
+   "mean_red_sales": 0.0074669330248047444,
+   "p_covenant": 0.00036,
+   "max_debt_ratio_p99": 0.0780641575342356,
+   "ce": 223.6939940673716,
+   "secs": 20.16632390022278,
+   "ra": {
+    "cures24": {
+     "mean": 0.7827450386022666,
+     "p95": 2.0024513158517006,
+     "cvar95": 2.3309950959301196
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.00030038204232929374,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u16|M4|dn": {
+   "p_red": 0.19348,
+   "k_red": 9674,
+   "cp_upper_red": 0.1964089359569027,
+   "p_black": 0.09668,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 281.2465837537424,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 0.0,
+   "mean_red_sales": 1.5661585908220388,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 236.4083349752644,
+   "secs": 24.351490020751953,
+   "ra": {
+    "cures24": {
+     "mean": 0.8728551056938997,
+     "p95": 2.029678971650463,
+     "cvar95": 2.3649124332177034
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.05606284124388424,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u16|M4|mixA": {
+   "p_red": 0.0078,
+   "k_red": 390,
+   "cp_upper_red": 0.00847877206053438,
+   "p_black": 0.0035,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 277.3710041797892,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 44.81816250000002,
+   "mean_red_sales": 0.023306900821644303,
+   "p_covenant": 0.00138,
+   "max_debt_ratio_p99": 0.16695159121097491,
+   "ce": 243.65127500299351,
+   "secs": 21.236400365829468,
+   "ra": {
+    "cures24": {
+     "mean": 0.8646246650667424,
+     "p95": 2.0088129762382056,
+     "cvar95": 2.341531575340531
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0005795843495793864,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u16|M4|mixB": {
+   "p_red": 0.00558,
+   "k_red": 279,
+   "cp_upper_red": 0.006159813021721888,
+   "p_black": 0.00198,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.16768,
+   "mean_wtilde": 280.9560360741011,
+   "mean_withheld": 6.0706019695722695,
+   "mean_commit_forgone": 31.137615000000046,
+   "mean_red_sales": 0.014534363810857836,
+   "p_covenant": 0.00038,
+   "max_debt_ratio_p99": 0.11582860505420232,
+   "ce": 239.99164411663196,
+   "secs": 24.270278215408325,
+   "ra": {
+    "cures24": {
+     "mean": 0.869585747307912,
+     "p95": 2.0210836632494957,
+     "cvar95": 2.3499942937363434
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0004528189515276239,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u16|M5|dn": {
+   "p_red": 0.18756,
+   "k_red": 9378,
+   "cp_upper_red": 0.19045487266971434,
+   "p_black": 0.10558,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 263.59518464849924,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 0.0,
+   "mean_red_sales": 1.5795602420162866,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 219.7222975286397,
+   "secs": 23.24247932434082,
+   "ra": {
+    "cures24": {
+     "mean": 0.8739078737358889,
+     "p95": 2.112557970891187,
+     "cvar95": 2.446837952788865
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.06742064943055964,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u16|M5|mixA": {
+   "p_red": 0.00868,
+   "k_red": 434,
+   "cp_upper_red": 0.00939392683649164,
+   "p_black": 0.00406,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 260.8533419604918,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 41.41292249999998,
+   "mean_red_sales": 0.02603223379281226,
+   "p_covenant": 0.00182,
+   "max_debt_ratio_p99": 0.1744721338190689,
+   "ce": 228.10761633051416,
+   "secs": 23.16555166244507,
+   "ra": {
+    "cures24": {
+     "mean": 0.8655625751696125,
+     "p95": 2.0910332520249657,
+     "cvar95": 2.419932520907605
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0006961253161372472,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u16|M5|mixB": {
+   "p_red": 0.00746,
+   "k_red": 373,
+   "cp_upper_red": 0.008124648536970638,
+   "p_black": 0.00262,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.21044,
+   "mean_wtilde": 263.30898775595523,
+   "mean_withheld": 5.26647747963441,
+   "mean_commit_forgone": 24.615045000000027,
+   "mean_red_sales": 0.020670999923560553,
+   "p_covenant": 0.0006,
+   "max_debt_ratio_p99": 0.13745281860095512,
+   "ce": 223.02894817104968,
+   "secs": 22.41048312187195,
+   "ra": {
+    "cures24": {
+     "mean": 0.8707842654992719,
+     "p95": 2.1023441767360223,
+     "cvar95": 2.4283626694373095
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0006729080669688264,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u16|M6|dn": {
+   "p_red": 0.362,
+   "k_red": 18100,
+   "cp_upper_red": 0.3655509984272334,
+   "p_black": 0.24004,
+   "p_black_12m": 0.00044,
+   "cp_upper_black_12m": 0.0006282370488848469,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 215.02261655577936,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 0.0,
+   "mean_red_sales": 5.071615984583247,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 169.9840390590546,
+   "secs": 27.338102102279663,
+   "ra": {
+    "cures24": {
+     "mean": 0.9083899669910365,
+     "p95": 2.1091587243454284,
+     "cvar95": 2.447932313605505
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.3041114416321702,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u16|M6|mixA": {
+   "p_red": 0.05366,
+   "k_red": 2683,
+   "cp_upper_red": 0.055346902426361186,
+   "p_black": 0.03438,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 218.14525972768507,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 43.737465,
+   "mean_red_sales": 0.3646712555071237,
+   "p_covenant": 0.01634,
+   "max_debt_ratio_p99": 0.30792418763518375,
+   "ce": 188.4930996271558,
+   "secs": 25.263330221176147,
+   "ra": {
+    "cures24": {
+     "mean": 0.8997269634554484,
+     "p95": 2.085157049930823,
+     "cvar95": 2.420427814199723
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.021415850913258483,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u16|M6|mixB": {
+   "p_red": 0.0616,
+   "k_red": 3080,
+   "cp_upper_red": 0.06339748700908286,
+   "p_black": 0.03676,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.19056,
+   "mean_wtilde": 216.30256585649133,
+   "mean_withheld": 6.171923546219061,
+   "mean_commit_forgone": 31.147290000000048,
+   "mean_red_sales": 0.42676031439035583,
+   "p_covenant": 0.0095,
+   "max_debt_ratio_p99": 0.24538808192563413,
+   "ce": 179.85806382125165,
+   "secs": 28.013936281204224,
+   "ra": {
+    "cures24": {
+     "mean": 0.9048379875125311,
+     "p95": 2.097633985634878,
+     "cvar95": 2.429952980351951
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.025923722514023934,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u11|M1|dn": {
+   "p_red": 0.06768,
+   "k_red": 3384,
+   "cp_upper_red": 0.06955642603702657,
+   "p_black": 0.03408,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 279.44232650796073,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 0.0,
+   "mean_red_sales": 0.42993464457857333,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 242.57977114917236,
+   "secs": 21.204658031463623,
+   "ra": {
+    "cures24": {
+     "mean": 0.7515096178040537,
+     "p95": 1.942384666228865,
+     "cvar95": 2.3009046091634358
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.01663569928652425,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u11|M1|mixA": {
+   "p_red": 0.00128,
+   "k_red": 64,
+   "cp_upper_red": 0.00157586584203386,
+   "p_black": 0.0005,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 274.8996003879567,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 36.691567499999955,
+   "mean_red_sales": 0.0026205802581924244,
+   "p_covenant": 0.0002,
+   "max_debt_ratio_p99": 0.09632546039533905,
+   "ce": 246.4326643933755,
+   "secs": 25.578091621398926,
+   "ra": {
+    "cures24": {
+     "mean": 0.7452148958742604,
+     "p95": 1.92520282695253,
+     "cvar95": 2.2784910450617293
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 4.82925971634179e-05,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u11|M1|mixB": {
+   "p_red": 0.00102,
+   "k_red": 51,
+   "cp_upper_red": 0.0012878664304467786,
+   "p_black": 0.00046,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.14152,
+   "mean_wtilde": 279.1744543638679,
+   "mean_withheld": 3.249727915688795,
+   "mean_commit_forgone": 15.15411000000001,
+   "mean_red_sales": 0.002201164995942808,
+   "p_covenant": 6e-05,
+   "max_debt_ratio_p99": 0.02696359713358772,
+   "ce": 243.50909174415742,
+   "secs": 22.140077590942383,
+   "ra": {
+    "cures24": {
+     "mean": 0.7499423667416116,
+     "p95": 1.9342242527441982,
+     "cvar95": 2.2873344191121197
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 6.504239676789217e-05,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u11|M2|dn": {
+   "p_red": 0.05388,
+   "k_red": 2694,
+   "cp_upper_red": 0.05557009393013819,
+   "p_black": 0.02666,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 300.14664833483624,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 0.0,
+   "mean_red_sales": 0.3296867679003361,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 261.384064850928,
+   "secs": 25.276169300079346,
+   "ra": {
+    "cures24": {
+     "mean": 0.7173316102915921,
+     "p95": 1.8218345922720747,
+     "cvar95": 2.2420276189136166
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.011518381552207618,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u11|M2|mixA": {
+   "p_red": 0.00102,
+   "k_red": 51,
+   "cp_upper_red": 0.0012878664304467786,
+   "p_black": 0.00038,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 293.4885733308934,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 36.57996749999995,
+   "mean_red_sales": 0.002289045280335647,
+   "p_covenant": 0.00016,
+   "max_debt_ratio_p99": 0.0812473661327111,
+   "ce": 263.33453637223374,
+   "secs": 24.343406200408936,
+   "ra": {
+    "cures24": {
+     "mean": 0.7113530445796541,
+     "p95": 1.804269388305682,
+     "cvar95": 2.2204281095010256
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 3.838534149480074e-05,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u11|M2|mixB": {
+   "p_red": 0.00072,
+   "k_red": 36,
+   "cp_upper_red": 0.0009507049255347372,
+   "p_black": 0.0003,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.11788,
+   "mean_wtilde": 299.7619915252024,
+   "mean_withheld": 2.9573279006673348,
+   "mean_commit_forgone": 14.672340000000009,
+   "mean_red_sales": 0.0014732483507869472,
+   "p_covenant": 6e-05,
+   "max_debt_ratio_p99": 0.013940092366068649,
+   "ce": 261.96506069426493,
+   "secs": 24.787779569625854,
+   "ra": {
+    "cures24": {
+     "mean": 0.7158867997572408,
+     "p95": 1.8161152813085966,
+     "cvar95": 2.2295144280418935
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 3.8114434214755895e-05,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u11|M3|dn": {
+   "p_red": 0.08848,
+   "k_red": 4424,
+   "cp_upper_red": 0.0905967469640379,
+   "p_black": 0.0462,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 258.1899759850801,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 0.0,
+   "mean_red_sales": 0.5885227640354516,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 222.7056343469763,
+   "secs": 23.30028462409973,
+   "ra": {
+    "cures24": {
+     "mean": 0.7847485707748247,
+     "p95": 2.0115359948709433,
+     "cvar95": 2.345572549857602
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.02561941165716065,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u11|M3|mixA": {
+   "p_red": 0.00212,
+   "k_red": 106,
+   "cp_upper_red": 0.0024908127061258616,
+   "p_black": 0.00086,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 255.34341962381657,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 36.770294999999955,
+   "mean_red_sales": 0.004556862630184835,
+   "p_covenant": 0.00042,
+   "max_debt_ratio_p99": 0.11924402701854629,
+   "ce": 228.2660124834863,
+   "secs": 23.54936647415161,
+   "ra": {
+    "cures24": {
+     "mean": 0.778183891333907,
+     "p95": 1.9917192859879624,
+     "cvar95": 2.322664809838043
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.00012297790004108907,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u11|M3|mixB": {
+   "p_red": 0.00182,
+   "k_red": 91,
+   "cp_upper_red": 0.0021661169324428673,
+   "p_black": 0.00086,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.16516,
+   "mean_wtilde": 258.1776814563752,
+   "mean_withheld": 3.495480684931069,
+   "mean_commit_forgone": 15.47167500000001,
+   "mean_red_sales": 0.0043276119944856304,
+   "p_covenant": 0.00014,
+   "max_debt_ratio_p99": 0.05052968975791519,
+   "ce": 224.16704065543033,
+   "secs": 23.797797441482544,
+   "ra": {
+    "cures24": {
+     "mean": 0.7830972669866075,
+     "p95": 2.0039574961520534,
+     "cvar95": 2.331095723063536
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.00018062005776752895,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u11|M4|dn": {
+   "p_red": 0.15954,
+   "k_red": 7977,
+   "cp_upper_red": 0.16225820878718045,
+   "p_black": 0.07858,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 280.9090610389978,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 0.0,
+   "mean_red_sales": 1.1738135505606475,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 237.60863558905842,
+   "secs": 25.357943773269653,
+   "ra": {
+    "cures24": {
+     "mean": 0.8728556213180643,
+     "p95": 2.029678971650463,
+     "cvar95": 2.3649227415776495
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0431937049970961,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u11|M4|mixA": {
+   "p_red": 0.00472,
+   "k_red": 236,
+   "cp_upper_red": 0.0052561423561198264,
+   "p_black": 0.00212,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 276.78366390971513,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 42.742245,
+   "mean_red_sales": 0.012244437518347995,
+   "p_covenant": 0.00082,
+   "max_debt_ratio_p99": 0.15319160485390268,
+   "ce": 243.94855703635318,
+   "secs": 25.334540605545044,
+   "ra": {
+    "cures24": {
+     "mean": 0.8648932728996943,
+     "p95": 2.010076813144033,
+     "cvar95": 2.3417051134512836
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.000273146885526109,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u11|M4|mixB": {
+   "p_red": 0.00332,
+   "k_red": 166,
+   "cp_upper_red": 0.003775325035541154,
+   "p_black": 0.00122,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.16558,
+   "mean_wtilde": 280.59285357222075,
+   "mean_withheld": 5.137282063566856,
+   "mean_commit_forgone": 28.038150000000037,
+   "mean_red_sales": 0.007835421740136106,
+   "p_covenant": 0.00028,
+   "max_debt_ratio_p99": 0.09579965519477252,
+   "ce": 240.37935872972824,
+   "secs": 21.008237838745117,
+   "ra": {
+    "cures24": {
+     "mean": 0.8701668875593049,
+     "p95": 2.021767490281528,
+     "cvar95": 2.3502055674996503
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.00024993534674181214,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u11|M5|dn": {
+   "p_red": 0.15788,
+   "k_red": 7894,
+   "cp_upper_red": 0.16058687576379072,
+   "p_black": 0.08718,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 263.3555255365628,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 0.0,
+   "mean_red_sales": 1.2150377892088462,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 221.00389357454378,
+   "secs": 19.420073747634888,
+   "ra": {
+    "cures24": {
+     "mean": 0.8739083366958175,
+     "p95": 2.112557970891187,
+     "cvar95": 2.4468472082852366
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.05265346236955416,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u11|M5|mixA": {
+   "p_red": 0.00554,
+   "k_red": 277,
+   "cp_upper_red": 0.006117860936926872,
+   "p_black": 0.00244,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 260.4135210822376,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 39.784552499999975,
+   "mean_red_sales": 0.01401493033392082,
+   "p_covenant": 0.00112,
+   "max_debt_ratio_p99": 0.16040037844496335,
+   "ce": 228.41221277365594,
+   "secs": 21.33780813217163,
+   "ra": {
+    "cures24": {
+     "mean": 0.8658307980280195,
+     "p95": 2.091207580153865,
+     "cvar95": 2.420011549550189
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.00034411818486275393,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u11|M5|mixB": {
+   "p_red": 0.00466,
+   "k_red": 233,
+   "cp_upper_red": 0.005192950536324569,
+   "p_black": 0.00176,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.20966,
+   "mean_wtilde": 263.0412313995915,
+   "mean_withheld": 4.809057521188383,
+   "mean_commit_forgone": 21.72924000000002,
+   "mean_red_sales": 0.011546424244065507,
+   "p_covenant": 0.00036,
+   "max_debt_ratio_p99": 0.11985993365710193,
+   "ce": 223.44435535773775,
+   "secs": 21.631584405899048,
+   "ra": {
+    "cures24": {
+     "mean": 0.8712862159440925,
+     "p95": 2.1028979842473188,
+     "cvar95": 2.428475971258356
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.00038127436387951834,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u11|M6|dn": {
+   "p_red": 0.31982,
+   "k_red": 15991,
+   "cp_upper_red": 0.3232685621512022,
+   "p_black": 0.21172,
+   "p_black_12m": 0.00018,
+   "cp_upper_black_12m": 0.0003140832671552029,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 215.27777949313537,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 0.0,
+   "mean_red_sales": 4.170514328041008,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 172.62150030261606,
+   "secs": 27.07510232925415,
+   "ra": {
+    "cures24": {
+     "mean": 0.9084377232727994,
+     "p95": 2.1091587243454284,
+     "cvar95": 2.448723947959377
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.2576142314684279,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u11|M6|mixA": {
+   "p_red": 0.0408,
+   "k_red": 2040,
+   "cp_upper_red": 0.04228506525589992,
+   "p_black": 0.0261,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 218.03576709704808,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 41.920995,
+   "mean_red_sales": 0.2522775779462209,
+   "p_covenant": 0.01254,
+   "max_debt_ratio_p99": 0.27329941695609494,
+   "ce": 189.86692915570805,
+   "secs": 19.85010576248169,
+   "ra": {
+    "cures24": {
+     "mean": 0.9000034202936958,
+     "p95": 2.085561871093929,
+     "cvar95": 2.4205322465124124
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.015137236473873812,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "t1|v2u11|M6|mixB": {
+   "p_red": 0.04954,
+   "k_red": 2477,
+   "cp_upper_red": 0.05116564639092659,
+   "p_black": 0.0287,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 5.991285062455488e-05,
+   "p_band_12m": 0.18778,
+   "mean_wtilde": 216.30073459185644,
+   "mean_withheld": 5.371952355939732,
+   "mean_commit_forgone": 28.49809500000004,
+   "mean_red_sales": 0.3062537304484296,
+   "p_covenant": 0.0077,
+   "max_debt_ratio_p99": 0.22545384275917676,
+   "ce": 181.64193283203292,
+   "secs": 24.036226987838745,
+   "ra": {
+    "cures24": {
+     "mean": 0.9053904341902927,
+     "p95": 2.0986540480175515,
+     "cvar95": 2.4301029561130463
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.01919403206595114,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571432
+   }
+  },
+  "integrated|v1pub|M1|dn": {
+   "p_red": 0.01515,
+   "k_red": 303,
+   "cp_upper_red": 0.01664917290745427,
+   "p_black": 0.00435,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 282.65898930948924,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 4.989554999999998,
+   "mean_red_sales": 0.03990655393111839,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 246.33976005883832,
+   "secs": 45.598193407058716
+  },
+  "integrated|v1pub|M1|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 280.1126616072005,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 37.217696249999946,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.007683267932015224,
+   "ce": 248.91552201144304,
+   "secs": 36.10915279388428
+  },
+  "integrated|v1pub|M1|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.166,
+   "mean_wtilde": 283.7596896879901,
+   "mean_withheld": 2.7167795594543143,
+   "mean_commit_forgone": 15.130845000000008,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 5.819514507715503e-51,
+   "ce": 245.40653674450687,
+   "secs": 49.068408727645874
+  },
+  "integrated|v1pub|M2|dn": {
+   "p_red": 0.0119,
+   "k_red": 238,
+   "cp_upper_red": 0.013240265715778942,
+   "p_black": 0.00335,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 306.07111497457174,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 4.861904999999999,
+   "mean_red_sales": 0.031250526384789465,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 266.4756776890729,
+   "secs": 42.76211762428284
+  },
+  "integrated|v1pub|M2|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 301.59487494497625,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 36.99848156249994,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0054032514976233076,
+   "ce": 267.7384861248623,
+   "secs": 53.0557644367218
+  },
+  "integrated|v1pub|M2|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.1409,
+   "mean_wtilde": 307.3835575135195,
+   "mean_withheld": 2.5150001020666477,
+   "mean_commit_forgone": 14.325082500000008,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 265.73006231175185,
+   "secs": 40.969337701797485
+  },
+  "integrated|v1pub|M3|dn": {
+   "p_red": 0.02115,
+   "k_red": 423,
+   "cp_upper_red": 0.022901030025114958,
+   "p_black": 0.00575,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 261.3656898211621,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 5.106419999999999,
+   "mean_red_sales": 0.05736958774900429,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 227.42476258090812,
+   "secs": 39.07007551193237
+  },
+  "integrated|v1pub|M3|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 259.69524908796546,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 37.479738749999946,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.01039596302888193,
+   "ce": 230.54666230103948,
+   "secs": 47.656503200531006
+  },
+  "integrated|v1pub|M3|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.1892,
+   "mean_wtilde": 262.2206740495266,
+   "mean_withheld": 2.892973800261104,
+   "mean_commit_forgone": 15.990660000000004,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 1.3370356016141942e-50,
+   "ce": 226.2479281910228,
+   "secs": 39.90040707588196
+  },
+  "integrated|v1pub|M4|dn": {
+   "p_red": 0.06385,
+   "k_red": 1277,
+   "cp_upper_red": 0.06676580013438677,
+   "p_black": 0.02035,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 284.53742252209156,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 5.750249999999999,
+   "mean_red_sales": 0.23908407752773655,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 243.33785825214318,
+   "secs": 46.55796265602112
+  },
+  "integrated|v1pub|M4|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 281.8051825463169,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 42.698043749999954,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.05716102333356953,
+   "ce": 246.24797639908823,
+   "secs": 50.75807309150696
+  },
+  "integrated|v1pub|M4|mixB": {
+   "p_red": 5e-05,
+   "k_red": 1,
+   "cp_upper_red": 0.00023717102659408986,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.18925,
+   "mean_wtilde": 285.3052384800048,
+   "mean_withheld": 3.9920055068185496,
+   "mean_commit_forgone": 24.971130000000013,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 1.2227070242914763e-34,
+   "ce": 242.26485858005805,
+   "secs": 42.76249361038208
+  },
+  "integrated|v1pub|M5|dn": {
+   "p_red": 0.06255,
+   "k_red": 1251,
+   "cp_upper_red": 0.06543880721790578,
+   "p_black": 0.0223,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 265.6361150237979,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 5.454179999999999,
+   "mean_red_sales": 0.24260325468008595,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 226.84401689279144,
+   "secs": 42.35446000099182
+  },
+  "integrated|v1pub|M5|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 264.1046840445421,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 40.27076531249995,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.056189829783677224,
+   "ce": 230.56112019631712,
+   "secs": 43.92674493789673
+  },
+  "integrated|v1pub|M5|mixB": {
+   "p_red": 5e-05,
+   "k_red": 1,
+   "cp_upper_red": 0.00023717102659408986,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.2376,
+   "mean_wtilde": 266.071609473136,
+   "mean_withheld": 3.9643277932653525,
+   "mean_commit_forgone": 20.702775000000013,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 2.275643692996275e-34,
+   "ce": 225.23524963132763,
+   "secs": 42.935771226882935
+  },
+  "integrated|v1pub|M6|dn": {
+   "p_red": 0.14735,
+   "k_red": 2947,
+   "cp_upper_red": 0.15153549540352765,
+   "p_black": 0.07165,
+   "p_black_12m": 5e-05,
+   "cp_upper_black_12m": 0.00023717102659408986,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 222.06173682388882,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 5.874359999999999,
+   "mean_red_sales": 0.7682601160747592,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 194.84133678035656,
+   "secs": 56.82186841964722
+  },
+  "integrated|v1pub|M6|mixA": {
+   "p_red": 0.00065,
+   "k_red": 13,
+   "cp_upper_red": 0.0010332303267696736,
+   "p_black": 5e-05,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 223.2431530248709,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 42.773073749999966,
+   "mean_red_sales": 0.000320943931913611,
+   "p_covenant": 0.00015,
+   "max_debt_ratio_p99": 0.1368694292643784,
+   "ce": 199.35327765069934,
+   "secs": 38.40606713294983
+  },
+  "integrated|v1pub|M6|mixB": {
+   "p_red": 0.00075,
+   "k_red": 15,
+   "cp_upper_red": 0.001154622703752633,
+   "p_black": 0.0001,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.21395,
+   "mean_wtilde": 221.1435572532775,
+   "mean_withheld": 4.30716635273161,
+   "mean_commit_forgone": 27.036307500000017,
+   "mean_red_sales": 0.0009409662963244857,
+   "p_covenant": 5e-05,
+   "max_debt_ratio_p99": 0.08043277662741512,
+   "ce": 193.02114320785356,
+   "secs": 52.167535066604614
+  },
+  "integrated|v1|M1|dn": {
+   "p_red": 0.005,
+   "k_red": 100,
+   "cp_upper_red": 0.005901292740007359,
+   "p_black": 0.00105,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 281.49850070555925,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 4.329569999999999,
+   "mean_red_sales": 0.008766639756951758,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 246.39296873092107,
+   "secs": 51.855170249938965
+  },
+  "integrated|v1|M1|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 279.3442858912345,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 34.97555906249994,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0010894498545774727,
+   "ce": 249.42942079609102,
+   "secs": 45.7178156375885
+  },
+  "integrated|v1|M1|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.166,
+   "mean_wtilde": 282.5256875648625,
+   "mean_withheld": 2.479604810281112,
+   "mean_commit_forgone": 11.084471250000002,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 245.8108251127243,
+   "secs": 42.99066758155823
+  },
+  "integrated|v1|M2|dn": {
+   "p_red": 0.0042,
+   "k_red": 84,
+   "cp_upper_red": 0.005033479005514445,
+   "p_black": 0.00075,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 304.1332186567572,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 4.187879999999999,
+   "mean_red_sales": 0.006752095634079626,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 265.89581421802046,
+   "secs": 34.92669463157654
+  },
+  "integrated|v1|M2|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 299.97442823059873,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 34.77327281249994,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 4.55828859655694e-34,
+   "ce": 267.5511398808496,
+   "secs": 35.23121523857117
+  },
+  "integrated|v1|M2|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.1409,
+   "mean_wtilde": 305.2384212559386,
+   "mean_withheld": 2.2912009675835674,
+   "mean_commit_forgone": 10.424863125,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 265.4717344632683,
+   "secs": 37.640307664871216
+  },
+  "integrated|v1|M3|dn": {
+   "p_red": 0.00715,
+   "k_red": 143,
+   "cp_upper_red": 0.008210131777751851,
+   "p_black": 0.00175,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 260.96949921015204,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 4.4652449999999995,
+   "mean_red_sales": 0.012815397710070914,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 228.14817639018213,
+   "secs": 49.518818855285645
+  },
+  "integrated|v1|M3|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 259.566237510457,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 35.18881499999994,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.003375177235687917,
+   "ce": 231.5881650210631,
+   "secs": 39.845694065093994
+  },
+  "integrated|v1|M3|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.1892,
+   "mean_wtilde": 261.7808759069592,
+   "mean_withheld": 2.649668060245872,
+   "mean_commit_forgone": 11.838761250000003,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 5.716845198460764e-52,
+   "ce": 227.24057556777578,
+   "secs": 43.347185134887695
+  },
+  "integrated|v1|M4|dn": {
+   "p_red": 0.0264,
+   "k_red": 528,
+   "cp_upper_red": 0.02834147481026396,
+   "p_black": 0.00645,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 283.4585564742623,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 5.465699999999999,
+   "mean_red_sales": 0.06815667885453068,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 243.73182624667837,
+   "secs": 43.315916299819946
+  },
+  "integrated|v1|M4|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 281.04062448182424,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 38.94196968749994,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.018453437159126104,
+   "ce": 247.01688004333593,
+   "secs": 39.9209189414978
+  },
+  "integrated|v1|M4|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.1892,
+   "mean_wtilde": 284.3748975215848,
+   "mean_withheld": 3.1970411505626544,
+   "mean_commit_forgone": 18.805976250000008,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 1.926421750311396e-50,
+   "ce": 242.69564503429146,
+   "secs": 51.687987089157104
+  },
+  "integrated|v1|M5|dn": {
+   "p_red": 0.0297,
+   "k_red": 594,
+   "cp_upper_red": 0.03175079206872764,
+   "p_black": 0.00835,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 264.65843317465664,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 4.979894999999999,
+   "mean_red_sales": 0.08139122139746446,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 227.15361413761428,
+   "secs": 47.51922297477722
+  },
+  "integrated|v1|M5|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 263.5690437040514,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 37.54228312499995,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.018488023021279602,
+   "ce": 231.34968211838756,
+   "secs": 48.01711177825928
+  },
+  "integrated|v1|M5|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.2376,
+   "mean_wtilde": 265.3459954571214,
+   "mean_withheld": 3.4344350772525583,
+   "mean_commit_forgone": 15.686716875000007,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 1.7771229870699046e-50,
+   "ce": 225.83583904381405,
+   "secs": 47.634028911590576
+  },
+  "integrated|v1|M6|dn": {
+   "p_red": 0.0794,
+   "k_red": 1588,
+   "cp_upper_red": 0.08261498747158398,
+   "p_black": 0.03165,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 221.4963539720655,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 5.635934999999999,
+   "mean_red_sales": 0.2985785262651333,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 195.9264478823949,
+   "secs": 46.12424302101135
+  },
+  "integrated|v1|M6|mixA": {
+   "p_red": 0.0001,
+   "k_red": 2,
+   "cp_upper_red": 0.00031475587601236216,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 222.93337754888154,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 39.37224937499995,
+   "mean_red_sales": 7.367537756884082e-05,
+   "p_covenant": 5e-05,
+   "max_debt_ratio_p99": 0.08581346166744216,
+   "ce": 199.96041382583607,
+   "secs": 51.62895727157593
+  },
+  "integrated|v1|M6|mixB": {
+   "p_red": 0.0002,
+   "k_red": 4,
+   "cp_upper_red": 0.00045761698778642816,
+   "p_black": 5e-05,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.21385,
+   "mean_wtilde": 220.7962541115229,
+   "mean_withheld": 3.4404263935465256,
+   "mean_commit_forgone": 21.044225625000013,
+   "mean_red_sales": 0.00021163051953420996,
+   "p_covenant": 5e-05,
+   "max_debt_ratio_p99": 0.03607714546271957,
+   "ce": 193.42250689407547,
+   "secs": 37.90481376647949
+  },
+  "integrated|v2u16|M1|dn": {
+   "p_red": 0.01405,
+   "k_red": 281,
+   "cp_upper_red": 0.015497578910864654,
+   "p_black": 0.0043,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 278.8055381214377,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 4.914059999999999,
+   "mean_red_sales": 0.037361325349513676,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 246.05267944051022,
+   "secs": 93.54816460609436,
+   "ra": {
+    "cures24": {
+     "mean": 0.7332004497755747,
+     "p95": 1.960928528926901,
+     "cvar95": 2.327367564137455
+    },
+    "jv_cash": 0.02121579672164161,
+    "oe_redemptions": 4.124071280147927,
+    "forced_sale_cash": 0.0003643486806652165,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u16|M1|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 276.6325995502304,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 36.52199156249994,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.009743027035791139,
+   "ce": 248.6609570650901,
+   "secs": 91.41545557975769,
+   "ra": {
+    "cures24": {
+     "mean": 0.743515181577775,
+     "p95": 1.9780991585571168,
+     "cvar95": 2.3196036107453306
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 3.2549702014134407,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u16|M1|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.166,
+   "mean_wtilde": 279.8722417445878,
+   "mean_withheld": 2.6972992694562943,
+   "mean_commit_forgone": 13.903246875000006,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 7.934834957588125e-51,
+   "ce": 245.31020037324228,
+   "secs": 104.1518783569336,
+   "ra": {
+    "cures24": {
+     "mean": 0.731944881134304,
+     "p95": 1.9546201045199165,
+     "cvar95": 2.318472829912245
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 4.0495070676454406,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u16|M2|dn": {
+   "p_red": 0.01165,
+   "k_red": 233,
+   "cp_upper_red": 0.012977154638106756,
+   "p_black": 0.00375,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 298.68846603086314,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 4.793594999999999,
+   "mean_red_sales": 0.030716520141938587,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 263.2317881616216,
+   "secs": 108.14341282844543,
+   "ra": {
+    "cures24": {
+     "mean": 0.6972043041597149,
+     "p95": 1.892876099187924,
+     "cvar95": 2.274181668985637
+    },
+    "jv_cash": 0.01741532732275124,
+    "oe_redemptions": 4.184205916468726,
+    "forced_sale_cash": 0.00022620750953919932,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u16|M2|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 294.673407821963,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 36.204307499999935,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.007812478288732081,
+   "ce": 264.5780679075824,
+   "secs": 92.41614246368408,
+   "ra": {
+    "cures24": {
+     "mean": 0.7068431668311026,
+     "p95": 1.8983616279005315,
+     "cvar95": 2.2703282298239214
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 3.279667247853178,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u16|M2|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.1409,
+   "mean_wtilde": 299.9287421224574,
+   "mean_withheld": 2.478484718965989,
+   "mean_commit_forgone": 13.084642500000005,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 262.68410119495184,
+   "secs": 85.87931823730469,
+   "ra": {
+    "cures24": {
+     "mean": 0.6957209369304844,
+     "p95": 1.885157476603664,
+     "cvar95": 2.2647769530511357
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 4.106514053946375,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u16|M3|dn": {
+   "p_red": 0.01835,
+   "k_red": 367,
+   "cp_upper_red": 0.01998897186048765,
+   "p_black": 0.0056,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 260.81004254163247,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 5.027444999999999,
+   "mean_red_sales": 0.05121399003572931,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 229.88218447606945,
+   "secs": 110.51179385185242,
+   "ra": {
+    "cures24": {
+     "mean": 0.7665172356509687,
+     "p95": 2.0265206746398343,
+     "cvar95": 2.369254123955898
+    },
+    "jv_cash": 0.027911355419315026,
+    "oe_redemptions": 4.0533904564231,
+    "forced_sale_cash": 0.0005882880530256923,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u16|M3|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 259.3338153184084,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 36.88056374999994,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.012079180777248013,
+   "ce": 232.92263619017598,
+   "secs": 107.37091064453125,
+   "ra": {
+    "cures24": {
+     "mean": 0.7774088774913165,
+     "p95": 2.041460287126843,
+     "cvar95": 2.3582858356132337
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 3.1761982766591363,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u16|M3|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.1892,
+   "mean_wtilde": 261.62494045045025,
+   "mean_withheld": 2.903965753090356,
+   "mean_commit_forgone": 14.802241875000004,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 1.5657665193372532e-50,
+   "ce": 228.86018635835103,
+   "secs": 103.89365220069885,
+   "ra": {
+    "cures24": {
+     "mean": 0.7655251115043007,
+     "p95": 2.0322578330778853,
+     "cvar95": 2.35978573773365
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 3.9756281607556287,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u16|M4|dn": {
+   "p_red": 0.04545,
+   "k_red": 909,
+   "cp_upper_red": 0.04794696834198432,
+   "p_black": 0.0145,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 280.13907070834637,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 5.653739999999999,
+   "mean_red_sales": 0.15408702180122041,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 243.51412274855372,
+   "secs": 91.60013580322266,
+   "ra": {
+    "cures24": {
+     "mean": 0.843025611877575,
+     "p95": 2.0519494523131843,
+     "cvar95": 2.38817088357478
+    },
+    "jv_cash": 0.06570251861879296,
+    "oe_redemptions": 3.9794621457156447,
+    "forced_sale_cash": 0.0016621888043959394,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u16|M4|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 277.6481055093189,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 40.29072843749995,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.047238679414598306,
+   "ce": 246.36988969047903,
+   "secs": 81.76548290252686,
+   "ra": {
+    "cures24": {
+     "mean": 0.8506572010209252,
+     "p95": 2.0587113013977723,
+     "cvar95": 2.3767021471061205
+    },
+    "jv_cash": 2.0782237294121762e-06,
+    "oe_redemptions": 3.7020895165994174,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u16|M4|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.1892,
+   "mean_wtilde": 281.0301708967435,
+   "mean_withheld": 3.598152102675545,
+   "mean_commit_forgone": 21.181702500000014,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 8.07112325104257e-35,
+   "ce": 242.49908452715434,
+   "secs": 107.67901062965393,
+   "ra": {
+    "cures24": {
+     "mean": 0.8399676042685849,
+     "p95": 2.0497344258041665,
+     "cvar95": 2.3770635278138306
+    },
+    "jv_cash": 6.367526825746778e-06,
+    "oe_redemptions": 3.9548328319497874,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u16|M5|dn": {
+   "p_red": 0.05385,
+   "k_red": 1077,
+   "cp_upper_red": 0.05654872342882118,
+   "p_black": 0.0192,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 262.67908355725416,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 5.359334999999999,
+   "mean_red_sales": 0.19461095570547293,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 227.66634944608637,
+   "secs": 115.66725039482117,
+   "ra": {
+    "cures24": {
+     "mean": 0.8540690922053403,
+     "p95": 2.1685374495847523,
+     "cvar95": 2.449219811053256
+    },
+    "jv_cash": 0.07128385452769544,
+    "oe_redemptions": 3.917040984543557,
+    "forced_sale_cash": 0.002413753461578125,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u16|M5|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 261.47088198007634,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 39.09872531249996,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.05467348721202015,
+   "ce": 231.40712882240604,
+   "secs": 107.1131362915039,
+   "ra": {
+    "cures24": {
+     "mean": 0.862935415218469,
+     "p95": 2.166941108039876,
+     "cvar95": 2.432365251834204
+    },
+    "jv_cash": 1.6469229092174215e-06,
+    "oe_redemptions": 3.3863920517846564,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u16|M5|mixB": {
+   "p_red": 5e-05,
+   "k_red": 1,
+   "cp_upper_red": 0.00023717102659408986,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.2376,
+   "mean_wtilde": 263.1999008396139,
+   "mean_withheld": 3.826681465955228,
+   "mean_commit_forgone": 18.611004375000014,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 2.361582552410728e-34,
+   "ce": 226.19886054886464,
+   "secs": 108.47238302230835,
+   "ra": {
+    "cures24": {
+     "mean": 0.8515187578940931,
+     "p95": 2.161954094010552,
+     "cvar95": 2.435273534478559
+    },
+    "jv_cash": 1.7400000000000003e-05,
+    "oe_redemptions": 3.872221767275802,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u16|M6|dn": {
+   "p_red": 0.11735,
+   "k_red": 2347,
+   "cp_upper_red": 0.12115943516055196,
+   "p_black": 0.0554,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 220.86578595860902,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 5.837445,
+   "mean_red_sales": 0.5561369466248556,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 196.50401768931454,
+   "secs": 89.10400080680847,
+   "ra": {
+    "cures24": {
+     "mean": 0.8862077368675526,
+     "p95": 2.16346322550788,
+     "cvar95": 2.453443871175199
+    },
+    "jv_cash": 0.1496234142525987,
+    "oe_redemptions": 3.352991580685545,
+    "forced_sale_cash": 0.011476493370019204,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u16|M6|mixA": {
+   "p_red": 0.0003,
+   "k_red": 6,
+   "cp_upper_red": 0.0005920333003445921,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 222.24602304870268,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 41.27136281249996,
+   "mean_red_sales": 0.00025,
+   "p_covenant": 0.0001,
+   "max_debt_ratio_p99": 0.12888916919943877,
+   "ce": 200.7094021535087,
+   "secs": 90.23340320587158,
+   "ra": {
+    "cures24": {
+     "mean": 0.8924296559329734,
+     "p95": 2.1513284708441685,
+     "cvar95": 2.433978130632504
+    },
+    "jv_cash": 0.00039583047998742677,
+    "oe_redemptions": 2.9472950731047525,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u16|M6|mixB": {
+   "p_red": 0.00045,
+   "k_red": 9,
+   "cp_upper_red": 0.0007851291888846359,
+   "p_black": 0.00015,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.21385,
+   "mean_wtilde": 220.07668160600028,
+   "mean_withheld": 4.0121479453858395,
+   "mean_commit_forgone": 24.29925562500002,
+   "mean_red_sales": 0.0006366705063219413,
+   "p_covenant": 5e-05,
+   "max_debt_ratio_p99": 0.06609524022534044,
+   "ce": 194.43517711880966,
+   "secs": 101.99629735946655,
+   "ra": {
+    "cures24": {
+     "mean": 0.885596633149559,
+     "p95": 2.1513556481782774,
+     "cvar95": 2.4366915791257986
+    },
+    "jv_cash": 0.0006002008274804907,
+    "oe_redemptions": 3.256562080668632,
+    "forced_sale_cash": 6.542172307483401e-06,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u11|M1|dn": {
+   "p_red": 0.0079,
+   "k_red": 158,
+   "cp_upper_red": 0.009009647058295918,
+   "p_black": 0.00225,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 278.0390053020096,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 4.534649999999999,
+   "mean_red_sales": 0.016169931205743768,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 246.06689614734012,
+   "secs": 105.71681475639343,
+   "ra": {
+    "cures24": {
+     "mean": 0.7331575826473224,
+     "p95": 1.960928528926901,
+     "cvar95": 2.327383899572924
+    },
+    "jv_cash": 0.011202344859644156,
+    "oe_redemptions": 4.123036368572042,
+    "forced_sale_cash": 0.00015471948761266148,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u11|M1|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 276.1185454491466,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 35.38002656249994,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.004230153242389235,
+   "ce": 248.85334659862016,
+   "secs": 102.36178255081177,
+   "ra": {
+    "cures24": {
+     "mean": 0.7457325310813591,
+     "p95": 1.9804587431713856,
+     "cvar95": 2.320448864565752
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 2.9245113132491447,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u11|M1|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.166,
+   "mean_wtilde": 279.07692656421347,
+   "mean_withheld": 2.5550042959637076,
+   "mean_commit_forgone": 11.767501875000002,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 245.4838428164338,
+   "secs": 101.12315106391907,
+   "ra": {
+    "cures24": {
+     "mean": 0.7327835329672365,
+     "p95": 1.9560822189056777,
+     "cvar95": 2.320011740375646
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 3.9746301893216747,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u11|M2|dn": {
+   "p_red": 0.00645,
+   "k_red": 129,
+   "cp_upper_red": 0.007461470458934927,
+   "p_black": 0.00175,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 297.44060879033316,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 4.399979999999999,
+   "mean_red_sales": 0.013310361718360128,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 262.86486477776987,
+   "secs": 104.77330017089844,
+   "ra": {
+    "cures24": {
+     "mean": 0.6971574852311031,
+     "p95": 1.892876099187924,
+     "cvar95": 2.2742048586349646
+    },
+    "jv_cash": 0.009310893713033489,
+    "oe_redemptions": 4.183500547858939,
+    "forced_sale_cash": 7.261910862390316e-05,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u11|M2|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 293.6357873595564,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 35.074116562499945,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0023824584388239226,
+   "ce": 264.3359597326676,
+   "secs": 115.1400830745697,
+   "ra": {
+    "cures24": {
+     "mean": 0.7089958490765472,
+     "p95": 1.899673309987902,
+     "cvar95": 2.271164928102215
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 2.9386641538382494,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u11|M2|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.1409,
+   "mean_wtilde": 298.58186406283204,
+   "mean_withheld": 2.343327449702862,
+   "mean_commit_forgone": 11.027385000000002,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 262.4521044799692,
+   "secs": 90.9623851776123,
+   "ra": {
+    "cures24": {
+     "mean": 0.6964565255959129,
+     "p95": 1.8854567137251903,
+     "cvar95": 2.266233683904526
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 4.024872944356485,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u11|M3|dn": {
+   "p_red": 0.01055,
+   "k_red": 211,
+   "cp_upper_red": 0.01181766028966694,
+   "p_black": 0.00305,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 260.5143438961234,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 4.660724999999999,
+   "mean_red_sales": 0.0226706621405268,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 230.30697557937776,
+   "secs": 102.890709400177,
+   "ra": {
+    "cures24": {
+     "mean": 0.7664792518561852,
+     "p95": 2.0265206746398343,
+     "cvar95": 2.369269838230373
+    },
+    "jv_cash": 0.014959452742100178,
+    "oe_redemptions": 4.052592762334393,
+    "forced_sale_cash": 0.00024604678057902756,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u11|M3|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 259.22397971624264,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 35.706048749999944,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.006983941132912556,
+   "ce": 233.45015946850287,
+   "secs": 111.33396935462952,
+   "ra": {
+    "cures24": {
+     "mean": 0.7796822930187303,
+     "p95": 2.0421399416201256,
+     "cvar95": 2.359142889077684
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 2.8433382403474114,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u11|M3|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.1892,
+   "mean_wtilde": 261.32628346478714,
+   "mean_withheld": 2.754257141239605,
+   "mean_commit_forgone": 12.606521250000004,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 5.809457396286289e-51,
+   "ce": 229.40433627544294,
+   "secs": 90.85081601142883,
+   "ra": {
+    "cures24": {
+     "mean": 0.7664462129842843,
+     "p95": 2.0324660897638274,
+     "cvar95": 2.3613753430809674
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 3.9039496196804677,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u11|M4|dn": {
+   "p_red": 0.0271,
+   "k_red": 542,
+   "cp_upper_red": 0.029065260396614636,
+   "p_black": 0.00755,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 279.424808305937,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 5.470694999999999,
+   "mean_red_sales": 0.07549556833964759,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 243.65137271886033,
+   "secs": 120.7673830986023,
+   "ra": {
+    "cures24": {
+     "mean": 0.8430589209358222,
+     "p95": 2.0523497660023895,
+     "cvar95": 2.3881902307490135
+    },
+    "jv_cash": 0.03901792095322793,
+    "oe_redemptions": 3.979446429847944,
+    "forced_sale_cash": 0.0008657982750490758,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u11|M4|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 277.1152188490157,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 38.451018749999946,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.025202175266488016,
+   "ce": 246.6869495639315,
+   "secs": 95.23152470588684,
+   "ra": {
+    "cures24": {
+     "mean": 0.8533043241754039,
+     "p95": 2.060528928344453,
+     "cvar95": 2.3774245427702705
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 3.5626727727233507,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u11|M4|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.1892,
+   "mean_wtilde": 280.37097596899577,
+   "mean_withheld": 3.2138600655022618,
+   "mean_commit_forgone": 18.04640250000001,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 2.238242034871398e-50,
+   "ce": 242.72449376901392,
+   "secs": 101.7416775226593,
+   "ra": {
+    "cures24": {
+     "mean": 0.840731798201807,
+     "p95": 2.05064090069148,
+     "cvar95": 2.3785921710254216
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 3.938461670954121,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u11|M5|dn": {
+   "p_red": 0.0346,
+   "k_red": 692,
+   "cp_upper_red": 0.0368014327316421,
+   "p_black": 0.01105,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 262.04771438782643,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 5.083004999999999,
+   "mean_red_sales": 0.10347506954663202,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 227.84005141271479,
+   "secs": 102.08895635604858,
+   "ra": {
+    "cures24": {
+     "mean": 0.8540550571076018,
+     "p95": 2.1685374495847523,
+     "cvar95": 2.4492295273539444
+    },
+    "jv_cash": 0.046167038442657585,
+    "oe_redemptions": 3.9166249878009207,
+    "forced_sale_cash": 0.0012172006790850886,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u11|M5|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 261.1032306624217,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 37.72273687499995,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.02923147946417274,
+   "ce": 231.74867465261323,
+   "secs": 90.81652808189392,
+   "ra": {
+    "cures24": {
+     "mean": 0.8653901877595649,
+     "p95": 2.168357036351956,
+     "cvar95": 2.433016501492224
+    },
+    "jv_cash": 6.224617515466379e-07,
+    "oe_redemptions": 3.154572481265802,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u11|M5|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.2376,
+   "mean_wtilde": 262.7135638217068,
+   "mean_withheld": 3.539393045940688,
+   "mean_commit_forgone": 15.994293750000006,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 2.668127168283792e-50,
+   "ce": 226.54443768410624,
+   "secs": 100.78135204315186,
+   "ra": {
+    "cures24": {
+     "mean": 0.852541715397496,
+     "p95": 2.1630050197409365,
+     "cvar95": 2.4370540023477187
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 3.826769783808979,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u11|M6|dn": {
+   "p_red": 0.0814,
+   "k_red": 1628,
+   "cp_upper_red": 0.08465065796717099,
+   "p_black": 0.03505,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 220.53728902412388,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 5.700149999999999,
+   "mean_red_sales": 0.3227802724597973,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 197.04066614487502,
+   "secs": 101.99321675300598,
+   "ra": {
+    "cures24": {
+     "mean": 0.8862838431762826,
+     "p95": 2.1635907881399064,
+     "cvar95": 2.4534661967597513
+    },
+    "jv_cash": 0.10208980190910867,
+    "oe_redemptions": 3.3529841424990243,
+    "forced_sale_cash": 0.00626941604247428,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u11|M6|mixA": {
+   "p_red": 5e-05,
+   "k_red": 1,
+   "cp_upper_red": 0.00023717102659408986,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 221.99309611416274,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 39.52117406249996,
+   "mean_red_sales": 0.00011799017106478753,
+   "p_covenant": 5e-05,
+   "max_debt_ratio_p99": 0.09867078608010584,
+   "ce": 200.94428713111267,
+   "secs": 90.25051808357239,
+   "ra": {
+    "cures24": {
+     "mean": 0.8947233764687577,
+     "p95": 2.1516677428015054,
+     "cvar95": 2.434705330819997
+    },
+    "jv_cash": 8.629159510463472e-05,
+    "oe_redemptions": 2.771715049489238,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated|v2u11|M6|mixB": {
+   "p_red": 0.00025,
+   "k_red": 5,
+   "cp_upper_red": 0.0005255792997026123,
+   "p_black": 5e-05,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.21385,
+   "mean_wtilde": 219.80408833585642,
+   "mean_withheld": 3.5489161084134095,
+   "mean_commit_forgone": 21.061381875000016,
+   "mean_red_sales": 0.00023239514397577866,
+   "p_covenant": 5e-05,
+   "max_debt_ratio_p99": 0.04180008181489071,
+   "ce": 194.5850767872908,
+   "secs": 102.44085502624512,
+   "ra": {
+    "cures24": {
+     "mean": 0.8867691297148225,
+     "p95": 2.1514114165123295,
+     "cvar95": 2.4379139282407203
+    },
+    "jv_cash": 0.0002726751673926325,
+    "oe_redemptions": 3.2150422140811785,
+    "forced_sale_cash": 2.953205910351306e-06,
+    "enr_cash_t0": 0.5599999999999999,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u16|M1|dn": {
+   "p_red": 0.02225,
+   "k_red": 445,
+   "cp_upper_red": 0.02404287344793244,
+   "p_black": 0.00565,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 279.15416669845945,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 5.25552,
+   "mean_red_sales": 0.06639861017565447,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 246.1573943903653,
+   "secs": 112.51180362701416,
+   "ra": {
+    "cures24": {
+     "mean": 0.7712830777895948,
+     "p95": 2.0424446389508506,
+     "cvar95": 2.3912207176702327
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0007060609155067588,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u16|M1|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 276.9288811335659,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 34.344284999999964,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.01713675605696618,
+   "ce": 248.58282284130652,
+   "secs": 96.77890062332153,
+   "ra": {
+    "cures24": {
+     "mean": 0.7712830777895948,
+     "p95": 2.0424446389508506,
+     "cvar95": 2.3912207176702327
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u16|M1|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.166,
+   "mean_wtilde": 280.2367994441167,
+   "mean_withheld": 2.8996348996153127,
+   "mean_commit_forgone": 14.757735000000004,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 1.6188149500422964e-50,
+   "ce": 245.29827092681802,
+   "secs": 109.3862190246582,
+   "ra": {
+    "cures24": {
+     "mean": 0.7712830777895948,
+     "p95": 2.0424446389508506,
+     "cvar95": 2.3912207176702327
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u16|M2|dn": {
+   "p_red": 0.01765,
+   "k_red": 353,
+   "cp_upper_red": 0.019259563177361817,
+   "p_black": 0.0048,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 298.9330119053948,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 5.152034999999999,
+   "mean_red_sales": 0.054196185014910296,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 263.2368809645763,
+   "secs": 111.72479367256165,
+   "ra": {
+    "cures24": {
+     "mean": 0.7335138268625471,
+     "p95": 1.9579578336266303,
+     "cvar95": 2.3403387755823237
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.000489469318624964,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u16|M2|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 294.9284637251065,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 34.036102499999956,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.014933997861693289,
+   "ce": 264.42644437076024,
+   "secs": 89.99897241592407,
+   "ra": {
+    "cures24": {
+     "mean": 0.7335138268625471,
+     "p95": 1.9579578336266303,
+     "cvar95": 2.3403387755823237
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u16|M2|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.1409,
+   "mean_wtilde": 300.2294598096866,
+   "mean_withheld": 2.6598620717066956,
+   "mean_commit_forgone": 13.891710000000003,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 7.024794895931727e-52,
+   "ce": 262.5680597654597,
+   "secs": 103.47181797027588,
+   "ra": {
+    "cures24": {
+     "mean": 0.7335138268625471,
+     "p95": 1.9579578336266303,
+     "cvar95": 2.3403387755823237
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u16|M3|dn": {
+   "p_red": 0.0297,
+   "k_red": 594,
+   "cp_upper_red": 0.03175079206872764,
+   "p_black": 0.00765,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 261.2046949343689,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 5.348265,
+   "mean_red_sales": 0.09050551182203803,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 230.0274431963345,
+   "secs": 89.75953888893127,
+   "ra": {
+    "cures24": {
+     "mean": 0.8058968347527224,
+     "p95": 2.1031706367817273,
+     "cvar95": 2.431304660695672
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.001027577375464067,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u16|M3|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 259.67740119565394,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 34.71566999999996,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0213647762731683,
+   "ce": 232.91107423249284,
+   "secs": 102.80440759658813,
+   "ra": {
+    "cures24": {
+     "mean": 0.8058968347527224,
+     "p95": 2.1031706367817273,
+     "cvar95": 2.431304660695672
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u16|M3|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.1892,
+   "mean_wtilde": 262.0306313884818,
+   "mean_withheld": 3.1352084550461834,
+   "mean_commit_forgone": 15.659130000000008,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 2.189556543284911e-50,
+   "ce": 228.93793678337522,
+   "secs": 103.58141779899597,
+   "ra": {
+    "cures24": {
+     "mean": 0.8058968347527224,
+     "p95": 2.1031706367817273,
+     "cvar95": 2.431304660695672
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u16|M4|dn": {
+   "p_red": 0.0668,
+   "k_red": 1336,
+   "cp_upper_red": 0.06977582152828839,
+   "p_black": 0.0216,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 280.37346194760727,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 5.8064849999999995,
+   "mean_red_sales": 0.25381203109250267,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 243.4955091111132,
+   "secs": 96.18672466278076,
+   "ra": {
+    "cures24": {
+     "mean": 0.8866234686615094,
+     "p95": 2.119746185752985,
+     "cvar95": 2.4508992968077865
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0028714887103501534,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u16|M4|mixA": {
+   "p_red": 5e-05,
+   "k_red": 1,
+   "cp_upper_red": 0.00023717102659408986,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 277.8908243689652,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 38.75774999999997,
+   "mean_red_sales": 0.00012278199213539004,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.07067104935750508,
+   "ce": 246.28275509716775,
+   "secs": 102.20860719680786,
+   "ra": {
+    "cures24": {
+     "mean": 0.8866234686615094,
+     "p95": 2.119746185752985,
+     "cvar95": 2.4508992968077865
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u16|M4|mixB": {
+   "p_red": 5e-05,
+   "k_red": 1,
+   "cp_upper_red": 0.00023717102659408986,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.1892,
+   "mean_wtilde": 281.2003423466291,
+   "mean_withheld": 4.140274074639759,
+   "mean_commit_forgone": 22.239975000000012,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.00037633529137162593,
+   "ce": 242.52498802173218,
+   "secs": 88.86781716346741,
+   "ra": {
+    "cures24": {
+     "mean": 0.8866234686615094,
+     "p95": 2.119746185752985,
+     "cvar95": 2.4508992968077865
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u16|M5|dn": {
+   "p_red": 0.0719,
+   "k_red": 1438,
+   "cp_upper_red": 0.07497580817892298,
+   "p_black": 0.028,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 263.0637354248787,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 5.5988999999999995,
+   "mean_red_sales": 0.2975623702191022,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 227.76946099781506,
+   "secs": 81.56194853782654,
+   "ra": {
+    "cures24": {
+     "mean": 0.8969095306385505,
+     "p95": 2.240440813320349,
+     "cvar95": 2.5109707007404523
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.003923627352486949,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u16|M5|mixA": {
+   "p_red": 5e-05,
+   "k_red": 1,
+   "cp_upper_red": 0.00023717102659408986,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 261.7634756051379,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 37.00265999999997,
+   "mean_red_sales": 0.00012136192127130204,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.08057853919639485,
+   "ce": 231.37600414054089,
+   "secs": 91.73169612884521,
+   "ra": {
+    "cures24": {
+     "mean": 0.8969095306385505,
+     "p95": 2.240440813320349,
+     "cvar95": 2.5109707007404523
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u16|M5|mixB": {
+   "p_red": 5e-05,
+   "k_red": 1,
+   "cp_upper_red": 0.00023717102659408986,
+   "p_black": 5e-05,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.2376,
+   "mean_wtilde": 263.5200275600785,
+   "mean_withheld": 4.184737209247467,
+   "mean_commit_forgone": 19.37620500000001,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.010221476850472444,
+   "ce": 226.30720462804624,
+   "secs": 93.0067925453186,
+   "ra": {
+    "cures24": {
+     "mean": 0.8969095306385505,
+     "p95": 2.240440813320349,
+     "cvar95": 2.5109707007404523
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u16|M6|dn": {
+   "p_red": 0.1551,
+   "k_red": 3102,
+   "cp_upper_red": 0.1593724051255604,
+   "p_black": 0.07505,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 221.05457527997694,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 5.925554999999999,
+   "mean_red_sales": 0.8171963007417633,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 196.2886834502398,
+   "secs": 103.76205110549927,
+   "ra": {
+    "cures24": {
+     "mean": 0.9262880766444994,
+     "p95": 2.2223216080672845,
+     "cvar95": 2.515582022872476
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.018936423906583344,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u16|M6|mixA": {
+   "p_red": 0.00125,
+   "k_red": 25,
+   "cp_upper_red": 0.0017453711655083606,
+   "p_black": 0.00035,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 222.45460081499098,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 39.27893999999998,
+   "mean_red_sales": 0.0009381052955128375,
+   "p_covenant": 0.0001,
+   "max_debt_ratio_p99": 0.1500011925885614,
+   "ce": 200.84865860889806,
+   "secs": 100.34844064712524,
+   "ra": {
+    "cures24": {
+     "mean": 0.9262880766444994,
+     "p95": 2.2223216080672845,
+     "cvar95": 2.515582022872476
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 8.54474192672568e-06,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u16|M6|mixB": {
+   "p_red": 0.00115,
+   "k_red": 23,
+   "cp_upper_red": 0.0016288787511890405,
+   "p_black": 0.0003,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.21385,
+   "mean_wtilde": 220.20867311274168,
+   "mean_withheld": 4.570789966136725,
+   "mean_commit_forgone": 24.76072500000002,
+   "mean_red_sales": 0.001560803308189922,
+   "p_covenant": 5e-05,
+   "max_debt_ratio_p99": 0.09151067416814548,
+   "ce": 194.55066589363756,
+   "secs": 95.21934819221497,
+   "ra": {
+    "cures24": {
+     "mean": 0.9262880766444994,
+     "p95": 2.2223216080672845,
+     "cvar95": 2.515582022872476
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 3.580867709481918e-05,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u11|M1|dn": {
+   "p_red": 0.01215,
+   "k_red": 243,
+   "cp_upper_red": 0.013503234919371207,
+   "p_black": 0.0037,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 278.4069135435612,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 4.936199999999999,
+   "mean_red_sales": 0.0293125459998576,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 246.1730022996382,
+   "secs": 90.9338583946228,
+   "ra": {
+    "cures24": {
+     "mean": 0.7712830777895948,
+     "p95": 2.0424446389508506,
+     "cvar95": 2.3912207176702327
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.00028794611001846794,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u11|M1|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 276.4053215671725,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 32.94413999999996,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.005108193209597988,
+   "ce": 248.78690547194782,
+   "secs": 98.1402599811554,
+   "ra": {
+    "cures24": {
+     "mean": 0.7712830777895948,
+     "p95": 2.0424446389508506,
+     "cvar95": 2.3912207176702327
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u11|M1|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.166,
+   "mean_wtilde": 279.50749098102517,
+   "mean_withheld": 2.690847593339339,
+   "mean_commit_forgone": 12.441750000000003,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 4.232191721655578e-51,
+   "ce": 245.49866109794183,
+   "secs": 100.55536794662476,
+   "ra": {
+    "cures24": {
+     "mean": 0.7712830777895948,
+     "p95": 2.0424446389508506,
+     "cvar95": 2.3912207176702327
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u11|M2|dn": {
+   "p_red": 0.01,
+   "k_red": 200,
+   "cp_upper_red": 0.011236711362695724,
+   "p_black": 0.0031,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 297.7260885390078,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 4.813124999999999,
+   "mean_red_sales": 0.024407073528822147,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 262.8846519895619,
+   "secs": 101.75130891799927,
+   "ra": {
+    "cures24": {
+     "mean": 0.7335138268625471,
+     "p95": 1.9579578336266303,
+     "cvar95": 2.3403387755823237
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.00016818889146330917,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u11|M2|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 293.8989775678096,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 32.63783999999996,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0041206736430155965,
+   "ce": 264.22792740716363,
+   "secs": 93.5063123703003,
+   "ra": {
+    "cures24": {
+     "mean": 0.7335138268625471,
+     "p95": 1.9579578336266303,
+     "cvar95": 2.3403387755823237
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u11|M2|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.1409,
+   "mean_wtilde": 298.9654245067906,
+   "mean_withheld": 2.46079543258019,
+   "mean_commit_forgone": 11.652345000000004,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 262.39616763008314,
+   "secs": 89.53779339790344,
+   "ra": {
+    "cures24": {
+     "mean": 0.7335138268625471,
+     "p95": 1.9579578336266303,
+     "cvar95": 2.3403387755823237
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u11|M3|dn": {
+   "p_red": 0.01705,
+   "k_red": 341,
+   "cp_upper_red": 0.018633861789037486,
+   "p_black": 0.0047,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 260.92665814124206,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 5.047965,
+   "mean_red_sales": 0.041224723303115295,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 230.455568795612,
+   "secs": 97.53764247894287,
+   "ra": {
+    "cures24": {
+     "mean": 0.8058968347527224,
+     "p95": 2.1031706367817273,
+     "cvar95": 2.431304660695672
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.00045650121821127246,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u11|M3|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 259.545170741621,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 33.30454499999996,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.00889228521941772,
+   "ce": 233.4412206397394,
+   "secs": 93.4748809337616,
+   "ra": {
+    "cures24": {
+     "mean": 0.8058968347527224,
+     "p95": 2.1031706367817273,
+     "cvar95": 2.431304660695672
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u11|M3|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.1892,
+   "mean_wtilde": 261.7759714161177,
+   "mean_withheld": 2.9116056740559872,
+   "mean_commit_forgone": 13.308585000000004,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 9.49280235937974e-51,
+   "ce": 229.49003805921663,
+   "secs": 84.25390362739563,
+   "ra": {
+    "cures24": {
+     "mean": 0.8058968347527224,
+     "p95": 2.1031706367817273,
+     "cvar95": 2.431304660695672
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u11|M4|dn": {
+   "p_red": 0.04205,
+   "k_red": 841,
+   "cp_upper_red": 0.04445915203182291,
+   "p_black": 0.0118,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 279.71442561887244,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 5.67537,
+   "mean_red_sales": 0.12983838431680186,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 243.72536754958844,
+   "secs": 87.19802856445312,
+   "ra": {
+    "cures24": {
+     "mean": 0.8866234686615094,
+     "p95": 2.119746185752985,
+     "cvar95": 2.4508992968077865
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.00141092134279665,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u11|M4|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 277.4060680104643,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 36.785662499999965,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.043880742422820335,
+   "ce": 246.5886102638096,
+   "secs": 87.26242566108704,
+   "ra": {
+    "cures24": {
+     "mean": 0.8866234686615094,
+     "p95": 2.119746185752985,
+     "cvar95": 2.4508992968077865
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u11|M4|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.1892,
+   "mean_wtilde": 280.6416487631136,
+   "mean_withheld": 3.5762422639059603,
+   "mean_commit_forgone": 19.10182500000001,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 2.8247827201156783e-35,
+   "ce": 242.75343704718188,
+   "secs": 79.84620642662048,
+   "ra": {
+    "cures24": {
+     "mean": 0.8866234686615094,
+     "p95": 2.119746185752985,
+     "cvar95": 2.4508992968077865
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u11|M5|dn": {
+   "p_red": 0.0495,
+   "k_red": 990,
+   "cp_upper_red": 0.052096748075828,
+   "p_black": 0.0162,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 262.4685973577463,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 5.381549999999999,
+   "mean_red_sales": 0.16703087678303996,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 227.982378495472,
+   "secs": 81.6944670677185,
+   "ra": {
+    "cures24": {
+     "mean": 0.8969095306385505,
+     "p95": 2.240440813320349,
+     "cvar95": 2.5109707007404523
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.002015345465172147,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u11|M5|mixA": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 261.39761597491133,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 35.43043499999997,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.04778999503251819,
+   "ce": 231.7135905200654,
+   "secs": 80.92865991592407,
+   "ra": {
+    "cures24": {
+     "mean": 0.8969095306385505,
+     "p95": 2.240440813320349,
+     "cvar95": 2.5109707007404523
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u11|M5|mixB": {
+   "p_red": 0.0,
+   "k_red": 0,
+   "cp_upper_red": 0.00014977539622296283,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.2376,
+   "mean_wtilde": 263.0649023115573,
+   "mean_withheld": 3.7996716404564324,
+   "mean_commit_forgone": 16.71873000000001,
+   "mean_red_sales": 0.0,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 1.0561955098459227e-34,
+   "ce": 226.5879800093931,
+   "secs": 75.91879677772522,
+   "ra": {
+    "cures24": {
+     "mean": 0.8969095306385505,
+     "p95": 2.240440813320349,
+     "cvar95": 2.5109707007404523
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u11|M6|dn": {
+   "p_red": 0.1105,
+   "k_red": 2210,
+   "cp_upper_red": 0.11421336976474511,
+   "p_black": 0.0484,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 220.7466924405336,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 5.846009999999999,
+   "mean_red_sales": 0.4817502860099308,
+   "p_covenant": 0.0,
+   "max_debt_ratio_p99": 0.0,
+   "ce": 196.97534463349677,
+   "secs": 63.109312534332275,
+   "ra": {
+    "cures24": {
+     "mean": 0.9262880766444994,
+     "p95": 2.2223216080672845,
+     "cvar95": 2.515582022872476
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.010162726116878643,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u11|M6|mixA": {
+   "p_red": 0.00045,
+   "k_red": 9,
+   "cp_upper_red": 0.0007851291888846359,
+   "p_black": 0.0,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.0,
+   "mean_wtilde": 222.19726942874854,
+   "mean_withheld": 0.0,
+   "mean_commit_forgone": 37.42214249999997,
+   "mean_red_sales": 0.0003120207967323345,
+   "p_covenant": 0.0001,
+   "max_debt_ratio_p99": 0.11937888221571048,
+   "ce": 201.0738863883243,
+   "secs": 62.84460473060608,
+   "ra": {
+    "cures24": {
+     "mean": 0.9262880766444994,
+     "p95": 2.2223216080672845,
+     "cvar95": 2.515582022872476
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 0.0,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  },
+  "integrated_raoff|v2u11|M6|mixB": {
+   "p_red": 0.0005,
+   "k_red": 10,
+   "cp_upper_red": 0.0008479633438665878,
+   "p_black": 0.00015,
+   "p_black_12m": 0.0,
+   "cp_upper_black_12m": 0.00014977539622296283,
+   "p_band_12m": 0.21385,
+   "mean_wtilde": 219.97742504762368,
+   "mean_withheld": 3.9710280190025333,
+   "mean_commit_forgone": 21.65370000000001,
+   "mean_red_sales": 0.000749946868572707,
+   "p_covenant": 5e-05,
+   "max_debt_ratio_p99": 0.05871982164763123,
+   "ce": 194.73535069652712,
+   "secs": 57.119935035705566,
+   "ra": {
+    "cures24": {
+     "mean": 0.9262880766444994,
+     "p95": 2.2223216080672845,
+     "cvar95": 2.515582022872476
+    },
+    "jv_cash": 0.0,
+    "oe_redemptions": 0.0,
+    "forced_sale_cash": 1.3656475528040861e-05,
+    "enr_cash_t0": 0.0,
+    "oil_delta_t0": 12.207571428571429
+   }
+  }
+ },
+ "summary": {
+  "t1|v1pub|dn": {
+   "p_red_pct": {
+    "M1": 7.774,
+    "M2": 6.144,
+    "M3": 10.136000000000001,
+    "M4": 20.804000000000002,
+    "M5": 18.626,
+    "M6": 37.18
+   },
+   "cp_upper_pct": {
+    "M1": 7.973783712295239,
+    "M2": 6.323534643022745,
+    "M3": 10.360721270560441,
+    "M4": 21.104833681256938,
+    "M5": 18.914724882981222,
+    "M6": 37.53704866773892
+   },
+   "max_cp_M1_M5_pct": 21.104833681256938,
+   "ce": {
+    "M1": 241.94648041948102,
+    "M2": 264.4635453731601,
+    "M3": 218.695760429509,
+    "M4": 235.39222854251753,
+    "M5": 218.16542116984738,
+    "M6": 166.69575012761268
+   }
+  },
+  "t1|v1pub|mixA": {
+   "p_red_pct": {
+    "M1": 0.202,
+    "M2": 0.158,
+    "M3": 0.292,
+    "M4": 0.8999999999999999,
+    "M5": 0.906,
+    "M6": 5.798
+   },
+   "cp_upper_pct": {
+    "M1": 0.23827871148446927,
+    "M2": 0.1904854735305382,
+    "M3": 0.33491779224942686,
+    "M4": 0.9726253944597976,
+    "M5": 0.9788540087607888,
+    "M6": 5.972820340174904
+   },
+   "max_cp_M1_M5_pct": 0.9788540087607888,
+   "ce": {
+    "M1": 246.60109445078487,
+    "M2": 267.0460955846553,
+    "M3": 225.28886969516586,
+    "M4": 243.5487535297044,
+    "M5": 227.21839175938555,
+    "M6": 186.34769775591917
+   }
+  },
+  "t1|v1pub|mixB": {
+   "p_red_pct": {
+    "M1": 0.146,
+    "M2": 0.106,
+    "M3": 0.232,
+    "M4": 0.626,
+    "M5": 0.728,
+    "M6": 6.456
+   },
+   "cp_upper_pct": {
+    "M1": 0.17736190206442276,
+    "M2": 0.13323869795371432,
+    "M3": 0.27063148981567486,
+    "M4": 0.6871971085219277,
+    "M5": 0.7937038072708515,
+    "M6": 6.6396489530529195
+   },
+   "max_cp_M1_M5_pct": 0.7937038072708515,
+   "ce": {
+    "M1": 243.3645856608195,
+    "M2": 265.2928702619034,
+    "M3": 220.89544880307952,
+    "M4": 239.51498520331194,
+    "M5": 221.80140533699623,
+    "M6": 177.28945874401904
+   }
+  },
+  "t1|v1|dn": {
+   "p_red_pct": {
+    "M1": 4.952,
+    "M2": 3.864,
+    "M3": 6.524000000000001,
+    "M4": 13.926,
+    "M5": 12.994,
+    "M6": 28.83
+   },
+   "cp_upper_pct": {
+    "M1": 5.114534186121018,
+    "M2": 4.008771600263261,
+    "M3": 6.708529367168836,
+    "M4": 14.18322558250393,
+    "M5": 13.243924760480457,
+    "M6": 29.165108966060473
+   },
+   "max_cp_M1_M5_pct": 14.18322558250393,
+   "ce": {
+    "M1": 243.44392735412907,
+    "M2": 265.0702774798555,
+    "M3": 220.9751996355309,
+    "M4": 238.0161665261897,
+    "M5": 220.8531251985455,
+    "M6": 172.4791981368249
+   }
+  },
+  "t1|v1|mixA": {
+   "p_red_pct": {
+    "M1": 0.054,
+    "M2": 0.044000000000000004,
+    "M3": 0.09,
+    "M4": 0.34199999999999997,
+    "M5": 0.33999999999999997,
+    "M6": 3.302
+   },
+   "cp_upper_pct": {
+    "M1": 0.07446070250829342,
+    "M2": 0.0628237048884847,
+    "M3": 0.1153751392117179,
+    "M4": 0.3881610210398146,
+    "M5": 0.3860360650797424,
+    "M6": 3.436465575293779
+   },
+   "max_cp_M1_M5_pct": 0.3881610210398146,
+   "ce": {
+    "M1": 246.99393380284837,
+    "M2": 266.6663696324017,
+    "M3": 226.28223454822015,
+    "M4": 244.24602081419283,
+    "M5": 227.87934845857188,
+    "M6": 189.35260873713295
+   }
+  },
+  "t1|v1|mixB": {
+   "p_red_pct": {
+    "M1": 0.055999999999999994,
+    "M2": 0.042,
+    "M3": 0.108,
+    "M4": 0.214,
+    "M5": 0.27999999999999997,
+    "M6": 4.052
+   },
+   "cp_upper_pct": {
+    "M1": 0.07676982629288186,
+    "M2": 0.060475297680047474,
+    "M3": 0.1354615597524783,
+    "M4": 0.25123949511989474,
+    "M5": 0.322098708875007,
+    "M6": 4.2000288020546295
+   },
+   "max_cp_M1_M5_pct": 0.322098708875007,
+   "ce": {
+    "M1": 243.8047009359944,
+    "M2": 265.1111266971583,
+    "M3": 221.84671305043082,
+    "M4": 240.35706733621743,
+    "M5": 222.640706273304,
+    "M6": 181.10041232382838
+   }
+  },
+  "t1|v2u16|dn": {
+   "p_red_pct": {
+    "M1": 8.36,
+    "M2": 6.702,
+    "M3": 10.911999999999999,
+    "M4": 19.348000000000003,
+    "M5": 18.756,
+    "M6": 36.199999999999996
+   },
+   "cp_upper_pct": {
+    "M1": 8.566396496055837,
+    "M2": 6.88880745980236,
+    "M3": 11.144032090024202,
+    "M4": 19.64089359569027,
+    "M5": 19.045487266971435,
+    "M6": 36.55509984272334
+   },
+   "max_cp_M1_M5_pct": 19.64089359569027,
+   "ce": {
+    "M1": 241.8322630282797,
+    "M2": 261.0576748574643,
+    "M3": 221.59164970622263,
+    "M4": 236.4083349752644,
+    "M5": 219.7222975286397,
+    "M6": 169.9840390590546
+   }
+  },
+  "t1|v2u16|mixA": {
+   "p_red_pct": {
+    "M1": 0.22999999999999998,
+    "M2": 0.18,
+    "M3": 0.346,
+    "M4": 0.7799999999999999,
+    "M5": 0.868,
+    "M6": 5.366
+   },
+   "cp_upper_pct": {
+    "M1": 0.2684795580661718,
+    "M2": 0.2144400670924453,
+    "M3": 0.39240983436214705,
+    "M4": 0.8478772060534381,
+    "M5": 0.9393926836491641,
+    "M6": 5.534690242636119
+   },
+   "max_cp_M1_M5_pct": 0.9393926836491641,
+   "ce": {
+    "M1": 246.26354720711015,
+    "M2": 263.53926316465095,
+    "M3": 227.80659332932728,
+    "M4": 243.65127500299351,
+    "M5": 228.10761633051416,
+    "M6": 188.4930996271558
+   }
+  },
+  "t1|v2u16|mixB": {
+   "p_red_pct": {
+    "M1": 0.172,
+    "M2": 0.122,
+    "M3": 0.266,
+    "M4": 0.5579999999999999,
+    "M5": 0.746,
+    "M6": 6.16
+   },
+   "cp_upper_pct": {
+    "M1": 0.20574386173175074,
+    "M2": 0.15096754027185752,
+    "M3": 0.3071205133681019,
+    "M4": 0.6159813021721888,
+    "M5": 0.8124648536970638,
+    "M6": 6.339748700908286
+   },
+   "max_cp_M1_M5_pct": 0.8124648536970638,
+   "ce": {
+    "M1": 243.283813180101,
+    "M2": 262.0427075053064,
+    "M3": 223.6939940673716,
+    "M4": 239.99164411663196,
+    "M5": 223.02894817104968,
+    "M6": 179.85806382125165
+   }
+  },
+  "t1|v2u11|dn": {
+   "p_red_pct": {
+    "M1": 6.768000000000001,
+    "M2": 5.388,
+    "M3": 8.848,
+    "M4": 15.953999999999999,
+    "M5": 15.787999999999998,
+    "M6": 31.982
+   },
+   "cp_upper_pct": {
+    "M1": 6.955642603702657,
+    "M2": 5.557009393013819,
+    "M3": 9.059674696403789,
+    "M4": 16.225820878718046,
+    "M5": 16.05868757637907,
+    "M6": 32.32685621512022
+   },
+   "max_cp_M1_M5_pct": 16.225820878718046,
+   "ce": {
+    "M1": 242.57977114917236,
+    "M2": 261.384064850928,
+    "M3": 222.7056343469763,
+    "M4": 237.60863558905842,
+    "M5": 221.00389357454378,
+    "M6": 172.62150030261606
+   }
+  },
+  "t1|v2u11|mixA": {
+   "p_red_pct": {
+    "M1": 0.128,
+    "M2": 0.10200000000000001,
+    "M3": 0.212,
+    "M4": 0.47200000000000003,
+    "M5": 0.5539999999999999,
+    "M6": 4.08
+   },
+   "cp_upper_pct": {
+    "M1": 0.157586584203386,
+    "M2": 0.12878664304467785,
+    "M3": 0.24908127061258617,
+    "M4": 0.5256142356119826,
+    "M5": 0.6117860936926872,
+    "M6": 4.228506525589992
+   },
+   "max_cp_M1_M5_pct": 0.6117860936926872,
+   "ce": {
+    "M1": 246.4326643933755,
+    "M2": 263.33453637223374,
+    "M3": 228.2660124834863,
+    "M4": 243.94855703635318,
+    "M5": 228.41221277365594,
+    "M6": 189.86692915570805
+   }
+  },
+  "t1|v2u11|mixB": {
+   "p_red_pct": {
+    "M1": 0.10200000000000001,
+    "M2": 0.07200000000000001,
+    "M3": 0.182,
+    "M4": 0.332,
+    "M5": 0.466,
+    "M6": 4.954
+   },
+   "cp_upper_pct": {
+    "M1": 0.12878664304467785,
+    "M2": 0.09507049255347372,
+    "M3": 0.21661169324428672,
+    "M4": 0.37753250355411544,
+    "M5": 0.5192950536324569,
+    "M6": 5.116564639092659
+   },
+   "max_cp_M1_M5_pct": 0.5192950536324569,
+   "ce": {
+    "M1": 243.50909174415742,
+    "M2": 261.96506069426493,
+    "M3": 224.16704065543033,
+    "M4": 240.37935872972824,
+    "M5": 223.44435535773775,
+    "M6": 181.64193283203292
+   }
+  },
+  "integrated|v1pub|dn": {
+   "p_red_pct": {
+    "M1": 1.5150000000000001,
+    "M2": 1.1900000000000002,
+    "M3": 2.1149999999999998,
+    "M4": 6.385000000000001,
+    "M5": 6.254999999999999,
+    "M6": 14.735000000000001
+   },
+   "cp_upper_pct": {
+    "M1": 1.6649172907454273,
+    "M2": 1.3240265715778943,
+    "M3": 2.2901030025114957,
+    "M4": 6.676580013438676,
+    "M5": 6.543880721790578,
+    "M6": 15.153549540352765
+   },
+   "max_cp_M1_M5_pct": 6.676580013438676,
+   "ce": {
+    "M1": 246.33976005883832,
+    "M2": 266.4756776890729,
+    "M3": 227.42476258090812,
+    "M4": 243.33785825214318,
+    "M5": 226.84401689279144,
+    "M6": 194.84133678035656
+   }
+  },
+  "integrated|v1pub|mixA": {
+   "p_red_pct": {
+    "M1": 0.0,
+    "M2": 0.0,
+    "M3": 0.0,
+    "M4": 0.0,
+    "M5": 0.0,
+    "M6": 0.065
+   },
+   "cp_upper_pct": {
+    "M1": 0.014977539622296282,
+    "M2": 0.014977539622296282,
+    "M3": 0.014977539622296282,
+    "M4": 0.014977539622296282,
+    "M5": 0.014977539622296282,
+    "M6": 0.10332303267696737
+   },
+   "max_cp_M1_M5_pct": 0.014977539622296282,
+   "ce": {
+    "M1": 248.91552201144304,
+    "M2": 267.7384861248623,
+    "M3": 230.54666230103948,
+    "M4": 246.24797639908823,
+    "M5": 230.56112019631712,
+    "M6": 199.35327765069934
+   }
+  },
+  "integrated|v1pub|mixB": {
+   "p_red_pct": {
+    "M1": 0.0,
+    "M2": 0.0,
+    "M3": 0.0,
+    "M4": 0.005,
+    "M5": 0.005,
+    "M6": 0.075
+   },
+   "cp_upper_pct": {
+    "M1": 0.014977539622296282,
+    "M2": 0.014977539622296282,
+    "M3": 0.014977539622296282,
+    "M4": 0.023717102659408986,
+    "M5": 0.023717102659408986,
+    "M6": 0.11546227037526331
+   },
+   "max_cp_M1_M5_pct": 0.023717102659408986,
+   "ce": {
+    "M1": 245.40653674450687,
+    "M2": 265.73006231175185,
+    "M3": 226.2479281910228,
+    "M4": 242.26485858005805,
+    "M5": 225.23524963132763,
+    "M6": 193.02114320785356
+   }
+  },
+  "integrated|v1|dn": {
+   "p_red_pct": {
+    "M1": 0.5,
+    "M2": 0.42,
+    "M3": 0.715,
+    "M4": 2.64,
+    "M5": 2.97,
+    "M6": 7.9399999999999995
+   },
+   "cp_upper_pct": {
+    "M1": 0.5901292740007359,
+    "M2": 0.5033479005514445,
+    "M3": 0.8210131777751851,
+    "M4": 2.834147481026396,
+    "M5": 3.175079206872764,
+    "M6": 8.261498747158399
+   },
+   "max_cp_M1_M5_pct": 3.175079206872764,
+   "ce": {
+    "M1": 246.39296873092107,
+    "M2": 265.89581421802046,
+    "M3": 228.14817639018213,
+    "M4": 243.73182624667837,
+    "M5": 227.15361413761428,
+    "M6": 195.9264478823949
+   }
+  },
+  "integrated|v1|mixA": {
+   "p_red_pct": {
+    "M1": 0.0,
+    "M2": 0.0,
+    "M3": 0.0,
+    "M4": 0.0,
+    "M5": 0.0,
+    "M6": 0.01
+   },
+   "cp_upper_pct": {
+    "M1": 0.014977539622296282,
+    "M2": 0.014977539622296282,
+    "M3": 0.014977539622296282,
+    "M4": 0.014977539622296282,
+    "M5": 0.014977539622296282,
+    "M6": 0.03147558760123621
+   },
+   "max_cp_M1_M5_pct": 0.014977539622296282,
+   "ce": {
+    "M1": 249.42942079609102,
+    "M2": 267.5511398808496,
+    "M3": 231.5881650210631,
+    "M4": 247.01688004333593,
+    "M5": 231.34968211838756,
+    "M6": 199.96041382583607
+   }
+  },
+  "integrated|v1|mixB": {
+   "p_red_pct": {
+    "M1": 0.0,
+    "M2": 0.0,
+    "M3": 0.0,
+    "M4": 0.0,
+    "M5": 0.0,
+    "M6": 0.02
+   },
+   "cp_upper_pct": {
+    "M1": 0.014977539622296282,
+    "M2": 0.014977539622296282,
+    "M3": 0.014977539622296282,
+    "M4": 0.014977539622296282,
+    "M5": 0.014977539622296282,
+    "M6": 0.04576169877864281
+   },
+   "max_cp_M1_M5_pct": 0.014977539622296282,
+   "ce": {
+    "M1": 245.8108251127243,
+    "M2": 265.4717344632683,
+    "M3": 227.24057556777578,
+    "M4": 242.69564503429146,
+    "M5": 225.83583904381405,
+    "M6": 193.42250689407547
+   }
+  },
+  "integrated|v2u16|dn": {
+   "p_red_pct": {
+    "M1": 1.405,
+    "M2": 1.165,
+    "M3": 1.8350000000000002,
+    "M4": 4.545,
+    "M5": 5.385,
+    "M6": 11.735
+   },
+   "cp_upper_pct": {
+    "M1": 1.5497578910864653,
+    "M2": 1.2977154638106756,
+    "M3": 1.9988971860487652,
+    "M4": 4.794696834198432,
+    "M5": 5.654872342882118,
+    "M6": 12.115943516055196
+   },
+   "max_cp_M1_M5_pct": 5.654872342882118,
+   "ce": {
+    "M1": 246.05267944051022,
+    "M2": 263.2317881616216,
+    "M3": 229.88218447606945,
+    "M4": 243.51412274855372,
+    "M5": 227.66634944608637,
+    "M6": 196.50401768931454
+   }
+  },
+  "integrated|v2u16|mixA": {
+   "p_red_pct": {
+    "M1": 0.0,
+    "M2": 0.0,
+    "M3": 0.0,
+    "M4": 0.0,
+    "M5": 0.0,
+    "M6": 0.03
+   },
+   "cp_upper_pct": {
+    "M1": 0.014977539622296282,
+    "M2": 0.014977539622296282,
+    "M3": 0.014977539622296282,
+    "M4": 0.014977539622296282,
+    "M5": 0.014977539622296282,
+    "M6": 0.05920333003445921
+   },
+   "max_cp_M1_M5_pct": 0.014977539622296282,
+   "ce": {
+    "M1": 248.6609570650901,
+    "M2": 264.5780679075824,
+    "M3": 232.92263619017598,
+    "M4": 246.36988969047903,
+    "M5": 231.40712882240604,
+    "M6": 200.7094021535087
+   }
+  },
+  "integrated|v2u16|mixB": {
+   "p_red_pct": {
+    "M1": 0.0,
+    "M2": 0.0,
+    "M3": 0.0,
+    "M4": 0.0,
+    "M5": 0.005,
+    "M6": 0.045
+   },
+   "cp_upper_pct": {
+    "M1": 0.014977539622296282,
+    "M2": 0.014977539622296282,
+    "M3": 0.014977539622296282,
+    "M4": 0.014977539622296282,
+    "M5": 0.023717102659408986,
+    "M6": 0.07851291888846358
+   },
+   "max_cp_M1_M5_pct": 0.023717102659408986,
+   "ce": {
+    "M1": 245.31020037324228,
+    "M2": 262.68410119495184,
+    "M3": 228.86018635835103,
+    "M4": 242.49908452715434,
+    "M5": 226.19886054886464,
+    "M6": 194.43517711880966
+   }
+  },
+  "integrated|v2u11|dn": {
+   "p_red_pct": {
+    "M1": 0.79,
+    "M2": 0.645,
+    "M3": 1.055,
+    "M4": 2.71,
+    "M5": 3.46,
+    "M6": 8.14
+   },
+   "cp_upper_pct": {
+    "M1": 0.9009647058295918,
+    "M2": 0.7461470458934927,
+    "M3": 1.181766028966694,
+    "M4": 2.9065260396614634,
+    "M5": 3.6801432731642105,
+    "M6": 8.465065796717099
+   },
+   "max_cp_M1_M5_pct": 3.6801432731642105,
+   "ce": {
+    "M1": 246.06689614734012,
+    "M2": 262.86486477776987,
+    "M3": 230.30697557937776,
+    "M4": 243.65137271886033,
+    "M5": 227.84005141271479,
+    "M6": 197.04066614487502
+   }
+  },
+  "integrated|v2u11|mixA": {
+   "p_red_pct": {
+    "M1": 0.0,
+    "M2": 0.0,
+    "M3": 0.0,
+    "M4": 0.0,
+    "M5": 0.0,
+    "M6": 0.005
+   },
+   "cp_upper_pct": {
+    "M1": 0.014977539622296282,
+    "M2": 0.014977539622296282,
+    "M3": 0.014977539622296282,
+    "M4": 0.014977539622296282,
+    "M5": 0.014977539622296282,
+    "M6": 0.023717102659408986
+   },
+   "max_cp_M1_M5_pct": 0.014977539622296282,
+   "ce": {
+    "M1": 248.85334659862016,
+    "M2": 264.3359597326676,
+    "M3": 233.45015946850287,
+    "M4": 246.6869495639315,
+    "M5": 231.74867465261323,
+    "M6": 200.94428713111267
+   }
+  },
+  "integrated|v2u11|mixB": {
+   "p_red_pct": {
+    "M1": 0.0,
+    "M2": 0.0,
+    "M3": 0.0,
+    "M4": 0.0,
+    "M5": 0.0,
+    "M6": 0.025
+   },
+   "cp_upper_pct": {
+    "M1": 0.014977539622296282,
+    "M2": 0.014977539622296282,
+    "M3": 0.014977539622296282,
+    "M4": 0.014977539622296282,
+    "M5": 0.014977539622296282,
+    "M6": 0.05255792997026123
+   },
+   "max_cp_M1_M5_pct": 0.014977539622296282,
+   "ce": {
+    "M1": 245.4838428164338,
+    "M2": 262.4521044799692,
+    "M3": 229.40433627544294,
+    "M4": 242.72449376901392,
+    "M5": 226.54443768410624,
+    "M6": 194.5850767872908
+   }
+  },
+  "integrated_raoff|v2u16|dn": {
+   "p_red_pct": {
+    "M1": 2.225,
+    "M2": 1.765,
+    "M3": 2.97,
+    "M4": 6.68,
+    "M5": 7.19,
+    "M6": 15.509999999999998
+   },
+   "cp_upper_pct": {
+    "M1": 2.4042873447932442,
+    "M2": 1.9259563177361816,
+    "M3": 3.175079206872764,
+    "M4": 6.977582152828838,
+    "M5": 7.497580817892298,
+    "M6": 15.93724051255604
+   },
+   "max_cp_M1_M5_pct": 7.497580817892298,
+   "ce": {
+    "M1": 246.1573943903653,
+    "M2": 263.2368809645763,
+    "M3": 230.0274431963345,
+    "M4": 243.4955091111132,
+    "M5": 227.76946099781506,
+    "M6": 196.2886834502398
+   }
+  },
+  "integrated_raoff|v2u16|mixA": {
+   "p_red_pct": {
+    "M1": 0.0,
+    "M2": 0.0,
+    "M3": 0.0,
+    "M4": 0.005,
+    "M5": 0.005,
+    "M6": 0.125
+   },
+   "cp_upper_pct": {
+    "M1": 0.014977539622296282,
+    "M2": 0.014977539622296282,
+    "M3": 0.014977539622296282,
+    "M4": 0.023717102659408986,
+    "M5": 0.023717102659408986,
+    "M6": 0.17453711655083606
+   },
+   "max_cp_M1_M5_pct": 0.023717102659408986,
+   "ce": {
+    "M1": 248.58282284130652,
+    "M2": 264.42644437076024,
+    "M3": 232.91107423249284,
+    "M4": 246.28275509716775,
+    "M5": 231.37600414054089,
+    "M6": 200.84865860889806
+   }
+  },
+  "integrated_raoff|v2u16|mixB": {
+   "p_red_pct": {
+    "M1": 0.0,
+    "M2": 0.0,
+    "M3": 0.0,
+    "M4": 0.005,
+    "M5": 0.005,
+    "M6": 0.11499999999999999
+   },
+   "cp_upper_pct": {
+    "M1": 0.014977539622296282,
+    "M2": 0.014977539622296282,
+    "M3": 0.014977539622296282,
+    "M4": 0.023717102659408986,
+    "M5": 0.023717102659408986,
+    "M6": 0.16288787511890404
+   },
+   "max_cp_M1_M5_pct": 0.023717102659408986,
+   "ce": {
+    "M1": 245.29827092681802,
+    "M2": 262.5680597654597,
+    "M3": 228.93793678337522,
+    "M4": 242.52498802173218,
+    "M5": 226.30720462804624,
+    "M6": 194.55066589363756
+   }
+  },
+  "integrated_raoff|v2u11|dn": {
+   "p_red_pct": {
+    "M1": 1.2149999999999999,
+    "M2": 1.0,
+    "M3": 1.7049999999999998,
+    "M4": 4.205,
+    "M5": 4.95,
+    "M6": 11.05
+   },
+   "cp_upper_pct": {
+    "M1": 1.3503234919371208,
+    "M2": 1.1236711362695724,
+    "M3": 1.8633861789037487,
+    "M4": 4.445915203182291,
+    "M5": 5.2096748075828,
+    "M6": 11.42133697647451
+   },
+   "max_cp_M1_M5_pct": 5.2096748075828,
+   "ce": {
+    "M1": 246.1730022996382,
+    "M2": 262.8846519895619,
+    "M3": 230.455568795612,
+    "M4": 243.72536754958844,
+    "M5": 227.982378495472,
+    "M6": 196.97534463349677
+   }
+  },
+  "integrated_raoff|v2u11|mixA": {
+   "p_red_pct": {
+    "M1": 0.0,
+    "M2": 0.0,
+    "M3": 0.0,
+    "M4": 0.0,
+    "M5": 0.0,
+    "M6": 0.045
+   },
+   "cp_upper_pct": {
+    "M1": 0.014977539622296282,
+    "M2": 0.014977539622296282,
+    "M3": 0.014977539622296282,
+    "M4": 0.014977539622296282,
+    "M5": 0.014977539622296282,
+    "M6": 0.07851291888846358
+   },
+   "max_cp_M1_M5_pct": 0.014977539622296282,
+   "ce": {
+    "M1": 248.78690547194782,
+    "M2": 264.22792740716363,
+    "M3": 233.4412206397394,
+    "M4": 246.5886102638096,
+    "M5": 231.7135905200654,
+    "M6": 201.0738863883243
+   }
+  },
+  "integrated_raoff|v2u11|mixB": {
+   "p_red_pct": {
+    "M1": 0.0,
+    "M2": 0.0,
+    "M3": 0.0,
+    "M4": 0.0,
+    "M5": 0.0,
+    "M6": 0.05
+   },
+   "cp_upper_pct": {
+    "M1": 0.014977539622296282,
+    "M2": 0.014977539622296282,
+    "M3": 0.014977539622296282,
+    "M4": 0.014977539622296282,
+    "M5": 0.014977539622296282,
+    "M6": 0.08479633438665879
+   },
+   "max_cp_M1_M5_pct": 0.014977539622296282,
+   "ce": {
+    "M1": 245.49866109794183,
+    "M2": 262.39616763008314,
+    "M3": 229.49003805921663,
+    "M4": 242.75343704718188,
+    "M5": 226.5879800093931,
+    "M6": 194.73535069652712
+   }
+  }
+ },
+ "label": "SYNTHETIC - NOT ADIC DATA"
+}

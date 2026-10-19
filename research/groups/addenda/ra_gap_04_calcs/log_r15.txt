@@ -1,0 +1,28 @@
+RE  sealed|naive_no_lapse_model          cov90 pace4/pace8/unf 0.860/0.875/0.000 bias unf +0.378
+RE  sealed                               cov90 pace4/pace8/unf 0.840/0.820/0.790 bias -0.032/-0.030/-0.031 V17 FAIL
+RE  mature_flat                          cov90 pace4/pace8/unf 0.870/0.875/0.800 bias -0.005/-0.021/-0.021 V17 FAIL
+RE  growth_10pct                         cov90 pace4/pace8/unf 0.910/0.900/0.810 bias -0.021/-0.020/-0.027 V17 FAIL
+RE  growth_20pct_stress                  cov90 pace4/pace8/unf 0.870/0.835/0.820 bias -0.002/-0.011/-0.023 V17 FAIL
+RE  lapse_plus2y                         cov90 pace4/pace8/unf 0.860/0.855/0.785 bias -0.013/-0.019/-0.020 V17 FAIL
+RE  recallable_10pct                     cov90 pace4/pace8/unf 0.855/0.845/0.500 bias -0.003/-0.035/-0.076 V17 FAIL
+RE  T4prime_x1.38_scenario_conditional   cov90 pace4/pace8/unf 0.890/0.860/0.840 bias -0.015/-0.016/-0.019 V17 FAIL
+RE  T4prime_x1.38_unannounced            cov90 pace4/pace8/unf 0.210/0.150/0.350 bias -0.258/-0.212/-0.099 V17 FAIL
+INF sealed|naive_no_lapse_model          cov90 pace4/pace8/unf 0.835/0.855/0.000 bias unf +0.298
+INF sealed                               cov90 pace4/pace8/unf 0.855/0.850/0.760 bias -0.025/-0.031/-0.031 V17 FAIL
+INF mature_flat                          cov90 pace4/pace8/unf 0.885/0.865/0.765 bias -0.021/-0.027/-0.032 V17 FAIL
+INF growth_10pct                         cov90 pace4/pace8/unf 0.880/0.865/0.770 bias -0.020/-0.021/-0.025 V17 FAIL
+INF growth_20pct_stress                  cov90 pace4/pace8/unf 0.870/0.840/0.770 bias -0.017/-0.024/-0.027 V17 FAIL
+INF lapse_plus2y                         cov90 pace4/pace8/unf 0.895/0.870/0.745 bias -0.030/-0.029/-0.029 V17 FAIL
+INF recallable_10pct                     cov90 pace4/pace8/unf 0.880/0.780/0.345 bias -0.027/-0.044/-0.073 V17 FAIL
+INF T4prime_x1.38_scenario_conditional   cov90 pace4/pace8/unf 0.865/0.835/0.770 bias -0.020/-0.021/-0.022 V17 FAIL
+INF T4prime_x1.38_unannounced            cov90 pace4/pace8/unf 0.030/0.000/0.180 bias -0.255/-0.223/-0.090 V17 FAIL
+ENR sealed|naive_no_lapse_model          cov90 pace4/pace8/unf 0.885/0.865/0.000 bias unf +0.392
+ENR sealed                               cov90 pace4/pace8/unf 0.860/0.845/0.795 bias -0.017/-0.018/-0.027 V17 FAIL
+ENR mature_flat                          cov90 pace4/pace8/unf 0.875/0.865/0.820 bias -0.010/-0.016/-0.024 V17 FAIL
+ENR growth_10pct                         cov90 pace4/pace8/unf 0.885/0.860/0.790 bias -0.017/-0.022/-0.024 V17 FAIL
+ENR growth_20pct_stress                  cov90 pace4/pace8/unf 0.895/0.850/0.775 bias -0.016/-0.020/-0.024 V17 FAIL
+ENR lapse_plus2y                         cov90 pace4/pace8/unf 0.895/0.830/0.770 bias -0.016/-0.026/-0.026 V17 FAIL
+ENR recallable_10pct                     cov90 pace4/pace8/unf 0.845/0.765/0.430 bias -0.034/-0.051/-0.083 V17 FAIL
+ENR T4prime_x1.38_scenario_conditional   cov90 pace4/pace8/unf 0.855/0.815/0.770 bias -0.007/-0.015/-0.019 V17 FAIL
+ENR T4prime_x1.38_unannounced            cov90 pace4/pace8/unf 0.175/0.095/0.330 bias -0.256/-0.219/-0.104 V17 FAIL
+wrote C:\Users\dean\ai_envs\adic_tpa_lab\research\groups\addenda\ra_gap_04_calcs\ra04_r15_recovery_results.json SYNTHETIC - NOT ADIC DATA

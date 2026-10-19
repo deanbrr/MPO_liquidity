@@ -1,0 +1,28 @@
+{
+ "protocol": {
+  "action": "SELL $0.70bn of fund-held levered upstream (ENR_CE) at t0 into the Gulf-war bid, price 0.80 of reported NAV; buyer assumes the pro-rata unfunded",
+  "control": "HOLD (identical book, plan and every other RA playbook item; only the ENR SELL toggled)",
+  "plan": "Mix B (revolver $10bn, pacing $12bn + stage cut, band, reserve 8%, $5bn HF notice), current triggers, all ten players on, book v2u16, CFP proxy at the recalibrated theta*",
+  "worlds": [
+   "M1",
+   "M2",
+   "M3",
+   "M4",
+   "M5",
+   "M6"
+  ],
+  "paths_per_world": 50000,
+  "seeds": "fresh: 31337000 + 1000*k (k = world index); disjoint from every search / screening run (20261018 family)",
+  "metrics": [
+   "dCE ($bn and bp of NAV a year, CRRA 3 on distribution-inclusive W~)",
+   "dE[W~]",
+   "dP(red event, 5y)",
+   "dE[W~ | wrong-way paths: SG or DB within 8 quarters]",
+   "oil delta at $70"
+  ],
+  "decision_rule": "QUALIFIED iff, intersection-union across the six worlds: (i) non-inferiority on CE: the paired lower 95% bound of dCE >= -0.5bp of NAV a year in every world; (ii) Tier-1 non-inferiority: the paired upper 95% bound of dP(red) <= +0.10pp in every world; (iii) purpose: the oil delta at $70 falls inside the 10m-bbl hard budget and dE[W~ | wrong-way] > 0 with a lower 95% bound > 0 in at least two worlds. NOT ESTABLISHED if (i) or (ii) fails in any world; materiality for return claims (15bp a year, main s5.4) is not applicable to a 0.4%-of-NAV action and is not used",
+  "sensitivities": "bid 0.75 / 0.85; size 0.6 / 0.8; plan = do-nothing; extension axis 0; theta* SAA band",
+  "registered": "2026-10-19, before the run"
+ },
+ "sha256": "d01d542d9430beaf75edcac66c526ad49747332c9299fce3187dc33b743a1eee"
+}

@@ -1,0 +1,1016 @@
+{
+ "label": "SYNTHETIC - NOT ADIC DATA",
+ "R": 200,
+ "B": 400,
+ "sigma_zeta": 0.3,
+ "sectors": {
+  "RE": {
+   "n_funds": 15,
+   "sealed|naive_no_lapse_model": {
+    "pace4": {
+     "coverage90": 0.86,
+     "bias_median": -0.026904275561914888,
+     "bias_mean": -0.01980941304232664
+    },
+    "pace8": {
+     "coverage90": 0.875,
+     "bias_median": 0.016042347023673867,
+     "bias_mean": 0.020761803135487103
+    },
+    "unf": {
+     "coverage90": 0.0,
+     "bias_median": 0.37889548344796864,
+     "bias_mean": 0.37834099472848437
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.6952653073045572,
+    "buckets": {
+     "2012-19": {
+      "pace8": 1.0,
+      "unf": 1.0
+     },
+     "2020-22": {
+      "pace8": 0.395,
+      "unf": 0.0
+     },
+     "2023-24": {
+      "pace8": 0.87,
+      "unf": 0.0
+     },
+     "2025-26": {
+      "pace8": 0.865,
+      "unf": 0.065
+     }
+    }
+   },
+   "sealed": {
+    "pace4": {
+     "coverage90": 0.84,
+     "bias_median": -0.05519941777681808,
+     "bias_mean": -0.0319407993705774
+    },
+    "pace8": {
+     "coverage90": 0.82,
+     "bias_median": -0.03170987390477882,
+     "bias_mean": -0.0296834819773517
+    },
+    "unf": {
+     "coverage90": 0.79,
+     "bias_median": -0.030104917365304767,
+     "bias_mean": -0.03109825244394824
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.6923355537573228,
+    "buckets": {
+     "2012-19": {
+      "pace8": 1.0,
+      "unf": 1.0
+     },
+     "2020-22": {
+      "pace8": 0.855,
+      "unf": 0.855
+     },
+     "2023-24": {
+      "pace8": 0.795,
+      "unf": 0.805
+     },
+     "2025-26": {
+      "pace8": 0.88,
+      "unf": 0.845
+     }
+    }
+   },
+   "mature_flat": {
+    "pace4": {
+     "coverage90": 0.87,
+     "bias_median": -0.01646658066920826,
+     "bias_mean": -0.005469774102017463
+    },
+    "pace8": {
+     "coverage90": 0.875,
+     "bias_median": -0.027718920277722436,
+     "bias_mean": -0.02071985070837088
+    },
+    "unf": {
+     "coverage90": 0.8,
+     "bias_median": -0.02920141637398988,
+     "bias_mean": -0.02090071936732682
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.6840470804389063,
+    "buckets": {
+     "2012-19": {
+      "pace8": 1.0,
+      "unf": 1.0
+     },
+     "2020-22": {
+      "pace8": 0.875,
+      "unf": 0.875
+     },
+     "2023-24": {
+      "pace8": 0.875,
+      "unf": 0.845
+     },
+     "2025-26": {
+      "pace8": 0.89,
+      "unf": 0.825
+     }
+    }
+   },
+   "growth_10pct": {
+    "pace4": {
+     "coverage90": 0.91,
+     "bias_median": -0.035687086017646065,
+     "bias_mean": -0.02105595241207062
+    },
+    "pace8": {
+     "coverage90": 0.9,
+     "bias_median": -0.0340177061833389,
+     "bias_mean": -0.019606455495869913
+    },
+    "unf": {
+     "coverage90": 0.81,
+     "bias_median": -0.027426388709888783,
+     "bias_mean": -0.026545166943101065
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.7104612123603635,
+    "buckets": {
+     "2012-19": {
+      "pace8": 1.0,
+      "unf": 1.0
+     },
+     "2020-22": {
+      "pace8": 0.845,
+      "unf": 0.845
+     },
+     "2023-24": {
+      "pace8": 0.895,
+      "unf": 0.86
+     },
+     "2025-26": {
+      "pace8": 0.87,
+      "unf": 0.835
+     }
+    }
+   },
+   "growth_20pct_stress": {
+    "pace4": {
+     "coverage90": 0.87,
+     "bias_median": -0.007852887686588546,
+     "bias_mean": -0.0021352075036452536
+    },
+    "pace8": {
+     "coverage90": 0.835,
+     "bias_median": -0.016865504825007788,
+     "bias_mean": -0.010741516906461626
+    },
+    "unf": {
+     "coverage90": 0.82,
+     "bias_median": -0.024066850053858287,
+     "bias_mean": -0.02349420339596529
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.7284485662041216,
+    "buckets": {
+     "2012-19": {
+      "pace8": 1.0,
+      "unf": 1.0
+     },
+     "2020-22": {
+      "pace8": 0.83,
+      "unf": 0.83
+     },
+     "2023-24": {
+      "pace8": 0.87,
+      "unf": 0.845
+     },
+     "2025-26": {
+      "pace8": 0.85,
+      "unf": 0.845
+     }
+    }
+   },
+   "lapse_plus2y": {
+    "pace4": {
+     "coverage90": 0.86,
+     "bias_median": -0.01234434658243792,
+     "bias_mean": -0.013357150458052122
+    },
+    "pace8": {
+     "coverage90": 0.855,
+     "bias_median": -0.020872613482500614,
+     "bias_mean": -0.019041619004854685
+    },
+    "unf": {
+     "coverage90": 0.785,
+     "bias_median": -0.018213926506169705,
+     "bias_mean": -0.01980209731472193
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.807849495634227,
+    "buckets": {
+     "2012-19": {
+      "pace8": 0.875,
+      "unf": 0.875
+     },
+     "2020-22": {
+      "pace8": 0.86,
+      "unf": 0.855
+     },
+     "2023-24": {
+      "pace8": 0.905,
+      "unf": 0.85
+     },
+     "2025-26": {
+      "pace8": 0.88,
+      "unf": 0.78
+     }
+    }
+   },
+   "recallable_10pct": {
+    "pace4": {
+     "coverage90": 0.855,
+     "bias_median": -0.010296209523719048,
+     "bias_mean": -0.0030412129418649183
+    },
+    "pace8": {
+     "coverage90": 0.845,
+     "bias_median": -0.041646044692571174,
+     "bias_mean": -0.034926591462116796
+    },
+    "unf": {
+     "coverage90": 0.5,
+     "bias_median": -0.08036555971291812,
+     "bias_mean": -0.07599332413533914
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.7246638005297042,
+    "buckets": {
+     "2012-19": {
+      "pace8": 1.0,
+      "unf": 1.0
+     },
+     "2020-22": {
+      "pace8": 0.87,
+      "unf": 0.87
+     },
+     "2023-24": {
+      "pace8": 0.79,
+      "unf": 0.64
+     },
+     "2025-26": {
+      "pace8": 0.865,
+      "unf": 0.525
+     }
+    }
+   },
+   "T4prime_x1.38_scenario_conditional": {
+    "pace4": {
+     "coverage90": 0.89,
+     "bias_median": -0.018345401764924697,
+     "bias_mean": -0.015404417942327928
+    },
+    "pace8": {
+     "coverage90": 0.86,
+     "bias_median": -0.020622442314603272,
+     "bias_mean": -0.0157285069442738
+    },
+    "unf": {
+     "coverage90": 0.84,
+     "bias_median": -0.024388427636743683,
+     "bias_mean": -0.01940067476161543
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.7412726615259478,
+    "buckets": {
+     "2012-19": {
+      "pace8": 1.0,
+      "unf": 1.0
+     },
+     "2020-22": {
+      "pace8": 0.835,
+      "unf": 0.835
+     },
+     "2023-24": {
+      "pace8": 0.905,
+      "unf": 0.915
+     },
+     "2025-26": {
+      "pace8": 0.845,
+      "unf": 0.87
+     }
+    }
+   },
+   "T4prime_x1.38_unannounced": {
+    "pace4": {
+     "coverage90": 0.21,
+     "bias_median": -0.27041722245428446,
+     "bias_mean": -0.2582768782691399
+    },
+    "pace8": {
+     "coverage90": 0.15,
+     "bias_median": -0.21622582082744646,
+     "bias_mean": -0.21163460790406188
+    },
+    "unf": {
+     "coverage90": 0.35,
+     "bias_median": -0.10178054519520302,
+     "bias_mean": -0.09891051031127483
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.7485483986284756,
+    "buckets": {
+     "2012-19": {
+      "pace8": 1.0,
+      "unf": 1.0
+     },
+     "2020-22": {
+      "pace8": 0.39,
+      "unf": 0.39
+     },
+     "2023-24": {
+      "pace8": 0.29,
+      "unf": 0.46
+     },
+     "2025-26": {
+      "pace8": 0.465,
+      "unf": 0.685
+     }
+    }
+   }
+  },
+  "INF": {
+   "n_funds": 24,
+   "sealed|naive_no_lapse_model": {
+    "pace4": {
+     "coverage90": 0.835,
+     "bias_median": -0.01898479018235045,
+     "bias_mean": -0.016586946622004498
+    },
+    "pace8": {
+     "coverage90": 0.855,
+     "bias_median": -0.0011874968278486682,
+     "bias_mean": 0.0006067579734208106
+    },
+    "unf": {
+     "coverage90": 0.0,
+     "bias_median": 0.2980631071504598,
+     "bias_mean": 0.2980472100647571
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.710886706702461,
+    "buckets": {
+     "2012-19": {
+      "pace8": 1.0,
+      "unf": 1.0
+     },
+     "2020-22": {
+      "pace8": 0.68,
+      "unf": 0.0
+     },
+     "2023-24": {
+      "pace8": 0.87,
+      "unf": 0.0
+     },
+     "2025-26": {
+      "pace8": 0.88,
+      "unf": 0.06
+     }
+    }
+   },
+   "sealed": {
+    "pace4": {
+     "coverage90": 0.855,
+     "bias_median": -0.02850735307743304,
+     "bias_mean": -0.02531392625223209
+    },
+    "pace8": {
+     "coverage90": 0.85,
+     "bias_median": -0.03346701908005969,
+     "bias_mean": -0.03143367258016319
+    },
+    "unf": {
+     "coverage90": 0.76,
+     "bias_median": -0.0303474045633726,
+     "bias_mean": -0.030794547554118958
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.7130227718352046,
+    "buckets": {
+     "2012-19": {
+      "pace8": 1.0,
+      "unf": 1.0
+     },
+     "2020-22": {
+      "pace8": 0.825,
+      "unf": 0.805
+     },
+     "2023-24": {
+      "pace8": 0.85,
+      "unf": 0.83
+     },
+     "2025-26": {
+      "pace8": 0.865,
+      "unf": 0.81
+     }
+    }
+   },
+   "mature_flat": {
+    "pace4": {
+     "coverage90": 0.885,
+     "bias_median": -0.025398916071870746,
+     "bias_mean": -0.02102958163850256
+    },
+    "pace8": {
+     "coverage90": 0.865,
+     "bias_median": -0.027699211968590858,
+     "bias_mean": -0.027042760065935298
+    },
+    "unf": {
+     "coverage90": 0.765,
+     "bias_median": -0.03465534427174145,
+     "bias_mean": -0.03223628724996117
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.6932640598382604,
+    "buckets": {
+     "2012-19": {
+      "pace8": 1.0,
+      "unf": 1.0
+     },
+     "2020-22": {
+      "pace8": 0.835,
+      "unf": 0.81
+     },
+     "2023-24": {
+      "pace8": 0.885,
+      "unf": 0.775
+     },
+     "2025-26": {
+      "pace8": 0.91,
+      "unf": 0.85
+     }
+    }
+   },
+   "growth_10pct": {
+    "pace4": {
+     "coverage90": 0.88,
+     "bias_median": -0.016548504863315855,
+     "bias_mean": -0.0195613323638877
+    },
+    "pace8": {
+     "coverage90": 0.865,
+     "bias_median": -0.02469309694097177,
+     "bias_mean": -0.020625641751794113
+    },
+    "unf": {
+     "coverage90": 0.77,
+     "bias_median": -0.027514821187787718,
+     "bias_mean": -0.025096912956499615
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.7162933908411009,
+    "buckets": {
+     "2012-19": {
+      "pace8": 1.0,
+      "unf": 1.0
+     },
+     "2020-22": {
+      "pace8": 0.86,
+      "unf": 0.845
+     },
+     "2023-24": {
+      "pace8": 0.825,
+      "unf": 0.8
+     },
+     "2025-26": {
+      "pace8": 0.88,
+      "unf": 0.82
+     }
+    }
+   },
+   "growth_20pct_stress": {
+    "pace4": {
+     "coverage90": 0.87,
+     "bias_median": -0.021388346222944343,
+     "bias_mean": -0.017397762760396045
+    },
+    "pace8": {
+     "coverage90": 0.84,
+     "bias_median": -0.02599605188542578,
+     "bias_mean": -0.024000611132254757
+    },
+    "unf": {
+     "coverage90": 0.77,
+     "bias_median": -0.026033037460364273,
+     "bias_mean": -0.026532244739734482
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.7329290067827889,
+    "buckets": {
+     "2012-19": {
+      "pace8": 1.0,
+      "unf": 1.0
+     },
+     "2020-22": {
+      "pace8": 0.83,
+      "unf": 0.835
+     },
+     "2023-24": {
+      "pace8": 0.845,
+      "unf": 0.81
+     },
+     "2025-26": {
+      "pace8": 0.875,
+      "unf": 0.81
+     }
+    }
+   },
+   "lapse_plus2y": {
+    "pace4": {
+     "coverage90": 0.895,
+     "bias_median": -0.02599443199618002,
+     "bias_mean": -0.029746716788601742
+    },
+    "pace8": {
+     "coverage90": 0.87,
+     "bias_median": -0.0329494491320858,
+     "bias_mean": -0.029049304574958353
+    },
+    "unf": {
+     "coverage90": 0.745,
+     "bias_median": -0.03204210402518867,
+     "bias_mean": -0.02931954357237386
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.8215147867660128,
+    "buckets": {
+     "2012-19": {
+      "pace8": 0.825,
+      "unf": 0.825
+     },
+     "2020-22": {
+      "pace8": 0.81,
+      "unf": 0.775
+     },
+     "2023-24": {
+      "pace8": 0.88,
+      "unf": 0.815
+     },
+     "2025-26": {
+      "pace8": 0.895,
+      "unf": 0.83
+     }
+    }
+   },
+   "recallable_10pct": {
+    "pace4": {
+     "coverage90": 0.88,
+     "bias_median": -0.03030082437608371,
+     "bias_mean": -0.027149198451916195
+    },
+    "pace8": {
+     "coverage90": 0.78,
+     "bias_median": -0.04668879526718191,
+     "bias_mean": -0.04433036025756261
+    },
+    "unf": {
+     "coverage90": 0.345,
+     "bias_median": -0.07486210619195402,
+     "bias_mean": -0.07270229762957704
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.7405121793470758,
+    "buckets": {
+     "2012-19": {
+      "pace8": 1.0,
+      "unf": 1.0
+     },
+     "2020-22": {
+      "pace8": 0.825,
+      "unf": 0.845
+     },
+     "2023-24": {
+      "pace8": 0.775,
+      "unf": 0.555
+     },
+     "2025-26": {
+      "pace8": 0.87,
+      "unf": 0.38
+     }
+    }
+   },
+   "T4prime_x1.38_scenario_conditional": {
+    "pace4": {
+     "coverage90": 0.865,
+     "bias_median": -0.01970063198751039,
+     "bias_mean": -0.02034514097364761
+    },
+    "pace8": {
+     "coverage90": 0.835,
+     "bias_median": -0.013425581005855627,
+     "bias_mean": -0.020976795584421764
+    },
+    "unf": {
+     "coverage90": 0.77,
+     "bias_median": -0.020487261303505803,
+     "bias_mean": -0.022253085978824673
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.7589179025547815,
+    "buckets": {
+     "2012-19": {
+      "pace8": 1.0,
+      "unf": 1.0
+     },
+     "2020-22": {
+      "pace8": 0.86,
+      "unf": 0.84
+     },
+     "2023-24": {
+      "pace8": 0.83,
+      "unf": 0.795
+     },
+     "2025-26": {
+      "pace8": 0.865,
+      "unf": 0.805
+     }
+    }
+   },
+   "T4prime_x1.38_unannounced": {
+    "pace4": {
+     "coverage90": 0.03,
+     "bias_median": -0.25777575853923745,
+     "bias_mean": -0.25471680684759795
+    },
+    "pace8": {
+     "coverage90": 0.0,
+     "bias_median": -0.22024573351776106,
+     "bias_mean": -0.22334750170517378
+    },
+    "unf": {
+     "coverage90": 0.18,
+     "bias_median": -0.08547805742771733,
+     "bias_mean": -0.08950686975642984
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.7619236934284143,
+    "buckets": {
+     "2012-19": {
+      "pace8": 1.0,
+      "unf": 1.0
+     },
+     "2020-22": {
+      "pace8": 0.095,
+      "unf": 0.145
+     },
+     "2023-24": {
+      "pace8": 0.105,
+      "unf": 0.29
+     },
+     "2025-26": {
+      "pace8": 0.215,
+      "unf": 0.59
+     }
+    }
+   }
+  },
+  "ENR": {
+   "n_funds": 15,
+   "sealed|naive_no_lapse_model": {
+    "pace4": {
+     "coverage90": 0.885,
+     "bias_median": -0.018338255831456755,
+     "bias_mean": -0.006781058017768282
+    },
+    "pace8": {
+     "coverage90": 0.865,
+     "bias_median": 0.029896600668811495,
+     "bias_mean": 0.028140061794009696
+    },
+    "unf": {
+     "coverage90": 0.0,
+     "bias_median": 0.38609513622002367,
+     "bias_mean": 0.3917431376818205
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.6851068803843066,
+    "buckets": {
+     "2012-19": {
+      "pace8": 1.0,
+      "unf": 1.0
+     },
+     "2020-22": {
+      "pace8": 0.385,
+      "unf": 0.0
+     },
+     "2023-24": {
+      "pace8": 0.86,
+      "unf": 0.0
+     },
+     "2025-26": {
+      "pace8": 0.855,
+      "unf": 0.09
+     }
+    }
+   },
+   "sealed": {
+    "pace4": {
+     "coverage90": 0.86,
+     "bias_median": -0.03491413951771481,
+     "bias_mean": -0.016988593303664062
+    },
+    "pace8": {
+     "coverage90": 0.845,
+     "bias_median": -0.029062519041723626,
+     "bias_mean": -0.01762001004171555
+    },
+    "unf": {
+     "coverage90": 0.795,
+     "bias_median": -0.03717468969747003,
+     "bias_mean": -0.026526259592291518
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.6850938218809486,
+    "buckets": {
+     "2012-19": {
+      "pace8": 1.0,
+      "unf": 1.0
+     },
+     "2020-22": {
+      "pace8": 0.875,
+      "unf": 0.875
+     },
+     "2023-24": {
+      "pace8": 0.885,
+      "unf": 0.885
+     },
+     "2025-26": {
+      "pace8": 0.865,
+      "unf": 0.805
+     }
+    }
+   },
+   "mature_flat": {
+    "pace4": {
+     "coverage90": 0.875,
+     "bias_median": -0.027865234623019822,
+     "bias_mean": -0.009731900572843254
+    },
+    "pace8": {
+     "coverage90": 0.865,
+     "bias_median": -0.021118576032738593,
+     "bias_mean": -0.015715840627040557
+    },
+    "unf": {
+     "coverage90": 0.82,
+     "bias_median": -0.02483639818498333,
+     "bias_mean": -0.023725779437674524
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.6878634191571094,
+    "buckets": {
+     "2012-19": {
+      "pace8": 1.0,
+      "unf": 1.0
+     },
+     "2020-22": {
+      "pace8": 0.845,
+      "unf": 0.845
+     },
+     "2023-24": {
+      "pace8": 0.875,
+      "unf": 0.855
+     },
+     "2025-26": {
+      "pace8": 0.85,
+      "unf": 0.835
+     }
+    }
+   },
+   "growth_10pct": {
+    "pace4": {
+     "coverage90": 0.885,
+     "bias_median": -0.012871893642171728,
+     "bias_mean": -0.016622968318831848
+    },
+    "pace8": {
+     "coverage90": 0.86,
+     "bias_median": -0.028313634307590263,
+     "bias_mean": -0.022296509455545427
+    },
+    "unf": {
+     "coverage90": 0.79,
+     "bias_median": -0.029085197522016958,
+     "bias_mean": -0.024078420220406054
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.7109457009146348,
+    "buckets": {
+     "2012-19": {
+      "pace8": 1.0,
+      "unf": 1.0
+     },
+     "2020-22": {
+      "pace8": 0.87,
+      "unf": 0.87
+     },
+     "2023-24": {
+      "pace8": 0.815,
+      "unf": 0.815
+     },
+     "2025-26": {
+      "pace8": 0.88,
+      "unf": 0.81
+     }
+    }
+   },
+   "growth_20pct_stress": {
+    "pace4": {
+     "coverage90": 0.895,
+     "bias_median": -0.019840963927847722,
+     "bias_mean": -0.016016287306743246
+    },
+    "pace8": {
+     "coverage90": 0.85,
+     "bias_median": -0.024178700647215258,
+     "bias_mean": -0.019747438644435185
+    },
+    "unf": {
+     "coverage90": 0.775,
+     "bias_median": -0.02708167515827737,
+     "bias_mean": -0.024422894019507636
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.7287891937023793,
+    "buckets": {
+     "2012-19": {
+      "pace8": 1.0,
+      "unf": 1.0
+     },
+     "2020-22": {
+      "pace8": 0.81,
+      "unf": 0.81
+     },
+     "2023-24": {
+      "pace8": 0.88,
+      "unf": 0.835
+     },
+     "2025-26": {
+      "pace8": 0.855,
+      "unf": 0.815
+     }
+    }
+   },
+   "lapse_plus2y": {
+    "pace4": {
+     "coverage90": 0.895,
+     "bias_median": -0.03414560602228247,
+     "bias_mean": -0.016204378627314747
+    },
+    "pace8": {
+     "coverage90": 0.83,
+     "bias_median": -0.037849352267290005,
+     "bias_mean": -0.0261027546013274
+    },
+    "unf": {
+     "coverage90": 0.77,
+     "bias_median": -0.027956785873902337,
+     "bias_mean": -0.025858356523663303
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.803150724917408,
+    "buckets": {
+     "2012-19": {
+      "pace8": 0.84,
+      "unf": 0.84
+     },
+     "2020-22": {
+      "pace8": 0.85,
+      "unf": 0.845
+     },
+     "2023-24": {
+      "pace8": 0.835,
+      "unf": 0.845
+     },
+     "2025-26": {
+      "pace8": 0.855,
+      "unf": 0.805
+     }
+    }
+   },
+   "recallable_10pct": {
+    "pace4": {
+     "coverage90": 0.845,
+     "bias_median": -0.032027695385542815,
+     "bias_mean": -0.03379796862504634
+    },
+    "pace8": {
+     "coverage90": 0.765,
+     "bias_median": -0.05685814189101152,
+     "bias_mean": -0.05087290459257465
+    },
+    "unf": {
+     "coverage90": 0.43,
+     "bias_median": -0.08740048689890734,
+     "bias_mean": -0.08301260344490764
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.7178623493738837,
+    "buckets": {
+     "2012-19": {
+      "pace8": 1.0,
+      "unf": 1.0
+     },
+     "2020-22": {
+      "pace8": 0.855,
+      "unf": 0.855
+     },
+     "2023-24": {
+      "pace8": 0.78,
+      "unf": 0.59
+     },
+     "2025-26": {
+      "pace8": 0.83,
+      "unf": 0.54
+     }
+    }
+   },
+   "T4prime_x1.38_scenario_conditional": {
+    "pace4": {
+     "coverage90": 0.855,
+     "bias_median": -0.019453250079658025,
+     "bias_mean": -0.007426141553110515
+    },
+    "pace8": {
+     "coverage90": 0.815,
+     "bias_median": -0.01920960836359488,
+     "bias_mean": -0.015138785149872243
+    },
+    "unf": {
+     "coverage90": 0.77,
+     "bias_median": -0.023590882814896793,
+     "bias_mean": -0.019353166902995617
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.7403194809939413,
+    "buckets": {
+     "2012-19": {
+      "pace8": 1.0,
+      "unf": 1.0
+     },
+     "2020-22": {
+      "pace8": 0.85,
+      "unf": 0.85
+     },
+     "2023-24": {
+      "pace8": 0.835,
+      "unf": 0.785
+     },
+     "2025-26": {
+      "pace8": 0.88,
+      "unf": 0.835
+     }
+    }
+   },
+   "T4prime_x1.38_unannounced": {
+    "pace4": {
+     "coverage90": 0.175,
+     "bias_median": -0.25424029736588516,
+     "bias_mean": -0.2563881973141654
+    },
+    "pace8": {
+     "coverage90": 0.095,
+     "bias_median": -0.21880360003946933,
+     "bias_mean": -0.2194097267254995
+    },
+    "unf": {
+     "coverage90": 0.33,
+     "bias_median": -0.10486831297716744,
+     "bias_mean": -0.10447624358499283
+    },
+    "gate_V17": false,
+    "callable_over_contractual_unfunded": 0.744473479278735,
+    "buckets": {
+     "2012-19": {
+      "pace8": 1.0,
+      "unf": 1.0
+     },
+     "2020-22": {
+      "pace8": 0.415,
+      "unf": 0.415
+     },
+     "2023-24": {
+      "pace8": 0.335,
+      "unf": 0.475
+     },
+     "2025-26": {
+      "pace8": 0.45,
+      "unf": 0.69
+     }
+    }
+   }
+  }
+ }
+}

@@ -1,0 +1,2477 @@
+{
+  "views": [
+    {
+      "id": "engines",
+      "title": "Deterministic engine data flow",
+      "subtitle": "One ledger kernel used three ways (P, H, T4′); engines run inside the evaluator; agents never touch the kernel (§3.1–§3.2)",
+      "nodes": [
+        {
+          "id": "contract",
+          "label": "CIO + CRO sign contract",
+          "sublabel": "AnalysisContract; Board/owner in structural recovery",
+          "kind": "human",
+          "lane": "human_plane",
+          "order": 0,
+          "owner": "CIO + CRO (sign)",
+          "section": "§3.2; §10.1"
+        },
+        {
+          "id": "ic_vote",
+          "label": "IC: blind pre-vote, ballot",
+          "sublabel": "humans own decisions; AI seats never vote",
+          "kind": "human",
+          "lane": "human_plane",
+          "order": 1,
+          "owner": "Investment Committee",
+          "section": "§3.2; §8.6"
+        },
+        {
+          "id": "evidence_compiler",
+          "label": "Register + evidence compiler",
+          "sublabel": "compiles the quarter's agenda into an EvidencePlan",
+          "kind": "deterministic",
+          "lane": "l10_room",
+          "order": 0,
+          "owner": "IC secretariat; Register owned by the CIO",
+          "section": "§3.2; §8.2"
+        },
+        {
+          "id": "pack",
+          "label": "IC pack L0/L1/L2",
+          "sublabel": "fund on a page, briefs, drill-down ≤ 2 clicks",
+          "kind": "deterministic",
+          "lane": "l10_room",
+          "order": 1,
+          "owner": "IC secretariat",
+          "section": "§3.2; §8.4"
+        },
+        {
+          "id": "lab_agents",
+          "label": "LLM roles via lab FSM",
+          "sublabel": "ideators, executors, red team: typed specs only",
+          "kind": "agentic",
+          "lane": "l9_lab",
+          "order": 0,
+          "owner": "CIO office under AI governance",
+          "section": "§3.2; §7.3"
+        },
+        {
+          "id": "claims",
+          "label": "claims renderer + validator",
+          "sublabel": "numbers only from registry placeholders",
+          "kind": "deterministic",
+          "lane": "l9_lab",
+          "order": 1,
+          "owner": "CIO office under AI governance",
+          "section": "§3.2; §10.6"
+        },
+        {
+          "id": "evaluator",
+          "label": "evaluator: gates 1–3",
+          "sublabel": "search/final instances; counting; caches; hash checks",
+          "kind": "deterministic",
+          "lane": "l8_evidence",
+          "order": 0,
+          "owner": "MRM",
+          "section": "§3.2; §7.2; §7.6"
+        },
+        {
+          "id": "seal",
+          "label": "seal: final plane once",
+          "sublabel": "commit-reveal HMAC(salt, world) seeds; CRO custody",
+          "kind": "deterministic",
+          "lane": "l8_evidence",
+          "order": 1,
+          "owner": "MRM; seal custody by CRO office",
+          "section": "§3.2; §7.2; §7.5"
+        },
+        {
+          "id": "registry",
+          "label": "registry",
+          "sublabel": "append-only, hash-chained run/metric/claim store",
+          "kind": "store",
+          "lane": "l8_evidence",
+          "order": 2,
+          "owner": "MRM",
+          "section": "§3.4; §10.3"
+        },
+        {
+          "id": "robust",
+          "label": "robust",
+          "sublabel": "ensemble, KL/W∞, k_MS, entropy pooling, reverse stress",
+          "kind": "deterministic",
+          "lane": "l7_explain",
+          "order": 0,
+          "owner": "Risk; CIO office",
+          "section": "§4.12"
+        },
+        {
+          "id": "attrib",
+          "label": "attrib",
+          "sublabel": "prices, counterfactuals, Shapley, null control, DVA",
+          "kind": "deterministic",
+          "lane": "l7_explain",
+          "order": 1,
+          "owner": "Risk; CIO office",
+          "section": "§4.13"
+        },
+        {
+          "id": "core_tree",
+          "label": "core.tree",
+          "sublabel": "pooled-observable nodes; 576 leaves × 8 periods",
+          "kind": "deterministic",
+          "lane": "l6_decide",
+          "order": 0,
+          "owner": "TPA desk",
+          "section": "§5.4"
+        },
+        {
+          "id": "phase1",
+          "label": "core.h Phase I (I-a / I-b)",
+          "sublabel": "elastic LPs per tier; u*, IIS, Farkas ray; R0x–R2",
+          "kind": "deterministic",
+          "lane": "l6_decide",
+          "order": 1,
+          "owner": "TPA desk; CRO signs Phase I",
+          "section": "§5.5"
+        },
+        {
+          "id": "recovery_mode",
+          "label": "recovery mode (G0)",
+          "sublabel": "NORMAL · EXECUTION_RECOVERY · STRUCTURAL_RECOVERY",
+          "kind": "deterministic",
+          "lane": "l6_decide",
+          "order": 2,
+          "owner": "CIO + CRO sign; Board if structural",
+          "section": "§5.5"
+        },
+        {
+          "id": "phase2",
+          "label": "core.h Phase II (H)",
+          "sublabel": "restored tree LP; 5 SAA replications; ≤ 120 s",
+          "kind": "deterministic",
+          "lane": "l6_decide",
+          "order": 3,
+          "owner": "TPA desk",
+          "section": "§5.4; §5.5"
+        },
+        {
+          "id": "duals_kernel",
+          "label": "duals → kernel → λ",
+          "sublabel": "ℓ_n = M_n/(μ_n − M_n); KKT cap; one-sided intervals",
+          "kind": "deterministic",
+          "lane": "l6_decide",
+          "order": 4,
+          "owner": "TPA desk computes; CRO validates",
+          "section": "§5.6"
+        },
+        {
+          "id": "colgen_levelb",
+          "label": "colgen + Level-B MILP",
+          "sublabel": "exact column pricing; selection MILP; Γ ≤ 5bp certificate",
+          "kind": "deterministic",
+          "lane": "l6_decide",
+          "order": 5,
+          "owner": "TPA desk",
+          "section": "§5.7"
+        },
+        {
+          "id": "cards",
+          "label": "actions: cards, Γ",
+          "sublabel": "per holding: priced_on, dual intervals, flip thresholds",
+          "kind": "deterministic",
+          "lane": "l6_decide",
+          "order": 6,
+          "owner": "Groups propose; TPA desk scores",
+          "section": "§3.2; §4.8; §5.7"
+        },
+        {
+          "id": "icm",
+          "label": "icm: λ, FTP, envelopes",
+          "sublabel": "decision & published FTP; envelopes Λ_g; charges",
+          "kind": "deterministic",
+          "lane": "l6_decide",
+          "order": 7,
+          "owner": "CF (FTP); TPA desk (envelopes); CRO office (TP committee)",
+          "section": "§3.2; §3.4; §6.1"
+        },
+        {
+          "id": "module_f",
+          "label": "core.safety (module F)",
+          "sublabel": "QP projection onto Tier-1 rows; 'what changed' record",
+          "kind": "deterministic",
+          "lane": "l6_decide",
+          "order": 8,
+          "owner": "TPA desk; CRO signs module F",
+          "section": "§5.8"
+        },
+        {
+          "id": "core_policy",
+          "label": "core.policy / dsl / search",
+          "sublabel": "P0 (≈20 θ), controls, archetypes A/B/C; CMA-ES",
+          "kind": "deterministic",
+          "lane": "l6_decide",
+          "order": 9,
+          "owner": "TPA desk",
+          "section": "§5.3; §5.10; §5.11"
+        },
+        {
+          "id": "c_h",
+          "label": "candidate C_H",
+          "sublabel": "H's quarter-1 package then P0; always a sealed finalist",
+          "kind": "deterministic",
+          "lane": "l6_decide",
+          "order": 10,
+          "owner": "TPA desk",
+          "section": "§5.9; §7.4"
+        },
+        {
+          "id": "core_sim",
+          "label": "core.sim (P)",
+          "sublabel": "policy simulator: 10k search / 50k certification paths",
+          "kind": "deterministic",
+          "lane": "l6_decide",
+          "order": 11,
+          "owner": "TPA desk",
+          "section": "§3.1; §5.10"
+        },
+        {
+          "id": "certify",
+          "label": "core.certify (CP bounds)",
+          "sublabel": "fresh 50k paths per final world + B2; one-sided 95% CP",
+          "kind": "deterministic",
+          "lane": "l6_decide",
+          "order": 12,
+          "owner": "TPA desk",
+          "section": "§5.10"
+        },
+        {
+          "id": "ledger",
+          "label": "ledger kernel",
+          "sublabel": "cash/HQLA/IG/encumbrance/facilities/payout; LR1–LR8",
+          "kind": "deterministic",
+          "lane": "l5_ledger",
+          "order": 0,
+          "owner": "Corporate Finance (Treasurer)",
+          "section": "§4.9"
+        },
+        {
+          "id": "t4_replica",
+          "label": "T4′ replica (stress_replica)",
+          "sublabel": "s*(θ*) canonical stress; 24 monthly headroom rows hd_h",
+          "kind": "deterministic",
+          "lane": "l5_ledger",
+          "order": 1,
+          "owner": "Corporate Finance (Treasurer)",
+          "section": "§4.9; §3.5"
+        },
+        {
+          "id": "cfp_reading",
+          "label": "CFPReading (stages)",
+          "sublabel": "readiness · event · planning stage → playbook",
+          "kind": "deterministic",
+          "lane": "l5_ledger",
+          "order": 2,
+          "owner": "Corporate Finance (Treasurer)",
+          "section": "§4.9"
+        },
+        {
+          "id": "funding",
+          "label": "funding curves & T5 limits",
+          "sublabel": "c_k(B,z) PWL-convex in H; facilities; leverage metrics",
+          "kind": "deterministic",
+          "lane": "l5_ledger",
+          "order": 3,
+          "owner": "Corporate Finance",
+          "section": "§4.10"
+        },
+        {
+          "id": "beliefs",
+          "label": "beliefs (FBE-R)",
+          "sublabel": "four marks; credibility κ_g; forecast-registry scoring",
+          "kind": "deterministic",
+          "lane": "l4_beliefs",
+          "order": 0,
+          "owner": "CRO office (validation); groups file forecasts",
+          "section": "§4.7"
+        },
+        {
+          "id": "bridge",
+          "label": "bridge (WYNTB)",
+          "sublabel": "what you need to believe for 10%, per model",
+          "kind": "deterministic",
+          "lane": "l4_beliefs",
+          "order": 1,
+          "owner": "CIO office (bridge)",
+          "section": "§4.11"
+        },
+        {
+          "id": "priv",
+          "label": "priv: three private engines",
+          "sublabel": "fund interests · single companies · claims; overlap graph",
+          "kind": "deterministic",
+          "lane": "l3_assets",
+          "order": 0,
+          "owner": "Groups own parameters; TPA desk owns code",
+          "section": "§4.4"
+        },
+        {
+          "id": "real_assets_engine",
+          "label": "Real Assets engine (interim)",
+          "sublabel": "added 18 Oct; research in progress; interim rules (brief §8)",
+          "kind": "deterministic",
+          "lane": "l3_assets",
+          "order": 1,
+          "owner": "",
+          "section": "brief §8"
+        },
+        {
+          "id": "pub",
+          "label": "pub: Public Markets",
+          "sublabel": "HF liquidity-term machine; long-only; P2S lever",
+          "kind": "deterministic",
+          "lane": "l3_assets",
+          "order": 2,
+          "owner": "Groups own parameters; TPA desk owns code",
+          "section": "§4.5"
+        },
+        {
+          "id": "overlay",
+          "label": "overlay: position layer",
+          "sublabel": "3 books; VM by CSA; SIMM-like IM; OV1–OV3",
+          "kind": "deterministic",
+          "lane": "l3_assets",
+          "order": 3,
+          "owner": "Overlay; Risk (IM); CF (collateral)",
+          "section": "§4.6"
+        },
+        {
+          "id": "actions",
+          "label": "actions: instrument library",
+          "sublabel": "exact column cash flows on CRN; admissibility A(S_t)",
+          "kind": "deterministic",
+          "lane": "l3_assets",
+          "order": 4,
+          "owner": "Groups propose; TPA desk scores",
+          "section": "§4.8"
+        },
+        {
+          "id": "scen",
+          "label": "scen: scenario engine E",
+          "sublabel": "M1–M6 worlds; B1 search, B2 final; oil, vol states",
+          "kind": "deterministic",
+          "lane": "l2_world",
+          "order": 0,
+          "owner": "Risk (CRO office)",
+          "section": "§4.1"
+        },
+        {
+          "id": "state",
+          "label": "state: stress filter, F_t",
+          "sublabel": "forward-filtered HMM; initial state frozen at G2",
+          "kind": "deterministic",
+          "lane": "l2_world",
+          "order": 1,
+          "owner": "Risk (CRO office)",
+          "section": "§4.2"
+        },
+        {
+          "id": "owner",
+          "label": "owner: draw engine",
+          "sublabel": "exogenous draw D_y = d_y·B_y; Mode B in DECISION runs",
+          "kind": "deterministic",
+          "lane": "l2_world",
+          "order": 2,
+          "owner": "Corporate Finance",
+          "section": "§4.3"
+        },
+        {
+          "id": "data_store",
+          "label": "data: bitemporal store",
+          "sublabel": "snapshot, adapters, freeze, taint; SYN-ADIC-177 stand-in",
+          "kind": "store",
+          "lane": "l0_l1_inputs",
+          "order": 0,
+          "owner": "Data office; MRM holds the sealed truth",
+          "section": "§3.2; §3.4; §9.2"
+        },
+        {
+          "id": "rng",
+          "label": "rng: keyed counter RNG",
+          "sublabel": "counter-based Philox; CRN across policies and actions",
+          "kind": "deterministic",
+          "lane": "l0_l1_inputs",
+          "order": 1,
+          "owner": "CIO office, TPA desk",
+          "section": "§3.5"
+        },
+        {
+          "id": "note_tb2",
+          "label": "TB2 evaluator boundary",
+          "sublabel": "typed requests in, bounded aggregates out; hash checks",
+          "kind": "boundary_note",
+          "lane": "annotations",
+          "order": 0,
+          "owner": "",
+          "section": "§2.4; §3.1"
+        },
+        {
+          "id": "note_consent",
+          "label": "Consent scenarios R0x–R2",
+          "sublabel": "price on highest signed lever set; others are signposts",
+          "kind": "boundary_note",
+          "lane": "annotations",
+          "order": 1,
+          "owner": "",
+          "section": "§5.5"
+        },
+        {
+          "id": "note_recovery",
+          "label": "Phase I → recovery logic",
+          "sublabel": "u* > 0 STRUCTURAL; u* = 0, d₀ > 0 EXECUTION; else NORMAL",
+          "kind": "boundary_note",
+          "lane": "annotations",
+          "order": 2,
+          "owner": "",
+          "section": "§5.5"
+        },
+        {
+          "id": "note_pinned_dual",
+          "label": "Pinned-dual CI test",
+          "sublabel": "μ_n − M_n > 0 at pricing nodes; ×10-penalty invariance",
+          "kind": "boundary_note",
+          "lane": "annotations",
+          "order": 3,
+          "owner": "",
+          "section": "§5.6; §10.7; §3.6"
+        },
+        {
+          "id": "note_readiness",
+          "label": "Readiness-Red ≠ event-Red",
+          "sublabel": "event stage alone drives irreversible playbooks",
+          "kind": "boundary_note",
+          "lane": "annotations",
+          "order": 4,
+          "owner": "",
+          "section": "§4.9; §12 ADR-08"
+        }
+      ],
+      "edges": [
+        {
+          "from": "data_store",
+          "to": "state",
+          "label": "freeze snapshot (G2)",
+          "kind": "data",
+          "section": "§3.6; §4.2"
+        },
+        {
+          "from": "data_store",
+          "to": "priv",
+          "label": "BookSnapshot",
+          "kind": "data",
+          "section": "§3.5"
+        },
+        {
+          "from": "data_store",
+          "to": "pub",
+          "label": "BookSnapshot; HF terms τ",
+          "kind": "data",
+          "section": "§3.5; §2.2"
+        },
+        {
+          "from": "data_store",
+          "to": "overlay",
+          "label": "blotter, CRIF, CSAs",
+          "kind": "data",
+          "section": "§2.2"
+        },
+        {
+          "from": "data_store",
+          "to": "owner",
+          "label": "owner/fiscal data",
+          "kind": "data",
+          "section": "§2.2"
+        },
+        {
+          "from": "data_store",
+          "to": "ledger",
+          "label": "facility table",
+          "kind": "data",
+          "section": "§2.2"
+        },
+        {
+          "from": "data_store",
+          "to": "beliefs",
+          "label": "marks u/a/f/m, forecasts",
+          "kind": "data",
+          "section": "§9.3; §4.7"
+        },
+        {
+          "from": "rng",
+          "to": "scen",
+          "label": "keyed uniforms (CRN)",
+          "kind": "data",
+          "section": "§3.5"
+        },
+        {
+          "from": "rng",
+          "to": "priv",
+          "label": "company_id-keyed draws",
+          "kind": "data",
+          "section": "§3.5; §4.4"
+        },
+        {
+          "from": "state",
+          "to": "scen",
+          "label": "F_t, initial state",
+          "kind": "data",
+          "section": "§3.2"
+        },
+        {
+          "from": "state",
+          "to": "core_tree",
+          "label": "F_t, filter posteriors",
+          "kind": "data",
+          "section": "§5.4"
+        },
+        {
+          "from": "state",
+          "to": "core_policy",
+          "label": "F_t@hash (frozen filter)",
+          "kind": "data",
+          "section": "§4.2; §5.11"
+        },
+        {
+          "from": "scen",
+          "to": "owner",
+          "label": "oil/fiscal shocks, Z states",
+          "kind": "data",
+          "section": "§3.2; §4.1; §4.3"
+        },
+        {
+          "from": "scen",
+          "to": "priv",
+          "label": "ScenarioCube (CRN)",
+          "kind": "data",
+          "section": "§3.2; §4.1"
+        },
+        {
+          "from": "scen",
+          "to": "pub",
+          "label": "ScenarioCube (CRN)",
+          "kind": "data",
+          "section": "§3.2; §4.1"
+        },
+        {
+          "from": "scen",
+          "to": "overlay",
+          "label": "factors, vol states",
+          "kind": "data",
+          "section": "§3.2; §4.6"
+        },
+        {
+          "from": "scen",
+          "to": "real_assets_engine",
+          "label": "oil: wrong-way with draw",
+          "kind": "data",
+          "section": "§4.1; brief §8"
+        },
+        {
+          "from": "scen",
+          "to": "core_tree",
+          "label": "6 × 2,000 pooled paths",
+          "kind": "data",
+          "section": "§5.4"
+        },
+        {
+          "from": "scen",
+          "to": "bridge",
+          "label": "CMA worlds M1–M6",
+          "kind": "data",
+          "section": "§4.11"
+        },
+        {
+          "from": "owner",
+          "to": "ledger",
+          "label": "DrawCube: instalments",
+          "kind": "data",
+          "section": "§3.2; §4.3"
+        },
+        {
+          "from": "beliefs",
+          "to": "priv",
+          "label": "ᾱ_i draw + group-bias shock",
+          "kind": "data",
+          "section": "§3.2; §4.4"
+        },
+        {
+          "from": "beliefs",
+          "to": "pub",
+          "label": "BeliefSet (HF, LO α̂)",
+          "kind": "data",
+          "section": "§3.5; §4.7"
+        },
+        {
+          "from": "beliefs",
+          "to": "overlay",
+          "label": "BeliefSet (residual skill)",
+          "kind": "data",
+          "section": "§3.5; §4.7"
+        },
+        {
+          "from": "beliefs",
+          "to": "real_assets_engine",
+          "label": "four marks (interim)",
+          "kind": "data",
+          "section": "§4.7; brief §8"
+        },
+        {
+          "from": "priv",
+          "to": "ledger",
+          "label": "FlowCube",
+          "kind": "data",
+          "section": "§3.2; §3.5"
+        },
+        {
+          "from": "pub",
+          "to": "ledger",
+          "label": "FlowCube (φ cash share)",
+          "kind": "data",
+          "section": "§3.2; §4.5"
+        },
+        {
+          "from": "overlay",
+          "to": "ledger",
+          "label": "FlowCube (premium, VM, ΔIM)",
+          "kind": "data",
+          "section": "§3.2; §4.6"
+        },
+        {
+          "from": "real_assets_engine",
+          "to": "ledger",
+          "label": "income, capex calls, debt",
+          "kind": "data",
+          "section": "brief §8"
+        },
+        {
+          "from": "priv",
+          "to": "actions",
+          "label": "column_flows (exact CRN)",
+          "kind": "data",
+          "section": "§3.5; §4.8"
+        },
+        {
+          "from": "pub",
+          "to": "actions",
+          "label": "column_flows",
+          "kind": "data",
+          "section": "§3.5"
+        },
+        {
+          "from": "overlay",
+          "to": "actions",
+          "label": "column_flows",
+          "kind": "data",
+          "section": "§3.5"
+        },
+        {
+          "from": "real_assets_engine",
+          "to": "actions",
+          "label": "interim action set",
+          "kind": "data",
+          "section": "brief §8"
+        },
+        {
+          "from": "funding",
+          "to": "phase2",
+          "label": "PWL funding curves; T5 rows",
+          "kind": "price",
+          "section": "§4.10; §5.2"
+        },
+        {
+          "from": "ledger",
+          "to": "core_sim",
+          "label": "forward on 10k–50k paths",
+          "kind": "data",
+          "section": "§3.1; §3.2"
+        },
+        {
+          "from": "ledger",
+          "to": "phase2",
+          "label": "H rows from the same code",
+          "kind": "data",
+          "section": "§5.4; §12 ADR-02"
+        },
+        {
+          "from": "ledger",
+          "to": "t4_replica",
+          "label": "stress_replica(ls0, s*)",
+          "kind": "data",
+          "section": "§3.5; §4.9"
+        },
+        {
+          "from": "ledger",
+          "to": "phase1",
+          "label": "linearized t₀ block",
+          "kind": "data",
+          "section": "§5.5"
+        },
+        {
+          "from": "ledger",
+          "to": "cfp_reading",
+          "label": "event indicators",
+          "kind": "data",
+          "section": "§4.9"
+        },
+        {
+          "from": "t4_replica",
+          "to": "phase1",
+          "label": "24 monthly T4′ rows",
+          "kind": "data",
+          "section": "§5.5"
+        },
+        {
+          "from": "t4_replica",
+          "to": "phase2",
+          "label": "hd_h slopes (finite diff.)",
+          "kind": "data",
+          "section": "§5.4"
+        },
+        {
+          "from": "t4_replica",
+          "to": "cfp_reading",
+          "label": "SH_TP → readiness stage",
+          "kind": "data",
+          "section": "§4.9"
+        },
+        {
+          "from": "cfp_reading",
+          "to": "core_policy",
+          "label": "planning stage → pacing",
+          "kind": "control",
+          "section": "§4.9; §5.10"
+        },
+        {
+          "from": "core_tree",
+          "to": "phase2",
+          "label": "tree: 576 leaves × 8",
+          "kind": "data",
+          "section": "§5.4"
+        },
+        {
+          "from": "actions",
+          "to": "phase1",
+          "label": "reversible levers X_rev",
+          "kind": "data",
+          "section": "§5.5"
+        },
+        {
+          "from": "actions",
+          "to": "colgen_levelb",
+          "label": "exact node cash flows A_j",
+          "kind": "data",
+          "section": "§5.7"
+        },
+        {
+          "from": "contract",
+          "to": "phase1",
+          "label": "consent scenarios, tiers",
+          "kind": "control",
+          "section": "§5.5; §10.1"
+        },
+        {
+          "from": "contract",
+          "to": "phase2",
+          "label": "pricing_scenario & level",
+          "kind": "control",
+          "section": "§10.1"
+        },
+        {
+          "from": "phase1",
+          "to": "recovery_mode",
+          "label": "u*, d₀, IIS, Farkas ray",
+          "kind": "data",
+          "section": "§5.5"
+        },
+        {
+          "from": "recovery_mode",
+          "to": "phase2",
+          "label": "restored set + glide g_t",
+          "kind": "control",
+          "section": "§5.5"
+        },
+        {
+          "from": "recovery_mode",
+          "to": "contract",
+          "label": "RecoveryPlan → G0 sign-off",
+          "kind": "decision",
+          "section": "§3.6; §10.1"
+        },
+        {
+          "from": "phase1",
+          "to": "pack",
+          "label": "infeasibility prices only",
+          "kind": "evidence",
+          "section": "§5.5; §6.1"
+        },
+        {
+          "from": "phase2",
+          "to": "duals_kernel",
+          "label": "basic-solution duals",
+          "kind": "price",
+          "section": "§5.4; §5.6"
+        },
+        {
+          "from": "duals_kernel",
+          "to": "icm",
+          "label": "ℓ_n, λ^spot, FTP(h)",
+          "kind": "price",
+          "section": "§5.6; §6.1"
+        },
+        {
+          "from": "duals_kernel",
+          "to": "colgen_levelb",
+          "label": "duals → reduced costs",
+          "kind": "price",
+          "section": "§5.7"
+        },
+        {
+          "from": "duals_kernel",
+          "to": "cards",
+          "label": "reduced costs, intervals",
+          "kind": "price",
+          "section": "§4.8; §5.6"
+        },
+        {
+          "from": "colgen_levelb",
+          "to": "phase2",
+          "label": "fix & re-solve (Δ_n)",
+          "kind": "feedback",
+          "section": "§5.7"
+        },
+        {
+          "from": "colgen_levelb",
+          "to": "cards",
+          "label": "Γ; marginal-asset agenda",
+          "kind": "evidence",
+          "section": "§5.7"
+        },
+        {
+          "from": "phase2",
+          "to": "icm",
+          "label": "x* → envelopes Λ_g",
+          "kind": "control",
+          "section": "§3.2; §6.2"
+        },
+        {
+          "from": "phase2",
+          "to": "module_f",
+          "label": "root actions",
+          "kind": "data",
+          "section": "§3.2; §5.8"
+        },
+        {
+          "from": "cards",
+          "to": "module_f",
+          "label": "selected actions",
+          "kind": "data",
+          "section": "§3.2; §5.8"
+        },
+        {
+          "from": "recovery_mode",
+          "to": "module_f",
+          "label": "glide path (restored set)",
+          "kind": "control",
+          "section": "§5.8"
+        },
+        {
+          "from": "beliefs",
+          "to": "cards",
+          "label": "belief card (fused marks)",
+          "kind": "data",
+          "section": "§4.8"
+        },
+        {
+          "from": "cards",
+          "to": "beliefs",
+          "label": "SELL flags (t−1, frozen)",
+          "kind": "feedback",
+          "section": "§4.7"
+        },
+        {
+          "from": "icm",
+          "to": "beliefs",
+          "label": "envelope status (t−1)",
+          "kind": "feedback",
+          "section": "§4.7"
+        },
+        {
+          "from": "module_f",
+          "to": "c_h",
+          "label": "projected Q1 package",
+          "kind": "data",
+          "section": "§5.9"
+        },
+        {
+          "from": "core_policy",
+          "to": "c_h",
+          "label": "then P0",
+          "kind": "data",
+          "section": "§5.9; §7.4"
+        },
+        {
+          "from": "core_policy",
+          "to": "core_sim",
+          "label": "Policy.act(q, obs)",
+          "kind": "control",
+          "section": "§3.5"
+        },
+        {
+          "from": "c_h",
+          "to": "core_sim",
+          "label": "P certification (search plane)",
+          "kind": "evidence",
+          "section": "§5.9"
+        },
+        {
+          "from": "c_h",
+          "to": "seal",
+          "label": "always a sealed finalist",
+          "kind": "evidence",
+          "section": "§5.9; §7.4"
+        },
+        {
+          "from": "seal",
+          "to": "certify",
+          "label": "final plane, run once",
+          "kind": "control",
+          "section": "§5.10; §7.5"
+        },
+        {
+          "from": "core_sim",
+          "to": "certify",
+          "label": "paths → CP bounds",
+          "kind": "data",
+          "section": "§3.2; §5.10"
+        },
+        {
+          "from": "core_sim",
+          "to": "phase2",
+          "label": "H–P tests; replica select",
+          "kind": "feedback",
+          "section": "§5.4; §5.7"
+        },
+        {
+          "from": "core_sim",
+          "to": "core_policy",
+          "label": "CMA-ES fitness (10k CRN)",
+          "kind": "feedback",
+          "section": "§5.10"
+        },
+        {
+          "from": "core_sim",
+          "to": "robust",
+          "label": "scenario matrix",
+          "kind": "data",
+          "section": "§4.12"
+        },
+        {
+          "from": "core_sim",
+          "to": "attrib",
+          "label": "CRN paths: Shapley, null",
+          "kind": "data",
+          "section": "§4.13"
+        },
+        {
+          "from": "duals_kernel",
+          "to": "attrib",
+          "label": "prices first",
+          "kind": "data",
+          "section": "§4.13"
+        },
+        {
+          "from": "icm",
+          "to": "pack",
+          "label": "λ, FTP curve, envelopes",
+          "kind": "evidence",
+          "section": "§3.2"
+        },
+        {
+          "from": "certify",
+          "to": "pack",
+          "label": "CP bounds, G6 labels",
+          "kind": "evidence",
+          "section": "§3.2; §3.6"
+        },
+        {
+          "from": "module_f",
+          "to": "pack",
+          "label": "'what changed' record",
+          "kind": "evidence",
+          "section": "§3.2; §5.8"
+        },
+        {
+          "from": "cards",
+          "to": "pack",
+          "label": "decision cards",
+          "kind": "evidence",
+          "section": "§4.8; §8.4"
+        },
+        {
+          "from": "robust",
+          "to": "pack",
+          "label": "robustness card",
+          "kind": "evidence",
+          "section": "§4.12; §7.3"
+        },
+        {
+          "from": "attrib",
+          "to": "pack",
+          "label": "attribution",
+          "kind": "evidence",
+          "section": "§4.13"
+        },
+        {
+          "from": "bridge",
+          "to": "pack",
+          "label": "BridgeCard per model",
+          "kind": "evidence",
+          "section": "§4.11"
+        },
+        {
+          "from": "cfp_reading",
+          "to": "pack",
+          "label": "CFP stages on L0",
+          "kind": "evidence",
+          "section": "§4.9; §8.4"
+        },
+        {
+          "from": "evidence_compiler",
+          "to": "evaluator",
+          "label": "EvidencePlan",
+          "kind": "control",
+          "section": "§3.2"
+        },
+        {
+          "from": "evaluator",
+          "to": "core_sim",
+          "label": "evaluate_policy (counted)",
+          "kind": "control",
+          "section": "§7.3"
+        },
+        {
+          "from": "evaluator",
+          "to": "phase2",
+          "label": "optimize_h, price_actions",
+          "kind": "control",
+          "section": "§7.3"
+        },
+        {
+          "from": "evaluator",
+          "to": "phase1",
+          "label": "phase1_restore",
+          "kind": "control",
+          "section": "§7.3"
+        },
+        {
+          "from": "evaluator",
+          "to": "registry",
+          "label": "hash-chained records",
+          "kind": "data",
+          "section": "§7.2"
+        },
+        {
+          "from": "contract",
+          "to": "evaluator",
+          "label": "hashes checked per request",
+          "kind": "control",
+          "section": "§7.2"
+        },
+        {
+          "from": "lab_agents",
+          "to": "evaluator",
+          "label": "typed tool calls (MCP)",
+          "kind": "control",
+          "section": "§3.2; §2.4"
+        },
+        {
+          "from": "evaluator",
+          "to": "lab_agents",
+          "label": "bounded aggregates only",
+          "kind": "data",
+          "section": "§2.4; §10.4"
+        },
+        {
+          "from": "registry",
+          "to": "claims",
+          "label": "metric placeholders",
+          "kind": "data",
+          "section": "§10.6"
+        },
+        {
+          "from": "lab_agents",
+          "to": "claims",
+          "label": "placeholder text",
+          "kind": "data",
+          "section": "§10.6"
+        },
+        {
+          "from": "claims",
+          "to": "pack",
+          "label": "rendered briefs",
+          "kind": "evidence",
+          "section": "§3.2"
+        },
+        {
+          "from": "pack",
+          "to": "ic_vote",
+          "label": "pack → blind pre-vote",
+          "kind": "evidence",
+          "section": "§3.2; §8.6"
+        },
+        {
+          "from": "ic_vote",
+          "to": "evidence_compiler",
+          "label": "DecisionRecord, outcomes",
+          "kind": "decision",
+          "section": "§3.2"
+        },
+        {
+          "from": "ic_vote",
+          "to": "beliefs",
+          "label": "Brier scores",
+          "kind": "feedback",
+          "section": "§3.2"
+        },
+        {
+          "from": "note_tb2",
+          "to": "evaluator",
+          "label": "",
+          "kind": "control",
+          "section": "§2.4"
+        },
+        {
+          "from": "note_consent",
+          "to": "phase1",
+          "label": "",
+          "kind": "control",
+          "section": "§5.5"
+        },
+        {
+          "from": "note_recovery",
+          "to": "recovery_mode",
+          "label": "",
+          "kind": "control",
+          "section": "§5.5"
+        },
+        {
+          "from": "note_pinned_dual",
+          "to": "duals_kernel",
+          "label": "",
+          "kind": "control",
+          "section": "§5.6"
+        },
+        {
+          "from": "note_pinned_dual",
+          "to": "cards",
+          "label": "blocks cards on pinned duals",
+          "kind": "control",
+          "section": "§5.6; §10.7"
+        },
+        {
+          "from": "note_readiness",
+          "to": "cfp_reading",
+          "label": "",
+          "kind": "control",
+          "section": "§4.9"
+        }
+      ],
+      "lanes": [
+        {
+          "id": "human_plane",
+          "label": "Human plane",
+          "kind": "plane",
+          "order": 0
+        },
+        {
+          "id": "l10_room",
+          "label": "L10 Room",
+          "kind": "layer",
+          "order": 1
+        },
+        {
+          "id": "l9_lab",
+          "label": "L9 Lab",
+          "kind": "layer",
+          "order": 2
+        },
+        {
+          "id": "l8_evidence",
+          "label": "L8 Evidence",
+          "kind": "layer",
+          "order": 3
+        },
+        {
+          "id": "l7_explain",
+          "label": "L7 Explain",
+          "kind": "layer",
+          "order": 4
+        },
+        {
+          "id": "l6_decide",
+          "label": "L6 Decide",
+          "kind": "layer",
+          "order": 5
+        },
+        {
+          "id": "l5_ledger",
+          "label": "L5 Ledger (one kernel)",
+          "kind": "layer",
+          "order": 6
+        },
+        {
+          "id": "l4_beliefs",
+          "label": "L4 Beliefs",
+          "kind": "layer",
+          "order": 7
+        },
+        {
+          "id": "l3_assets",
+          "label": "L3 Assets",
+          "kind": "layer",
+          "order": 8
+        },
+        {
+          "id": "l2_world",
+          "label": "L2 World",
+          "kind": "layer",
+          "order": 9
+        },
+        {
+          "id": "l0_l1_inputs",
+          "label": "L0–L1 Contracts & data",
+          "kind": "layer",
+          "order": 10
+        },
+        {
+          "id": "annotations",
+          "label": "Guards & annotations",
+          "kind": "boundary",
+          "order": 11
+        }
+      ],
+      "notes": [
+        "One deterministic ledger kernel is used three ways: forward on 10,000–50,000 paths it is the policy simulator P; linearized on a scenario tree it is the here-and-now program H; on the canonical stress s*(θ*) it gives T4′ survival and the CFP readiness stage (§3.1; §12 ADR-02).",
+        "Consistency contract: on an unreduced fixture tree H's rows reproduce the simulator's cash path to 1e-9 for fixed actions; conservation to 1e-10; intra-ADIC netting = 0 (§5.13).",
+        "Agents never touch the kernel: typed specs go to an out-of-process evaluator that prices, counts and gates them; engine packages (L0–L7) never import lab, agents, claims or idm; L10 asks the evidence compiler, never an engine (§3.1; §3.2; §2.4 TB2).",
+        "Phase I-a (seconds) solves explicit elastic LPs per tier on the linearized t₀ block (𝒯₁ T1, T3; 𝒯₂ T4′; 𝒯₃ T2 hard, T8) over reversible levers only, with PE, Secondaries and Co-investment sales excluded; Phase I-b runs the CVaR rows (𝒯₄: T6, Tier-1B) only when a screen fails (§5.5).",
+        "Recovery modes: NORMAL if u* = 0 and d₀ = 0 (CIO + CRO); EXECUTION_RECOVERY if u* = 0 but d₀ > 0, glide path g_t = d₀(1 − t/T_rec)⁺ with T_rec = 4 quarters and group delivery shares (Board item); STRUCTURAL_RECOVERY if u* > 0 on a hard row or a T6 capacity breach (Board, and owner where the band is involved) (§5.5).",
+        "In both recovery modes every card, envelope and FTP point records priced_on: restored_problem and the recovery hash; Phase-I duals appear only as infeasibility prices on the Treasurer panel (§5.5; §6.1).",
+        "Consent scenarios R0x (group levers) ⊂ R0 (+ Treasury top-up) ⊂ R1 (+ signed revolver) ⊂ R2 (+ owner band, Mode H): λ, FTP, envelopes and cards are priced on the highest scenario whose levers are signed; cards that flip between scenarios are labelled consent-sensitive (§5.5).",
+        "Pinned-dual CI test: test_no_pinned_duals (8/8) and test_no_pinned_duals_groups (18/18), extended with μ_n − M_n > 0 at every pricing node and invariance to ×10 penalties; it gates baseline pricing at T−20, and Gate 1 fails any element priced on a pinned dual (§5.6; §10.7; §3.6; §7.6).",
+        "Why it matters: a pinned dual of 100 prices every fund as a SELL at a 0.9% reservation price; after Phase-I restoration the dual is 0.237 and the price 76.8% [I-calc, SYNTHETIC] (§5.5; §4.8).",
+        "λ from KKT: ℓ_n = M_n/(μ_n − M_n); kernel π_n; FTP(h); KKT cap at the cheapest spare lever; every price carries one-sided intervals ('at a kink'), RHS-ranging validity and bands across 5 SAA replications (§5.6).",
+        "Selection: exact column pricing on CRN, then a Level-B MILP over ≤ 30 coupling rows, then fix and re-solve (≤ 5 iterations); Farley certificate Γ ≤ 5bp CE, else 'selection not certified'; forced re-solves; H–P ranking test Kendall τ ≥ 0.8 (§5.7).",
+        "Every proposal (optimizer, agent package or IC amendment) passes through module F; in recovery F projects onto the restored set including the glide path (§5.8).",
+        "MPC loop: freeze (G2) → Phase I and mode (G0) → H on 5 replications → selection, Γ, forced re-solves → module F → P certification of C_H → sealed run → IC; between quarters only IC-approved delegated rules executed by named humans (§5.9).",
+        "Probabilities are certified in P, never optimized: one-sided 95% Clopper–Pearson bounds on fresh 50k paths per final world plus B2; P(10%) is reported beside P(red) (§5.10; §5.2).",
+        "Readiness-Red is not event-Red: the planning stage = max(readiness, event) drives the pacing corridor; the event stage alone drives irreversible playbooks (§4.9; §12 ADR-08).",
+        "FBE-R reads SELL flags and envelope status from the previous quarter's frozen outputs, so the pipeline stays acyclic and G2 hashes them (§4.7).",
+        "Real Assets (added 18 Oct; research in progress; interim rules, brief §8): closed-end funds reuse the PE-fund engine with real-asset parameters and earlier income; core, open-end and direct assets use income yield plus an appraisal-smoothed (Geltner) NAV driven by cap or discount rates; capex and development calls (brief §8 rule 2).",
+        "Real Assets interim engine also carries asset-level non-recourse debt (LTV, DSCR, maturity wall, refinancing risk, rate hedges) and an open-end redemption-queue state machine analogous to the HF liquidity-terms machine (brief §8 rule 2).",
+        "Real Assets interim actions: SELL (asset or stake sale; LP-interest secondary; open-end redemption via the queue), HOLD, REFINANCE cash-out (asset-debt refi, recap, sale-leaseback or ground lease, JV sell-down, NAV facility), LEVER (acquisition or development debt) (brief §8 rule 3).",
+        "Real Assets marks: underwritten (yield-on-cost, IRR, exit cap rate); current (appraisal NAV, lagged and smoothed); forecast (business plans); market-implied (listed REIT and infrastructure NAV discounts, secondary pricing) (brief §8 rule 4).",
+        "Oil wrong-way risk: when oil is weak the owner's draw rises (fiscal state, §4.3) and Real Assets energy and natural-resource assets fall; Gulf real estate may move with the fiscal cycle; real-estate and infrastructure income pass inflation through only partially (brief §8 rule 5).",
+        "Attribution, envelopes and FTP charges are generic over groups (brief §8 rule 1); §4.13 names nine Shapley players for the seven groups plus TPA and CF.",
+        "SYNTHETIC – NOT ADIC DATA: every balance, probability, price and timing quoted comes from the synthetic working book, research prototypes or benchmark proxies (ARCHITECTURE.md header)."
+      ]
+    },
+    {
+      "id": "capital_market",
+      "title": "Organization and internal capital market",
+      "subtitle": "Groups are price-takers inside quantity envelopes; prices and envelopes come from the same restored solve (§6; §2.1; §8.1)",
+      "nodes": [
+        {
+          "id": "sovereign_owner",
+          "label": "Sovereign owner",
+          "sublabel": "sets annual draw 5–10% (Mode B); band needs owner sign-off",
+          "kind": "external",
+          "lane": "owner_board",
+          "order": 0,
+          "owner": "",
+          "section": "§2.1; §4.3"
+        },
+        {
+          "id": "board",
+          "label": "Board",
+          "sublabel": "recovery & extensions; CFP Black; A1 Tier-1, A3 FTP, A5",
+          "kind": "human",
+          "lane": "owner_board",
+          "order": 1,
+          "owner": "Board",
+          "section": "§2.1; §8.1"
+        },
+        {
+          "id": "ic_tpc",
+          "label": "IC / TPC (human voters)",
+          "sublabel": "Tier-A actions; envelopes & FTP quarterly; model weights A2",
+          "kind": "human",
+          "lane": "governance",
+          "order": 0,
+          "owner": "Investment Committee",
+          "section": "§2.1; §8.1"
+        },
+        {
+          "id": "cio",
+          "label": "CIO",
+          "sublabel": "proposes exposure, pacing plan, weights; Tier B with CRO",
+          "kind": "human",
+          "lane": "governance",
+          "order": 1,
+          "owner": "CIO",
+          "section": "§2.1; §8.1"
+        },
+        {
+          "id": "cro_office",
+          "label": "CRO & CRO office",
+          "sublabel": "Tier-1 status; validates prices; forecast registry",
+          "kind": "human",
+          "lane": "governance",
+          "order": 2,
+          "owner": "CRO office",
+          "section": "§2.1; §6.1"
+        },
+        {
+          "id": "tp_committee",
+          "label": "Transfer-pricing committee",
+          "sublabel": "in CRO office; FTP disputes within 10 business days",
+          "kind": "human",
+          "lane": "governance",
+          "order": 3,
+          "owner": "CRO office",
+          "section": "§6.9"
+        },
+        {
+          "id": "mrm",
+          "label": "MRM",
+          "sublabel": "engine validation, release hashes, revalidation (A9)",
+          "kind": "human",
+          "lane": "governance",
+          "order": 4,
+          "owner": "MRM",
+          "section": "§2.1; §8.2"
+        },
+        {
+          "id": "treasurer_cf",
+          "label": "Treasurer / CF",
+          "sublabel": "internal bank: funding, facilities, collateral, buffer, FTP",
+          "kind": "human",
+          "lane": "internal_bank",
+          "order": 0,
+          "owner": "Corporate Finance (Treasurer)",
+          "section": "§2.1; §8.1"
+        },
+        {
+          "id": "ledger",
+          "label": "ledger (CF-owned kernel)",
+          "sublabel": "LR1–LR8 ladder; T4′ survival; CFP readiness / event",
+          "kind": "deterministic",
+          "lane": "internal_bank",
+          "order": 1,
+          "owner": "Corporate Finance (Treasurer)",
+          "section": "§4.9"
+        },
+        {
+          "id": "liquidity_buffer",
+          "label": "Liquidity buffer (HQLA)",
+          "sublabel": "IG + cash 8% elastic / 4% hard; T3 30-day coverage",
+          "kind": "store",
+          "lane": "internal_bank",
+          "order": 2,
+          "owner": "Corporate Finance",
+          "section": "§4.9; §5.2"
+        },
+        {
+          "id": "facilities",
+          "label": "Facilities & funding",
+          "sublabel": "revolver (once signed), repo, term debt; NAV facility capped",
+          "kind": "store",
+          "lane": "internal_bank",
+          "order": 3,
+          "owner": "Corporate Finance",
+          "section": "§4.8; §4.10"
+        },
+        {
+          "id": "collateral",
+          "label": "Collateral: VM / IM by CSA",
+          "sublabel": "CF owns collateral; funds P2S VM; posted IM encumbered",
+          "kind": "store",
+          "lane": "internal_bank",
+          "order": 4,
+          "owner": "Corporate Finance",
+          "section": "§4.5; §4.6"
+        },
+        {
+          "id": "distributions",
+          "label": "Owner distributions",
+          "sublabel": "instalments of D_y = d_y·B_y; T1 hard row; Mode B exogenous",
+          "kind": "deterministic",
+          "lane": "internal_bank",
+          "order": 5,
+          "owner": "Corporate Finance",
+          "section": "§4.3; §5.2"
+        },
+        {
+          "id": "ftp_publication",
+          "label": "icm: published FTP (CF)",
+          "sublabel": "EWMA of decision prices; at tolerance and appetite",
+          "kind": "deterministic",
+          "lane": "internal_bank",
+          "order": 6,
+          "owner": "Corporate Finance publishes quarterly",
+          "section": "§6.1"
+        },
+        {
+          "id": "pricing_committee",
+          "label": "Pricing committee (CF)",
+          "sublabel": "decides desk quotes & transfers; information barriers",
+          "kind": "human",
+          "lane": "internal_bank",
+          "order": 7,
+          "owner": "Corporate Finance",
+          "section": "§6.6"
+        },
+        {
+          "id": "tpa_desk",
+          "label": "TPA desk",
+          "sublabel": "computes decision prices and envelopes; CRO validates",
+          "kind": "human",
+          "lane": "engines",
+          "order": 0,
+          "owner": "TPA desk",
+          "section": "§6.1; §3.4"
+        },
+        {
+          "id": "restored_h",
+          "label": "core.h restored H",
+          "sublabel": "one solve → prices + envelopes; priced on signed scenario",
+          "kind": "deterministic",
+          "lane": "engines",
+          "order": 1,
+          "owner": "TPA desk; CRO signs Phase I",
+          "section": "§6; §5.5"
+        },
+        {
+          "id": "fbe_r",
+          "label": "beliefs (FBE-R)",
+          "sublabel": "credibility κ_g; strategic-bias covariates; G-E pay gate",
+          "kind": "deterministic",
+          "lane": "engines",
+          "order": 2,
+          "owner": "CRO office (validation)",
+          "section": "§4.7; §8.10"
+        },
+        {
+          "id": "decision_prices",
+          "label": "icm: decision prices",
+          "sublabel": "undamped duals ℓ_n, ℓ̄ by tenor, L_s; no floor",
+          "kind": "deterministic",
+          "lane": "engines",
+          "order": 3,
+          "owner": "TPA desk computes; CRO validates",
+          "section": "§6.1"
+        },
+        {
+          "id": "envelopes",
+          "label": "icm: envelopes Λ_g",
+          "sublabel": "per coupling row; median of SAA replications ± range",
+          "kind": "deterministic",
+          "lane": "engines",
+          "order": 4,
+          "owner": "TPA desk; TPC/IC decides (Q4)",
+          "section": "§6.2"
+        },
+        {
+          "id": "recovery_envelopes",
+          "label": "icm: recovery envelopes",
+          "sublabel": "B_rec = Λ_g + φ_g,t·g_t; behind schedule loses envelope",
+          "kind": "deterministic",
+          "lane": "engines",
+          "order": 5,
+          "owner": "TPA desk",
+          "section": "§6.4"
+        },
+        {
+          "id": "pacing_rule",
+          "label": "icm: state-contingent pacing",
+          "sublabel": "P_g,t = P*_g·Π(1 − η_g(ℓ_t − ℓ̄)/ℓ̄); corridor by stage",
+          "kind": "deterministic",
+          "lane": "engines",
+          "order": 6,
+          "owner": "CIO (plan A4); groups, CIO, IC by stage (Q5)",
+          "section": "§6.5"
+        },
+        {
+          "id": "contingent_budgets",
+          "label": "icm: contingent budgets",
+          "sublabel": "gate: confirmed d̂ > 20% and Tier 1 green; T4′-bounded",
+          "kind": "deterministic",
+          "lane": "engines",
+          "order": 7,
+          "owner": "TPC/IC (Q4)",
+          "section": "§6.7"
+        },
+        {
+          "id": "charges_dva",
+          "label": "icm: charges & DVA",
+          "sublabel": "vintage-locked FTP; CLC once; DVA_g, DVA_TPA, DVA_CF",
+          "kind": "deterministic",
+          "lane": "engines",
+          "order": 8,
+          "owner": "CF (FTP); TPA desk; CRO office (TP committee)",
+          "section": "§6.9; §4.13"
+        },
+        {
+          "id": "services_ledger",
+          "label": "overlay: services ledger",
+          "sublabel": "pass-through N·r_B; locked s_lock; CLC; LPC; nets to zero",
+          "kind": "store",
+          "lane": "engines",
+          "order": 9,
+          "owner": "Overlay",
+          "section": "§6.8"
+        },
+        {
+          "id": "forecast_registry",
+          "label": "Forecast registry",
+          "sublabel": "bitemporal; WIS-scored; declined deals shadow-tracked",
+          "kind": "store",
+          "lane": "intake",
+          "order": 0,
+          "owner": "CRO office",
+          "section": "§9.3; §2.1"
+        },
+        {
+          "id": "proposal_intake",
+          "label": "Proposal intake (T−25)",
+          "sublabel": "SELL/HOLD/REFI/LEVER and PACE proposals",
+          "kind": "store",
+          "lane": "intake",
+          "order": 1,
+          "owner": "",
+          "section": "§2.1; §3.6"
+        },
+        {
+          "id": "quote_table",
+          "label": "quote table",
+          "sublabel": "conflict_flag; conflicted quote needs a 2nd source",
+          "kind": "store",
+          "lane": "intake",
+          "order": 2,
+          "owner": "",
+          "section": "§6.6; §9.2"
+        },
+        {
+          "id": "group_heads",
+          "label": "All group heads (generic)",
+          "sublabel": "in-envelope deals (Tier C); proposals; forecasts",
+          "kind": "human",
+          "lane": "groups",
+          "order": 0,
+          "owner": "Group heads",
+          "section": "§2.1; §6; brief §8"
+        },
+        {
+          "id": "g_pe",
+          "label": "PE funds",
+          "sublabel": "pro-cyclical pacing; PACE corridor; NAV-facility REFI",
+          "kind": "human",
+          "lane": "groups",
+          "order": 1,
+          "owner": "PE group head",
+          "section": "§4.8; §6.5"
+        },
+        {
+          "id": "g_secondaries",
+          "label": "Secondaries",
+          "sublabel": "in-house SELL pricing desk (external clearing prices)",
+          "kind": "human",
+          "lane": "groups",
+          "order": 2,
+          "owner": "Secondaries group head",
+          "section": "§6.6; §6.7"
+        },
+        {
+          "id": "g_capsol",
+          "label": "Capital Solutions",
+          "sublabel": "in-house REFINANCE quote function (reserve prices)",
+          "kind": "human",
+          "lane": "groups",
+          "order": 3,
+          "owner": "Capital Solutions group head",
+          "section": "§6.6; §6.7"
+        },
+        {
+          "id": "g_coinvest",
+          "label": "Co-investment",
+          "sublabel": "flow tied to PE commitments; paused at Amber",
+          "kind": "human",
+          "lane": "groups",
+          "order": 4,
+          "owner": "Co-investment group head",
+          "section": "§4.4; §4.9"
+        },
+        {
+          "id": "g_public",
+          "label": "Public Markets",
+          "sublabel": "liquidity reservoir: HF notices, P2S proposals (Q8)",
+          "kind": "human",
+          "lane": "groups",
+          "order": 5,
+          "owner": "Public Markets group head",
+          "section": "§4.5; §8.2"
+        },
+        {
+          "id": "g_privcredit",
+          "label": "Private Credit",
+          "sublabel": "SMA run-off; earns c_buf on stressed contractual inflows",
+          "kind": "human",
+          "lane": "groups",
+          "order": 6,
+          "owner": "Private Credit group head",
+          "section": "§4.8; §6.9"
+        },
+        {
+          "id": "g_overlay",
+          "label": "Overlay",
+          "sublabel": "services desk: sources, prices, executes, monitors",
+          "kind": "human",
+          "lane": "groups",
+          "order": 7,
+          "owner": "Overlay group head",
+          "section": "§4.6; §6.8"
+        },
+        {
+          "id": "g_real_assets",
+          "label": "Real Assets",
+          "sublabel": "added 18 Oct; research in progress; interim rules (brief §8)",
+          "kind": "human",
+          "lane": "groups",
+          "order": 8,
+          "owner": "Real Assets head",
+          "section": "brief §8"
+        },
+        {
+          "id": "ext_banks",
+          "label": "Banks & financiers",
+          "sublabel": "revolver ≥ 10 banks, none > 12.5%; repo; RFQs",
+          "kind": "external",
+          "lane": "external",
+          "order": 0,
+          "owner": "",
+          "section": "§4.8; §4.9; §6.6"
+        },
+        {
+          "id": "ext_buyers",
+          "label": "External buyers & bidders",
+          "sublabel": "only external counterparties raise liquidity",
+          "kind": "external",
+          "lane": "external",
+          "order": 1,
+          "owner": "",
+          "section": "§4.8; §6.6"
+        },
+        {
+          "id": "ext_dealers",
+          "label": "OTC dealers (CSAs)",
+          "sublabel": "≤ 0.5% of NAV per dealer; ≥ 5 dealers",
+          "kind": "external",
+          "lane": "external",
+          "order": 2,
+          "owner": "",
+          "section": "§4.6"
+        },
+        {
+          "id": "rule_netting",
+          "label": "Netting rule",
+          "sublabel": "intra-ADIC flows count zero; fair value on both legs",
+          "kind": "boundary_note",
+          "lane": "controls",
+          "order": 0,
+          "owner": "",
+          "section": "§6.8"
+        },
+        {
+          "id": "rule_conflict",
+          "label": "Desk conflict controls",
+          "sublabel": "firewall; ≤ 20% internal at zero liquidity; 30-day blackout",
+          "kind": "boundary_note",
+          "lane": "controls",
+          "order": 1,
+          "owner": "Corporate Finance (pricing committee)",
+          "section": "§6.6"
+        },
+        {
+          "id": "rule_tiers",
+          "label": "Decision tiers A / B / C",
+          "sublabel": "A ≥ 0.25% NAV: IC; B: CIO + CRO; C: group in envelope",
+          "kind": "boundary_note",
+          "lane": "controls",
+          "order": 2,
+          "owner": "",
+          "section": "§8.1"
+        },
+        {
+          "id": "rule_cfp_authority",
+          "label": "CFP stage authorities",
+          "sublabel": "Green Treasurer · Amber CIO · Red IC weekly · Black Board",
+          "kind": "boundary_note",
+          "lane": "controls",
+          "order": 3,
+          "owner": "",
+          "section": "§8.1; §4.9"
+        },
+        {
+          "id": "rule_envelope",
+          "label": "Envelope rules",
+          "sublabel": "forecasts can't buy budget; no ratchet; heads recuse",
+          "kind": "boundary_note",
+          "lane": "controls",
+          "order": 4,
+          "owner": "",
+          "section": "§6.2; §6.3; §8.1"
+        }
+      ],
+      "edges": [
+        {
+          "from": "sovereign_owner",
+          "to": "treasurer_cf",
+          "label": "annual draw rate (Mode B)",
+          "kind": "decision",
+          "section": "§2.1; §2.4; §4.3"
+        },
+        {
+          "from": "distributions",
+          "to": "sovereign_owner",
+          "label": "quarterly instalments (T1)",
+          "kind": "data",
+          "section": "§4.3; §5.2"
+        },
+        {
+          "from": "treasurer_cf",
+          "to": "sovereign_owner",
+          "label": "A6 proposals (via IC/Board)",
+          "kind": "evidence",
+          "section": "§8.2; §4.3"
+        },
+        {
+          "from": "sovereign_owner",
+          "to": "restored_h",
+          "label": "band consent → R2 (Mode H)",
+          "kind": "decision",
+          "section": "§5.5; §4.3"
+        },
+        {
+          "from": "ic_tpc",
+          "to": "board",
+          "label": "recommendation + minority rpt",
+          "kind": "decision",
+          "section": "§8.1"
+        },
+        {
+          "from": "board",
+          "to": "ftp_publication",
+          "label": "A3 FTP methodology (annual)",
+          "kind": "decision",
+          "section": "§6.9; §8.2"
+        },
+        {
+          "from": "board",
+          "to": "facilities",
+          "label": "A5 facility programme",
+          "kind": "decision",
+          "section": "§8.2"
+        },
+        {
+          "from": "board",
+          "to": "recovery_envelopes",
+          "label": "STRUCTURAL_RECOVERY sign-off",
+          "kind": "decision",
+          "section": "§5.5; §8.1"
+        },
+        {
+          "from": "ic_tpc",
+          "to": "envelopes",
+          "label": "envelopes & FTP level (Q4)",
+          "kind": "decision",
+          "section": "§8.1; §8.2; §6.1"
+        },
+        {
+          "from": "ic_tpc",
+          "to": "group_heads",
+          "label": "Tier A approvals",
+          "kind": "decision",
+          "section": "§8.1"
+        },
+        {
+          "from": "ic_tpc",
+          "to": "g_overlay",
+          "label": "tail budget (IC-owned)",
+          "kind": "decision",
+          "section": "§4.6; §8.2"
+        },
+        {
+          "from": "cio",
+          "to": "ic_tpc",
+          "label": "exposure, pacing, weights",
+          "kind": "decision",
+          "section": "§2.1; §8.2"
+        },
+        {
+          "from": "cio",
+          "to": "group_heads",
+          "label": "Tier B (CIO + CRO)",
+          "kind": "decision",
+          "section": "§8.1"
+        },
+        {
+          "from": "cro_office",
+          "to": "decision_prices",
+          "label": "validates",
+          "kind": "control",
+          "section": "§6.1"
+        },
+        {
+          "from": "cro_office",
+          "to": "forecast_registry",
+          "label": "runs registry & validation",
+          "kind": "control",
+          "section": "§2.1"
+        },
+        {
+          "from": "cro_office",
+          "to": "tp_committee",
+          "label": "hosts",
+          "kind": "control",
+          "section": "§2.1; §6.9"
+        },
+        {
+          "from": "tp_committee",
+          "to": "charges_dva",
+          "label": "dispute rulings ≤ 10 days",
+          "kind": "decision",
+          "section": "§6.9"
+        },
+        {
+          "from": "mrm",
+          "to": "restored_h",
+          "label": "engine validation, hashes",
+          "kind": "control",
+          "section": "§2.1"
+        },
+        {
+          "from": "tpa_desk",
+          "to": "restored_h",
+          "label": "runs H; computes prices",
+          "kind": "control",
+          "section": "§6.1; §3.4"
+        },
+        {
+          "from": "treasurer_cf",
+          "to": "liquidity_buffer",
+          "label": "buffer & top-up (Q3)",
+          "kind": "decision",
+          "section": "§8.2"
+        },
+        {
+          "from": "treasurer_cf",
+          "to": "facilities",
+          "label": "funding, facilities (Q3)",
+          "kind": "decision",
+          "section": "§2.1; §8.2"
+        },
+        {
+          "from": "treasurer_cf",
+          "to": "collateral",
+          "label": "collateral (CF right)",
+          "kind": "decision",
+          "section": "§8.1"
+        },
+        {
+          "from": "treasurer_cf",
+          "to": "ftp_publication",
+          "label": "publishes quarterly",
+          "kind": "decision",
+          "section": "§6.1"
+        },
+        {
+          "from": "treasurer_cf",
+          "to": "pricing_committee",
+          "label": "owns",
+          "kind": "control",
+          "section": "§6.6"
+        },
+        {
+          "from": "ext_banks",
+          "to": "facilities",
+          "label": "revolver, repo, term debt",
+          "kind": "data",
+          "section": "§4.8; §4.10"
+        },
+        {
+          "from": "ext_banks",
+          "to": "restored_h",
+          "label": "signed revolver → R1",
+          "kind": "decision",
+          "section": "§5.5"
+        },
+        {
+          "from": "facilities",
+          "to": "liquidity_buffer",
+          "label": "draws (0% in 30-day rows)",
+          "kind": "data",
+          "section": "§4.9"
+        },
+        {
+          "from": "liquidity_buffer",
+          "to": "distributions",
+          "label": "funds instalments (Q2)",
+          "kind": "data",
+          "section": "§8.2; §4.9"
+        },
+        {
+          "from": "liquidity_buffer",
+          "to": "ledger",
+          "label": "HQLA, IG + cash (LR1, LR3)",
+          "kind": "data",
+          "section": "§4.9"
+        },
+        {
+          "from": "facilities",
+          "to": "ledger",
+          "label": "facility availability",
+          "kind": "data",
+          "section": "§4.9"
+        },
+        {
+          "from": "collateral",
+          "to": "ledger",
+          "label": "VM/IM; posted IM encumbered",
+          "kind": "data",
+          "section": "§4.6; §4.9"
+        },
+        {
+          "from": "collateral",
+          "to": "ext_dealers",
+          "label": "VM/IM by CSA",
+          "kind": "data",
+          "section": "§4.6"
+        },
+        {
+          "from": "ledger",
+          "to": "restored_h",
+          "label": "same kernel rows",
+          "kind": "data",
+          "section": "§3.1; §5.4"
+        },
+        {
+          "from": "ledger",
+          "to": "envelopes",
+          "label": "LR4: ΣB_g + B_OVL ≤ Pool_h",
+          "kind": "control",
+          "section": "§4.9; §6.2"
+        },
+        {
+          "from": "restored_h",
+          "to": "decision_prices",
+          "label": "undamped restored duals",
+          "kind": "price",
+          "section": "§6.1"
+        },
+        {
+          "from": "restored_h",
+          "to": "envelopes",
+          "label": "Λ_g = Σ a_i(x*)",
+          "kind": "control",
+          "section": "§6.2"
+        },
+        {
+          "from": "restored_h",
+          "to": "contingent_budgets",
+          "label": "contingent columns",
+          "kind": "control",
+          "section": "§6.7"
+        },
+        {
+          "from": "decision_prices",
+          "to": "ftp_publication",
+          "label": "EWMA 2-qtr, ±50% collar",
+          "kind": "price",
+          "section": "§6.1"
+        },
+        {
+          "from": "decision_prices",
+          "to": "group_heads",
+          "label": "cards, Level B, requests",
+          "kind": "price",
+          "section": "§6.1"
+        },
+        {
+          "from": "decision_prices",
+          "to": "pacing_rule",
+          "label": "ℓ_t vs ℓ̄",
+          "kind": "price",
+          "section": "§6.5"
+        },
+        {
+          "from": "envelopes",
+          "to": "group_heads",
+          "label": "quantity envelopes; 1/H_g",
+          "kind": "control",
+          "section": "§6.2"
+        },
+        {
+          "from": "envelopes",
+          "to": "recovery_envelopes",
+          "label": "+ φ_g,t · g_t in recovery",
+          "kind": "control",
+          "section": "§6.4"
+        },
+        {
+          "from": "recovery_envelopes",
+          "to": "group_heads",
+          "label": "delivery shares φ_g,t",
+          "kind": "control",
+          "section": "§6.4"
+        },
+        {
+          "from": "ftp_publication",
+          "to": "charges_dva",
+          "label": "vintage-locked charges",
+          "kind": "price",
+          "section": "§6.1"
+        },
+        {
+          "from": "charges_dva",
+          "to": "group_heads",
+          "label": "own itemized charges only",
+          "kind": "price",
+          "section": "§6.9"
+        },
+        {
+          "from": "charges_dva",
+          "to": "g_privcredit",
+          "label": "c_buf on stressed inflows",
+          "kind": "price",
+          "section": "§6.9"
+        },
+        {
+          "from": "charges_dva",
+          "to": "g_capsol",
+          "label": "c_buf on stressed inflows",
+          "kind": "price",
+          "section": "§6.9"
+        },
+        {
+          "from": "pacing_rule",
+          "to": "g_pe",
+          "label": "η > 0: pro-cyclical cut",
+          "kind": "control",
+          "section": "§6.5"
+        },
+        {
+          "from": "pacing_rule",
+          "to": "g_coinvest",
+          "label": "η > 0: pro-cyclical",
+          "kind": "control",
+          "section": "§6.5"
+        },
+        {
+          "from": "pacing_rule",
+          "to": "g_secondaries",
+          "label": "η < 0: counter-cyclical",
+          "kind": "control",
+          "section": "§6.5"
+        },
+        {
+          "from": "pacing_rule",
+          "to": "g_capsol",
+          "label": "η < 0: counter-cyclical",
+          "kind": "control",
+          "section": "§6.5"
+        },
+        {
+          "from": "g_secondaries",
+          "to": "contingent_budgets",
+          "label": "d̂ > 20%, confirmed",
+          "kind": "data",
+          "section": "§6.7"
+        },
+        {
+          "from": "contingent_budgets",
+          "to": "g_secondaries",
+          "label": "discount purchases",
+          "kind": "control",
+          "section": "§6.7"
+        },
+        {
+          "from": "contingent_budgets",
+          "to": "g_capsol",
+          "label": "new money",
+          "kind": "control",
+          "section": "§6.7"
+        },
+        {
+          "from": "group_heads",
+          "to": "forecast_registry",
+          "label": "forecasts P10/P50/P90",
+          "kind": "data",
+          "section": "§2.1; §3.6"
+        },
+        {
+          "from": "group_heads",
+          "to": "proposal_intake",
+          "label": "SELL/HOLD/REFI/LEVER, PACE",
+          "kind": "data",
+          "section": "§2.1"
+        },
+        {
+          "from": "group_heads",
+          "to": "cio",
+          "label": "requests ≤ +20% (Tier B)",
+          "kind": "decision",
+          "section": "§6.3; §8.1"
+        },
+        {
+          "from": "group_heads",
+          "to": "ic_tpc",
+          "label": "requests > +20% (Tier A)",
+          "kind": "decision",
+          "section": "§6.3; §8.1"
+        },
+        {
+          "from": "group_heads",
+          "to": "tp_committee",
+          "label": "FTP disputes",
+          "kind": "decision",
+          "section": "§6.9"
+        },
+        {
+          "from": "group_heads",
+          "to": "pricing_committee",
+          "label": "internal transfers (Q9)",
+          "kind": "decision",
+          "section": "§8.2; §6.8"
+        },
+        {
+          "from": "forecast_registry",
+          "to": "fbe_r",
+          "label": "scored forecasts (WIS)",
+          "kind": "data",
+          "section": "§9.3; §4.7"
+        },
+        {
+          "from": "fbe_r",
+          "to": "restored_h",
+          "label": "BeliefSet (κ_g-weighted)",
+          "kind": "data",
+          "section": "§4.7"
+        },
+        {
+          "from": "quote_table",
+          "to": "fbe_r",
+          "label": "external clearing prices only",
+          "kind": "data",
+          "section": "§4.7"
+        },
+        {
+          "from": "quote_table",
+          "to": "restored_h",
+          "label": "reserve quotes → REFI price",
+          "kind": "price",
+          "section": "§4.7; §6.6"
+        },
+        {
+          "from": "proposal_intake",
+          "to": "restored_h",
+          "label": "proposals → scored columns",
+          "kind": "data",
+          "section": "§3.4; §5.7"
+        },
+        {
+          "from": "quote_table",
+          "to": "pricing_committee",
+          "label": "conflict-flagged quotes",
+          "kind": "evidence",
+          "section": "§6.6"
+        },
+        {
+          "from": "pricing_committee",
+          "to": "cio",
+          "label": "Q9 transfers → Tier B",
+          "kind": "decision",
+          "section": "§8.2; §6.8"
+        },
+        {
+          "from": "pricing_committee",
+          "to": "ic_tpc",
+          "label": "Tier A if conflicted/≥0.25%",
+          "kind": "decision",
+          "section": "§6.8; §8.1"
+        },
+        {
+          "from": "g_secondaries",
+          "to": "quote_table",
+          "label": "external clearing-price dists",
+          "kind": "price",
+          "section": "§6.6"
+        },
+        {
+          "from": "g_capsol",
+          "to": "quote_table",
+          "label": "reserve price P10/P50/P90",
+          "kind": "price",
+          "section": "§6.6"
+        },
+        {
+          "from": "g_capsol",
+          "to": "ext_banks",
+          "label": "≥ 3 RFQs per financing",
+          "kind": "data",
+          "section": "§6.6"
+        },
+        {
+          "from": "ext_buyers",
+          "to": "quote_table",
+          "label": "≥ 2 external bids or strip",
+          "kind": "price",
+          "section": "§6.6"
+        },
+        {
+          "from": "ext_buyers",
+          "to": "liquidity_buffer",
+          "label": "sale proceeds (external cash)",
+          "kind": "data",
+          "section": "§6.8; §4.8"
+        },
+        {
+          "from": "g_pe",
+          "to": "g_coinvest",
+          "label": "offered flow O_t (θ = 0.33)",
+          "kind": "data",
+          "section": "§4.4"
+        },
+        {
+          "from": "g_pe",
+          "to": "treasurer_cf",
+          "label": "NAV-facility proposal (REFI)",
+          "kind": "decision",
+          "section": "§4.8"
+        },
+        {
+          "from": "g_public",
+          "to": "g_overlay",
+          "label": "P2S: PM proposes, OVL executes",
+          "kind": "decision",
+          "section": "§4.5"
+        },
+        {
+          "from": "g_public",
+          "to": "cio",
+          "label": "HF notices, P2S (Q8)",
+          "kind": "decision",
+          "section": "§8.2"
+        },
+        {
+          "from": "collateral",
+          "to": "g_overlay",
+          "label": "CF funds P2S VM",
+          "kind": "data",
+          "section": "§4.5"
+        },
+        {
+          "from": "g_overlay",
+          "to": "ext_dealers",
+          "label": "trades within dealer limits",
+          "kind": "data",
+          "section": "§4.6"
+        },
+        {
+          "from": "g_overlay",
+          "to": "services_ledger",
+          "label": "execution & basis",
+          "kind": "price",
+          "section": "§6.8"
+        },
+        {
+          "from": "services_ledger",
+          "to": "group_heads",
+          "label": "client: exposure + liquidity",
+          "kind": "price",
+          "section": "§6.8"
+        },
+        {
+          "from": "services_ledger",
+          "to": "treasurer_cf",
+          "label": "CF: funding (CLC − LPC)",
+          "kind": "price",
+          "section": "§6.8"
+        },
+        {
+          "from": "g_real_assets",
+          "to": "g_privcredit",
+          "label": "real-estate debt",
+          "kind": "data",
+          "section": "brief §8"
+        },
+        {
+          "from": "g_real_assets",
+          "to": "g_capsol",
+          "label": "pref equity, NAV financing",
+          "kind": "data",
+          "section": "brief §8"
+        },
+        {
+          "from": "g_real_assets",
+          "to": "g_overlay",
+          "label": "rate & inflation hedges",
+          "kind": "data",
+          "section": "brief §8"
+        },
+        {
+          "from": "g_real_assets",
+          "to": "g_secondaries",
+          "label": "RE & infra fund secondaries",
+          "kind": "data",
+          "section": "brief §8"
+        },
+        {
+          "from": "g_real_assets",
+          "to": "treasurer_cf",
+          "label": "look-through leverage",
+          "kind": "data",
+          "section": "brief §8"
+        },
+        {
+          "from": "rule_netting",
+          "to": "charges_dva",
+          "label": "wedge → centre line",
+          "kind": "control",
+          "section": "§6.8"
+        },
+        {
+          "from": "rule_netting",
+          "to": "liquidity_buffer",
+          "label": "intra-ADIC counts zero",
+          "kind": "control",
+          "section": "§6.8"
+        },
+        {
+          "from": "rule_conflict",
+          "to": "g_secondaries",
+          "label": "firewall on bid deals",
+          "kind": "control",
+          "section": "§6.6"
+        },
+        {
+          "from": "rule_conflict",
+          "to": "g_capsol",
+          "label": "reserve, never transaction",
+          "kind": "control",
+          "section": "§6.6"
+        },
+        {
+          "from": "rule_tiers",
+          "to": "ic_tpc",
+          "label": "",
+          "kind": "control",
+          "section": "§8.1"
+        },
+        {
+          "from": "rule_cfp_authority",
+          "to": "treasurer_cf",
+          "label": "",
+          "kind": "control",
+          "section": "§8.1"
+        },
+        {
+          "from": "rule_envelope",
+          "to": "envelopes",
+          "label": "",
+          "kind": "control",
+          "section": "§6.2; §6.3; §8.1"
+        }
+      ],
+      "lanes": [
+        {
+          "id": "owner_board",
+          "label": "Owner & Board",
+          "kind": "actor_group",
+          "order": 0
+        },
+        {
+          "id": "governance",
+          "label": "IC, officers & committees",
+          "kind": "actor_group",
+          "order": 1
+        },
+        {
+          "id": "internal_bank",
+          "label": "Corporate Finance: internal bank",
+          "kind": "actor_group",
+          "order": 2
+        },
+        {
+          "id": "engines",
+          "label": "TPA desk & engines (one solve)",
+          "kind": "layer",
+          "order": 3
+        },
+        {
+          "id": "intake",
+          "label": "Registry & intake stores",
+          "kind": "layer",
+          "order": 4
+        },
+        {
+          "id": "groups",
+          "label": "Investment groups (eight; Real Assets interim)",
+          "kind": "actor_group",
+          "order": 5
+        },
+        {
+          "id": "external",
+          "label": "External counterparties",
+          "kind": "actor_group",
+          "order": 6
+        },
+        {
+          "id": "controls",
+          "label": "Rules & controls",
+          "kind": "boundary",
+          "order": 7
+        }
+      ],
+      "notes": [
+        "Groups are the organizational unit and the total portfolio the decision unit: groups are price-takers inside quantity envelopes, and prices and envelopes come from the same restored optimizer (§6).",
+        "Decision prices (undamped restored duals, no floor; c_buf = 1.5% is a ceiling, never a floor) drive cards, Level-B selection and envelope requests; the published FTP (EWMA, 2-quarter half-life, ±50% collar) drives vintage-locked performance charges, and CF holds the repricing mismatch DVA_CF (§6.1).",
+        "FTP is solved nightly at Tier-1 tolerance (the default pricing level) and at appetite ('the cost of moving to appetite'); the TPC/IC states the level in Q4 and the Board ratifies the methodology in A3 (§6.1; §12 ADR-29).",
+        "Pricing uses the highest consent scenario whose levers are signed: R0x group levers ⊂ R0 + Treasury top-up ⊂ R1 + signed revolver ⊂ R2 + owner band (Mode H); Phase-I duals are infeasibility prices on the Treasurer panel only (§5.5; §6.1).",
+        "Requests above an envelope: releases are free; an increase on a binding row is priced at the dual only inside its RHS-ranging interval; up to +20% is Tier B (CIO + CRO), beyond is Tier A; no free band exceeds ≈$0.44bn; no ratchet; envelopes are refused from any pinned solve or reverse stress (§6.3).",
+        "In recovery, B_rec = Λ_g + φ_g,t·g_t: delivery shares come from the least-cost reversible group levers (no sales); a group behind schedule loses envelope one for one or buys it back at the dual (§6.4).",
+        "Pacing corridor keys on the planning stage: Green 0.75–1.25× plan, Amber 0.25–0.5× with a protected core sleeve (≥ 25% of plan), Red protected re-ups only; c^PACE prices forgone net α* after charges, GP access and lost co-investment flow (§6.5).",
+        "Contingent budgets (Secondaries purchases, Capital Solutions new money, credit-secondary purchases) clear the hurdle (1 + r_h)(1 + ℓ̄) − 1; gate = confirmed d̂ > 20% and Tier 1 green in any event stage but Black; tail-hedge cash is credited to the Overlay and never ring-fenced (§6.7; §12 ADR-28).",
+        "Liquidity raised means external cash only: every flow carries counterparty ∈ {external, intra_adic}; intra-ADIC flows count zero; both legs at fair value with any wedge to a centre line; approval Tier B, Tier A if ≥ 0.25% of NAV or conflicted (Q9); gate V2 checks netting on DVA ledgers (§6.8).",
+        "Desk conflict controls: the Secondaries desk registers external clearing-price distributions and never sets the reference quote on a deal it may bid for; Capital Solutions produces reserve prices, never transaction prices, with ≥ 3 RFQs; ADIC sales need ≥ 2 external bids or a ≥ 20% third-party strip, and a fairness opinion if ≥ $250m or conflicted (§6.6).",
+        "Overlay services: the client group bears exposure and liquidity, the Overlay bears execution and basis, CF bears funding (contingent-liquidity charge ≈27bp a year of notional; LPC credit at FTP for cash released by P2S); the PE beta rebuild after a pacing cut is booked to TPA (§6.8).",
+        "Pay: linear in vintage-FTP DVA with ≤ 10 points for WIS forecast skill; nothing scales with budget, AUM, notional or premium; ≥ 50% deferred for the Overlay head; Gate G-E makes the pay remedy a precondition for forecast precision (§6.9; §4.7).",
+        "Decision rights: Tier A (≥ 0.25% of NAV, secondary discount > 10%, conflicted internal transfer, among others) by simple majority plus the symmetric irreversibility protocol; Tier B CIO + CRO; Tier C group or desk within mandate and envelope; Board/owner for capacity breaches, structural recovery, event-Black, payout and band proposals, A1 and A3 (§8.1).",
+        "CFP stage authorities: Green Treasurer, Amber CIO, Red IC weekly, Black Board and owner (event stage for Red/Black); recusal is enforced in software; between meetings only IC-approved delegated rules executed by named humans (§8.1; §5.9).",
+        "Real Assets (added 18 Oct; research in progress; interim rules, brief §8): real estate, infrastructure, energy and natural resources via funds, co-investments and direct assets or JVs, inside the ~60% private allocation; the group taxonomy is configuration, so envelopes, FTP charges, attribution, the forecast registry and IC seats are generic over groups, and the Real Assets head gets a shadow-IC seat (brief §8 rule 1).",
+        "Real Assets asset-level debt is non-recourse and sits outside Corporate Finance's facilities, but counts in look-through leverage and in stress through refinancing risk and covenant cures; oil wrong-way risk with the owner's draw applies to its energy and natural-resource holdings (brief §8 rules 3, 5; §4.10).",
+        "Real Assets synthetic working allocation (v2, pending the user): $18bn (≈10%) carved out of PE funds ($52bn → $34bn), ≈$4bn unfunded; SYNTHETIC (brief §8 rule 6).",
+        "SYNTHETIC – NOT ADIC DATA: all figures are synthetic working-book or research values (ARCHITECTURE.md header)."
+      ]
+    }
+  ]
+}

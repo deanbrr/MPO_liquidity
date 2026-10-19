@@ -1,0 +1,1164 @@
+{
+ "label": "SYNTHETIC - NOT ADIC DATA [I-calc / I-MC on public inputs]",
+ "asof": "2026-10-15",
+ "unit": "m bbl front-month-equivalent (Dec-26 Brent $105.92) per the generator's slow-factor impulse; positive = long oil",
+ "state_curves_m12": {
+  "SG": {
+   "share": 0.3594,
+   "front_month": 75.99,
+   "1y_fwd": 62.43,
+   "3y_avg": 64.5
+  },
+  "DB": {
+   "share": 0.056,
+   "front_month": 79.5,
+   "1y_fwd": 65.39,
+   "3y_avg": 67.63
+  },
+  "GW": {
+   "share": 0.1144,
+   "front_month": 96.18,
+   "1y_fwd": 81.25,
+   "3y_avg": 79.08
+  },
+  "N": {
+   "share": 0.3229,
+   "front_month": 87.53,
+   "1y_fwd": 79.75,
+   "3y_avg": 78.97
+  },
+  "SG24": {
+   "share": 0.2622,
+   "front_month": 60.67,
+   "1y_fwd": 54.54,
+   "3y_avg": 57.63
+  },
+  "DB24": {
+   "share": 0.0763,
+   "front_month": 62.73,
+   "1y_fwd": 56.73,
+   "3y_avg": 60.11
+  }
+ },
+ "current_curve": {
+  "front_month": 105.92,
+  "1y_fwd": 86.19,
+  "3y_avg": 83.39
+ },
+ "enr_elasticities": {
+  "canonical_now": {
+   "pdp": 0.501,
+   "roy": 0.407,
+   "mid": 0.127,
+   "lev": 0.835
+  },
+  "SG_m12": {
+   "pdp": 0.482,
+   "roy": 0.382,
+   "mid": 0.127,
+   "lev": 0.982
+  },
+  "DB_m12": {
+   "pdp": 0.478,
+   "roy": 0.383,
+   "mid": 0.127,
+   "lev": 0.928
+  },
+  "GW_m12": {
+   "pdp": 0.497,
+   "roy": 0.401,
+   "mid": 0.127,
+   "lev": 0.859
+  },
+  "N_m12": {
+   "pdp": 0.482,
+   "roy": 0.394,
+   "mid": 0.127,
+   "lev": 0.829
+  },
+  "SG24_m12": {
+   "pdp": 0.472,
+   "roy": 0.371,
+   "mid": 0.126,
+   "lev": 1.09
+  },
+  "DB24_m12": {
+   "pdp": 0.467,
+   "roy": 0.372,
+   "mid": 0.126,
+   "lev": 1.02
+  },
+  "G12_N_at_70": {
+   "pdp": 0.386,
+   "roy": 0.305,
+   "mid": 0.099,
+   "lev": 0.643
+  },
+  "G12_GW_at_95": {
+   "pdp": 0.395,
+   "roy": 0.311,
+   "mid": 0.099,
+   "lev": 0.659
+  }
+ },
+ "gcc_regression": {
+  "lag0q": {
+   "beta": 0.125,
+   "nw_se": 0.056,
+   "corr": 0.32,
+   "n": 81
+  },
+  "lag1q": {
+   "beta": 0.142,
+   "nw_se": 0.054,
+   "corr": 0.363,
+   "n": 80
+  },
+  "lag2q": {
+   "beta": 0.122,
+   "nw_se": 0.046,
+   "corr": 0.312,
+   "n": 79
+  },
+  "sample": "2003-01-01..2024-01-01 (BIS series ends here)"
+ },
+ "ledger": {
+  "RA ENR levered upstream (funds 0.80 + direct 0.27)": {
+   "group": "RA",
+   "tag": "[I] G12 split",
+   "nav_now": 1.07,
+   "eps_now": 0.835,
+   "delta_now": 8.44,
+   "eps_SG": 0.982,
+   "nav_SG": 0.687,
+   "delta_SG": 8.88,
+   "eps_DB": 0.928,
+   "nav_DB": 0.758,
+   "delta_DB": 8.85,
+   "eps_SG24": 1.09,
+   "nav_SG24": 0.545,
+   "delta_SG24": 9.79,
+   "eps_DB24": 1.02,
+   "nav_DB24": 0.603,
+   "delta_DB24": 9.8
+  },
+  "RA ENR royalties": {
+   "group": "RA",
+   "tag": "[I] G12 split",
+   "nav_now": 0.18,
+   "eps_now": 0.407,
+   "delta_now": 0.69,
+   "eps_SG": 0.382,
+   "nav_SG": 0.148,
+   "delta_SG": 0.75,
+   "eps_DB": 0.383,
+   "nav_DB": 0.154,
+   "delta_DB": 0.74,
+   "eps_SG24": 0.371,
+   "nav_SG24": 0.136,
+   "delta_SG24": 0.83,
+   "eps_DB24": 0.372,
+   "nav_DB24": 0.141,
+   "delta_DB24": 0.84
+  },
+  "RA ENR fee midstream (funds 0.40 + JV 0.45)": {
+   "group": "RA",
+   "tag": "[I] G12 split",
+   "nav_now": 0.85,
+   "eps_now": 0.127,
+   "delta_now": 1.02,
+   "eps_SG": 0.127,
+   "nav_SG": 0.798,
+   "delta_SG": 1.33,
+   "eps_DB": 0.127,
+   "nav_DB": 0.81,
+   "delta_DB": 1.29,
+   "eps_SG24": 0.126,
+   "nav_SG24": 0.776,
+   "delta_SG24": 1.61,
+   "eps_DB24": 0.126,
+   "nav_DB24": 0.786,
+   "delta_DB24": 1.58
+  },
+  "RA ENR other (services, metals, transition)": {
+   "group": "RA",
+   "tag": "[I]",
+   "nav_now": 0.4,
+   "eps_now": 0.07,
+   "delta_now": 0.26,
+   "eps_SG": 0.07,
+   "nav_SG": 0.391,
+   "delta_SG": 0.36,
+   "eps_DB": 0.07,
+   "nav_DB": 0.392,
+   "delta_DB": 0.35,
+   "eps_SG24": 0.07,
+   "nav_SG24": 0.385,
+   "delta_SG24": 0.44,
+   "eps_DB24": 0.07,
+   "nav_DB24": 0.386,
+   "delta_DB24": 0.43
+  },
+  "RA infrastructure midstream (10% of $6.5bn, energy_link)": {
+   "group": "RA",
+   "tag": "[I] G11 weights; RA s2.1 rule",
+   "nav_now": 0.65,
+   "eps_now": 0.127,
+   "delta_now": 0.78,
+   "eps_SG": 0.127,
+   "nav_SG": 0.61,
+   "delta_SG": 1.02,
+   "eps_DB": 0.127,
+   "nav_DB": 0.619,
+   "delta_DB": 0.99,
+   "eps_SG24": 0.126,
+   "nav_SG24": 0.593,
+   "delta_SG24": 1.23,
+   "eps_DB24": 0.126,
+   "nav_DB24": 0.601,
+   "delta_DB24": 1.21
+  },
+  "RA GCC real estate (fiscal/oil channel)": {
+   "group": "RA",
+   "tag": "[I-calc] BIS/FRED regression; G15 stress",
+   "nav_now": 1.2,
+   "eps_now": 0.0,
+   "delta_now": 0.0,
+   "eps_SG": 0.181,
+   "nav_SG": 1.13,
+   "delta_SG": 2.69,
+   "eps_DB": 0.181,
+   "nav_DB": 1.139,
+   "delta_DB": 2.59,
+   "eps_SG24": 0.181,
+   "nav_SG24": 1.085,
+   "delta_SG24": 3.23,
+   "eps_DB24": 0.181,
+   "nav_DB24": 1.092,
+   "delta_DB24": 3.14
+  },
+  "PE funds energy look-through (2.0% of $34bn)": {
+   "group": "PE",
+   "tag": "[S-sec]/[I]",
+   "nav_now": 0.68,
+   "eps_now": 0.378,
+   "delta_now": 2.43,
+   "eps_SG": 0.378,
+   "nav_SG": 0.6,
+   "delta_SG": 2.98,
+   "eps_DB": 0.378,
+   "nav_DB": 0.61,
+   "delta_DB": 2.9,
+   "eps_SG24": 0.378,
+   "nav_SG24": 0.551,
+   "delta_SG24": 3.43,
+   "eps_DB24": 0.378,
+   "nav_DB24": 0.558,
+   "delta_DB24": 3.36
+  },
+  "Co-investment energy look-through (3% of $18bn)": {
+   "group": "CO",
+   "tag": "[I]",
+   "nav_now": 0.54,
+   "eps_now": 0.378,
+   "delta_now": 1.93,
+   "eps_SG": 0.378,
+   "nav_SG": 0.476,
+   "delta_SG": 2.37,
+   "eps_DB": 0.378,
+   "nav_DB": 0.484,
+   "delta_DB": 2.3,
+   "eps_SG24": 0.378,
+   "nav_SG24": 0.437,
+   "delta_SG24": 2.73,
+   "eps_DB24": 0.378,
+   "nav_DB24": 0.443,
+   "delta_DB24": 2.67
+  },
+  "Secondaries energy look-through (2% of $14bn)": {
+   "group": "SEC",
+   "tag": "[I]",
+   "nav_now": 0.28,
+   "eps_now": 0.378,
+   "delta_now": 1.0,
+   "eps_SG": 0.378,
+   "nav_SG": 0.247,
+   "delta_SG": 1.23,
+   "eps_DB": 0.378,
+   "nav_DB": 0.251,
+   "delta_DB": 1.19,
+   "eps_SG24": 0.378,
+   "nav_SG24": 0.227,
+   "delta_SG24": 1.41,
+   "eps_DB24": 0.378,
+   "nav_DB24": 0.23,
+   "delta_DB24": 1.38
+  },
+  "Capital Solutions energy (3% of $8bn)": {
+   "group": "CS",
+   "tag": "[I]",
+   "nav_now": 0.24,
+   "eps_now": 0.12,
+   "delta_now": 0.27,
+   "eps_SG": 0.21,
+   "nav_SG": 0.224,
+   "delta_SG": 0.62,
+   "eps_DB": 0.21,
+   "nav_DB": 0.226,
+   "delta_DB": 0.6,
+   "eps_SG24": 0.21,
+   "nav_SG24": 0.213,
+   "delta_SG24": 0.74,
+   "eps_DB24": 0.21,
+   "nav_DB24": 0.215,
+   "delta_DB24": 0.72
+  },
+  "Private Credit energy loans (2% of $14bn)": {
+   "group": "PC",
+   "tag": "[S]/[I]",
+   "nav_now": 0.28,
+   "eps_now": 0.048,
+   "delta_now": 0.13,
+   "eps_SG": 0.15,
+   "nav_SG": 0.266,
+   "delta_SG": 0.53,
+   "eps_DB": 0.15,
+   "nav_DB": 0.268,
+   "delta_DB": 0.51,
+   "eps_SG24": 0.15,
+   "nav_SG24": 0.258,
+   "delta_SG24": 0.64,
+   "eps_DB24": 0.15,
+   "nav_DB24": 0.259,
+   "delta_DB24": 0.62
+  },
+  "Long-only equity energy (3.96% of $28bn)": {
+   "group": "PUB",
+   "tag": "[S]",
+   "nav_now": 1.109,
+   "eps_now": 0.24,
+   "delta_now": 2.51,
+   "eps_SG": 0.24,
+   "nav_SG": 1.024,
+   "delta_SG": 3.23,
+   "eps_DB": 0.24,
+   "nav_DB": 1.035,
+   "delta_DB": 3.12,
+   "eps_SG24": 0.24,
+   "nav_SG24": 0.97,
+   "delta_SG24": 3.84,
+   "eps_DB24": 0.24,
+   "nav_DB24": 0.978,
+   "delta_DB24": 3.74
+  },
+  "Long-only fixed income energy (8% of $8bn)": {
+   "group": "PUB",
+   "tag": "[I]",
+   "nav_now": 0.64,
+   "eps_now": 0.048,
+   "delta_now": 0.29,
+   "eps_SG": 0.12,
+   "nav_SG": 0.615,
+   "delta_SG": 0.97,
+   "eps_DB": 0.12,
+   "nav_DB": 0.618,
+   "delta_DB": 0.93,
+   "eps_SG24": 0.12,
+   "nav_SG24": 0.599,
+   "delta_SG24": 1.18,
+   "eps_DB24": 0.12,
+   "nav_DB24": 0.601,
+   "delta_DB24": 1.15
+  },
+  "Hedge funds energy (net beta 0.3 x 3.96% of $20bn)": {
+   "group": "PUB",
+   "tag": "[I]",
+   "nav_now": 0.238,
+   "eps_now": 0.24,
+   "delta_now": 0.54,
+   "eps_SG": 0.24,
+   "nav_SG": 0.219,
+   "delta_SG": 0.69,
+   "eps_DB": 0.24,
+   "nav_DB": 0.222,
+   "delta_DB": 0.67,
+   "eps_SG24": 0.24,
+   "nav_SG24": 0.208,
+   "delta_SG24": 0.82,
+   "eps_DB24": 0.24,
+   "nav_DB24": 0.21,
+   "delta_DB24": 0.8
+  },
+  "Overlay completion beta energy (3.96% of $10bn)": {
+   "group": "OVL",
+   "tag": "[S]/[I]",
+   "nav_now": 0.396,
+   "eps_now": 0.24,
+   "delta_now": 0.9,
+   "eps_SG": 0.24,
+   "nav_SG": 0.366,
+   "delta_SG": 1.15,
+   "eps_DB": 0.24,
+   "nav_DB": 0.37,
+   "delta_DB": 1.12,
+   "eps_SG24": 0.24,
+   "nav_SG24": 0.346,
+   "delta_SG24": 1.37,
+   "eps_DB24": 0.24,
+   "nav_DB24": 0.349,
+   "delta_DB24": 1.34
+  }
+ },
+ "overlay_opportunistic_templates": {
+  "assumptions": {
+   "vol_budget_usd_bn": 1.95,
+   "trend_share": 0.35,
+   "carry_share": 0.25,
+   "crude_vol_3m": 0.452,
+   "markets": "trend 40 futures equal risk; carry 4 asset buckets x ~10 markets; Brent+WTI rho 0.95 [I]"
+  },
+  "trend_m_bbl_now": 4.08,
+  "carry_m_bbl_now": 1.46,
+  "sign_now": "long: 12-month Brent return strongly positive (4Q25 avg $63.65 -> Oct-26 front $105.92) and the curve is in steep backwardation (Dec-26 to Dec-27 -$20.84)",
+  "sign_SG_DB": "short: trend flips after a sustained fall; carry flips if the curve moves to contango"
+ },
+ "kink_put_spreads": {
+  "log kinks 64/31 | 1y (Dec-27) | 20m bbl notional": {
+   "now": {
+    "forward": 85.08,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.169,
+    "spot_equiv_m_bbl": -1.56,
+    "premium_usd_per_bbl": 3.86,
+    "premium_usd_bn": 0.077
+   },
+   "now_vol_x0.8": {
+    "forward": 85.08,
+    "atm_vol": 0.296,
+    "option_delta_per_bbl": -0.14,
+    "spot_equiv_m_bbl": -1.29,
+    "premium_usd_per_bbl": 2.29,
+    "premium_usd_bn": 0.046
+   },
+   "now_vol_x1.3": {
+    "forward": 85.08,
+    "atm_vol": 0.481,
+    "option_delta_per_bbl": -0.184,
+    "spot_equiv_m_bbl": -1.7,
+    "premium_usd_per_bbl": 6.29,
+    "premium_usd_bn": 0.126
+   },
+   "SG": {
+    "forward": 62.3,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.404,
+    "spot_equiv_m_bbl": -3.81,
+    "premium_usd_per_bbl": 9.76,
+    "premium_usd_bn": 0.195
+   },
+   "DB": {
+    "forward": 65.4,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.363,
+    "spot_equiv_m_bbl": -3.44,
+    "premium_usd_per_bbl": 8.6,
+    "premium_usd_bn": 0.172
+   },
+   "SG24": {
+    "forward": 54.73,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.507,
+    "spot_equiv_m_bbl": -5.26,
+    "premium_usd_per_bbl": 13.23,
+    "premium_usd_bn": 0.265
+   },
+   "DB24": {
+    "forward": 57.07,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.476,
+    "spot_equiv_m_bbl": -4.97,
+    "premium_usd_per_bbl": 12.08,
+    "premium_usd_bn": 0.242
+   }
+  },
+  "log kinks 64/31 | 1y (Dec-27) | 40m bbl notional": {
+   "now": {
+    "forward": 85.08,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.169,
+    "spot_equiv_m_bbl": -3.12,
+    "premium_usd_per_bbl": 3.86,
+    "premium_usd_bn": 0.154
+   },
+   "now_vol_x0.8": {
+    "forward": 85.08,
+    "atm_vol": 0.296,
+    "option_delta_per_bbl": -0.14,
+    "spot_equiv_m_bbl": -2.59,
+    "premium_usd_per_bbl": 2.29,
+    "premium_usd_bn": 0.092
+   },
+   "now_vol_x1.3": {
+    "forward": 85.08,
+    "atm_vol": 0.481,
+    "option_delta_per_bbl": -0.184,
+    "spot_equiv_m_bbl": -3.41,
+    "premium_usd_per_bbl": 6.29,
+    "premium_usd_bn": 0.251
+   },
+   "SG": {
+    "forward": 62.3,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.404,
+    "spot_equiv_m_bbl": -7.63,
+    "premium_usd_per_bbl": 9.76,
+    "premium_usd_bn": 0.391
+   },
+   "DB": {
+    "forward": 65.4,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.363,
+    "spot_equiv_m_bbl": -6.88,
+    "premium_usd_per_bbl": 8.6,
+    "premium_usd_bn": 0.344
+   },
+   "SG24": {
+    "forward": 54.73,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.507,
+    "spot_equiv_m_bbl": -10.51,
+    "premium_usd_per_bbl": 13.23,
+    "premium_usd_bn": 0.529
+   },
+   "DB24": {
+    "forward": 57.07,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.476,
+    "spot_equiv_m_bbl": -9.95,
+    "premium_usd_per_bbl": 12.08,
+    "premium_usd_bn": 0.483
+   }
+  },
+  "log kinks 64/31 | 2y (Dec-28) | 20m bbl notional": {
+   "now": {
+    "forward": 76.83,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.227,
+    "spot_equiv_m_bbl": -1.14,
+    "premium_usd_per_bbl": 7.02,
+    "premium_usd_bn": 0.14
+   },
+   "now_vol_x0.8": {
+    "forward": 76.83,
+    "atm_vol": 0.262,
+    "option_delta_per_bbl": -0.226,
+    "spot_equiv_m_bbl": -1.13,
+    "premium_usd_per_bbl": 5.06,
+    "premium_usd_bn": 0.101
+   },
+   "now_vol_x1.3": {
+    "forward": 76.83,
+    "atm_vol": 0.426,
+    "option_delta_per_bbl": -0.209,
+    "spot_equiv_m_bbl": -1.05,
+    "premium_usd_per_bbl": 9.62,
+    "premium_usd_bn": 0.192
+   },
+   "SG": {
+    "forward": 63.71,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.334,
+    "spot_equiv_m_bbl": -1.93,
+    "premium_usd_per_bbl": 10.42,
+    "premium_usd_bn": 0.208
+   },
+   "DB": {
+    "forward": 67.4,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.301,
+    "spot_equiv_m_bbl": -1.76,
+    "premium_usd_per_bbl": 9.32,
+    "premium_usd_bn": 0.186
+   },
+   "SG24": {
+    "forward": 58.95,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.379,
+    "spot_equiv_m_bbl": -2.54,
+    "premium_usd_per_bbl": 12.14,
+    "premium_usd_bn": 0.243
+   },
+   "DB24": {
+    "forward": 62.11,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.349,
+    "spot_equiv_m_bbl": -2.38,
+    "premium_usd_per_bbl": 10.97,
+    "premium_usd_bn": 0.219
+   }
+  },
+  "log kinks 64/31 | 2y (Dec-28) | 40m bbl notional": {
+   "now": {
+    "forward": 76.83,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.227,
+    "spot_equiv_m_bbl": -2.27,
+    "premium_usd_per_bbl": 7.02,
+    "premium_usd_bn": 0.281
+   },
+   "now_vol_x0.8": {
+    "forward": 76.83,
+    "atm_vol": 0.262,
+    "option_delta_per_bbl": -0.226,
+    "spot_equiv_m_bbl": -2.26,
+    "premium_usd_per_bbl": 5.06,
+    "premium_usd_bn": 0.202
+   },
+   "now_vol_x1.3": {
+    "forward": 76.83,
+    "atm_vol": 0.426,
+    "option_delta_per_bbl": -0.209,
+    "spot_equiv_m_bbl": -2.1,
+    "premium_usd_per_bbl": 9.62,
+    "premium_usd_bn": 0.385
+   },
+   "SG": {
+    "forward": 63.71,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.334,
+    "spot_equiv_m_bbl": -3.87,
+    "premium_usd_per_bbl": 10.42,
+    "premium_usd_bn": 0.417
+   },
+   "DB": {
+    "forward": 67.4,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.301,
+    "spot_equiv_m_bbl": -3.52,
+    "premium_usd_per_bbl": 9.32,
+    "premium_usd_bn": 0.373
+   },
+   "SG24": {
+    "forward": 58.95,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.379,
+    "spot_equiv_m_bbl": -5.08,
+    "premium_usd_per_bbl": 12.14,
+    "premium_usd_bn": 0.486
+   },
+   "DB24": {
+    "forward": 62.11,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.349,
+    "spot_equiv_m_bbl": -4.77,
+    "premium_usd_per_bbl": 10.97,
+    "premium_usd_bn": 0.439
+   }
+  },
+  "linear kinks 67/23 | 1y (Dec-27) | 20m bbl notional": {
+   "now": {
+    "forward": 85.08,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.203,
+    "spot_equiv_m_bbl": -1.87,
+    "premium_usd_per_bbl": 4.79,
+    "premium_usd_bn": 0.096
+   },
+   "now_vol_x0.8": {
+    "forward": 85.08,
+    "atm_vol": 0.296,
+    "option_delta_per_bbl": -0.174,
+    "spot_equiv_m_bbl": -1.61,
+    "premium_usd_per_bbl": 2.99,
+    "premium_usd_bn": 0.06
+   },
+   "now_vol_x1.3": {
+    "forward": 85.08,
+    "atm_vol": 0.481,
+    "option_delta_per_bbl": -0.222,
+    "spot_equiv_m_bbl": -2.05,
+    "premium_usd_per_bbl": 7.65,
+    "premium_usd_bn": 0.153
+   },
+   "SG": {
+    "forward": 62.3,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.473,
+    "spot_equiv_m_bbl": -4.46,
+    "premium_usd_per_bbl": 11.85,
+    "premium_usd_bn": 0.237
+   },
+   "DB": {
+    "forward": 65.4,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.426,
+    "spot_equiv_m_bbl": -4.03,
+    "premium_usd_per_bbl": 10.45,
+    "premium_usd_bn": 0.209
+   },
+   "SG24": {
+    "forward": 54.73,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.593,
+    "spot_equiv_m_bbl": -6.15,
+    "premium_usd_per_bbl": 15.88,
+    "premium_usd_bn": 0.318
+   },
+   "DB24": {
+    "forward": 57.07,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.556,
+    "spot_equiv_m_bbl": -5.81,
+    "premium_usd_per_bbl": 14.54,
+    "premium_usd_bn": 0.291
+   }
+  },
+  "linear kinks 67/23 | 1y (Dec-27) | 40m bbl notional": {
+   "now": {
+    "forward": 85.08,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.203,
+    "spot_equiv_m_bbl": -3.75,
+    "premium_usd_per_bbl": 4.79,
+    "premium_usd_bn": 0.192
+   },
+   "now_vol_x0.8": {
+    "forward": 85.08,
+    "atm_vol": 0.296,
+    "option_delta_per_bbl": -0.174,
+    "spot_equiv_m_bbl": -3.21,
+    "premium_usd_per_bbl": 2.99,
+    "premium_usd_bn": 0.12
+   },
+   "now_vol_x1.3": {
+    "forward": 85.08,
+    "atm_vol": 0.481,
+    "option_delta_per_bbl": -0.222,
+    "spot_equiv_m_bbl": -4.1,
+    "premium_usd_per_bbl": 7.65,
+    "premium_usd_bn": 0.306
+   },
+   "SG": {
+    "forward": 62.3,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.473,
+    "spot_equiv_m_bbl": -8.92,
+    "premium_usd_per_bbl": 11.85,
+    "premium_usd_bn": 0.474
+   },
+   "DB": {
+    "forward": 65.4,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.426,
+    "spot_equiv_m_bbl": -8.07,
+    "premium_usd_per_bbl": 10.45,
+    "premium_usd_bn": 0.418
+   },
+   "SG24": {
+    "forward": 54.73,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.593,
+    "spot_equiv_m_bbl": -12.31,
+    "premium_usd_per_bbl": 15.88,
+    "premium_usd_bn": 0.635
+   },
+   "DB24": {
+    "forward": 57.07,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.556,
+    "spot_equiv_m_bbl": -11.63,
+    "premium_usd_per_bbl": 14.54,
+    "premium_usd_bn": 0.581
+   }
+  },
+  "linear kinks 67/23 | 2y (Dec-28) | 20m bbl notional": {
+   "now": {
+    "forward": 76.83,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.272,
+    "spot_equiv_m_bbl": -1.36,
+    "premium_usd_per_bbl": 8.53,
+    "premium_usd_bn": 0.171
+   },
+   "now_vol_x0.8": {
+    "forward": 76.83,
+    "atm_vol": 0.262,
+    "option_delta_per_bbl": -0.268,
+    "spot_equiv_m_bbl": -1.34,
+    "premium_usd_per_bbl": 6.23,
+    "premium_usd_bn": 0.125
+   },
+   "now_vol_x1.3": {
+    "forward": 76.83,
+    "atm_vol": 0.426,
+    "option_delta_per_bbl": -0.258,
+    "spot_equiv_m_bbl": -1.29,
+    "premium_usd_per_bbl": 11.78,
+    "premium_usd_bn": 0.236
+   },
+   "SG": {
+    "forward": 63.71,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.401,
+    "spot_equiv_m_bbl": -2.32,
+    "premium_usd_per_bbl": 12.69,
+    "premium_usd_bn": 0.254
+   },
+   "DB": {
+    "forward": 67.4,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.361,
+    "spot_equiv_m_bbl": -2.11,
+    "premium_usd_per_bbl": 11.29,
+    "premium_usd_bn": 0.226
+   },
+   "SG24": {
+    "forward": 58.95,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.456,
+    "spot_equiv_m_bbl": -3.06,
+    "premium_usd_per_bbl": 14.73,
+    "premium_usd_bn": 0.295
+   },
+   "DB24": {
+    "forward": 62.11,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.419,
+    "spot_equiv_m_bbl": -2.86,
+    "premium_usd_per_bbl": 13.34,
+    "premium_usd_bn": 0.267
+   }
+  },
+  "linear kinks 67/23 | 2y (Dec-28) | 40m bbl notional": {
+   "now": {
+    "forward": 76.83,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.272,
+    "spot_equiv_m_bbl": -2.72,
+    "premium_usd_per_bbl": 8.53,
+    "premium_usd_bn": 0.341
+   },
+   "now_vol_x0.8": {
+    "forward": 76.83,
+    "atm_vol": 0.262,
+    "option_delta_per_bbl": -0.268,
+    "spot_equiv_m_bbl": -2.69,
+    "premium_usd_per_bbl": 6.23,
+    "premium_usd_bn": 0.249
+   },
+   "now_vol_x1.3": {
+    "forward": 76.83,
+    "atm_vol": 0.426,
+    "option_delta_per_bbl": -0.258,
+    "spot_equiv_m_bbl": -2.59,
+    "premium_usd_per_bbl": 11.78,
+    "premium_usd_bn": 0.471
+   },
+   "SG": {
+    "forward": 63.71,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.401,
+    "spot_equiv_m_bbl": -4.64,
+    "premium_usd_per_bbl": 12.69,
+    "premium_usd_bn": 0.508
+   },
+   "DB": {
+    "forward": 67.4,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.361,
+    "spot_equiv_m_bbl": -4.22,
+    "premium_usd_per_bbl": 11.29,
+    "premium_usd_bn": 0.452
+   },
+   "SG24": {
+    "forward": 58.95,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.456,
+    "spot_equiv_m_bbl": -6.12,
+    "premium_usd_per_bbl": 14.73,
+    "premium_usd_bn": 0.589
+   },
+   "DB24": {
+    "forward": 62.11,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.419,
+    "spot_equiv_m_bbl": -5.73,
+    "premium_usd_per_bbl": 13.34,
+    "premium_usd_bn": 0.534
+   }
+  },
+  "canonical linear kinks 65/26 (P_BE 55, 2027 volumes) | 1y (Dec-27) | 20m bbl notional": {
+   "now": {
+    "forward": 85.08,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.185,
+    "spot_equiv_m_bbl": -1.71,
+    "premium_usd_per_bbl": 4.27,
+    "premium_usd_bn": 0.085
+   },
+   "now_vol_x0.8": {
+    "forward": 85.08,
+    "atm_vol": 0.296,
+    "option_delta_per_bbl": -0.155,
+    "spot_equiv_m_bbl": -1.43,
+    "premium_usd_per_bbl": 2.58,
+    "premium_usd_bn": 0.052
+   },
+   "now_vol_x1.3": {
+    "forward": 85.08,
+    "atm_vol": 0.481,
+    "option_delta_per_bbl": -0.204,
+    "spot_equiv_m_bbl": -1.88,
+    "premium_usd_per_bbl": 6.94,
+    "premium_usd_bn": 0.139
+   },
+   "SG": {
+    "forward": 62.3,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.441,
+    "spot_equiv_m_bbl": -4.15,
+    "premium_usd_per_bbl": 10.73,
+    "premium_usd_bn": 0.215
+   },
+   "DB": {
+    "forward": 65.4,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.396,
+    "spot_equiv_m_bbl": -3.75,
+    "premium_usd_per_bbl": 9.44,
+    "premium_usd_bn": 0.189
+   },
+   "SG24": {
+    "forward": 54.73,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.555,
+    "spot_equiv_m_bbl": -5.76,
+    "premium_usd_per_bbl": 14.51,
+    "premium_usd_bn": 0.29
+   },
+   "DB24": {
+    "forward": 57.07,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.52,
+    "spot_equiv_m_bbl": -5.44,
+    "premium_usd_per_bbl": 13.25,
+    "premium_usd_bn": 0.265
+   }
+  },
+  "canonical linear kinks 65/26 (P_BE 55, 2027 volumes) | 1y (Dec-27) | 40m bbl notional": {
+   "now": {
+    "forward": 85.08,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.185,
+    "spot_equiv_m_bbl": -3.41,
+    "premium_usd_per_bbl": 4.27,
+    "premium_usd_bn": 0.171
+   },
+   "now_vol_x0.8": {
+    "forward": 85.08,
+    "atm_vol": 0.296,
+    "option_delta_per_bbl": -0.155,
+    "spot_equiv_m_bbl": -2.86,
+    "premium_usd_per_bbl": 2.58,
+    "premium_usd_bn": 0.103
+   },
+   "now_vol_x1.3": {
+    "forward": 85.08,
+    "atm_vol": 0.481,
+    "option_delta_per_bbl": -0.204,
+    "spot_equiv_m_bbl": -3.76,
+    "premium_usd_per_bbl": 6.94,
+    "premium_usd_bn": 0.277
+   },
+   "SG": {
+    "forward": 62.3,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.441,
+    "spot_equiv_m_bbl": -8.31,
+    "premium_usd_per_bbl": 10.73,
+    "premium_usd_bn": 0.429
+   },
+   "DB": {
+    "forward": 65.4,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.396,
+    "spot_equiv_m_bbl": -7.49,
+    "premium_usd_per_bbl": 9.44,
+    "premium_usd_bn": 0.378
+   },
+   "SG24": {
+    "forward": 54.73,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.555,
+    "spot_equiv_m_bbl": -11.52,
+    "premium_usd_per_bbl": 14.51,
+    "premium_usd_bn": 0.58
+   },
+   "DB24": {
+    "forward": 57.07,
+    "atm_vol": 0.37,
+    "option_delta_per_bbl": -0.52,
+    "spot_equiv_m_bbl": -10.88,
+    "premium_usd_per_bbl": 13.25,
+    "premium_usd_bn": 0.53
+   }
+  },
+  "canonical linear kinks 65/26 (P_BE 55, 2027 volumes) | 2y (Dec-28) | 20m bbl notional": {
+   "now": {
+    "forward": 76.83,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.25,
+    "spot_equiv_m_bbl": -1.25,
+    "premium_usd_per_bbl": 7.74,
+    "premium_usd_bn": 0.155
+   },
+   "now_vol_x0.8": {
+    "forward": 76.83,
+    "atm_vol": 0.262,
+    "option_delta_per_bbl": -0.246,
+    "spot_equiv_m_bbl": -1.23,
+    "premium_usd_per_bbl": 5.58,
+    "premium_usd_bn": 0.112
+   },
+   "now_vol_x1.3": {
+    "forward": 76.83,
+    "atm_vol": 0.426,
+    "option_delta_per_bbl": -0.236,
+    "spot_equiv_m_bbl": -1.18,
+    "premium_usd_per_bbl": 10.72,
+    "premium_usd_bn": 0.214
+   },
+   "SG": {
+    "forward": 63.71,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.371,
+    "spot_equiv_m_bbl": -2.14,
+    "premium_usd_per_bbl": 11.53,
+    "premium_usd_bn": 0.231
+   },
+   "DB": {
+    "forward": 67.4,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.333,
+    "spot_equiv_m_bbl": -1.95,
+    "premium_usd_per_bbl": 10.28,
+    "premium_usd_bn": 0.206
+   },
+   "SG24": {
+    "forward": 58.95,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.422,
+    "spot_equiv_m_bbl": -2.83,
+    "premium_usd_per_bbl": 13.43,
+    "premium_usd_bn": 0.269
+   },
+   "DB24": {
+    "forward": 62.11,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.387,
+    "spot_equiv_m_bbl": -2.65,
+    "premium_usd_per_bbl": 12.14,
+    "premium_usd_bn": 0.243
+   }
+  },
+  "canonical linear kinks 65/26 (P_BE 55, 2027 volumes) | 2y (Dec-28) | 40m bbl notional": {
+   "now": {
+    "forward": 76.83,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.25,
+    "spot_equiv_m_bbl": -2.5,
+    "premium_usd_per_bbl": 7.74,
+    "premium_usd_bn": 0.31
+   },
+   "now_vol_x0.8": {
+    "forward": 76.83,
+    "atm_vol": 0.262,
+    "option_delta_per_bbl": -0.246,
+    "spot_equiv_m_bbl": -2.46,
+    "premium_usd_per_bbl": 5.58,
+    "premium_usd_bn": 0.223
+   },
+   "now_vol_x1.3": {
+    "forward": 76.83,
+    "atm_vol": 0.426,
+    "option_delta_per_bbl": -0.236,
+    "spot_equiv_m_bbl": -2.36,
+    "premium_usd_per_bbl": 10.72,
+    "premium_usd_bn": 0.429
+   },
+   "SG": {
+    "forward": 63.71,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.371,
+    "spot_equiv_m_bbl": -4.29,
+    "premium_usd_per_bbl": 11.53,
+    "premium_usd_bn": 0.461
+   },
+   "DB": {
+    "forward": 67.4,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.333,
+    "spot_equiv_m_bbl": -3.89,
+    "premium_usd_per_bbl": 10.28,
+    "premium_usd_bn": 0.411
+   },
+   "SG24": {
+    "forward": 58.95,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.422,
+    "spot_equiv_m_bbl": -5.65,
+    "premium_usd_per_bbl": 13.43,
+    "premium_usd_bn": 0.537
+   },
+   "DB24": {
+    "forward": 62.11,
+    "atm_vol": 0.328,
+    "option_delta_per_bbl": -0.387,
+    "spot_equiv_m_bbl": -5.29,
+    "premium_usd_per_bbl": 12.14,
+    "premium_usd_bn": 0.486
+   }
+  }
+ },
+ "groups_gap04_brent_ladder": {
+  "premium_usd_bn_a_year": 0.053,
+  "notional_m_bbl": 10.6,
+  "spot_equiv_m_bbl": -0.85
+ },
+ "totals": {
+  "RA_ENR_only": {
+   "now": 10.41,
+   "SG": 11.32,
+   "DB": 11.23,
+   "SG24": 12.67,
+   "DB24": 12.65
+  },
+  "RA_total (ENR + infra midstream + GCC RE)": {
+   "now": 11.19,
+   "SG": 15.03,
+   "DB": 14.81,
+   "SG24": 17.13,
+   "DB24": 17.0
+  },
+  "total_portfolio_assets_ex_overlay_derivatives": {
+   "now": 21.19,
+   "SG": 28.8,
+   "DB": 28.15,
+   "SG24": 33.29,
+   "DB24": 32.78
+  },
+  "overlay_opportunistic_templates_now": 5.54,
+  "total_incl_opportunistic_now": 26.73,
+  "G12_reference_ENR": {
+   "$70 N basis": 12.22,
+   "$95 GW basis": 9.2
+  }
+ },
+ "liability_in_barrels": {
+  "L_eff_t0_pct_nav": 4.74,
+  "PV_draw_delta_m_bbl": 79.2,
+  "first_year_2027_draw_delta_m_bbl": 22.2,
+  "first_year_conditional_on_in_band_m_bbl": 56.4,
+  "stream03_reference_first_year_m_bbl": 100
+ }
+}

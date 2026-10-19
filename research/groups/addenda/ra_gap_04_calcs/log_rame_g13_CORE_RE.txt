@@ -1,0 +1,12 @@
+CORE_RE g13 true SS params {'lam': 0.75, 'mu': 0.0033357329104412247, 'sv': 0.05781881563717437, 'sxi': 0.004269562819149833, 'beta': 1.0, 'phip': 0.85, 'sp': 0.05, 'sL': 0.01, 'st': 0.025, 'cL': 0.0}
+CORE_RE g13 M0     ALT: R2 0.35 cov 0.745 sellbias -0.19 reg 0.201 | AL R2 0.65 cov 0.60 | ALT4 R2 0.56 | lam 0.741 | 225s
+CORE_RE g13 TL1    ALT: R2 0.63 cov 0.449 sellbias -1.35 reg 0.506 | AL R2 0.65 cov 0.60 | ALT4 R2 0.63 | lam 0.609 | 217s
+CORE_RE g13 TL2    ALT: R2 0.74 cov 0.347 sellbias -1.91 reg 0.644 | AL R2 0.65 cov 0.60 | ALT4 R2 0.66 | lam 0.502 | 287s
+CORE_RE g13 TA3    ALT: R2 0.41 cov 0.597 sellbias -0.56 reg 0.248 | AL R2 0.65 cov 0.60 | ALT4 R2 0.58 | lam 0.701 | 231s
+CORE_RE g13 TA5    ALT: R2 0.50 cov 0.453 sellbias -0.99 reg 0.350 | AL R2 0.65 cov 0.60 | ALT4 R2 0.62 | lam 0.638 | 323s
+CORE_RE g13 TB     ALT: R2 0.44 cov 0.586 sellbias +1.50 reg 0.303 | AL R2 0.65 cov 0.60 | ALT4 R2 0.58 | lam 0.761 | 284s
+CORE_RE g13 TBC    ALT: R2 0.39 cov 0.699 sellbias -0.32 reg 0.215 | AL R2 0.65 cov 0.60 | ALT4 R2 0.56 | lam 0.736 | 293s
+CORE_RE g13 TW     ALT: R2 0.74 cov 0.338 sellbias -1.89 reg 0.607 | AL R2 0.65 cov 0.60 | ALT4 R2 0.67 | lam 0.495 | 278s
+CORE_RE g13 MALL   ALT: R2 0.50 cov 0.437 sellbias +1.00 reg 0.491 | AL R2 0.73 cov 0.50 | ALT4 R2 0.67 | lam 0.768 | 247s
+CORE_RE g13 MALL_T ALT: R2 0.77 cov 0.282 sellbias +0.60 reg 0.784 | AL R2 0.73 cov 0.50 | ALT4 R2 0.77 | lam 0.620 | 278s
+wrote C:\Users\dean\ai_envs\adic_tpa_lab\research\groups\addenda\ra_gap_04_calcs\rame_ens_g13_CORE_RE.json 2665.2 s SYNTHETIC - NOT ADIC DATA

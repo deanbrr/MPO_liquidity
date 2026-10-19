@@ -1,0 +1,2277 @@
+{
+ "label": "SYNTHETIC - NOT ADIC DATA",
+ "cash_rows": {
+  "normal": {
+   "12m": {
+    "income": 0.746,
+    "exits": 0.951,
+    "sale_proceeds_direct": 0.0,
+    "calls": 1.011,
+    "protective_calls": 0.155,
+    "distribution_stop": 0.046,
+    "dev_draws": 0.227,
+    "cures_direct_controlled": 0.005,
+    "shortfalls_direct": 0.001,
+    "cures_coinvest": 0.001,
+    "fund_level_need": 0.201,
+    "fund_level_unfunded_loss": 0.0,
+    "matured": 2.088,
+    "gap": 0.341,
+    "handback_equity": 0.0,
+    "net_mean": 0.298,
+    "net_P5_P50_P95": [
+     0.211,
+     0.296,
+     0.39
+    ],
+    "adic_direct_cures_mean": 0.006,
+    "adic_direct_cures_CVaR95": 0.05,
+    "adic_cure_cash_incl_protective_calls_CVaR95": 0.247,
+    "fund_level_need_CVaR95": 0.279
+   },
+   "24m": {
+    "income": 1.485,
+    "exits": 1.904,
+    "sale_proceeds_direct": 0.008,
+    "calls": 2.046,
+    "protective_calls": 0.227,
+    "distribution_stop": 0.083,
+    "dev_draws": 0.431,
+    "cures_direct_controlled": 0.032,
+    "shortfalls_direct": 0.003,
+    "cures_coinvest": 0.043,
+    "fund_level_need": 0.31,
+    "fund_level_unfunded_loss": 0.0,
+    "matured": 4.962,
+    "gap": 0.694,
+    "handback_equity": 0.0,
+    "net_mean": 0.615,
+    "net_P5_P50_P95": [
+     0.414,
+     0.614,
+     0.819
+    ],
+    "adic_direct_cures_mean": 0.078,
+    "adic_direct_cures_CVaR95": 0.238,
+    "adic_cure_cash_incl_protective_calls_CVaR95": 0.481,
+    "fund_level_need_CVaR95": 0.393
+   },
+   "ltv": {
+    "t0": 0.497,
+    "t4_P5_P50_P95": [
+     0.454,
+     0.463,
+     0.471
+    ],
+    "t8_P5_P50_P95": [
+     0.418,
+     0.43,
+     0.44
+    ],
+    "peak_8q_P50_P95": [
+     0.487,
+     0.493
+    ]
+   },
+   "ltv_debt_fixed_on_value_index_P50_P95_t4_t8": [
+    [
+     0.49,
+     0.484
+    ],
+    [
+     0.5,
+     0.497
+    ]
+   ],
+   "ltv_controllable": {
+    "t0": 0.476,
+    "t8_P50_P95": [
+     0.439,
+     0.465
+    ]
+   },
+   "value_index_P50_t4_t8": [
+    0.014,
+    0.028
+   ],
+   "value_index_P5_t4_t8": [
+    -0.006,
+    -0.0
+   ],
+   "value_index_by_sleeve": {
+    "RE_OE": [
+     -0.002,
+     -0.008
+    ],
+    "RE_CE": [
+     -0.008,
+     -0.022
+    ],
+    "RE_DIR_GL": [
+     0.059,
+     0.113
+    ],
+    "RE_DIR_GCC": [
+     0.01,
+     0.032
+    ],
+    "RE_COI": [
+     0.008,
+     0.011
+    ],
+    "INF_OE": [
+     0.018,
+     0.036
+    ],
+    "INF_CE": [
+     0.025,
+     0.051
+    ],
+    "INF_DIR": [
+     0.027,
+     0.055
+    ],
+    "ENR_CE": [
+     -0.019,
+     -0.037
+    ],
+    "ENR_DIR": [
+     0.016,
+     0.03
+    ]
+   },
+   "appraisal_change_P50_t4_t8": [
+    -0.045,
+    -0.078
+   ],
+   "outcomes": {
+    "refi": 0.5544,
+    "ext_contract": 0.0761,
+    "ext_discretionary": 0.0903,
+    "cure": 0.2173,
+    "sale": 0.0469,
+    "handback": 0.001,
+    "forbear": 0.014
+   },
+   "infra_unrefinanced_by_G11": {
+    "N": null,
+    "I": 0.0069,
+    "C": null,
+    "G": 0.0051
+   },
+   "cov_kpi": {
+    "mean_share_of_loans": 0.0085,
+    "max_per_loan": 0.0772,
+    "loans_above_2pct": 3
+   },
+   "ladder": [
+    0.581,
+    0.774,
+    0.29,
+    0.444,
+    0.5,
+    1.398,
+    0.54,
+    0.436,
+    0.796,
+    1.688,
+    0.601,
+    1.239,
+    0.657,
+    0.953,
+    0.355,
+    0.487,
+    0.532,
+    0.492,
+    0.322,
+    0.179
+   ],
+   "ladder_ctl": [
+    0.092,
+    0.187,
+    0.015,
+    0.001,
+    0.001,
+    0.257,
+    0.263,
+    0.003,
+    0.205,
+    0.771,
+    0.443,
+    0.52,
+    0.185,
+    0.165,
+    0.101,
+    0.199,
+    0.023,
+    0.007,
+    0.017,
+    0.002
+   ],
+   "sleeve_net_24m": {
+    "RE_OE": 0.173,
+    "RE_CE": -0.159,
+    "RE_DIR_GL": -0.059,
+    "RE_DIR_GCC": -0.005,
+    "RE_COI": 0.14,
+    "INF_OE": 0.189,
+    "INF_CE": -0.205,
+    "INF_DIR": 0.262,
+    "ENR_CE": 0.118,
+    "ENR_DIR": 0.162
+   },
+   "states_q4": {
+    "crisis": 0.0,
+    "f_N_T_C": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "drought": {
+   "12m": {
+    "income": 0.76,
+    "exits": 0.464,
+    "sale_proceeds_direct": 0.0,
+    "calls": 0.976,
+    "protective_calls": 0.156,
+    "distribution_stop": 0.048,
+    "dev_draws": 0.227,
+    "cures_direct_controlled": 0.005,
+    "shortfalls_direct": 0.001,
+    "cures_coinvest": 0.001,
+    "fund_level_need": 0.204,
+    "fund_level_unfunded_loss": 0.0,
+    "matured": 2.123,
+    "gap": 0.346,
+    "handback_equity": 0.0,
+    "net_mean": -0.141,
+    "net_P5_P50_P95": [
+     -0.22,
+     -0.143,
+     -0.052
+    ],
+    "adic_direct_cures_mean": 0.006,
+    "adic_direct_cures_CVaR95": 0.051,
+    "adic_cure_cash_incl_protective_calls_CVaR95": 0.249,
+    "fund_level_need_CVaR95": 0.283
+   },
+   "24m": {
+    "income": 1.536,
+    "exits": 0.94,
+    "sale_proceeds_direct": 0.008,
+    "calls": 1.983,
+    "protective_calls": 0.234,
+    "distribution_stop": 0.088,
+    "dev_draws": 0.431,
+    "cures_direct_controlled": 0.032,
+    "shortfalls_direct": 0.003,
+    "cures_coinvest": 0.047,
+    "fund_level_need": 0.323,
+    "fund_level_unfunded_loss": 0.0,
+    "matured": 5.178,
+    "gap": 0.721,
+    "handback_equity": 0.0,
+    "net_mean": -0.247,
+    "net_P5_P50_P95": [
+     -0.432,
+     -0.244,
+     -0.069
+    ],
+    "adic_direct_cures_mean": 0.081,
+    "adic_direct_cures_CVaR95": 0.248,
+    "adic_cure_cash_incl_protective_calls_CVaR95": 0.5,
+    "fund_level_need_CVaR95": 0.41
+   },
+   "ltv": {
+    "t0": 0.497,
+    "t4_P5_P50_P95": [
+     0.457,
+     0.466,
+     0.475
+    ],
+    "t8_P5_P50_P95": [
+     0.425,
+     0.436,
+     0.447
+    ],
+    "peak_8q_P50_P95": [
+     0.488,
+     0.493
+    ]
+   },
+   "ltv_debt_fixed_on_value_index_P50_P95_t4_t8": [
+    [
+     0.49,
+     0.484
+    ],
+    [
+     0.5,
+     0.497
+    ]
+   ],
+   "ltv_controllable": {
+    "t0": 0.476,
+    "t8_P50_P95": [
+     0.439,
+     0.465
+    ]
+   },
+   "value_index_P50_t4_t8": [
+    0.014,
+    0.027
+   ],
+   "value_index_P5_t4_t8": [
+    -0.006,
+    -0.0
+   ],
+   "value_index_by_sleeve": {
+    "RE_OE": [
+     -0.002,
+     -0.008
+    ],
+    "RE_CE": [
+     -0.008,
+     -0.022
+    ],
+    "RE_DIR_GL": [
+     0.059,
+     0.113
+    ],
+    "RE_DIR_GCC": [
+     0.01,
+     0.032
+    ],
+    "RE_COI": [
+     0.008,
+     0.011
+    ],
+    "INF_OE": [
+     0.018,
+     0.036
+    ],
+    "INF_CE": [
+     0.025,
+     0.051
+    ],
+    "INF_DIR": [
+     0.026,
+     0.054
+    ],
+    "ENR_CE": [
+     -0.019,
+     -0.037
+    ],
+    "ENR_DIR": [
+     0.016,
+     0.029
+    ]
+   },
+   "appraisal_change_P50_t4_t8": [
+    -0.014,
+    -0.019
+   ],
+   "outcomes": {
+    "refi": 0.5544,
+    "ext_contract": 0.0761,
+    "ext_discretionary": 0.0903,
+    "cure": 0.2173,
+    "sale": 0.0469,
+    "handback": 0.001,
+    "forbear": 0.014
+   },
+   "infra_unrefinanced_by_G11": {
+    "N": null,
+    "I": 0.0067,
+    "C": null,
+    "G": 0.005
+   },
+   "cov_kpi": {
+    "mean_share_of_loans": 0.0085,
+    "max_per_loan": 0.0772,
+    "loans_above_2pct": 3
+   },
+   "ladder": [
+    0.581,
+    0.782,
+    0.298,
+    0.463,
+    0.529,
+    1.469,
+    0.568,
+    0.488,
+    0.857,
+    1.854,
+    0.644,
+    1.375,
+    0.782,
+    1.191,
+    0.448,
+    0.629,
+    0.679,
+    0.68,
+    0.394,
+    0.268
+   ],
+   "ladder_ctl": [
+    0.092,
+    0.187,
+    0.015,
+    0.001,
+    0.001,
+    0.257,
+    0.263,
+    0.003,
+    0.205,
+    0.771,
+    0.443,
+    0.52,
+    0.185,
+    0.165,
+    0.101,
+    0.199,
+    0.023,
+    0.007,
+    0.017,
+    0.002
+   ],
+   "sleeve_net_24m": {
+    "RE_OE": 0.173,
+    "RE_CE": -0.533,
+    "RE_DIR_GL": -0.059,
+    "RE_DIR_GCC": -0.005,
+    "RE_COI": 0.056,
+    "INF_OE": 0.189,
+    "INF_CE": -0.437,
+    "INF_DIR": 0.208,
+    "ENR_CE": 0.033,
+    "ENR_DIR": 0.127
+   },
+   "states_q4": {
+    "crisis": 0.0,
+    "f_N_T_C": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   }
+  },
+  "base_mc": {
+   "12m": {
+    "income": 0.699,
+    "exits": 0.574,
+    "sale_proceeds_direct": 0.001,
+    "calls": 1.004,
+    "protective_calls": 0.17,
+    "distribution_stop": 0.054,
+    "dev_draws": 0.228,
+    "cures_direct_controlled": 0.007,
+    "shortfalls_direct": 0.001,
+    "cures_coinvest": 0.018,
+    "fund_level_need": 0.224,
+    "fund_level_unfunded_loss": 0.0,
+    "matured": 2.12,
+    "gap": 0.409,
+    "handback_equity": 0.0,
+    "net_mean": -0.154,
+    "net_P5_P50_P95": [
+     -0.43,
+     -0.159,
+     0.146
+    ],
+    "adic_direct_cures_mean": 0.025,
+    "adic_direct_cures_CVaR95": 0.101,
+    "adic_cure_cash_incl_protective_calls_CVaR95": 0.324,
+    "fund_level_need_CVaR95": 0.338
+   },
+   "24m": {
+    "income": 1.375,
+    "exits": 1.185,
+    "sale_proceeds_direct": 0.01,
+    "calls": 2.048,
+    "protective_calls": 0.257,
+    "distribution_stop": 0.111,
+    "dev_draws": 0.435,
+    "cures_direct_controlled": 0.041,
+    "shortfalls_direct": 0.003,
+    "cures_coinvest": 0.071,
+    "fund_level_need": 0.369,
+    "fund_level_unfunded_loss": 0.0,
+    "matured": 5.171,
+    "gap": 1.047,
+    "handback_equity": 0.0,
+    "net_mean": -0.284,
+    "net_P5_P50_P95": [
+     -0.909,
+     -0.283,
+     0.349
+    ],
+    "adic_direct_cures_mean": 0.114,
+    "adic_direct_cures_CVaR95": 0.333,
+    "adic_cure_cash_incl_protective_calls_CVaR95": 0.621,
+    "fund_level_need_CVaR95": 0.534
+   },
+   "ltv": {
+    "t0": 0.497,
+    "t4_P5_P50_P95": [
+     0.442,
+     0.464,
+     0.488
+    ],
+    "t8_P5_P50_P95": [
+     0.402,
+     0.43,
+     0.46
+    ],
+    "peak_8q_P50_P95": [
+     0.488,
+     0.502
+    ]
+   },
+   "ltv_debt_fixed_on_value_index_P50_P95_t4_t8": [
+    [
+     0.492,
+     0.484
+    ],
+    [
+     0.521,
+     0.531
+    ]
+   ],
+   "ltv_controllable": {
+    "t0": 0.476,
+    "t8_P50_P95": [
+     0.435,
+     0.488
+    ]
+   },
+   "value_index_P50_t4_t8": [
+    0.01,
+    0.026
+   ],
+   "value_index_P5_t4_t8": [
+    -0.046,
+    -0.064
+   ],
+   "value_index_by_sleeve": {
+    "RE_OE": [
+     -0.018,
+     -0.036
+    ],
+    "RE_CE": [
+     -0.026,
+     -0.054
+    ],
+    "RE_DIR_GL": [
+     0.045,
+     0.087
+    ],
+    "RE_DIR_GCC": [
+     0.049,
+     0.103
+    ],
+    "RE_COI": [
+     -0.006,
+     -0.015
+    ],
+    "INF_OE": [
+     0.023,
+     0.047
+    ],
+    "INF_CE": [
+     0.034,
+     0.078
+    ],
+    "INF_DIR": [
+     0.03,
+     0.062
+    ],
+    "ENR_CE": [
+     -0.047,
+     -0.08
+    ],
+    "ENR_DIR": [
+     -0.0,
+     -0.0
+    ]
+   },
+   "appraisal_change_P50_t4_t8": [
+    -0.024,
+    -0.045
+   ],
+   "outcomes": {
+    "refi": 0.5126,
+    "ext_contract": 0.0848,
+    "ext_discretionary": 0.1254,
+    "cure": 0.1965,
+    "sale": 0.0371,
+    "handback": 0.0042,
+    "forbear": 0.0394
+   },
+   "infra_unrefinanced_by_G11": {
+    "N": 0.0226,
+    "I": 0.0124,
+    "C": 0.0877,
+    "G": 0.0293
+   },
+   "cov_kpi": {
+    "mean_share_of_loans": 0.0147,
+    "max_per_loan": 0.1082,
+    "loans_above_2pct": 4
+   },
+   "ladder": [
+    0.58,
+    0.779,
+    0.299,
+    0.462,
+    0.523,
+    1.438,
+    0.605,
+    0.485,
+    0.845,
+    1.807,
+    0.688,
+    1.355,
+    0.761,
+    1.118,
+    0.455,
+    0.658,
+    0.628,
+    0.618,
+    0.401,
+    0.235
+   ],
+   "ladder_ctl": [
+    0.092,
+    0.187,
+    0.013,
+    0.001,
+    0.001,
+    0.253,
+    0.262,
+    0.006,
+    0.204,
+    0.756,
+    0.447,
+    0.525,
+    0.192,
+    0.167,
+    0.135,
+    0.239,
+    0.049,
+    0.026,
+    0.027,
+    0.017
+   ],
+   "sleeve_net_24m": {
+    "RE_OE": 0.171,
+    "RE_CE": -0.474,
+    "RE_DIR_GL": -0.065,
+    "RE_DIR_GCC": -0.004,
+    "RE_COI": 0.08,
+    "INF_OE": 0.177,
+    "INF_CE": -0.411,
+    "INF_DIR": 0.205,
+    "ENR_CE": -0.055,
+    "ENR_DIR": 0.091
+   },
+   "states_q4": {
+    "crisis": 0.148,
+    "f_N_T_C": [
+     0.665,
+     0.286,
+     0.049
+    ]
+   }
+  },
+  "rate_shock": {
+   "12m": {
+    "income": 0.69,
+    "exits": 0.515,
+    "sale_proceeds_direct": 0.001,
+    "calls": 0.989,
+    "protective_calls": 0.194,
+    "distribution_stop": 0.054,
+    "dev_draws": 0.227,
+    "cures_direct_controlled": 0.006,
+    "shortfalls_direct": 0.001,
+    "cures_coinvest": 0.018,
+    "fund_level_need": 0.248,
+    "fund_level_unfunded_loss": 0.0,
+    "matured": 2.13,
+    "gap": 0.466,
+    "handback_equity": 0.0,
+    "net_mean": -0.229,
+    "net_P5_P50_P95": [
+     -0.457,
+     -0.231,
+     0.009
+    ],
+    "adic_direct_cures_mean": 0.025,
+    "adic_direct_cures_CVaR95": 0.099,
+    "adic_cure_cash_incl_protective_calls_CVaR95": 0.354,
+    "fund_level_need_CVaR95": 0.365
+   },
+   "24m": {
+    "income": 1.341,
+    "exits": 1.033,
+    "sale_proceeds_direct": 0.01,
+    "calls": 2.008,
+    "protective_calls": 0.322,
+    "distribution_stop": 0.123,
+    "dev_draws": 0.431,
+    "cures_direct_controlled": 0.048,
+    "shortfalls_direct": 0.003,
+    "cures_coinvest": 0.081,
+    "fund_level_need": 0.446,
+    "fund_level_unfunded_loss": 0.0,
+    "matured": 5.242,
+    "gap": 1.262,
+    "handback_equity": 0.0,
+    "net_mean": -0.508,
+    "net_P5_P50_P95": [
+     -0.935,
+     -0.514,
+     -0.079
+    ],
+    "adic_direct_cures_mean": 0.132,
+    "adic_direct_cures_CVaR95": 0.342,
+    "adic_cure_cash_incl_protective_calls_CVaR95": 0.707,
+    "fund_level_need_CVaR95": 0.605
+   },
+   "ltv": {
+    "t0": 0.497,
+    "t4_P5_P50_P95": [
+     0.455,
+     0.475,
+     0.495
+    ],
+    "t8_P5_P50_P95": [
+     0.425,
+     0.448,
+     0.471
+    ],
+    "peak_8q_P50_P95": [
+     0.492,
+     0.504
+    ]
+   },
+   "ltv_debt_fixed_on_value_index_P50_P95_t4_t8": [
+    [
+     0.504,
+     0.509
+    ],
+    [
+     0.528,
+     0.545
+    ]
+   ],
+   "ltv_controllable": {
+    "t0": 0.476,
+    "t8_P50_P95": [
+     0.454,
+     0.502
+    ]
+   },
+   "value_index_P50_t4_t8": [
+    -0.015,
+    -0.024
+   ],
+   "value_index_P5_t4_t8": [
+    -0.059,
+    -0.088
+   ],
+   "value_index_by_sleeve": {
+    "RE_OE": [
+     -0.046,
+     -0.098
+    ],
+    "RE_CE": [
+     -0.05,
+     -0.106
+    ],
+    "RE_DIR_GL": [
+     0.02,
+     0.031
+    ],
+    "RE_DIR_GCC": [
+     0.033,
+     0.066
+    ],
+    "RE_COI": [
+     -0.029,
+     -0.067
+    ],
+    "INF_OE": [
+     0.006,
+     0.019
+    ],
+    "INF_CE": [
+     -0.008,
+     0.001
+    ],
+    "INF_DIR": [
+     0.011,
+     0.028
+    ],
+    "ENR_CE": [
+     -0.06,
+     -0.102
+    ],
+    "ENR_DIR": [
+     -0.022,
+     -0.036
+    ]
+   },
+   "appraisal_change_P50_t4_t8": [
+    -0.031,
+    -0.07
+   ],
+   "outcomes": {
+    "refi": 0.4858,
+    "ext_contract": 0.0902,
+    "ext_discretionary": 0.1343,
+    "cure": 0.2051,
+    "sale": 0.0444,
+    "handback": 0.0041,
+    "forbear": 0.036
+   },
+   "infra_unrefinanced_by_G11": {
+    "N": 0.0177,
+    "I": 0.0203,
+    "C": 0.0766,
+    "G": 0.0357
+   },
+   "cov_kpi": {
+    "mean_share_of_loans": 0.0146,
+    "max_per_loan": 0.143,
+    "loans_above_2pct": 3
+   },
+   "ladder": [
+    0.581,
+    0.78,
+    0.303,
+    0.466,
+    0.534,
+    1.448,
+    0.63,
+    0.501,
+    0.856,
+    1.879,
+    0.769,
+    1.414,
+    0.784,
+    1.155,
+    0.476,
+    0.672,
+    0.622,
+    0.59,
+    0.394,
+    0.225
+   ],
+   "ladder_ctl": [
+    0.092,
+    0.187,
+    0.014,
+    0.001,
+    0.001,
+    0.253,
+    0.266,
+    0.006,
+    0.205,
+    0.764,
+    0.486,
+    0.534,
+    0.192,
+    0.173,
+    0.16,
+    0.241,
+    0.051,
+    0.021,
+    0.032,
+    0.015
+   ],
+   "sleeve_net_24m": {
+    "RE_OE": 0.164,
+    "RE_CE": -0.645,
+    "RE_DIR_GL": -0.066,
+    "RE_DIR_GCC": -0.01,
+    "RE_COI": 0.038,
+    "INF_OE": 0.175,
+    "INF_CE": -0.415,
+    "INF_DIR": 0.211,
+    "ENR_CE": -0.051,
+    "ENR_DIR": 0.092
+   },
+   "states_q4": {
+    "crisis": 0.0,
+    "f_N_T_C": [
+     0.52,
+     0.438,
+     0.042
+    ]
+   }
+  },
+  "gulf_persist": {
+   "12m": {
+    "income": 0.736,
+    "exits": 0.564,
+    "sale_proceeds_direct": 0.0,
+    "calls": 1.002,
+    "protective_calls": 0.17,
+    "distribution_stop": 0.048,
+    "dev_draws": 0.228,
+    "cures_direct_controlled": 0.007,
+    "shortfalls_direct": 0.001,
+    "cures_coinvest": 0.008,
+    "fund_level_need": 0.218,
+    "fund_level_unfunded_loss": 0.0,
+    "matured": 2.124,
+    "gap": 0.435,
+    "handback_equity": 0.0,
+    "net_mean": -0.115,
+    "net_P5_P50_P95": [
+     -0.349,
+     -0.129,
+     0.158
+    ],
+    "adic_direct_cures_mean": 0.016,
+    "adic_direct_cures_CVaR95": 0.075,
+    "adic_cure_cash_incl_protective_calls_CVaR95": 0.301,
+    "fund_level_need_CVaR95": 0.324
+   },
+   "24m": {
+    "income": 1.448,
+    "exits": 1.123,
+    "sale_proceeds_direct": 0.013,
+    "calls": 2.039,
+    "protective_calls": 0.269,
+    "distribution_stop": 0.108,
+    "dev_draws": 0.433,
+    "cures_direct_controlled": 0.049,
+    "shortfalls_direct": 0.003,
+    "cures_coinvest": 0.059,
+    "fund_level_need": 0.377,
+    "fund_level_unfunded_loss": 0.0,
+    "matured": 5.233,
+    "gap": 1.243,
+    "handback_equity": 0.0,
+    "net_mean": -0.267,
+    "net_P5_P50_P95": [
+     -0.778,
+     -0.286,
+     0.313
+    ],
+    "adic_direct_cures_mean": 0.111,
+    "adic_direct_cures_CVaR95": 0.304,
+    "adic_cure_cash_incl_protective_calls_CVaR95": 0.623,
+    "fund_level_need_CVaR95": 0.539
+   },
+   "ltv": {
+    "t0": 0.497,
+    "t4_P5_P50_P95": [
+     0.447,
+     0.467,
+     0.487
+    ],
+    "t8_P5_P50_P95": [
+     0.411,
+     0.435,
+     0.459
+    ],
+    "peak_8q_P50_P95": [
+     0.489,
+     0.501
+    ]
+   },
+   "ltv_debt_fixed_on_value_index_P50_P95_t4_t8": [
+    [
+     0.494,
+     0.49
+    ],
+    [
+     0.518,
+     0.526
+    ]
+   ],
+   "ltv_controllable": {
+    "t0": 0.476,
+    "t8_P50_P95": [
+     0.446,
+     0.489
+    ]
+   },
+   "value_index_P50_t4_t8": [
+    0.006,
+    0.015
+   ],
+   "value_index_P5_t4_t8": [
+    -0.04,
+    -0.055
+   ],
+   "value_index_by_sleeve": {
+    "RE_OE": [
+     -0.02,
+     -0.049
+    ],
+    "RE_CE": [
+     -0.028,
+     -0.065
+    ],
+    "RE_DIR_GL": [
+     0.044,
+     0.077
+    ],
+    "RE_DIR_GCC": [
+     -0.022,
+     -0.009
+    ],
+    "RE_COI": [
+     -0.008,
+     -0.026
+    ],
+    "INF_OE": [
+     0.027,
+     0.051
+    ],
+    "INF_CE": [
+     0.031,
+     0.065
+    ],
+    "INF_DIR": [
+     0.037,
+     0.069
+    ],
+    "ENR_CE": [
+     -0.042,
+     -0.071
+    ],
+    "ENR_DIR": [
+     0.003,
+     0.009
+    ]
+   },
+   "appraisal_change_P50_t4_t8": [
+    -0.026,
+    -0.051
+   ],
+   "outcomes": {
+    "refi": 0.466,
+    "ext_contract": 0.092,
+    "ext_discretionary": 0.1481,
+    "cure": 0.2049,
+    "sale": 0.0364,
+    "handback": 0.0043,
+    "forbear": 0.0483
+   },
+   "infra_unrefinanced_by_G11": {
+    "N": 0.028,
+    "I": 0.0206,
+    "C": 0.0978,
+    "G": 0.0377
+   },
+   "cov_kpi": {
+    "mean_share_of_loans": 0.0134,
+    "max_per_loan": 0.114,
+    "loans_above_2pct": 4
+   },
+   "ladder": [
+    0.581,
+    0.78,
+    0.301,
+    0.463,
+    0.527,
+    1.448,
+    0.629,
+    0.504,
+    0.882,
+    1.861,
+    0.782,
+    1.408,
+    0.831,
+    1.24,
+    0.532,
+    0.732,
+    0.676,
+    0.655,
+    0.428,
+    0.253
+   ],
+   "ladder_ctl": [
+    0.092,
+    0.187,
+    0.014,
+    0.001,
+    0.001,
+    0.26,
+    0.268,
+    0.007,
+    0.205,
+    0.765,
+    0.493,
+    0.536,
+    0.203,
+    0.229,
+    0.185,
+    0.262,
+    0.069,
+    0.039,
+    0.04,
+    0.025
+   ],
+   "sleeve_net_24m": {
+    "RE_OE": 0.168,
+    "RE_CE": -0.547,
+    "RE_DIR_GL": -0.066,
+    "RE_DIR_GCC": -0.018,
+    "RE_COI": 0.066,
+    "INF_OE": 0.178,
+    "INF_CE": -0.392,
+    "INF_DIR": 0.217,
+    "ENR_CE": 0.008,
+    "ENR_DIR": 0.12
+   },
+   "states_q4": {
+    "crisis": 0.076,
+    "f_N_T_C": [
+     0.525,
+     0.43,
+     0.045
+    ]
+   }
+  },
+  "sg_glut": {
+   "12m": {
+    "income": 0.604,
+    "exits": 0.594,
+    "sale_proceeds_direct": 0.001,
+    "calls": 1.004,
+    "protective_calls": 0.178,
+    "distribution_stop": 0.064,
+    "dev_draws": 0.228,
+    "cures_direct_controlled": 0.005,
+    "shortfalls_direct": 0.001,
+    "cures_coinvest": 0.04,
+    "fund_level_need": 0.242,
+    "fund_level_unfunded_loss": 0.0,
+    "matured": 2.116,
+    "gap": 0.37,
+    "handback_equity": 0.0,
+    "net_mean": -0.256,
+    "net_P5_P50_P95": [
+     -0.471,
+     -0.27,
+     0.007
+    ],
+    "adic_direct_cures_mean": 0.046,
+    "adic_direct_cures_CVaR95": 0.093,
+    "adic_cure_cash_incl_protective_calls_CVaR95": 0.339,
+    "fund_level_need_CVaR95": 0.348
+   },
+   "24m": {
+    "income": 1.205,
+    "exits": 1.258,
+    "sale_proceeds_direct": 0.009,
+    "calls": 2.049,
+    "protective_calls": 0.263,
+    "distribution_stop": 0.117,
+    "dev_draws": 0.433,
+    "cures_direct_controlled": 0.035,
+    "shortfalls_direct": 0.003,
+    "cures_coinvest": 0.092,
+    "fund_level_need": 0.38,
+    "fund_level_unfunded_loss": 0.0,
+    "matured": 5.113,
+    "gap": 0.862,
+    "handback_equity": 0.0,
+    "net_mean": -0.402,
+    "net_P5_P50_P95": [
+     -0.898,
+     -0.42,
+     0.149
+    ],
+    "adic_direct_cures_mean": 0.13,
+    "adic_direct_cures_CVaR95": 0.302,
+    "adic_cure_cash_incl_protective_calls_CVaR95": 0.612,
+    "fund_level_need_CVaR95": 0.518
+   },
+   "ltv": {
+    "t0": 0.497,
+    "t4_P5_P50_P95": [
+     0.445,
+     0.466,
+     0.485
+    ],
+    "t8_P5_P50_P95": [
+     0.406,
+     0.431,
+     0.457
+    ],
+    "peak_8q_P50_P95": [
+     0.489,
+     0.501
+    ]
+   },
+   "ltv_debt_fixed_on_value_index_P50_P95_t4_t8": [
+    [
+     0.496,
+     0.49
+    ],
+    [
+     0.519,
+     0.524
+    ]
+   ],
+   "ltv_controllable": {
+    "t0": 0.476,
+    "t8_P50_P95": [
+     0.442,
+     0.482
+    ]
+   },
+   "value_index_P50_t4_t8": [
+    0.001,
+    0.014
+   ],
+   "value_index_P5_t4_t8": [
+    -0.042,
+    -0.052
+   ],
+   "value_index_by_sleeve": {
+    "RE_OE": [
+     -0.009,
+     -0.017
+    ],
+    "RE_CE": [
+     -0.015,
+     -0.031
+    ],
+    "RE_DIR_GL": [
+     0.053,
+     0.106
+    ],
+    "RE_DIR_GCC": [
+     0.012,
+     0.047
+    ],
+    "RE_COI": [
+     0.002,
+     0.004
+    ],
+    "INF_OE": [
+     0.018,
+     0.039
+    ],
+    "INF_CE": [
+     0.036,
+     0.08
+    ],
+    "INF_DIR": [
+     0.024,
+     0.053
+    ],
+    "ENR_CE": [
+     -0.138,
+     -0.214
+    ],
+    "ENR_DIR": [
+     -0.061,
+     -0.095
+    ]
+   },
+   "appraisal_change_P50_t4_t8": [
+    -0.028,
+    -0.053
+   ],
+   "outcomes": {
+    "refi": 0.5364,
+    "ext_contract": 0.0795,
+    "ext_discretionary": 0.1138,
+    "cure": 0.1982,
+    "sale": 0.0393,
+    "handback": 0.0026,
+    "forbear": 0.0303
+   },
+   "infra_unrefinanced_by_G11": {
+    "N": 0.0171,
+    "I": 0.0114,
+    "C": 0.0665,
+    "G": 0.0242
+   },
+   "cov_kpi": {
+    "mean_share_of_loans": 0.0144,
+    "max_per_loan": 0.1258,
+    "loans_above_2pct": 5
+   },
+   "ladder": [
+    0.581,
+    0.78,
+    0.297,
+    0.459,
+    0.523,
+    1.443,
+    0.579,
+    0.453,
+    0.798,
+    1.793,
+    0.646,
+    1.329,
+    0.704,
+    1.054,
+    0.405,
+    0.622,
+    0.609,
+    0.616,
+    0.372,
+    0.221
+   ],
+   "ladder_ctl": [
+    0.092,
+    0.187,
+    0.014,
+    0.001,
+    0.001,
+    0.255,
+    0.262,
+    0.004,
+    0.205,
+    0.765,
+    0.433,
+    0.522,
+    0.191,
+    0.149,
+    0.114,
+    0.225,
+    0.042,
+    0.019,
+    0.021,
+    0.013
+   ],
+   "sleeve_net_24m": {
+    "RE_OE": 0.174,
+    "RE_CE": -0.412,
+    "RE_DIR_GL": -0.061,
+    "RE_DIR_GCC": -0.009,
+    "RE_COI": 0.091,
+    "INF_OE": 0.176,
+    "INF_CE": -0.404,
+    "INF_DIR": 0.2,
+    "ENR_CE": -0.193,
+    "ENR_DIR": 0.037
+   },
+   "states_q4": {
+    "crisis": 0.076,
+    "f_N_T_C": [
+     0.846,
+     0.146,
+     0.009
+    ]
+   }
+  },
+  "t4p_struct": {
+   "12m": {
+    "income": 0.649,
+    "exits": 0.153,
+    "sale_proceeds_direct": 0.008,
+    "calls": 1.371,
+    "protective_calls": 0.086,
+    "distribution_stop": 0.072,
+    "dev_draws": 0.242,
+    "cures_direct_controlled": 0.069,
+    "shortfalls_direct": 0.003,
+    "cures_coinvest": 0.032,
+    "fund_level_need": 0.159,
+    "fund_level_unfunded_loss": 0.0,
+    "matured": 2.163,
+    "gap": 1.19,
+    "handback_equity": 0.003,
+    "net_mean": -0.993,
+    "net_P5_P50_P95": [
+     -1.178,
+     -0.988,
+     -0.822
+    ],
+    "adic_direct_cures_mean": 0.104,
+    "adic_direct_cures_CVaR95": 0.243,
+    "adic_cure_cash_incl_protective_calls_CVaR95": 0.39,
+    "fund_level_need_CVaR95": 0.316
+   },
+   "24m": {
+    "income": 1.376,
+    "exits": 0.441,
+    "sale_proceeds_direct": 0.055,
+    "calls": 2.653,
+    "protective_calls": 0.121,
+    "distribution_stop": 0.164,
+    "dev_draws": 0.461,
+    "cures_direct_controlled": 0.214,
+    "shortfalls_direct": 0.006,
+    "cures_coinvest": 0.056,
+    "fund_level_need": 0.372,
+    "fund_level_unfunded_loss": 0.016,
+    "matured": 5.576,
+    "gap": 2.764,
+    "handback_equity": 0.005,
+    "net_mean": -1.639,
+    "net_P5_P50_P95": [
+     -1.966,
+     -1.64,
+     -1.317
+    ],
+    "adic_direct_cures_mean": 0.277,
+    "adic_direct_cures_CVaR95": 0.54,
+    "adic_cure_cash_incl_protective_calls_CVaR95": 0.705,
+    "fund_level_need_CVaR95": 0.714
+   },
+   "ltv": {
+    "t0": 0.497,
+    "t4_P5_P50_P95": [
+     0.469,
+     0.493,
+     0.515
+    ],
+    "t8_P5_P50_P95": [
+     0.423,
+     0.447,
+     0.472
+    ],
+    "peak_8q_P50_P95": [
+     0.506,
+     0.522
+    ]
+   },
+   "ltv_debt_fixed_on_value_index_P50_P95_t4_t8": [
+    [
+     0.55,
+     0.547
+    ],
+    [
+     0.58,
+     0.595
+    ]
+   ],
+   "ltv_controllable": {
+    "t0": 0.476,
+    "t8_P50_P95": [
+     0.48,
+     0.533
+    ]
+   },
+   "value_index_P50_t4_t8": [
+    -0.096,
+    -0.091
+   ],
+   "value_index_P5_t4_t8": [
+    -0.144,
+    -0.164
+   ],
+   "value_index_by_sleeve": {
+    "RE_OE": [
+     -0.178,
+     -0.269
+    ],
+    "RE_CE": [
+     -0.195,
+     -0.294
+    ],
+    "RE_DIR_GL": [
+     -0.102,
+     -0.129
+    ],
+    "RE_DIR_GCC": [
+     -0.299,
+     -0.053
+    ],
+    "RE_COI": [
+     -0.16,
+     -0.242
+    ],
+    "INF_OE": [
+     -0.014,
+     -0.002
+    ],
+    "INF_CE": [
+     -0.001,
+     0.023
+    ],
+    "INF_DIR": [
+     -0.024,
+     -0.01
+    ],
+    "ENR_CE": [
+     -0.091,
+     -0.081
+    ],
+    "ENR_DIR": [
+     -0.016,
+     0.011
+    ]
+   },
+   "appraisal_change_P50_t4_t8": [
+    -0.073,
+    -0.14
+   ],
+   "outcomes": {
+    "refi": 0.4901,
+    "ext_contract": 0.0801,
+    "ext_discretionary": 0.1541,
+    "cure": 0.1495,
+    "sale": 0.0247,
+    "handback": 0.0199,
+    "forbear": 0.0816
+   },
+   "infra_unrefinanced_by_G11": {
+    "N": 0.0221,
+    "I": null,
+    "C": 0.1092,
+    "G": null
+   },
+   "cov_kpi": {
+    "mean_share_of_loans": 0.0942,
+    "max_per_loan": 0.5588,
+    "loans_above_2pct": 10
+   },
+   "ladder": [
+    0.516,
+    0.783,
+    0.387,
+    0.478,
+    0.63,
+    1.429,
+    0.825,
+    0.529,
+    0.85,
+    1.712,
+    0.574,
+    1.285,
+    0.671,
+    0.993,
+    0.33,
+    0.473,
+    0.475,
+    0.358,
+    0.337,
+    0.151
+   ],
+   "ladder_ctl": [
+    0.092,
+    0.204,
+    0.041,
+    0.008,
+    0.029,
+    0.281,
+    0.271,
+    0.018,
+    0.203,
+    0.701,
+    0.337,
+    0.503,
+    0.17,
+    0.158,
+    0.06,
+    0.22,
+    0.013,
+    0.002,
+    0.004,
+    0.005
+   ],
+   "sleeve_net_24m": {
+    "RE_OE": 0.155,
+    "RE_CE": -0.909,
+    "RE_DIR_GL": -0.12,
+    "RE_DIR_GCC": -0.095,
+    "RE_COI": 0.06,
+    "INF_OE": 0.162,
+    "INF_CE": -0.836,
+    "INF_DIR": 0.145,
+    "ENR_CE": -0.253,
+    "ENR_DIR": 0.052
+   },
+   "states_q4": {
+    "crisis": 1.0,
+    "f_N_T_C": [
+     0.0,
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "t4p_ratesflat": {
+   "12m": {
+    "income": 0.636,
+    "exits": 0.147,
+    "sale_proceeds_direct": 0.008,
+    "calls": 1.37,
+    "protective_calls": 0.092,
+    "distribution_stop": 0.072,
+    "dev_draws": 0.242,
+    "cures_direct_controlled": 0.072,
+    "shortfalls_direct": 0.003,
+    "cures_coinvest": 0.032,
+    "fund_level_need": 0.165,
+    "fund_level_unfunded_loss": 0.0,
+    "matured": 2.147,
+    "gap": 1.199,
+    "handback_equity": 0.003,
+    "net_mean": -1.02,
+    "net_P5_P50_P95": [
+     -1.206,
+     -1.016,
+     -0.85
+    ],
+    "adic_direct_cures_mean": 0.108,
+    "adic_direct_cures_CVaR95": 0.248,
+    "adic_cure_cash_incl_protective_calls_CVaR95": 0.402,
+    "fund_level_need_CVaR95": 0.33
+   },
+   "24m": {
+    "income": 1.347,
+    "exits": 0.405,
+    "sale_proceeds_direct": 0.054,
+    "calls": 2.65,
+    "protective_calls": 0.127,
+    "distribution_stop": 0.172,
+    "dev_draws": 0.461,
+    "cures_direct_controlled": 0.228,
+    "shortfalls_direct": 0.007,
+    "cures_coinvest": 0.055,
+    "fund_level_need": 0.417,
+    "fund_level_unfunded_loss": 0.022,
+    "matured": 5.44,
+    "gap": 2.771,
+    "handback_equity": 0.005,
+    "net_mean": -1.722,
+    "net_P5_P50_P95": [
+     -2.052,
+     -1.724,
+     -1.387
+    ],
+    "adic_direct_cures_mean": 0.29,
+    "adic_direct_cures_CVaR95": 0.561,
+    "adic_cure_cash_incl_protective_calls_CVaR95": 0.727,
+    "fund_level_need_CVaR95": 0.776
+   },
+   "ltv": {
+    "t0": 0.497,
+    "t4_P5_P50_P95": [
+     0.484,
+     0.509,
+     0.532
+    ],
+    "t8_P5_P50_P95": [
+     0.445,
+     0.469,
+     0.494
+    ],
+    "peak_8q_P50_P95": [
+     0.516,
+     0.535
+    ]
+   },
+   "ltv_debt_fixed_on_value_index_P50_P95_t4_t8": [
+    [
+     0.571,
+     0.583
+    ],
+    [
+     0.602,
+     0.632
+    ]
+   ],
+   "ltv_controllable": {
+    "t0": 0.476,
+    "t8_P50_P95": [
+     0.507,
+     0.563
+    ]
+   },
+   "value_index_P50_t4_t8": [
+    -0.13,
+    -0.147
+   ],
+   "value_index_P5_t4_t8": [
+    -0.175,
+    -0.214
+   ],
+   "value_index_by_sleeve": {
+    "RE_OE": [
+     -0.194,
+     -0.299
+    ],
+    "RE_CE": [
+     -0.209,
+     -0.322
+    ],
+    "RE_DIR_GL": [
+     -0.117,
+     -0.159
+    ],
+    "RE_DIR_GCC": [
+     -0.306,
+     -0.082
+    ],
+    "RE_COI": [
+     -0.173,
+     -0.269
+    ],
+    "INF_OE": [
+     -0.063,
+     -0.073
+    ],
+    "INF_CE": [
+     -0.076,
+     -0.089
+    ],
+    "INF_DIR": [
+     -0.079,
+     -0.093
+    ],
+    "ENR_CE": [
+     -0.107,
+     -0.106
+    ],
+    "ENR_DIR": [
+     -0.043,
+     -0.031
+    ]
+   },
+   "appraisal_change_P50_t4_t8": [
+    -0.089,
+    -0.179
+   ],
+   "outcomes": {
+    "refi": 0.4736,
+    "ext_contract": 0.0866,
+    "ext_discretionary": 0.1618,
+    "cure": 0.1487,
+    "sale": 0.0285,
+    "handback": 0.0202,
+    "forbear": 0.0806
+   },
+   "infra_unrefinanced_by_G11": {
+    "N": 0.0233,
+    "I": null,
+    "C": 0.1083,
+    "G": null
+   },
+   "cov_kpi": {
+    "mean_share_of_loans": 0.0993,
+    "max_per_loan": 0.578,
+    "loans_above_2pct": 11
+   },
+   "ladder": [
+    0.514,
+    0.778,
+    0.388,
+    0.466,
+    0.585,
+    1.372,
+    0.81,
+    0.527,
+    0.826,
+    1.709,
+    0.62,
+    1.298,
+    0.659,
+    0.988,
+    0.334,
+    0.467,
+    0.472,
+    0.353,
+    0.33,
+    0.149
+   ],
+   "ladder_ctl": [
+    0.092,
+    0.204,
+    0.043,
+    0.008,
+    0.031,
+    0.278,
+    0.269,
+    0.017,
+    0.202,
+    0.7,
+    0.335,
+    0.51,
+    0.165,
+    0.153,
+    0.06,
+    0.228,
+    0.012,
+    0.001,
+    0.003,
+    0.008
+   ],
+   "sleeve_net_24m": {
+    "RE_OE": 0.148,
+    "RE_CE": -0.921,
+    "RE_DIR_GL": -0.129,
+    "RE_DIR_GCC": -0.104,
+    "RE_COI": 0.055,
+    "INF_OE": 0.163,
+    "INF_CE": -0.866,
+    "INF_DIR": 0.144,
+    "ENR_CE": -0.26,
+    "ENR_DIR": 0.05
+   },
+   "states_q4": {
+    "crisis": 1.0,
+    "f_N_T_C": [
+     0.0,
+     0.0,
+     1.0
+    ]
+   }
+  }
+ },
+ "axes": {
+  "base_mc|default": {
+   "net12": -0.154,
+   "net24": -0.284,
+   "cures_direct_mean24": 0.114,
+   "cvar_direct24": 0.333,
+   "cvar_incl_prot24": 0.621,
+   "fund_need24": 0.369,
+   "prot24": 0.257,
+   "ltv_t8": [
+    0.402,
+    0.43,
+    0.46
+   ]
+  },
+  "base_mc|ext=zero": {
+   "net12": -0.19,
+   "net24": -0.317,
+   "cures_direct_mean24": 0.137,
+   "cvar_direct24": 0.382,
+   "cvar_incl_prot24": 0.723,
+   "fund_need24": 0.417,
+   "prot24": 0.298,
+   "ltv_t8": [
+    0.401,
+    0.428,
+    0.457
+   ]
+  },
+  "base_mc|varpi=0": {
+   "net12": -0.152,
+   "net24": -0.277,
+   "cures_direct_mean24": 0.099,
+   "cvar_direct24": 0.266,
+   "cvar_incl_prot24": 0.581,
+   "fund_need24": 0.369,
+   "prot24": 0.257,
+   "ltv_t8": [
+    0.403,
+    0.43,
+    0.459
+   ]
+  },
+  "base_mc|rollover hazard off": {
+   "net12": -0.179,
+   "net24": -0.33,
+   "cures_direct_mean24": 0.114,
+   "cvar_direct24": 0.333,
+   "cvar_incl_prot24": 0.632,
+   "fund_need24": 0.385,
+   "prot24": 0.268,
+   "ltv_t8": [
+    0.403,
+    0.43,
+    0.459
+   ]
+  },
+  "base_mc|as specified (no recal)": {
+   "net12": -0.152,
+   "net24": -0.28,
+   "cures_direct_mean24": 0.092,
+   "cvar_direct24": 0.254,
+   "cvar_incl_prot24": 0.551,
+   "fund_need24": 0.367,
+   "prot24": 0.256,
+   "ltv_t8": [
+    0.404,
+    0.433,
+    0.467
+   ]
+  },
+  "base_mc|GCC GW floor = C": {
+   "net12": -0.157,
+   "net24": -0.292,
+   "cures_direct_mean24": 0.124,
+   "cvar_direct24": 0.352,
+   "cvar_incl_prot24": 0.643,
+   "fund_need24": 0.369,
+   "prot24": 0.257,
+   "ltv_t8": [
+    0.4,
+    0.428,
+    0.459
+   ]
+  },
+  "t4p_struct|default": {
+   "net12": -0.993,
+   "net24": -1.639,
+   "cures_direct_mean24": 0.277,
+   "cvar_direct24": 0.54,
+   "cvar_incl_prot24": 0.705,
+   "fund_need24": 0.372,
+   "prot24": 0.121,
+   "ltv_t8": [
+    0.423,
+    0.447,
+    0.472
+   ]
+  },
+  "t4p_struct|ext=zero": {
+   "net12": -1.073,
+   "net24": -1.725,
+   "cures_direct_mean24": 0.312,
+   "cvar_direct24": 0.606,
+   "cvar_incl_prot24": 0.852,
+   "fund_need24": 0.455,
+   "prot24": 0.193,
+   "ltv_t8": [
+    0.419,
+    0.443,
+    0.467
+   ]
+  },
+  "t4p_struct|varpi=0": {
+   "net12": -0.957,
+   "net24": -1.579,
+   "cures_direct_mean24": 0.165,
+   "cvar_direct24": 0.351,
+   "cvar_incl_prot24": 0.527,
+   "fund_need24": 0.372,
+   "prot24": 0.121,
+   "ltv_t8": [
+    0.422,
+    0.446,
+    0.47
+   ]
+  },
+  "t4p_struct|ext=zero,varpi=0": {
+   "net12": -1.028,
+   "net24": -1.669,
+   "cures_direct_mean24": 0.206,
+   "cvar_direct24": 0.442,
+   "cvar_incl_prot24": 0.691,
+   "fund_need24": 0.455,
+   "prot24": 0.193,
+   "ltv_t8": [
+    0.418,
+    0.442,
+    0.465
+   ]
+  },
+  "t4p_struct|fund module off": {
+   "net12": -0.853,
+   "net24": -1.404,
+   "cures_direct_mean24": 0.277,
+   "cvar_direct24": 0.54,
+   "cvar_incl_prot24": 0.54,
+   "fund_need24": 0.0,
+   "prot24": 0.0,
+   "ltv_t8": [
+    0.422,
+    0.446,
+    0.471
+   ]
+  },
+  "t4p_struct|structural calls": {
+   "net12": -0.283,
+   "net24": -0.551,
+   "cures_direct_mean24": 0.277,
+   "cvar_direct24": 0.54,
+   "cvar_incl_prot24": 0.71,
+   "fund_need24": 0.372,
+   "prot24": 0.125,
+   "ltv_t8": [
+    0.438,
+    0.464,
+    0.491
+   ]
+  },
+  "t4p_struct|co-inv no participation": {
+   "net12": -0.961,
+   "net24": -1.585,
+   "cures_direct_mean24": 0.22,
+   "cvar_direct24": 0.459,
+   "cvar_incl_prot24": 0.626,
+   "fund_need24": 0.372,
+   "prot24": 0.121,
+   "ltv_t8": [
+    0.423,
+    0.448,
+    0.473
+   ]
+  },
+  "t4p_struct|rollover hazard off": {
+   "net12": -0.998,
+   "net24": -1.65,
+   "cures_direct_mean24": 0.276,
+   "cvar_direct24": 0.544,
+   "cvar_incl_prot24": 0.702,
+   "fund_need24": 0.377,
+   "prot24": 0.122,
+   "ltv_t8": [
+    0.423,
+    0.447,
+    0.471
+   ]
+  },
+  "t4p_struct|as specified (no recal)": {
+   "net12": -1.026,
+   "net24": -1.749,
+   "cures_direct_mean24": 0.218,
+   "cvar_direct24": 0.424,
+   "cvar_incl_prot24": 0.682,
+   "fund_need24": 0.416,
+   "prot24": 0.209,
+   "ltv_t8": [
+    0.455,
+    0.475,
+    0.494
+   ]
+  }
+ },
+ "gates": {
+  "G_ODCE": {
+   "appraisal_levered_dd": -0.1663,
+   "appraisal_dd_window": [
+    "2022Q2",
+    "2025Q1"
+   ],
+   "true_levered_dd": -0.2238,
+   "true_dd_window": [
+    "2022Q1",
+    "2023Q4"
+   ],
+   "trough_lag_q": 5,
+   "unlevered_true_2022Q1_2023Q4_greenstreet_mix": -0.1956,
+   "unlevered_true_by_sector_2022Q1_2023Q4": {
+    "LOG": -0.157,
+    "RES": -0.219,
+    "OFF": -0.35,
+    "RET": -0.154,
+    "ALT": -0.17,
+    "HOT": -0.042,
+    "DC": -0.142
+   },
+   "pass": {
+    "appraisal_dd_within_3pp": true,
+    "true_dd_within_5pp": true,
+    "lag_within_1q": false,
+    "greenstreet_all_within_4pp": true
+   },
+   "office_shock_fitted_qtr_log": -0.117
+  },
+  "G_ODCE_lambda_variants": {
+   "0.5": {
+    "appraisal_levered_dd": -0.2031,
+    "true_levered_dd": -0.2238,
+    "trough_lag_q": 2,
+    "pass": {
+     "appraisal_dd_within_3pp": true,
+     "true_dd_within_5pp": true,
+     "lag_within_1q": true,
+     "greenstreet_all_within_4pp": true
+    }
+   },
+   "0.55": {
+    "appraisal_levered_dd": -0.1994,
+    "true_levered_dd": -0.2238,
+    "trough_lag_q": 3,
+    "pass": {
+     "appraisal_dd_within_3pp": true,
+     "true_dd_within_5pp": true,
+     "lag_within_1q": true,
+     "greenstreet_all_within_4pp": true
+    }
+   },
+   "0.6": {
+    "appraisal_levered_dd": -0.1943,
+    "true_levered_dd": -0.2238,
+    "trough_lag_q": 3,
+    "pass": {
+     "appraisal_dd_within_3pp": true,
+     "true_dd_within_5pp": true,
+     "lag_within_1q": true,
+     "greenstreet_all_within_4pp": true
+    }
+   },
+   "0.65": {
+    "appraisal_levered_dd": -0.187,
+    "true_levered_dd": -0.2238,
+    "trough_lag_q": 4,
+    "pass": {
+     "appraisal_dd_within_3pp": true,
+     "true_dd_within_5pp": true,
+     "lag_within_1q": true,
+     "greenstreet_all_within_4pp": true
+    }
+   },
+   "0.7": {
+    "appraisal_levered_dd": -0.1786,
+    "true_levered_dd": -0.2238,
+    "trough_lag_q": 4,
+    "pass": {
+     "appraisal_dd_within_3pp": true,
+     "true_dd_within_5pp": true,
+     "lag_within_1q": true,
+     "greenstreet_all_within_4pp": true
+    }
+   },
+   "0.75": {
+    "appraisal_levered_dd": -0.1663,
+    "true_levered_dd": -0.2238,
+    "trough_lag_q": 5,
+    "pass": {
+     "appraisal_dd_within_3pp": true,
+     "true_dd_within_5pp": true,
+     "lag_within_1q": false,
+     "greenstreet_all_within_4pp": true
+    }
+   }
+  },
+  "G_JIANG_engine_as_specified": {
+   "all": {
+    "mean_init_ltv": 0.6096,
+    "mean_current_ltv": 0.6724,
+    "share_gt_80": 0.2414,
+    "share_gt_100": 0.0858
+   },
+   "office": {
+    "mean_init_ltv": 0.5441,
+    "mean_current_ltv": 0.9278,
+    "share_gt_80": 0.654,
+    "share_gt_100": 0.3433
+   },
+   "pass": {
+    "all_mean_current_ltv": true,
+    "all_share_gt_80": false,
+    "all_share_gt_100": false,
+    "office_mean_current_ltv": false,
+    "office_share_gt_80": false,
+    "office_share_gt_100": false
+   }
+  },
+  "G_JIANG_measurement_matched_uncalibrated": {
+   "all": {
+    "mean_init_ltv": 0.6096,
+    "mean_current_ltv": 0.6474,
+    "share_gt_80": 0.1856,
+    "share_gt_100": 0.05
+   },
+   "office": {
+    "mean_init_ltv": 0.5441,
+    "mean_current_ltv": 0.8901,
+    "share_gt_80": 0.7058,
+    "share_gt_100": 0.2584
+   },
+   "pass": {
+    "all_mean_current_ltv": true,
+    "all_share_gt_80": false,
+    "all_share_gt_100": false,
+    "office_mean_current_ltv": true,
+    "office_share_gt_80": false,
+    "office_share_gt_100": false
+   }
+  },
+  "G_JIANG_calibrated": {
+   "all": {
+    "mean_init_ltv": 0.6096,
+    "mean_current_ltv": 0.6607,
+    "share_gt_80": 0.2696,
+    "share_gt_100": 0.1429
+   },
+   "office": {
+    "mean_init_ltv": 0.5441,
+    "mean_current_ltv": 0.8581,
+    "share_gt_80": 0.4751,
+    "share_gt_100": 0.2861
+   },
+   "pass": {
+    "all_mean_current_ltv": true,
+    "all_share_gt_80": true,
+    "all_share_gt_100": true,
+    "office_mean_current_ltv": true,
+    "office_share_gt_80": false,
+    "office_share_gt_100": false
+   },
+   "fitted": {
+    "delta_off_per_year": 0.045,
+    "delta_non_per_year": 0.03,
+    "sig_shock": 0.4,
+    "fit_residuals": [
+     -0.002,
+     -0.005,
+     -0.0006
+    ],
+    "method": "grid search, 3 parameters on 3 moments"
+   },
+   "held_out": {
+    "office_share_gt_100": false,
+    "office_share_gt_80": false,
+    "all_share_gt_80": true
+   }
+  },
+  "G_CHEN": {
+   "G_CHEN_mechanism_default": {
+    "slope_refi_on_gap_pp": 0.0023,
+    "se_cluster": 0.0019,
+    "refi_share": 0.5491,
+    "pass": false,
+    "gap_range_pp": [
+     -3.0,
+     1.5
+    ],
+    "beta_sale": 0.0,
+    "ell_sponsor": 0.05,
+    "p_sale0": 0.45
+   },
+   "G_CHEN_mechanism_max": {
+    "slope_refi_on_gap_pp": -0.0192,
+    "se_cluster": 0.0015,
+    "refi_share": 0.9529,
+    "pass": false,
+    "gap_range_pp": [
+     -3.0,
+     1.5
+    ],
+    "beta_sale": 0.0,
+    "ell_sponsor": 1000000.0,
+    "p_sale0": 0.0
+   },
+   "G_CHEN_with_hazard_forward_range": {
+    "slope_refi_on_gap_pp": -0.1101,
+    "se_cluster": 0.0016,
+    "refi_share": 0.836,
+    "pass": true,
+    "gap_range_pp": [
+     0.0,
+     3.0
+    ],
+    "beta_sale": 0.111,
+    "ell_sponsor": 0.05,
+    "p_sale0": 0.0
+   },
+   "G_CHEN_with_hazard_2003_2019_range": {
+    "slope_refi_on_gap_pp": -0.0135,
+    "se_cluster": 0.0019,
+    "refi_share": 0.534,
+    "pass": false,
+    "gap_range_pp": [
+     -3.0,
+     1.5
+    ],
+    "beta_sale": 0.111,
+    "ell_sponsor": 0.05,
+    "p_sale0": 0.45
+   }
+  }
+ }
+}

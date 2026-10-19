@@ -1,0 +1,70 @@
+# ADIC Agentic Total-Portfolio Laboratory (BUILD_SPEC v1.1 §1.1, §2; owner WP-01).
+# Development needs no build backend: tools/dev_install.py writes adic_tpa_dev.pth into the venv (§1.1).
+# hatchling is declared for later packaging only.
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "adic-tpa"
+version = "0.1.0"
+description = "ADIC Agentic Total-Portfolio Laboratory (SYNTHETIC - NOT ADIC DATA)"
+requires-python = ">=3.12,<3.13"
+readme = { text = "SYNTHETIC - NOT ADIC DATA. See design/BUILD_SPEC.md.", content-type = "text/plain" }
+authors = [{ email = "dean@dsconsult.ai" }]
+# The pinned stack of BUILD_SPEC §1.1, pinned exactly as the spec pins it (a minor version pins "==X.Y.*",
+# a patch version pins "==X.Y.Z", an unversioned entry is unpinned). The import-allowlist test
+# (tests/layering/test_allowlist.py) fails on any other third-party import; additions need an ADR (ARCH §11.8).
+dependencies = [
+    "numpy==2.5.*",
+    "scipy==1.18.*",
+    "pandas==3.0.*",
+    "pyarrow==26.*",
+    "cvxpy==1.9.3",
+    "highspy==1.15.1",
+    "clarabel==0.11.1",
+    "osqp==1.1.3",
+    "scs==3.3.1",
+    "statsmodels==0.15.*",
+    "scikit-learn==1.9.1",
+    "hmmlearn==0.3.3",
+    "arch==8.0.*",
+    "numba==0.68.*",
+    "pydantic==2.14.*",
+    "typer",
+    "rich",
+    "jinja2",
+    "plotly",
+    "matplotlib",
+    "pytest",
+    "hypothesis",
+    "anthropic==1.15.*",
+    "mcp==2.3.*",
+    "opentelemetry-api",
+    "pyyaml",
+    "jsonschema",
+    "pywin32; sys_platform == 'win32'",
+    "cryptography==50.0.2",  # S-ADR-40: verifiable Ed25519 sign-offs
+]
+
+[project.scripts]
+tpa = "adic_tpa.cli:app"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/adic_tpa"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+# importlib mode: test files in different directories may share a basename and need no __init__.py
+addopts = ["--import-mode=importlib", "-ra"]
+xfail_strict = true
+markers = [
+    "slow: long-running test; excluded from the pr suite (BUILD_SPEC §10.2: pytest -m \"not slow and not perf\")",
+    "perf: performance benchmark B1-B18; nightly only (§10.1)",
+    "requires_accounts: ACL drill that needs separate Windows accounts; runs only where they exist (S-ADR-37)",
+    "nightly: runs in the nightly suite only (§10.2)",
+    "weekly: runs in the weekly suite only (§10.2)",
+    "live: needs live LLM credentials and network egress; never in offline CI (§7.1)",
+]

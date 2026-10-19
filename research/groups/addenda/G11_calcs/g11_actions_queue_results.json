@@ -1,0 +1,1125 @@
+{
+  "label": "SYNTHETIC - NOT ADIC DATA",
+  "partC_actions": {
+    "A: prior worked example (stream 08 sec 6.12)": {
+      "rows": [
+        {
+          "l": 0.0,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 1.2293,
+          "HOLD": 0.0,
+          "SELL": -0.3193,
+          "REFI": -0.0333,
+          "ADD": 0.0631,
+          "LEVER": 0.0196,
+          "best": "ADD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.005,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 1.2035,
+          "HOLD": 0.0,
+          "SELL": -0.2935,
+          "REFI": -0.0272,
+          "ADD": 0.0554,
+          "LEVER": 0.0199,
+          "best": "ADD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.01,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 1.1784,
+          "HOLD": 0.0,
+          "SELL": -0.2684,
+          "REFI": -0.0213,
+          "ADD": 0.048,
+          "LEVER": 0.0202,
+          "best": "ADD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.015,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 1.154,
+          "HOLD": 0.0,
+          "SELL": -0.244,
+          "REFI": -0.0155,
+          "ADD": 0.0407,
+          "LEVER": 0.0205,
+          "best": "ADD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.02,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 1.1302,
+          "HOLD": 0.0,
+          "SELL": -0.2202,
+          "REFI": -0.0099,
+          "ADD": 0.0337,
+          "LEVER": 0.0208,
+          "best": "ADD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.025,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 1.107,
+          "HOLD": 0.0,
+          "SELL": -0.197,
+          "REFI": -0.0044,
+          "ADD": 0.0268,
+          "LEVER": 0.0211,
+          "best": "ADD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.03,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 1.0845,
+          "HOLD": 0.0,
+          "SELL": -0.1745,
+          "REFI": 0.0009,
+          "ADD": 0.0201,
+          "LEVER": 0.0213,
+          "best": "LEVER",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.035,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 1.0625,
+          "HOLD": 0.0,
+          "SELL": -0.1525,
+          "REFI": 0.0061,
+          "ADD": 0.0136,
+          "LEVER": 0.0215,
+          "best": "LEVER",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.04,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 1.0411,
+          "HOLD": 0.0,
+          "SELL": -0.1311,
+          "REFI": 0.0111,
+          "ADD": 0.0072,
+          "LEVER": 0.0217,
+          "best": "LEVER",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.045,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 1.0203,
+          "HOLD": 0.0,
+          "SELL": -0.1103,
+          "REFI": 0.0159,
+          "ADD": 0.001,
+          "LEVER": 0.0218,
+          "best": "LEVER",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.05,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 1.0,
+          "HOLD": 0.0,
+          "SELL": -0.09,
+          "REFI": 0.0207,
+          "ADD": -0.005,
+          "LEVER": 0.022,
+          "best": "LEVER",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.055,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 0.9802,
+          "HOLD": 0.0,
+          "SELL": -0.0702,
+          "REFI": 0.0253,
+          "ADD": -0.0109,
+          "LEVER": 0.0221,
+          "best": "REFI",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.06,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 0.9609,
+          "HOLD": 0.0,
+          "SELL": -0.0509,
+          "REFI": 0.0298,
+          "ADD": -0.0166,
+          "LEVER": 0.0222,
+          "best": "REFI",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.065,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 0.9422,
+          "HOLD": 0.0,
+          "SELL": -0.0322,
+          "REFI": 0.0341,
+          "ADD": -0.0222,
+          "LEVER": 0.0223,
+          "best": "REFI",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.07,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 0.9239,
+          "HOLD": 0.0,
+          "SELL": -0.0139,
+          "REFI": 0.0384,
+          "ADD": -0.0276,
+          "LEVER": 0.0224,
+          "best": "REFI",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.075,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 0.906,
+          "HOLD": 0.0,
+          "SELL": 0.004,
+          "REFI": 0.0425,
+          "ADD": -0.0329,
+          "LEVER": 0.0225,
+          "best": "REFI",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.08,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 0.8886,
+          "HOLD": 0.0,
+          "SELL": 0.0214,
+          "REFI": 0.0465,
+          "ADD": -0.0381,
+          "LEVER": 0.0226,
+          "best": "REFI",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.085,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 0.8716,
+          "HOLD": 0.0,
+          "SELL": 0.0384,
+          "REFI": 0.0504,
+          "ADD": -0.0431,
+          "LEVER": 0.0226,
+          "best": "REFI",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.09,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 0.8551,
+          "HOLD": 0.0,
+          "SELL": 0.0549,
+          "REFI": 0.0542,
+          "ADD": -0.048,
+          "LEVER": 0.0227,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.095,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 0.8389,
+          "HOLD": 0.0,
+          "SELL": 0.0711,
+          "REFI": 0.0579,
+          "ADD": -0.0528,
+          "LEVER": 0.0227,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.1,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 0.8232,
+          "HOLD": 0.0,
+          "SELL": 0.0868,
+          "REFI": 0.0615,
+          "ADD": -0.0575,
+          "LEVER": 0.0227,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.105,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 0.8078,
+          "HOLD": 0.0,
+          "SELL": 0.1022,
+          "REFI": 0.065,
+          "ADD": -0.062,
+          "LEVER": 0.0227,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.11,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 0.7928,
+          "HOLD": 0.0,
+          "SELL": 0.1172,
+          "REFI": 0.0684,
+          "ADD": -0.0665,
+          "LEVER": 0.0228,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.115,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 0.7782,
+          "HOLD": 0.0,
+          "SELL": 0.1318,
+          "REFI": 0.0717,
+          "ADD": -0.0708,
+          "LEVER": 0.0228,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.12,
+          "alpha_star": 0.05,
+          "LAPV_hold_per_NAV": 0.7639,
+          "HOLD": 0.0,
+          "SELL": 0.1461,
+          "REFI": 0.075,
+          "ADD": -0.075,
+          "LEVER": 0.0227,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        }
+      ],
+      "boundaries": [
+        {
+          "from_l": 0.0,
+          "best": "ADD"
+        },
+        {
+          "from_l": 0.03,
+          "best": "LEVER"
+        },
+        {
+          "from_l": 0.055,
+          "best": "REFI"
+        },
+        {
+          "from_l": 0.09,
+          "best": "SELL"
+        }
+      ],
+      "term_structure_9_9_4_4_4": {
+        "alpha_star": 0.05,
+        "LAPV_hold_per_NAV": 0.955,
+        "HOLD": 0.0,
+        "SELL": -0.045,
+        "REFI": 0.0303,
+        "ADD": -0.0185,
+        "LEVER": 0.021,
+        "best": "REFI",
+        "sell_beats_hold_plus_refi": false
+      }
+    },
+    "B: G11 evidence-based core-plus stake": {
+      "rows": [
+        {
+          "l": 0.0,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 1.1173,
+          "HOLD": 0.0,
+          "SELL": -0.2073,
+          "REFI": -0.0456,
+          "ADD": 0.0295,
+          "LEVER": -0.0253,
+          "best": "ADD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.005,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 1.0934,
+          "HOLD": 0.0,
+          "SELL": -0.1834,
+          "REFI": -0.0388,
+          "ADD": 0.0224,
+          "LEVER": -0.0242,
+          "best": "ADD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.01,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 1.0702,
+          "HOLD": 0.0,
+          "SELL": -0.1602,
+          "REFI": -0.0322,
+          "ADD": 0.0155,
+          "LEVER": -0.0232,
+          "best": "ADD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.015,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 1.0476,
+          "HOLD": 0.0,
+          "SELL": -0.1376,
+          "REFI": -0.0258,
+          "ADD": 0.0088,
+          "LEVER": -0.0222,
+          "best": "ADD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.02,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 1.0256,
+          "HOLD": 0.0,
+          "SELL": -0.1156,
+          "REFI": -0.0196,
+          "ADD": 0.0023,
+          "LEVER": -0.0212,
+          "best": "ADD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.025,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 1.0042,
+          "HOLD": 0.0,
+          "SELL": -0.0942,
+          "REFI": -0.0135,
+          "ADD": -0.0041,
+          "LEVER": -0.0203,
+          "best": "HOLD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.03,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.9834,
+          "HOLD": 0.0,
+          "SELL": -0.0734,
+          "REFI": -0.0077,
+          "ADD": -0.0103,
+          "LEVER": -0.0194,
+          "best": "HOLD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.035,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.9631,
+          "HOLD": 0.0,
+          "SELL": -0.0531,
+          "REFI": -0.0019,
+          "ADD": -0.0163,
+          "LEVER": -0.0186,
+          "best": "HOLD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.04,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.9433,
+          "HOLD": 0.0,
+          "SELL": -0.0333,
+          "REFI": 0.0036,
+          "ADD": -0.0221,
+          "LEVER": -0.0178,
+          "best": "REFI",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.045,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.9241,
+          "HOLD": 0.0,
+          "SELL": -0.0141,
+          "REFI": 0.009,
+          "ADD": -0.0278,
+          "LEVER": -0.017,
+          "best": "REFI",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.05,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.9053,
+          "HOLD": 0.0,
+          "SELL": 0.0047,
+          "REFI": 0.0143,
+          "ADD": -0.0334,
+          "LEVER": -0.0163,
+          "best": "REFI",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.055,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.887,
+          "HOLD": 0.0,
+          "SELL": 0.023,
+          "REFI": 0.0194,
+          "ADD": -0.0388,
+          "LEVER": -0.0156,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.06,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.8692,
+          "HOLD": 0.0,
+          "SELL": 0.0408,
+          "REFI": 0.0244,
+          "ADD": -0.0441,
+          "LEVER": -0.0149,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.065,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.8519,
+          "HOLD": 0.0,
+          "SELL": 0.0581,
+          "REFI": 0.0292,
+          "ADD": -0.0492,
+          "LEVER": -0.0142,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.07,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.835,
+          "HOLD": 0.0,
+          "SELL": 0.075,
+          "REFI": 0.0339,
+          "ADD": -0.0543,
+          "LEVER": -0.0136,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.075,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.8185,
+          "HOLD": 0.0,
+          "SELL": 0.0915,
+          "REFI": 0.0385,
+          "ADD": -0.0591,
+          "LEVER": -0.013,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.08,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.8025,
+          "HOLD": 0.0,
+          "SELL": 0.1075,
+          "REFI": 0.0429,
+          "ADD": -0.0639,
+          "LEVER": -0.0124,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.085,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.7868,
+          "HOLD": 0.0,
+          "SELL": 0.1232,
+          "REFI": 0.0473,
+          "ADD": -0.0685,
+          "LEVER": -0.0118,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.09,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.7715,
+          "HOLD": 0.0,
+          "SELL": 0.1385,
+          "REFI": 0.0515,
+          "ADD": -0.0731,
+          "LEVER": -0.0113,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.095,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.7567,
+          "HOLD": 0.0,
+          "SELL": 0.1533,
+          "REFI": 0.0556,
+          "ADD": -0.0775,
+          "LEVER": -0.0108,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.1,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.7421,
+          "HOLD": 0.0,
+          "SELL": 0.1679,
+          "REFI": 0.0596,
+          "ADD": -0.0818,
+          "LEVER": -0.0103,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.105,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.728,
+          "HOLD": 0.0,
+          "SELL": 0.182,
+          "REFI": 0.0635,
+          "ADD": -0.086,
+          "LEVER": -0.0098,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.11,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.7142,
+          "HOLD": 0.0,
+          "SELL": 0.1958,
+          "REFI": 0.0673,
+          "ADD": -0.0901,
+          "LEVER": -0.0094,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.115,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.7007,
+          "HOLD": 0.0,
+          "SELL": 0.2093,
+          "REFI": 0.071,
+          "ADD": -0.0941,
+          "LEVER": -0.0089,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.12,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.6876,
+          "HOLD": 0.0,
+          "SELL": 0.2224,
+          "REFI": 0.0746,
+          "ADD": -0.098,
+          "LEVER": -0.0085,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        }
+      ],
+      "boundaries": [
+        {
+          "from_l": 0.0,
+          "best": "ADD"
+        },
+        {
+          "from_l": 0.025,
+          "best": "HOLD"
+        },
+        {
+          "from_l": 0.04,
+          "best": "REFI"
+        },
+        {
+          "from_l": 0.055,
+          "best": "SELL"
+        }
+      ],
+      "term_structure_9_9_4_4_4": {
+        "alpha_star": 0.026,
+        "LAPV_hold_per_NAV": 0.8649,
+        "HOLD": 0.0,
+        "SELL": 0.0451,
+        "REFI": 0.0251,
+        "ADD": -0.0455,
+        "LEVER": -0.0154,
+        "best": "SELL",
+        "sell_beats_hold_plus_refi": true
+      }
+    },
+    "B-stress: same asset, stress bid 0.83 (2020/2022 infra LP pricing), holdco S+450": {
+      "rows": [
+        {
+          "l": 0.0,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 1.1173,
+          "HOLD": 0.0,
+          "SELL": -0.2873,
+          "REFI": -0.0644,
+          "ADD": 0.0295,
+          "LEVER": -0.0478,
+          "best": "ADD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.005,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 1.0934,
+          "HOLD": 0.0,
+          "SELL": -0.2634,
+          "REFI": -0.0573,
+          "ADD": 0.0224,
+          "LEVER": -0.0464,
+          "best": "ADD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.01,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 1.0702,
+          "HOLD": 0.0,
+          "SELL": -0.2402,
+          "REFI": -0.0504,
+          "ADD": 0.0155,
+          "LEVER": -0.045,
+          "best": "ADD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.015,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 1.0476,
+          "HOLD": 0.0,
+          "SELL": -0.2176,
+          "REFI": -0.0438,
+          "ADD": 0.0088,
+          "LEVER": -0.0437,
+          "best": "ADD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.02,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 1.0256,
+          "HOLD": 0.0,
+          "SELL": -0.1956,
+          "REFI": -0.0373,
+          "ADD": 0.0023,
+          "LEVER": -0.0424,
+          "best": "ADD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.025,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 1.0042,
+          "HOLD": 0.0,
+          "SELL": -0.1742,
+          "REFI": -0.031,
+          "ADD": -0.0041,
+          "LEVER": -0.0412,
+          "best": "HOLD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.03,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.9834,
+          "HOLD": 0.0,
+          "SELL": -0.1534,
+          "REFI": -0.0248,
+          "ADD": -0.0103,
+          "LEVER": -0.04,
+          "best": "HOLD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.035,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.9631,
+          "HOLD": 0.0,
+          "SELL": -0.1331,
+          "REFI": -0.0189,
+          "ADD": -0.0163,
+          "LEVER": -0.0389,
+          "best": "HOLD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.04,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.9433,
+          "HOLD": 0.0,
+          "SELL": -0.1133,
+          "REFI": -0.0131,
+          "ADD": -0.0221,
+          "LEVER": -0.0378,
+          "best": "HOLD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.045,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.9241,
+          "HOLD": 0.0,
+          "SELL": -0.0941,
+          "REFI": -0.0074,
+          "ADD": -0.0278,
+          "LEVER": -0.0368,
+          "best": "HOLD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.05,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.9053,
+          "HOLD": 0.0,
+          "SELL": -0.0753,
+          "REFI": -0.002,
+          "ADD": -0.0334,
+          "LEVER": -0.0358,
+          "best": "HOLD",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.055,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.887,
+          "HOLD": 0.0,
+          "SELL": -0.057,
+          "REFI": 0.0034,
+          "ADD": -0.0388,
+          "LEVER": -0.0348,
+          "best": "REFI",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.06,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.8692,
+          "HOLD": 0.0,
+          "SELL": -0.0392,
+          "REFI": 0.0086,
+          "ADD": -0.0441,
+          "LEVER": -0.0338,
+          "best": "REFI",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.065,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.8519,
+          "HOLD": 0.0,
+          "SELL": -0.0219,
+          "REFI": 0.0136,
+          "ADD": -0.0492,
+          "LEVER": -0.0329,
+          "best": "REFI",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.07,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.835,
+          "HOLD": 0.0,
+          "SELL": -0.005,
+          "REFI": 0.0185,
+          "ADD": -0.0543,
+          "LEVER": -0.032,
+          "best": "REFI",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.075,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.8185,
+          "HOLD": 0.0,
+          "SELL": 0.0115,
+          "REFI": 0.0233,
+          "ADD": -0.0591,
+          "LEVER": -0.0312,
+          "best": "REFI",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.08,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.8025,
+          "HOLD": 0.0,
+          "SELL": 0.0275,
+          "REFI": 0.0279,
+          "ADD": -0.0639,
+          "LEVER": -0.0304,
+          "best": "REFI",
+          "sell_beats_hold_plus_refi": false
+        },
+        {
+          "l": 0.085,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.7868,
+          "HOLD": 0.0,
+          "SELL": 0.0432,
+          "REFI": 0.0325,
+          "ADD": -0.0685,
+          "LEVER": -0.0296,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.09,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.7715,
+          "HOLD": 0.0,
+          "SELL": 0.0585,
+          "REFI": 0.0369,
+          "ADD": -0.0731,
+          "LEVER": -0.0288,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.095,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.7567,
+          "HOLD": 0.0,
+          "SELL": 0.0733,
+          "REFI": 0.0412,
+          "ADD": -0.0775,
+          "LEVER": -0.0281,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.1,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.7421,
+          "HOLD": 0.0,
+          "SELL": 0.0879,
+          "REFI": 0.0454,
+          "ADD": -0.0818,
+          "LEVER": -0.0274,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.105,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.728,
+          "HOLD": 0.0,
+          "SELL": 0.102,
+          "REFI": 0.0494,
+          "ADD": -0.086,
+          "LEVER": -0.0267,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.11,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.7142,
+          "HOLD": 0.0,
+          "SELL": 0.1158,
+          "REFI": 0.0534,
+          "ADD": -0.0901,
+          "LEVER": -0.026,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.115,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.7007,
+          "HOLD": 0.0,
+          "SELL": 0.1293,
+          "REFI": 0.0573,
+          "ADD": -0.0941,
+          "LEVER": -0.0254,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        },
+        {
+          "l": 0.12,
+          "alpha_star": 0.026,
+          "LAPV_hold_per_NAV": 0.6876,
+          "HOLD": 0.0,
+          "SELL": 0.1424,
+          "REFI": 0.061,
+          "ADD": -0.098,
+          "LEVER": -0.0247,
+          "best": "SELL",
+          "sell_beats_hold_plus_refi": true
+        }
+      ],
+      "boundaries": [
+        {
+          "from_l": 0.0,
+          "best": "ADD"
+        },
+        {
+          "from_l": 0.025,
+          "best": "HOLD"
+        },
+        {
+          "from_l": 0.055,
+          "best": "REFI"
+        },
+        {
+          "from_l": 0.085,
+          "best": "SELL"
+        }
+      ],
+      "term_structure_9_9_4_4_4": {
+        "alpha_star": 0.026,
+        "LAPV_hold_per_NAV": 0.8649,
+        "HOLD": 0.0,
+        "SELL": -0.0349,
+        "REFI": 0.0098,
+        "ADD": -0.0455,
+        "LEVER": -0.0338,
+        "best": "REFI",
+        "sell_beats_hold_plus_refi": false
+      }
+    }
+  },
+  "partC_sell_vs_borrow_shortcut": {
+    "direct stake sell-down at 0.97 vs holdco at SOFR+300 (6.89%)": {
+      "d": 0.03,
+      "c": 0.0689,
+      "T": 5,
+      "g_star": 0.0624,
+      "sell_better_for": [
+        0.04,
+        0.06
+      ]
+    },
+    "fund LP interest at 0.91 vs holdco/NAV loan at 8.4%": {
+      "d": 0.09,
+      "c": 0.084,
+      "T": 5,
+      "g_star": 0.0637,
+      "sell_better_for": [
+        0.04,
+        0.06
+      ]
+    },
+    "fund LP interest at 0.83 (stress) vs NAV loan at 9.9%": {
+      "d": 0.17,
+      "c": 0.099,
+      "T": 5,
+      "g_star": 0.0588,
+      "sell_better_for": [
+        0.04
+      ]
+    }
+  },
+  "partD_queue": {
+    "normal: others request 1.5%/q": {
+      "q1": {
+        "mean": 0.534,
+        "p05": 0.493
+      },
+      "q2": {
+        "mean": 0.98,
+        "p05": 0.923
+      },
+      "q4": {
+        "mean": 1.0,
+        "p05": 1.0
+      },
+      "q8": {
+        "mean": 1.0,
+        "p05": 1.0
+      },
+      "q12": {
+        "mean": 1.0,
+        "p05": 1.0
+      }
+    },
+    "stress: others 8%/q for 6q then 3%": {
+      "q1": {
+        "mean": 0.329,
+        "p05": 0.254
+      },
+      "q2": {
+        "mean": 0.594,
+        "p05": 0.501
+      },
+      "q4": {
+        "mean": 0.897,
+        "p05": 0.829
+      },
+      "q8": {
+        "mean": 0.976,
+        "p05": 0.973
+      },
+      "q12": {
+        "mean": 0.976,
+        "p05": 0.973
+      }
+    },
+    "severe: others 15%/q for 8q, 25% suspension chance/q (2q)": {
+      "q1": {
+        "mean": 0.176,
+        "p05": 0.0
+      },
+      "q2": {
+        "mean": 0.285,
+        "p05": 0.0
+      },
+      "q4": {
+        "mean": 0.482,
+        "p05": 0.0
+      },
+      "q8": {
+        "mean": 0.726,
+        "p05": 0.394
+      },
+      "q12": {
+        "mean": 0.902,
+        "p05": 0.755
+      }
+    },
+    "ADIC is 20% of fund, stress": {
+      "q1": {
+        "mean": 0.189,
+        "p05": 0.165
+      },
+      "q2": {
+        "mean": 0.365,
+        "p05": 0.332
+      },
+      "q4": {
+        "mean": 0.671,
+        "p05": 0.627
+      },
+      "q8": {
+        "mean": 0.966,
+        "p05": 0.964
+      },
+      "q12": {
+        "mean": 0.966,
+        "p05": 0.964
+      }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+﻿theta* {'v1pub': 0.7595, 'v1': 0.8302, 'v2u16': 0.8347, 'v2u11': 0.8771}
+reproduction {"census_v1.0_rate|normal": {"max_abs_diff": 0.0, "private_net": 9.61390039497702}, "sealed_v1.1_vintage|normal": {"max_abs_diff": 0.0, "pe_net": 3.614910599892145, "private_net": 10.629862809356668}, "census_v1.0_rate|drought": {"max_abs_diff": 0.0, "private_net": 2.22928991569744}, "sealed_v1.1_vintage|drought": {"max_abs_diff": 0.0, "pe_net": -0.8528169740176326, "private_net": 3.6917676741792063}, "T4prime_v1pub_0.76_12m": {"pe": -11.42, "sec": -2.48, "co": -1.62, "cs": -0.17, "pc": -0.73}, "T4prime_v1pub_0.76_24m_private": -28.7, "T4prime_v1pub_0.76_overlay_12m_24m": [-2.94, -1.32]}
+v1 normal|12m {'pc': np.float64(1.22), 'cs': np.float64(0.58), 'sec': np.float64(2.19), 'pe': np.float64(3.62), 'co': np.float64(3.02)} private 10.64 liquid@7.5% 2.51
+v1 drought|12m {'pc': np.float64(1.12), 'cs': np.float64(0.51), 'sec': np.float64(1.17), 'pe': np.float64(-0.85), 'co': np.float64(1.74)} private 3.7 liquid@7.5% 9.44
+v1 normal|24m {'pc': np.float64(2.41), 'cs': np.float64(0.96), 'sec': np.float64(4.38), 'pe': np.float64(7.1), 'co': np.float64(5.48)} private 20.34 liquid@7.5% 5.95
+v1 drought|24m {'pc': np.float64(2.21), 'cs': np.float64(0.84), 'sec': np.float64(2.64), 'pe': np.float64(-1.37), 'co': np.float64(3.23)} private 7.54 liquid@7.5% 18.74
+v1 T4prime@theta* 12m {'pe': -7.54, 'sec': -1.9, 'co': -1.68, 'cs': -0.19, 'pc': -0.67} private -11.98 ovl -3.01 before -15.16 liquid 32.86
+v1 T4prime@theta* 24m {'pe': -14.77, 'sec': -3.22, 'co': -3.13, 'cs': -0.56, 'pc': -0.77} private -22.46 ovl -1.4 before -24.22 liquid 54.26
+v1 T4prime@0.76 12m {'pe': -7.19, 'sec': -1.81, 'co': -1.62, 'cs': -0.17, 'pc': -0.63} private -11.42 ovl -2.94 before -14.54 liquid 32.24
+v1 T4prime@0.76 24m {'pe': -14.13, 'sec': -3.06, 'co': -3.03, 'cs': -0.53, 'pc': -0.72} private -21.47 ovl -1.32 before -23.14 liquid 53.21
+v2u16 normal|12m {'pc': np.float64(1.22), 'cs': np.float64(0.58), 'sec': np.float64(2.19), 'pe': np.float64(0.46), 'co': np.float64(3.02), 'ra': 0.4} private 7.87 liquid@7.5% 5.27
+v2u16 drought|12m {'pc': np.float64(1.12), 'cs': np.float64(0.51), 'sec': np.float64(1.17), 'pe': np.float64(-2.44), 'co': np.float64(1.74), 'ra': -0.16} private 1.95 liquid@7.5% 11.19
+v2u16 normal|24m {'pc': np.float64(2.41), 'cs': np.float64(0.96), 'sec': np.float64(4.38), 'pe': np.float64(0.96), 'co': np.float64(5.48), 'ra': 0.89} private 15.07 liquid@7.5% 11.21
+v2u16 drought|24m {'pc': np.float64(2.21), 'cs': np.float64(0.84), 'sec': np.float64(2.64), 'pe': np.float64(-4.61), 'co': np.float64(3.23), 'ra': -0.2} private 4.11 liquid@7.5% 22.18
+v2u16 T4prime@theta* 12m {'pe': -7.45, 'sec': -1.9, 'co': -1.69, 'cs': -0.19, 'pc': -0.67, 'ra': -2.5} private -14.4 ovl -3.01 before -17.59 liquid 35.29
+v2u16 T4prime@theta* 24m {'pe': -14.19, 'sec': -3.23, 'co': -3.14, 'cs': -0.56, 'pc': -0.78, 'ra': -4.49} private -26.39 ovl -1.41 before -28.15 liquid 58.29
+v2u16 T4prime@0.76 12m {'pe': -7.13, 'sec': -1.81, 'co': -1.62, 'cs': -0.17, 'pc': -0.63, 'ra': -2.33} private -13.69 ovl -2.94 before -16.81 liquid 34.51
+v2u16 T4prime@0.76 24m {'pe': -13.64, 'sec': -3.06, 'co': -3.03, 'cs': -0.53, 'pc': -0.72, 'ra': -4.21} private -25.18 ovl -1.32 before -26.85 liquid 57.03
+v2u11 normal|12m {'pc': np.float64(1.22), 'cs': np.float64(0.58), 'sec': np.float64(2.19), 'pe': np.float64(2.31), 'co': np.float64(3.02), 'ra': 0.4} private 9.72 liquid@7.5% 3.42
+v2u11 drought|12m {'pc': np.float64(1.12), 'cs': np.float64(0.51), 'sec': np.float64(1.17), 'pe': np.float64(-0.61), 'co': np.float64(1.74), 'ra': -0.16} private 3.78 liquid@7.5% 9.37
+v2u11 normal|24m {'pc': np.float64(2.41), 'cs': np.float64(0.96), 'sec': np.float64(4.38), 'pe': np.float64(4.53), 'co': np.float64(5.48), 'ra': 0.89} private 18.65 liquid@7.5% 7.64
+v2u11 drought|24m {'pc': np.float64(2.21), 'cs': np.float64(0.84), 'sec': np.float64(2.64), 'pe': np.float64(-1.01), 'co': np.float64(3.23), 'ra': -0.2} private 7.7 liquid@7.5% 18.58
+v2u11 T4prime@theta* 12m {'pe': -5.42, 'sec': -1.96, 'co': -1.72, 'cs': -0.2, 'pc': -0.69, 'ra': -2.6} private -12.6 ovl -3.05 before -15.82 liquid 33.52
+v2u11 T4prime@theta* 24m {'pe': -10.98, 'sec': -3.34, 'co': -3.21, 'cs': -0.58, 'pc': -0.81, 'ra': -4.64} private -23.54 ovl -1.46 before -25.36 liquid 55.47
+v2u11 T4prime@0.76 12m {'pe': -5.02, 'sec': -1.81, 'co': -1.62, 'cs': -0.17, 'pc': -0.63, 'ra': -2.33} private -11.57 ovl -2.94 before -14.69 liquid 32.39
+v2u11 T4prime@0.76 24m {'pe': -10.24, 'sec': -3.06, 'co': -3.03, 'cs': -0.53, 'pc': -0.72, 'ra': -4.21} private -21.79 ovl -1.32 before -23.46 liquid 53.63

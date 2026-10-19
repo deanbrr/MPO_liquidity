@@ -1,0 +1,172 @@
+{
+ "label": "SYNTHETIC - NOT ADIC DATA",
+ "params": {
+  "n_sponsors": 800,
+  "top_decile_share": 0.5,
+  "n_adic_gps": 70,
+  "n_pe_funds": 120,
+  "funds_per_gp_active": 3,
+  "companies_universe": 12000,
+  "companies_per_fund": 12,
+  "n_co": 90,
+  "n_pc_loans": 1500,
+  "n_cs": 40,
+  "s_pc": 0.75,
+  "tilt": 0.8,
+  "p_co": 0.7,
+  "h_co": 0.9,
+  "p_csA": 0.5,
+  "p_csC": 0.5,
+  "pe_nav": 52.0,
+  "pe_unf": 16.42,
+  "co_nav": 18.0,
+  "pc_nav": 14.0,
+  "cs_nav": 8.0,
+  "private_nav_plus_unf": 133.02
+ },
+ "bands": {
+  "co_in_pe": [
+   0.59,
+   0.76
+  ],
+  "pc_in_pe": [
+   0.115,
+   0.143
+  ],
+  "csC_in_pe": [
+   0.15,
+   0.51
+  ],
+  "csA_adic_fund": [
+   0.26,
+   0.74
+  ],
+  "co_with_pc_loan": [
+   0.03,
+   0.13
+  ]
+ },
+ "first_sample": {
+  "sigma": 1.3686549438043705,
+  "top_decile_share": 0.5,
+  "adic_gp_share_of_companies": 0.3625623960066556,
+  "pe_lookthrough_companies": 2446,
+  "h_realized": 0.5612666360715924,
+  "shares": {
+   "co_in_pe": 0.6222222222222222,
+   "pc_in_pe": 0.12409584086799277,
+   "pc_in_pe_value": 0.12048651167436202,
+   "csC_in_pe": 0.2777777777777778,
+   "csA_adic_fund": 0.4166666666666667,
+   "co_with_pc_loan": 0.08888888888888889,
+   "co_in_pe_value": 0.6590751310880255
+  },
+  "v24a_identity": true,
+  "companies_with_claims_in_2plus_groups": 237,
+  "v24b": {
+   "co_in_pe": {
+    "value": 0.622,
+    "band": [
+     0.59,
+     0.76
+    ],
+    "pass_": true
+   },
+   "pc_in_pe": {
+    "value": 0.124,
+    "band": [
+     0.115,
+     0.143
+    ],
+    "pass_": true
+   },
+   "csC_in_pe": {
+    "value": 0.278,
+    "band": [
+     0.15,
+     0.51
+    ],
+    "pass_": true
+   },
+   "csA_adic_fund": {
+    "value": 0.417,
+    "band": [
+     0.26,
+     0.74
+    ],
+    "pass_": true
+   },
+   "co_with_pc_loan": {
+    "value": 0.089,
+    "band": [
+     0.03,
+     0.13
+    ],
+    "pass_": true
+   }
+  },
+  "v24c_gp_limit": {
+   "max_gp_share": 0.04868600891237681,
+   "limit": 0.05,
+   "pass_": true,
+   "top5_gp_shares": [
+    0.0487,
+    0.0472,
+    0.0338,
+    0.0277,
+    0.0228
+   ],
+   "top5_gp_bn": [
+    6.48,
+    6.27,
+    4.49,
+    3.68,
+    3.03
+   ]
+  }
+ },
+ "shares_over_20_samples": {
+  "co_in_pe": {
+   "mean": 0.6744444444444443,
+   "p05": 0.6216666666666667,
+   "p95": 0.736111111111111
+  },
+  "pc_in_pe": {
+   "mean": 0.12918751559147543,
+   "p05": 0.11509823660094419,
+   "p95": 0.14603700187413693
+  },
+  "pc_in_pe_value": {
+   "mean": 0.12712646856340137,
+   "p05": 0.10723236513559498,
+   "p95": 0.13845908132489418
+  },
+  "csC_in_pe": {
+   "mean": 0.3277777777777778,
+   "p05": 0.1111111111111111,
+   "p95": 0.5583333333333333
+  },
+  "csA_adic_fund": {
+   "mean": 0.4708333333333334,
+   "p05": 0.32916666666666666,
+   "p95": 0.6708333333333334
+  },
+  "co_with_pc_loan": {
+   "mean": 0.08111111111111112,
+   "p05": 0.03333333333333333,
+   "p95": 0.12333333333333335
+  },
+  "co_in_pe_value": {
+   "mean": 0.6939914206151447,
+   "p05": 0.6281811066453894,
+   "p95": 0.7797447236963696
+  }
+ },
+ "max_gp_share": {
+  "mean": 0.04675942196174737,
+  "p95": 0.06571077963845412,
+  "share_of_samples_breaching": 0.35
+ },
+ "adic_gp_share_of_companies_mean": 0.37377049572517024,
+ "h_realized_mean": 0.6062730612553702
+}

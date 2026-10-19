@@ -1,0 +1,498 @@
+{
+ "partA": {
+  "label": "PUBLIC DATA computations (NCREIF NFI-ODCE gross quarterly returns as printed; FTSE Nareit All Equity REITs). Not ADIC data.",
+  "quarters": [
+   "2022Q1",
+   "2022Q2",
+   "2022Q3",
+   "2022Q4",
+   "2023Q1",
+   "2023Q2",
+   "2023Q3",
+   "2023Q4",
+   "2024Q1",
+   "2024Q2",
+   "2024Q3",
+   "2024Q4",
+   "2025Q1",
+   "2025Q2",
+   "2025Q3",
+   "2025Q4",
+   "2026Q1",
+   "2026Q2",
+   "2026Q3"
+  ],
+  "odce_q_pct": [
+   7.4,
+   4.8,
+   0.5,
+   -5.0,
+   -3.2,
+   -2.7,
+   -1.9,
+   -4.8,
+   -2.4,
+   -0.4,
+   0.2,
+   1.2,
+   1.1,
+   1.0,
+   0.7,
+   0.9,
+   1.2,
+   1.5,
+   1.71
+  ],
+  "reit_q_pct": [
+   -5.26,
+   -14.68,
+   -10.83,
+   4.14,
+   1.74,
+   1.2,
+   -8.33,
+   17.98,
+   -1.3,
+   -0.9,
+   16.79,
+   -8.15,
+   2.75,
+   -0.93,
+   2.67,
+   -2.15,
+   3.76,
+   10.73,
+   -6.06
+  ],
+  "odce_max_dd_total_return_pct": -18.8,
+  "odce_dd_window": [
+   "2022Q3",
+   "2024Q2"
+  ],
+  "odce_value_only_dd_approx_pct": -23.7,
+  "reit_max_dd_quarterly_pct": -29.2,
+  "reit_dd_window": [
+   "2021Q4",
+   "2023Q3"
+  ],
+  "reit_relevered_to_odce_max_dd_pct": -25.7,
+  "reit_relevered_dd_window": [
+   "2021Q4",
+   "2023Q3"
+  ],
+  "trough_lag_quarters_odce_vs_reit": 3,
+  "corr_odce_t_with_reit_t_minus_k": {
+   "0": -0.44,
+   "1": 0.1,
+   "2": 0.37,
+   "3": 0.32,
+   "4": 0.31
+  },
+  "geltner_desmoothed_odce": {
+   "0.5": {
+    "max_dd_pct": -24.2,
+    "peak_end_of": "2022Q2",
+    "trough_end_of": "2023Q4",
+    "quarterly_sd_pct": 3.88
+   },
+   "0.6": {
+    "max_dd_pct": -28.2,
+    "peak_end_of": "2022Q2",
+    "trough_end_of": "2023Q4",
+    "quarterly_sd_pct": 4.61
+   },
+   "0.7": {
+    "max_dd_pct": -35.5,
+    "peak_end_of": "2022Q1",
+    "trough_end_of": "2023Q4",
+    "quarterly_sd_pct": 6.03
+   },
+   "0.8": {
+    "max_dd_pct": -49.8,
+    "peak_end_of": "2022Q1",
+    "trough_end_of": "2023Q4",
+    "quarterly_sd_pct": 9.2
+   }
+  },
+  "stale_nav_gap_ln_pct_by_quarter": {
+   "2022Q1": 11.8,
+   "2022Q2": 30.4,
+   "2022Q3": 41.0,
+   "2022Q4": 32.1,
+   "2023Q1": 27.2,
+   "2023Q2": 23.3,
+   "2023Q3": 29.0,
+   "2023Q4": 9.0,
+   "2024Q1": 7.7,
+   "2024Q2": 7.9,
+   "2024Q3": -5.9,
+   "2024Q4": 2.7,
+   "2025Q1": 1.2,
+   "2025Q2": 2.9,
+   "2025Q3": 1.2,
+   "2025Q4": 3.9,
+   "2026Q1": 1.6,
+   "2026Q2": -6.1,
+   "2026Q3": 1.0
+  },
+  "cum_2022Q1_2026Q3_pct": {
+   "odce": 1.0,
+   "reit": -3.2,
+   "reit_relevered": -0.0
+  },
+  "assumptions": {
+   "REIT leverage": 0.33,
+   "ODCE leverage": 0.25,
+   "cost of debt (annual)": 0.045
+  },
+  "queue_replay": {
+   "label": "Calibration replay of the open-end queue machine on PUBLIC gap data (illustrative fit, 2 parameters)",
+   "b_fit": 0.12,
+   "withdraw_fit": 0.08,
+   "queue_pct_nav": {
+    "2022Q1": 0.0,
+    "2022Q2": 0.5,
+    "2022Q3": 3.6,
+    "2022Q4": 7.9,
+    "2023Q1": 11.2,
+    "2023Q2": 13.8,
+    "2023Q3": 16.0,
+    "2023Q4": 18.9,
+    "2024Q1": 19.4,
+    "2024Q2": 19.7,
+    "2024Q3": 19.8,
+    "2024Q4": 17.3,
+    "2025Q1": 15.4,
+    "2025Q2": 13.5,
+    "2025Q3": 11.9,
+    "2025Q4": 10.2,
+    "2026Q1": 9.8,
+    "2026Q2": 8.3,
+    "2026Q3": 6.8
+   },
+   "paid_pct_nav": {
+    "2022Q1": 0.6,
+    "2022Q2": 1.47,
+    "2022Q3": 1.2,
+    "2022Q4": 1.2,
+    "2023Q1": 1.2,
+    "2023Q2": 1.2,
+    "2023Q3": 1.2,
+    "2023Q4": 1.2,
+    "2024Q1": 1.2,
+    "2024Q2": 1.2,
+    "2024Q3": 1.47,
+    "2024Q4": 1.47,
+    "2025Q1": 1.47,
+    "2025Q2": 1.47,
+    "2025Q3": 1.47,
+    "2025Q4": 1.47,
+    "2026Q1": 1.47,
+    "2026Q2": 1.47,
+    "2026Q3": 1.47
+   },
+   "targets": {
+    "2024Q1": 19.3,
+    "2025Q2": "about 12",
+    "2026Q1": "just above 10"
+   },
+   "fixed_inputs": {
+    "r0": 0.006,
+    "l0": 0.0025,
+    "contrib_hi/lo": [
+     0.012,
+     0.004
+    ],
+    "disp": {
+     "O": 0.01,
+     "N": 0.006,
+     "D": 0.004,
+     "F": 0.002
+    },
+    "e_path": [
+     "N",
+     "N",
+     "D",
+     "D",
+     "D",
+     "D",
+     "D",
+     "D",
+     "D",
+     "D",
+     "N",
+     "N",
+     "N",
+     "N",
+     "N",
+     "N",
+     "N",
+     "N",
+     "N"
+    ]
+   }
+  }
+ },
+ "partB": {
+  "label": "ILLUSTRATIVE arithmetic on stated assumptions; SYNTHETIC where applied to ADIC-like positions",
+  "cap_rate_shock_value_change_pct": {
+   "c0=0.045 dc=+25bp g_NOI=0%": -5.3,
+   "c0=0.045 dc=+25bp g_NOI=3%": -2.4,
+   "c0=0.045 dc=+50bp g_NOI=0%": -10.0,
+   "c0=0.045 dc=+50bp g_NOI=3%": -7.3,
+   "c0=0.045 dc=+75bp g_NOI=0%": -14.3,
+   "c0=0.045 dc=+75bp g_NOI=3%": -11.7,
+   "c0=0.045 dc=+100bp g_NOI=0%": -18.2,
+   "c0=0.045 dc=+100bp g_NOI=3%": -15.7,
+   "c0=0.045 dc=+150bp g_NOI=0%": -25.0,
+   "c0=0.045 dc=+150bp g_NOI=3%": -22.7,
+   "c0=0.055 dc=+25bp g_NOI=0%": -4.3,
+   "c0=0.055 dc=+25bp g_NOI=3%": -1.5,
+   "c0=0.055 dc=+50bp g_NOI=0%": -8.3,
+   "c0=0.055 dc=+50bp g_NOI=3%": -5.6,
+   "c0=0.055 dc=+75bp g_NOI=0%": -12.0,
+   "c0=0.055 dc=+75bp g_NOI=3%": -9.4,
+   "c0=0.055 dc=+100bp g_NOI=0%": -15.4,
+   "c0=0.055 dc=+100bp g_NOI=3%": -12.8,
+   "c0=0.055 dc=+150bp g_NOI=0%": -21.4,
+   "c0=0.055 dc=+150bp g_NOI=3%": -19.1,
+   "c0=0.065 dc=+25bp g_NOI=0%": -3.7,
+   "c0=0.065 dc=+25bp g_NOI=3%": -0.8,
+   "c0=0.065 dc=+50bp g_NOI=0%": -7.1,
+   "c0=0.065 dc=+50bp g_NOI=3%": -4.4,
+   "c0=0.065 dc=+75bp g_NOI=0%": -10.3,
+   "c0=0.065 dc=+75bp g_NOI=3%": -7.7,
+   "c0=0.065 dc=+100bp g_NOI=0%": -13.3,
+   "c0=0.065 dc=+100bp g_NOI=3%": -10.7,
+   "c0=0.065 dc=+150bp g_NOI=0%": -18.8,
+   "c0=0.065 dc=+150bp g_NOI=3%": -16.3,
+   "c0=0.075 dc=+25bp g_NOI=0%": -3.2,
+   "c0=0.075 dc=+25bp g_NOI=3%": -0.3,
+   "c0=0.075 dc=+50bp g_NOI=0%": -6.2,
+   "c0=0.075 dc=+50bp g_NOI=3%": -3.4,
+   "c0=0.075 dc=+75bp g_NOI=0%": -9.1,
+   "c0=0.075 dc=+75bp g_NOI=3%": -6.4,
+   "c0=0.075 dc=+100bp g_NOI=0%": -11.8,
+   "c0=0.075 dc=+100bp g_NOI=3%": -9.1,
+   "c0=0.075 dc=+150bp g_NOI=0%": -16.7,
+   "c0=0.075 dc=+150bp g_NOI=3%": -14.2
+  },
+  "required_cap_rate_pct": {
+   "RP=1.5% g=2% capex=1.2%": 5.8,
+   "RP=1.5% g=2% capex=1.8%": 6.4,
+   "RP=1.5% g=3% capex=1.2%": 4.8,
+   "RP=1.5% g=3% capex=1.8%": 5.4,
+   "RP=2.5% g=2% capex=1.2%": 6.8,
+   "RP=2.5% g=2% capex=1.8%": 7.4,
+   "RP=2.5% g=3% capex=1.2%": 5.8,
+   "RP=2.5% g=3% capex=1.8%": 6.4,
+   "RP=3.5% g=2% capex=1.2%": 7.8,
+   "RP=3.5% g=2% capex=1.8%": 8.4,
+   "RP=3.5% g=3% capex=1.2%": 6.8,
+   "RP=3.5% g=3% capex=1.8%": 7.4
+  },
+  "implied_premium_at_appraisal_yield_4.7pct": {
+   "g=2.0%": 0.3,
+   "g=2.5%": 0.8,
+   "g=3.0%": 1.3
+  },
+  "refi_gap_2021_vintage": {
+   "assumptions": "V0=100 at 4.5% cap, 65% LTV, IO; new loan 10y(5.1%)+200bp, LTV<=60%, DSCR>=1.25x",
+   "rows": {
+    "exit/refi cap 5.5%, NOI growth 0%": {
+     "value": 81.8,
+     "LTV_now_pct": 79.4,
+     "Dmax": 49.1,
+     "binding": "LTV",
+     "gap": 15.9,
+     "gap_pct_of_value": 19.4,
+     "equity_before_pct_of_entry_equity": 48.1
+    },
+    "exit/refi cap 5.5%, NOI growth 10%": {
+     "value": 90.0,
+     "LTV_now_pct": 72.2,
+     "Dmax": 54.0,
+     "binding": "LTV",
+     "gap": 11.0,
+     "gap_pct_of_value": 12.2,
+     "equity_before_pct_of_entry_equity": 71.4
+    },
+    "exit/refi cap 6.0%, NOI growth 0%": {
+     "value": 75.0,
+     "LTV_now_pct": 86.7,
+     "Dmax": 45.0,
+     "binding": "LTV",
+     "gap": 20.0,
+     "gap_pct_of_value": 26.7,
+     "equity_before_pct_of_entry_equity": 28.6
+    },
+    "exit/refi cap 6.0%, NOI growth 10%": {
+     "value": 82.5,
+     "LTV_now_pct": 78.8,
+     "Dmax": 49.5,
+     "binding": "LTV",
+     "gap": 15.5,
+     "gap_pct_of_value": 18.8,
+     "equity_before_pct_of_entry_equity": 50.0
+    },
+    "exit/refi cap 6.5%, NOI growth 0%": {
+     "value": 69.2,
+     "LTV_now_pct": 93.9,
+     "Dmax": 41.5,
+     "binding": "LTV",
+     "gap": 23.5,
+     "gap_pct_of_value": 33.9,
+     "equity_before_pct_of_entry_equity": 12.1
+    },
+    "exit/refi cap 6.5%, NOI growth 10%": {
+     "value": 76.2,
+     "LTV_now_pct": 85.4,
+     "Dmax": 45.7,
+     "binding": "LTV",
+     "gap": 19.3,
+     "gap_pct_of_value": 25.4,
+     "equity_before_pct_of_entry_equity": 31.9
+    }
+   }
+  },
+  "levered_cash_yield_pct": {
+   "cap 5.0% debt 6.2%": {
+    "LTV 0%": 5.0,
+    "LTV 50%": 3.8,
+    "LTV 60%": 3.2
+   },
+   "cap 5.0% debt 6.8%": {
+    "LTV 0%": 5.0,
+    "LTV 50%": 3.2,
+    "LTV 60%": 2.3
+   },
+   "cap 5.0% debt 7.5%": {
+    "LTV 0%": 5.0,
+    "LTV 50%": 2.5,
+    "LTV 60%": 1.25
+   },
+   "cap 5.6% debt 6.2%": {
+    "LTV 0%": 5.6,
+    "LTV 50%": 5.0,
+    "LTV 60%": 4.7
+   },
+   "cap 5.6% debt 6.8%": {
+    "LTV 0%": 5.6,
+    "LTV 50%": 4.4,
+    "LTV 60%": 3.8
+   },
+   "cap 5.6% debt 7.5%": {
+    "LTV 0%": 5.6,
+    "LTV 50%": 3.7,
+    "LTV 60%": 2.75
+   },
+   "cap 6.4% debt 6.2%": {
+    "LTV 0%": 6.4,
+    "LTV 50%": 6.6,
+    "LTV 60%": 6.7
+   },
+   "cap 6.4% debt 6.8%": {
+    "LTV 0%": 6.4,
+    "LTV 50%": 6.0,
+    "LTV 60%": 5.8
+   },
+   "cap 6.4% debt 7.5%": {
+    "LTV 0%": 6.4,
+    "LTV 50%": 5.3,
+    "LTV 60%": 4.75
+   },
+   "cap 7.0% debt 6.2%": {
+    "LTV 0%": 7.0,
+    "LTV 50%": 7.8,
+    "LTV 60%": 8.2
+   },
+   "cap 7.0% debt 6.8%": {
+    "LTV 0%": 7.0,
+    "LTV 50%": 7.2,
+    "LTV 60%": 7.3
+   },
+   "cap 7.0% debt 7.5%": {
+    "LTV 0%": 7.0,
+    "LTV 50%": 6.5,
+    "LTV 60%": 6.25
+   }
+  },
+  "lever_rule": "LEVER adds expected return iff E[r_unlevered] = c - capex + g > r_d (plus risk and liquidity charges)",
+  "fund_interest_hold_value_pct_of_reported_nav": {
+   "note": "SELL iff bid (68% H1-2026, Jefferies) > value; 4-year run-off",
+   "values": {
+    "econ/rep=1.00 mu=4% hurdle=8%+l=0%": 91.1,
+    "econ/rep=1.00 mu=4% hurdle=8%+l=2%": 87.1,
+    "econ/rep=1.00 mu=4% hurdle=8%+l=5%": 81.6,
+    "econ/rep=1.00 mu=8% hurdle=8%+l=0%": 100.0,
+    "econ/rep=1.00 mu=8% hurdle=8%+l=2%": 95.5,
+    "econ/rep=1.00 mu=8% hurdle=8%+l=5%": 89.4,
+    "econ/rep=1.00 mu=12% hurdle=8%+l=0%": 109.6,
+    "econ/rep=1.00 mu=12% hurdle=8%+l=2%": 104.6,
+    "econ/rep=1.00 mu=12% hurdle=8%+l=5%": 97.8,
+    "econ/rep=0.92 mu=4% hurdle=8%+l=0%": 83.8,
+    "econ/rep=0.92 mu=4% hurdle=8%+l=2%": 80.1,
+    "econ/rep=0.92 mu=4% hurdle=8%+l=5%": 75.1,
+    "econ/rep=0.92 mu=8% hurdle=8%+l=0%": 92.0,
+    "econ/rep=0.92 mu=8% hurdle=8%+l=2%": 87.9,
+    "econ/rep=0.92 mu=8% hurdle=8%+l=5%": 82.3,
+    "econ/rep=0.92 mu=12% hurdle=8%+l=0%": 100.8,
+    "econ/rep=0.92 mu=12% hurdle=8%+l=2%": 96.3,
+    "econ/rep=0.92 mu=12% hurdle=8%+l=5%": 90.0,
+    "econ/rep=0.85 mu=4% hurdle=8%+l=0%": 77.4,
+    "econ/rep=0.85 mu=4% hurdle=8%+l=2%": 74.0,
+    "econ/rep=0.85 mu=4% hurdle=8%+l=5%": 69.4,
+    "econ/rep=0.85 mu=8% hurdle=8%+l=0%": 85.0,
+    "econ/rep=0.85 mu=8% hurdle=8%+l=2%": 81.2,
+    "econ/rep=0.85 mu=8% hurdle=8%+l=5%": 76.0,
+    "econ/rep=0.85 mu=12% hurdle=8%+l=0%": 93.2,
+    "econ/rep=0.85 mu=12% hurdle=8%+l=2%": 88.9,
+    "econ/rep=0.85 mu=12% hurdle=8%+l=5%": 83.1
+   }
+  },
+  "buyer_irr_at_68pct": {
+   "econ/rep=1.00 mu=4%": 22.1,
+   "econ/rep=1.00 mu=8%": 26.8,
+   "econ/rep=0.92 mu=4%": 17.8,
+   "econ/rep=0.92 mu=8%": 22.4,
+   "econ/rep=0.85 mu=4%": 13.9,
+   "econ/rep=0.85 mu=8%": 18.3
+  },
+  "open_end_redeem_vs_hold": {
+   "note": "value per $1 reported NAV, forward return = hurdle (8%); HOLD = exp(-gap). Liquidity value of earlier cash (l) is extra and not included.",
+   "redeem": {
+    "gap=0% payout/qtr=5%": 100.0,
+    "gap=0% payout/qtr=10%": 100.0,
+    "gap=0% payout/qtr=25%": 100.0,
+    "gap=5% payout/qtr=5%": 95.7,
+    "gap=5% payout/qtr=10%": 96.2,
+    "gap=5% payout/qtr=25%": 97.3,
+    "gap=10% payout/qtr=5%": 91.6,
+    "gap=10% payout/qtr=10%": 92.5,
+    "gap=10% payout/qtr=25%": 94.7,
+    "gap=15% payout/qtr=5%": 87.7,
+    "gap=15% payout/qtr=10%": 89.0,
+    "gap=15% payout/qtr=25%": 92.2
+   },
+   "hold_true_value": {
+    "gap=0%": 100.0,
+    "gap=5%": 95.1,
+    "gap=10%": 90.5,
+    "gap=15%": 86.1
+   }
+  },
+  "cash_out_refi": {
+   "rule": "REFINANCE iff spread_over_ref + fees/T + lambda_Lev + covenant charge < l_bar (one-period: rho > s)",
+   "example": {
+    "asset value": 100,
+    "LTV from": 0.4,
+    "LTV to": 0.55,
+    "cash raised": 15.0,
+    "all-in rate": 0.068,
+    "property cap rate": 0.056,
+    "negative carry per $ raised (rate - cap)": 0.012,
+    "fees (1% of new loan, 3-yr)": 0.0122
+   }
+  }
+ }
+}

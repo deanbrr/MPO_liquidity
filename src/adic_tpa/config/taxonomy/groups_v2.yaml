@@ -1,0 +1,229 @@
+# model: adic_tpa.contracts.taxonomy:TaxonomyConfig
+# Group taxonomy v2 (the default; allocation v2): eight investment groups plus the non-investment owners
+# CF (Corporate Finance / Treasury) and TPA (total-portfolio attribution).
+# Normative columns from BUILD_SPEC v1.1 §3.2 (S-ADR-01, -02, -05, -22, -32; brief §8 rules 1-3). Engine code reads
+# these capability flags, never group names. Columns the §3.2 table does not give (display_name, has_unfunded,
+# lenses, forecast_basis, fbe_path, in_envelopes, strategies) follow ARCH §4.4-§4.8 and brief §8, marked [I].
+# SYNTHETIC – NOT ADIC DATA.
+version: v2
+groups:
+  - group_id: PE
+    code: PE
+    display_name: Private Equity (funds)
+    kind: private
+    engines: [fund]
+    recourse_tier: ALL
+    red_tier: true
+    amber_tier: false
+    has_unfunded: true
+    lenses: [SELL, HOLD, REFINANCE, LEVER, ADD, PACE]   # [I] ARCH §4.8 instrument library
+    forecast_basis: gp_projection
+    fbe_path: fund
+    seat: true
+    commitment_split: 0.50        # [S: BUILD_SPEC §3.2 table]
+    pacing_eta_sign: 1
+    contingent_budget: false
+    in_envelopes: true
+    fund_distribution_stress: true
+  - group_id: SECONDARIES
+    code: SEC
+    display_name: Secondaries (fund and direct)
+    kind: private
+    engines: [fund, company]
+    recourse_tier: ALL
+    red_tier: true
+    amber_tier: false
+    has_unfunded: true
+    lenses: [SELL, HOLD, REFINANCE, LEVER, ADD, PACE]   # [I]
+    forecast_basis: gp_projection
+    fbe_path: fund
+    seat: true
+    commitment_split: 0.10        # [S: BUILD_SPEC §3.2 table]
+    pacing_eta_sign: -1
+    contingent_budget: true
+    in_envelopes: true
+    fund_distribution_stress: true
+  - group_id: CAPSOL
+    code: CS
+    display_name: Capital Solutions
+    kind: private
+    engines: [claims, company]
+    recourse_tier: TPFA
+    red_tier: false
+    amber_tier: true
+    has_unfunded: true
+    lenses: [SELL, HOLD, REFINANCE, LEVER, ADD, PACE]   # [I]
+    forecast_basis: contract_yield
+    fbe_path: single_deal
+    seat: true
+    commitment_split: 0.10        # [S: BUILD_SPEC §3.2 table]
+    pacing_eta_sign: -1
+    contingent_budget: true
+    in_envelopes: true
+    fund_distribution_stress: false
+  - group_id: COINVEST
+    code: CO
+    display_name: Co-investment
+    kind: private
+    engines: [company]
+    recourse_tier: ALL
+    red_tier: true
+    amber_tier: false
+    has_unfunded: false
+    lenses: [SELL, HOLD, REFINANCE, LEVER, ADD, PACE]   # [I] single-asset REFI inadmissible (pool facility only)
+    forecast_basis: deal_model
+    fbe_path: single_deal
+    seat: true
+    commitment_split: 0.10        # [S: BUILD_SPEC §3.2 table]
+    pacing_eta_sign: 1
+    contingent_budget: false
+    in_envelopes: true
+    fund_distribution_stress: true
+  - group_id: PUBLIC
+    code: PM
+    display_name: Public Markets (hedge funds and long-only)
+    kind: public
+    engines: [hf, longonly]
+    recourse_tier: TP
+    red_tier: false
+    amber_tier: false
+    has_unfunded: false
+    lenses: [SELL, HOLD, REFINANCE, LEVER, ADD]          # [I]
+    forecast_basis: net_alpha
+    fbe_path: hierarchical_factor
+    seat: true
+    commitment_split: 0.0         # [S: BUILD_SPEC §3.2 table]
+    pacing_eta_sign: 0
+    contingent_budget: false
+    in_envelopes: true
+    fund_distribution_stress: false
+  - group_id: PRIVCREDIT
+    code: PC
+    display_name: Private Credit
+    kind: private
+    engines: [credit, fund]
+    recourse_tier: TPFA
+    red_tier: false
+    amber_tier: true
+    has_unfunded: true
+    lenses: [SELL, HOLD, REFINANCE, LEVER, ADD, PACE]   # [I]
+    forecast_basis: loss_adjusted_yield
+    fbe_path: cohort
+    seat: true
+    commitment_split: 0.10        # [S: BUILD_SPEC §3.2 table]
+    pacing_eta_sign: 0
+    contingent_budget: true
+    in_envelopes: true
+    fund_distribution_stress: false
+  - group_id: OVERLAY
+    code: OVL
+    display_name: Overlay (tail, opportunistic, synthetic beta)
+    kind: overlay
+    engines: [overlay]
+    recourse_tier: null
+    red_tier: false
+    amber_tier: false
+    has_unfunded: false
+    lenses: [SELL, HOLD, REFINANCE, LEVER, ADD]          # [I] three-book lenses (ARCH §4.8)
+    forecast_basis: strategy_pnl
+    fbe_path: scenario
+    seat: true                    # the Overlay seat keeps its two briefs (S-ADR-22)
+    commitment_split: 0.0         # [S: BUILD_SPEC §3.2 table]
+    pacing_eta_sign: 0
+    contingent_budget: false
+    in_envelopes: true
+    fund_distribution_stress: false
+  - group_id: REALASSETS
+    code: RA
+    display_name: Real Assets (real estate, infrastructure, energy and natural resources)
+    kind: private
+    engines: [realassets, fund]
+    recourse_tier: ALL            # open-end redemptions enter as amber (S-ADR-02)
+    red_tier: true
+    amber_tier: true
+    has_unfunded: true
+    lenses: [SELL, HOLD, REFINANCE, LEVER, ADD, PACE]   # [I] brief §8 rule 3
+    forecast_basis: business_plan
+    fbe_path: single_deal
+    seat: true
+    commitment_split: 0.10        # [S: BUILD_SPEC §3.2 table]
+    pacing_eta_sign: 1
+    contingent_budget: false
+    in_envelopes: true
+    fund_distribution_stress: false   # RA follows the stressed-income convention, not dist_mult (S-ADR-32)
+  - group_id: CF
+    code: CF
+    display_name: Corporate Finance (Treasury)
+    kind: funding
+    engines: [treasury]
+    recourse_tier: T
+    red_tier: false
+    amber_tier: false
+    has_unfunded: false
+    lenses: [REFINANCE, LEVER]                           # [I] revolver = REFINANCE; exposure funding = LEVER
+    forecast_basis: benchmark_ir  # [I] no group forecasts; schema requires a basis
+    fbe_path: benchmark
+    seat: false                   # represented by the generic Treasurer seat (S-ADR-22)
+    commitment_split: 0.0         # [S: BUILD_SPEC §3.2 table]
+    pacing_eta_sign: 0
+    contingent_budget: false
+    in_envelopes: false           # [I] CF owns the pool the envelopes divide
+    fund_distribution_stress: false
+  - group_id: TPA
+    code: TPA
+    display_name: Total-portfolio attribution
+    kind: attribution
+    engines: []
+    recourse_tier: null
+    red_tier: false
+    amber_tier: false
+    has_unfunded: false
+    lenses: []
+    forecast_basis: benchmark_ir  # [I] no group forecasts; schema requires a basis
+    fbe_path: benchmark
+    seat: false
+    commitment_split: 0.0         # [S: BUILD_SPEC §3.2 table]
+    pacing_eta_sign: 0
+    contingent_budget: false
+    in_envelopes: false
+    fund_distribution_stress: false
+strategies:                       # [I] labels; engines read templates from config/groups/*.yaml
+  PE: [buyout_large, buyout_mid, growth, vc, sector, special_sits]
+  SECONDARIES: [lp_portfolio, gp_led_continuation, tail_end, direct_secondary, structured]
+  CAPSOL: [preferred_equity, structured_equity, nav_finance, fund_finance, gp_solutions, special_situations]
+  COINVEST: [buyout, growth, sector]
+  PUBLIC: [hedge_funds, long_only_dm_equity, long_only_em_equity, long_only_fixed_income]
+  PRIVCREDIT: [direct_lending, asset_based_finance, mezzanine, opportunistic]
+  OVERLAY: [tail, opportunistic, synthetic_beta]
+  REALASSETS: [real_estate, infrastructure, energy_natres]
+  CF: [cash, ust, ig]
+  TPA: []
+couplings:
+  - kind: offered_flow            # O_t = θ Σ_{j=0}^{19} ¼ d_{⌊j/4⌋} C^PE_{t−j}
+    source: PE
+    target: COINVEST
+    params:
+      theta: 0.33                 # [S: G-gap_04 §1.2]
+      d_per_year: [0.15, 0.25, 0.25, 0.20, 0.15]   # [S: G-gap_04 §1.2] 20-quarter kernel, yearly weights
+      acceptance: [0.3, 0.6]      # [S: G-gap_04 §1.2]
+      time_unit: quarter
+  - kind: shared_gp_effect        # one GP effect per path, only along graph edges (V24d)
+    source: PE
+    target: COINVEST
+    params:
+      rho_gp: 0.6                 # [S: BUILD_SPEC §3.2]
+  - kind: shared_gp_effect
+    source: PE
+    target: SECONDARIES
+    params:
+      rho_gp: 0.6                 # [S: BUILD_SPEC §3.2]
+  - kind: shared_gp_effect
+    source: COINVEST
+    target: SECONDARIES
+    params:
+      rho_gp: 0.6                 # [S: BUILD_SPEC §3.2]
+  - kind: recap_netting           # COINVEST <-> PRIVCREDIT
+    source: COINVEST
+    target: PRIVCREDIT
+    params:
+      direction: both

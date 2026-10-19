@@ -1,0 +1,29 @@
+Traceback (most recent call last):
+  File "C:\users\dean\ai_envs\adic_tpa_lab\research\groups\addenda\ra_gap_04_calcs\ra04_rame_ensemble.py", line 261, in <module>
+    main()
+  File "C:\users\dean\ai_envs\adic_tpa_lab\research\groups\addenda\ra_gap_04_calcs\ra04_rame_ensemble.py", line 174, in main
+    fits = {"ALT": L.fit_prod(d["a"], d["L"], d["tau"], LAG),
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dean\ai_envs\adic_tpa_lab\research\groups\addenda\ra_gap_04_calcs\ra04_rame_lib.py", line 335, in fit_prod
+    res = optimize.minimize(_negll, st, args=(y, mask, lag, use_L, use_tau, tau_lag), method="L-BFGS-B", bounds=B)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\users\dean\ai_envs\adic_tpa_lab\.venv\Lib\site-packages\scipy\optimize\_minimize.py", line 784, in minimize
+    res = _minimize_lbfgsb(fun, x0, args, jac, bounds,
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\users\dean\ai_envs\adic_tpa_lab\.venv\Lib\site-packages\scipy\optimize\_lbfgsb_py.py", line 420, in _minimize_lbfgsb
+    f, g = func_and_grad(x)
+           ^^^^^^^^^^^^^^^^
+  File "C:\users\dean\ai_envs\adic_tpa_lab\.venv\Lib\site-packages\scipy\optimize\_differentiable_functions.py", line 412, in fun_and_grad
+    self._update_fun()
+  File "C:\users\dean\ai_envs\adic_tpa_lab\.venv\Lib\site-packages\scipy\optimize\_differentiable_functions.py", line 362, in _update_fun
+    fx = self._wrapped_fun(self.x)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\users\dean\ai_envs\adic_tpa_lab\.venv\Lib\site-packages\scipy\_lib\_util.py", line 544, in __call__
+    fx = self.f(np.copy(x), *self.args)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dean\ai_envs\adic_tpa_lab\research\groups\addenda\ra_gap_04_calcs\ra04_rame_lib.py", line 316, in _negll
+    ll, _, _ = g._kf(yy, mask, Tm, cvec, Q, Z, Hd, a0, P0, False)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\users\dean\ai_envs\adic_tpa_lab\.venv\Lib\site-packages\numba\np\linalg.py", line 1078, in cho_impl
+    raise np.linalg.LinAlgError(
+numpy.linalg.LinAlgError: Matrix is not positive definite.

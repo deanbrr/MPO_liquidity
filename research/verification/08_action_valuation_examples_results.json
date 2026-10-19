@@ -1,0 +1,434 @@
+{
+ "example1": {
+  "inputs": {
+   "NAV0": 500.0,
+   "UNF": 50.0,
+   "g_mean": 0.11,
+   "g_sd": 0.06,
+   "price": 0.88,
+   "ltv": 0.15,
+   "r_b": 0.0989,
+   "sofr": 0.0389,
+   "r_h": 0.0899,
+   "r_f": 0.0389,
+   "ell": [
+    0.09,
+    0.09,
+    0.04,
+    0.04,
+    0.04,
+    0.04
+   ],
+   "rd": [
+    0.15,
+    0.2,
+    0.25,
+    0.3,
+    0.4,
+    1.0
+   ],
+   "calls": [
+    15.0,
+    10.0,
+    5.0
+   ],
+   "tc": 0.0075,
+   "kappa_gp": 1.8,
+   "nav_fee": 0.015
+  },
+  "cashflows": {
+   "D": [
+    0.0,
+    85.7,
+    110.1,
+    123.6,
+    123.5,
+    127.9,
+    213.0
+   ],
+   "C": [
+    15.0,
+    10.0,
+    5.0,
+    0.0,
+    0.0,
+    0.0,
+    0.0
+   ],
+   "total_D": 783.8,
+   "total_C": 30.0,
+   "check_irr": 0.11
+  },
+  "cash_weighted_life_yrs": 3.99,
+  "values": {
+   "hold": 421.44,
+   "hold_pct_nav": 0.8429,
+   "hold_if_no_liquidity_premium": 535.28,
+   "hold_if_no_liq_pct_nav": 1.0706,
+   "sell_cash": 434.45,
+   "sell_88_50pct_deferred_12m": 408.73,
+   "sell_92_50pct_deferred_12m": 427.56,
+   "refi": {
+    "sweep_100": {
+     "value": 1.27,
+     "life_years": 2,
+     "pays": [
+      0.0,
+      75.7,
+      7.3,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    "sweep_50": {
+     "value": 2.26,
+     "life_years": 2,
+     "pays": [
+      0.0,
+      37.9,
+      48.9,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ]
+    },
+    "sweep_25": {
+     "value": 1.97,
+     "life_years": 4,
+     "pays": [
+      0.0,
+      18.9,
+      26.3,
+      30.9,
+      18.6,
+      0.0,
+      0.0
+     ]
+    }
+   },
+   "best_refi": 2.26,
+   "best_refi_sweep": 0.5,
+   "refi_if_no_liquidity_premium": -7.93,
+   "hold_plus_refi": 423.7,
+   "sell_minus_hold_plus_refi": 10.75
+  },
+  "reservation_price_cash_vs_hold": 0.854,
+  "reservation_price_cash_vs_hold_refi": 0.8585,
+  "reservation_price_if_no_liquidity_premium": 1.0817,
+  "headline_needed_50pct_deferred_to_match_cash88": 0.9346,
+  "breakeven_ell_y1y2": 0.0736,
+  "breakeven_forward_irr": 0.1175,
+  "implied_cost_of_sale_irr": 0.1524,
+  "implied_cost_of_sale_spread_over_r_h": 0.0574,
+  "implied_cost_of_navloan_irr": 0.1097,
+  "implied_cost_of_navloan_spread_over_rf": 0.0682,
+  "grid_sell_minus_best_keep": {
+   "p80": {
+    "ell0": -102.9,
+    "ell4": -66.8,
+    "ell6": -50.2,
+    "ell9": -29.3,
+    "ell12": -10.9
+   },
+   "p84": {
+    "ell0": -82.9,
+    "ell4": -46.8,
+    "ell6": -30.2,
+    "ell9": -9.3,
+    "ell12": 9.1
+   },
+   "p86": {
+    "ell0": -72.9,
+    "ell4": -36.8,
+    "ell6": -20.2,
+    "ell9": 0.7,
+    "ell12": 19.1
+   },
+   "p88": {
+    "ell0": -62.9,
+    "ell4": -26.8,
+    "ell6": -10.2,
+    "ell9": 10.7,
+    "ell12": 29.1
+   },
+   "p91": {
+    "ell0": -47.9,
+    "ell4": -11.8,
+    "ell6": 4.8,
+    "ell9": 25.7,
+    "ell12": 44.1
+   },
+   "p94": {
+    "ell0": -32.9,
+    "ell4": 3.2,
+    "ell6": 19.8,
+    "ell9": 40.7,
+    "ell12": 59.1
+   }
+  },
+  "mc": {
+   "p_keep_beats_sell": 0.447,
+   "hold_lapv_p10": 324.6,
+   "hold_lapv_p50": 420.9,
+   "hold_lapv_p90": 543.3,
+   "expected_regret_if_sell": 32.88,
+   "expected_regret_if_keep": 36.16,
+   "evpi": 32.88
+  },
+  "wait_one_year": {
+   "value_with_option": 425.99,
+   "value_never_sell_same_scenarios": 416.13,
+   "option_value_of_waiting": 9.86,
+   "frac_sell_t1": 0.373,
+   "frac_sell_t1_stress": 0.109,
+   "frac_sell_t1_normal": 0.42,
+   "sell_now": 434.45
+  },
+  "sell_risk_relief": {
+   "lambdaR_0.0": 0.0,
+   "lambdaR_0.01": 3.82,
+   "lambdaR_0.03": 11.45
+  },
+  "sell_minus_keep_vs_kappa_gp": {
+   "kappa_0.0": 12.55,
+   "kappa_1.8": 10.75,
+   "kappa_5.0": 7.55,
+   "kappa_10.0": 2.55
+  }
+ },
+ "example2": {
+  "inputs": {
+   "NAVB": 400.0,
+   "mu": 0.11,
+   "mu_sd": 0.04,
+   "cash_yield": 0.065,
+   "beta": 0.5,
+   "r_h": 0.0601,
+   "dx": 120.0,
+   "r_b": 0.0639,
+   "fee": 0.0075,
+   "lambda_R": 0.03,
+   "m_cvar": 0.15,
+   "lambda_lev": 0.0025,
+   "sale_price": 0.91
+  },
+  "state_map": {
+   "flat_0pct": {
+    "actions": {
+     "HOLD": 0.0,
+     "SELL": -122.36,
+     "REFI": -15.64,
+     "ADD": 25.01,
+     "LEVER": 9.37
+    },
+    "best": "ADD",
+    "hold_lapv": 491.4
+   },
+   "flat_2pct": {
+    "actions": {
+     "HOLD": 0.0,
+     "SELL": -80.95,
+     "REFI": -4.3,
+     "ADD": 12.59,
+     "LEVER": 8.28
+    },
+    "best": "ADD",
+    "hold_lapv": 449.5
+   },
+   "flat_3pct": {
+    "actions": {
+     "HOLD": 0.0,
+     "SELL": -61.95,
+     "REFI": 0.9,
+     "ADD": 6.88,
+     "LEVER": 7.79
+    },
+    "best": "LEVER",
+    "hold_lapv": 430.3
+   },
+   "flat_4pct": {
+    "actions": {
+     "HOLD": 0.0,
+     "SELL": -43.99,
+     "REFI": 5.83,
+     "ADD": 1.5,
+     "LEVER": 7.32
+    },
+    "best": "LEVER",
+    "hold_lapv": 412.2
+   },
+   "flat_5pct": {
+    "actions": {
+     "HOLD": 0.0,
+     "SELL": -26.99,
+     "REFI": 10.48,
+     "ADD": -3.6,
+     "LEVER": 6.88
+    },
+    "best": "REFI",
+    "hold_lapv": 395.0
+   },
+   "flat_6pct": {
+    "actions": {
+     "HOLD": 0.0,
+     "SELL": -10.91,
+     "REFI": 14.9,
+     "ADD": -8.43,
+     "LEVER": 6.47
+    },
+    "best": "REFI",
+    "hold_lapv": 378.7
+   },
+   "flat_9pct": {
+    "actions": {
+     "HOLD": 0.0,
+     "SELL": 32.44,
+     "REFI": 26.79,
+     "ADD": -21.43,
+     "LEVER": 5.36
+    },
+    "best": "SELL",
+    "hold_lapv": 334.9
+   },
+   "example1_term_structure": {
+    "actions": {
+     "HOLD": 0.0,
+     "SELL": -8.64,
+     "REFI": 15.66,
+     "ADD": -9.11,
+     "LEVER": 6.55
+    },
+    "best": "REFI",
+    "hold_lapv": 376.3
+   }
+  },
+  "lever_optimal_flat_ell_range": [
+   0.03,
+   0.042
+  ],
+  "focus_state_flat4": {
+   "actions": {
+    "HOLD": 0.0,
+    "SELL": -43.99,
+    "REFI": 5.83,
+    "ADD": 1.5,
+    "LEVER": 7.32
+   },
+   "best": "LEVER"
+  },
+  "breakeven_mu_lever_vs_hold_flat4": 0.0949,
+  "breakeven_mu_lever_vs_refi_flat4": 0.107,
+  "lever_net_liquidity_profile": [
+   0.13,
+   0.48,
+   0.85,
+   1.23,
+   31.18
+  ],
+  "spread_decomposition_pa": {
+   "alpha_star": 0.0499,
+   "credit_spread": 0.025,
+   "fee_amortised": 0.0015,
+   "risk_budget_charge": 0.0045,
+   "leverage_capacity_charge": 0.0025
+  },
+  "mc_flat4": {
+   "p_lever_beats_hold": 0.651,
+   "p_lever_beats_refi": 0.534,
+   "lever_p10": -16.0,
+   "lever_p50": 7.5,
+   "lever_p90": 35.0,
+   "p_ltv_above_40pct": 0.0073,
+   "initial_ltv": 0.231
+  }
+ },
+ "example3": {
+  "book_nav": 13842.5,
+  "needs": {
+   "liq1": 3800.0,
+   "liq2": -900.0,
+   "risk_cap": -800.0,
+   "lev_cap": 1200.0
+  },
+  "mip_objective": -104.9,
+  "lp_objective": -102.1,
+  "gap": 2.86,
+  "shadow_prices": {
+   "liq_y1": 0.1613,
+   "liq_y2": 0.0,
+   "risk": 0.1026,
+   "leverage": 0.0332
+  },
+  "lp_fractional_assets": 3,
+  "mip_action_counts": {
+   "HOLD": 15,
+   "SELL": 13,
+   "REFI": 2,
+   "LEVER": 10
+  },
+  "decentralised_action_counts": {
+   "HOLD": 17,
+   "SELL": 13,
+   "REFI": 0,
+   "LEVER": 10
+  },
+  "decentralised_vs_mip_disagreements": 4,
+  "decentralised_objective": -129.6,
+  "mip_usage": {
+   "liq1": 3806.0,
+   "liq2": -464.2,
+   "risk": -802.6,
+   "lev": 1193.8
+  },
+  "decentralised_usage": {
+   "liq1": 3911.9,
+   "liq2": -493.1,
+   "risk": -879.4,
+   "lev": 1159.3
+  },
+  "marginal_assets": [
+   {
+    "i": 3,
+    "nav": 527.5,
+    "age": 11,
+    "price": 0.868,
+    "fwd": 0.09,
+    "beta": 1.39,
+    "mip": "HOLD",
+    "lp_mix": {
+     "HOLD": 0.69,
+     "SELL": 0.31
+    }
+   },
+   {
+    "i": 14,
+    "nav": 397.1,
+    "age": 11,
+    "price": 0.888,
+    "fwd": 0.072,
+    "beta": 0.82,
+    "mip": "HOLD",
+    "lp_mix": {
+     "HOLD": 0.59,
+     "SELL": 0.41
+    }
+   },
+   {
+    "i": 33,
+    "nav": 184.1,
+    "age": 7,
+    "price": 0.873,
+    "fwd": 0.097,
+    "beta": 0.59,
+    "mip": "HOLD",
+    "lp_mix": {
+     "HOLD": 0.26,
+     "LEVER": 0.74
+    }
+   }
+  ]
+ }
+}

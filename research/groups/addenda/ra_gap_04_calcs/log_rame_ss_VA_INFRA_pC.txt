@@ -1,0 +1,7 @@
+VA_INFRA ss true SS params {'lam': 0.8, 'mu': 0.007319083340028353, 'sv': 0.06967306518108606, 'sxi': 0.004269562819149833, 'beta': 1.0, 'phip': 0.88, 'sp': 0.06, 'sL': 0.01, 'st': 0.04, 'cL': 0.0}
+resuming; done: ['M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M5s']
+VA_INFRA ss TB     ALT: R2 0.31 xsCRPS +21.6% xsReg +27.4% cov 0.745 sellbias +2.02 reg 0.274 | AL R2 0.45 cov 0.72 | ALT4 R2 0.39 | lam 0.811 | 484s
+VA_INFRA ss TBC    ALT: R2 0.27 xsCRPS +7.3% xsReg -3.1% cov 0.778 sellbias +0.04 reg 0.209 | AL R2 0.45 cov 0.72 | ALT4 R2 0.38 | lam 0.802 | 521s
+VA_INFRA ss TW     ALT: R2 0.62 xsCRPS +71.6% xsReg +71.3% cov 0.362 sellbias -2.02 reg 0.765 | AL R2 0.45 cov 0.72 | ALT4 R2 0.52 | lam 0.621 | 535s
+VA_INFRA ss MALL_T ALT: R2 0.61 xsCRPS +132.6% xsReg +106.9% cov 0.301 sellbias +2.21 reg 1.044 | AL R2 0.58 cov 0.50 | ALT4 R2 0.59 | lam 0.737 | 355s
+wrote C:\Users\dean\ai_envs\adic_tpa_lab\research\groups\addenda\ra_gap_04_calcs\rame_ens_ss_VA_INFRA_pC.json 1896.2 s SYNTHETIC - NOT ADIC DATA

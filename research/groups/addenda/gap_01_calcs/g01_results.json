@@ -1,0 +1,4056 @@
+{
+ "note": "SYNTHETIC / ILLUSTRATIVE - not ADIC data. Engine: gap_02 t1_engine via a group-resolved replica.",
+ "theta_star": 0.76,
+ "s22_column": {
+  "groups": {
+   "pe": {
+    "dist12": 0.5584689798167252,
+    "calls12": 11.974479474566694,
+    "net12": -11.416010494749969,
+    "dist24": 1.189756679635928,
+    "calls24": 22.104100080160823,
+    "net24": -20.914343400524896
+   },
+   "sec": {
+    "dist12": 0.17567932233501815,
+    "calls12": 2.6585465790944487,
+    "net12": -2.4828672567594303,
+    "dist24": 0.3518276982177354,
+    "calls24": 3.833110760026803,
+    "net24": -3.4812830618090675
+   },
+   "co": {
+    "dist12": 0.1591279186534923,
+    "calls12": 1.7796000000000003,
+    "net12": -1.620472081346508,
+    "dist24": 0.30942293006143307,
+    "calls24": 3.33524256,
+    "net24": -3.0258196299385673
+   },
+   "cs": {
+    "dist12": 0.5212065594966884,
+    "calls12": 0.6948665790944488,
+    "net12": -0.17366001959776045,
+    "dist24": 1.05790383219817,
+    "calls24": 1.584916712026803,
+    "net24": -0.5270128798286331
+   },
+   "pc": {
+    "dist12": 1.306526302622702,
+    "calls12": 2.0332517409029918,
+    "net12": -0.7267254382802897,
+    "dist24": 2.5746850374290533,
+    "calls24": 3.3311156515640645,
+    "net24": -0.7564306141350112
+   }
+  },
+  "private12": {
+   "dist": 2.721009082924626,
+   "calls": 19.14074437365858,
+   "net": -16.419735290733957
+  },
+  "overlay12": -2.9429999999999996,
+  "overlay24": -1.315724353852528,
+  "overlay_parts12": {
+   "vm": -3.76,
+   "dim": 0.22399999999999998,
+   "tail": 4.05,
+   "prem": 0.35399999999999987,
+   "opp": 2.655,
+   "fut": 0.0
+  },
+  "opex12": 0.17699999999999994,
+  "before_payout12": -19.539735290733958,
+  "draw12_canonical": 17.7,
+  "liquid_funding": {
+   "canonical (10% opening NAV)": 37.23973529073396,
+   "5.0%": 28.38973529073396,
+   "7.5%": 32.81473529073396,
+   "10.0%": 37.23973529073396
+  },
+  "liquid_share": {
+   "canonical": 0.5245033139539994,
+   "5.0%": 0.39985542663005574,
+   "7.5%": 0.46217937029202755,
+   "10.0%": 0.5245033139539994
+  }
+ },
+ "s22_census_v1": {
+  "SH_TP": 18,
+  "SH_TPF": 18,
+  "min_head_24": -10.848979711322379,
+  "argmin": 24,
+  "fac_need_24": 13.561224639152973,
+  "gstar": 10.848979711322379,
+  "cbc12": 48.1207795192648,
+  "cbc24": 53.892713265435866,
+  "nco12": 36.4677867015406,
+  "nco24": 59.9946727534547
+ },
+ "s22_T4_literal_reverse": {
+  "groups": {
+   "pe": {
+    "dist12": 0.0,
+    "calls12": 13.029643899568047,
+    "net12": -13.029643899568047,
+    "dist24": 0.0,
+    "calls24": 23.61083736131753,
+    "net24": -23.61083736131753
+   },
+   "sec": {
+    "dist12": 0.0,
+    "calls12": 2.7616073165946755,
+    "net12": -2.7616073165946755,
+    "dist24": 0.0,
+    "calls24": 3.997339560219588,
+    "net24": -3.997339560219588
+   },
+   "co": {
+    "dist12": 0.0,
+    "calls12": 1.8299999999999998,
+    "net12": -1.8299999999999998,
+    "dist24": 0.0,
+    "calls24": 3.3953999999999995,
+    "net24": -3.3953999999999995
+   },
+   "cs": {
+    "dist12": 0.523094918448137,
+    "calls12": 0.757607316594676,
+    "net12": -0.2345123981465389,
+    "dist24": 1.0325229568446175,
+    "calls24": 1.7010195602195883,
+    "net24": -0.6684966033749709
+   },
+   "pc": {
+    "dist12": 1.3114700175943825,
+    "calls12": 2.1396724784032184,
+    "net12": -0.8282024608088359,
+    "dist24": 2.529570698254674,
+    "calls24": 3.49935494775685,
+    "net24": -0.969784249502176
+   }
+  },
+  "private12": {
+   "dist": 1.8345649360425196,
+   "calls": 20.51853101116062,
+   "net": -18.683966075118096
+  },
+  "overlay12": -3.159,
+  "overlay24": -1.6079272633197377,
+  "overlay_parts12": {
+   "vm": -4.0,
+   "dim": 0.19999999999999996,
+   "tail": 4.05,
+   "prem": 0.35399999999999987,
+   "opp": 2.655,
+   "fut": 0.0
+  },
+  "opex12": 0.17699999999999994,
+  "before_payout12": -22.019966075118095,
+  "draw12_canonical": 17.7,
+  "liquid_funding": {
+   "canonical (10% opening NAV)": 39.719966075118094,
+   "5.0%": 30.869966075118093,
+   "7.5%": 35.2949660751181,
+   "10.0%": 39.719966075118094
+  },
+  "liquid_share": {
+   "canonical": 0.5594361419030718,
+   "5.0%": 0.43478825457912806,
+   "7.5%": 0.4971121982411,
+   "10.0%": 0.5594361419030718
+  }
+ },
+ "s24_ladder": {
+  "do-nothing": {
+   "SH_TP": 17,
+   "SH_TPF": 17,
+   "min_head_24": -11.117083876320478,
+   "argmin": 24,
+   "fac_need_24": 13.896354845400598,
+   "gstar": 11.117083876320478,
+   "cbc12": 48.1207795192648,
+   "cbc24": 53.892713265435866,
+   "nco12": 37.23973529073396,
+   "nco24": 60.31378136846105
+  },
+  "stage pacing rule": {
+   "SH_TP": 20,
+   "SH_TPF": 20,
+   "min_head_24": -4.881891691790848,
+   "argmin": 24,
+   "fac_need_24": 6.10236461473856,
+   "gstar": 4.881891691790848,
+   "cbc12": 48.1207795192648,
+   "cbc24": 53.892713265435866,
+   "nco12": 35.40529087496968,
+   "nco24": 54.03567503516893
+  },
+  "owner band": {
+   "SH_TP": 29,
+   "SH_TPF": 29,
+   "min_head_24": 2.3009997921633456,
+   "argmin": 24,
+   "fac_need_24": 0.0,
+   "gstar": -2.3009997921633456,
+   "cbc12": 48.1207795192648,
+   "cbc24": 53.892713265435866,
+   "nco12": 28.389735290733956,
+   "nco24": 46.3335379637904
+  },
+  "rule + band": {
+   "SH_TP": null,
+   "SH_TPF": null,
+   "min_head_24": 8.558491957973075,
+   "argmin": 24,
+   "fac_need_24": 0.0,
+   "gstar": -8.558491957973075,
+   "cbc12": 48.1207795192648,
+   "cbc24": 53.892713265435866,
+   "nco12": 26.555290874969675,
+   "nco24": 40.03220248333151
+  },
+  "revolver 13.9": {
+   "SH_TP": 17,
+   "SH_TPF": 24,
+   "min_head_24": -0.05238363632047438,
+   "argmin": 24,
+   "fac_need_24": 13.965479545400594,
+   "gstar": 11.172383636320475,
+   "cbc12": 48.100730159264806,
+   "cbc24": 53.87266390543587,
+   "nco12": 37.26058529073396,
+   "nco24": 60.35131136846105
+  },
+  "revolver 6.1 + rule": {
+   "SH_TP": 20,
+   "SH_TPF": 24,
+   "min_head_24": -0.02615993179086029,
+   "argmin": 24,
+   "fac_need_24": 6.132699914738575,
+   "gstar": 4.90615993179086,
+   "cbc12": 48.1119808792648,
+   "cbc24": 53.883914625435864,
+   "nco12": 35.414440874969685,
+   "nco24": 54.05214503516894
+  },
+  "Mix A (rcf 15, pace 6 + rule, reserve 14%)": {
+   "SH_TP": 24,
+   "SH_TPF": null,
+   "min_head_24": 11.953659207042008,
+   "argmin": 24,
+   "fac_need_24": 0.057925991197489424,
+   "gstar": 0.04634079295799154,
+   "cbc12": 51.77077760343314,
+   "cbc24": 57.542711349604204,
+   "nco12": 34.71260794388687,
+   "nco24": 52.76201056612308
+  },
+  "Mix B (rcf 10, rule, band, reserve 8%)": {
+   "SH_TP": null,
+   "SH_TPF": null,
+   "min_head_24": 10.751383773381122,
+   "argmin": 1,
+   "fac_need_24": 0.0,
+   "gstar": -8.517387957973078,
+   "cbc12": 48.1063555192648,
+   "cbc24": 53.87828926543587,
+   "nco12": 26.57029087496968,
+   "nco24": 40.060577483331514
+  },
+  "NAV facility 2.12 (10% LTV on 21.2 pool)": {
+   "SH_TP": 17,
+   "SH_TPF": 18,
+   "min_head_24": -10.093945729653813,
+   "argmin": 24,
+   "fac_need_24": 12.617432162067265,
+   "gstar": 11.153945729653813,
+   "cbc12": 48.1003935992648,
+   "cbc24": 53.87232734543586,
+   "nco12": 37.25033529073396,
+   "nco24": 60.33180136846104
+  }
+ },
+ "s24_reverse": {
+  "T4 literal canonical, do-nothing": {
+   "SH_TP": 15,
+   "SH_TPF": 15,
+   "min_head_24": -16.0779127157263,
+   "argmin": 24,
+   "fac_need_24": 32.1558254314526,
+   "gstar": 16.0779127157263,
+   "cbc12": 47.35557730670619,
+   "cbc24": 53.01449764764904,
+   "nco12": 39.7199660751181,
+   "nco24": 64.4402896284528
+  },
+  "T4 literal canonical, Mix A": {
+   "SH_TP": 21,
+   "SH_TPF": null,
+   "min_head_24": 3.2906635282706347,
+   "argmin": 24,
+   "fac_need_24": 8.41867294345873,
+   "gstar": 4.209336471729365,
+   "cbc12": 51.257135310714204,
+   "cbc24": 56.916055651657054,
+   "nco12": 37.03471353791398,
+   "nco24": 56.332314004522495
+  },
+  "T4 as written (8% floor)": {
+   "SH_TP": 12,
+   "SH_TPF": 12,
+   "min_head_24": -20.730033450648833,
+   "argmin": 24,
+   "fac_need_24": 41.460066901297665,
+   "gstar": 20.730033450648833,
+   "cbc12": 47.35557730670619,
+   "cbc24": 53.01449764764904,
+   "nco12": 39.7199660751181,
+   "nco24": 64.4402896284528
+  },
+  "critic reading": {
+   "SH_TP": 8,
+   "SH_TPF": 8,
+   "min_head_24": -45.84480042991447,
+   "argmin": 24,
+   "fac_need_24": 91.68960085982894,
+   "gstar": 45.84480042991447,
+   "cbc12": 36.62415275350701,
+   "cbc24": 36.62415275350701,
+   "nco12": 41.55453101116062,
+   "nco24": 73.5658786928333
+  }
+ },
+ "cfp": {
+  "SH_TP": {
+   "do-nothing": 17,
+   "stage rule adopted": 20,
+   "band agreed": 29,
+   "census v1 split": 18
+  },
+  "lcr30_gc2": 2.1,
+  "lcr30_gap02_engine": 2.666901635973801,
+  "treasury_share": {
+   "before 8% top-up": 0.07683615819209039,
+   "after top-up": 0.08
+  },
+  "liquid_share": 0.30767768954209634,
+  "lar_by_model": {
+   "M1": {
+    "lar95": 23.52701467178761,
+    "lar99": 28.838809382750984,
+    "p50": 11.929391266617337
+   },
+   "M2": {
+    "lar95": 22.658025794215924,
+    "lar99": 28.354103649979436,
+    "p50": 11.45278959341552
+   },
+   "M3": {
+    "lar95": 24.30312627182528,
+    "lar99": 29.17146237981101,
+    "p50": 12.37961198419023
+   },
+   "M4": {
+    "lar95": 26.68940354813023,
+    "lar99": 31.22040164899217,
+    "p50": 15.634865832759875
+   },
+   "M5": {
+    "lar95": 26.850432831594183,
+    "lar99": 31.458916573249372,
+    "p50": 13.875573772527309
+   },
+   "M6": {
+    "lar95": 32.006048536137776,
+    "lar99": 38.26094268693688,
+    "p50": 17.214448187301436
+   }
+  },
+  "lar99_mean_of_models": 31.217439386953306,
+  "lar99_worst": 38.26094268693688,
+  "cbc_tp12": 48.1207795192648,
+  "lar99_over_cbc": {
+   "mean of models": 0.6487309577862436,
+   "worst model": 0.7951023044341872
+  }
+ },
+ "L4_pools": {
+  "do-nothing": {
+   "12m": {
+    "cbc_tp": 48.1207795192648,
+    "fac": 0.0,
+    "draw": 17.7,
+    "opex": 0.17699999999999994,
+    "fees": 0.0,
+    "floor": 4.810009955442093,
+    "pool_tpf": 25.433769563822707,
+    "head_tpf": 6.071034273088749
+   },
+   "24m": {
+    "cbc_tp": 53.892713265435866,
+    "fac": 0.0,
+    "draw": 29.939167428372343,
+    "opex": 0.354,
+    "fees": 0.0,
+    "floor": 4.696015773295297,
+    "pool_tpf": 18.903530063768226,
+    "head_tpf": -11.117083876320478
+   }
+  },
+  "revolver 14.2": {
+   "12m": {
+    "cbc_tp": 48.1002974392648,
+    "fac": 11.36,
+    "draw": 17.7,
+    "opex": 0.17699999999999994,
+    "fees": 0.021299999999999996,
+    "floor": 4.808376955442093,
+    "pool_tpf": 36.753620483822715,
+    "head_tpf": 17.39088519308875
+   },
+   "24m": {
+    "cbc_tp": 53.872231185435865,
+    "fac": 11.36,
+    "draw": 29.93490742837234,
+    "opex": 0.354,
+    "fees": 0.0426,
+    "floor": 4.693686973295297,
+    "pool_tpf": 30.207036783768228,
+    "head_tpf": 0.1864228436795088
+   }
+  }
+ },
+ "L4_budgets": {
+  "do-nothing": {
+   "pe": {
+    "B12": 11.416010494749967,
+    "B24": 20.914343400524892
+   },
+   "sec": {
+    "B12": 2.4828672567594308,
+    "B24": 3.4812830618090667
+   },
+   "co": {
+    "B12": 1.6204720813465077,
+    "B24": 3.0258196299385673
+   },
+   "cs": {
+    "B12": 0.1736600195977605,
+    "B24": 0.5270128798286333
+   },
+   "pc": {
+    "B12": 0.7267254382802901,
+    "B24": 0.7564306141350114
+   },
+   "ovl": {
+    "B12": 2.9429999999999996,
+    "B24": 1.315724353852528
+   },
+   "pool": {
+    "12m": 25.433769563822707,
+    "24m": 18.903530063768226
+   },
+   "slack": {
+    "12m": 6.071034273088749,
+    "24m": -11.117083876320478
+   }
+  },
+  "R1 plan (revolver 13.6 + SMA sale 0.58)": {
+   "pe": {
+    "B12": 11.416010494749967,
+    "B24": 20.914343400524892
+   },
+   "sec": {
+    "B12": 2.4828672567594308,
+    "B24": 3.4812830618090667
+   },
+   "co": {
+    "B12": 1.6204720813465077,
+    "B24": 3.0258196299385673
+   },
+   "cs": {
+    "B12": 0.1736600195977605,
+    "B24": 0.5270128798286333
+   },
+   "pc": {
+    "B12": 0.7787417822348848,
+    "B24": 0.8537668619907679
+   },
+   "ovl": {
+    "B12": 2.9429999999999996,
+    "B24": 1.315724353852528
+   },
+   "pool": {
+    "12m": 36.65403422807348,
+    "24m": 30.1190402581202
+   },
+   "slack": {
+    "12m": 17.239282593384928,
+    "24m": 0.001090070175729707
+   }
+  },
+  "Mix A (rcf 15, pace 6 + rule, reserve 14%)": {
+   "pe": {
+    "B12": 10.36162334020079,
+    "B24": 16.819451961185827
+   },
+   "sec": {
+    "B12": 2.307257617001412,
+    "B24": 2.7999695573375067
+   },
+   "co": {
+    "B12": 0.6454720813465078,
+    "B24": 1.0383196299385669
+   },
+   "cs": {
+    "B12": 0.0006390677688630567,
+    "B24": -0.12701440559658397
+   },
+   "pc": {
+    "B12": 0.5551158375693078,
+    "B24": 0.11587072590430936
+   },
+   "ovl": {
+    "B12": 2.9429999999999996,
+    "B24": 1.315724353852528
+   },
+   "pool": {
+    "12m": 40.87628577784113,
+    "24m": 33.91598102966417
+   },
+   "slack": {
+    "12m": 24.063177833954256,
+    "24m": 11.953659207042008
+   }
+  },
+  "Mix B (rcf 10, rule, band, reserve 8%)": {
+   "pe": {
+    "B12": 10.690276528097138,
+    "B24": 17.709587717181833
+   },
+   "sec": {
+    "B12": 2.3619841016113283,
+    "B24": 2.948022574525157
+   },
+   "co": {
+    "B12": 0.8704720813465077,
+    "B24": 1.450819629938567
+   },
+   "cs": {
+    "B12": 0.05432364920364039,
+    "B24": 0.014109896084129055
+   },
+   "pc": {
+    "B12": 0.6082345147110639,
+    "B24": 0.25356165957782717
+   },
+   "ovl": {
+    "B12": 2.9429999999999996,
+    "B24": 1.315724353852528
+   },
+   "pool": {
+    "12m": 41.91087125790021,
+    "24m": 40.209213789133116
+   },
+   "slack": {
+    "12m": 24.382580382930534,
+    "24m": 16.517387957973078
+   }
+  },
+  "Mix A without revolver": {
+   "pe": {
+    "B12": 10.36162334020079,
+    "B24": 16.819451961185827
+   },
+   "sec": {
+    "B12": 2.307257617001412,
+    "B24": 2.7999695573375067
+   },
+   "co": {
+    "B12": 0.6454720813465078,
+    "B24": 1.0383196299385669
+   },
+   "cs": {
+    "B12": 0.0006390677688630567,
+    "B24": -0.12701440559658397
+   },
+   "pc": {
+    "B12": 0.5551158375693078,
+    "B24": 0.11587072590430936
+   },
+   "ovl": {
+    "B12": 2.9429999999999996,
+    "B24": 1.315724353852528
+   },
+   "pool": {
+    "12m": 28.918696777841138,
+    "24m": 21.97565702966417
+   },
+   "slack": {
+    "12m": 12.10558883395425,
+    "24m": 0.013335207042004527
+   }
+  }
+ },
+ "recovery_T4prime": {
+  "h0_min": -11.285489430829173,
+  "d0": 11.285489430829173,
+  "states": {
+   "R0x": {
+    "label": "t0, task lever list only (no reserve top-up)",
+    "u_star": 0.0,
+    "u_IG_star": 0.0,
+    "iis": [],
+    "phase1_levers": {
+     "pace_pe": 0.75,
+     "pace_co": 1.0,
+     "pace_sec": 1.0,
+     "pace_pc": 1.0,
+     "pace_cs": 1.0,
+     "sma_sell": 1.9469229279272766,
+     "sma_ro": 0.0,
+     "cs_synd": 2.0,
+     "ovl_im": 1.0,
+     "p2s": 0.0,
+     "reserve_add": 0.0,
+     "rcf": 0.0,
+     "band": 0.0
+    },
+    "x": {
+     "pace_pe": 0.75,
+     "pace_co": 1.0,
+     "pace_sec": 0.0,
+     "pace_pc": 1.0,
+     "pace_cs": 0.0,
+     "sma_sell": 5.6000000000000005,
+     "sma_ro": 0.0,
+     "cs_synd": 0.3448693185597013,
+     "ovl_im": 0.0,
+     "p2s": 0.0,
+     "reserve_add": 0.0,
+     "rcf": 0.0,
+     "band": 0.0
+    },
+    "sell": {
+     "sell_pe": 0.5,
+     "sell_sec": 0.5,
+     "sell_co": 0.0,
+     "sell_hf": 0.0
+    },
+    "mu_sum": 0.24265676845106848,
+    "mu_months": [
+     24
+    ],
+    "y_IG": 0.0,
+    "y_cash": 0.20025654244371957,
+    "mu_sum_x10": 0.24265676845106848,
+    "cards": [
+     {
+      "card": "sell_pe",
+      "group": "PE",
+      "name": "PE: 2018 buyout fund (s4.4 example)",
+      "bid": 0.88,
+      "hold": 0.95,
+      "y_cash": 0.20025654244371957,
+      "y_rel": 0.10233865650843883,
+      "reservation_price": 0.7062334705259965,
+      "action": "SELL"
+     },
+     {
+      "card": "sell_sec",
+      "group": "Secondaries",
+      "name": "Secondaries: S3 LP interest",
+      "bid": 0.87,
+      "hold": 0.95,
+      "y_cash": 0.20025654244371957,
+      "y_rel": 0.047953034558952536,
+      "reservation_price": 0.7515451351795859,
+      "action": "SELL"
+     },
+     {
+      "card": "sell_co",
+      "group": "Co-investment",
+      "name": "Co-investment: strip",
+      "bid": 0.75,
+      "hold": 0.95,
+      "y_cash": 0.20025654244371957,
+      "y_rel": 0.036424111247824145,
+      "reservation_price": 0.7611505177819213,
+      "action": "HOLD"
+     },
+     {
+      "card": "sell_hf",
+      "group": "Public Markets",
+      "name": "Public Markets: HF secondary",
+      "bid": 0.8,
+      "hold": 0.95,
+      "y_cash": 0.20025654244371957,
+      "y_rel": -0.1732747156522022,
+      "reservation_price": 0.9358621893992909,
+      "action": "HOLD"
+     }
+    ],
+    "elastic_original": {
+     "u_S": 0.0,
+     "mu_sum": 0.24265676845106848,
+     "pinned": [],
+     "cards": [
+      {
+       "card": "sell_pe",
+       "group": "PE",
+       "name": "PE: 2018 buyout fund (s4.4 example)",
+       "bid": 0.88,
+       "hold": 0.95,
+       "y_cash": 0.20025654244371957,
+       "y_rel": 0.10233865650843883,
+       "reservation_price": 0.7062334705259965,
+       "action": "SELL"
+      },
+      {
+       "card": "sell_sec",
+       "group": "Secondaries",
+       "name": "Secondaries: S3 LP interest",
+       "bid": 0.87,
+       "hold": 0.95,
+       "y_cash": 0.20025654244371957,
+       "y_rel": 0.047953034558952536,
+       "reservation_price": 0.7515451351795859,
+       "action": "SELL"
+      },
+      {
+       "card": "sell_co",
+       "group": "Co-investment",
+       "name": "Co-investment: strip",
+       "bid": 0.75,
+       "hold": 0.95,
+       "y_cash": 0.20025654244371957,
+       "y_rel": 0.036424111247824145,
+       "reservation_price": 0.7611505177819213,
+       "action": "HOLD"
+      },
+      {
+       "card": "sell_hf",
+       "group": "Public Markets",
+       "name": "Public Markets: HF secondary",
+       "bid": 0.8,
+       "hold": 0.95,
+       "y_cash": 0.20025654244371957,
+       "y_rel": -0.1732747156522022,
+       "reservation_price": 0.9358621893992909,
+       "action": "HOLD"
+      }
+     ]
+    },
+    "prices": {
+     "priced_on": "restored_problem",
+     "recovery_target_hash": "95b61fae526726ba",
+     "binding_months": [
+      24
+     ],
+     "y_cash_5y": 0.20025654244371957,
+     "y_IG_5y": 0.0,
+     "mu_sum_5y": 0.24265676845106848,
+     "groups": {
+      "pe": {
+       "name": "PE",
+       "envelope_12m": 10.593805661248057,
+       "envelope_24m": 17.556421215208854,
+       "pacing_bn_yr": 1.7999999999999998,
+       "ftp_new_bp_yr": 299.27078396303835,
+       "hurdle_bp_yr": 299.27078396303835,
+       "ftp_hold_bp_yr": 163.85324760186003,
+       "glide_share": 0.3373303733953558
+      },
+      "sec": {
+       "name": "Secondaries",
+       "envelope_12m": 2.455991144888306,
+       "envelope_24m": 3.4401431853751436,
+       "pacing_bn_yr": 1.2000000000000002,
+       "ftp_new_bp_yr": 298.41554406775913,
+       "hurdle_bp_yr": 438.8463883349399,
+       "ftp_hold_bp_yr": 119.25343262458537,
+       "glide_share": 0.04056530845056373
+      },
+      "co": {
+       "name": "Co-investment",
+       "envelope_12m": 0.6204720813465078,
+       "envelope_24m": 0.9258196299385669,
+       "pacing_bn_yr": 0.0,
+       "ftp_new_bp_yr": 448.39354748936756,
+       "hurdle_bp_yr": 498.21505276596395,
+       "ftp_hold_bp_yr": 24.961822174384082,
+       "glide_share": 0.17010043546916234
+      },
+      "cs": {
+       "name": "Capital Solutions",
+       "envelope_12m": 0.17594674086658713,
+       "envelope_24m": 0.5385719814859081,
+       "pacing_bn_yr": 1.2000000000000002,
+       "ftp_new_bp_yr": 279.46119765040623,
+       "hurdle_bp_yr": 349.32649706300776,
+       "ftp_hold_bp_yr": 32.672034151414785,
+       "glide_share": 0.02518672767800425
+      },
+      "pc": {
+       "name": "Private Credit",
+       "envelope_12m": 1.0709643094047616,
+       "envelope_24m": 1.0257369298844594,
+       "pacing_bn_yr": 0.0,
+       "ftp_new_bp_yr": 270.04108058222437,
+       "hurdle_bp_yr": 450.0684676370406,
+       "ftp_hold_bp_yr": 35.55742981238331,
+       "glide_share": 0.42681715500691386
+      },
+      "ovl": {
+       "name": "Overlay",
+       "envelope_12m": 2.9429999999999996,
+       "envelope_24m": 1.315724353852528,
+       "glide_share": 0.0
+      },
+      "pm": {
+       "name": "Public Markets",
+       "cbc_tp_12m": 34.849411695617505,
+       "cbc_tp_24m": 40.62134544178857,
+       "glide_share": 0.0
+      },
+      "cf": {
+       "name": "Corporate Finance",
+       "glide_share": 0.0
+      },
+      "own": {
+       "name": "Owner (band)",
+       "glide_share": 0.0
+      }
+     },
+     "plan_ladder": {
+      "SH_TP": 25,
+      "SH_TPF": 25,
+      "min_head": 1.4210854715202004e-14,
+      "argmin": 24
+     },
+     "relief_by_owner": {
+      "pe": 3.8069383636509464,
+      "co": 1.9196666666666715,
+      "sec": 0.45779935977716235,
+      "pc": 4.8168404917271035,
+      "cs": 0.28424454900728957,
+      "ovl": 0.0,
+      "pm": 0.0,
+      "cf": 0.0,
+      "own": 0.0
+     },
+     "d0": 11.285489430829173
+    },
+    "cost_5y": 1.3759738637119405
+   },
+   "R0": {
+    "label": "t0, group levers + reserve (no revolver, no band)",
+    "u_star": 0.0,
+    "u_IG_star": 0.0,
+    "iis": [],
+    "phase1_levers": {
+     "pace_pe": 0.75,
+     "pace_co": 1.0,
+     "pace_sec": 1.0,
+     "pace_pc": 1.0,
+     "pace_cs": 1.0,
+     "sma_sell": 0.0,
+     "sma_ro": 0.0,
+     "cs_synd": 2.0,
+     "ovl_im": 1.0,
+     "p2s": 0.0,
+     "reserve_add": 10.62,
+     "rcf": 0.0,
+     "band": 0.0
+    },
+    "x": {
+     "pace_pe": 0.75,
+     "pace_co": 1.0,
+     "pace_sec": 0.0,
+     "pace_pc": 1.0,
+     "pace_cs": 0.0,
+     "sma_sell": 5.6000000000000005,
+     "sma_ro": 0.0,
+     "cs_synd": 0.3448693185597013,
+     "ovl_im": 0.0,
+     "p2s": 0.0,
+     "reserve_add": 0.0,
+     "rcf": 0.0,
+     "band": 0.0
+    },
+    "sell": {
+     "sell_pe": 0.5,
+     "sell_sec": 0.5,
+     "sell_co": 0.0,
+     "sell_hf": 0.0
+    },
+    "mu_sum": 0.24265676845106848,
+    "mu_months": [
+     24
+    ],
+    "y_IG": 0.0,
+    "y_cash": 0.20025654244371957,
+    "mu_sum_x10": 0.24265676845106848,
+    "cards": [
+     {
+      "card": "sell_pe",
+      "group": "PE",
+      "name": "PE: 2018 buyout fund (s4.4 example)",
+      "bid": 0.88,
+      "hold": 0.95,
+      "y_cash": 0.20025654244371957,
+      "y_rel": 0.10233865650843883,
+      "reservation_price": 0.7062334705259965,
+      "action": "SELL"
+     },
+     {
+      "card": "sell_sec",
+      "group": "Secondaries",
+      "name": "Secondaries: S3 LP interest",
+      "bid": 0.87,
+      "hold": 0.95,
+      "y_cash": 0.20025654244371957,
+      "y_rel": 0.047953034558952536,
+      "reservation_price": 0.7515451351795859,
+      "action": "SELL"
+     },
+     {
+      "card": "sell_co",
+      "group": "Co-investment",
+      "name": "Co-investment: strip",
+      "bid": 0.75,
+      "hold": 0.95,
+      "y_cash": 0.20025654244371957,
+      "y_rel": 0.036424111247824145,
+      "reservation_price": 0.7611505177819213,
+      "action": "HOLD"
+     },
+     {
+      "card": "sell_hf",
+      "group": "Public Markets",
+      "name": "Public Markets: HF secondary",
+      "bid": 0.8,
+      "hold": 0.95,
+      "y_cash": 0.20025654244371957,
+      "y_rel": -0.1732747156522022,
+      "reservation_price": 0.9358621893992909,
+      "action": "HOLD"
+     }
+    ],
+    "elastic_original": {
+     "u_S": 0.0,
+     "mu_sum": 0.24265676845106848,
+     "pinned": [],
+     "cards": [
+      {
+       "card": "sell_pe",
+       "group": "PE",
+       "name": "PE: 2018 buyout fund (s4.4 example)",
+       "bid": 0.88,
+       "hold": 0.95,
+       "y_cash": 0.20025654244371957,
+       "y_rel": 0.10233865650843883,
+       "reservation_price": 0.7062334705259965,
+       "action": "SELL"
+      },
+      {
+       "card": "sell_sec",
+       "group": "Secondaries",
+       "name": "Secondaries: S3 LP interest",
+       "bid": 0.87,
+       "hold": 0.95,
+       "y_cash": 0.20025654244371957,
+       "y_rel": 0.047953034558952536,
+       "reservation_price": 0.7515451351795859,
+       "action": "SELL"
+      },
+      {
+       "card": "sell_co",
+       "group": "Co-investment",
+       "name": "Co-investment: strip",
+       "bid": 0.75,
+       "hold": 0.95,
+       "y_cash": 0.20025654244371957,
+       "y_rel": 0.036424111247824145,
+       "reservation_price": 0.7611505177819213,
+       "action": "HOLD"
+      },
+      {
+       "card": "sell_hf",
+       "group": "Public Markets",
+       "name": "Public Markets: HF secondary",
+       "bid": 0.8,
+       "hold": 0.95,
+       "y_cash": 0.20025654244371957,
+       "y_rel": -0.1732747156522022,
+       "reservation_price": 0.9358621893992909,
+       "action": "HOLD"
+      }
+     ]
+    },
+    "prices": {
+     "priced_on": "restored_problem",
+     "recovery_target_hash": "95b61fae526726ba",
+     "binding_months": [
+      24
+     ],
+     "y_cash_5y": 0.20025654244371957,
+     "y_IG_5y": 0.0,
+     "mu_sum_5y": 0.24265676845106848,
+     "groups": {
+      "pe": {
+       "name": "PE",
+       "envelope_12m": 10.593805661248057,
+       "envelope_24m": 17.556421215208854,
+       "pacing_bn_yr": 1.7999999999999998,
+       "ftp_new_bp_yr": 299.27078396303835,
+       "hurdle_bp_yr": 299.27078396303835,
+       "ftp_hold_bp_yr": 163.85324760186003,
+       "glide_share": 0.3373303733953558
+      },
+      "sec": {
+       "name": "Secondaries",
+       "envelope_12m": 2.455991144888306,
+       "envelope_24m": 3.4401431853751436,
+       "pacing_bn_yr": 1.2000000000000002,
+       "ftp_new_bp_yr": 298.41554406775913,
+       "hurdle_bp_yr": 438.8463883349399,
+       "ftp_hold_bp_yr": 119.25343262458537,
+       "glide_share": 0.04056530845056373
+      },
+      "co": {
+       "name": "Co-investment",
+       "envelope_12m": 0.6204720813465078,
+       "envelope_24m": 0.9258196299385669,
+       "pacing_bn_yr": 0.0,
+       "ftp_new_bp_yr": 448.39354748936756,
+       "hurdle_bp_yr": 498.21505276596395,
+       "ftp_hold_bp_yr": 24.961822174384082,
+       "glide_share": 0.17010043546916234
+      },
+      "cs": {
+       "name": "Capital Solutions",
+       "envelope_12m": 0.17594674086658713,
+       "envelope_24m": 0.5385719814859081,
+       "pacing_bn_yr": 1.2000000000000002,
+       "ftp_new_bp_yr": 279.46119765040623,
+       "hurdle_bp_yr": 349.32649706300776,
+       "ftp_hold_bp_yr": 32.672034151414785,
+       "glide_share": 0.02518672767800425
+      },
+      "pc": {
+       "name": "Private Credit",
+       "envelope_12m": 1.0709643094047616,
+       "envelope_24m": 1.0257369298844594,
+       "pacing_bn_yr": 0.0,
+       "ftp_new_bp_yr": 270.04108058222437,
+       "hurdle_bp_yr": 450.0684676370406,
+       "ftp_hold_bp_yr": 35.55742981238331,
+       "glide_share": 0.42681715500691386
+      },
+      "ovl": {
+       "name": "Overlay",
+       "envelope_12m": 2.9429999999999996,
+       "envelope_24m": 1.315724353852528,
+       "glide_share": 0.0
+      },
+      "pm": {
+       "name": "Public Markets",
+       "cbc_tp_12m": 34.849411695617505,
+       "cbc_tp_24m": 40.62134544178857,
+       "glide_share": 0.0
+      },
+      "cf": {
+       "name": "Corporate Finance",
+       "glide_share": 0.0
+      },
+      "own": {
+       "name": "Owner (band)",
+       "glide_share": 0.0
+      }
+     },
+     "plan_ladder": {
+      "SH_TP": 25,
+      "SH_TPF": 25,
+      "min_head": 1.4210854715202004e-14,
+      "argmin": 24
+     },
+     "relief_by_owner": {
+      "pe": 3.8069383636509464,
+      "co": 1.9196666666666715,
+      "sec": 0.45779935977716235,
+      "pc": 4.8168404917271035,
+      "cs": 0.28424454900728957,
+      "ovl": 0.0,
+      "pm": 0.0,
+      "cf": 0.0,
+      "own": 0.0
+     },
+     "d0": 11.285489430829173
+    },
+    "cost_5y": 1.3759738637119405
+   },
+   "R1": {
+    "label": "+ CF revolver signed (Mode B)",
+    "u_star": 0.0,
+    "u_IG_star": 0.0,
+    "iis": [],
+    "phase1_levers": {
+     "pace_pe": 0.75,
+     "pace_co": 1.0,
+     "pace_sec": 1.0,
+     "pace_pc": 1.0,
+     "pace_cs": 1.0,
+     "sma_sell": 0.0,
+     "sma_ro": 0.0,
+     "cs_synd": 2.0,
+     "ovl_im": 1.0,
+     "p2s": 0.0,
+     "reserve_add": 10.62,
+     "rcf": 0.0,
+     "band": 0.0
+    },
+    "x": {
+     "pace_pe": 0.0,
+     "pace_co": 0.0,
+     "pace_sec": 0.0,
+     "pace_pc": 0.0,
+     "pace_cs": 0.0,
+     "sma_sell": 0.5833333333333339,
+     "sma_ro": 0.0,
+     "cs_synd": 0.0,
+     "ovl_im": 0.0,
+     "p2s": 0.0,
+     "reserve_add": 0.0,
+     "rcf": 13.635534422802554,
+     "band": 0.0
+    },
+    "sell": {
+     "sell_pe": 0.0,
+     "sell_sec": 0.0,
+     "sell_co": 0.0,
+     "sell_hf": 0.0
+    },
+    "mu_sum": 0.0113062258612078,
+    "mu_months": [
+     24
+    ],
+    "y_IG": 0.03295866192737182,
+    "y_cash": 0.042289313256431295,
+    "mu_sum_x10": 0.0113062258612078,
+    "cards": [
+     {
+      "card": "sell_pe",
+      "group": "PE",
+      "name": "PE: 2018 buyout fund (s4.4 example)",
+      "bid": 0.88,
+      "hold": 0.95,
+      "y_cash": 0.042289313256431295,
+      "y_rel": 0.004768315230614694,
+      "reservation_price": 0.9068803380667808,
+      "action": "HOLD"
+     },
+     {
+      "card": "sell_sec",
+      "group": "Secondaries",
+      "name": "Secondaries: S3 LP interest",
+      "bid": 0.87,
+      "hold": 0.95,
+      "y_cash": 0.042289313256431295,
+      "y_rel": 0.00223429926523211,
+      "reservation_price": 0.9093115401650405,
+      "action": "HOLD"
+     },
+     {
+      "card": "sell_co",
+      "group": "Co-investment",
+      "name": "Co-investment: strip",
+      "bid": 0.75,
+      "hold": 0.95,
+      "y_cash": 0.042289313256431295,
+      "y_rel": 0.0016971264852424764,
+      "reservation_price": 0.9098269179715263,
+      "action": "HOLD"
+     },
+     {
+      "card": "sell_hf",
+      "group": "Public Markets",
+      "name": "Public Markets: HF secondary",
+      "bid": 0.8,
+      "hold": 0.95,
+      "y_cash": 0.042289313256431295,
+      "y_rel": -0.008073473835927244,
+      "reservation_price": 0.9192010909548828,
+      "action": "HOLD"
+     }
+    ],
+    "elastic_original": {
+     "u_S": 0.0,
+     "mu_sum": 0.0113062258612078,
+     "pinned": [],
+     "cards": [
+      {
+       "card": "sell_pe",
+       "group": "PE",
+       "name": "PE: 2018 buyout fund (s4.4 example)",
+       "bid": 0.88,
+       "hold": 0.95,
+       "y_cash": 0.042289313256431295,
+       "y_rel": 0.004768315230614694,
+       "reservation_price": 0.9068803380667808,
+       "action": "HOLD"
+      },
+      {
+       "card": "sell_sec",
+       "group": "Secondaries",
+       "name": "Secondaries: S3 LP interest",
+       "bid": 0.87,
+       "hold": 0.95,
+       "y_cash": 0.042289313256431295,
+       "y_rel": 0.00223429926523211,
+       "reservation_price": 0.9093115401650405,
+       "action": "HOLD"
+      },
+      {
+       "card": "sell_co",
+       "group": "Co-investment",
+       "name": "Co-investment: strip",
+       "bid": 0.75,
+       "hold": 0.95,
+       "y_cash": 0.042289313256431295,
+       "y_rel": 0.0016971264852424764,
+       "reservation_price": 0.9098269179715263,
+       "action": "HOLD"
+      },
+      {
+       "card": "sell_hf",
+       "group": "Public Markets",
+       "name": "Public Markets: HF secondary",
+       "bid": 0.8,
+       "hold": 0.95,
+       "y_cash": 0.042289313256431295,
+       "y_rel": -0.008073473835927244,
+       "reservation_price": 0.9192010909548828,
+       "action": "HOLD"
+      }
+     ]
+    },
+    "prices": {
+     "priced_on": "restored_problem",
+     "recovery_target_hash": "684473e1b79d4f75",
+     "binding_months": [
+      24
+     ],
+     "y_cash_5y": 0.042289313256431295,
+     "y_IG_5y": 0.03295866192737182,
+     "mu_sum_5y": 0.0113062258612078,
+     "groups": {
+      "pe": {
+       "name": "PE",
+       "envelope_12m": 11.416010494749967,
+       "envelope_24m": 20.914343400524892,
+       "pacing_bn_yr": 7.199999999999999,
+       "ftp_new_bp_yr": 13.944070461109522,
+       "hurdle_bp_yr": 13.944070461109522,
+       "ftp_hold_bp_yr": 9.094703470199818,
+       "glide_share": 0.0
+      },
+      "sec": {
+       "name": "Secondaries",
+       "envelope_12m": 2.4828672567594308,
+       "envelope_24m": 3.4812830618090667,
+       "pacing_bn_yr": 1.2000000000000002,
+       "ftp_new_bp_yr": 13.904221849083303,
+       "hurdle_bp_yr": 20.447385072181326,
+       "ftp_hold_bp_yr": 5.622881797658622,
+       "glide_share": 0.0
+      },
+      "co": {
+       "name": "Co-investment",
+       "envelope_12m": 1.6204720813465077,
+       "envelope_24m": 3.0258196299385673,
+       "pacing_bn_yr": 1.2000000000000002,
+       "ftp_new_bp_yr": 86.80954439729689,
+       "hurdle_bp_yr": 96.45504933032987,
+       "ftp_hold_bp_yr": 3.8011777945957386,
+       "glide_share": 0.0
+      },
+      "cs": {
+       "name": "Capital Solutions",
+       "envelope_12m": 0.1736600195977605,
+       "envelope_24m": 0.5270128798286333,
+       "pacing_bn_yr": 1.2000000000000002,
+       "ftp_new_bp_yr": 13.021072687351264,
+       "hurdle_bp_yr": 16.27634085918908,
+       "ftp_hold_bp_yr": 1.4896316627770232,
+       "glide_share": 0.0
+      },
+      "pc": {
+       "name": "Private Credit",
+       "envelope_12m": 0.7790407267403708,
+       "envelope_24m": 0.8543262657140772,
+       "pacing_bn_yr": 1.2000000000000002,
+       "ftp_new_bp_yr": 12.58215655123137,
+       "hurdle_bp_yr": 20.97026091871895,
+       "ftp_hold_bp_yr": 1.379886531332227,
+       "glide_share": 0.03821805916158078
+      },
+      "ovl": {
+       "name": "Overlay",
+       "envelope_12m": 2.9429999999999996,
+       "envelope_24m": 1.315724353852528,
+       "glide_share": 0.0
+      },
+      "pm": {
+       "name": "Public Markets",
+       "cbc_tp_12m": 34.849411695617505,
+       "cbc_tp_24m": 40.62134544178857,
+       "glide_share": 0.0
+      },
+      "cf": {
+       "name": "Corporate Finance",
+       "glide_share": 0.9617819408384193
+      },
+      "own": {
+       "name": "Owner (band)",
+       "glide_share": 0.0
+      }
+     },
+     "plan_ladder": {
+      "SH_TP": 17,
+      "SH_TPF": 25,
+      "min_head": 1.4210854715202004e-14,
+      "argmin": 24
+     },
+     "relief_by_owner": {
+      "pe": 0.0,
+      "co": 0.0,
+      "sec": 0.0,
+      "pc": 0.431309502734824,
+      "cs": 0.0,
+      "ovl": 0.0,
+      "pm": 0.0,
+      "cf": 10.85417992809435,
+      "own": 0.0
+     },
+     "d0": 11.285489430829173
+    },
+    "cost_5y": 0.14605314313855636
+   },
+   "R2": {
+    "label": "+ owner band (Mode H)",
+    "u_star": 0.0,
+    "u_IG_star": 0.0,
+    "iis": [],
+    "phase1_levers": {
+     "pace_pe": 0.75,
+     "pace_co": 1.0,
+     "pace_sec": 1.0,
+     "pace_pc": 1.0,
+     "pace_cs": 1.0,
+     "sma_sell": 0.0,
+     "sma_ro": 0.0,
+     "cs_synd": 2.0,
+     "ovl_im": 1.0,
+     "p2s": 0.0,
+     "reserve_add": 10.62,
+     "rcf": 0.0,
+     "band": 1.0
+    },
+    "x": {
+     "pace_pe": 0.0,
+     "pace_co": 0.0,
+     "pace_sec": 0.0,
+     "pace_pc": 0.0,
+     "pace_cs": 0.0,
+     "sma_sell": 0.5833333333333339,
+     "sma_ro": 0.0,
+     "cs_synd": 0.0,
+     "ovl_im": 0.0,
+     "p2s": 0.0,
+     "reserve_add": 0.0,
+     "rcf": 13.635534422802554,
+     "band": 0.0
+    },
+    "sell": {
+     "sell_pe": 0.0,
+     "sell_sec": 0.0,
+     "sell_co": 0.0,
+     "sell_hf": 0.0
+    },
+    "mu_sum": 0.0113062258612078,
+    "mu_months": [
+     24
+    ],
+    "y_IG": 0.03295866192737182,
+    "y_cash": 0.042289313256431295,
+    "mu_sum_x10": 0.0113062258612078,
+    "cards": [
+     {
+      "card": "sell_pe",
+      "group": "PE",
+      "name": "PE: 2018 buyout fund (s4.4 example)",
+      "bid": 0.88,
+      "hold": 0.95,
+      "y_cash": 0.042289313256431295,
+      "y_rel": 0.004768315230614694,
+      "reservation_price": 0.9068803380667808,
+      "action": "HOLD"
+     },
+     {
+      "card": "sell_sec",
+      "group": "Secondaries",
+      "name": "Secondaries: S3 LP interest",
+      "bid": 0.87,
+      "hold": 0.95,
+      "y_cash": 0.042289313256431295,
+      "y_rel": 0.00223429926523211,
+      "reservation_price": 0.9093115401650405,
+      "action": "HOLD"
+     },
+     {
+      "card": "sell_co",
+      "group": "Co-investment",
+      "name": "Co-investment: strip",
+      "bid": 0.75,
+      "hold": 0.95,
+      "y_cash": 0.042289313256431295,
+      "y_rel": 0.0016971264852424764,
+      "reservation_price": 0.9098269179715263,
+      "action": "HOLD"
+     },
+     {
+      "card": "sell_hf",
+      "group": "Public Markets",
+      "name": "Public Markets: HF secondary",
+      "bid": 0.8,
+      "hold": 0.95,
+      "y_cash": 0.042289313256431295,
+      "y_rel": -0.008073473835927244,
+      "reservation_price": 0.9192010909548828,
+      "action": "HOLD"
+     }
+    ],
+    "elastic_original": {
+     "u_S": 0.0,
+     "mu_sum": 0.0113062258612078,
+     "pinned": [],
+     "cards": [
+      {
+       "card": "sell_pe",
+       "group": "PE",
+       "name": "PE: 2018 buyout fund (s4.4 example)",
+       "bid": 0.88,
+       "hold": 0.95,
+       "y_cash": 0.042289313256431295,
+       "y_rel": 0.004768315230614694,
+       "reservation_price": 0.9068803380667808,
+       "action": "HOLD"
+      },
+      {
+       "card": "sell_sec",
+       "group": "Secondaries",
+       "name": "Secondaries: S3 LP interest",
+       "bid": 0.87,
+       "hold": 0.95,
+       "y_cash": 0.042289313256431295,
+       "y_rel": 0.00223429926523211,
+       "reservation_price": 0.9093115401650405,
+       "action": "HOLD"
+      },
+      {
+       "card": "sell_co",
+       "group": "Co-investment",
+       "name": "Co-investment: strip",
+       "bid": 0.75,
+       "hold": 0.95,
+       "y_cash": 0.042289313256431295,
+       "y_rel": 0.0016971264852424764,
+       "reservation_price": 0.9098269179715263,
+       "action": "HOLD"
+      },
+      {
+       "card": "sell_hf",
+       "group": "Public Markets",
+       "name": "Public Markets: HF secondary",
+       "bid": 0.8,
+       "hold": 0.95,
+       "y_cash": 0.042289313256431295,
+       "y_rel": -0.008073473835927244,
+       "reservation_price": 0.9192010909548828,
+       "action": "HOLD"
+      }
+     ]
+    },
+    "prices": {
+     "priced_on": "restored_problem",
+     "recovery_target_hash": "684473e1b79d4f75",
+     "binding_months": [
+      24
+     ],
+     "y_cash_5y": 0.042289313256431295,
+     "y_IG_5y": 0.03295866192737182,
+     "mu_sum_5y": 0.0113062258612078,
+     "groups": {
+      "pe": {
+       "name": "PE",
+       "envelope_12m": 11.416010494749967,
+       "envelope_24m": 20.914343400524892,
+       "pacing_bn_yr": 7.199999999999999,
+       "ftp_new_bp_yr": 13.944070461109522,
+       "hurdle_bp_yr": 13.944070461109522,
+       "ftp_hold_bp_yr": 9.094703470199818,
+       "glide_share": 0.0
+      },
+      "sec": {
+       "name": "Secondaries",
+       "envelope_12m": 2.4828672567594308,
+       "envelope_24m": 3.4812830618090667,
+       "pacing_bn_yr": 1.2000000000000002,
+       "ftp_new_bp_yr": 13.904221849083303,
+       "hurdle_bp_yr": 20.447385072181326,
+       "ftp_hold_bp_yr": 5.622881797658622,
+       "glide_share": 0.0
+      },
+      "co": {
+       "name": "Co-investment",
+       "envelope_12m": 1.6204720813465077,
+       "envelope_24m": 3.0258196299385673,
+       "pacing_bn_yr": 1.2000000000000002,
+       "ftp_new_bp_yr": 86.80954439729689,
+       "hurdle_bp_yr": 96.45504933032987,
+       "ftp_hold_bp_yr": 3.8011777945957386,
+       "glide_share": 0.0
+      },
+      "cs": {
+       "name": "Capital Solutions",
+       "envelope_12m": 0.1736600195977605,
+       "envelope_24m": 0.5270128798286333,
+       "pacing_bn_yr": 1.2000000000000002,
+       "ftp_new_bp_yr": 13.021072687351264,
+       "hurdle_bp_yr": 16.27634085918908,
+       "ftp_hold_bp_yr": 1.4896316627770232,
+       "glide_share": 0.0
+      },
+      "pc": {
+       "name": "Private Credit",
+       "envelope_12m": 0.7790407267403708,
+       "envelope_24m": 0.8543262657140772,
+       "pacing_bn_yr": 1.2000000000000002,
+       "ftp_new_bp_yr": 12.58215655123137,
+       "hurdle_bp_yr": 20.97026091871895,
+       "ftp_hold_bp_yr": 1.379886531332227,
+       "glide_share": 0.03821805916158078
+      },
+      "ovl": {
+       "name": "Overlay",
+       "envelope_12m": 2.9429999999999996,
+       "envelope_24m": 1.315724353852528,
+       "glide_share": 0.0
+      },
+      "pm": {
+       "name": "Public Markets",
+       "cbc_tp_12m": 34.849411695617505,
+       "cbc_tp_24m": 40.62134544178857,
+       "glide_share": 0.0
+      },
+      "cf": {
+       "name": "Corporate Finance",
+       "glide_share": 0.9617819408384193
+      },
+      "own": {
+       "name": "Owner (band)",
+       "glide_share": 0.0
+      }
+     },
+     "plan_ladder": {
+      "SH_TP": 17,
+      "SH_TPF": 25,
+      "min_head": 1.4210854715202004e-14,
+      "argmin": 24
+     },
+     "relief_by_owner": {
+      "pe": 0.0,
+      "co": 0.0,
+      "sec": 0.0,
+      "pc": 0.431309502734824,
+      "cs": 0.0,
+      "ovl": 0.0,
+      "pm": 0.0,
+      "cf": 10.85417992809435,
+      "own": 0.0
+     },
+     "d0": 11.285489430829173
+    },
+    "cost_5y": 0.14605314313855636
+   }
+  },
+  "levers": {
+   "pace_pe": {
+    "owner": "PE",
+    "cap": 0.75,
+    "cost": 0.9449999999999998,
+    "slope24": 4.31059975011398,
+    "cost_per_relief": 0.21922703446893033,
+    "ig": 0.0,
+    "unit": "share of group flow cut (stage rule)",
+    "note": "PE: protected core 25%; others: contingent budget / pause"
+   },
+   "pace_co": {
+    "owner": "Co-investment",
+    "cap": 1.0,
+    "cost": 0.23625000000000007,
+    "slope24": 1.9196666666666715,
+    "cost_per_relief": 0.12306824101406466,
+    "ig": 0.0,
+    "unit": "share of group flow cut (stage rule)",
+    "note": "PE: protected core 25%; others: contingent budget / pause"
+   },
+   "pace_sec": {
+    "owner": "Secondaries",
+    "cap": 1.0,
+    "cost": 0.21420000000000003,
+    "slope24": 0.7172686992388435,
+    "cost_per_relief": 0.29863285575866666,
+    "ig": 0.0,
+    "unit": "share of group flow cut (stage rule)",
+    "note": "PE: protected core 25%; others: contingent budget / pause"
+   },
+   "pace_pc": {
+    "owner": "Private Credit",
+    "cap": 1.0,
+    "cost": 0.06300000000000001,
+    "slope24": 0.6762692654727971,
+    "cost_per_relief": 0.0931581593552904,
+    "ig": 0.0,
+    "unit": "share of group flow cut (stage rule)",
+    "note": "PE: protected core 25%; others: contingent budget / pause"
+   },
+   "pace_cs": {
+    "owner": "Capital Solutions",
+    "cap": 1.0,
+    "cost": 0.2940000000000001,
+    "slope24": 0.6897851978805392,
+    "cost_per_relief": 0.42621964185859007,
+    "ig": 0.0,
+    "unit": "share of group flow cut (stage rule)",
+    "note": "PE: protected core 25%; others: contingent budget / pause"
+   },
+   "sma_sell": {
+    "owner": "Private Credit",
+    "cap": 5.6000000000000005,
+    "cost": 0.040000000000000036,
+    "slope24": 0.7393877189739833,
+    "cost_per_relief": 0.054098815781666386,
+    "ig": 0.96,
+    "unit": "$bn SMA loans sold at 0.96",
+    "note": "alpha* ~0 (G6)"
+   },
+   "sma_ro": {
+    "owner": "Private Credit",
+    "cap": 5.6000000000000005,
+    "cost": 0.005,
+    "slope24": 0.10333016152555174,
+    "cost_per_relief": 0.04838858205755913,
+    "ig": 0.0,
+    "unit": "$bn SMA book in run-off",
+    "note": "C 5-8%/yr principal (G6)"
+   },
+   "cs_synd": {
+    "owner": "Capital Solutions",
+    "cap": 2.0,
+    "cost": 0.19999999999999998,
+    "slope24": 0.8242094431432676,
+    "cost_per_relief": 0.24265676845106848,
+    "ig": 0.9,
+    "unit": "$bn sold down at 0.90",
+    "note": "discount + 2%/yr carry x 5y (gap_02 amber convention)"
+   },
+   "ovl_im": {
+    "owner": "Overlay",
+    "cap": 1.0,
+    "cost": 0.66375,
+    "slope24": 0.9616000000000042,
+    "cost_per_relief": 0.6902558236272848,
+    "ig": 1.0,
+    "unit": "$bn opportunistic IM released",
+    "note": "Sharpe 0.15 x 1.25% NAV vol x 2y forgone"
+   },
+   "p2s": {
+    "owner": "Public Markets",
+    "cap": 11.0,
+    "cost": 0.026344999999999997,
+    "slope24": 0.0,
+    "cost_per_relief": null,
+    "ig": 0.781,
+    "unit": "$bn DM converted to futures",
+    "note": "0.40-0.70%/yr per $ freed (GC2); counts in T2 net of stressed IM and P99 30d VM; no T4' credit for exposure kept through the s* rebound"
+   },
+   "reserve_add": {
+    "owner": "Corporate Finance",
+    "cap": 10.62,
+    "cost": 0.075,
+    "slope24": 0.3007242044798204,
+    "cost_per_relief": 0.24939794962541084,
+    "ig": 1.0,
+    "unit": "$bn Treasury top-up from DM",
+    "note": "1.5%/yr buffer carry x 5y (gap_02)"
+   },
+   "rcf": {
+    "owner": "Corporate Finance",
+    "cap": 15.0,
+    "cost": 0.009,
+    "slope24": 0.7960215999999989,
+    "cost_per_relief": 0.0113062258612078,
+    "ig": 0.0,
+    "unit": "$bn committed revolver",
+    "note": "PIF $15bn precedent; SOFR+85bp"
+   },
+   "band": {
+    "owner": "Owner (band)",
+    "cap": 1.0,
+    "cost": 0.9656156142227645,
+    "slope24": 13.408849840828516,
+    "cost_per_relief": 0.07201330656135532,
+    "ig": 0.0,
+    "unit": "share of band (5% draw in crisis)",
+    "note": "0.065 per $ withheld (gap_02)"
+   }
+  },
+  "cash_slope24": 0.8252666666666713,
+  "commit_slope24": {
+   "pe": 0.6166545154980625,
+   "sec": 0.6148922735034574,
+   "pc": 0.5564260216312036,
+   "cs": 0.57583639523898,
+   "co": 0.9239254902131151
+  }
+ },
+ "interim_glide_path": [
+  {
+   "t": 0,
+   "g_t": 11.285489430829173,
+   "need": 0.0,
+   "state": "I",
+   "mu_interim": 0.0,
+   "x": {
+    "p2s": 0.7170294494238162
+   },
+   "relief_by_owner": {},
+   "share": {}
+  },
+  {
+   "t": 1,
+   "g_t": 8.46411707312188,
+   "need": 2.8213723577072933,
+   "state": "I",
+   "mu_interim": 0.12306824101406466,
+   "x": {
+    "pace_co": 0.8160032233155423,
+    "pace_pc": 1.0,
+    "sma_ro": 5.6000000000000005,
+    "p2s": 0.7170294494238162
+   },
+   "relief_by_owner": {
+    "Co-investment": 1.5664541876914067,
+    "Private Credit": 1.254918170015887
+   },
+   "share": {
+    "Co-investment": 0.5552100145208555,
+    "Private Credit": 0.44478998547914456
+   }
+  },
+  {
+   "t": 2,
+   "g_t": 5.642744715414587,
+   "need": 5.642744715414587,
+   "state": "R1 (revolver signed)",
+   "note": "terminal plan: revolver carries the deficit; interim group levers released"
+  },
+  {
+   "t": 3,
+   "g_t": 2.8213723577072933,
+   "need": 8.46411707312188,
+   "state": "R1 (revolver signed)",
+   "note": "terminal plan: revolver carries the deficit; interim group levers released"
+  },
+  {
+   "t": 4,
+   "g_t": 0.0,
+   "need": 11.285489430829173,
+   "state": "R1 (revolver signed)",
+   "note": "terminal plan: revolver carries the deficit; interim group levers released"
+  }
+ ],
+ "recovery_reverse": {
+  "T4 literal canonical": {
+   "R0x": {
+    "u_star": 1.6508304894978565,
+    "iis": [
+     "T4' row (binding month 24)",
+     "cap:pace_pe (PE)",
+     "cap:pace_co (Co-investment)",
+     "cap:pace_sec (Secondaries)",
+     "cap:pace_pc (Private Credit)",
+     "cap:pace_cs (Capital Solutions)",
+     "cap:sma_sell (Private Credit)",
+     "cap:cs_synd (Capital Solutions)",
+     "cap:ovl_im (Overlay)",
+     "unavailable:rcf",
+     "unavailable:band",
+     "unavailable:reserve_add"
+    ],
+    "mu_sum": 0.4103693879328098,
+    "elastic_mu_sum": 100.0,
+    "elastic_pinned": [
+     "T4'"
+    ],
+    "elastic_cards": [
+     [
+      "sell_pe",
+      -0.5453800159019471,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      -0.2629368896947079,
+      "SELL"
+     ],
+     [
+      "sell_co",
+      -0.19294454363304464,
+      "SELL"
+     ],
+     [
+      "sell_hf",
+      0.8550793035288019,
+      "HOLD"
+     ]
+    ],
+    "restored_cards": [
+     [
+      "sell_pe",
+      0.5671046981903296,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      0.6394248742680865,
+      "SELL"
+     ],
+     [
+      "sell_co",
+      0.6573465665367123,
+      "SELL"
+     ],
+     [
+      "sell_hf",
+      0.9256953494517566,
+      "HOLD"
+     ]
+    ]
+   },
+   "R0": {
+    "u_star": 0.0,
+    "iis": [],
+    "mu_sum": 0.23994889399575,
+    "elastic_mu_sum": 0.23994889399575,
+    "elastic_pinned": [],
+    "elastic_cards": [
+     [
+      "sell_pe",
+      0.6998325823241297,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      0.747083492977063,
+      "SELL"
+     ],
+     [
+      "sell_co",
+      0.7587927603774041,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.9341203805937769,
+      "HOLD"
+     ]
+    ],
+    "restored_cards": [
+     [
+      "sell_pe",
+      0.6998325823241297,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      0.747083492977063,
+      "SELL"
+     ],
+     [
+      "sell_co",
+      0.7587927603774041,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.9341203805937769,
+      "HOLD"
+     ]
+    ]
+   },
+   "R1": {
+    "u_star": 0.0,
+    "iis": [],
+    "mu_sum": 0.21057573138505722,
+    "elastic_mu_sum": 0.21057573138505722,
+    "elastic_pinned": [],
+    "elastic_cards": [
+     [
+      "sell_pe",
+      0.7259226724060946,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      0.7682457610155229,
+      "SELL"
+     ],
+     [
+      "sell_co",
+      0.7787338628296063,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.9357764743594026,
+      "HOLD"
+     ]
+    ],
+    "restored_cards": [
+     [
+      "sell_pe",
+      0.7259226724060946,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      0.7682457610155229,
+      "SELL"
+     ],
+     [
+      "sell_co",
+      0.7787338628296063,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.9357764743594026,
+      "HOLD"
+     ]
+    ]
+   },
+   "R2": {
+    "u_star": 0.0,
+    "iis": [],
+    "mu_sum": 0.07175428521140437,
+    "elastic_mu_sum": 0.07175428521140437,
+    "elastic_pinned": [],
+    "elastic_cards": [
+     [
+      "sell_pe",
+      0.8653864608650097,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      0.8813680255901012,
+      "HOLD"
+     ],
+     [
+      "sell_co",
+      0.8853284236492301,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.9446290735597789,
+      "HOLD"
+     ]
+    ],
+    "restored_cards": [
+     [
+      "sell_pe",
+      0.8653864608650097,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      0.8813680255901012,
+      "HOLD"
+     ],
+     [
+      "sell_co",
+      0.8853284236492301,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.9446290735597789,
+      "HOLD"
+     ]
+    ]
+   }
+  },
+  "critic reading": {
+   "R0x": {
+    "u_star": 30.136803835066168,
+    "iis": [
+     "T4' row (binding month 24)",
+     "cap:pace_pe (PE)",
+     "cap:pace_co (Co-investment)",
+     "cap:pace_sec (Secondaries)",
+     "cap:pace_pc (Private Credit)",
+     "cap:pace_cs (Capital Solutions)",
+     "cap:sma_sell (Private Credit)",
+     "cap:cs_synd (Capital Solutions)",
+     "cap:ovl_im (Overlay)",
+     "unavailable:rcf",
+     "unavailable:band",
+     "unavailable:reserve_add"
+    ],
+    "mu_sum": 0.28668648498530597,
+    "elastic_mu_sum": 100.0,
+    "elastic_pinned": [
+     "T4'"
+    ],
+    "elastic_cards": [
+     [
+      "sell_pe",
+      -0.4572050490348845,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      -0.19274251293879602,
+      "SELL"
+     ],
+     [
+      "sell_co",
+      -0.1272059442308011,
+      "SELL"
+     ],
+     [
+      "sell_hf",
+      -0.06966054683637436,
+      "SELL"
+     ]
+    ],
+    "restored_cards": [
+     [
+      "sell_pe",
+      0.6628738502892662,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      0.7168347920753153,
+      "SELL"
+     ],
+     [
+      "sell_co",
+      0.7302068750217808,
+      "SELL"
+     ],
+     [
+      "sell_hf",
+      0.741948439194513,
+      "SELL"
+     ]
+    ]
+   },
+   "R0": {
+    "u_star": 26.42811715826533,
+    "iis": [
+     "T4' row (binding month 24)",
+     "cap:pace_pe (PE)",
+     "cap:pace_co (Co-investment)",
+     "cap:pace_sec (Secondaries)",
+     "cap:pace_pc (Private Credit)",
+     "cap:pace_cs (Capital Solutions)",
+     "cap:sma_sell (Private Credit)",
+     "cap:cs_synd (Capital Solutions)",
+     "cap:ovl_im (Overlay)",
+     "cap:reserve_add (Corporate Finance)",
+     "unavailable:rcf",
+     "unavailable:band"
+    ],
+    "mu_sum": 0.28668648498530597,
+    "elastic_mu_sum": 100.0,
+    "elastic_pinned": [
+     "T4'"
+    ],
+    "elastic_cards": [
+     [
+      "sell_pe",
+      -0.4572050490348845,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      -0.19274251293879602,
+      "SELL"
+     ],
+     [
+      "sell_co",
+      -0.1272059442308011,
+      "SELL"
+     ],
+     [
+      "sell_hf",
+      -0.06966054683637436,
+      "SELL"
+     ]
+    ],
+    "restored_cards": [
+     [
+      "sell_pe",
+      0.6628738502892662,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      0.7168347920753153,
+      "SELL"
+     ],
+     [
+      "sell_co",
+      0.7302068750217808,
+      "SELL"
+     ],
+     [
+      "sell_hf",
+      0.741948439194513,
+      "SELL"
+     ]
+    ]
+   },
+   "R1": {
+    "u_star": 18.989503158265318,
+    "iis": [
+     "T4' row (binding month 24)",
+     "cap:pace_pe (PE)",
+     "cap:pace_co (Co-investment)",
+     "cap:pace_sec (Secondaries)",
+     "cap:pace_pc (Private Credit)",
+     "cap:pace_cs (Capital Solutions)",
+     "cap:sma_sell (Private Credit)",
+     "cap:cs_synd (Capital Solutions)",
+     "cap:ovl_im (Overlay)",
+     "cap:reserve_add (Corporate Finance)",
+     "cap:rcf (Corporate Finance)",
+     "unavailable:band"
+    ],
+    "mu_sum": 0.28668648498530597,
+    "elastic_mu_sum": 100.0,
+    "elastic_pinned": [
+     "T4'"
+    ],
+    "elastic_cards": [
+     [
+      "sell_pe",
+      -0.4572050490348845,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      -0.19274251293879602,
+      "SELL"
+     ],
+     [
+      "sell_co",
+      -0.1272059442308011,
+      "SELL"
+     ],
+     [
+      "sell_hf",
+      -0.06966054683637436,
+      "SELL"
+     ]
+    ],
+    "restored_cards": [
+     [
+      "sell_pe",
+      0.6628738502892662,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      0.7168347920753153,
+      "SELL"
+     ],
+     [
+      "sell_co",
+      0.7302068750217808,
+      "SELL"
+     ],
+     [
+      "sell_hf",
+      0.741948439194513,
+      "SELL"
+     ]
+    ]
+   },
+   "R2": {
+    "u_star": 2.6465031582653076,
+    "iis": [
+     "T4' row (binding month 24)",
+     "cap:pace_pe (PE)",
+     "cap:pace_co (Co-investment)",
+     "cap:pace_sec (Secondaries)",
+     "cap:pace_pc (Private Credit)",
+     "cap:pace_cs (Capital Solutions)",
+     "cap:sma_sell (Private Credit)",
+     "cap:cs_synd (Capital Solutions)",
+     "cap:ovl_im (Overlay)",
+     "cap:reserve_add (Corporate Finance)",
+     "cap:rcf (Corporate Finance)",
+     "cap:band (Owner (band))"
+    ],
+    "mu_sum": 0.28668648498530597,
+    "elastic_mu_sum": 100.0,
+    "elastic_pinned": [
+     "T4'"
+    ],
+    "elastic_cards": [
+     [
+      "sell_pe",
+      -0.4572050490348845,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      -0.19274251293879602,
+      "SELL"
+     ],
+     [
+      "sell_co",
+      -0.1272059442308011,
+      "SELL"
+     ],
+     [
+      "sell_hf",
+      -0.06966054683637436,
+      "SELL"
+     ]
+    ],
+    "restored_cards": [
+     [
+      "sell_pe",
+      0.6628738502892662,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      0.7168347920753153,
+      "SELL"
+     ],
+     [
+      "sell_co",
+      0.7302068750217808,
+      "SELL"
+     ],
+     [
+      "sell_hf",
+      0.741948439194513,
+      "SELL"
+     ]
+    ]
+   }
+  }
+ },
+ "saa": [
+  {
+   "seed": 20261018,
+   "gstar_q": 11.101740273920349,
+   "theta": 0.7594775358182917,
+   "fac_need": 13.883265923947965,
+   "R0": {
+    "u_star": 0.0,
+    "mu_sum": 0.24266035205729028,
+    "y_IG": 0.0,
+    "y_cash": 0.20025949987447914,
+    "groups": {
+     "pe": {
+      "envelope_12m": 10.590497470982406,
+      "envelope_24m": 17.55120831941543,
+      "pacing_bn_yr": 1.7999999999999998,
+      "ftp_new_bp_yr": 299.22497546758706,
+      "hurdle_bp_yr": 299.22497546758706,
+      "ftp_hold_bp_yr": 163.80701499308424
+     },
+     "sec": {
+      "envelope_12m": 2.4554059152066143,
+      "envelope_24m": 3.439056960901289,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 298.3680187467286,
+      "hurdle_bp_yr": 438.7764981569538,
+      "ftp_hold_bp_yr": 119.21753898248309
+     },
+     "co": {
+      "envelope_12m": 0.6200163998288126,
+      "envelope_24m": 0.9250160808588022,
+      "pacing_bn_yr": 0.0,
+      "ftp_new_bp_yr": 448.38260876696097,
+      "hurdle_bp_yr": 498.2028986299566,
+      "ftp_hold_bp_yr": 24.940525315539094
+     },
+     "cs": {
+      "envelope_12m": 0.17574062855340514,
+      "envelope_24m": 0.537944841274836,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 279.42594289770483,
+      "hurdle_bp_yr": 349.282428622131,
+      "ftp_hold_bp_yr": 32.634471142788705
+     },
+     "pc": {
+      "envelope_12m": 1.0707776798538868,
+      "envelope_24m": 1.025525435017434,
+      "pacing_bn_yr": 0.0,
+      "ftp_new_bp_yr": 270.0073042962876,
+      "hurdle_bp_yr": 450.012173827146,
+      "ftp_hold_bp_yr": 35.55062330071949
+     }
+    },
+    "cards": [
+     [
+      "sell_pe",
+      0.7062496162087802,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      0.7515565253204799,
+      "SELL"
+     ],
+     [
+      "sell_co",
+      0.7611572294758102,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.935864750926136,
+      "HOLD"
+     ]
+    ],
+    "x": {
+     "pace_pe": 0.75,
+     "pace_co": 1.0,
+     "pace_pc": 1.0,
+     "sma_sell": 5.6000000000000005,
+     "cs_synd": 0.33315906765107134
+    }
+   },
+   "R1": {
+    "u_star": 0.0,
+    "mu_sum": 0.011306225861207822,
+    "y_IG": 0.0329586619273718,
+    "y_cash": 0.04228931325643121,
+    "groups": {
+     "pe": {
+      "envelope_12m": 11.412512041871002,
+      "envelope_24m": 20.90845302557626,
+      "pacing_bn_yr": 7.199999999999999,
+      "ftp_new_bp_yr": 13.941730189001717,
+      "hurdle_bp_yr": 13.941730189001717,
+      "ftp_hold_bp_yr": 9.092142012139202
+     },
+     "sec": {
+      "envelope_12m": 2.482262202067827,
+      "envelope_24m": 3.480162657321929,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 13.901802173744333,
+      "hurdle_bp_yr": 20.443826726094606,
+      "ftp_hold_bp_yr": 5.621072148203275
+     },
+     "co": {
+      "envelope_12m": 1.6200163998288126,
+      "envelope_24m": 3.0250160808588022,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 86.80872619541097,
+      "hurdle_bp_yr": 96.4541402171233,
+      "ftp_hold_bp_yr": 3.8001683382194797
+     },
+     "cs": {
+      "envelope_12m": 0.17352802754556618,
+      "envelope_24m": 0.5267741577087319,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 13.019237774519237,
+      "hurdle_bp_yr": 16.274047218149047,
+      "ftp_hold_bp_yr": 1.4889569012256079
+     },
+     "pc": {
+      "envelope_12m": 0.7788202280114438,
+      "envelope_24m": 0.8539929697308767,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 12.580397006219467,
+      "hurdle_bp_yr": 20.967328343699112,
+      "ftp_hold_bp_yr": 1.3793481999515578
+     }
+    },
+    "cards": [
+     [
+      "sell_pe",
+      0.9068813652827441,
+      "HOLD"
+     ],
+     [
+      "sell_sec",
+      0.9093122823114633,
+      "HOLD"
+     ],
+     [
+      "sell_co",
+      0.9098274027572512,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.919201237725597,
+      "HOLD"
+     ]
+    ],
+    "x": {
+     "sma_sell": 0.5833333333333339,
+     "rcf": 13.622349187866721
+    }
+   }
+  },
+  {
+   "seed": 20261119,
+   "gstar_q": 11.963489671998312,
+   "theta": 0.8022519386568167,
+   "fac_need": 14.954366883024486,
+   "R0": {
+    "u_star": 0.0,
+    "mu_sum": 0.24236885123731297,
+    "y_IG": 0.0,
+    "y_cash": 0.2000189339644476,
+    "groups": {
+     "pe": {
+      "envelope_12m": 10.861507332599217,
+      "envelope_24m": 17.977668592456077,
+      "pacing_bn_yr": 1.7999999999999998,
+      "ftp_new_bp_yr": 302.964176004799,
+      "hurdle_bp_yr": 302.964176004799,
+      "ftp_hold_bp_yr": 167.58564941071927
+     },
+     "sec": {
+      "envelope_12m": 2.5033431914239443,
+      "envelope_24m": 3.5280288945305167,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 302.24987173223565,
+      "hurdle_bp_yr": 444.48510548858184,
+      "ftp_hold_bp_yr": 122.15490147134408
+     },
+     "co": {
+      "envelope_12m": 0.6573296424243935,
+      "envelope_24m": 0.9908175655426688,
+      "pacing_bn_yr": 0.0,
+      "ftp_new_bp_yr": 449.2811355879352,
+      "hurdle_bp_yr": 499.2012617643725,
+      "ftp_hold_bp_yr": 26.682590571814178
+     },
+     "cs": {
+      "envelope_12m": 0.19179168832337706,
+      "envelope_24m": 0.5882400287209407,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 282.29366571507484,
+      "hurdle_bp_yr": 352.86708214384356,
+      "ftp_hold_bp_yr": 35.642765003224596
+     },
+     "pc": {
+      "envelope_12m": 1.0860563695484464,
+      "envelope_24m": 1.0427497910404762,
+      "pacing_bn_yr": 0.0,
+      "ftp_new_bp_yr": 272.75428087754955,
+      "hurdle_bp_yr": 454.59046812924925,
+      "ftp_hold_bp_yr": 36.10429556891833
+     }
+    },
+    "cards": [
+     [
+      "sell_pe",
+      0.7049290613694655,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      0.7506233845565609,
+      "SELL"
+     ],
+     [
+      "sell_co",
+      0.7606071213200278,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.935655169916418,
+      "HOLD"
+     ]
+    ],
+    "x": {
+     "pace_pe": 0.75,
+     "pace_co": 1.0,
+     "pace_pc": 1.0,
+     "sma_sell": 5.6000000000000005,
+     "cs_synd": 1.2902346580996884
+    }
+   },
+   "R1": {
+    "u_star": 0.0,
+    "mu_sum": 0.0113062258612078,
+    "y_IG": 0.03295866192737194,
+    "y_cash": 0.04228931325643142,
+    "groups": {
+     "pe": {
+      "envelope_12m": 11.699135805179864,
+      "envelope_24m": 21.390410426707117,
+      "pacing_bn_yr": 7.199999999999999,
+      "ftp_new_bp_yr": 14.13292749574921,
+      "hurdle_bp_yr": 14.13292749574921,
+      "ftp_hold_bp_yr": 9.301723521087883
+     },
+     "sec": {
+      "envelope_12m": 2.531823090870375,
+      "envelope_24m": 3.571934157191813,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 14.099606029735742,
+      "hurdle_bp_yr": 20.734714749611385,
+      "ftp_hold_bp_yr": 5.769299191796225
+     },
+     "co": {
+      "envelope_12m": 1.6573296424243933,
+      "envelope_24m": 3.090817565542669,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 86.87576784705134,
+      "hurdle_bp_yr": 96.52863094116816,
+      "ftp_hold_bp_yr": 3.882831276868206
+     },
+     "cs": {
+      "envelope_12m": 0.18434101971649305,
+      "envelope_24m": 0.5462654409194061,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 13.168672160094667,
+      "hurdle_bp_yr": 16.460840200118334,
+      "ftp_hold_bp_yr": 1.544050113801768
+     },
+     "pc": {
+      "envelope_12m": 0.796878329380824,
+      "envelope_24m": 0.881183338880497,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 12.72367091921971,
+      "hurdle_bp_yr": 21.206118198699517,
+      "ftp_hold_bp_yr": 1.423265407788016
+     }
+    },
+    "cards": [
+     [
+      "sell_pe",
+      0.9067973355935637,
+      "HOLD"
+     ],
+     [
+      "sell_sec",
+      0.9092514958298274,
+      "HOLD"
+     ],
+     [
+      "sell_co",
+      0.9097877044453682,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.9191892215340847,
+      "HOLD"
+     ]
+    ],
+    "x": {
+     "sma_sell": 0.5833333333333339,
+     "rcf": 14.701332903056343
+    }
+   }
+  },
+  {
+   "seed": 20261220,
+   "gstar_q": 11.685778931168267,
+   "theta": 0.7883845350921229,
+   "fac_need": 14.607227380741552,
+   "R0": {
+    "u_star": 0.0,
+    "mu_sum": 0.24246293662190627,
+    "y_IG": 0.0,
+    "y_cash": 0.20009657949617124,
+    "groups": {
+     "pe": {
+      "envelope_12m": 10.773609287368615,
+      "envelope_24m": 17.839482250534505,
+      "pacing_bn_yr": 1.7999999999999998,
+      "ftp_new_bp_yr": 301.7544041538109,
+      "hurdle_bp_yr": 301.7544041538109,
+      "ftp_hold_bp_yr": 166.36204824149883
+     },
+     "sec": {
+      "envelope_12m": 2.48779660702393,
+      "envelope_24m": 3.499174956455562,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 300.99338779150173,
+      "hurdle_bp_yr": 442.6373349875026,
+      "ftp_hold_bp_yr": 121.20289081372093
+     },
+     "co": {
+      "envelope_12m": 0.6452313249937992,
+      "envelope_24m": 0.9694815953996088,
+      "pacing_bn_yr": 0.0,
+      "ftp_new_bp_yr": 448.98917572440604,
+      "hurdle_bp_yr": 498.8768619160067,
+      "ftp_hold_bp_yr": 26.118150513497774
+     },
+     "cs": {
+      "envelope_12m": 0.18677037219068204,
+      "envelope_24m": 0.5721660825345426,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 281.3680737931971,
+      "hurdle_bp_yr": 351.71009224149634,
+      "ftp_hold_bp_yr": 34.68226715169429
+     },
+     "pc": {
+      "envelope_12m": 1.0811032092737298,
+      "envelope_24m": 1.0371858256183957,
+      "pacing_bn_yr": 0.0,
+      "ftp_new_bp_yr": 271.86776909554,
+      "hurdle_bp_yr": 453.11294849256666,
+      "ftp_hold_bp_yr": 35.92558872886467
+     }
+    },
+    "cards": [
+     [
+      "sell_pe",
+      0.7053568960238049,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      0.7509260465427543,
+      "SELL"
+     ],
+     [
+      "sell_co",
+      0.7607856031148629,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.93572308659771,
+      "HOLD"
+     ]
+    ],
+    "x": {
+     "pace_pe": 0.75,
+     "pace_co": 1.0,
+     "pace_pc": 1.0,
+     "sma_sell": 5.6000000000000005,
+     "cs_synd": 0.9803165828569508
+    }
+   },
+   "R1": {
+    "u_star": 0.0,
+    "mu_sum": 0.011306225861207763,
+    "y_IG": 0.03295866192737193,
+    "y_cash": 0.042289313256431295,
+    "groups": {
+     "pe": {
+      "envelope_12m": 11.606167520810768,
+      "envelope_24m": 21.234224969689627,
+      "pacing_bn_yr": 7.199999999999999,
+      "ftp_new_bp_yr": 14.071030795512158,
+      "hurdle_bp_yr": 14.071030795512158,
+      "ftp_hold_bp_yr": 9.233805519038789
+     },
+     "sec": {
+      "envelope_12m": 2.5157500159652986,
+      "envelope_24m": 3.542172330570914,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 14.03554404031477,
+      "hurdle_bp_yr": 20.64050594163937,
+      "ftp_hold_bp_yr": 5.721228629822205
+     },
+     "co": {
+      "envelope_12m": 1.645231324993799,
+      "envelope_24m": 3.0694815953996084,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 86.85402082255163,
+      "hurdle_bp_yr": 96.50446758061292,
+      "ftp_hold_bp_yr": 3.856028021600924
+     },
+     "cs": {
+      "envelope_12m": 0.1808339630299092,
+      "envelope_24m": 0.5399581504658771,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 13.120401149803774,
+      "hurdle_bp_yr": 16.400501437254718,
+      "ftp_hold_bp_yr": 1.5262222011918023
+     },
+     "pc": {
+      "envelope_12m": 0.7910226353952953,
+      "envelope_24m": 0.872389713228695,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 12.677394923126327,
+      "hurdle_bp_yr": 21.12899153854388,
+      "ftp_hold_bp_yr": 1.409062162393985
+     }
+    },
+    "cards": [
+     [
+      "sell_pe",
+      0.906824562587842,
+      "HOLD"
+     ],
+     [
+      "sell_sec",
+      0.9092712086165889,
+      "HOLD"
+     ],
+     [
+      "sell_co",
+      0.9098005765038031,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.9191931171671256,
+      "HOLD"
+     ]
+    ],
+    "x": {
+     "sma_sell": 0.5833333333333339,
+     "rcf": 14.351638371565878
+    }
+   }
+  },
+  {
+   "seed": 20261321,
+   "gstar_q": 11.334268416610424,
+   "theta": 0.7708379943102333,
+   "fac_need": 14.167837625951503,
+   "R0": {
+    "u_star": 0.0,
+    "mu_sum": 0.24258255915966156,
+    "y_IG": 0.0,
+    "y_cash": 0.2001952999891645,
+    "groups": {
+     "pe": {
+      "envelope_12m": 10.662442082899435,
+      "envelope_24m": 17.6645355751908,
+      "pacing_bn_yr": 1.7999999999999998,
+      "ftp_new_bp_yr": 300.22027316054823,
+      "hurdle_bp_yr": 300.22027316054823,
+      "ftp_hold_bp_yr": 164.81185562294883
+     },
+     "sec": {
+      "envelope_12m": 2.468132793813118,
+      "envelope_24m": 3.462678695371432,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 299.4007899313408,
+      "hurdle_bp_yr": 440.2952793107953,
+      "ftp_hold_bp_yr": 119.99792278154857
+     },
+     "co": {
+      "envelope_12m": 0.6299251697490256,
+      "envelope_24m": 0.9424894382539841,
+      "pacing_bn_yr": 0.0,
+      "ftp_new_bp_yr": 448.6206623877506,
+      "hurdle_bp_yr": 498.46740265305624,
+      "ftp_hold_bp_yr": 25.40349999028925
+     },
+     "cs": {
+      "envelope_12m": 0.1801661563348541,
+      "envelope_24m": 0.5515095614677381,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 280.1912528120751,
+      "hurdle_bp_yr": 350.2390660150939,
+      "ftp_hold_bp_yr": 33.44665020546666
+     },
+     "pc": {
+      "envelope_12m": 1.0748356999905415,
+      "envelope_24m": 1.0301179902177162,
+      "pacing_bn_yr": 0.0,
+      "ftp_new_bp_yr": 270.7404866939654,
+      "hurdle_bp_yr": 451.23414448994237,
+      "ftp_hold_bp_yr": 35.69837975763155
+     }
+    },
+    "cards": [
+     [
+      "sell_pe",
+      0.7058986334733174,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      0.7513088158142502,
+      "SELL"
+     ],
+     [
+      "sell_co",
+      0.7610112484100476,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.9358090621865028,
+      "HOLD"
+     ]
+    ],
+    "x": {
+     "pace_pe": 0.75,
+     "pace_co": 1.0,
+     "pace_pc": 1.0,
+     "sma_sell": 5.6000000000000005,
+     "cs_synd": 0.5876740234397956
+    }
+   },
+   "R1": {
+    "u_star": 0.0,
+    "mu_sum": 0.011306225861207842,
+    "y_IG": 0.03295866192737187,
+    "y_cash": 0.04228931325643138,
+    "groups": {
+     "pe": {
+      "envelope_12m": 11.48859623569415,
+      "envelope_24m": 21.036513529289262,
+      "pacing_bn_yr": 7.199999999999999,
+      "ftp_new_bp_yr": 13.992589690805408,
+      "hurdle_bp_yr": 13.992589690805408,
+      "ftp_hold_bp_yr": 9.147829742096114
+     },
+     "sec": {
+      "envelope_12m": 2.4954201915917893,
+      "envelope_24m": 3.5045276857931045,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 13.954395426094099,
+      "hurdle_bp_yr": 20.521169744256028,
+      "ftp_hold_bp_yr": 5.660425936061838
+     },
+     "co": {
+      "envelope_12m": 1.6299251697490256,
+      "envelope_24m": 3.042489438253984,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 86.82652092369783,
+      "hurdle_bp_yr": 96.47391213744203,
+      "ftp_hold_bp_yr": 3.822119196582102
+     },
+     "cs": {
+      "envelope_12m": 0.17639851935250195,
+      "envelope_24m": 0.531961317885548,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 13.059082234115087,
+      "hurdle_bp_yr": 16.32385279264386,
+      "ftp_hold_bp_yr": 1.5036187023599472
+     },
+     "pc": {
+      "envelope_12m": 0.7836151422591283,
+      "envelope_24m": 0.8612335648259464,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 12.618603344524054,
+      "hurdle_bp_yr": 21.031005574206755,
+      "ftp_hold_bp_yr": 1.3910430290250477
+     }
+    },
+    "cards": [
+     [
+      "sell_pe",
+      0.9068590341994753,
+      "HOLD"
+     ],
+     [
+      "sell_sec",
+      0.9092961432707032,
+      "HOLD"
+     ],
+     [
+      "sell_co",
+      0.909816860988035,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.9191980463439324,
+      "HOLD"
+     ]
+    ],
+    "x": {
+     "sma_sell": 0.5833333333333339,
+     "rcf": 13.909014961133865
+    }
+   }
+  },
+  {
+   "seed": 20261422,
+   "gstar_q": 11.44104476772386,
+   "theta": 0.7761674493533968,
+   "fac_need": 14.301312441521139,
+   "R0": {
+    "u_star": 0.0,
+    "mu_sum": 0.24254615783314243,
+    "y_IG": 0.0,
+    "y_cash": 0.2001652591877675,
+    "groups": {
+     "pe": {
+      "envelope_12m": 10.69620116976859,
+      "envelope_24m": 17.717684178464467,
+      "pacing_bn_yr": 1.7999999999999998,
+      "ftp_new_bp_yr": 300.6866404893264,
+      "hurdle_bp_yr": 300.6866404893264,
+      "ftp_hold_bp_yr": 165.28293166106204
+     },
+     "sec": {
+      "envelope_12m": 2.474104459641456,
+      "envelope_24m": 3.4737622767027108,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 299.88484009742024,
+      "hurdle_bp_yr": 441.0071177903239,
+      "ftp_hold_bp_yr": 120.36395620570741
+     },
+     "co": {
+      "envelope_12m": 0.634573917229618,
+      "envelope_24m": 0.9506873112498009,
+      "pacing_bn_yr": 0.0,
+      "ftp_new_bp_yr": 448.73248491391814,
+      "hurdle_bp_yr": 498.5916499043535,
+      "ftp_hold_bp_yr": 25.620617182706674
+     },
+     "cs": {
+      "envelope_12m": 0.18220171957899908,
+      "envelope_24m": 0.5578213347627976,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 280.54936128882025,
+      "hurdle_bp_yr": 350.6867016110253,
+      "ftp_hold_bp_yr": 33.82435537601791
+     },
+     "pc": {
+      "envelope_12m": 1.0767393739755189,
+      "envelope_24m": 1.032267994108121,
+      "pacing_bn_yr": 0.0,
+      "ftp_new_bp_yr": 271.0835380207533,
+      "hurdle_bp_yr": 451.80589670125545,
+      "ftp_hold_bp_yr": 35.76751940357852
+     }
+    },
+    "cards": [
+     [
+      "sell_pe",
+      0.7057340434247046,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      0.7511925788715884,
+      "SELL"
+     ],
+     [
+      "sell_co",
+      0.7609427348996174,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.9357829438462769,
+      "HOLD"
+     ]
+    ],
+    "x": {
+     "pace_pe": 0.75,
+     "pace_co": 1.0,
+     "pace_pc": 1.0,
+     "sma_sell": 5.6000000000000005,
+     "cs_synd": 0.7069916398364479
+    }
+   },
+   "R1": {
+    "u_star": 0.0,
+    "mu_sum": 0.011306225861207742,
+    "y_IG": 0.0329586619273719,
+    "y_cash": 0.04228931325643141,
+    "groups": {
+     "pe": {
+      "envelope_12m": 11.524299114947409,
+      "envelope_24m": 21.09657539315922,
+      "pacing_bn_yr": 7.199999999999999,
+      "ftp_new_bp_yr": 14.016429289961561,
+      "hurdle_bp_yr": 14.016429289961561,
+      "ftp_hold_bp_yr": 9.173947934348293
+     },
+     "sec": {
+      "envelope_12m": 2.5015941275950833,
+      "envelope_24m": 3.5159600242455715,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 13.979053573902053,
+      "hurdle_bp_yr": 20.55743172632655,
+      "ftp_hold_bp_yr": 5.6788911647282685
+     },
+     "co": {
+      "envelope_12m": 1.634573917229618,
+      "envelope_24m": 3.050687311249801,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 86.83487155380075,
+      "hurdle_bp_yr": 96.48319061533418,
+      "ftp_hold_bp_yr": 3.8324177525456458
+     },
+     "cs": {
+      "envelope_12m": 0.17774546474022804,
+      "envelope_24m": 0.5343921258122425,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 13.077735274335257,
+      "hurdle_bp_yr": 16.34716909291907,
+      "ftp_hold_bp_yr": 1.5104895182210394
+     },
+     "pc": {
+      "envelope_12m": 0.7858648309532188,
+      "envelope_24m": 0.8646255349052884,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 12.636488392557535,
+      "hurdle_bp_yr": 21.06081398759589,
+      "ftp_hold_bp_yr": 1.3965216547152501
+     }
+    },
+    "cards": [
+     [
+      "sell_pe",
+      0.9068485615633121,
+      "HOLD"
+     ],
+     [
+      "sell_sec",
+      0.9092885707627341,
+      "HOLD"
+     ],
+     [
+      "sell_co",
+      0.9098119151725422,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.9191965491926414,
+      "HOLD"
+     ]
+    ],
+    "x": {
+     "sma_sell": 0.5833333333333339,
+     "rcf": 14.043472032332117
+    }
+   }
+  },
+  {
+   "seed": 20261523,
+   "gstar_q": 11.496764704181842,
+   "theta": 0.7789485604633397,
+   "fac_need": 14.370958460517995,
+   "R0": {
+    "u_star": 0.0,
+    "mu_sum": 0.2425271858383873,
+    "y_IG": 0.0,
+    "y_cash": 0.20014960223289593,
+    "groups": {
+     "pe": {
+      "envelope_12m": 10.713820018094946,
+      "envelope_24m": 17.74541510825901,
+      "pacing_bn_yr": 1.7999999999999998,
+      "ftp_new_bp_yr": 300.9298692954846,
+      "hurdle_bp_yr": 300.9298692954846,
+      "ftp_hold_bp_yr": 165.52867645154072
+     },
+     "sec": {
+      "envelope_12m": 2.4772210031122732,
+      "envelope_24m": 3.479546635039127,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 300.13732262171294,
+      "hurdle_bp_yr": 441.3784156201661,
+      "ftp_hold_bp_yr": 120.5549504842099
+     },
+     "co": {
+      "envelope_12m": 0.6369998889142633,
+      "envelope_24m": 0.9549654524907123,
+      "pacing_bn_yr": 0.0,
+      "ftp_new_bp_yr": 448.7908751828444,
+      "hurdle_bp_yr": 498.6565279809382,
+      "ftp_hold_bp_yr": 25.733898196161626
+     },
+     "cs": {
+      "envelope_12m": 0.1832536780495902,
+      "envelope_24m": 0.5611019717462069,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 280.7360037218042,
+      "hurdle_bp_yr": 350.9200046522553,
+      "ftp_hold_bp_yr": 34.02062054399447
+     },
+     "pc": {
+      "envelope_12m": 1.077732773476741,
+      "envelope_24m": 1.0333888137393776,
+      "pacing_bn_yr": 0.0,
+      "ftp_new_bp_yr": 271.26232676383154,
+      "hurdle_bp_yr": 452.1038779397192,
+      "ftp_hold_bp_yr": 35.803554410440086
+     }
+    },
+    "cards": [
+     [
+      "sell_pe",
+      0.7056481703353406,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      0.7511319142450851,
+      "SELL"
+     ],
+     [
+      "sell_co",
+      0.7609069742388468,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.9357693159607493,
+      "HOLD"
+     ]
+    ],
+    "x": {
+     "pace_pe": 0.75,
+     "pace_co": 1.0,
+     "pace_pc": 1.0,
+     "sma_sell": 5.6000000000000005,
+     "cs_synd": 0.7692355176720619
+    }
+   },
+   "R1": {
+    "u_star": 0.0,
+    "mu_sum": 0.011306225861207782,
+    "y_IG": 0.03295866192737175,
+    "y_cash": 0.04228931325643129,
+    "groups": {
+     "pe": {
+      "envelope_12m": 11.542932769696408,
+      "envelope_24m": 21.127914317865482,
+      "pacing_bn_yr": 7.199999999999999,
+      "ftp_new_bp_yr": 14.028864677074708,
+      "hurdle_bp_yr": 14.028864677074708,
+      "ftp_hold_bp_yr": 9.187575817462806
+     },
+     "sec": {
+      "envelope_12m": 2.5048162298948005,
+      "envelope_24m": 3.5219263926004336,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 13.991917430652686,
+      "hurdle_bp_yr": 20.576349162724537,
+      "ftp_hold_bp_yr": 5.688527894469892
+     },
+     "co": {
+      "envelope_12m": 1.6369998889142632,
+      "envelope_24m": 3.0549654524907126,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 86.83922991540094,
+      "hurdle_bp_yr": 96.48803323933437,
+      "ftp_hold_bp_yr": 3.8377921560052037
+     },
+     "cs": {
+      "envelope_12m": 0.17844843588603806,
+      "envelope_24m": 0.5356599516218914,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 13.087459265563272,
+      "hurdle_bp_yr": 16.35932408195409,
+      "ftp_hold_bp_yr": 1.514073099460185
+     },
+     "pc": {
+      "envelope_12m": 0.7870388754890684,
+      "envelope_24m": 0.8663943857620848,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 12.64581174034795,
+      "hurdle_bp_yr": 21.076352900579916,
+      "ftp_hold_bp_yr": 1.3993786586155021
+     }
+    },
+    "cards": [
+     [
+      "sell_pe",
+      0.9068430974070744,
+      "HOLD"
+     ],
+     [
+      "sell_sec",
+      0.9092846188100648,
+      "HOLD"
+     ],
+     [
+      "sell_co",
+      0.9098093341509488,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.9191957679225007,
+      "HOLD"
+     ]
+    ],
+    "x": {
+     "sma_sell": 0.5833333333333339,
+     "rcf": 14.113630598533941
+    }
+   }
+  },
+  {
+   "seed": 20261624,
+   "gstar_q": 12.049918647363475,
+   "theta": 0.8065686475684701,
+   "fac_need": 15.062404501317586,
+   "R0": {
+    "u_star": 0.0,
+    "mu_sum": 0.2423396457188256,
+    "y_IG": 0.0,
+    "y_cash": 0.19999483162355897,
+    "groups": {
+     "pe": {
+      "envelope_12m": 10.888875901584402,
+      "envelope_24m": 18.020669849855537,
+      "pacing_bn_yr": 1.7999999999999998,
+      "ftp_new_bp_yr": 303.34027667005984,
+      "hurdle_bp_yr": 303.34027667005984,
+      "ftp_hold_bp_yr": 167.96625950115052
+     },
+     "sec": {
+      "envelope_12m": 2.5081836609784816,
+      "envelope_24m": 3.5370125124501413,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 302.64060397114145,
+      "hurdle_bp_yr": 445.05971172226685,
+      "ftp_hold_bp_yr": 122.45119416717436
+     },
+     "co": {
+      "envelope_12m": 0.6610959396968137,
+      "envelope_24m": 0.9974597531689997,
+      "pacing_bn_yr": 0.0,
+      "ftp_new_bp_yr": 449.37214728153083,
+      "hurdle_bp_yr": 499.3023858683676,
+      "ftp_hold_bp_yr": 26.85822702241807
+     },
+     "cs": {
+      "envelope_12m": 0.1933191011360179,
+      "envelope_24m": 0.5931985589254711,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 282.58098336912724,
+      "hurdle_bp_yr": 353.226229211409,
+      "ftp_hold_bp_yr": 35.938882152729136
+     },
+     "pc": {
+      "envelope_12m": 1.087598178409583,
+      "envelope_24m": 1.044477822420506,
+      "pacing_bn_yr": 0.0,
+      "ftp_new_bp_yr": 273.02944628729864,
+      "hurdle_bp_yr": 455.04907714549773,
+      "ftp_hold_bp_yr": 36.159769349507975
+     }
+    },
+    "cards": [
+     [
+      "sell_pe",
+      0.7047959390115279,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      0.7505291431472472,
+      "SELL"
+     ],
+     [
+      "sell_co",
+      0.7605515356707393,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.9356340341587626,
+      "HOLD"
+     ]
+    ],
+    "x": {
+     "pace_pe": 0.75,
+     "pace_co": 1.0,
+     "pace_pc": 1.0,
+     "sma_sell": 5.6000000000000005,
+     "cs_synd": 1.3866363514858184
+    }
+   },
+   "R1": {
+    "u_star": 0.0,
+    "mu_sum": 0.011306225861207763,
+    "y_IG": 0.032958661927371846,
+    "y_cash": 0.04228931325643137,
+    "groups": {
+     "pe": {
+      "envelope_12m": 11.728084281856395,
+      "envelope_24m": 21.43901591200992,
+      "pacing_bn_yr": 7.199999999999999,
+      "ftp_new_bp_yr": 14.15217749724772,
+      "hurdle_bp_yr": 14.15217749724772,
+      "ftp_hold_bp_yr": 9.322859851661972
+     },
+     "sec": {
+      "envelope_12m": 2.5368274718533836,
+      "envelope_24m": 3.581200440201433,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 14.119534643704597,
+      "hurdle_bp_yr": 20.7640215348597,
+      "ftp_hold_bp_yr": 5.784265861596294
+     },
+     "co": {
+      "envelope_12m": 1.661095939696814,
+      "envelope_24m": 3.097459753169,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 86.88253975175705,
+      "hurdle_bp_yr": 96.53615527973005,
+      "ftp_hold_bp_yr": 3.89117550725884
+     },
+     "cs": {
+      "envelope_12m": 0.18543300757801662,
+      "envelope_24m": 0.5482265015465282,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 13.183663830888225,
+      "hurdle_bp_yr": 16.47957978861028,
+      "ftp_hold_bp_yr": 1.5495931623962036
+     },
+     "pc": {
+      "envelope_12m": 0.7987013690354131,
+      "envelope_24m": 0.88391645826567,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 12.738042004345845,
+      "hurdle_bp_yr": 21.230070007243075,
+      "ftp_hold_bp_yr": 1.4276798742272128
+     }
+    },
+    "cards": [
+     [
+      "sell_pe",
+      0.9067888632540859,
+      "HOLD"
+     ],
+     [
+      "sell_sec",
+      0.9092453583911676,
+      "HOLD"
+     ],
+     [
+      "sell_co",
+      0.9097836971968812,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.9191880088835843,
+      "HOLD"
+     ]
+    ],
+    "x": {
+     "sma_sell": 0.5833333333333339,
+     "rcf": 14.810165754811058
+    }
+   }
+  },
+  {
+   "seed": 20261725,
+   "gstar_q": 11.696383534112817,
+   "theta": 0.7889139513639373,
+   "fac_need": 14.620482074170686,
+   "R0": {
+    "u_star": 0.0,
+    "mu_sum": 0.24245933735530356,
+    "y_IG": 0.0,
+    "y_cash": 0.20009360914141958,
+    "groups": {
+     "pe": {
+      "envelope_12m": 10.776964320764714,
+      "envelope_24m": 17.844759055151385,
+      "pacing_bn_yr": 1.7999999999999998,
+      "ftp_new_bp_yr": 301.8006331148764,
+      "hurdle_bp_yr": 301.8006331148764,
+      "ftp_hold_bp_yr": 166.40878676065603
+     },
+     "sec": {
+      "envelope_12m": 2.488390034405841,
+      "envelope_24m": 3.500276349285108,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 301.04139190769894,
+      "hurdle_bp_yr": 442.70792927602787,
+      "ftp_hold_bp_yr": 121.23924060115834
+     },
+     "co": {
+      "envelope_12m": 0.6456931778602205,
+      "envelope_24m": 0.9702960827302737,
+      "pacing_bn_yr": 0.0,
+      "ftp_new_bp_yr": 449.0003102756529,
+      "hurdle_bp_yr": 498.88923363961436,
+      "ftp_hold_bp_yr": 26.139705028580995
+     },
+     "cs": {
+      "envelope_12m": 0.18696528024079437,
+      "envelope_24m": 0.5727838008930766,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 281.4034826095025,
+      "hurdle_bp_yr": 351.75435326187807,
+      "ftp_hold_bp_yr": 34.71919520309687
+     },
+     "pc": {
+      "envelope_12m": 1.0812923092301525,
+      "envelope_24m": 1.037398596197315,
+      "pacing_bn_yr": 0.0,
+      "ftp_new_bp_yr": 271.9016847949774,
+      "hurdle_bp_yr": 453.1694746582957,
+      "ftp_hold_bp_yr": 35.93242517247474
+     }
+    },
+    "cards": [
+     [
+      "sell_pe",
+      0.7053405575219035,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      0.7509144942660453,
+      "SELL"
+     ],
+     [
+      "sell_co",
+      0.7607787916373694,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.9357204932295922,
+      "HOLD"
+     ]
+    ],
+    "x": {
+     "pace_pe": 0.75,
+     "pace_co": 1.0,
+     "pace_pc": 1.0,
+     "sma_sell": 5.6000000000000005,
+     "cs_synd": 0.9921547356099899
+    }
+   },
+   "R1": {
+    "u_star": 0.0,
+    "mu_sum": 0.011306225861207782,
+    "y_IG": 0.03295866192737196,
+    "y_cash": 0.042289313256431336,
+    "groups": {
+     "pe": {
+      "envelope_12m": 11.609715975381985,
+      "envelope_24m": 21.240188803031614,
+      "pacing_bn_yr": 7.199999999999999,
+      "ftp_new_bp_yr": 14.073395400120106,
+      "hurdle_bp_yr": 14.073395400120106,
+      "ftp_hold_bp_yr": 9.236398920837384
+     },
+     "sec": {
+      "envelope_12m": 2.516363541118382,
+      "envelope_24m": 3.543308379083508,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 14.037990896152062,
+      "hurdle_bp_yr": 20.64410425904715,
+      "ftp_hold_bp_yr": 5.723063547118312
+     },
+     "co": {
+      "envelope_12m": 1.6456931778602204,
+      "envelope_24m": 3.070296082730274,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 86.85485084422722,
+      "hurdle_bp_yr": 96.50538982691913,
+      "ftp_hold_bp_yr": 3.857051219125551
+     },
+     "cs": {
+      "envelope_12m": 0.18096782553553903,
+      "envelope_24m": 0.5401991511509434,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 13.12224708364648,
+      "hurdle_bp_yr": 16.4028088545581,
+      "ftp_hold_bp_yr": 1.5269034032363218
+     },
+     "pc": {
+      "envelope_12m": 0.7912461657368273,
+      "envelope_24m": 0.8727258056406922,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 12.679164654442607,
+      "hurdle_bp_yr": 21.13194109073768,
+      "ftp_hold_bp_yr": 1.4096050104968847
+     }
+    },
+    "cards": [
+     [
+      "sell_pe",
+      0.9068235228720032,
+      "HOLD"
+     ],
+     [
+      "sell_sec",
+      0.9092704561446452,
+      "HOLD"
+     ],
+     [
+      "sell_co",
+      0.9098000851206242,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.9191929684434293,
+      "HOLD"
+     ]
+    ],
+    "x": {
+     "sma_sell": 0.5833333333333339,
+     "rcf": 14.364990618108154
+    }
+   }
+  },
+  {
+   "seed": 20261826,
+   "gstar_q": 11.630581108252452,
+   "theta": 0.7856288802342128,
+   "fac_need": 14.538233136515943,
+   "R0": {
+    "u_star": 0.0,
+    "mu_sum": 0.24248168054918767,
+    "y_IG": 0.0,
+    "y_cash": 0.20011204823456244,
+    "groups": {
+     "pe": {
+      "envelope_12m": 10.756146901346844,
+      "envelope_24m": 17.81201443699831,
+      "pacing_bn_yr": 1.7999999999999998,
+      "ftp_new_bp_yr": 301.5137228640893,
+      "hurdle_bp_yr": 301.5137228640893,
+      "ftp_hold_bp_yr": 166.1187382557594
+     },
+     "sec": {
+      "envelope_12m": 2.4847078908095126,
+      "envelope_24m": 3.493442328282228,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 300.7434771575838,
+      "hurdle_bp_yr": 442.26981934938794,
+      "ftp_hold_bp_yr": 121.01368095193452
+     },
+     "co": {
+      "envelope_12m": 0.6428273751337006,
+      "envelope_24m": 0.9652421950727703,
+      "pacing_bn_yr": 0.0,
+      "ftp_new_bp_yr": 448.9312343555136,
+      "hurdle_bp_yr": 498.8124826172373,
+      "ftp_hold_bp_yr": 26.005949955359142
+     },
+     "cs": {
+      "envelope_12m": 0.18575174284458082,
+      "envelope_24m": 0.5689455863489774,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 281.1836750393103,
+      "hurdle_bp_yr": 351.47959379913783,
+      "ftp_hold_bp_yr": 34.48972047973575
+     },
+     "pc": {
+      "envelope_12m": 1.080118924731424,
+      "envelope_24m": 1.036077882425134,
+      "pacing_bn_yr": 0.0,
+      "ftp_new_bp_yr": 271.6911436170595,
+      "hurdle_bp_yr": 452.81857269509914,
+      "ftp_hold_bp_yr": 35.88998658718431
+     }
+    },
+    "cards": [
+     [
+      "sell_pe",
+      0.7054419457395449,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      0.7509861739400032,
+      "SELL"
+     ],
+     [
+      "sell_co",
+      0.7608210543029461,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.9357365859477487,
+      "HOLD"
+     ]
+    ],
+    "x": {
+     "pace_pe": 0.75,
+     "pace_co": 1.0,
+     "pace_pc": 1.0,
+     "sma_sell": 5.6000000000000005,
+     "cs_synd": 0.9186898117059248
+    }
+   },
+   "R1": {
+    "u_star": 0.0,
+    "mu_sum": 0.011306225861207721,
+    "y_IG": 0.032958661927371874,
+    "y_cash": 0.042289313256431364,
+    "groups": {
+     "pe": {
+      "envelope_12m": 11.587698547987456,
+      "envelope_24m": 21.2031812743697,
+      "pacing_bn_yr": 7.199999999999999,
+      "ftp_new_bp_yr": 14.058720820616665,
+      "hurdle_bp_yr": 14.058720820616665,
+      "ftp_hold_bp_yr": 9.220306017852078
+     },
+     "sec": {
+      "envelope_12m": 2.512556691868177,
+      "envelope_24m": 3.5362593229038337,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 14.022806470688653,
+      "hurdle_bp_yr": 20.621774221600962,
+      "ftp_hold_bp_yr": 5.711678086936032
+     },
+     "co": {
+      "envelope_12m": 1.6428273751337004,
+      "envelope_24m": 3.0652421950727704,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 86.84970076783017,
+      "hurdle_bp_yr": 96.4996675198113,
+      "ftp_hold_bp_yr": 3.8507022863107645
+     },
+     "cs": {
+      "envelope_12m": 0.18013723168127124,
+      "envelope_24m": 0.5387034567632237,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 13.110788952297733,
+      "hurdle_bp_yr": 16.388486190372166,
+      "ftp_hold_bp_yr": 1.522675738594589
+     },
+     "pc": {
+      "envelope_12m": 0.7898591707356162,
+      "envelope_24m": 0.8706398403278095,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 12.668179415727781,
+      "hurdle_bp_yr": 21.113632359546305,
+      "ftp_hold_bp_yr": 1.4062358112160056
+     }
+    },
+    "cards": [
+     [
+      "sell_pe",
+      0.9068299747396017,
+      "HOLD"
+     ],
+     [
+      "sell_sec",
+      0.9092751251614078,
+      "HOLD"
+     ],
+     [
+      "sell_co",
+      0.9098031341499896,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.9191938912860923,
+      "HOLD"
+     ]
+    ],
+    "x": {
+     "sma_sell": 0.5833333333333339,
+     "rcf": 14.282136343016877
+    }
+   }
+  },
+  {
+   "seed": 20261927,
+   "gstar_q": 11.771165956167836,
+   "theta": 0.7926479136345335,
+   "fac_need": 14.713962789834971,
+   "R0": {
+    "u_star": 0.0,
+    "mu_sum": 0.242433968415006,
+    "y_IG": 0.0,
+    "y_cash": 0.20007267300062678,
+    "groups": {
+     "pe": {
+      "envelope_12m": 10.800628774723501,
+      "envelope_24m": 17.881973410381775,
+      "pacing_bn_yr": 1.7999999999999998,
+      "ftp_new_bp_yr": 302.12658699619857,
+      "hurdle_bp_yr": 302.12658699619857,
+      "ftp_hold_bp_yr": 166.73837603732585
+     },
+     "sec": {
+      "envelope_12m": 2.492575679838202,
+      "envelope_24m": 3.508044822231213,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 301.37988435368686,
+      "hurdle_bp_yr": 443.2057122848336,
+      "ftp_hold_bp_yr": 121.49560394731812
+     },
+     "co": {
+      "envelope_12m": 0.6489506730259788,
+      "envelope_24m": 0.9760407731207335,
+      "pacing_bn_yr": 0.0,
+      "ftp_new_bp_yr": 449.0788682077201,
+      "hurdle_bp_yr": 498.97652023080013,
+      "ftp_hold_bp_yr": 26.29171532916778
+     },
+     "cs": {
+      "envelope_12m": 0.18833272499005418,
+      "envelope_24m": 0.577131383130417,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 281.6530568265133,
+      "hurdle_bp_yr": 352.06632103314166,
+      "ftp_hold_bp_yr": 34.97906287728706
+     },
+     "pc": {
+      "envelope_12m": 1.0826260206225082,
+      "envelope_24m": 1.0388984626808573,
+      "pacing_bn_yr": 0.0,
+      "ftp_new_bp_yr": 272.1407306908631,
+      "hurdle_bp_yr": 453.56788448477187,
+      "ftp_hold_bp_yr": 35.98061101256703
+     }
+    },
+    "cards": [
+     [
+      "sell_pe",
+      0.7052253337862749,
+      "SELL"
+     ],
+     [
+      "sell_sec",
+      0.7508330107560278,
+      "SELL"
+     ],
+     [
+      "sell_co",
+      0.7607307449563088,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.9357022034110538,
+      "HOLD"
+     ]
+    ],
+    "x": {
+     "pace_pe": 0.75,
+     "pace_co": 1.0,
+     "pace_pc": 1.0,
+     "sma_sell": 5.6000000000000005,
+     "cs_synd": 1.0756345417666722
+    }
+   },
+   "R1": {
+    "u_star": 0.0,
+    "mu_sum": 0.011306225861207742,
+    "y_IG": 0.03295866192737186,
+    "y_cash": 0.04228931325643137,
+    "groups": {
+     "pe": {
+      "envelope_12m": 11.634744952644299,
+      "envelope_24m": 21.2822490373226,
+      "pacing_bn_yr": 7.199999999999999,
+      "ftp_new_bp_yr": 14.090069364402714,
+      "hurdle_bp_yr": 14.090069364402714,
+      "ftp_hold_bp_yr": 9.254689017324628
+     },
+     "sec": {
+      "envelope_12m": 2.5206909403947564,
+      "envelope_24m": 3.551321288696263,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 14.055245908009232,
+      "hurdle_bp_yr": 20.669479276484164,
+      "ftp_hold_bp_yr": 5.7360057993878995
+     },
+     "co": {
+      "envelope_12m": 1.6489506730259789,
+      "envelope_24m": 3.0760407731207335,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 86.8607054552973,
+      "hurdle_bp_yr": 96.51189495033034,
+      "ftp_hold_bp_yr": 3.8642679710207872
+     },
+     "cs": {
+      "envelope_12m": 0.1819120147593959,
+      "envelope_24m": 0.5418984572588363,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 13.13525945146815,
+      "hurdle_bp_yr": 16.419074314335187,
+      "ftp_hold_bp_yr": 1.5317065879021083
+     },
+     "pc": {
+      "envelope_12m": 0.7928227717463824,
+      "envelope_24m": 0.8750954066430455,
+      "pacing_bn_yr": 1.2000000000000002,
+      "ftp_new_bp_yr": 12.69163965487667,
+      "hurdle_bp_yr": 21.152732758127783,
+      "ftp_hold_bp_yr": 1.4134323310873866
+     }
+    },
+    "cards": [
+     [
+      "sell_pe",
+      0.9068161903858791,
+      "HOLD"
+     ],
+     [
+      "sell_sec",
+      0.9092651487413915,
+      "HOLD"
+     ],
+     [
+      "sell_co",
+      0.9097966193288213,
+      "HOLD"
+     ],
+     [
+      "sell_hf",
+      0.9191919194982012,
+      "HOLD"
+     ]
+    ],
+    "x": {
+     "sma_sell": 0.5833333333333339,
+     "rcf": 14.459159352071385
+    }
+   }
+  }
+ ],
+ "saa_pooled": {
+  "n_paths": 500000,
+  "gstar_q": 11.656648372078504,
+  "theta": 0.7869302428315066,
+  "fac_need": 14.57081630264244
+ },
+ "saa_summary": {
+  "theta_min": 0.7594775358182917,
+  "theta_median": 0.7870067076631679,
+  "theta_max": 0.8065686475684701,
+  "gstar_q": [
+   11.101740273920349,
+   11.963489671998312,
+   11.685778931168267,
+   11.334268416610424,
+   11.44104476772386,
+   11.496764704181842,
+   12.049918647363475,
+   11.696383534112817,
+   11.630581108252452,
+   11.771165956167836
+  ],
+  "fac_need": [
+   13.883265923947965,
+   14.954366883024486,
+   14.607227380741552,
+   14.167837625951503,
+   14.301312441521139,
+   14.370958460517995,
+   15.062404501317586,
+   14.620482074170686,
+   14.538233136515943,
+   14.713962789834971
+  ],
+  "rcf_R1": [
+   13.622349187866721,
+   14.701332903056343,
+   14.351638371565878,
+   13.909014961133865,
+   14.043472032332117,
+   14.113630598533941,
+   14.810165754811058,
+   14.364990618108154,
+   14.282136343016877,
+   14.459159352071385
+  ]
+ },
+ "revolver_cap_scan": {
+  "0.79": {
+   "mu_sum": 0.011306225861207863,
+   "x": {
+    "sma_sell": 0.5833333333333339,
+    "rcf": 14.392381036042622
+   },
+   "cards": [
+    [
+     "sell_pe",
+     0.9068213900579647,
+     "HOLD"
+    ],
+    [
+     "sell_sec",
+     0.9092689124921051,
+     "HOLD"
+    ],
+    [
+     "sell_co",
+     0.9097990770849738,
+     "HOLD"
+    ],
+    [
+     "sell_hf",
+     0.9191926633504877,
+     "HOLD"
+    ]
+   ]
+  },
+  "0.81": {
+   "mu_sum": 0.011306225861207782,
+   "x": {
+    "sma_sell": 0.5833333333333339,
+    "rcf": 14.896669660969117
+   },
+   "cards": [
+    [
+     "sell_pe",
+     0.9067821296086057,
+     "HOLD"
+    ],
+    [
+     "sell_sec",
+     0.909240479350475,
+     "HOLD"
+    ],
+    [
+     "sell_co",
+     0.9097805117076153,
+     "HOLD"
+    ],
+    [
+     "sell_hf",
+     0.9191870449475569,
+     "HOLD"
+    ]
+   ]
+  },
+  "0.82": {
+   "mu_sum": 0.048388582057560796,
+   "x": {
+    "sma_sell": 0.5833333333333339,
+    "sma_ro": 1.1457758036488581,
+    "rcf": 15.0
+   },
+   "cards": [
+    [
+     "sell_pe",
+     0.889628335964872,
+     "HOLD"
+    ],
+    [
+     "sell_sec",
+     0.9001521060650092,
+     "HOLD"
+    ],
+    [
+     "sell_co",
+     0.9024799138584478,
+     "HOLD"
+    ],
+    [
+     "sell_hf",
+     0.9426870915779507,
+     "HOLD"
+    ]
+   ]
+  },
+  "0.85": {
+   "mu_sum": 0.0550264666933666,
+   "x": {
+    "sma_sell": 0.9004356071473508,
+    "sma_ro": 4.6995643928526505,
+    "rcf": 15.0
+   },
+   "cards": [
+    [
+     "sell_pe",
+     0.8856770387050167,
+     "HOLD"
+    ],
+    [
+     "sell_sec",
+     0.8977103499549256,
+     "HOLD"
+    ],
+    [
+     "sell_co",
+     0.9004266726541977,
+     "HOLD"
+    ],
+    [
+     "sell_hf",
+     0.9461964676062559,
+     "HOLD"
+    ]
+   ]
+  },
+  "0.90": {
+   "mu_sum": 0.055026466693365986,
+   "x": {
+    "sma_sell": 2.475623305733528,
+    "sma_ro": 3.1243766942664752,
+    "rcf": 15.0
+   },
+   "cards": [
+    [
+     "sell_pe",
+     0.8852021701640499,
+     "HOLD"
+    ],
+    [
+     "sell_sec",
+     0.8973648964910153,
+     "HOLD"
+    ],
+    [
+     "sell_co",
+     0.9002012837547538,
+     "HOLD"
+    ],
+    [
+     "sell_hf",
+     0.9461283110138843,
+     "HOLD"
+    ]
+   ]
+  }
+ },
+ "nav_facility_check": {
+  "pledge_pool": 21.200000000000003,
+  "capacity_10pct": 2.1200000000000006,
+  "capacity_5pct": 1.0600000000000003,
+  "s_star_relief": 1.0231381466666658,
+  "share_of_need": [
+   0.07625899280575542,
+   0.15251798561151084
+  ],
+  "cost_per_credited_dollar": 0.07,
+  "revolver_cost_per_credited_dollar": 0.011249999999999998
+ }
+}

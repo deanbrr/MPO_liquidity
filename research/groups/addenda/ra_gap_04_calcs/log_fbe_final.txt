@@ -1,0 +1,25 @@
+M0                                 | B  +9.3% 0.788 +0.99 +18.4% | R  +9.2% 0.797 +1.04 +19.2% | Rgls +18.3% 0.770 | Rcap +27.3% 0.798 +1.29 | RA pow D/gap/flag/anch 0.09/0.04/0.00/0.24 pool flag 0.00
+M1                                 | B +13.0% 0.775 +1.47 +26.4% | R +10.5% 0.796 +1.05 +22.5% | Rgls +20.1% 0.771 | Rcap +27.2% 0.798 +1.30 | RA pow D/gap/flag/anch 0.27/0.03/0.00/0.22 pool flag 0.00
+M2                                 | B +12.0% 0.780 +1.18 +25.2% | R +11.9% 0.812 +1.21 +26.0% | Rgls +32.9% 0.762 | Rcap +27.3% 0.799 +1.28 | RA pow D/gap/flag/anch 0.09/0.42/0.00/0.18 pool flag 0.00
+M3                                 | B  +4.6% 0.766 +1.02  +8.6% | R  +5.1% 0.773 +1.06  +9.6% | Rgls +18.0% 0.746 | Rcap +21.0% 0.785 +1.31 | RA pow D/gap/flag/anch 0.09/0.02/0.00/0.23 pool flag 0.00
+M4                                 | B  +6.0% 0.738 +1.03  +9.1% | R  +5.7% 0.778 +1.12 +10.9% | Rgls +29.3% 0.719 | Rcap +10.5% 0.798 +1.33 | RA pow D/gap/flag/anch 0.09/0.35/0.00/0.22 pool flag 0.00
+M5                                 | B +17.5% 0.756 +1.60 +43.6% | R +10.6% 0.794 +1.26 +23.1% | Rgls +21.6% 0.765 | Rcap +27.4% 0.798 +1.31 | RA pow D/gap/flag/anch 0.10/0.03/0.53/0.21 pool flag 0.68
+M5s                                | B +31.5% 0.704 +2.22 +71.9% | R +19.8% 0.755 +1.84 +42.4% | Rgls +36.6% 0.714 | Rcap +27.6% 0.798 +1.31 | RA pow D/gap/flag/anch 0.09/0.04/0.54/0.21 pool flag 0.68
+M6                                 | B +10.6% 0.785 +1.27 +22.0% | R  +9.6% 0.796 +1.17 +20.1% | Rgls +17.8% 0.771 | Rcap +27.2% 0.800 +1.31 | RA pow D/gap/flag/anch 0.10/0.03/0.00/0.23 pool flag 0.00
+MALL                               | B +29.0% 0.626 +2.52 +35.0% | R  +5.7% 0.757 +1.55  +8.8% | Rgls +41.0% 0.686 | Rcap  +8.4% 0.784 +1.31 | RA pow D/gap/flag/anch 0.29/0.78/0.48/0.20 pool flag 0.64
+M0|components_absent               | B +10.3% 0.786 +1.00 +21.6% | R +11.2% 0.794 +1.06 +24.4% | Rgls +19.6% 0.771 | Rcap +27.4% 0.799 +1.29 | RA pow D/gap/flag/anch 0.09/0.03/0.00/0.21 pool flag 0.00
+M5s|components_absent              | B +29.6% 0.712 +2.15 +67.1% | R +15.9% 0.776 +1.53 +34.4% | Rgls +28.1% 0.744 | Rcap +27.3% 0.800 +1.33 | RA pow D/gap/flag/anch 0.10/0.04/0.55/0.22 pool flag 0.69
+MALL|components_absent             | B +29.4% 0.625 +2.52 +36.0% | R  +7.2% 0.756 +1.54 +12.5% | Rgls +41.4% 0.706 | Rcap  +7.9% 0.787 +1.29 | RA pow D/gap/flag/anch 0.30/0.76/0.50/0.20 pool flag 0.65
+M0|RAME_AL                         | B +16.7% 0.759 +1.01 +35.7% | R +11.7% 0.792 +1.08 +25.3% | Rgls +20.4% 0.769 | Rcap +29.0% 0.797 +1.31 | RA pow D/gap/flag/anch 0.10/0.04/0.00/0.15 pool flag 0.00
+M0|RAME_TW                         | B +15.4% 0.765 +1.05 +32.8% | R +12.8% 0.792 +1.12 +29.5% | Rgls +23.9% 0.765 | Rcap +29.7% 0.797 +1.31 | RA pow D/gap/flag/anch 0.10/0.04/0.00/0.15 pool flag 0.00
+MALL|RAME_TW                       | B +33.2% 0.613 +2.53 +40.9% | R  +7.9% 0.755 +1.58 +14.9% | Rgls +53.3% 0.685 | Rcap +10.5% 0.785 +1.29 | RA pow D/gap/flag/anch 0.20/0.71/0.43/0.14 pool flag 0.64
+M0|G0=2%                           | B  +9.5% 0.790 +0.91 +20.3% | R  +9.3% 0.800 +0.96 +20.0% | Rgls +18.3% 0.773 | Rcap +27.2% 0.800 +1.21 | RA pow D/gap/flag/anch 0.09/0.03/0.00/0.23 pool flag 0.00
+M0|G0=5%                           | B +10.1% 0.787 +0.82 +22.8% | R  +9.8% 0.798 +0.86 +21.2% | Rgls +19.2% 0.771 | Rcap +27.3% 0.799 +1.13 | RA pow D/gap/flag/anch 0.09/0.03/0.00/0.21 pool flag 0.00
+M0|G0=8%                           | B +11.0% 0.781 +0.72 +24.9% | R +10.3% 0.794 +0.76 +21.9% | Rgls +19.6% 0.767 | Rcap +28.2% 0.796 +1.04 | RA pow D/gap/flag/anch 0.09/0.03/0.00/0.21 pool flag 0.00
+M0|G0=8%|RAME_AL                   | B +21.8% 0.741 +0.45 +49.8% | R +16.1% 0.777 +0.54 +34.7% | Rgls +27.1% 0.750 | Rcap +32.2% 0.788 +0.80 | RA pow D/gap/flag/anch 0.09/0.03/0.00/0.16 pool flag 0.00
+M0|archive_8y                      | B  +9.1% 0.788 +1.00 +20.1% | R  +7.9% 0.801 +1.04 +17.0% | Rgls +16.7% 0.774 | Rcap +26.3% 0.799 +1.28 | RA pow D/gap/flag/anch 0.09/0.04/0.00/0.22 pool flag 0.00
+MALL|archive_8y                    | B +28.4% 0.629 +2.46 +34.3% | R  +4.0% 0.765 +1.44  +5.8% | Rgls +36.1% 0.697 | Rcap  +7.5% 0.788 +1.29 | RA pow D/gap/flag/anch 0.43/0.96/0.76/0.16 pool flag 0.64
+M0|kappa_truth_TAB                 | B  +8.6% 0.780 +0.95 +18.6% | R  +9.3% 0.787 +1.01 +20.6% | Rgls +22.3% 0.752 | Rcap +27.5% 0.799 +1.30 | RA pow D/gap/flag/anch 0.09/0.04/0.00/0.22 pool flag 0.00
+MALL|kappa_truth_TAB               | B +34.1% 0.593 +2.61 +39.8% | R  +6.1% 0.745 +1.53  +9.1% | Rgls +53.2% 0.657 | Rcap  +7.8% 0.786 +1.32 | RA pow D/gap/flag/anch 0.29/0.78/0.51/0.18 pool flag 0.64
+MALL|components_absent|RAME_TW     | B +35.0% 0.606 +2.59 +42.5% | R +10.8% 0.747 +1.71 +19.8% | Rgls +57.2% 0.692 | Rcap +10.4% 0.784 +1.32 | RA pow D/gap/flag/anch 0.23/0.71/0.42/0.15 pool flag 0.64
+wrote C:\Users\dean\ai_envs\adic_tpa_lab\research\groups\addenda\ra_gap_04_calcs\ra04_fbe_ensemble_results.json SYNTHETIC - NOT ADIC DATA

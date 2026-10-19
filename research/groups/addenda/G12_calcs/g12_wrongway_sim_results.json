@@ -1,0 +1,3300 @@
+{
+ "label": "SYNTHETIC [I-MC] - stylised segment models on stream-03 oil/draw defaults; not ADIC data",
+ "stationary_Z": {
+  "N": 0.4934,
+  "B": 0.1959,
+  "SG": 0.1567,
+  "DB": 0.0681,
+  "SS": 0.0477,
+  "GW": 0.0382
+ },
+ "runs": {
+  "stationary_PBE44.8_log": {
+   "segments": {
+    "pdp": {
+     "name": "Upstream PDP, unlevered",
+     "mean_ret": 0.1149,
+     "vol": 0.2248,
+     "beta_own": -7.387,
+     "corr_draw": -0.394,
+     "corr_dlnP": 0.875,
+     "H_kappa0.5": 0.0279,
+     "H_kappa1.0": 0.0494,
+     "H_kappa2.0": 0.0807,
+     "Hd_kappa0.25": 0.005,
+     "Hd_kappa0.5": 0.0095,
+     "Hd_kappa1.0": 0.0171,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.399,
+      "SG": 0.43,
+      "DB": 0.49,
+      "SS": 1.733,
+      "GW": 1.272
+     },
+     "mean_yield": 0.2182,
+     "corr_yield_draw": -0.684,
+     "by_Z": {
+      "N": {
+       "ret": 0.1282,
+       "share": 0.4919,
+       "yield": 0.2199
+      },
+      "B": {
+       "ret": 0.3171,
+       "share": 0.1964,
+       "yield": 0.2987
+      },
+      "SG": {
+       "ret": -0.1304,
+       "share": 0.1573,
+       "yield": 0.1001
+      },
+      "DB": {
+       "ret": -0.1394,
+       "share": 0.0683,
+       "yield": 0.1036
+      },
+      "SS": {
+       "ret": 0.286,
+       "share": 0.0475,
+       "yield": 0.3706
+      },
+      "GW": {
+       "ret": 0.1542,
+       "share": 0.0386,
+       "yield": 0.282
+      }
+     }
+    },
+    "lev": {
+     "name": "Upstream PDP, 40% LTV RBL",
+     "mean_ret": 0.1543,
+     "vol": 0.4479,
+     "beta_own": -14.738,
+     "corr_draw": -0.395,
+     "corr_dlnP": 0.874,
+     "H_kappa0.5": 0.0558,
+     "H_kappa1.0": 0.0991,
+     "H_kappa2.0": 0.1616,
+     "Hd_kappa0.25": 0.01,
+     "Hd_kappa0.5": 0.0189,
+     "Hd_kappa1.0": 0.0341,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.844,
+      "SG": -0.286,
+      "DB": -0.279,
+      "SS": 2.166,
+      "GW": 1.297
+     },
+     "mean_yield": 0.2522,
+     "corr_yield_draw": -0.588,
+     "by_Z": {
+      "N": {
+       "ret": 0.1827,
+       "share": 0.4919,
+       "yield": 0.2767
+      },
+      "B": {
+       "ret": 0.554,
+       "share": 0.1964,
+       "yield": 0.4888
+      },
+      "SG": {
+       "ret": -0.3372,
+       "share": 0.1573,
+       "yield": -0.0978
+      },
+      "DB": {
+       "ret": -0.3486,
+       "share": 0.0683,
+       "yield": -0.0872
+      },
+      "SS": {
+       "ret": 0.4935,
+       "share": 0.0475,
+       "yield": 0.5784
+      },
+      "GW": {
+       "ret": 0.234,
+       "share": 0.0386,
+       "yield": 0.361
+      }
+     },
+     "cure_call_prob_by_Z": {
+      "N": 0.085,
+      "B": 0.0056,
+      "SG": 0.731,
+      "DB": 0.69,
+      "SS": 0.0231,
+      "GW": 0.174
+     },
+     "cure_call_mean_if_any_by_Z": {
+      "N": 0.0776,
+      "B": 0.0497,
+      "SG": 0.1804,
+      "DB": 0.1979,
+      "SS": 0.0785,
+      "GW": 0.1551
+     }
+    },
+    "hdg": {
+     "name": "Upstream PDP, 70% 3-yr swap ladder",
+     "mean_ret": 0.0985,
+     "vol": 0.0883,
+     "beta_own": -2.931,
+     "corr_draw": -0.398,
+     "corr_dlnP": 0.864,
+     "H_kappa0.5": 0.0109,
+     "H_kappa1.0": 0.0194,
+     "H_kappa2.0": 0.0316,
+     "Hd_kappa0.25": 0.002,
+     "Hd_kappa0.5": 0.0038,
+     "Hd_kappa1.0": 0.0068,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.133,
+      "SG": 0.811,
+      "DB": 0.842,
+      "SS": 1.241,
+      "GW": 1.09
+     },
+     "mean_yield": 0.2102,
+     "corr_yield_draw": -0.616,
+     "by_Z": {
+      "N": {
+       "ret": 0.1051,
+       "share": 0.4919,
+       "yield": 0.2096
+      },
+      "B": {
+       "ret": 0.1842,
+       "share": 0.1964,
+       "yield": 0.2329
+      },
+      "SG": {
+       "ret": -0.0027,
+       "share": 0.1573,
+       "yield": 0.18
+      },
+      "DB": {
+       "ret": 0.0007,
+       "share": 0.0683,
+       "yield": 0.1757
+      },
+      "SS": {
+       "ret": 0.1528,
+       "share": 0.0475,
+       "yield": 0.255
+      },
+      "GW": {
+       "ret": 0.0986,
+       "share": 0.0386,
+       "yield": 0.2293
+      }
+     },
+     "overlay_route_collateral_flow_by_Z": {
+      "N": -0.0072,
+      "B": -0.0601,
+      "SG": 0.0437,
+      "DB": 0.0749,
+      "SS": -0.0106,
+      "GW": 0.002
+     },
+     "overlay_route_collateral_P05_by_Z": {
+      "N": -0.1337,
+      "B": -0.2012,
+      "SG": -0.0708,
+      "DB": -0.0506,
+      "SS": -0.1459,
+      "GW": -0.1437
+     }
+    },
+    "roy": {
+     "name": "Oil mineral & royalty",
+     "mean_ret": 0.1035,
+     "vol": 0.1761,
+     "beta_own": -5.88,
+     "corr_draw": -0.401,
+     "corr_dlnP": 0.874,
+     "H_kappa0.5": 0.0221,
+     "H_kappa1.0": 0.0392,
+     "H_kappa2.0": 0.064,
+     "Hd_kappa0.25": 0.004,
+     "Hd_kappa0.5": 0.0075,
+     "Hd_kappa1.0": 0.0136,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.255,
+      "SG": 0.632,
+      "DB": 0.69,
+      "SS": 1.473,
+      "GW": 1.174
+     },
+     "mean_yield": 0.1783,
+     "corr_yield_draw": -0.621,
+     "by_Z": {
+      "N": {
+       "ret": 0.1147,
+       "share": 0.4919,
+       "yield": 0.1787
+      },
+      "B": {
+       "ret": 0.2654,
+       "share": 0.1964,
+       "yield": 0.2169
+      },
+      "SG": {
+       "ret": -0.0893,
+       "share": 0.1573,
+       "yield": 0.1243
+      },
+      "DB": {
+       "ret": -0.0997,
+       "share": 0.0683,
+       "yield": 0.1202
+      },
+      "SS": {
+       "ret": 0.2287,
+       "share": 0.0475,
+       "yield": 0.2524
+      },
+      "GW": {
+       "ret": 0.1275,
+       "share": 0.0386,
+       "yield": 0.2095
+      }
+     }
+    },
+    "mid": {
+     "name": "Fee-based midstream",
+     "mean_ret": 0.0941,
+     "vol": 0.0582,
+     "beta_own": -2.038,
+     "corr_draw": -0.421,
+     "corr_dlnP": 0.872,
+     "H_kappa0.5": 0.0077,
+     "H_kappa1.0": 0.0137,
+     "H_kappa2.0": 0.0223,
+     "Hd_kappa0.25": 0.0014,
+     "Hd_kappa0.5": 0.0026,
+     "Hd_kappa1.0": 0.0047,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.021,
+      "SG": 0.951,
+      "DB": 0.98,
+      "SS": 1.038,
+      "GW": 1.013
+     },
+     "mean_yield": 0.0975,
+     "corr_yield_draw": 0.287,
+     "by_Z": {
+      "N": {
+       "ret": 0.1001,
+       "share": 0.4919,
+       "yield": 0.0975
+      },
+      "B": {
+       "ret": 0.1478,
+       "share": 0.1964,
+       "yield": 0.0983
+      },
+      "SG": {
+       "ret": 0.0271,
+       "share": 0.1573,
+       "yield": 0.0969
+      },
+      "DB": {
+       "ret": 0.0236,
+       "share": 0.0683,
+       "yield": 0.0944
+      },
+      "SS": {
+       "ret": 0.1303,
+       "share": 0.0475,
+       "yield": 0.0993
+      },
+      "GW": {
+       "ret": 0.0979,
+       "share": 0.0386,
+       "yield": 0.0985
+      }
+     }
+    },
+    "tim": {
+     "name": "Timberland",
+     "mean_ret": 0.0381,
+     "vol": 0.0324,
+     "beta_own": -0.003,
+     "corr_draw": -0.001,
+     "corr_dlnP": 0.002,
+     "H_kappa0.5": 0.0,
+     "H_kappa1.0": 0.0,
+     "H_kappa2.0": 0.0,
+     "Hd_kappa0.25": 0.0,
+     "Hd_kappa0.5": 0.0,
+     "Hd_kappa1.0": 0.0,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.004,
+      "SG": 1.001,
+      "DB": 0.998,
+      "SS": 1.0,
+      "GW": 0.988
+     },
+     "mean_yield": 0.0273,
+     "corr_yield_draw": -0.004,
+     "by_Z": {
+      "N": {
+       "ret": 0.0381,
+       "share": 0.4919,
+       "yield": 0.0273
+      },
+      "B": {
+       "ret": 0.0383,
+       "share": 0.1964,
+       "yield": 0.0274
+      },
+      "SG": {
+       "ret": 0.0383,
+       "share": 0.1573,
+       "yield": 0.0273
+      },
+      "DB": {
+       "ret": 0.038,
+       "share": 0.0683,
+       "yield": 0.0273
+      },
+      "SS": {
+       "ret": 0.0383,
+       "share": 0.0475,
+       "yield": 0.0273
+      },
+      "GW": {
+       "ret": 0.0375,
+       "share": 0.0386,
+       "yield": 0.027
+      }
+     }
+    },
+    "farm": {
+     "name": "Row-crop farmland",
+     "mean_ret": 0.054,
+     "vol": 0.0806,
+     "beta_own": -0.363,
+     "corr_draw": -0.054,
+     "corr_dlnP": 0.088,
+     "H_kappa0.5": 0.0014,
+     "H_kappa1.0": 0.0024,
+     "H_kappa2.0": 0.0039,
+     "Hd_kappa0.25": 0.0002,
+     "Hd_kappa0.5": 0.0005,
+     "Hd_kappa1.0": 0.0008,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 0.999,
+      "SG": 1.0,
+      "DB": 1.0,
+      "SS": 1.001,
+      "GW": 1.0
+     },
+     "mean_yield": 0.0307,
+     "corr_yield_draw": -0.054,
+     "by_Z": {
+      "N": {
+       "ret": 0.054,
+       "share": 0.4919,
+       "yield": 0.0307
+      },
+      "B": {
+       "ret": 0.0542,
+       "share": 0.1964,
+       "yield": 0.0307
+      },
+      "SG": {
+       "ret": 0.0538,
+       "share": 0.1573,
+       "yield": 0.0307
+      },
+      "DB": {
+       "ret": 0.0543,
+       "share": 0.0683,
+       "yield": 0.0307
+      },
+      "SS": {
+       "ret": 0.0538,
+       "share": 0.0475,
+       "yield": 0.0307
+      },
+      "GW": {
+       "ret": 0.0539,
+       "share": 0.0386,
+       "yield": 0.0307
+      }
+     }
+    },
+    "eq": {
+     "name": "Global equity (ref)",
+     "mean_ret": 0.0485,
+     "vol": 0.1921,
+     "beta_own": -2.361,
+     "corr_draw": -0.148,
+     "corr_dlnP": 0.21,
+     "H_kappa0.5": 0.0103,
+     "H_kappa1.0": 0.0182,
+     "H_kappa2.0": 0.0298,
+     "Hd_kappa0.25": 0.0016,
+     "Hd_kappa0.5": 0.003,
+     "Hd_kappa1.0": 0.0055,
+     "by_Z": {
+      "N": {
+       "ret": 0.0701,
+       "share": 0.4919
+      },
+      "B": {
+       "ret": 0.1508,
+       "share": 0.1964
+      },
+      "SG": {
+       "ret": 0.051,
+       "share": 0.1573
+      },
+      "DB": {
+       "ret": -0.2491,
+       "share": 0.0683
+      },
+      "SS": {
+       "ret": -0.0994,
+       "share": 0.0475
+      },
+      "GW": {
+       "ret": -0.0509,
+       "share": 0.0386
+      }
+     }
+    }
+   },
+   "draw": {
+    "mean_draw": 0.0623,
+    "p_inband_dstar": 0.5186,
+    "draw_by_Z": {
+     "N": 0.0596,
+     "B": 0.0571,
+     "SG": 0.073,
+     "DB": 0.0712,
+     "SS": 0.0563,
+     "GW": 0.0714
+    },
+    "sigma_FB_pp": 4.008,
+    "median_brent": 66.7
+   }
+  },
+  "stationary_PBE44.8_linear": {
+   "segments": {
+    "pdp": {
+     "name": "Upstream PDP, unlevered",
+     "mean_ret": 0.1149,
+     "vol": 0.2248,
+     "beta_own": -8.038,
+     "corr_draw": -0.403,
+     "corr_dlnP": 0.875,
+     "H_kappa0.5": 0.0222,
+     "H_kappa1.0": 0.04,
+     "H_kappa2.0": 0.0668,
+     "Hd_kappa0.25": 0.0048,
+     "Hd_kappa0.5": 0.0091,
+     "Hd_kappa1.0": 0.0164,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.399,
+      "SG": 0.43,
+      "DB": 0.49,
+      "SS": 1.733,
+      "GW": 1.272
+     },
+     "mean_yield": 0.2182,
+     "corr_yield_draw": -0.697,
+     "by_Z": {
+      "N": {
+       "ret": 0.1282,
+       "share": 0.4919,
+       "yield": 0.2199
+      },
+      "B": {
+       "ret": 0.3171,
+       "share": 0.1964,
+       "yield": 0.2987
+      },
+      "SG": {
+       "ret": -0.1304,
+       "share": 0.1573,
+       "yield": 0.1001
+      },
+      "DB": {
+       "ret": -0.1394,
+       "share": 0.0683,
+       "yield": 0.1036
+      },
+      "SS": {
+       "ret": 0.286,
+       "share": 0.0475,
+       "yield": 0.3706
+      },
+      "GW": {
+       "ret": 0.1542,
+       "share": 0.0386,
+       "yield": 0.282
+      }
+     }
+    },
+    "lev": {
+     "name": "Upstream PDP, 40% LTV RBL",
+     "mean_ret": 0.1543,
+     "vol": 0.4479,
+     "beta_own": -16.013,
+     "corr_draw": -0.403,
+     "corr_dlnP": 0.874,
+     "H_kappa0.5": 0.0443,
+     "H_kappa1.0": 0.0799,
+     "H_kappa2.0": 0.1337,
+     "Hd_kappa0.25": 0.0096,
+     "Hd_kappa0.5": 0.0181,
+     "Hd_kappa1.0": 0.0326,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.844,
+      "SG": -0.286,
+      "DB": -0.279,
+      "SS": 2.166,
+      "GW": 1.297
+     },
+     "mean_yield": 0.2522,
+     "corr_yield_draw": -0.598,
+     "by_Z": {
+      "N": {
+       "ret": 0.1827,
+       "share": 0.4919,
+       "yield": 0.2767
+      },
+      "B": {
+       "ret": 0.554,
+       "share": 0.1964,
+       "yield": 0.4888
+      },
+      "SG": {
+       "ret": -0.3372,
+       "share": 0.1573,
+       "yield": -0.0978
+      },
+      "DB": {
+       "ret": -0.3486,
+       "share": 0.0683,
+       "yield": -0.0872
+      },
+      "SS": {
+       "ret": 0.4935,
+       "share": 0.0475,
+       "yield": 0.5784
+      },
+      "GW": {
+       "ret": 0.234,
+       "share": 0.0386,
+       "yield": 0.361
+      }
+     },
+     "cure_call_prob_by_Z": {
+      "N": 0.085,
+      "B": 0.0056,
+      "SG": 0.731,
+      "DB": 0.69,
+      "SS": 0.0231,
+      "GW": 0.174
+     },
+     "cure_call_mean_if_any_by_Z": {
+      "N": 0.0776,
+      "B": 0.0497,
+      "SG": 0.1804,
+      "DB": 0.1979,
+      "SS": 0.0785,
+      "GW": 0.1551
+     }
+    },
+    "hdg": {
+     "name": "Upstream PDP, 70% 3-yr swap ladder",
+     "mean_ret": 0.0985,
+     "vol": 0.0883,
+     "beta_own": -3.191,
+     "corr_draw": -0.408,
+     "corr_dlnP": 0.864,
+     "H_kappa0.5": 0.0088,
+     "H_kappa1.0": 0.0158,
+     "H_kappa2.0": 0.0265,
+     "Hd_kappa0.25": 0.0019,
+     "Hd_kappa0.5": 0.0036,
+     "Hd_kappa1.0": 0.0065,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.133,
+      "SG": 0.811,
+      "DB": 0.842,
+      "SS": 1.241,
+      "GW": 1.09
+     },
+     "mean_yield": 0.2102,
+     "corr_yield_draw": -0.632,
+     "by_Z": {
+      "N": {
+       "ret": 0.1051,
+       "share": 0.4919,
+       "yield": 0.2096
+      },
+      "B": {
+       "ret": 0.1842,
+       "share": 0.1964,
+       "yield": 0.2329
+      },
+      "SG": {
+       "ret": -0.0027,
+       "share": 0.1573,
+       "yield": 0.18
+      },
+      "DB": {
+       "ret": 0.0007,
+       "share": 0.0683,
+       "yield": 0.1757
+      },
+      "SS": {
+       "ret": 0.1528,
+       "share": 0.0475,
+       "yield": 0.255
+      },
+      "GW": {
+       "ret": 0.0986,
+       "share": 0.0386,
+       "yield": 0.2293
+      }
+     },
+     "overlay_route_collateral_flow_by_Z": {
+      "N": -0.0072,
+      "B": -0.0601,
+      "SG": 0.0437,
+      "DB": 0.0749,
+      "SS": -0.0106,
+      "GW": 0.002
+     },
+     "overlay_route_collateral_P05_by_Z": {
+      "N": -0.1337,
+      "B": -0.2012,
+      "SG": -0.0708,
+      "DB": -0.0506,
+      "SS": -0.1459,
+      "GW": -0.1437
+     }
+    },
+    "roy": {
+     "name": "Oil mineral & royalty",
+     "mean_ret": 0.1035,
+     "vol": 0.1761,
+     "beta_own": -6.398,
+     "corr_draw": -0.41,
+     "corr_dlnP": 0.874,
+     "H_kappa0.5": 0.0175,
+     "H_kappa1.0": 0.0316,
+     "H_kappa2.0": 0.0529,
+     "Hd_kappa0.25": 0.0038,
+     "Hd_kappa0.5": 0.0072,
+     "Hd_kappa1.0": 0.013,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.255,
+      "SG": 0.632,
+      "DB": 0.69,
+      "SS": 1.473,
+      "GW": 1.174
+     },
+     "mean_yield": 0.1783,
+     "corr_yield_draw": -0.637,
+     "by_Z": {
+      "N": {
+       "ret": 0.1147,
+       "share": 0.4919,
+       "yield": 0.1787
+      },
+      "B": {
+       "ret": 0.2654,
+       "share": 0.1964,
+       "yield": 0.2169
+      },
+      "SG": {
+       "ret": -0.0893,
+       "share": 0.1573,
+       "yield": 0.1243
+      },
+      "DB": {
+       "ret": -0.0997,
+       "share": 0.0683,
+       "yield": 0.1202
+      },
+      "SS": {
+       "ret": 0.2287,
+       "share": 0.0475,
+       "yield": 0.2524
+      },
+      "GW": {
+       "ret": 0.1275,
+       "share": 0.0386,
+       "yield": 0.2095
+      }
+     }
+    },
+    "mid": {
+     "name": "Fee-based midstream",
+     "mean_ret": 0.0941,
+     "vol": 0.0582,
+     "beta_own": -2.207,
+     "corr_draw": -0.428,
+     "corr_dlnP": 0.872,
+     "H_kappa0.5": 0.0061,
+     "H_kappa1.0": 0.011,
+     "H_kappa2.0": 0.0184,
+     "Hd_kappa0.25": 0.0013,
+     "Hd_kappa0.5": 0.0025,
+     "Hd_kappa1.0": 0.0045,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.021,
+      "SG": 0.951,
+      "DB": 0.98,
+      "SS": 1.038,
+      "GW": 1.013
+     },
+     "mean_yield": 0.0975,
+     "corr_yield_draw": 0.285,
+     "by_Z": {
+      "N": {
+       "ret": 0.1001,
+       "share": 0.4919,
+       "yield": 0.0975
+      },
+      "B": {
+       "ret": 0.1478,
+       "share": 0.1964,
+       "yield": 0.0983
+      },
+      "SG": {
+       "ret": 0.0271,
+       "share": 0.1573,
+       "yield": 0.0969
+      },
+      "DB": {
+       "ret": 0.0236,
+       "share": 0.0683,
+       "yield": 0.0944
+      },
+      "SS": {
+       "ret": 0.1303,
+       "share": 0.0475,
+       "yield": 0.0993
+      },
+      "GW": {
+       "ret": 0.0979,
+       "share": 0.0386,
+       "yield": 0.0985
+      }
+     }
+    },
+    "tim": {
+     "name": "Timberland",
+     "mean_ret": 0.0381,
+     "vol": 0.0324,
+     "beta_own": -0.003,
+     "corr_draw": -0.001,
+     "corr_dlnP": 0.002,
+     "H_kappa0.5": 0.0,
+     "H_kappa1.0": 0.0,
+     "H_kappa2.0": 0.0,
+     "Hd_kappa0.25": 0.0,
+     "Hd_kappa0.5": 0.0,
+     "Hd_kappa1.0": 0.0,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.004,
+      "SG": 1.001,
+      "DB": 0.998,
+      "SS": 1.0,
+      "GW": 0.988
+     },
+     "mean_yield": 0.0273,
+     "corr_yield_draw": -0.005,
+     "by_Z": {
+      "N": {
+       "ret": 0.0381,
+       "share": 0.4919,
+       "yield": 0.0273
+      },
+      "B": {
+       "ret": 0.0383,
+       "share": 0.1964,
+       "yield": 0.0274
+      },
+      "SG": {
+       "ret": 0.0383,
+       "share": 0.1573,
+       "yield": 0.0273
+      },
+      "DB": {
+       "ret": 0.038,
+       "share": 0.0683,
+       "yield": 0.0273
+      },
+      "SS": {
+       "ret": 0.0383,
+       "share": 0.0475,
+       "yield": 0.0273
+      },
+      "GW": {
+       "ret": 0.0375,
+       "share": 0.0386,
+       "yield": 0.027
+      }
+     }
+    },
+    "farm": {
+     "name": "Row-crop farmland",
+     "mean_ret": 0.054,
+     "vol": 0.0806,
+     "beta_own": -0.397,
+     "corr_draw": -0.055,
+     "corr_dlnP": 0.088,
+     "H_kappa0.5": 0.001,
+     "H_kappa1.0": 0.0019,
+     "H_kappa2.0": 0.0031,
+     "Hd_kappa0.25": 0.0002,
+     "Hd_kappa0.5": 0.0004,
+     "Hd_kappa1.0": 0.0008,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 0.999,
+      "SG": 1.0,
+      "DB": 1.0,
+      "SS": 1.001,
+      "GW": 1.0
+     },
+     "mean_yield": 0.0307,
+     "corr_yield_draw": -0.055,
+     "by_Z": {
+      "N": {
+       "ret": 0.054,
+       "share": 0.4919,
+       "yield": 0.0307
+      },
+      "B": {
+       "ret": 0.0542,
+       "share": 0.1964,
+       "yield": 0.0307
+      },
+      "SG": {
+       "ret": 0.0538,
+       "share": 0.1573,
+       "yield": 0.0307
+      },
+      "DB": {
+       "ret": 0.0543,
+       "share": 0.0683,
+       "yield": 0.0307
+      },
+      "SS": {
+       "ret": 0.0538,
+       "share": 0.0475,
+       "yield": 0.0307
+      },
+      "GW": {
+       "ret": 0.0539,
+       "share": 0.0386,
+       "yield": 0.0307
+      }
+     }
+    },
+    "eq": {
+     "name": "Global equity (ref)",
+     "mean_ret": 0.0485,
+     "vol": 0.1921,
+     "beta_own": -2.506,
+     "corr_draw": -0.147,
+     "corr_dlnP": 0.21,
+     "H_kappa0.5": 0.008,
+     "H_kappa1.0": 0.0144,
+     "H_kappa2.0": 0.0241,
+     "Hd_kappa0.25": 0.0015,
+     "Hd_kappa0.5": 0.0028,
+     "Hd_kappa1.0": 0.0051,
+     "by_Z": {
+      "N": {
+       "ret": 0.0701,
+       "share": 0.4919
+      },
+      "B": {
+       "ret": 0.1508,
+       "share": 0.1964
+      },
+      "SG": {
+       "ret": 0.051,
+       "share": 0.1573
+      },
+      "DB": {
+       "ret": -0.2491,
+       "share": 0.0683
+      },
+      "SS": {
+       "ret": -0.0994,
+       "share": 0.0475
+      },
+      "GW": {
+       "ret": -0.0509,
+       "share": 0.0386
+      }
+     }
+    }
+   },
+   "draw": {
+    "mean_draw": 0.0626,
+    "p_inband_dstar": 0.5717,
+    "draw_by_Z": {
+     "N": 0.0602,
+     "B": 0.0576,
+     "SG": 0.0723,
+     "DB": 0.0712,
+     "SS": 0.0566,
+     "GW": 0.0712
+    },
+    "sigma_FB_pp": 4.419,
+    "median_brent": 66.7
+   }
+  },
+  "stationary_PBE55.0_log": {
+   "segments": {
+    "pdp": {
+     "name": "Upstream PDP, unlevered",
+     "mean_ret": 0.1147,
+     "vol": 0.2255,
+     "beta_own": -6.841,
+     "corr_draw": -0.412,
+     "corr_dlnP": 0.875,
+     "H_kappa0.5": 0.0367,
+     "H_kappa1.0": 0.0611,
+     "H_kappa2.0": 0.0914,
+     "Hd_kappa0.25": 0.0057,
+     "Hd_kappa0.5": 0.0106,
+     "Hd_kappa1.0": 0.0182,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.397,
+      "SG": 0.43,
+      "DB": 0.488,
+      "SS": 1.736,
+      "GW": 1.258
+     },
+     "mean_yield": 0.2182,
+     "corr_yield_draw": -0.724,
+     "by_Z": {
+      "N": {
+       "ret": 0.1282,
+       "share": 0.4939,
+       "yield": 0.2201
+      },
+      "B": {
+       "ret": 0.3181,
+       "share": 0.1948,
+       "yield": 0.299
+      },
+      "SG": {
+       "ret": -0.1312,
+       "share": 0.1573,
+       "yield": 0.1002
+      },
+      "DB": {
+       "ret": -0.1395,
+       "share": 0.068,
+       "yield": 0.1034
+      },
+      "SS": {
+       "ret": 0.2882,
+       "share": 0.0477,
+       "yield": 0.3719
+      },
+      "GW": {
+       "ret": 0.1499,
+       "share": 0.0384,
+       "yield": 0.2796
+      }
+     }
+    },
+    "lev": {
+     "name": "Upstream PDP, 40% LTV RBL",
+     "mean_ret": 0.1539,
+     "vol": 0.4494,
+     "beta_own": -13.589,
+     "corr_draw": -0.41,
+     "corr_dlnP": 0.874,
+     "H_kappa0.5": 0.0734,
+     "H_kappa1.0": 0.1221,
+     "H_kappa2.0": 0.1827,
+     "Hd_kappa0.25": 0.0114,
+     "Hd_kappa0.5": 0.021,
+     "Hd_kappa1.0": 0.0362,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.845,
+      "SG": -0.287,
+      "DB": -0.28,
+      "SS": 2.178,
+      "GW": 1.267
+     },
+     "mean_yield": 0.252,
+     "corr_yield_draw": -0.615,
+     "by_Z": {
+      "N": {
+       "ret": 0.1827,
+       "share": 0.4939,
+       "yield": 0.2769
+      },
+      "B": {
+       "ret": 0.5561,
+       "share": 0.1948,
+       "yield": 0.4896
+      },
+      "SG": {
+       "ret": -0.3386,
+       "share": 0.1573,
+       "yield": -0.0981
+      },
+      "DB": {
+       "ret": -0.349,
+       "share": 0.068,
+       "yield": -0.0874
+      },
+      "SS": {
+       "ret": 0.4977,
+       "share": 0.0477,
+       "yield": 0.5817
+      },
+      "GW": {
+       "ret": 0.2253,
+       "share": 0.0384,
+       "yield": 0.3531
+      }
+     },
+     "cure_call_prob_by_Z": {
+      "N": 0.0856,
+      "B": 0.0059,
+      "SG": 0.7334,
+      "DB": 0.6916,
+      "SS": 0.023,
+      "GW": 0.187
+     },
+     "cure_call_mean_if_any_by_Z": {
+      "N": 0.0769,
+      "B": 0.0496,
+      "SG": 0.1802,
+      "DB": 0.198,
+      "SS": 0.0847,
+      "GW": 0.1558
+     }
+    },
+    "hdg": {
+     "name": "Upstream PDP, 70% 3-yr swap ladder",
+     "mean_ret": 0.0984,
+     "vol": 0.0885,
+     "beta_own": -2.726,
+     "corr_draw": -0.418,
+     "corr_dlnP": 0.864,
+     "H_kappa0.5": 0.0145,
+     "H_kappa1.0": 0.0241,
+     "H_kappa2.0": 0.036,
+     "Hd_kappa0.25": 0.0023,
+     "Hd_kappa0.5": 0.0042,
+     "Hd_kappa1.0": 0.0073,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.131,
+      "SG": 0.81,
+      "DB": 0.841,
+      "SS": 1.242,
+      "GW": 1.084
+     },
+     "mean_yield": 0.2102,
+     "corr_yield_draw": -0.669,
+     "by_Z": {
+      "N": {
+       "ret": 0.1051,
+       "share": 0.4939,
+       "yield": 0.2098
+      },
+      "B": {
+       "ret": 0.1846,
+       "share": 0.1948,
+       "yield": 0.2331
+      },
+      "SG": {
+       "ret": -0.0031,
+       "share": 0.1573,
+       "yield": 0.1799
+      },
+      "DB": {
+       "ret": 0.0007,
+       "share": 0.068,
+       "yield": 0.1758
+      },
+      "SS": {
+       "ret": 0.1536,
+       "share": 0.0477,
+       "yield": 0.2555
+      },
+      "GW": {
+       "ret": 0.097,
+       "share": 0.0384,
+       "yield": 0.2285
+      }
+     },
+     "overlay_route_collateral_flow_by_Z": {
+      "N": -0.0072,
+      "B": -0.0606,
+      "SG": 0.0445,
+      "DB": 0.0746,
+      "SS": -0.0113,
+      "GW": 0.003
+     },
+     "overlay_route_collateral_P05_by_Z": {
+      "N": -0.1337,
+      "B": -0.2031,
+      "SG": -0.0704,
+      "DB": -0.0529,
+      "SS": -0.1462,
+      "GW": -0.1468
+     }
+    },
+    "roy": {
+     "name": "Oil mineral & royalty",
+     "mean_ret": 0.1033,
+     "vol": 0.1767,
+     "beta_own": -5.437,
+     "corr_draw": -0.418,
+     "corr_dlnP": 0.874,
+     "H_kappa0.5": 0.0291,
+     "H_kappa1.0": 0.0484,
+     "H_kappa2.0": 0.0724,
+     "Hd_kappa0.25": 0.0046,
+     "Hd_kappa0.5": 0.0084,
+     "Hd_kappa1.0": 0.0145,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.252,
+      "SG": 0.632,
+      "DB": 0.688,
+      "SS": 1.476,
+      "GW": 1.165
+     },
+     "mean_yield": 0.1784,
+     "corr_yield_draw": -0.665,
+     "by_Z": {
+      "N": {
+       "ret": 0.1147,
+       "share": 0.4939,
+       "yield": 0.1788
+      },
+      "B": {
+       "ret": 0.2662,
+       "share": 0.1948,
+       "yield": 0.2171
+      },
+      "SG": {
+       "ret": -0.0899,
+       "share": 0.1573,
+       "yield": 0.1242
+      },
+      "DB": {
+       "ret": -0.0999,
+       "share": 0.068,
+       "yield": 0.1201
+      },
+      "SS": {
+       "ret": 0.2304,
+       "share": 0.0477,
+       "yield": 0.253
+      },
+      "GW": {
+       "ret": 0.1241,
+       "share": 0.0384,
+       "yield": 0.2083
+      }
+     }
+    },
+    "mid": {
+     "name": "Fee-based midstream",
+     "mean_ret": 0.094,
+     "vol": 0.0583,
+     "beta_own": -1.862,
+     "corr_draw": -0.433,
+     "corr_dlnP": 0.872,
+     "H_kappa0.5": 0.0101,
+     "H_kappa1.0": 0.0168,
+     "H_kappa2.0": 0.0251,
+     "Hd_kappa0.25": 0.0016,
+     "Hd_kappa0.5": 0.0029,
+     "Hd_kappa1.0": 0.005,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.02,
+      "SG": 0.952,
+      "DB": 0.979,
+      "SS": 1.037,
+      "GW": 1.012
+     },
+     "mean_yield": 0.0975,
+     "corr_yield_draw": 0.306,
+     "by_Z": {
+      "N": {
+       "ret": 0.1001,
+       "share": 0.4939,
+       "yield": 0.0975
+      },
+      "B": {
+       "ret": 0.148,
+       "share": 0.1948,
+       "yield": 0.0984
+      },
+      "SG": {
+       "ret": 0.0268,
+       "share": 0.1573,
+       "yield": 0.0969
+      },
+      "DB": {
+       "ret": 0.0235,
+       "share": 0.068,
+       "yield": 0.0944
+      },
+      "SS": {
+       "ret": 0.1307,
+       "share": 0.0477,
+       "yield": 0.0993
+      },
+      "GW": {
+       "ret": 0.0966,
+       "share": 0.0384,
+       "yield": 0.0985
+      }
+     }
+    },
+    "tim": {
+     "name": "Timberland",
+     "mean_ret": 0.0381,
+     "vol": 0.0324,
+     "beta_own": -0.002,
+     "corr_draw": -0.001,
+     "corr_dlnP": -0.002,
+     "H_kappa0.5": -0.0,
+     "H_kappa1.0": -0.0,
+     "H_kappa2.0": -0.0,
+     "Hd_kappa0.25": 0.0,
+     "Hd_kappa0.5": 0.0,
+     "Hd_kappa1.0": 0.0,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.002,
+      "SG": 0.998,
+      "DB": 0.999,
+      "SS": 1.001,
+      "GW": 0.993
+     },
+     "mean_yield": 0.0273,
+     "corr_yield_draw": -0.005,
+     "by_Z": {
+      "N": {
+       "ret": 0.038,
+       "share": 0.4939,
+       "yield": 0.0273
+      },
+      "B": {
+       "ret": 0.0383,
+       "share": 0.1948,
+       "yield": 0.0273
+      },
+      "SG": {
+       "ret": 0.0382,
+       "share": 0.1573,
+       "yield": 0.0272
+      },
+      "DB": {
+       "ret": 0.0381,
+       "share": 0.068,
+       "yield": 0.0273
+      },
+      "SS": {
+       "ret": 0.0379,
+       "share": 0.0477,
+       "yield": 0.0273
+      },
+      "GW": {
+       "ret": 0.0373,
+       "share": 0.0384,
+       "yield": 0.0271
+      }
+     }
+    },
+    "farm": {
+     "name": "Row-crop farmland",
+     "mean_ret": 0.0537,
+     "vol": 0.0801,
+     "beta_own": -0.341,
+     "corr_draw": -0.058,
+     "corr_dlnP": 0.087,
+     "H_kappa0.5": 0.0018,
+     "H_kappa1.0": 0.0029,
+     "H_kappa2.0": 0.0044,
+     "Hd_kappa0.25": 0.0003,
+     "Hd_kappa0.5": 0.0005,
+     "Hd_kappa1.0": 0.0009,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 0.998,
+      "SG": 1.0,
+      "DB": 0.998,
+      "SS": 1.0,
+      "GW": 1.0
+     },
+     "mean_yield": 0.0307,
+     "corr_yield_draw": -0.058,
+     "by_Z": {
+      "N": {
+       "ret": 0.0535,
+       "share": 0.4939,
+       "yield": 0.0307
+      },
+      "B": {
+       "ret": 0.0539,
+       "share": 0.1948,
+       "yield": 0.0307
+      },
+      "SG": {
+       "ret": 0.0536,
+       "share": 0.1573,
+       "yield": 0.0307
+      },
+      "DB": {
+       "ret": 0.0543,
+       "share": 0.068,
+       "yield": 0.0307
+      },
+      "SS": {
+       "ret": 0.0538,
+       "share": 0.0477,
+       "yield": 0.0307
+      },
+      "GW": {
+       "ret": 0.0543,
+       "share": 0.0384,
+       "yield": 0.0307
+      }
+     }
+    },
+    "eq": {
+     "name": "Global equity (ref)",
+     "mean_ret": 0.0476,
+     "vol": 0.192,
+     "beta_own": -1.905,
+     "corr_draw": -0.135,
+     "corr_dlnP": 0.206,
+     "H_kappa0.5": 0.0123,
+     "H_kappa1.0": 0.0205,
+     "H_kappa2.0": 0.0306,
+     "Hd_kappa0.25": 0.0016,
+     "Hd_kappa0.5": 0.0029,
+     "Hd_kappa1.0": 0.0051,
+     "by_Z": {
+      "N": {
+       "ret": 0.0694,
+       "share": 0.4939
+      },
+      "B": {
+       "ret": 0.1506,
+       "share": 0.1948
+      },
+      "SG": {
+       "ret": 0.0505,
+       "share": 0.1573
+      },
+      "DB": {
+       "ret": -0.2504,
+       "share": 0.068
+      },
+      "SS": {
+       "ret": -0.1039,
+       "share": 0.0477
+      },
+      "GW": {
+       "ret": -0.0528,
+       "share": 0.0384
+      }
+     }
+    }
+   },
+   "draw": {
+    "mean_draw": 0.069,
+    "p_inband_dstar": 0.6422,
+    "draw_by_Z": {
+     "N": 0.0666,
+     "B": 0.0625,
+     "SG": 0.0807,
+     "DB": 0.0781,
+     "SS": 0.0611,
+     "GW": 0.0785
+    },
+    "sigma_FB_pp": 4.018,
+    "median_brent": 66.7
+   }
+  },
+  "stationary_PBE55.0_linear": {
+   "segments": {
+    "pdp": {
+     "name": "Upstream PDP, unlevered",
+     "mean_ret": 0.1147,
+     "vol": 0.2255,
+     "beta_own": -7.15,
+     "corr_draw": -0.416,
+     "corr_dlnP": 0.875,
+     "H_kappa0.5": 0.0293,
+     "H_kappa1.0": 0.0502,
+     "H_kappa2.0": 0.0779,
+     "Hd_kappa0.25": 0.0056,
+     "Hd_kappa0.5": 0.0104,
+     "Hd_kappa1.0": 0.0181,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.397,
+      "SG": 0.43,
+      "DB": 0.488,
+      "SS": 1.736,
+      "GW": 1.258
+     },
+     "mean_yield": 0.2182,
+     "corr_yield_draw": -0.73,
+     "by_Z": {
+      "N": {
+       "ret": 0.1282,
+       "share": 0.4939,
+       "yield": 0.2201
+      },
+      "B": {
+       "ret": 0.3181,
+       "share": 0.1948,
+       "yield": 0.299
+      },
+      "SG": {
+       "ret": -0.1312,
+       "share": 0.1573,
+       "yield": 0.1002
+      },
+      "DB": {
+       "ret": -0.1395,
+       "share": 0.068,
+       "yield": 0.1034
+      },
+      "SS": {
+       "ret": 0.2882,
+       "share": 0.0477,
+       "yield": 0.3719
+      },
+      "GW": {
+       "ret": 0.1499,
+       "share": 0.0384,
+       "yield": 0.2796
+      }
+     }
+    },
+    "lev": {
+     "name": "Upstream PDP, 40% LTV RBL",
+     "mean_ret": 0.1539,
+     "vol": 0.4494,
+     "beta_own": -14.201,
+     "corr_draw": -0.415,
+     "corr_dlnP": 0.874,
+     "H_kappa0.5": 0.0585,
+     "H_kappa1.0": 0.1001,
+     "H_kappa2.0": 0.1554,
+     "Hd_kappa0.25": 0.0112,
+     "Hd_kappa0.5": 0.0207,
+     "Hd_kappa1.0": 0.0359,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.845,
+      "SG": -0.287,
+      "DB": -0.28,
+      "SS": 2.178,
+      "GW": 1.267
+     },
+     "mean_yield": 0.252,
+     "corr_yield_draw": -0.62,
+     "by_Z": {
+      "N": {
+       "ret": 0.1827,
+       "share": 0.4939,
+       "yield": 0.2769
+      },
+      "B": {
+       "ret": 0.5561,
+       "share": 0.1948,
+       "yield": 0.4896
+      },
+      "SG": {
+       "ret": -0.3386,
+       "share": 0.1573,
+       "yield": -0.0981
+      },
+      "DB": {
+       "ret": -0.349,
+       "share": 0.068,
+       "yield": -0.0874
+      },
+      "SS": {
+       "ret": 0.4977,
+       "share": 0.0477,
+       "yield": 0.5817
+      },
+      "GW": {
+       "ret": 0.2253,
+       "share": 0.0384,
+       "yield": 0.3531
+      }
+     },
+     "cure_call_prob_by_Z": {
+      "N": 0.0856,
+      "B": 0.0059,
+      "SG": 0.7334,
+      "DB": 0.6916,
+      "SS": 0.023,
+      "GW": 0.187
+     },
+     "cure_call_mean_if_any_by_Z": {
+      "N": 0.0769,
+      "B": 0.0496,
+      "SG": 0.1802,
+      "DB": 0.198,
+      "SS": 0.0847,
+      "GW": 0.1558
+     }
+    },
+    "hdg": {
+     "name": "Upstream PDP, 70% 3-yr swap ladder",
+     "mean_ret": 0.0984,
+     "vol": 0.0885,
+     "beta_own": -2.843,
+     "corr_draw": -0.421,
+     "corr_dlnP": 0.864,
+     "H_kappa0.5": 0.0116,
+     "H_kappa1.0": 0.0199,
+     "H_kappa2.0": 0.0309,
+     "Hd_kappa0.25": 0.0022,
+     "Hd_kappa0.5": 0.0041,
+     "Hd_kappa1.0": 0.0072,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.131,
+      "SG": 0.81,
+      "DB": 0.841,
+      "SS": 1.242,
+      "GW": 1.084
+     },
+     "mean_yield": 0.2102,
+     "corr_yield_draw": -0.674,
+     "by_Z": {
+      "N": {
+       "ret": 0.1051,
+       "share": 0.4939,
+       "yield": 0.2098
+      },
+      "B": {
+       "ret": 0.1846,
+       "share": 0.1948,
+       "yield": 0.2331
+      },
+      "SG": {
+       "ret": -0.0031,
+       "share": 0.1573,
+       "yield": 0.1799
+      },
+      "DB": {
+       "ret": 0.0007,
+       "share": 0.068,
+       "yield": 0.1758
+      },
+      "SS": {
+       "ret": 0.1536,
+       "share": 0.0477,
+       "yield": 0.2555
+      },
+      "GW": {
+       "ret": 0.097,
+       "share": 0.0384,
+       "yield": 0.2285
+      }
+     },
+     "overlay_route_collateral_flow_by_Z": {
+      "N": -0.0072,
+      "B": -0.0606,
+      "SG": 0.0445,
+      "DB": 0.0746,
+      "SS": -0.0113,
+      "GW": 0.003
+     },
+     "overlay_route_collateral_P05_by_Z": {
+      "N": -0.1337,
+      "B": -0.2031,
+      "SG": -0.0704,
+      "DB": -0.0529,
+      "SS": -0.1462,
+      "GW": -0.1468
+     }
+    },
+    "roy": {
+     "name": "Oil mineral & royalty",
+     "mean_ret": 0.1033,
+     "vol": 0.1767,
+     "beta_own": -5.68,
+     "corr_draw": -0.422,
+     "corr_dlnP": 0.874,
+     "H_kappa0.5": 0.0232,
+     "H_kappa1.0": 0.0397,
+     "H_kappa2.0": 0.0616,
+     "Hd_kappa0.25": 0.0045,
+     "Hd_kappa0.5": 0.0083,
+     "Hd_kappa1.0": 0.0143,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.252,
+      "SG": 0.632,
+      "DB": 0.688,
+      "SS": 1.476,
+      "GW": 1.165
+     },
+     "mean_yield": 0.1784,
+     "corr_yield_draw": -0.672,
+     "by_Z": {
+      "N": {
+       "ret": 0.1147,
+       "share": 0.4939,
+       "yield": 0.1788
+      },
+      "B": {
+       "ret": 0.2662,
+       "share": 0.1948,
+       "yield": 0.2171
+      },
+      "SG": {
+       "ret": -0.0899,
+       "share": 0.1573,
+       "yield": 0.1242
+      },
+      "DB": {
+       "ret": -0.0999,
+       "share": 0.068,
+       "yield": 0.1201
+      },
+      "SS": {
+       "ret": 0.2304,
+       "share": 0.0477,
+       "yield": 0.253
+      },
+      "GW": {
+       "ret": 0.1241,
+       "share": 0.0384,
+       "yield": 0.2083
+      }
+     }
+    },
+    "mid": {
+     "name": "Fee-based midstream",
+     "mean_ret": 0.094,
+     "vol": 0.0583,
+     "beta_own": -1.941,
+     "corr_draw": -0.437,
+     "corr_dlnP": 0.872,
+     "H_kappa0.5": 0.008,
+     "H_kappa1.0": 0.0137,
+     "H_kappa2.0": 0.0213,
+     "Hd_kappa0.25": 0.0015,
+     "Hd_kappa0.5": 0.0028,
+     "Hd_kappa1.0": 0.0049,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.02,
+      "SG": 0.952,
+      "DB": 0.979,
+      "SS": 1.037,
+      "GW": 1.012
+     },
+     "mean_yield": 0.0975,
+     "corr_yield_draw": 0.3,
+     "by_Z": {
+      "N": {
+       "ret": 0.1001,
+       "share": 0.4939,
+       "yield": 0.0975
+      },
+      "B": {
+       "ret": 0.148,
+       "share": 0.1948,
+       "yield": 0.0984
+      },
+      "SG": {
+       "ret": 0.0268,
+       "share": 0.1573,
+       "yield": 0.0969
+      },
+      "DB": {
+       "ret": 0.0235,
+       "share": 0.068,
+       "yield": 0.0944
+      },
+      "SS": {
+       "ret": 0.1307,
+       "share": 0.0477,
+       "yield": 0.0993
+      },
+      "GW": {
+       "ret": 0.0966,
+       "share": 0.0384,
+       "yield": 0.0985
+      }
+     }
+    },
+    "tim": {
+     "name": "Timberland",
+     "mean_ret": 0.0381,
+     "vol": 0.0324,
+     "beta_own": -0.002,
+     "corr_draw": -0.001,
+     "corr_dlnP": -0.002,
+     "H_kappa0.5": -0.0,
+     "H_kappa1.0": -0.0,
+     "H_kappa2.0": -0.0,
+     "Hd_kappa0.25": 0.0,
+     "Hd_kappa0.5": 0.0,
+     "Hd_kappa1.0": 0.0,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.002,
+      "SG": 0.998,
+      "DB": 0.999,
+      "SS": 1.001,
+      "GW": 0.993
+     },
+     "mean_yield": 0.0273,
+     "corr_yield_draw": -0.005,
+     "by_Z": {
+      "N": {
+       "ret": 0.038,
+       "share": 0.4939,
+       "yield": 0.0273
+      },
+      "B": {
+       "ret": 0.0383,
+       "share": 0.1948,
+       "yield": 0.0273
+      },
+      "SG": {
+       "ret": 0.0382,
+       "share": 0.1573,
+       "yield": 0.0272
+      },
+      "DB": {
+       "ret": 0.0381,
+       "share": 0.068,
+       "yield": 0.0273
+      },
+      "SS": {
+       "ret": 0.0379,
+       "share": 0.0477,
+       "yield": 0.0273
+      },
+      "GW": {
+       "ret": 0.0373,
+       "share": 0.0384,
+       "yield": 0.0271
+      }
+     }
+    },
+    "farm": {
+     "name": "Row-crop farmland",
+     "mean_ret": 0.0537,
+     "vol": 0.0801,
+     "beta_own": -0.356,
+     "corr_draw": -0.058,
+     "corr_dlnP": 0.087,
+     "H_kappa0.5": 0.0014,
+     "H_kappa1.0": 0.0024,
+     "H_kappa2.0": 0.0037,
+     "Hd_kappa0.25": 0.0003,
+     "Hd_kappa0.5": 0.0005,
+     "Hd_kappa1.0": 0.0009,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 0.998,
+      "SG": 1.0,
+      "DB": 0.998,
+      "SS": 1.0,
+      "GW": 1.0
+     },
+     "mean_yield": 0.0307,
+     "corr_yield_draw": -0.058,
+     "by_Z": {
+      "N": {
+       "ret": 0.0535,
+       "share": 0.4939,
+       "yield": 0.0307
+      },
+      "B": {
+       "ret": 0.0539,
+       "share": 0.1948,
+       "yield": 0.0307
+      },
+      "SG": {
+       "ret": 0.0536,
+       "share": 0.1573,
+       "yield": 0.0307
+      },
+      "DB": {
+       "ret": 0.0543,
+       "share": 0.068,
+       "yield": 0.0307
+      },
+      "SS": {
+       "ret": 0.0538,
+       "share": 0.0477,
+       "yield": 0.0307
+      },
+      "GW": {
+       "ret": 0.0543,
+       "share": 0.0384,
+       "yield": 0.0307
+      }
+     }
+    },
+    "eq": {
+     "name": "Global equity (ref)",
+     "mean_ret": 0.0476,
+     "vol": 0.192,
+     "beta_own": -1.952,
+     "corr_draw": -0.133,
+     "corr_dlnP": 0.206,
+     "H_kappa0.5": 0.0095,
+     "H_kappa1.0": 0.0163,
+     "H_kappa2.0": 0.0253,
+     "Hd_kappa0.25": 0.0015,
+     "Hd_kappa0.5": 0.0028,
+     "Hd_kappa1.0": 0.0049,
+     "by_Z": {
+      "N": {
+       "ret": 0.0694,
+       "share": 0.4939
+      },
+      "B": {
+       "ret": 0.1506,
+       "share": 0.1948
+      },
+      "SG": {
+       "ret": 0.0505,
+       "share": 0.1573
+      },
+      "DB": {
+       "ret": -0.2504,
+       "share": 0.068
+      },
+      "SS": {
+       "ret": -0.1039,
+       "share": 0.0477
+      },
+      "GW": {
+       "ret": -0.0528,
+       "share": 0.0384
+      }
+     }
+    }
+   },
+   "draw": {
+    "mean_draw": 0.0682,
+    "p_inband_dstar": 0.6481,
+    "draw_by_Z": {
+     "N": 0.066,
+     "B": 0.062,
+     "SG": 0.0793,
+     "DB": 0.0773,
+     "SS": 0.0606,
+     "GW": 0.0765
+    },
+    "sigma_FB_pp": 4.438,
+    "median_brent": 66.7
+   }
+  },
+  "stationary_PBE65.0_log": {
+   "segments": {
+    "pdp": {
+     "name": "Upstream PDP, unlevered",
+     "mean_ret": 0.1147,
+     "vol": 0.2246,
+     "beta_own": -6.854,
+     "corr_draw": -0.417,
+     "corr_dlnP": 0.875,
+     "H_kappa0.5": 0.0412,
+     "H_kappa1.0": 0.0648,
+     "H_kappa2.0": 0.0906,
+     "Hd_kappa0.25": 0.0057,
+     "Hd_kappa0.5": 0.0102,
+     "Hd_kappa1.0": 0.017,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.408,
+      "SG": 0.432,
+      "DB": 0.491,
+      "SS": 1.737,
+      "GW": 1.27
+     },
+     "mean_yield": 0.2179,
+     "corr_yield_draw": -0.741,
+     "by_Z": {
+      "N": {
+       "ret": 0.1282,
+       "share": 0.4948,
+       "yield": 0.2195
+      },
+      "B": {
+       "ret": 0.318,
+       "share": 0.1951,
+       "yield": 0.2993
+      },
+      "SG": {
+       "ret": -0.131,
+       "share": 0.1566,
+       "yield": 0.1003
+      },
+      "DB": {
+       "ret": -0.1389,
+       "share": 0.0681,
+       "yield": 0.1035
+      },
+      "SS": {
+       "ret": 0.2846,
+       "share": 0.0468,
+       "yield": 0.37
+      },
+      "GW": {
+       "ret": 0.1521,
+       "share": 0.0385,
+       "yield": 0.2809
+      }
+     }
+    },
+    "lev": {
+     "name": "Upstream PDP, 40% LTV RBL",
+     "mean_ret": 0.154,
+     "vol": 0.4476,
+     "beta_own": -13.566,
+     "corr_draw": -0.414,
+     "corr_dlnP": 0.874,
+     "H_kappa0.5": 0.0822,
+     "H_kappa1.0": 0.1292,
+     "H_kappa2.0": 0.1807,
+     "Hd_kappa0.25": 0.0112,
+     "Hd_kappa0.5": 0.0202,
+     "Hd_kappa1.0": 0.0336,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.859,
+      "SG": -0.287,
+      "DB": -0.277,
+      "SS": 2.172,
+      "GW": 1.288
+     },
+     "mean_yield": 0.2518,
+     "corr_yield_draw": -0.622,
+     "by_Z": {
+      "N": {
+       "ret": 0.1826,
+       "share": 0.4948,
+       "yield": 0.2761
+      },
+      "B": {
+       "ret": 0.556,
+       "share": 0.1951,
+       "yield": 0.4903
+      },
+      "SG": {
+       "ret": -0.3382,
+       "share": 0.1566,
+       "yield": -0.0978
+      },
+      "DB": {
+       "ret": -0.3476,
+       "share": 0.0681,
+       "yield": -0.0867
+      },
+      "SS": {
+       "ret": 0.4904,
+       "share": 0.0468,
+       "yield": 0.5766
+      },
+      "GW": {
+       "ret": 0.2297,
+       "share": 0.0385,
+       "yield": 0.3576
+      }
+     },
+     "cure_call_prob_by_Z": {
+      "N": 0.0855,
+      "B": 0.0057,
+      "SG": 0.7326,
+      "DB": 0.6888,
+      "SS": 0.0244,
+      "GW": 0.1806
+     },
+     "cure_call_mean_if_any_by_Z": {
+      "N": 0.0777,
+      "B": 0.0513,
+      "SG": 0.1793,
+      "DB": 0.1974,
+      "SS": 0.0772,
+      "GW": 0.1531
+     }
+    },
+    "hdg": {
+     "name": "Upstream PDP, 70% 3-yr swap ladder",
+     "mean_ret": 0.0985,
+     "vol": 0.0882,
+     "beta_own": -2.737,
+     "corr_draw": -0.424,
+     "corr_dlnP": 0.864,
+     "H_kappa0.5": 0.0163,
+     "H_kappa1.0": 0.0256,
+     "H_kappa2.0": 0.0359,
+     "Hd_kappa0.25": 0.0023,
+     "Hd_kappa0.5": 0.0041,
+     "Hd_kappa1.0": 0.0068,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.136,
+      "SG": 0.813,
+      "DB": 0.842,
+      "SS": 1.243,
+      "GW": 1.089
+     },
+     "mean_yield": 0.21,
+     "corr_yield_draw": -0.698,
+     "by_Z": {
+      "N": {
+       "ret": 0.105,
+       "share": 0.4948,
+       "yield": 0.2095
+      },
+      "B": {
+       "ret": 0.1846,
+       "share": 0.1951,
+       "yield": 0.2332
+      },
+      "SG": {
+       "ret": -0.003,
+       "share": 0.1566,
+       "yield": 0.18
+      },
+      "DB": {
+       "ret": 0.0009,
+       "share": 0.0681,
+       "yield": 0.1756
+      },
+      "SS": {
+       "ret": 0.1522,
+       "share": 0.0468,
+       "yield": 0.255
+      },
+      "GW": {
+       "ret": 0.0977,
+       "share": 0.0385,
+       "yield": 0.2288
+      }
+     },
+     "overlay_route_collateral_flow_by_Z": {
+      "N": -0.0075,
+      "B": -0.0603,
+      "SG": 0.0443,
+      "DB": 0.0746,
+      "SS": -0.0102,
+      "GW": 0.0026
+     },
+     "overlay_route_collateral_P05_by_Z": {
+      "N": -0.1339,
+      "B": -0.2013,
+      "SG": -0.0698,
+      "DB": -0.0515,
+      "SS": -0.1465,
+      "GW": -0.143
+     }
+    },
+    "roy": {
+     "name": "Oil mineral & royalty",
+     "mean_ret": 0.1033,
+     "vol": 0.176,
+     "beta_own": -5.444,
+     "corr_draw": -0.422,
+     "corr_dlnP": 0.874,
+     "H_kappa0.5": 0.0327,
+     "H_kappa1.0": 0.0513,
+     "H_kappa2.0": 0.0718,
+     "Hd_kappa0.25": 0.0045,
+     "Hd_kappa0.5": 0.0081,
+     "Hd_kappa1.0": 0.0135,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.261,
+      "SG": 0.635,
+      "DB": 0.692,
+      "SS": 1.477,
+      "GW": 1.175
+     },
+     "mean_yield": 0.1782,
+     "corr_yield_draw": -0.687,
+     "by_Z": {
+      "N": {
+       "ret": 0.1147,
+       "share": 0.4948,
+       "yield": 0.1786
+      },
+      "B": {
+       "ret": 0.2662,
+       "share": 0.1951,
+       "yield": 0.2172
+      },
+      "SG": {
+       "ret": -0.0897,
+       "share": 0.1566,
+       "yield": 0.1243
+      },
+      "DB": {
+       "ret": -0.0992,
+       "share": 0.0681,
+       "yield": 0.1202
+      },
+      "SS": {
+       "ret": 0.2276,
+       "share": 0.0468,
+       "yield": 0.2521
+      },
+      "GW": {
+       "ret": 0.1258,
+       "share": 0.0385,
+       "yield": 0.2089
+      }
+     }
+    },
+    "mid": {
+     "name": "Fee-based midstream",
+     "mean_ret": 0.0941,
+     "vol": 0.0582,
+     "beta_own": -1.837,
+     "corr_draw": -0.432,
+     "corr_dlnP": 0.872,
+     "H_kappa0.5": 0.0112,
+     "H_kappa1.0": 0.0176,
+     "H_kappa2.0": 0.0247,
+     "Hd_kappa0.25": 0.0015,
+     "Hd_kappa0.5": 0.0027,
+     "Hd_kappa1.0": 0.0045,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.022,
+      "SG": 0.952,
+      "DB": 0.98,
+      "SS": 1.039,
+      "GW": 1.014
+     },
+     "mean_yield": 0.0975,
+     "corr_yield_draw": 0.31,
+     "by_Z": {
+      "N": {
+       "ret": 0.1001,
+       "share": 0.4948,
+       "yield": 0.0975
+      },
+      "B": {
+       "ret": 0.148,
+       "share": 0.1951,
+       "yield": 0.0983
+      },
+      "SG": {
+       "ret": 0.027,
+       "share": 0.1566,
+       "yield": 0.0969
+      },
+      "DB": {
+       "ret": 0.0237,
+       "share": 0.0681,
+       "yield": 0.0944
+      },
+      "SS": {
+       "ret": 0.1298,
+       "share": 0.0468,
+       "yield": 0.0992
+      },
+      "GW": {
+       "ret": 0.0972,
+       "share": 0.0385,
+       "yield": 0.0985
+      }
+     }
+    },
+    "tim": {
+     "name": "Timberland",
+     "mean_ret": 0.0381,
+     "vol": 0.0324,
+     "beta_own": 0.002,
+     "corr_draw": 0.001,
+     "corr_dlnP": 0.001,
+     "H_kappa0.5": -0.0,
+     "H_kappa1.0": -0.0,
+     "H_kappa2.0": -0.0,
+     "Hd_kappa0.25": -0.0,
+     "Hd_kappa0.5": -0.0,
+     "Hd_kappa1.0": -0.0,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.003,
+      "SG": 1.004,
+      "DB": 0.997,
+      "SS": 0.995,
+      "GW": 0.997
+     },
+     "mean_yield": 0.0272,
+     "corr_yield_draw": -0.002,
+     "by_Z": {
+      "N": {
+       "ret": 0.0381,
+       "share": 0.4948,
+       "yield": 0.0272
+      },
+      "B": {
+       "ret": 0.0381,
+       "share": 0.1951,
+       "yield": 0.0273
+      },
+      "SG": {
+       "ret": 0.0382,
+       "share": 0.1566,
+       "yield": 0.0273
+      },
+      "DB": {
+       "ret": 0.0379,
+       "share": 0.0681,
+       "yield": 0.0271
+      },
+      "SS": {
+       "ret": 0.0379,
+       "share": 0.0468,
+       "yield": 0.0271
+      },
+      "GW": {
+       "ret": 0.0379,
+       "share": 0.0385,
+       "yield": 0.0271
+      }
+     }
+    },
+    "farm": {
+     "name": "Row-crop farmland",
+     "mean_ret": 0.0538,
+     "vol": 0.0803,
+     "beta_own": -0.345,
+     "corr_draw": -0.059,
+     "corr_dlnP": 0.088,
+     "H_kappa0.5": 0.0021,
+     "H_kappa1.0": 0.0032,
+     "H_kappa2.0": 0.0045,
+     "Hd_kappa0.25": 0.0003,
+     "Hd_kappa0.5": 0.0005,
+     "Hd_kappa1.0": 0.0009,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.001,
+      "SG": 1.001,
+      "DB": 0.999,
+      "SS": 1.001,
+      "GW": 1.003
+     },
+     "mean_yield": 0.0307,
+     "corr_yield_draw": -0.059,
+     "by_Z": {
+      "N": {
+       "ret": 0.0538,
+       "share": 0.4948,
+       "yield": 0.0307
+      },
+      "B": {
+       "ret": 0.0536,
+       "share": 0.1951,
+       "yield": 0.0307
+      },
+      "SG": {
+       "ret": 0.0542,
+       "share": 0.1566,
+       "yield": 0.0307
+      },
+      "DB": {
+       "ret": 0.0535,
+       "share": 0.0681,
+       "yield": 0.0307
+      },
+      "SS": {
+       "ret": 0.0528,
+       "share": 0.0468,
+       "yield": 0.0307
+      },
+      "GW": {
+       "ret": 0.0541,
+       "share": 0.0385,
+       "yield": 0.0307
+      }
+     }
+    },
+    "eq": {
+     "name": "Global equity (ref)",
+     "mean_ret": 0.0482,
+     "vol": 0.1917,
+     "beta_own": -1.659,
+     "corr_draw": -0.118,
+     "corr_dlnP": 0.211,
+     "H_kappa0.5": 0.0129,
+     "H_kappa1.0": 0.0202,
+     "H_kappa2.0": 0.0283,
+     "Hd_kappa0.25": 0.0014,
+     "Hd_kappa0.5": 0.0025,
+     "Hd_kappa1.0": 0.0041,
+     "by_Z": {
+      "N": {
+       "ret": 0.0698,
+       "share": 0.4948
+      },
+      "B": {
+       "ret": 0.1508,
+       "share": 0.1951
+      },
+      "SG": {
+       "ret": 0.0504,
+       "share": 0.1566
+      },
+      "DB": {
+       "ret": -0.249,
+       "share": 0.0681
+      },
+      "SS": {
+       "ret": -0.1005,
+       "share": 0.0468
+      },
+      "GW": {
+       "ret": -0.0516,
+       "share": 0.0385
+      }
+     }
+    }
+   },
+   "draw": {
+    "mean_draw": 0.0754,
+    "p_inband_dstar": 0.6871,
+    "draw_by_Z": {
+     "N": 0.0738,
+     "B": 0.0684,
+     "SG": 0.0863,
+     "DB": 0.0835,
+     "SS": 0.0666,
+     "GW": 0.0839
+    },
+    "sigma_FB_pp": 4.002,
+    "median_brent": 66.6
+   }
+  },
+  "stationary_PBE65.0_linear": {
+   "segments": {
+    "pdp": {
+     "name": "Upstream PDP, unlevered",
+     "mean_ret": 0.1147,
+     "vol": 0.2246,
+     "beta_own": -6.78,
+     "corr_draw": -0.421,
+     "corr_dlnP": 0.875,
+     "H_kappa0.5": 0.0344,
+     "H_kappa1.0": 0.0558,
+     "H_kappa2.0": 0.0809,
+     "Hd_kappa0.25": 0.0059,
+     "Hd_kappa0.5": 0.0106,
+     "Hd_kappa1.0": 0.0178,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.408,
+      "SG": 0.432,
+      "DB": 0.491,
+      "SS": 1.737,
+      "GW": 1.27
+     },
+     "mean_yield": 0.2179,
+     "corr_yield_draw": -0.747,
+     "by_Z": {
+      "N": {
+       "ret": 0.1282,
+       "share": 0.4948,
+       "yield": 0.2195
+      },
+      "B": {
+       "ret": 0.318,
+       "share": 0.1951,
+       "yield": 0.2993
+      },
+      "SG": {
+       "ret": -0.131,
+       "share": 0.1566,
+       "yield": 0.1003
+      },
+      "DB": {
+       "ret": -0.1389,
+       "share": 0.0681,
+       "yield": 0.1035
+      },
+      "SS": {
+       "ret": 0.2846,
+       "share": 0.0468,
+       "yield": 0.37
+      },
+      "GW": {
+       "ret": 0.1521,
+       "share": 0.0385,
+       "yield": 0.2809
+      }
+     }
+    },
+    "lev": {
+     "name": "Upstream PDP, 40% LTV RBL",
+     "mean_ret": 0.154,
+     "vol": 0.4476,
+     "beta_own": -13.425,
+     "corr_draw": -0.418,
+     "corr_dlnP": 0.874,
+     "H_kappa0.5": 0.0686,
+     "H_kappa1.0": 0.1111,
+     "H_kappa2.0": 0.161,
+     "Hd_kappa0.25": 0.0116,
+     "Hd_kappa0.5": 0.021,
+     "Hd_kappa1.0": 0.0352,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.859,
+      "SG": -0.287,
+      "DB": -0.277,
+      "SS": 2.172,
+      "GW": 1.288
+     },
+     "mean_yield": 0.2518,
+     "corr_yield_draw": -0.628,
+     "by_Z": {
+      "N": {
+       "ret": 0.1826,
+       "share": 0.4948,
+       "yield": 0.2761
+      },
+      "B": {
+       "ret": 0.556,
+       "share": 0.1951,
+       "yield": 0.4903
+      },
+      "SG": {
+       "ret": -0.3382,
+       "share": 0.1566,
+       "yield": -0.0978
+      },
+      "DB": {
+       "ret": -0.3476,
+       "share": 0.0681,
+       "yield": -0.0867
+      },
+      "SS": {
+       "ret": 0.4904,
+       "share": 0.0468,
+       "yield": 0.5766
+      },
+      "GW": {
+       "ret": 0.2297,
+       "share": 0.0385,
+       "yield": 0.3576
+      }
+     },
+     "cure_call_prob_by_Z": {
+      "N": 0.0855,
+      "B": 0.0057,
+      "SG": 0.7326,
+      "DB": 0.6888,
+      "SS": 0.0244,
+      "GW": 0.1806
+     },
+     "cure_call_mean_if_any_by_Z": {
+      "N": 0.0777,
+      "B": 0.0513,
+      "SG": 0.1793,
+      "DB": 0.1974,
+      "SS": 0.0772,
+      "GW": 0.1531
+     }
+    },
+    "hdg": {
+     "name": "Upstream PDP, 70% 3-yr swap ladder",
+     "mean_ret": 0.0985,
+     "vol": 0.0882,
+     "beta_own": -2.7,
+     "corr_draw": -0.427,
+     "corr_dlnP": 0.864,
+     "H_kappa0.5": 0.0137,
+     "H_kappa1.0": 0.0222,
+     "H_kappa2.0": 0.0321,
+     "Hd_kappa0.25": 0.0023,
+     "Hd_kappa0.5": 0.0042,
+     "Hd_kappa1.0": 0.0071,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.136,
+      "SG": 0.813,
+      "DB": 0.842,
+      "SS": 1.243,
+      "GW": 1.089
+     },
+     "mean_yield": 0.21,
+     "corr_yield_draw": -0.703,
+     "by_Z": {
+      "N": {
+       "ret": 0.105,
+       "share": 0.4948,
+       "yield": 0.2095
+      },
+      "B": {
+       "ret": 0.1846,
+       "share": 0.1951,
+       "yield": 0.2332
+      },
+      "SG": {
+       "ret": -0.003,
+       "share": 0.1566,
+       "yield": 0.18
+      },
+      "DB": {
+       "ret": 0.0009,
+       "share": 0.0681,
+       "yield": 0.1756
+      },
+      "SS": {
+       "ret": 0.1522,
+       "share": 0.0468,
+       "yield": 0.255
+      },
+      "GW": {
+       "ret": 0.0977,
+       "share": 0.0385,
+       "yield": 0.2288
+      }
+     },
+     "overlay_route_collateral_flow_by_Z": {
+      "N": -0.0075,
+      "B": -0.0603,
+      "SG": 0.0443,
+      "DB": 0.0746,
+      "SS": -0.0102,
+      "GW": 0.0026
+     },
+     "overlay_route_collateral_P05_by_Z": {
+      "N": -0.1339,
+      "B": -0.2013,
+      "SG": -0.0698,
+      "DB": -0.0515,
+      "SS": -0.1465,
+      "GW": -0.143
+     }
+    },
+    "roy": {
+     "name": "Oil mineral & royalty",
+     "mean_ret": 0.1033,
+     "vol": 0.176,
+     "beta_own": -5.381,
+     "corr_draw": -0.426,
+     "corr_dlnP": 0.874,
+     "H_kappa0.5": 0.0273,
+     "H_kappa1.0": 0.0442,
+     "H_kappa2.0": 0.064,
+     "Hd_kappa0.25": 0.0047,
+     "Hd_kappa0.5": 0.0084,
+     "Hd_kappa1.0": 0.0141,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.261,
+      "SG": 0.635,
+      "DB": 0.692,
+      "SS": 1.477,
+      "GW": 1.175
+     },
+     "mean_yield": 0.1782,
+     "corr_yield_draw": -0.694,
+     "by_Z": {
+      "N": {
+       "ret": 0.1147,
+       "share": 0.4948,
+       "yield": 0.1786
+      },
+      "B": {
+       "ret": 0.2662,
+       "share": 0.1951,
+       "yield": 0.2172
+      },
+      "SG": {
+       "ret": -0.0897,
+       "share": 0.1566,
+       "yield": 0.1243
+      },
+      "DB": {
+       "ret": -0.0992,
+       "share": 0.0681,
+       "yield": 0.1202
+      },
+      "SS": {
+       "ret": 0.2276,
+       "share": 0.0468,
+       "yield": 0.2521
+      },
+      "GW": {
+       "ret": 0.1258,
+       "share": 0.0385,
+       "yield": 0.2089
+      }
+     }
+    },
+    "mid": {
+     "name": "Fee-based midstream",
+     "mean_ret": 0.0941,
+     "vol": 0.0582,
+     "beta_own": -1.814,
+     "corr_draw": -0.435,
+     "corr_dlnP": 0.872,
+     "H_kappa0.5": 0.0093,
+     "H_kappa1.0": 0.0151,
+     "H_kappa2.0": 0.0219,
+     "Hd_kappa0.25": 0.0016,
+     "Hd_kappa0.5": 0.0028,
+     "Hd_kappa1.0": 0.0048,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.022,
+      "SG": 0.952,
+      "DB": 0.98,
+      "SS": 1.039,
+      "GW": 1.014
+     },
+     "mean_yield": 0.0975,
+     "corr_yield_draw": 0.306,
+     "by_Z": {
+      "N": {
+       "ret": 0.1001,
+       "share": 0.4948,
+       "yield": 0.0975
+      },
+      "B": {
+       "ret": 0.148,
+       "share": 0.1951,
+       "yield": 0.0983
+      },
+      "SG": {
+       "ret": 0.027,
+       "share": 0.1566,
+       "yield": 0.0969
+      },
+      "DB": {
+       "ret": 0.0237,
+       "share": 0.0681,
+       "yield": 0.0944
+      },
+      "SS": {
+       "ret": 0.1298,
+       "share": 0.0468,
+       "yield": 0.0992
+      },
+      "GW": {
+       "ret": 0.0972,
+       "share": 0.0385,
+       "yield": 0.0985
+      }
+     }
+    },
+    "tim": {
+     "name": "Timberland",
+     "mean_ret": 0.0381,
+     "vol": 0.0324,
+     "beta_own": 0.001,
+     "corr_draw": 0.001,
+     "corr_dlnP": 0.001,
+     "H_kappa0.5": -0.0,
+     "H_kappa1.0": -0.0,
+     "H_kappa2.0": -0.0,
+     "Hd_kappa0.25": -0.0,
+     "Hd_kappa0.5": -0.0,
+     "Hd_kappa1.0": -0.0,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.003,
+      "SG": 1.004,
+      "DB": 0.997,
+      "SS": 0.995,
+      "GW": 0.997
+     },
+     "mean_yield": 0.0272,
+     "corr_yield_draw": -0.001,
+     "by_Z": {
+      "N": {
+       "ret": 0.0381,
+       "share": 0.4948,
+       "yield": 0.0272
+      },
+      "B": {
+       "ret": 0.0381,
+       "share": 0.1951,
+       "yield": 0.0273
+      },
+      "SG": {
+       "ret": 0.0382,
+       "share": 0.1566,
+       "yield": 0.0273
+      },
+      "DB": {
+       "ret": 0.0379,
+       "share": 0.0681,
+       "yield": 0.0271
+      },
+      "SS": {
+       "ret": 0.0379,
+       "share": 0.0468,
+       "yield": 0.0271
+      },
+      "GW": {
+       "ret": 0.0379,
+       "share": 0.0385,
+       "yield": 0.0271
+      }
+     }
+    },
+    "farm": {
+     "name": "Row-crop farmland",
+     "mean_ret": 0.0538,
+     "vol": 0.0803,
+     "beta_own": -0.34,
+     "corr_draw": -0.059,
+     "corr_dlnP": 0.088,
+     "H_kappa0.5": 0.0017,
+     "H_kappa1.0": 0.0028,
+     "H_kappa2.0": 0.004,
+     "Hd_kappa0.25": 0.0003,
+     "Hd_kappa0.5": 0.0005,
+     "Hd_kappa1.0": 0.0009,
+     "cash_vs_N": {
+      "N": 1.0,
+      "B": 1.001,
+      "SG": 1.001,
+      "DB": 0.999,
+      "SS": 1.001,
+      "GW": 1.003
+     },
+     "mean_yield": 0.0307,
+     "corr_yield_draw": -0.059,
+     "by_Z": {
+      "N": {
+       "ret": 0.0538,
+       "share": 0.4948,
+       "yield": 0.0307
+      },
+      "B": {
+       "ret": 0.0536,
+       "share": 0.1951,
+       "yield": 0.0307
+      },
+      "SG": {
+       "ret": 0.0542,
+       "share": 0.1566,
+       "yield": 0.0307
+      },
+      "DB": {
+       "ret": 0.0535,
+       "share": 0.0681,
+       "yield": 0.0307
+      },
+      "SS": {
+       "ret": 0.0528,
+       "share": 0.0468,
+       "yield": 0.0307
+      },
+      "GW": {
+       "ret": 0.0541,
+       "share": 0.0385,
+       "yield": 0.0307
+      }
+     }
+    },
+    "eq": {
+     "name": "Global equity (ref)",
+     "mean_ret": 0.0482,
+     "vol": 0.1917,
+     "beta_own": -1.573,
+     "corr_draw": -0.114,
+     "corr_dlnP": 0.211,
+     "H_kappa0.5": 0.0102,
+     "H_kappa1.0": 0.0166,
+     "H_kappa2.0": 0.024,
+     "Hd_kappa0.25": 0.0014,
+     "Hd_kappa0.5": 0.0025,
+     "Hd_kappa1.0": 0.0041,
+     "by_Z": {
+      "N": {
+       "ret": 0.0698,
+       "share": 0.4948
+      },
+      "B": {
+       "ret": 0.1508,
+       "share": 0.1951
+      },
+      "SG": {
+       "ret": 0.0504,
+       "share": 0.1566
+      },
+      "DB": {
+       "ret": -0.249,
+       "share": 0.0681
+      },
+      "SS": {
+       "ret": -0.1005,
+       "share": 0.0468
+      },
+      "GW": {
+       "ret": -0.0516,
+       "share": 0.0385
+      }
+     }
+    }
+   },
+   "draw": {
+    "mean_draw": 0.0742,
+    "p_inband_dstar": 0.6636,
+    "draw_by_Z": {
+     "N": 0.0727,
+     "B": 0.0672,
+     "SG": 0.0853,
+     "DB": 0.0826,
+     "SS": 0.0653,
+     "GW": 0.0813
+    },
+    "sigma_FB_pp": 4.419,
+    "median_brent": 66.6
+   }
+  },
+  "stationary_PBE55_h0.06": {
+   "segments": {
+    "pdp": {
+     "beta_own": -7.977,
+     "H_kappa1.0": 0.0604,
+     "Hd_kappa0.5": 0.0087,
+     "corr_draw": -0.408
+    },
+    "lev": {
+     "beta_own": -15.812,
+     "H_kappa1.0": 0.1204,
+     "Hd_kappa0.5": 0.0173,
+     "corr_draw": -0.406
+    },
+    "hdg": {
+     "beta_own": -3.199,
+     "H_kappa1.0": 0.0241,
+     "Hd_kappa0.5": 0.0035,
+     "corr_draw": -0.417
+    },
+    "roy": {
+     "beta_own": -6.356,
+     "H_kappa1.0": 0.048,
+     "Hd_kappa0.5": 0.0069,
+     "corr_draw": -0.415
+    },
+    "mid": {
+     "beta_own": -2.168,
+     "H_kappa1.0": 0.0166,
+     "Hd_kappa0.5": 0.0024,
+     "corr_draw": -0.429
+    },
+    "tim": {
+     "beta_own": -0.001,
+     "H_kappa1.0": 0.0,
+     "Hd_kappa0.5": 0.0,
+     "corr_draw": -0.0
+    },
+    "farm": {
+     "beta_own": -0.388,
+     "H_kappa1.0": 0.003,
+     "Hd_kappa0.5": 0.0004,
+     "corr_draw": -0.056
+    },
+    "eq": {
+     "beta_own": -2.554,
+     "H_kappa1.0": 0.0224,
+     "Hd_kappa0.5": 0.0028,
+     "corr_draw": -0.153
+    }
+   },
+   "draw": {
+    "mean_draw": 0.0709,
+    "p_inband_dstar": 0.8227,
+    "draw_by_Z": {
+     "N": 0.0688,
+     "B": 0.065,
+     "SG": 0.0804,
+     "DB": 0.0793,
+     "SS": 0.064,
+     "GW": 0.0827
+    },
+    "sigma_FB_pp": 2.891,
+    "median_brent": 66.7
+   }
+  },
+  "stationary_PBE55_h0.091": {
+   "segments": {
+    "pdp": {
+     "beta_own": -6.872,
+     "H_kappa1.0": 0.0609,
+     "Hd_kappa0.5": 0.0105,
+     "corr_draw": -0.412
+    },
+    "lev": {
+     "beta_own": -13.649,
+     "H_kappa1.0": 0.1216,
+     "Hd_kappa0.5": 0.0208,
+     "corr_draw": -0.411
+    },
+    "hdg": {
+     "beta_own": -2.74,
+     "H_kappa1.0": 0.024,
+     "Hd_kappa0.5": 0.0042,
+     "corr_draw": -0.418
+    },
+    "roy": {
+     "beta_own": -5.463,
+     "H_kappa1.0": 0.0483,
+     "Hd_kappa0.5": 0.0083,
+     "corr_draw": -0.418
+    },
+    "mid": {
+     "beta_own": -1.869,
+     "H_kappa1.0": 0.0167,
+     "Hd_kappa0.5": 0.0029,
+     "corr_draw": -0.433
+    },
+    "tim": {
+     "beta_own": -0.001,
+     "H_kappa1.0": 0.0,
+     "Hd_kappa0.5": 0.0,
+     "corr_draw": -0.001
+    },
+    "farm": {
+     "beta_own": -0.34,
+     "H_kappa1.0": 0.003,
+     "Hd_kappa0.5": 0.0005,
+     "corr_draw": -0.057
+    },
+    "eq": {
+     "beta_own": -1.97,
+     "H_kappa1.0": 0.021,
+     "Hd_kappa0.5": 0.003,
+     "corr_draw": -0.138
+    }
+   },
+   "draw": {
+    "mean_draw": 0.0691,
+    "p_inband_dstar": 0.6463,
+    "draw_by_Z": {
+     "N": 0.0668,
+     "B": 0.0625,
+     "SG": 0.0806,
+     "DB": 0.0784,
+     "SS": 0.0611,
+     "GW": 0.0784
+    },
+    "sigma_FB_pp": 3.982,
+    "median_brent": 66.7
+   }
+  },
+  "stationary_PBE55_h0.113": {
+   "segments": {
+    "pdp": {
+     "beta_own": -6.451,
+     "H_kappa1.0": 0.0596,
+     "Hd_kappa0.5": 0.0111,
+     "corr_draw": -0.41
+    },
+    "lev": {
+     "beta_own": -12.825,
+     "H_kappa1.0": 0.1192,
+     "Hd_kappa0.5": 0.0221,
+     "corr_draw": -0.409
+    },
+    "hdg": {
+     "beta_own": -2.564,
+     "H_kappa1.0": 0.0234,
+     "Hd_kappa0.5": 0.0044,
+     "corr_draw": -0.415
+    },
+    "roy": {
+     "beta_own": -5.124,
+     "H_kappa1.0": 0.0472,
+     "Hd_kappa0.5": 0.0088,
+     "corr_draw": -0.415
+    },
+    "mid": {
+     "beta_own": -1.756,
+     "H_kappa1.0": 0.0164,
+     "Hd_kappa0.5": 0.003,
+     "corr_draw": -0.431
+    },
+    "tim": {
+     "beta_own": -0.001,
+     "H_kappa1.0": 0.0,
+     "Hd_kappa0.5": 0.0,
+     "corr_draw": -0.001
+    },
+    "farm": {
+     "beta_own": -0.321,
+     "H_kappa1.0": 0.003,
+     "Hd_kappa0.5": 0.0006,
+     "corr_draw": -0.057
+    },
+    "eq": {
+     "beta_own": -1.767,
+     "H_kappa1.0": 0.02,
+     "Hd_kappa0.5": 0.003,
+     "corr_draw": -0.131
+    }
+   },
+   "draw": {
+    "mean_draw": 0.0683,
+    "p_inband_dstar": 0.5485,
+    "draw_by_Z": {
+     "N": 0.0659,
+     "B": 0.0615,
+     "SG": 0.0806,
+     "DB": 0.0779,
+     "SS": 0.06,
+     "GW": 0.0758
+    },
+    "sigma_FB_pp": 4.797,
+    "median_brent": 66.7
+   }
+  },
+  "stationary_PBE55_h0.15": {
+   "segments": {
+    "pdp": {
+     "beta_own": -6.02,
+     "H_kappa1.0": 0.0571,
+     "Hd_kappa0.5": 0.0116,
+     "corr_draw": -0.404
+    },
+    "lev": {
+     "beta_own": -11.981,
+     "H_kappa1.0": 0.1144,
+     "Hd_kappa0.5": 0.0232,
+     "corr_draw": -0.403
+    },
+    "hdg": {
+     "beta_own": -2.386,
+     "H_kappa1.0": 0.0223,
+     "Hd_kappa0.5": 0.0046,
+     "corr_draw": -0.407
+    },
+    "roy": {
+     "beta_own": -4.779,
+     "H_kappa1.0": 0.0452,
+     "Hd_kappa0.5": 0.0092,
+     "corr_draw": -0.409
+    },
+    "mid": {
+     "beta_own": -1.642,
+     "H_kappa1.0": 0.0157,
+     "Hd_kappa0.5": 0.0032,
+     "corr_draw": -0.425
+    },
+    "tim": {
+     "beta_own": -0.002,
+     "H_kappa1.0": 0.0,
+     "Hd_kappa0.5": 0.0,
+     "corr_draw": -0.001
+    },
+    "farm": {
+     "beta_own": -0.301,
+     "H_kappa1.0": 0.0029,
+     "Hd_kappa0.5": 0.0006,
+     "corr_draw": -0.057
+    },
+    "eq": {
+     "beta_own": -1.576,
+     "H_kappa1.0": 0.0189,
+     "Hd_kappa0.5": 0.003,
+     "corr_draw": -0.124
+    }
+   },
+   "draw": {
+    "mean_draw": 0.0674,
+    "p_inband_dstar": 0.4317,
+    "draw_by_Z": {
+     "N": 0.065,
+     "B": 0.0606,
+     "SG": 0.0805,
+     "DB": 0.0773,
+     "SS": 0.0591,
+     "GW": 0.0726
+    },
+    "sigma_FB_pp": 6.201,
+    "median_brent": 66.7
+   }
+  }
+ },
+ "today_GW_start": {
+  "pdp": {
+   "E_2y_cum": 0.2449,
+   "P10_2y": -0.2126
+  },
+  "lev": {
+   "E_2y_cum": 0.3133,
+   "P10_2y": -0.4914
+  },
+  "hdg": {
+   "E_2y_cum": 0.2049,
+   "P10_2y": 0.0202
+  },
+  "roy": {
+   "E_2y_cum": 0.2198,
+   "P10_2y": -0.1408
+  },
+  "mid": {
+   "E_2y_cum": 0.1962,
+   "P10_2y": 0.0699
+  },
+  "tim": {
+   "E_2y_cum": 0.0776,
+   "P10_2y": 0.0262
+  },
+  "farm": {
+   "E_2y_cum": 0.1133,
+   "P10_2y": -0.0162
+  },
+  "eq": {
+   "E_2y_cum": 0.07,
+   "P10_2y": -0.2926
+  },
+  "z_share_year2": {
+   "N": 0.448,
+   "B": 0.142,
+   "SG": 0.246,
+   "DB": 0.063,
+   "SS": 0.042,
+   "GW": 0.059
+  },
+  "brent_median_y1_y2_y3": [
+   76.6,
+   69.7,
+   67.5
+  ]
+ },
+ "elasticities": {
+  "N_at_70": {
+   "pdp": {
+    "elasticity_to_spot": 0.386,
+    "bbl_equiv_per_usd1bn_mm": 5.51
+   },
+   "roy": {
+    "elasticity_to_spot": 0.305,
+    "bbl_equiv_per_usd1bn_mm": 4.36
+   },
+   "mid": {
+    "elasticity_to_spot": 0.099,
+    "bbl_equiv_per_usd1bn_mm": 1.41
+   },
+   "lev": {
+    "elasticity_to_spot": 0.643,
+    "bbl_equiv_per_usd1bn_mm": 9.19
+   },
+   "hdg": {
+    "elasticity_to_spot": 0.145,
+    "bbl_equiv_per_usd1bn_mm": 2.08,
+    "share_of_unhedged_elasticity_removed": 0.624
+   }
+  },
+  "GW_at_95": {
+   "pdp": {
+    "elasticity_to_spot": 0.395,
+    "bbl_equiv_per_usd1bn_mm": 4.16
+   },
+   "roy": {
+    "elasticity_to_spot": 0.311,
+    "bbl_equiv_per_usd1bn_mm": 3.27
+   },
+   "mid": {
+    "elasticity_to_spot": 0.099,
+    "bbl_equiv_per_usd1bn_mm": 1.04
+   },
+   "lev": {
+    "elasticity_to_spot": 0.659,
+    "bbl_equiv_per_usd1bn_mm": 6.94
+   },
+   "hdg": {
+    "elasticity_to_spot": 0.147,
+    "bbl_equiv_per_usd1bn_mm": 1.55,
+    "share_of_unhedged_elasticity_removed": 0.628
+   }
+  },
+  "SG_at_55": {
+   "pdp": {
+    "elasticity_to_spot": 0.381,
+    "bbl_equiv_per_usd1bn_mm": 6.93
+   },
+   "roy": {
+    "elasticity_to_spot": 0.293,
+    "bbl_equiv_per_usd1bn_mm": 5.33
+   },
+   "mid": {
+    "elasticity_to_spot": 0.098,
+    "bbl_equiv_per_usd1bn_mm": 1.79
+   },
+   "lev": {
+    "elasticity_to_spot": 0.635,
+    "bbl_equiv_per_usd1bn_mm": 11.55
+   },
+   "hdg": {
+    "elasticity_to_spot": 0.148,
+    "bbl_equiv_per_usd1bn_mm": 2.69,
+    "share_of_unhedged_elasticity_removed": 0.611
+   }
+  }
+ },
+ "liability_delta": {
+  "h0.113": {
+   "dd_dlnP_pct_nav": 7.06,
+   "usd_bn_per_1usd_bbl_at_50": 0.25,
+   "usd_bn_per_1usd_bbl_at_64": 0.195
+  },
+  "h0.091": {
+   "dd_dlnP_pct_nav": 5.69,
+   "usd_bn_per_1usd_bbl_at_50": 0.201,
+   "usd_bn_per_1usd_bbl_at_64": 0.157
+  },
+  "linear_map_usd_bn_per_1usd_bbl": 0.201
+ }
+}

@@ -1,0 +1,6 @@
+VA_INFRA g13 true SS params {'lam': 0.8, 'mu': 0.007319083340028353, 'sv': 0.06967306518108606, 'sxi': 0.004269562819149833, 'beta': 1.0, 'phip': 0.88, 'sp': 0.06, 'sL': 0.01, 'st': 0.04, 'cL': 0.0}
+VA_INFRA g13 M0     ALT: R2 0.45 cov 0.660 sellbias +0.16 reg 0.466 | AL R2 0.69 cov 0.51 | ALT4 R2 0.60 | lam 0.780 | 230s
+VA_INFRA g13 TL1    ALT: R2 0.61 cov 0.435 sellbias -1.32 reg 0.778 | AL R2 0.69 cov 0.51 | ALT4 R2 0.65 | lam 0.697 | 220s
+VA_INFRA g13 TL2    ALT: R2 0.70 cov 0.334 sellbias -2.29 reg 0.919 | AL R2 0.69 cov 0.51 | ALT4 R2 0.68 | lam 0.615 | 300s
+VA_INFRA g13 TA3    ALT: R2 0.49 cov 0.561 sellbias -0.42 reg 0.531 | AL R2 0.69 cov 0.51 | ALT4 R2 0.61 | lam 0.752 | 261s
+VA_INFRA g13 TA5    ALT: R2 0.55 cov 0.460 sellbias -1.20 reg 0.645 | AL R2 0.69 cov 0.51 | ALT4 R2 0.64 | lam 0.709 | 317s

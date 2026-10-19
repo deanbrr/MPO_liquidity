@@ -1,0 +1,4 @@
+CORE_INFRA ss true SS params {'lam': 0.85, 'mu': 0.0034151223615480992, 'sv': 0.04923234375190278, 'sxi': 0.0025617376914898998, 'beta': 1.0, 'phip': 0.88, 'sp': 0.06, 'sL': 0.01, 'st': 0.035, 'cL': 0.0}
+resuming; done: ['M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M5s', 'M6', 'MALL', 'TL1']
+CORE_INFRA SBC {'n_rep': 300, 'n_pit': 600, 'cov80': 0.8116666666666666, 'ks_p': 0.343488164819561, 'chi2_10bins': 5.466666666666667, 'chi2_p': 0.7918798379385695, 'pit_hist': [62, 68, 68, 52, 61, 63, 59, 62, 54, 51], 'pit_tail_share': 0.105}
+wrote C:\Users\dean\ai_envs\adic_tpa_lab\research\groups\addenda\ra_gap_04_calcs\rame_ens_ss_CORE_INFRA_pA.json 443.8 s SYNTHETIC - NOT ADIC DATA

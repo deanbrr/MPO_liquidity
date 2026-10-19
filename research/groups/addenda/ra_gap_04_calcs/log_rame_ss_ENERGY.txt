@@ -1,0 +1,7 @@
+ENERGY ss true SS params {'lam': 0.5, 'mu': -0.0008412668559151389, 'sv': 0.13483682403655967, 'sxi': 0.006831300510639732, 'beta': 1.0, 'phip': 0.8, 'sp': 0.07, 'sL': 0.02, 'st': 0.06, 'cL': 0.0}
+resuming; done: ['M0', 'M1', 'M2']
+ENERGY ss M3     ALT: R2 0.27 xsCRPS -2.0% xsReg +3.1% cov 0.820 sellbias -0.26 reg 0.484 | AL R2 0.40 cov 0.81 | ALT4 R2 0.37 | lam 0.495 | 383s
+ENERGY ss M4     ALT: R2 0.41 xsCRPS +26.1% xsReg +26.8% cov 0.593 sellbias -0.31 reg 0.638 | AL R2 0.42 cov 0.78 | ALT4 R2 0.42 | lam 0.366 | 335s
+ENERGY ss M5     ALT: R2 0.28 xsCRPS +0.2% xsReg +1.6% cov 0.780 sellbias +0.46 reg 0.378 | AL R2 0.43 cov 0.78 | ALT4 R2 0.39 | lam 0.513 | 318s
+ENERGY ss M5s    ALT: R2 0.29 xsCRPS +3.7% xsReg +2.8% cov 0.768 sellbias +1.12 reg 0.373 | AL R2 0.46 cov 0.73 | ALT4 R2 0.42 | lam 0.522 | 411s
+ENERGY ss M6     ALT: R2 0.29 xsCRPS -0.6% xsReg -3.7% cov 0.786 sellbias +0.01 reg 0.377 | AL R2 0.43 cov 0.78 | ALT4 R2 0.39 | lam 0.498 | 489s

@@ -1,0 +1,5 @@
+ENERGY ss true SS params {'lam': 0.5, 'mu': -0.0008412668559151389, 'sv': 0.13483682403655967, 'sxi': 0.006831300510639732, 'beta': 1.0, 'phip': 0.8, 'sp': 0.07, 'sL': 0.02, 'st': 0.06, 'cL': 0.0}
+resuming; done: ['M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M5s', 'M6']
+ENERGY ss MALL   ALT: R2 0.40 xsCRPS +39.5% xsReg +30.2% cov 0.602 sellbias -0.84 reg 0.705 | AL R2 0.43 cov 0.76 | ALT4 R2 0.42 | lam 0.499 | 629s
+ENERGY SBC {'n_rep': 300, 'n_pit': 600, 'cov80': 0.805, 'ks_p': 0.11887731318784434, 'chi2_10bins': 12.733333333333334, 'chi2_p': 0.17504851936764831, 'pit_hist': [63, 61, 80, 56, 62, 51, 68, 57, 48, 54], 'pit_tail_share': 0.105}
+wrote C:\Users\dean\ai_envs\adic_tpa_lab\research\groups\addenda\ra_gap_04_calcs\rame_ens_ss_ENERGY_pA.json 1172.1 s SYNTHETIC - NOT ADIC DATA

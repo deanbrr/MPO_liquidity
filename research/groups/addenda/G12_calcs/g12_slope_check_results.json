@@ -1,0 +1,15 @@
+{
+ "label": "SYNTHETIC [I-MC]",
+ "b0.625": {
+  "p_inband": 0.646,
+  "L_eff_pct_nav": 9.3,
+  "Hd05_pdp": 0.0105,
+  "mean_draw": 0.0691
+ },
+ "b1.25": {
+  "p_inband": 0.3463,
+  "L_eff_pct_nav": 9.97,
+  "Hd05_pdp": 0.0117,
+  "mean_draw": 0.0681
+ }
+}

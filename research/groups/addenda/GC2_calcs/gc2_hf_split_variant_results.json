@@ -1,0 +1,172 @@
+{
+ "note": "SYNTHETIC / ILLUSTRATIVE ONLY",
+ "frac_of_gt90_within_365d_SEC": 0.35692307692307695,
+ "orig_split_bn": {
+  "hf_91_365d": 8.578088578088577,
+  "hf_gt365d": 4.289044289044289
+ },
+ "variant_split_bn": {
+  "hf_91_365d": 4.592576654115116,
+  "hf_gt365d": 8.274556213017751
+ },
+ "compare": {
+  "S1|opening": {
+   "G7_split": {
+    "SH_TP_floor0": 28,
+    "SH_TP_floor4": 17,
+    "cbc_tp_24m": 54.903454549267664,
+    "cover24_tp": 1.0143356966528774,
+    "committed_facility_needed_for_24m": 3.802056293957314
+   },
+   "SEC_split": {
+    "SH_TP_floor0": 21,
+    "SH_TP_floor4": 17,
+    "cbc_tp_24m": 51.53122239396309,
+    "cover24_tp": 0.9520340531477925,
+    "committed_facility_needed_for_24m": 7.174288449261887
+   }
+  },
+  "S1|current": {
+   "G7_split": {
+    "SH_TP_floor0": null,
+    "SH_TP_floor4": null,
+    "cbc_tp_24m": 54.903454549267664,
+    "cover24_tp": 1.2160088675843148,
+    "committed_facility_needed_for_24m": 0.0
+   },
+   "SEC_split": {
+    "SH_TP_floor0": null,
+    "SH_TP_floor4": null,
+    "cbc_tp_24m": 51.53122239396309,
+    "cover24_tp": 1.1413202302650802,
+    "committed_facility_needed_for_24m": 0.0
+   }
+  },
+  "T14|opening": {
+   "G7_split": {
+    "SH_TP_floor0": 15,
+    "SH_TP_floor4": 12,
+    "cbc_tp_24m": 54.903454549267664,
+    "cover24_tp": 0.769828210427923,
+    "committed_facility_needed_for_24m": 41.97497327278781
+   },
+   "SEC_split": {
+    "SH_TP_floor0": 15,
+    "SH_TP_floor4": 12,
+    "cbc_tp_24m": 51.53122239396309,
+    "cover24_tp": 0.7225444927351491,
+    "committed_facility_needed_for_24m": 48.71943758339695
+   }
+  },
+  "T14|current": {
+   "G7_split": {
+    "SH_TP_floor0": 18,
+    "SH_TP_floor4": 15,
+    "cbc_tp_24m": 54.903454549267664,
+    "cover24_tp": 0.8816193664622141,
+    "committed_facility_needed_for_24m": 24.611627905961
+   },
+   "SEC_split": {
+    "SH_TP_floor0": 17,
+    "SH_TP_floor4": 15,
+    "cbc_tp_24m": 51.53122239396309,
+    "cover24_tp": 0.8274693097721514,
+    "committed_facility_needed_for_24m": 31.356092216570147
+   }
+  },
+  "T14_draw5|opening": {
+   "G7_split": {
+    "SH_TP_floor0": null,
+    "SH_TP_floor4": 19,
+    "cbc_tp_24m": 54.903454549267664,
+    "cover24_tp": 1.0239533172228101,
+    "committed_facility_needed_for_24m": 7.990973272787798
+   },
+   "SEC_split": {
+    "SH_TP_floor0": 22,
+    "SH_TP_floor4": 18,
+    "cbc_tp_24m": 51.53122239396309,
+    "cover24_tp": 0.9610609486056226,
+    "committed_facility_needed_for_24m": 14.735437583396944
+   }
+  },
+  "T14_draw5|current": {
+   "G7_split": {
+    "SH_TP_floor0": null,
+    "SH_TP_floor4": 24,
+    "cbc_tp_24m": 54.903454549267664,
+    "cover24_tp": 1.1038011206692468,
+    "committed_facility_needed_for_24m": 0.5437755313858759
+   },
+   "SEC_split": {
+    "SH_TP_floor0": null,
+    "SH_TP_floor4": 20,
+    "cbc_tp_24m": 51.53122239396309,
+    "cover24_tp": 1.0360044098294605,
+    "committed_facility_needed_for_24m": 7.288239841995022
+   }
+  }
+ },
+ "SEC_split_cfp_and_call125": {
+  "S1|opening|cfp": {
+   "SH_TP_floor4": 18,
+   "SH_TPF_floor4_rcf_navf": null,
+   "committed_facility_needed_for_24m": 3.4609186326709818,
+   "cover24_tp": 1.022104574406754
+  },
+  "S1|current|cfp": {
+   "SH_TP_floor4": null,
+   "SH_TPF_floor4_rcf_navf": null,
+   "committed_facility_needed_for_24m": 0.0,
+   "cover24_tp": 1.2434965278849133
+  },
+  "T14|opening|cfp": {
+   "SH_TP_floor4": 13,
+   "SH_TPF_floor4_rcf_navf": 16,
+   "committed_facility_needed_for_24m": 37.80050246363149,
+   "cover24_tp": 0.7823922927448668
+  },
+  "T14|current|cfp": {
+   "SH_TP_floor4": 16,
+   "SH_TPF_floor4_rcf_navf": 20,
+   "committed_facility_needed_for_24m": 20.437976106509026,
+   "cover24_tp": 0.9069096289411473
+  },
+  "T14_draw5|opening|cfp": {
+   "SH_TP_floor4": 22,
+   "SH_TPF_floor4_rcf_navf": null,
+   "committed_facility_needed_for_24m": 3.8165024636314513,
+   "cover24_tp": 1.0699190854684368
+  },
+  "T14_draw5|current|cfp": {
+   "SH_TP_floor4": null,
+   "SH_TPF_floor4_rcf_navf": null,
+   "committed_facility_needed_for_24m": 0.0,
+   "cover24_tp": 1.1636221114335097
+  },
+  "T14_call125|opening|cfp": {
+   "SH_TP_floor4": 15,
+   "SH_TPF_floor4_rcf_navf": 18,
+   "committed_facility_needed_for_24m": 30.53033087965808,
+   "cover24_tp": 0.8281934582315338
+  },
+  "T14_call125|opening": {
+   "SH_TP_floor4": 14,
+   "SH_TPF_floor4_rcf_navf": 16,
+   "committed_facility_needed_for_24m": 39.73110442158726,
+   "cover24_tp": 0.7712150985026268
+  },
+  "T14_call125|current|cfp": {
+   "SH_TP_floor4": 18,
+   "SH_TPF_floor4_rcf_navf": 23,
+   "committed_facility_needed_for_24m": 13.239933653115088,
+   "cover24_tp": 0.9683439917786248
+  },
+  "T14_call125|current": {
+   "SH_TP_floor4": 16,
+   "SH_TPF_floor4_rcf_navf": 20,
+   "committed_facility_needed_for_24m": 22.44029458507225,
+   "cover24_tp": 0.8913494426474322
+  }
+ }
+}

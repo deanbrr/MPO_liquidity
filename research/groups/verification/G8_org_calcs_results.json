@@ -1,0 +1,309 @@
+{
+  "note": "SYNTHETIC/ILLUSTRATIVE. Units: $bn of incremental 12-month deployment; alpha in decimal p.a. vs risk-matched funding basket; liquidity rows = stressed liquidity consumption per $ deployed (net of the liquid funding basket); risk row = linearised Euler CVaR contribution per $.",
+  "E1": {
+    "status": "optimal",
+    "objective_bn_per_yr": 0.13838586681717785,
+    "x_star_bn": {
+      "PE": 0.996,
+      "SEC": 2.065,
+      "COI": 0.958,
+      "CAP": 1.795,
+      "PCR": 0.0,
+      "HF": 0.007,
+      "OVL_OPP": 0.841,
+      "TAIL": 0.0
+    },
+    "row_usage_bn": {
+      "L12_drought": 4.276,
+      "L12_crisis": 5.0,
+      "L24_crisis": 4.425,
+      "CVaR": 1.6
+    },
+    "row_cap_bn": {
+      "L12_drought": 6.0,
+      "L12_crisis": 5.0,
+      "L24_crisis": 7.0,
+      "CVaR": 1.6
+    },
+    "duals_decimal": {
+      "L12_drought": 0.0,
+      "L12_crisis": 0.01834,
+      "L24_crisis": 0.0,
+      "CVaR": 0.00807
+    },
+    "charge_bp": {
+      "PE": 125.1,
+      "SEC": 176.1,
+      "COI": 211.7,
+      "CAP": 170.5,
+      "PCR": 140.5,
+      "HF": 99.8,
+      "OVL_OPP": 58.0,
+      "TAIL": -895.2
+    },
+    "alpha_bp": {
+      "PE": 150.0,
+      "SEC": 300.0,
+      "COI": 250.0,
+      "CAP": 350.0,
+      "PCR": 100.0,
+      "HF": 100.0,
+      "OVL_OPP": 100.0,
+      "TAIL": -4500.0
+    },
+    "net_alpha_after_charges_bp": {
+      "PE": 24.9,
+      "SEC": 123.9,
+      "COI": 38.3,
+      "CAP": 179.5,
+      "PCR": -40.5,
+      "HF": 0.2,
+      "OVL_OPP": 42.0,
+      "TAIL": -3604.8
+    },
+    "group_liquidity_budget_L12_crisis_bn": {
+      "PE": 0.548,
+      "SEC": 1.755,
+      "COI": 0.958,
+      "CAP": 1.526,
+      "PCR": 0.0,
+      "HF": 0.003,
+      "OVL_OPP": 0.21,
+      "TAIL": -0.0
+    },
+    "group_risk_budget_CVaR_bn": {
+      "PE": 0.299,
+      "SEC": 0.516,
+      "COI": 0.335,
+      "CAP": 0.323,
+      "PCR": 0.0,
+      "HF": 0.001,
+      "OVL_OPP": 0.126,
+      "TAIL": -0.0
+    }
+  },
+  "E2": {
+    "x_decentralized_bn": {
+      "PE": 0.996,
+      "SEC": 2.065,
+      "COI": 0.958,
+      "CAP": 1.795,
+      "PCR": 0.0,
+      "HF": 0.007,
+      "OVL_OPP": 0.841,
+      "TAIL": 0.0
+    },
+    "max_abs_diff_vs_central_bn": 9.78925666488082e-06
+  },
+  "E3": {
+    "lp_solution_bn": [
+      5.0,
+      -0.0
+    ],
+    "dual_liquidity": 0.0375,
+    "reduced_costs_at_dual": [
+      0.0,
+      0.0
+    ],
+    "comment": "Both reduced costs are zero at the dual price: every split summing to 5bn is optimal, so prices alone cannot decentralize; the centre must also issue quantity envelopes."
+  },
+  "E4": {
+    "raw_forecast_used_Z1": {
+      "x_bn": {
+        "PE": 3.1,
+        "SEC": 1.215,
+        "COI": 0.0,
+        "CAP": 1.865,
+        "PCR": 0.0,
+        "HF": 0.306,
+        "OVL_OPP": 0.0,
+        "TAIL": 0.0
+      },
+      "dPE_bn": 2.104,
+      "d_others_bn": -2.28,
+      "duals": {
+        "L12_drought": 0.0,
+        "L12_crisis": 0.0,
+        "L24_crisis": 0.0,
+        "CVaR": 0.09083
+      },
+      "true_value_loss_mn_per_yr": 21.07
+    },
+    "credibility_Z0.4": {
+      "x_bn": {
+        "PE": 1.907,
+        "SEC": 1.974,
+        "COI": 0.254,
+        "CAP": 2.013,
+        "PCR": 0.0,
+        "HF": 0.509,
+        "OVL_OPP": 0.215,
+        "TAIL": 0.0
+      },
+      "dPE_bn": 0.911,
+      "d_others_bn": -0.701,
+      "duals": {
+        "L12_drought": 0.0,
+        "L12_crisis": 0.00757,
+        "L24_crisis": 0.0,
+        "CVaR": 0.04691
+      },
+      "true_value_loss_mn_per_yr": 3.65
+    },
+    "credibility_Z0.2": {
+      "x_bn": {
+        "PE": 1.451,
+        "SEC": 2.019,
+        "COI": 0.606,
+        "CAP": 1.904,
+        "PCR": 0.0,
+        "HF": 0.258,
+        "OVL_OPP": 0.528,
+        "TAIL": 0.0
+      },
+      "dPE_bn": 0.456,
+      "d_others_bn": -0.35,
+      "duals": {
+        "L12_drought": 0.0,
+        "L12_crisis": 0.01295,
+        "L24_crisis": 0.0,
+        "CVaR": 0.02749
+      },
+      "true_value_loss_mn_per_yr": 0.91
+    }
+  },
+  "E5": [
+    {
+      "b": 0.02,
+      "s": 50.0,
+      "Z": 1.0,
+      "Bprime_bn_per_unit": 400.0,
+      "delta_star_bp": 800.0
+    },
+    {
+      "b": 0.02,
+      "s": 50.0,
+      "Z": 0.4,
+      "Bprime_bn_per_unit": 400.0,
+      "delta_star_bp": 320.0
+    },
+    {
+      "b": 0.02,
+      "s": 200.0,
+      "Z": 0.4,
+      "Bprime_bn_per_unit": 400.0,
+      "delta_star_bp": 80.0
+    },
+    {
+      "b": 0.005,
+      "s": 50.0,
+      "Z": 0.4,
+      "Bprime_bn_per_unit": 400.0,
+      "delta_star_bp": 80.0
+    }
+  ],
+  "E6": {
+    "alpha_beta_gamma": [
+      0.2,
+      0.6,
+      1.0
+    ],
+    "theory_quantile_level": 0.49999999999999994,
+    "numerical_cdf_at_optimum": 0.5
+  },
+  "E7": {
+    "realized": 0.07,
+    "WIS": {
+      "group_forecast_hockey_stick": 0.086,
+      "reference_class": 0.0233
+    },
+    "WIS_skill_vs_reference": -2.691,
+    "kappa_for_36pct_coverage_of_80pct_interval": 2.74,
+    "coverage_se_n20_n50_n100": [
+      0.089,
+      0.057,
+      0.04
+    ]
+  },
+  "E8": {
+    "total_portfolio_liquidity_change_bn": -0.004,
+    "total_portfolio_value_change_bn": -0.004,
+    "PE_group_pnl_vs_fair_bn": -0.05,
+    "SEC_group_pnl_vs_fair_bn": 0.05,
+    "attribution_adjustment": "book both legs at fair value 0.90; the 0.05bn wedge is a centre item, not group DVA"
+  },
+  "E9": {
+    "break_even": [
+      {
+        "carry": 0.2,
+        "lambda_R": 0.0475,
+        "r": 2.0,
+        "k": 4.0,
+        "p": 0.08,
+        "break_even_forced_sale_discount": 0.328
+      },
+      {
+        "carry": 0.45,
+        "lambda_R": 0.0475,
+        "r": 2.0,
+        "k": 4.0,
+        "p": 0.08,
+        "break_even_forced_sale_discount": 1.109
+      }
+    ],
+    "E1_crisis_dual_needed_for_hedge_entry": 0.1085,
+    "E1_crisis_dual_actual": 0.01834
+  },
+  "E10": {
+    "PE": {
+      "x_star_bn": 0.996,
+      "loss_at_pm0.25bn_mn": [
+        0.274,
+        0.277
+      ],
+      "effective_curvature": 0.00883,
+      "own_q": 0.0025,
+      "band_pm_bn_for_5mn": 1.06
+    },
+    "SEC": {
+      "x_star_bn": 2.065,
+      "loss_at_pm0.25bn_mn": [
+        0.265,
+        0.24
+      ],
+      "effective_curvature": 0.00808,
+      "own_q": 0.006,
+      "band_pm_bn_for_5mn": 1.11
+    },
+    "COI": {
+      "x_star_bn": 0.958,
+      "loss_at_pm0.25bn_mn": [
+        0.222,
+        0.201
+      ],
+      "effective_curvature": 0.00677,
+      "own_q": 0.004,
+      "band_pm_bn_for_5mn": 1.22
+    },
+    "CAP": {
+      "x_star_bn": 1.795,
+      "loss_at_pm0.25bn_mn": [
+        0.495,
+        0.419
+      ],
+      "effective_curvature": 0.01462,
+      "own_q": 0.01,
+      "band_pm_bn_for_5mn": 0.83
+    },
+    "OVL_OPP": {
+      "x_star_bn": 0.841,
+      "loss_at_pm0.25bn_mn": [
+        0.175,
+        0.176
+      ],
+      "effective_curvature": 0.00563,
+      "own_q": 0.005,
+      "band_pm_bn_for_5mn": 1.33
+    }
+  }
+}

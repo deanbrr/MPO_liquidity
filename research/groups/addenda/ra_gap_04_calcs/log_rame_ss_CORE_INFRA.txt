@@ -1,0 +1,4 @@
+CORE_INFRA ss true SS params {'lam': 0.85, 'mu': 0.0034151223615480992, 'sv': 0.04923234375190278, 'sxi': 0.0025617376914898998, 'beta': 1.0, 'phip': 0.88, 'sp': 0.06, 'sL': 0.01, 'st': 0.035, 'cL': 0.0}
+resuming; done: ['M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M5s', 'M6']
+CORE_INFRA ss MALL   ALT: R2 0.46 xsCRPS +99.7% xsReg +110.8% cov 0.445 sellbias +1.84 reg 0.593 | AL R2 0.61 cov 0.52 | ALT4 R2 0.52 | lam 0.861 | 321s
+CORE_INFRA ss TL1    ALT: R2 0.47 xsCRPS +18.6% xsReg +21.1% cov 0.542 sellbias -0.57 reg 0.427 | AL R2 0.52 cov 0.70 | ALT4 R2 0.45 | lam 0.807 | 417s

@@ -1,0 +1,191 @@
+{
+  "label": "SYNTHETIC - NOT ADIC DATA",
+  "bgk_beta": 0.5825971579390106,
+  "kappa_E3": 0.75,
+  "inputs": {
+    "NAV": 400.0,
+    "nowcast": 388.0,
+    "EV0": 679.0,
+    "debt": 291.0,
+    "scenarios": {
+      "normal": [
+        2.5,
+        0.06,
+        0.28
+      ],
+      "drought": [
+        3.5,
+        0.04,
+        0.3
+      ]
+    }
+  },
+  "normal": {
+    "original_run": {
+      "tau": 2.5,
+      "E_exit_equity": 498.26873494574437,
+      "p_trigger_terminal": 0.28636,
+      "p_trigger_pathwise_quarterly": 0.495525,
+      "p_default_terminal": 0.1972925,
+      "p_default_pathwise_quarterly": 0.327085,
+      "implied_bid_pct_nav_yb20": 0.789678894182138,
+      "implied_bid_pct_nav_yb25": 0.713064167936966,
+      "buyer_irr_at_95pct_bid": 0.11447932512581516
+    },
+    "analysis": {
+      "levels_EV": {
+        "trigger": 557.6666666666667,
+        "default_level": 491.0,
+        "e3_barrier": 218.25,
+        "wipe_terminal": 291.0,
+        "pik_terminal": 423.75321778397694
+      },
+      "bgk_shift_quarterly_log": 0.08156360211146149,
+      "bgk_factor_quarterly": 1.084982222549798,
+      "trigger": {
+        "terminal_closed_form": 0.28701822186349935,
+        "continuous_closed_form": 0.6219017985706694,
+        "quarterly_bgk_predicted_from_continuous": 0.49042697531825863,
+        "sim_terminal": 0.2873075,
+        "sim_quarterly": 0.4957025,
+        "sim_quarterly_bgk_fix": 0.62279,
+        "sim_quarterly_bgk_wrong_sign": 0.3821575,
+        "sim_monthly": 0.5456925,
+        "sim_monthly_bgk_fix": 0.6235275,
+        "sim_weekly": 0.58415,
+        "sim_312_per_year": 0.60628,
+        "sim_continuous_extrapolated": 0.6207329162712636
+      },
+      "default_level": {
+        "terminal_closed_form": 0.19774671931267412,
+        "continuous_closed_form": 0.42452959230764986,
+        "quarterly_bgk_predicted_from_continuous": 0.3216340834944664,
+        "sim_terminal": 0.197225,
+        "sim_quarterly": 0.326565,
+        "sim_quarterly_bgk_fix": 0.43014,
+        "sim_quarterly_bgk_wrong_sign": 0.24188,
+        "sim_monthly": 0.3643825,
+        "sim_monthly_bgk_fix": 0.4261975,
+        "sim_weekly": 0.3944025,
+        "sim_312_per_year": 0.4119675,
+        "sim_continuous_extrapolated": 0.4232329973744095
+      },
+      "e3_barrier": {
+        "terminal_closed_form": 0.0036688715842141915,
+        "continuous_closed_form": 0.00762162598904914,
+        "quarterly_bgk_predicted_from_continuous": 0.004318653299341589,
+        "sim_terminal": 0.0037325,
+        "sim_quarterly": 0.00487,
+        "sim_quarterly_bgk_fix": 0.0083275,
+        "sim_quarterly_bgk_wrong_sign": 0.0026025,
+        "sim_monthly": 0.005725,
+        "sim_monthly_bgk_fix": 0.0078425,
+        "sim_weekly": 0.006545,
+        "sim_312_per_year": 0.007165,
+        "sim_continuous_extrapolated": 0.007464759543373754
+      },
+      "wipeout_unlevered": {
+        "terminal_only_closed_form": 0.02111194050696136,
+        "terminal_only_sim": 0.0210225,
+        "with_E3_continuous_closed_form": 0.021648969369581623,
+        "with_E3_quarterly_sim": 0.0211675,
+        "with_E3_quarterly_bgk_fix_sim": 0.02159,
+        "with_E3_monthly_sim": 0.0212625,
+        "with_E3_312_per_year_sim": 0.0214875
+      },
+      "wipeout_levered_pik": {
+        "terminal_only_closed_form": 0.11852392344076895,
+        "terminal_only_sim": 0.11826,
+        "with_E3_continuous_closed_form": 0.11854577955664133,
+        "with_E3_quarterly_sim": 0.11826,
+        "with_E3_quarterly_bgk_fix_sim": 0.118285,
+        "with_E3_monthly_sim": 0.1182625,
+        "with_E3_312_per_year_sim": 0.1182725
+      }
+    }
+  },
+  "drought": {
+    "original_run": {
+      "tau": 3.5,
+      "E_exit_equity": 493.20211519885453,
+      "p_trigger_terminal": 0.3746675,
+      "p_trigger_pathwise_quarterly": 0.6254125,
+      "p_default_terminal": 0.293385,
+      "p_default_pathwise_quarterly": 0.478475,
+      "implied_bid_pct_nav_yb20": 0.6513742378078564,
+      "implied_bid_pct_nav_yb25": 0.5646507295904363,
+      "buyer_irr_at_95pct_bid": 0.07734466857635791
+    },
+    "analysis": {
+      "levels_EV": {
+        "trigger": 557.6666666666667,
+        "default_level": 491.0,
+        "e3_barrier": 218.25,
+        "wipe_terminal": 291.0,
+        "pik_terminal": 439.6836039180542
+      },
+      "bgk_shift_quarterly_log": 0.08738957369085158,
+      "bgk_factor_quarterly": 1.0913217471563028,
+      "trigger": {
+        "terminal_closed_form": 0.3746461481081379,
+        "continuous_closed_form": 0.7336692040842734,
+        "quarterly_bgk_predicted_from_continuous": 0.6221863743721433,
+        "sim_terminal": 0.375335,
+        "sim_quarterly": 0.626045,
+        "sim_quarterly_bgk_fix": 0.7332625,
+        "sim_quarterly_bgk_wrong_sign": 0.5233875,
+        "sim_monthly": 0.6695125,
+        "sim_monthly_bgk_fix": 0.735,
+        "sim_weekly": 0.7029975,
+        "sim_312_per_year": 0.7215825,
+        "sim_continuous_extrapolated": 0.7342054800839974
+      },
+      "default_level": {
+        "terminal_closed_form": 0.2923889171285088,
+        "continuous_closed_form": 0.5736755599303993,
+        "quarterly_bgk_predicted_from_continuous": 0.47399076808274127,
+        "sim_terminal": 0.29219,
+        "sim_quarterly": 0.4784075,
+        "sim_quarterly_bgk_fix": 0.57816,
+        "sim_quarterly_bgk_wrong_sign": 0.3885975,
+        "sim_monthly": 0.517015,
+        "sim_monthly_bgk_fix": 0.5758275,
+        "sim_weekly": 0.54627,
+        "sim_312_per_year": 0.562825,
+        "sim_continuous_extrapolated": 0.5738353422685702
+      },
+      "e3_barrier": {
+        "terminal_closed_form": 0.02323711830074016,
+        "continuous_closed_form": 0.04594322370425932,
+        "quarterly_bgk_predicted_from_continuous": 0.03146481699836004,
+        "sim_terminal": 0.0230325,
+        "sim_quarterly": 0.032885,
+        "sim_quarterly_bgk_fix": 0.04802,
+        "sim_quarterly_bgk_wrong_sign": 0.0222175,
+        "sim_monthly": 0.037435,
+        "sim_monthly_bgk_fix": 0.046465,
+        "sim_weekly": 0.0413725,
+        "sim_312_per_year": 0.0438575,
+        "sim_continuous_extrapolated": 0.045324829768723006
+      },
+      "wipeout_unlevered": {
+        "terminal_only_closed_form": 0.06963895399154607,
+        "terminal_only_sim": 0.0693625,
+        "with_E3_continuous_closed_form": 0.0754743279668297,
+        "with_E3_quarterly_sim": 0.0716825,
+        "with_E3_quarterly_bgk_fix_sim": 0.07545,
+        "with_E3_monthly_sim": 0.0727225,
+        "with_E3_312_per_year_sim": 0.0746025
+      },
+      "wipeout_levered_pik": {
+        "terminal_only_closed_form": 0.2287095447427107,
+        "terminal_only_sim": 0.2289325,
+        "with_E3_continuous_closed_form": 0.22925525610984007,
+        "with_E3_quarterly_sim": 0.22912,
+        "with_E3_quarterly_bgk_fix_sim": 0.22951,
+        "with_E3_monthly_sim": 0.2292375,
+        "with_E3_312_per_year_sim": 0.229445
+      }
+    }
+  }
+}

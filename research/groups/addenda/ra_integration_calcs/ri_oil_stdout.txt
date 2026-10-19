@@ -1,0 +1,56 @@
+﻿validate off == G15 drought: {'off12': -0.15723467982668454, 'g15_12': -0.15723467982668454, 'off24': -0.1999441914564169, 'g15_24': -0.1999441914564169}
+RA leg off                    net12 -0.157 net24 -0.200 rbl24 0.000 income24 1.427 realiz24 0.916 navrep24 20.52
+RA leg with_enr               net12 -0.565 net24 -0.824 rbl24 0.371 income24 1.296 realiz24 0.736 navrep24 19.95
+RA leg without_enr            net12 -0.162 net24 -0.215 rbl24 0.000 income24 1.412 realiz24 0.916 navrep24 20.31
+RA leg enr_only               net12 -0.561 net24 -0.809 rbl24 0.371 income24 1.311 realiz24 0.736 navrep24 20.16
+RA leg with_enr|rbl_p90       net12 -0.546 net24 -0.798 rbl24 0.342 income24 1.295 realiz24 0.736 navrep24 19.93
+RA leg with_enr|rbl_floor     net12 -0.451 net24 -0.692 rbl24 0.200 income24 1.292 realiz24 0.735 navrep24 19.81
+OC v1|no RA                         NCO12  16.87 NCO24  31.79 G*  -21.08 head24  21.08 fac 0.00 SH_TP None
+OC v1|no RA|eq-5%                   NCO12  17.35 NCO24  32.05 G*  -20.05 head24  20.05 fac 0.00 SH_TP None
+OC v2u16|off                        NCO12  18.67 NCO24  34.97 G*  -20.90 head24  20.90 fac 0.00 SH_TP None
+OC v2u16|with_enr                   NCO12  19.07 NCO24  35.50 G*  -20.88 head24  20.88 fac 0.00 SH_TP None
+OC v2u16|without_enr                NCO12  18.67 NCO24  34.97 G*  -20.90 head24  20.90 fac 0.00 SH_TP None
+OC v2u16|enr_only                   NCO12  19.07 NCO24  35.50 G*  -20.88 head24  20.88 fac 0.00 SH_TP None
+OC v2u16|with_enr|rbl_p90           NCO12  19.06 NCO24  35.48 G*  -20.88 head24  20.88 fac 0.00 SH_TP None
+OC v2u16|with_enr|rbl_floor         NCO12  18.96 NCO24  35.37 G*  -20.88 head24  20.88 fac 0.00 SH_TP None
+OC v2u16|off|eq-5%                  NCO12  19.15 NCO24  35.23 G*  -19.87 head24  19.87 fac 0.00 SH_TP None
+OC v2u16|with_enr|eq-5%             NCO12  19.55 NCO24  35.76 G*  -19.85 head24  19.85 fac 0.00 SH_TP None
+OC v2u16|without_enr|eq-5%          NCO12  19.15 NCO24  35.23 G*  -19.86 head24  19.86 fac 0.00 SH_TP None
+OC v2u11|off                        NCO12  17.20 NCO24  32.59 G*  -21.05 head24  21.05 fac 0.00 SH_TP None
+OC v2u11|with_enr                   NCO12  17.61 NCO24  33.12 G*  -21.04 head24  21.04 fac 0.00 SH_TP None
+OC v2u11|without_enr                NCO12  17.21 NCO24  32.59 G*  -21.05 head24  21.05 fac 0.00 SH_TP None
+OC v2u11|enr_only                   NCO12  17.61 NCO24  33.12 G*  -21.04 head24  21.04 fac 0.00 SH_TP None
+OC v2u11|with_enr|rbl_p90           NCO12  17.59 NCO24  33.10 G*  -21.04 head24  21.04 fac 0.00 SH_TP None
+OC v2u11|with_enr|rbl_floor         NCO12  17.50 NCO24  32.99 G*  -21.04 head24  21.04 fac 0.00 SH_TP None
+OC v2u11|off|eq-5%                  NCO12  17.68 NCO24  32.85 G*  -20.02 head24  20.02 fac 0.00 SH_TP None
+OC v2u11|with_enr|eq-5%             NCO12  18.09 NCO24  33.38 G*  -20.01 head24  20.01 fac 0.00 SH_TP None
+OC v2u11|without_enr|eq-5%          NCO12  17.69 NCO24  32.85 G*  -20.02 head24  20.02 fac 0.00 SH_TP None
+delta v2u16|with_enr {'d_nco12': 0.408, 'd_nco24': 0.536, 'd_gstar': 0.013, 'd_head24': -0.013, 'd_ra_net24': -0.624, 'd_draws24': -0.088, 'd_floor24': -0.044, 'd_head_m12': -0.374, 'd_head_m24': -0.492}
+delta v2u16|without_enr {'d_nco12': 0.004, 'd_nco24': 0.004, 'd_gstar': 0.0, 'd_head24': -0.0, 'd_ra_net24': -0.015, 'd_draws24': -0.011, 'd_floor24': -0.009, 'd_head_m12': -0.0, 'd_head_m24': 0.005}
+delta v2u16|enr_only {'d_nco12': 0.403, 'd_nco24': 0.532, 'd_gstar': 0.012, 'd_head24': -0.012, 'd_ra_net24': -0.609, 'd_draws24': -0.077, 'd_floor24': -0.035, 'd_head_m12': -0.374, 'd_head_m24': -0.496}
+delta v2u16|with_enr|rbl_p90 {'d_nco12': 0.388, 'd_nco24': 0.51, 'd_gstar': 0.013, 'd_head24': -0.013, 'd_ra_net24': -0.598, 'd_draws24': -0.088, 'd_floor24': -0.044}
+delta v2u16|with_enr|rbl_floor {'d_nco12': 0.294, 'd_nco24': 0.403, 'd_gstar': 0.013, 'd_head24': -0.013, 'd_ra_net24': -0.492, 'd_draws24': -0.089, 'd_floor24': -0.044}
+delta v2u16|with_enr|eq-5% {'d_nco24': 0.536, 'd_gstar': 0.013}
+delta v2u16|without_enr|eq-5% {'d_nco24': 0.004, 'd_gstar': 0.0}
+delta v2u16-v1|off {'d_nco24': 3.177, 'd_gstar': 0.186}
+delta v2u16-v1|with_enr {'d_nco24': 3.713, 'd_gstar': 0.198}
+delta v2u11|with_enr {'d_nco12': 0.408, 'd_nco24': 0.536, 'd_gstar': 0.013, 'd_head24': -0.013, 'd_ra_net24': -0.624, 'd_draws24': -0.088, 'd_floor24': -0.044, 'd_head_m12': -0.374, 'd_head_m24': -0.492}
+delta v2u11|without_enr {'d_nco12': 0.004, 'd_nco24': 0.004, 'd_gstar': 0.0, 'd_head24': -0.0, 'd_ra_net24': -0.015, 'd_draws24': -0.011, 'd_floor24': -0.009, 'd_head_m12': -0.0, 'd_head_m24': 0.005}
+delta v2u11|enr_only {'d_nco12': 0.403, 'd_nco24': 0.532, 'd_gstar': 0.012, 'd_head24': -0.012, 'd_ra_net24': -0.609, 'd_draws24': -0.077, 'd_floor24': -0.035, 'd_head_m12': -0.374, 'd_head_m24': -0.496}
+delta v2u11|with_enr|rbl_p90 {'d_nco12': 0.388, 'd_nco24': 0.51, 'd_gstar': 0.013, 'd_head24': -0.013, 'd_ra_net24': -0.598, 'd_draws24': -0.088, 'd_floor24': -0.044}
+delta v2u11|with_enr|rbl_floor {'d_nco12': 0.294, 'd_nco24': 0.403, 'd_gstar': 0.013, 'd_head24': -0.013, 'd_ra_net24': -0.492, 'd_draws24': -0.089, 'd_floor24': -0.044}
+delta v2u11|with_enr|eq-5% {'d_nco24': 0.536, 'd_gstar': 0.013}
+delta v2u11|without_enr|eq-5% {'d_nco24': 0.004, 'd_gstar': 0.0}
+delta v2u11-v1|off {'d_nco24': 0.796, 'd_gstar': 0.031}
+delta v2u11-v1|with_enr {'d_nco24': 1.332, 'd_gstar': 0.044}
+first order {'with_enr|cvar95': 0.667, 'with_enr|p90': 0.639, 'with_enr|floor': 0.496, 'without_enr|cvar95': 0.014, 'without_enr|p90': 0.014, 'without_enr|floor': 0.014, 'enr_only|cvar95': 0.653, 'enr_only|p90': 0.625, 'enr_only|floor': 0.482}
+DCR SG+PS {'v1pub|repro': {'mine': 1.6527427148669636, 'gap02': 1.6527427148669636}, 'v1|dn': 1.8563, 'v2u16|off|dn': 1.7844, 'v2u16|with_enr|dn': 1.7661, 'v2u16|without_enr|dn': 1.7843, 'v2u16|enr_only|dn': 1.7662, 'v2u11|off|dn': 1.8961, 'v2u11|with_enr|dn': 1.8757, 'v2u11|without_enr|dn': 1.8959, 'v2u11|enr_only|dn': 1.8758, 'v1|mixB': 2.9462, 'v2u16|off|mixB': 2.7821, 'v2u16|with_enr|mixB': 2.7466, 'v2u16|without_enr|mixB': 2.7819, 'v2u16|enr_only|mixB': 2.7468, 'v2u11|off|mixB': 3.0264, 'v2u11|with_enr|mixB': 2.985, 'v2u11|without_enr|mixB': 3.0262, 'v2u11|enr_only|mixB': 2.9852}
+OCxDB {'v2u16|with_enr': {'gstar': 9.637904392394873, 'fac_need_24': 12.047380490493591, 'SH_TP': 18, 'd_gstar_vs_T4prime': 0.336344859823015, 'd_fac_vs_T4prime': 0.42043107477876873, 'T4prime_gstar': 9.301559532571858, 'T4prime_fac': 11.626949415714822}, 'v2u16|without_enr': {'gstar': 9.301559532571858, 'fac_need_24': 11.626949415714822, 'SH_TP': 18, 'd_gstar_vs_T4prime': 0.0, 'd_fac_vs_T4prime': 0.0, 'T4prime_gstar': 9.301559532571858, 'T4prime_fac': 11.626949415714822}, 'v2u11|with_enr': {'gstar': 6.956696400614057, 'fac_need_24': 8.69587050076757, 'SH_TP': 20, 'd_gstar_vs_T4prime': 0.3335764529806582, 'd_fac_vs_T4prime': 0.41697056622582274, 'T4prime_gstar': 6.623119947633398, 'T4prime_fac': 8.278899934541748}, 'v2u11|without_enr': {'gstar': 6.623119947633398, 'fac_need_24': 8.278899934541748, 'SH_TP': 20, 'd_gstar_vs_T4prime': 0.0, 'd_fac_vs_T4prime': 0.0, 'T4prime_gstar': 6.623119947633398, 'T4prime_fac': 8.278899934541748}}
+stoch v2u16|M1|dn {'d_p_red_pp_all_oil': 0.008, 'd_p_red_pp_enr': -0.002, 'd_p_red_ww_pp_all_oil': 0.0536, 'd_gstar_mean_ww_all_oil': -0.0158, 'd_gstar_mean_ww_enr': -0.0189, 'd_gstar_p99_ww_all_oil': -0.0173, 'd_gstar_p996_all_oil': -0.0254, 'd_w_mean_ww_all_oil': -0.5848, 'p_ww': 0.5223}
+stoch v2u16|M1|mixB {'d_p_red_pp_all_oil': 0.002, 'd_p_red_pp_enr': 0.002, 'd_p_red_ww_pp_all_oil': 0.0077, 'd_gstar_mean_ww_all_oil': -0.0128, 'd_gstar_mean_ww_enr': -0.0161, 'd_gstar_p99_ww_all_oil': -0.0076, 'd_gstar_p996_all_oil': -0.0044, 'd_w_mean_ww_all_oil': -0.5717, 'p_ww': 0.5223}
+stoch v2u16|M6|dn {'d_p_red_pp_all_oil': 0.054, 'd_p_red_pp_enr': 0.032, 'd_p_red_ww_pp_all_oil': 0.2106, 'd_gstar_mean_ww_all_oil': -0.0142, 'd_gstar_mean_ww_enr': -0.0186, 'd_gstar_p99_ww_all_oil': 0.0168, 'd_gstar_p996_all_oil': 0.014, 'd_w_mean_ww_all_oil': -0.5501, 'p_ww': 0.5223}
+stoch v2u16|M6|mixB {'d_p_red_pp_all_oil': 0.038, 'd_p_red_pp_enr': 0.034, 'd_p_red_ww_pp_all_oil': 0.0957, 'd_gstar_mean_ww_all_oil': -0.0062, 'd_gstar_mean_ww_enr': -0.0113, 'd_gstar_p99_ww_all_oil': 0.0084, 'd_gstar_p996_all_oil': 0.0069, 'd_w_mean_ww_all_oil': -0.5233, 'p_ww': 0.5223}
+stoch v2u11|M1|dn {'d_p_red_pp_all_oil': 0.016, 'd_p_red_pp_enr': 0.008, 'd_p_red_ww_pp_all_oil': 0.0421, 'd_gstar_mean_ww_all_oil': -0.0158, 'd_gstar_mean_ww_enr': -0.0187, 'd_gstar_p99_ww_all_oil': 0.0134, 'd_gstar_p996_all_oil': -0.0269, 'd_w_mean_ww_all_oil': -0.5853, 'p_ww': 0.5223}
+stoch v2u11|M1|mixB {'d_p_red_pp_all_oil': 0.0, 'd_p_red_pp_enr': -0.002, 'd_p_red_ww_pp_all_oil': 0.0, 'd_gstar_mean_ww_all_oil': -0.0121, 'd_gstar_mean_ww_enr': -0.0155, 'd_gstar_p99_ww_all_oil': 0.0703, 'd_gstar_p996_all_oil': 0.0158, 'd_w_mean_ww_all_oil': -0.5734, 'p_ww': 0.5223}
+stoch v2u11|M6|dn {'d_p_red_pp_all_oil': 0.014, 'd_p_red_pp_enr': 0.002, 'd_p_red_ww_pp_all_oil': 0.1761, 'd_gstar_mean_ww_all_oil': -0.0147, 'd_gstar_mean_ww_enr': -0.019, 'd_gstar_p99_ww_all_oil': 0.0163, 'd_gstar_p996_all_oil': -0.005, 'd_w_mean_ww_all_oil': -0.5468, 'p_ww': 0.5223}
+stoch v2u11|M6|mixB {'d_p_red_pp_all_oil': 0.028, 'd_p_red_pp_enr': 0.026, 'd_p_red_ww_pp_all_oil': 0.0689, 'd_gstar_mean_ww_all_oil': -0.0068, 'd_gstar_mean_ww_enr': -0.0121, 'd_gstar_p99_ww_all_oil': 0.0049, 'd_gstar_p996_all_oil': -0.0062, 'd_w_mean_ww_all_oil': -0.5218, 'p_ww': 0.5223}

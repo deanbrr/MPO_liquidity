@@ -1,0 +1,140 @@
+{
+ "stationary": {
+  "N": 0.493,
+  "B": 0.196,
+  "SG": 0.157,
+  "DB": 0.068,
+  "SS": 0.048,
+  "GW": 0.038
+ },
+ "expected_duration_years": {
+  "N": 2.63,
+  "B": 1.67,
+  "SG": 1.72,
+  "DB": 1.11,
+  "SS": 1.18,
+  "GW": 1.25
+ },
+ "kinks_usd_bbl": {
+  "draw_at_floor_if_P_ge": 64.4,
+  "draw_at_cap_if_P_le": 31.1
+ },
+ "draw_rate_by_regime_pctNAV": {
+  "N": {
+   "mean": 5.76,
+   "p90": 7.07,
+   "share_at_or_above_9.5": 0.003
+  },
+  "B": {
+   "mean": 5.58,
+   "p90": 6.56,
+   "share_at_or_above_9.5": 0.001
+  },
+  "SG": {
+   "mean": 6.81,
+   "p90": 8.78,
+   "share_at_or_above_9.5": 0.025
+  },
+  "DB": {
+   "mean": 6.88,
+   "p90": 8.55,
+   "share_at_or_above_9.5": 0.014
+  },
+  "SS": {
+   "mean": 5.53,
+   "p90": 6.25,
+   "share_at_or_above_9.5": 0.001
+  },
+  "GW": {
+   "mean": 6.48,
+   "p90": 8.08,
+   "share_at_or_above_9.5": 0.008
+  }
+ },
+ "P(draw>=9.5%) by year": [
+  0.0,
+  0.0,
+  0.0,
+  0.002,
+  0.008,
+  0.012,
+  0.013,
+  0.014,
+  0.014,
+  0.014
+ ],
+ "P(>=3 consecutive years with draw>=9.5%) within 10y": 0.007,
+ "mean_draw_by_year": [
+  5.94,
+  5.85,
+  5.91,
+  5.99,
+  6.05,
+  6.09,
+  6.12,
+  6.13,
+  6.14,
+  6.15
+ ],
+ "p10_p50_p90_price_y1_y3": {
+  "y1": [
+   59.9,
+   89.5,
+   137.3
+  ],
+  "y3": [
+   41.4,
+   71.2,
+   114.0
+  ]
+ },
+ "put_spread_equivalent": {
+  "note": "linear-in-price approximation between kinks; draw is linear in log price in the model",
+  "extra_draw_per_usd_bbl_per_1bn_NAV_musd": 1.5,
+  "barrels_equiv_for_177bn_NAV_million": 266.0
+ },
+ "sensitivity_grid": {
+  "P_BE=44.8,slope=0.625": {
+   "mean_draw_10y": 6.04,
+   "P(draw>=9.5%) avg yrs4-10": 0.011,
+   "P(>=3 consec yrs >=9.5%) in 10y": 0.008,
+   "mean_draw_in_DB": 6.88,
+   "mean_draw_in_SG": 6.82
+  },
+  "P_BE=44.8,slope=1.0": {
+   "mean_draw_10y": 5.97,
+   "P(draw>=9.5%) avg yrs4-10": 0.018,
+   "P(>=3 consec yrs >=9.5%) in 10y": 0.014,
+   "mean_draw_in_DB": 6.86,
+   "mean_draw_in_SG": 6.78
+  },
+  "P_BE=55.0,slope=0.625": {
+   "mean_draw_10y": 6.65,
+   "P(draw>=9.5%) avg yrs4-10": 0.041,
+   "P(>=3 consec yrs >=9.5%) in 10y": 0.036,
+   "mean_draw_in_DB": 7.58,
+   "mean_draw_in_SG": 7.57
+  },
+  "P_BE=55.0,slope=1.0": {
+   "mean_draw_10y": 6.58,
+   "P(draw>=9.5%) avg yrs4-10": 0.061,
+   "P(>=3 consec yrs >=9.5%) in 10y": 0.058,
+   "mean_draw_in_DB": 7.59,
+   "mean_draw_in_SG": 7.58
+  },
+  "P_BE=65.0,slope=0.625": {
+   "mean_draw_10y": 7.26,
+   "P(draw>=9.5%) avg yrs4-10": 0.1,
+   "P(>=3 consec yrs >=9.5%) in 10y": 0.102,
+   "mean_draw_in_DB": 8.12,
+   "mean_draw_in_SG": 8.16
+  },
+  "P_BE=65.0,slope=1.0": {
+   "mean_draw_10y": 7.23,
+   "P(draw>=9.5%) avg yrs4-10": 0.14,
+   "P(>=3 consec yrs >=9.5%) in 10y": 0.153,
+   "mean_draw_in_DB": 8.16,
+   "mean_draw_in_SG": 8.21
+  }
+ }
+}

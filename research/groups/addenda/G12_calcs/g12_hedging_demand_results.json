@@ -1,0 +1,214 @@
+{
+ "label": "SYNTHETIC [I-calc]",
+ "sigma_dlnP_annual": 0.328,
+ "annuity_factor": 2.304,
+ "L_eff": {
+  "PBE44.8": {
+   "p_inband": 0.5186,
+   "h": 0.1,
+   "L_eff_pct_nav": 7.47
+  },
+  "PBE55.0": {
+   "p_inband": 0.6422,
+   "h": 0.1,
+   "L_eff_pct_nav": 9.25
+  },
+  "PBE65.0": {
+   "p_inband": 0.6871,
+   "h": 0.1,
+   "L_eff_pct_nav": 9.9
+  },
+  "PBE55_h0.06": {
+   "p_inband": 0.8227,
+   "h": 0.06,
+   "L_eff_pct_nav": 7.11
+  },
+  "PBE55_h0.091": {
+   "p_inband": 0.6463,
+   "h": 0.091,
+   "L_eff_pct_nav": 8.47
+  },
+  "PBE55_h0.113": {
+   "p_inband": 0.5485,
+   "h": 0.113,
+   "L_eff_pct_nav": 8.93
+  },
+  "PBE55_h0.15": {
+   "p_inband": 0.4317,
+   "h": 0.15,
+   "L_eff_pct_nav": 9.33
+  }
+ },
+ "hurdles": {
+  "pdp": {
+   "name": "Upstream PDP, unlevered",
+   "corr_dlnP": 0.875,
+   "vol": 0.2255,
+   "cov_with_dlnP": 0.0646,
+   "hurdle_PBE44.8_gamma2": 0.0097,
+   "hurdle_PBE44.8_gamma4": 0.0193,
+   "hurdle_PBE55.0_gamma2": 0.012,
+   "hurdle_PBE55.0_gamma4": 0.0239,
+   "hurdle_PBE65.0_gamma2": 0.0128,
+   "hurdle_PBE65.0_gamma4": 0.0256,
+   "hurdle_PBE55_h0.06_gamma2": 0.0092,
+   "hurdle_PBE55_h0.06_gamma4": 0.0184,
+   "hurdle_PBE55_h0.15_gamma2": 0.0121,
+   "hurdle_PBE55_h0.15_gamma4": 0.0241,
+   "mv_hedge_weight_PBE55": -0.118
+  },
+  "lev": {
+   "name": "Upstream PDP, 40% LTV RBL",
+   "corr_dlnP": 0.874,
+   "vol": 0.4494,
+   "cov_with_dlnP": 0.1287,
+   "hurdle_PBE44.8_gamma2": 0.0192,
+   "hurdle_PBE44.8_gamma4": 0.0384,
+   "hurdle_PBE55.0_gamma2": 0.0238,
+   "hurdle_PBE55.0_gamma4": 0.0476,
+   "hurdle_PBE65.0_gamma2": 0.0255,
+   "hurdle_PBE65.0_gamma4": 0.051,
+   "hurdle_PBE55_h0.06_gamma2": 0.0183,
+   "hurdle_PBE55_h0.06_gamma4": 0.0366,
+   "hurdle_PBE55_h0.15_gamma2": 0.024,
+   "hurdle_PBE55_h0.15_gamma4": 0.048,
+   "mv_hedge_weight_PBE55": -0.059
+  },
+  "hdg": {
+   "name": "Upstream PDP, 70% 3-yr swap ladder",
+   "corr_dlnP": 0.864,
+   "vol": 0.0885,
+   "cov_with_dlnP": 0.025,
+   "hurdle_PBE44.8_gamma2": 0.0037,
+   "hurdle_PBE44.8_gamma4": 0.0075,
+   "hurdle_PBE55.0_gamma2": 0.0046,
+   "hurdle_PBE55.0_gamma4": 0.0093,
+   "hurdle_PBE65.0_gamma2": 0.005,
+   "hurdle_PBE65.0_gamma4": 0.0099,
+   "hurdle_PBE55_h0.06_gamma2": 0.0036,
+   "hurdle_PBE55_h0.06_gamma4": 0.0071,
+   "hurdle_PBE55_h0.15_gamma2": 0.0047,
+   "hurdle_PBE55_h0.15_gamma4": 0.0093,
+   "mv_hedge_weight_PBE55": -0.296
+  },
+  "roy": {
+   "name": "Oil mineral & royalty",
+   "corr_dlnP": 0.874,
+   "vol": 0.1767,
+   "cov_with_dlnP": 0.0506,
+   "hurdle_PBE44.8_gamma2": 0.0076,
+   "hurdle_PBE44.8_gamma4": 0.0151,
+   "hurdle_PBE55.0_gamma2": 0.0094,
+   "hurdle_PBE55.0_gamma4": 0.0187,
+   "hurdle_PBE65.0_gamma2": 0.01,
+   "hurdle_PBE65.0_gamma4": 0.02,
+   "hurdle_PBE55_h0.06_gamma2": 0.0072,
+   "hurdle_PBE55_h0.06_gamma4": 0.0144,
+   "hurdle_PBE55_h0.15_gamma2": 0.0094,
+   "hurdle_PBE55_h0.15_gamma4": 0.0189,
+   "mv_hedge_weight_PBE55": -0.15
+  },
+  "mid": {
+   "name": "Fee-based midstream",
+   "corr_dlnP": 0.872,
+   "vol": 0.0583,
+   "cov_with_dlnP": 0.0167,
+   "hurdle_PBE44.8_gamma2": 0.0025,
+   "hurdle_PBE44.8_gamma4": 0.005,
+   "hurdle_PBE55.0_gamma2": 0.0031,
+   "hurdle_PBE55.0_gamma4": 0.0062,
+   "hurdle_PBE65.0_gamma2": 0.0033,
+   "hurdle_PBE65.0_gamma4": 0.0066,
+   "hurdle_PBE55_h0.06_gamma2": 0.0024,
+   "hurdle_PBE55_h0.06_gamma4": 0.0047,
+   "hurdle_PBE55_h0.15_gamma2": 0.0031,
+   "hurdle_PBE55_h0.15_gamma4": 0.0062,
+   "mv_hedge_weight_PBE55": -0.453
+  },
+  "tim": {
+   "name": "Timberland",
+   "corr_dlnP": -0.002,
+   "vol": 0.0324,
+   "cov_with_dlnP": -0.0,
+   "hurdle_PBE44.8_gamma2": -0.0,
+   "hurdle_PBE44.8_gamma4": -0.0,
+   "hurdle_PBE55.0_gamma2": -0.0,
+   "hurdle_PBE55.0_gamma4": -0.0,
+   "hurdle_PBE65.0_gamma2": -0.0,
+   "hurdle_PBE65.0_gamma4": -0.0,
+   "hurdle_PBE55_h0.06_gamma2": -0.0,
+   "hurdle_PBE55_h0.06_gamma4": -0.0,
+   "hurdle_PBE55_h0.15_gamma2": -0.0,
+   "hurdle_PBE55_h0.15_gamma4": -0.0,
+   "mv_hedge_weight_PBE55": 0.002
+  },
+  "farm": {
+   "name": "Row-crop farmland",
+   "corr_dlnP": 0.087,
+   "vol": 0.0801,
+   "cov_with_dlnP": 0.0023,
+   "hurdle_PBE44.8_gamma2": 0.0003,
+   "hurdle_PBE44.8_gamma4": 0.0007,
+   "hurdle_PBE55.0_gamma2": 0.0004,
+   "hurdle_PBE55.0_gamma4": 0.0008,
+   "hurdle_PBE65.0_gamma2": 0.0005,
+   "hurdle_PBE65.0_gamma4": 0.0009,
+   "hurdle_PBE55_h0.06_gamma2": 0.0003,
+   "hurdle_PBE55_h0.06_gamma4": 0.0006,
+   "hurdle_PBE55_h0.15_gamma2": 0.0004,
+   "hurdle_PBE55_h0.15_gamma4": 0.0009,
+   "mv_hedge_weight_PBE55": -0.033
+  },
+  "eq": {
+   "name": "Global equity (ref)",
+   "corr_dlnP": 0.206,
+   "vol": 0.192,
+   "cov_with_dlnP": 0.013,
+   "hurdle_PBE44.8_gamma2": 0.0019,
+   "hurdle_PBE44.8_gamma4": 0.0039,
+   "hurdle_PBE55.0_gamma2": 0.0024,
+   "hurdle_PBE55.0_gamma4": 0.0048,
+   "hurdle_PBE65.0_gamma2": 0.0026,
+   "hurdle_PBE65.0_gamma4": 0.0051,
+   "hurdle_PBE55_h0.06_gamma2": 0.0018,
+   "hurdle_PBE55_h0.06_gamma4": 0.0037,
+   "hurdle_PBE55_h0.15_gamma2": 0.0024,
+   "hurdle_PBE55_h0.15_gamma4": 0.0048,
+   "mv_hedge_weight_PBE55": -0.033
+  }
+ },
+ "oil_delta_budget": {
+  "B5m_bbl": {
+   "share_of_inband_draw_delta": 0.025,
+   "max_usd_bn_pdp": 0.91,
+   "max_usd_bn_roy": 1.15,
+   "max_usd_bn_mid": 3.55,
+   "max_usd_bn_lev": 0.54,
+   "max_usd_bn_hdg": 2.4
+  },
+  "B10m_bbl": {
+   "share_of_inband_draw_delta": 0.05,
+   "max_usd_bn_pdp": 1.81,
+   "max_usd_bn_roy": 2.29,
+   "max_usd_bn_mid": 7.09,
+   "max_usd_bn_lev": 1.09,
+   "max_usd_bn_hdg": 4.81
+  },
+  "B20m_bbl": {
+   "share_of_inband_draw_delta": 0.1,
+   "max_usd_bn_pdp": 3.63,
+   "max_usd_bn_roy": 4.59,
+   "max_usd_bn_mid": 14.18,
+   "max_usd_bn_lev": 2.18,
+   "max_usd_bn_hdg": 9.62
+  }
+ },
+ "context": {
+  "inband_draw_delta_m_bbl_linear_map": 201.0,
+  "smoothed_first_year_draw_delta_m_bbl_main_report": 100,
+  "overlay_put_spread_programme_m_bbl_main_report": [
+   20,
+   40
+  ]
+ }
+}

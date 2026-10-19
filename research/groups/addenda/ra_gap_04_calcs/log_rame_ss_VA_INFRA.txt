@@ -1,0 +1,4 @@
+VA_INFRA ss true SS params {'lam': 0.8, 'mu': 0.007319083340028353, 'sv': 0.06967306518108606, 'sxi': 0.004269562819149833, 'beta': 1.0, 'phip': 0.88, 'sp': 0.06, 'sL': 0.01, 'st': 0.04, 'cL': 0.0}
+resuming; done: ['M0', 'M1', 'M2', 'M3', 'M4']
+VA_INFRA ss M5     ALT: R2 0.26 xsCRPS +1.4% xsReg +2.4% cov 0.790 sellbias +0.18 reg 0.209 | AL R2 0.52 cov 0.72 | ALT4 R2 0.39 | lam 0.800 | 384s
+VA_INFRA ss M5s    ALT: R2 0.31 xsCRPS +18.4% xsReg +27.5% cov 0.760 sellbias +1.26 reg 0.254 | AL R2 0.56 cov 0.64 | ALT4 R2 0.46 | lam 0.783 | 376s

@@ -1,0 +1,2159 @@
+{
+  "label": "SYNTHETIC - NOT ADIC DATA",
+  "anchors": {
+    "SOFR": 0.0389,
+    "five_year_fixed_benchmark": 0.0459,
+    "CRE_spread_N": 0.0204,
+    "MF_spread_N": 0.0162
+  },
+  "A_sell_library": [
+    {
+      "instrument": "direct_asset_sale_US_lowtax",
+      "regime": "N",
+      "theta": 1.0,
+      "price_pct_nav": 98.0,
+      "net_proceeds_pct_nav": 96.78,
+      "kappa_value_cost_per_usd_raised": 0.0333,
+      "breakeven_ell_annual": 0.0103,
+      "months_to_cash": 4.5,
+      "p_success": 0.85,
+      "hold_cash_weighted_life_y": 4.66
+    },
+    {
+      "instrument": "direct_asset_sale_US_lowtax",
+      "regime": "T",
+      "theta": 0.95,
+      "price_pct_nav": 90.0,
+      "net_proceeds_pct_nav": 88.88,
+      "kappa_value_cost_per_usd_raised": 0.0689,
+      "breakeven_ell_annual": 0.0196,
+      "months_to_cash": 7.0,
+      "p_success": 0.7,
+      "hold_cash_weighted_life_y": 4.66
+    },
+    {
+      "instrument": "direct_asset_sale_US_lowtax",
+      "regime": "C",
+      "theta": 0.9,
+      "price_pct_nav": 80.0,
+      "net_proceeds_pct_nav": 79.0,
+      "kappa_value_cost_per_usd_raised": 0.1392,
+      "breakeven_ell_annual": 0.0361,
+      "months_to_cash": 10.0,
+      "p_success": 0.5,
+      "hold_cash_weighted_life_y": 4.66
+    },
+    {
+      "instrument": "direct_asset_sale_NYC_seller_tax",
+      "regime": "N",
+      "theta": 1.0,
+      "price_pct_nav": 98.0,
+      "net_proceeds_pct_nav": 93.57,
+      "kappa_value_cost_per_usd_raised": 0.0688,
+      "breakeven_ell_annual": 0.0178,
+      "months_to_cash": 4.5,
+      "p_success": 0.85,
+      "hold_cash_weighted_life_y": 4.66
+    },
+    {
+      "instrument": "direct_asset_sale_NYC_seller_tax",
+      "regime": "C",
+      "theta": 0.9,
+      "price_pct_nav": 80.0,
+      "net_proceeds_pct_nav": 76.38,
+      "kappa_value_cost_per_usd_raised": 0.1783,
+      "breakeven_ell_annual": 0.0438,
+      "months_to_cash": 10.0,
+      "p_success": 0.5,
+      "hold_cash_weighted_life_y": 4.66
+    },
+    {
+      "instrument": "direct_asset_sale_with_UKtype_reentry",
+      "regime": "N",
+      "theta": 1.0,
+      "price_pct_nav": 98.0,
+      "net_proceeds_pct_nav": 90.11,
+      "kappa_value_cost_per_usd_raised": 0.1097,
+      "breakeven_ell_annual": 0.0262,
+      "months_to_cash": 4.5,
+      "p_success": 0.85,
+      "hold_cash_weighted_life_y": 4.66
+    },
+    {
+      "instrument": "direct_asset_sale_KSA_RETT5",
+      "regime": "N",
+      "theta": 1.0,
+      "price_pct_nav": 98.0,
+      "net_proceeds_pct_nav": 91.88,
+      "kappa_value_cost_per_usd_raised": 0.0884,
+      "breakeven_ell_annual": 0.0222,
+      "months_to_cash": 5.0,
+      "p_success": 0.8,
+      "hold_cash_weighted_life_y": 4.66
+    },
+    {
+      "instrument": "direct_asset_sale_KSA_RETT5",
+      "regime": "OD",
+      "theta": 0.9,
+      "price_pct_nav": 82.0,
+      "net_proceeds_pct_nav": 76.88,
+      "kappa_value_cost_per_usd_raised": 0.1707,
+      "breakeven_ell_annual": 0.0423,
+      "months_to_cash": 10.0,
+      "p_success": 0.45,
+      "hold_cash_weighted_life_y": 4.66
+    },
+    {
+      "instrument": "jv_stake_sale_50pct",
+      "regime": "N",
+      "theta": 1.0,
+      "price_pct_nav": 93.1,
+      "net_proceeds_pct_nav": 92.17,
+      "kappa_value_cost_per_usd_raised": 0.085,
+      "breakeven_ell_annual": 0.0222,
+      "months_to_cash": 6.0,
+      "p_success": 0.8,
+      "hold_cash_weighted_life_y": 4.66
+    },
+    {
+      "instrument": "jv_stake_sale_50pct",
+      "regime": "C",
+      "theta": 0.9,
+      "price_pct_nav": 64.0,
+      "net_proceeds_pct_nav": 63.36,
+      "kappa_value_cost_per_usd_raised": 0.4205,
+      "breakeven_ell_annual": 0.0894,
+      "months_to_cash": 12.0,
+      "p_success": 0.4,
+      "hold_cash_weighted_life_y": 4.66
+    },
+    {
+      "instrument": "lp_secondary_real_estate",
+      "regime": "N",
+      "theta": 0.88,
+      "price_pct_nav": 68.0,
+      "net_proceeds_pct_nav": 67.32,
+      "kappa_value_cost_per_usd_raised": 0.3072,
+      "breakeven_ell_annual": 0.0635,
+      "months_to_cash": 4.0,
+      "p_success": 0.75,
+      "hold_cash_weighted_life_y": 4.66
+    },
+    {
+      "instrument": "lp_secondary_real_estate",
+      "regime": "C",
+      "theta": 0.82,
+      "price_pct_nav": 57.0,
+      "net_proceeds_pct_nav": 56.43,
+      "kappa_value_cost_per_usd_raised": 0.4531,
+      "breakeven_ell_annual": 0.0903,
+      "months_to_cash": 6.0,
+      "p_success": 0.45,
+      "hold_cash_weighted_life_y": 4.66
+    },
+    {
+      "instrument": "lp_secondary_infrastructure",
+      "regime": "N",
+      "theta": 0.97,
+      "price_pct_nav": 93.0,
+      "net_proceeds_pct_nav": 92.07,
+      "kappa_value_cost_per_usd_raised": 0.0535,
+      "breakeven_ell_annual": 0.0142,
+      "months_to_cash": 4.0,
+      "p_success": 0.85,
+      "hold_cash_weighted_life_y": 4.66
+    },
+    {
+      "instrument": "lp_secondary_infrastructure",
+      "regime": "C",
+      "theta": 0.93,
+      "price_pct_nav": 82.0,
+      "net_proceeds_pct_nav": 81.18,
+      "kappa_value_cost_per_usd_raised": 0.1456,
+      "breakeven_ell_annual": 0.0345,
+      "months_to_cash": 6.0,
+      "p_success": 0.55,
+      "hold_cash_weighted_life_y": 4.66
+    },
+    {
+      "instrument": "open_end_unit_secondary",
+      "regime": "N",
+      "theta": 0.98,
+      "price_pct_nav": 98.0,
+      "net_proceeds_pct_nav": 97.51,
+      "kappa_value_cost_per_usd_raised": 0.005,
+      "breakeven_ell_annual": 0.0018,
+      "months_to_cash": 1.0,
+      "p_success": 0.95,
+      "hold_cash_weighted_life_y": 4.66
+    },
+    {
+      "instrument": "open_end_unit_secondary",
+      "regime": "C",
+      "theta": 0.9,
+      "price_pct_nav": 78.0,
+      "net_proceeds_pct_nav": 77.61,
+      "kappa_value_cost_per_usd_raised": 0.1596,
+      "breakeven_ell_annual": 0.0343,
+      "months_to_cash": 2.0,
+      "p_success": 0.7,
+      "hold_cash_weighted_life_y": 4.66
+    }
+  ],
+  "A_refi_library": [
+    {
+      "instrument": "cashout_refi_unlevered_to_50LTV",
+      "regime": "N",
+      "borrowing_rate": 0.0663,
+      "s_B_over_SOFR": 0.0274,
+      "s_hat_all_in": 0.0319,
+      "proceeds_per_usd_GAV": 0.5,
+      "encumbrance_per_usd_raised": 2.0,
+      "months_to_cash": 3.0,
+      "availability": 0.97
+    },
+    {
+      "instrument": "cashout_refi_unlevered_to_50LTV",
+      "regime": "T",
+      "borrowing_rate": 0.0763,
+      "s_B_over_SOFR": 0.0374,
+      "s_hat_all_in": 0.0439,
+      "proceeds_per_usd_GAV": 0.45,
+      "encumbrance_per_usd_raised": 2.22,
+      "months_to_cash": 4.5,
+      "availability": 0.8
+    },
+    {
+      "instrument": "cashout_refi_unlevered_to_50LTV",
+      "regime": "C",
+      "borrowing_rate": 0.1013,
+      "s_B_over_SOFR": 0.0624,
+      "s_hat_all_in": 0.0724,
+      "proceeds_per_usd_GAV": 0.4,
+      "encumbrance_per_usd_raised": 2.5,
+      "months_to_cash": 6.0,
+      "availability": 0.5
+    },
+    {
+      "instrument": "cashout_refi_unlevered_to_50LTV",
+      "regime": "GW",
+      "borrowing_rate": 0.0813,
+      "s_B_over_SOFR": 0.0424,
+      "s_hat_all_in": 0.0514,
+      "proceeds_per_usd_GAV": 0.4,
+      "encumbrance_per_usd_raised": 2.5,
+      "months_to_cash": 6.0,
+      "availability": 0.5
+    },
+    {
+      "instrument": "floating_refi_with_cap_3y",
+      "regime": "N",
+      "borrowing_rate": 0.0639,
+      "s_B_over_SOFR": 0.025,
+      "s_hat_all_in": 0.0338,
+      "proceeds_per_usd_GAV": 0.55,
+      "encumbrance_per_usd_raised": 1.82,
+      "months_to_cash": 2.5,
+      "availability": 0.95
+    },
+    {
+      "instrument": "mezz_or_pref_on_cheap_senior",
+      "regime": "N",
+      "borrowing_rate": 0.13,
+      "s_B_over_SOFR": 0.0911,
+      "s_hat_all_in": 0.0999,
+      "proceeds_per_usd_GAV": 0.15,
+      "encumbrance_per_usd_raised": 0.0,
+      "months_to_cash": 2.0,
+      "availability": 0.9
+    },
+    {
+      "instrument": "mezz_or_pref_on_cheap_senior",
+      "regime": "C",
+      "borrowing_rate": 0.16,
+      "s_B_over_SOFR": 0.1211,
+      "s_hat_all_in": 0.1361,
+      "proceeds_per_usd_GAV": 0.1,
+      "encumbrance_per_usd_raised": 0.0,
+      "months_to_cash": 3.0,
+      "availability": 0.5
+    },
+    {
+      "instrument": "ground_lease_sale",
+      "regime": "N",
+      "borrowing_rate": 0.073,
+      "s_B_over_SOFR": 0.0341,
+      "s_hat_all_in": 0.0348,
+      "proceeds_per_usd_GAV": 0.35,
+      "encumbrance_per_usd_raised": 0.0,
+      "months_to_cash": 4.0,
+      "availability": 0.8
+    },
+    {
+      "instrument": "sale_leaseback_operating_asset",
+      "regime": "N",
+      "borrowing_rate": 0.0845,
+      "s_B_over_SOFR": 0.0456,
+      "s_hat_all_in": 0.0469,
+      "proceeds_per_usd_GAV": 0.95,
+      "encumbrance_per_usd_raised": 0.0,
+      "months_to_cash": 4.0,
+      "availability": 0.8
+    },
+    {
+      "instrument": "nav_facility_RE_fund_interests",
+      "regime": "N",
+      "borrowing_rate": 0.0939,
+      "s_B_over_SOFR": 0.055,
+      "s_hat_all_in": 0.065,
+      "proceeds_per_usd_GAV": 0.1,
+      "encumbrance_per_usd_raised": 10.0,
+      "months_to_cash": 2.5,
+      "availability": 0.7
+    },
+    {
+      "instrument": "nav_facility_infra_fund_interests",
+      "regime": "N",
+      "borrowing_rate": 0.0764,
+      "s_B_over_SOFR": 0.0375,
+      "s_hat_all_in": 0.0436,
+      "proceeds_per_usd_GAV": 0.2,
+      "encumbrance_per_usd_raised": 5.0,
+      "months_to_cash": 2.5,
+      "availability": 0.9
+    },
+    {
+      "instrument": "nav_facility_RE_fund_interests",
+      "regime": "C",
+      "borrowing_rate": 0.1139,
+      "s_B_over_SOFR": 0.075,
+      "s_hat_all_in": 0.0967,
+      "proceeds_per_usd_GAV": 0.05,
+      "encumbrance_per_usd_raised": 20.0,
+      "months_to_cash": 4.0,
+      "availability": 0.3
+    },
+    {
+      "instrument": "infra_holdco_debt_pik_toggle",
+      "regime": "N",
+      "borrowing_rate": 0.0839,
+      "s_B_over_SOFR": 0.045,
+      "s_hat_all_in": 0.055,
+      "proceeds_per_usd_GAV": 0.15,
+      "encumbrance_per_usd_raised": 0.0,
+      "months_to_cash": 3.0,
+      "availability": 0.85
+    }
+  ],
+  "A_refi_lockin": {
+    "early_cashout_40_to_55LTV_marginal_rate_on_new_cash": 0.1431,
+    "early_cashout_marginal_spread_over_SOFR": 0.1042,
+    "lockin_value_pct_GAV_2y_left": 2.09,
+    "lockin_value_pct_GAV_5y_left": 4.77,
+    "r_old": 0.0375,
+    "r_new": 0.0663
+  },
+  "A_headroom_cost_conversion": {
+    "kappa_24": 0.825,
+    "levers": {
+      "direct_asset_sale_US_lowtax|N": 0.04,
+      "direct_asset_sale_US_lowtax|T": 0.084,
+      "direct_asset_sale_US_lowtax|C": 0.169,
+      "direct_asset_sale_NYC_seller_tax|N": 0.083,
+      "direct_asset_sale_NYC_seller_tax|C": 0.216,
+      "direct_asset_sale_with_UKtype_reentry|N": 0.133,
+      "direct_asset_sale_KSA_RETT5|N": 0.107,
+      "direct_asset_sale_KSA_RETT5|OD": 0.207,
+      "jv_stake_sale_50pct|N": 0.103,
+      "jv_stake_sale_50pct|C": 0.51,
+      "lp_secondary_real_estate|N": 0.372,
+      "lp_secondary_real_estate|C": 0.549,
+      "lp_secondary_infrastructure|N": 0.065,
+      "lp_secondary_infrastructure|C": 0.176,
+      "open_end_unit_secondary|N": 0.006,
+      "open_end_unit_secondary|C": 0.193,
+      "decision_JV_selldown_49pct|N": 0.076,
+      "decision_cashout_refi_at_maturity|N": 0.082,
+      "decision_SELL_100pct|N": 0.114,
+      "decision_mezz_pref_on_senior|N": 0.23,
+      "decision_cashout_refi_early|N": 0.316,
+      "decision_cashout_refi_at_maturity|T": 0.105,
+      "decision_JV_selldown_49pct|T": 0.234,
+      "decision_mezz_pref_on_senior|T": 0.265,
+      "decision_SELL_100pct|T": 0.284,
+      "decision_cashout_refi_early|T": 0.555,
+      "decision_cashout_refi_at_maturity|C": 0.152,
+      "decision_mezz_pref_on_senior|C": 0.3,
+      "decision_JV_selldown_49pct|C": 0.483,
+      "decision_SELL_100pct|C": 0.556,
+      "decision_cashout_refi_early|C": 1.491,
+      "cashout_refi_unlevered_to_50LTV|N": 0.073,
+      "cashout_refi_unlevered_to_50LTV|T": 0.101,
+      "cashout_refi_unlevered_to_50LTV|C": 0.166,
+      "cashout_refi_unlevered_to_50LTV|GW": 0.118,
+      "floating_refi_with_cap_3y|N": 0.077,
+      "mezz_or_pref_on_cheap_senior|N": 0.229,
+      "mezz_or_pref_on_cheap_senior|C": 0.312,
+      "ground_lease_sale|N": 0.08,
+      "sale_leaseback_operating_asset|N": 0.107,
+      "nav_facility_RE_fund_interests|N": 0.149,
+      "nav_facility_infra_fund_interests|N": 0.1,
+      "nav_facility_RE_fund_interests|C": 0.221,
+      "infra_holdco_debt_pik_toggle|N": 0.126
+    }
+  },
+  "B_queue_machine": {
+    "q_by_regime": {
+      "N": 0.71,
+      "T": 0.2,
+      "C": 0.05
+    },
+    "transition_quarterly": [
+      [
+        0.9,
+        0.08,
+        0.02
+      ],
+      [
+        0.1,
+        0.8,
+        0.1
+      ],
+      [
+        0.03,
+        0.12,
+        0.85
+      ]
+    ],
+    "by_start_regime": {
+      "N": {
+        "cash_share_P5_by_quarter": [
+          0.432,
+          0.718,
+          0.809,
+          0.852,
+          0.881,
+          0.906,
+          0.924,
+          0.937,
+          0.949,
+          0.958,
+          0.967,
+          0.973,
+          0.979,
+          0.983,
+          0.986,
+          0.989
+        ],
+        "cash_share_P50_by_quarter": [
+          0.729,
+          0.926,
+          0.979,
+          0.994,
+          0.998,
+          0.999,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "cash_share_mean_by_quarter": [
+          0.711,
+          0.9,
+          0.954,
+          0.973,
+          0.98,
+          0.985,
+          0.988,
+          0.99,
+          0.991,
+          0.993,
+          0.994,
+          0.995,
+          0.995,
+          0.996,
+          0.997,
+          0.997
+        ],
+        "value_cost_at_ell_0.00": 0.0147,
+        "value_cost_at_ell_0.02": 0.0221,
+        "value_cost_at_ell_0.05": 0.0329,
+        "value_cost_at_ell_0.10": 0.0496,
+        "value_cost_at_ell_0.20": 0.0797
+      },
+      "T": {
+        "cash_share_P5_by_quarter": [
+          0.031,
+          0.116,
+          0.193,
+          0.258,
+          0.315,
+          0.369,
+          0.421,
+          0.47,
+          0.515,
+          0.555,
+          0.596,
+          0.635,
+          0.672,
+          0.704,
+          0.736,
+          0.764
+        ],
+        "cash_share_P50_by_quarter": [
+          0.173,
+          0.358,
+          0.504,
+          0.621,
+          0.713,
+          0.788,
+          0.846,
+          0.891,
+          0.927,
+          0.955,
+          0.975,
+          0.987,
+          0.993,
+          0.997,
+          0.998,
+          0.999
+        ],
+        "cash_share_mean_by_quarter": [
+          0.2,
+          0.388,
+          0.53,
+          0.633,
+          0.708,
+          0.764,
+          0.806,
+          0.839,
+          0.866,
+          0.887,
+          0.904,
+          0.919,
+          0.931,
+          0.942,
+          0.95,
+          0.958
+        ],
+        "value_cost_at_ell_0.00": 0.0434,
+        "value_cost_at_ell_0.02": 0.0647,
+        "value_cost_at_ell_0.05": 0.0943,
+        "value_cost_at_ell_0.10": 0.1386,
+        "value_cost_at_ell_0.20": 0.2118
+      },
+      "C": {
+        "cash_share_P5_by_quarter": [
+          0.0,
+          0.004,
+          0.017,
+          0.039,
+          0.07,
+          0.104,
+          0.14,
+          0.182,
+          0.223,
+          0.268,
+          0.312,
+          0.353,
+          0.4,
+          0.439,
+          0.484,
+          0.526
+        ],
+        "cash_share_P50_by_quarter": [
+          0.02,
+          0.082,
+          0.159,
+          0.246,
+          0.339,
+          0.431,
+          0.526,
+          0.614,
+          0.696,
+          0.77,
+          0.832,
+          0.881,
+          0.919,
+          0.948,
+          0.97,
+          0.983
+        ],
+        "cash_share_mean_by_quarter": [
+          0.05,
+          0.132,
+          0.227,
+          0.32,
+          0.409,
+          0.488,
+          0.559,
+          0.62,
+          0.673,
+          0.72,
+          0.762,
+          0.797,
+          0.826,
+          0.851,
+          0.873,
+          0.892
+        ],
+        "value_cost_at_ell_0.00": 0.0698,
+        "value_cost_at_ell_0.02": 0.1034,
+        "value_cost_at_ell_0.05": 0.1496,
+        "value_cost_at_ell_0.10": 0.2169,
+        "value_cost_at_ell_0.20": 0.324
+      }
+    }
+  },
+  "C_calibration_jiang_targets": {
+    "office": {
+      "target_P_underwater": 0.44,
+      "calibrated_cap_rate_shock_abs": 0.0242,
+      "noi_growth_assumed": -0.03
+    },
+    "all_cre": {
+      "target_P_underwater": 0.14,
+      "calibrated_cap_rate_shock_abs": 0.0113,
+      "noi_growth_assumed": 0.0
+    }
+  },
+  "C_refinancing_wall": {
+    "share_of_asset_level_debt_maturing_within_24m": 0.4,
+    "regimes": {
+      "N": {
+        "cohorts": {
+          "office_US_EU": {
+            "gav_bn": 2.4,
+            "maturing_gav_bn_24m": 0.96,
+            "ruthless": {
+              "P_shortfall": 0.1666,
+              "mean_shortfall_given_gap_pct_D": 0.1174,
+              "P_underwater": 0.0013,
+              "P_cure": 0.1653,
+              "P_extend": 0.0221,
+              "P_walk": 0.0013,
+              "P_forced_sale": 0.0089,
+              "cash_in_per_usd_GAV_mean": 0.0119,
+              "cash_in_per_usd_GAV_p95": 0.0928,
+              "P_cash_trap_floating_subbook": 0.0303,
+              "mean_value_change": 0.0279
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.1658,
+              "mean_shortfall_given_gap_pct_D": 0.1159,
+              "P_underwater": 0.0021,
+              "P_cure": 0.1658,
+              "P_extend": 0.0209,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0092,
+              "cash_in_per_usd_GAV_mean": 0.0121,
+              "cash_in_per_usd_GAV_p95": 0.0922,
+              "P_cash_trap_floating_subbook": 0.0301,
+              "mean_value_change": 0.0265
+            },
+            "cash_in_bn_mean_ruthless": 0.011,
+            "cash_in_bn_mean_reputation": 0.012
+          },
+          "logistics": {
+            "gav_bn": 4.2,
+            "maturing_gav_bn_24m": 1.68,
+            "ruthless": {
+              "P_shortfall": 0.0279,
+              "mean_shortfall_given_gap_pct_D": 0.0676,
+              "P_underwater": 0.0,
+              "P_cure": 0.0279,
+              "P_extend": 0.0208,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0078,
+              "cash_in_per_usd_GAV_mean": 0.0011,
+              "cash_in_per_usd_GAV_p95": 0.0,
+              "P_cash_trap_floating_subbook": 0.0811,
+              "mean_value_change": 0.0824
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.0245,
+              "mean_shortfall_given_gap_pct_D": 0.0711,
+              "P_underwater": 0.0,
+              "P_cure": 0.0245,
+              "P_extend": 0.0199,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0078,
+              "cash_in_per_usd_GAV_mean": 0.001,
+              "cash_in_per_usd_GAV_p95": 0.0,
+              "P_cash_trap_floating_subbook": 0.0773,
+              "mean_value_change": 0.0821
+            },
+            "cash_in_bn_mean_ruthless": 0.002,
+            "cash_in_bn_mean_reputation": 0.002
+          },
+          "residential": {
+            "gav_bn": 3.6,
+            "maturing_gav_bn_24m": 1.44,
+            "ruthless": {
+              "P_shortfall": 0.1249,
+              "mean_shortfall_given_gap_pct_D": 0.0794,
+              "P_underwater": 0.0,
+              "P_cure": 0.1249,
+              "P_extend": 0.0187,
+              "P_walk": 0.0001,
+              "P_forced_sale": 0.01,
+              "cash_in_per_usd_GAV_mean": 0.006,
+              "cash_in_per_usd_GAV_p95": 0.0473,
+              "P_cash_trap_floating_subbook": 0.3031,
+              "mean_value_change": 0.0729
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.1249,
+              "mean_shortfall_given_gap_pct_D": 0.0791,
+              "P_underwater": 0.0001,
+              "P_cure": 0.1249,
+              "P_extend": 0.0203,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0097,
+              "cash_in_per_usd_GAV_mean": 0.006,
+              "cash_in_per_usd_GAV_p95": 0.0473,
+              "P_cash_trap_floating_subbook": 0.3067,
+              "mean_value_change": 0.0713
+            },
+            "cash_in_bn_mean_ruthless": 0.009,
+            "cash_in_bn_mean_reputation": 0.009
+          },
+          "retail_hotel": {
+            "gav_bn": 1.6,
+            "maturing_gav_bn_24m": 0.64,
+            "ruthless": {
+              "P_shortfall": 0.1678,
+              "mean_shortfall_given_gap_pct_D": 0.1247,
+              "P_underwater": 0.0023,
+              "P_cure": 0.1653,
+              "P_extend": 0.0222,
+              "P_walk": 0.0025,
+              "P_forced_sale": 0.0092,
+              "cash_in_per_usd_GAV_mean": 0.0122,
+              "cash_in_per_usd_GAV_p95": 0.0972,
+              "P_cash_trap_floating_subbook": 0.0082,
+              "mean_value_change": 0.0465
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.1689,
+              "mean_shortfall_given_gap_pct_D": 0.1255,
+              "P_underwater": 0.0029,
+              "P_cure": 0.1689,
+              "P_extend": 0.0214,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0083,
+              "cash_in_per_usd_GAV_mean": 0.0132,
+              "cash_in_per_usd_GAV_p95": 0.1019,
+              "P_cash_trap_floating_subbook": 0.0092,
+              "mean_value_change": 0.0452
+            },
+            "cash_in_bn_mean_ruthless": 0.008,
+            "cash_in_bn_mean_reputation": 0.008
+          },
+          "gulf_mixed_use": {
+            "gav_bn": 2.0,
+            "maturing_gav_bn_24m": 0.8,
+            "ruthless": {
+              "P_shortfall": 0.0833,
+              "mean_shortfall_given_gap_pct_D": 0.11,
+              "P_underwater": 0.0006,
+              "P_cure": 0.0826,
+              "P_extend": 0.0207,
+              "P_walk": 0.0007,
+              "P_forced_sale": 0.0081,
+              "cash_in_per_usd_GAV_mean": 0.0053,
+              "cash_in_per_usd_GAV_p95": 0.0371,
+              "P_cash_trap_floating_subbook": 0.0024,
+              "mean_value_change": 0.0676
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.0816,
+              "mean_shortfall_given_gap_pct_D": 0.1106,
+              "P_underwater": 0.0007,
+              "P_cure": 0.0816,
+              "P_extend": 0.0204,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0091,
+              "cash_in_per_usd_GAV_mean": 0.0054,
+              "cash_in_per_usd_GAV_p95": 0.037,
+              "P_cash_trap_floating_subbook": 0.0015,
+              "mean_value_change": 0.0684
+            },
+            "cash_in_bn_mean_ruthless": 0.004,
+            "cash_in_bn_mean_reputation": 0.004
+          },
+          "infrastructure_core": {
+            "gav_bn": 6.2,
+            "maturing_gav_bn_24m": 2.48,
+            "ruthless": {
+              "P_shortfall": 0.043,
+              "mean_shortfall_given_gap_pct_D": 0.0708,
+              "P_underwater": 0.0001,
+              "P_cure": 0.0428,
+              "P_extend": 0.0066,
+              "P_walk": 0.0001,
+              "P_forced_sale": 0.0032,
+              "cash_in_per_usd_GAV_mean": 0.002,
+              "cash_in_per_usd_GAV_p95": 0.0,
+              "P_cash_trap_floating_subbook": 0.0997,
+              "mean_value_change": 0.069
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.0399,
+              "mean_shortfall_given_gap_pct_D": 0.0714,
+              "P_underwater": 0.0003,
+              "P_cure": 0.0399,
+              "P_extend": 0.006,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0024,
+              "cash_in_per_usd_GAV_mean": 0.0019,
+              "cash_in_per_usd_GAV_p95": 0.0,
+              "P_cash_trap_floating_subbook": 0.0999,
+              "mean_value_change": 0.069
+            },
+            "cash_in_bn_mean_ruthless": 0.005,
+            "cash_in_bn_mean_reputation": 0.005
+          },
+          "energy_natural_resources": {
+            "gav_bn": 2.77,
+            "maturing_gav_bn_24m": 2.77,
+            "ruthless": {
+              "P_shortfall": 0.13,
+              "mean_shortfall_given_gap_pct_D": 0.186,
+              "P_underwater": 0.0076,
+              "P_cure": 0.1224,
+              "P_extend": 0.0221,
+              "P_walk": 0.0076,
+              "P_forced_sale": 0.0088,
+              "cash_in_per_usd_GAV_mean": 0.0092,
+              "cash_in_per_usd_GAV_p95": 0.0794,
+              "P_cash_trap_floating_subbook": 0.0,
+              "mean_value_change": 0.0466
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.1343,
+              "mean_shortfall_given_gap_pct_D": 0.1871,
+              "P_underwater": 0.0083,
+              "P_cure": 0.1343,
+              "P_extend": 0.0216,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0081,
+              "cash_in_per_usd_GAV_mean": 0.0115,
+              "cash_in_per_usd_GAV_p95": 0.0972,
+              "P_cash_trap_floating_subbook": 0.0,
+              "mean_value_change": 0.0445
+            },
+            "cash_in_bn_mean_ruthless": 0.026,
+            "cash_in_bn_mean_reputation": 0.032
+          }
+        },
+        "book_totals_bn": {
+          "ruthless": {
+            "cash_in_mean": 0.064,
+            "cash_in_p95": 0.469,
+            "walk_gav": 0.025
+          },
+          "reputation_bound": {
+            "cash_in_mean": 0.071,
+            "cash_in_p95": 0.521
+          }
+        }
+      },
+      "T": {
+        "cohorts": {
+          "office_US_EU": {
+            "gav_bn": 2.4,
+            "maturing_gav_bn_24m": 0.96,
+            "ruthless": {
+              "P_shortfall": 0.4168,
+              "mean_shortfall_given_gap_pct_D": 0.1691,
+              "P_underwater": 0.0103,
+              "P_cure": 0.4067,
+              "P_extend": 0.0983,
+              "P_walk": 0.0115,
+              "P_forced_sale": 0.0491,
+              "cash_in_per_usd_GAV_mean": 0.0383,
+              "cash_in_per_usd_GAV_p95": 0.1803,
+              "P_cash_trap_floating_subbook": 0.0846,
+              "mean_value_change": -0.1156
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.4159,
+              "mean_shortfall_given_gap_pct_D": 0.1703,
+              "P_underwater": 0.0106,
+              "P_cure": 0.4159,
+              "P_extend": 0.0977,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0515,
+              "cash_in_per_usd_GAV_mean": 0.0427,
+              "cash_in_per_usd_GAV_p95": 0.1962,
+              "P_cash_trap_floating_subbook": 0.083,
+              "mean_value_change": -0.116
+            },
+            "cash_in_bn_mean_ruthless": 0.037,
+            "cash_in_bn_mean_reputation": 0.041
+          },
+          "logistics": {
+            "gav_bn": 4.2,
+            "maturing_gav_bn_24m": 1.68,
+            "ruthless": {
+              "P_shortfall": 0.1796,
+              "mean_shortfall_given_gap_pct_D": 0.0987,
+              "P_underwater": 0.0001,
+              "P_cure": 0.1795,
+              "P_extend": 0.1012,
+              "P_walk": 0.0001,
+              "P_forced_sale": 0.0527,
+              "cash_in_per_usd_GAV_mean": 0.0095,
+              "cash_in_per_usd_GAV_p95": 0.0717,
+              "P_cash_trap_floating_subbook": 0.1774,
+              "mean_value_change": -0.0373
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.181,
+              "mean_shortfall_given_gap_pct_D": 0.0989,
+              "P_underwater": 0.0001,
+              "P_cure": 0.181,
+              "P_extend": 0.1001,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0512,
+              "cash_in_per_usd_GAV_mean": 0.0096,
+              "cash_in_per_usd_GAV_p95": 0.0721,
+              "P_cash_trap_floating_subbook": 0.1771,
+              "mean_value_change": -0.038
+            },
+            "cash_in_bn_mean_ruthless": 0.016,
+            "cash_in_bn_mean_reputation": 0.016
+          },
+          "residential": {
+            "gav_bn": 3.6,
+            "maturing_gav_bn_24m": 1.44,
+            "ruthless": {
+              "P_shortfall": 0.4546,
+              "mean_shortfall_given_gap_pct_D": 0.1332,
+              "P_underwater": 0.0009,
+              "P_cure": 0.4537,
+              "P_extend": 0.094,
+              "P_walk": 0.0011,
+              "P_forced_sale": 0.0507,
+              "cash_in_per_usd_GAV_mean": 0.0336,
+              "cash_in_per_usd_GAV_p95": 0.1488,
+              "P_cash_trap_floating_subbook": 0.4994,
+              "mean_value_change": -0.0508
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.4468,
+              "mean_shortfall_given_gap_pct_D": 0.134,
+              "P_underwater": 0.0006,
+              "P_cure": 0.4468,
+              "P_extend": 0.0959,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0512,
+              "cash_in_per_usd_GAV_mean": 0.0335,
+              "cash_in_per_usd_GAV_p95": 0.1496,
+              "P_cash_trap_floating_subbook": 0.4966,
+              "mean_value_change": -0.0488
+            },
+            "cash_in_bn_mean_ruthless": 0.048,
+            "cash_in_bn_mean_reputation": 0.048
+          },
+          "retail_hotel": {
+            "gav_bn": 1.6,
+            "maturing_gav_bn_24m": 0.64,
+            "ruthless": {
+              "P_shortfall": 0.3801,
+              "mean_shortfall_given_gap_pct_D": 0.1745,
+              "P_underwater": 0.0115,
+              "P_cure": 0.3675,
+              "P_extend": 0.0998,
+              "P_walk": 0.0137,
+              "P_forced_sale": 0.0505,
+              "cash_in_per_usd_GAV_mean": 0.035,
+              "cash_in_per_usd_GAV_p95": 0.1782,
+              "P_cash_trap_floating_subbook": 0.029,
+              "mean_value_change": -0.0914
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.3856,
+              "mean_shortfall_given_gap_pct_D": 0.1736,
+              "P_underwater": 0.0129,
+              "P_cure": 0.3856,
+              "P_extend": 0.0967,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0514,
+              "cash_in_per_usd_GAV_mean": 0.0404,
+              "cash_in_per_usd_GAV_p95": 0.198,
+              "P_cash_trap_floating_subbook": 0.0295,
+              "mean_value_change": -0.091
+            },
+            "cash_in_bn_mean_ruthless": 0.022,
+            "cash_in_bn_mean_reputation": 0.026
+          },
+          "gulf_mixed_use": {
+            "gav_bn": 2.0,
+            "maturing_gav_bn_24m": 0.8,
+            "ruthless": {
+              "P_shortfall": 0.219,
+              "mean_shortfall_given_gap_pct_D": 0.146,
+              "P_underwater": 0.0032,
+              "P_cure": 0.216,
+              "P_extend": 0.0985,
+              "P_walk": 0.0034,
+              "P_forced_sale": 0.0517,
+              "cash_in_per_usd_GAV_mean": 0.0172,
+              "cash_in_per_usd_GAV_p95": 0.1223,
+              "P_cash_trap_floating_subbook": 0.0103,
+              "mean_value_change": -0.0423
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.2164,
+              "mean_shortfall_given_gap_pct_D": 0.1442,
+              "P_underwater": 0.0034,
+              "P_cure": 0.2164,
+              "P_extend": 0.098,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0507,
+              "cash_in_per_usd_GAV_mean": 0.0179,
+              "cash_in_per_usd_GAV_p95": 0.122,
+              "P_cash_trap_floating_subbook": 0.0109,
+              "mean_value_change": -0.0439
+            },
+            "cash_in_bn_mean_ruthless": 0.014,
+            "cash_in_bn_mean_reputation": 0.014
+          },
+          "infrastructure_core": {
+            "gav_bn": 6.2,
+            "maturing_gav_bn_24m": 2.48,
+            "ruthless": {
+              "P_shortfall": 0.2084,
+              "mean_shortfall_given_gap_pct_D": 0.092,
+              "P_underwater": 0.0011,
+              "P_cure": 0.2074,
+              "P_extend": 0.0637,
+              "P_walk": 0.0013,
+              "P_forced_sale": 0.0345,
+              "cash_in_per_usd_GAV_mean": 0.0122,
+              "cash_in_per_usd_GAV_p95": 0.087,
+              "P_cash_trap_floating_subbook": 0.2125,
+              "mean_value_change": -0.0228
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.2099,
+              "mean_shortfall_given_gap_pct_D": 0.0949,
+              "P_underwater": 0.0019,
+              "P_cure": 0.2099,
+              "P_extend": 0.0655,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0348,
+              "cash_in_per_usd_GAV_mean": 0.0131,
+              "cash_in_per_usd_GAV_p95": 0.0924,
+              "P_cash_trap_floating_subbook": 0.2182,
+              "mean_value_change": -0.0232
+            },
+            "cash_in_bn_mean_ruthless": 0.03,
+            "cash_in_bn_mean_reputation": 0.032
+          },
+          "energy_natural_resources": {
+            "gav_bn": 2.77,
+            "maturing_gav_bn_24m": 2.77,
+            "ruthless": {
+              "P_shortfall": 0.2055,
+              "mean_shortfall_given_gap_pct_D": 0.2118,
+              "P_underwater": 0.015,
+              "P_cure": 0.191,
+              "P_extend": 0.0952,
+              "P_walk": 0.0161,
+              "P_forced_sale": 0.0503,
+              "cash_in_per_usd_GAV_mean": 0.0154,
+              "cash_in_per_usd_GAV_p95": 0.1163,
+              "P_cash_trap_floating_subbook": 0.0,
+              "mean_value_change": -0.042
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.2088,
+              "mean_shortfall_given_gap_pct_D": 0.2178,
+              "P_underwater": 0.0164,
+              "P_cure": 0.2088,
+              "P_extend": 0.0993,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0504,
+              "cash_in_per_usd_GAV_mean": 0.0209,
+              "cash_in_per_usd_GAV_p95": 0.1468,
+              "P_cash_trap_floating_subbook": 0.0,
+              "mean_value_change": -0.0393
+            },
+            "cash_in_bn_mean_ruthless": 0.043,
+            "cash_in_bn_mean_reputation": 0.058
+          }
+        },
+        "book_totals_bn": {
+          "ruthless": {
+            "cash_in_mean": 0.21,
+            "cash_in_p95": 1.258,
+            "walk_gav": 0.072
+          },
+          "reputation_bound": {
+            "cash_in_mean": 0.236,
+            "cash_in_p95": 1.385
+          }
+        }
+      },
+      "C": {
+        "cohorts": {
+          "office_US_EU": {
+            "gav_bn": 2.4,
+            "maturing_gav_bn_24m": 0.96,
+            "ruthless": {
+              "P_shortfall": 0.5326,
+              "mean_shortfall_given_gap_pct_D": 0.301,
+              "P_underwater": 0.1113,
+              "P_cure": 0.4448,
+              "P_extend": 0.2182,
+              "P_walk": 0.1389,
+              "P_forced_sale": 0.127,
+              "cash_in_per_usd_GAV_mean": 0.06,
+              "cash_in_per_usd_GAV_p95": 0.2274,
+              "P_cash_trap_floating_subbook": 0.1336,
+              "mean_value_change": -0.3118
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.5285,
+              "mean_shortfall_given_gap_pct_D": 0.3023,
+              "P_underwater": 0.103,
+              "P_cure": 0.5285,
+              "P_extend": 0.223,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.129,
+              "cash_in_per_usd_GAV_mean": 0.1159,
+              "cash_in_per_usd_GAV_p95": 0.4414,
+              "P_cash_trap_floating_subbook": 0.1249,
+              "mean_value_change": -0.3106
+            },
+            "cash_in_bn_mean_ruthless": 0.058,
+            "cash_in_bn_mean_reputation": 0.111
+          },
+          "logistics": {
+            "gav_bn": 4.2,
+            "maturing_gav_bn_24m": 1.68,
+            "ruthless": {
+              "P_shortfall": 0.3456,
+              "mean_shortfall_given_gap_pct_D": 0.163,
+              "P_underwater": 0.0012,
+              "P_cure": 0.3439,
+              "P_extend": 0.2168,
+              "P_walk": 0.004,
+              "P_forced_sale": 0.1749,
+              "cash_in_per_usd_GAV_mean": 0.0272,
+              "cash_in_per_usd_GAV_p95": 0.1414,
+              "P_cash_trap_floating_subbook": 0.2528,
+              "mean_value_change": -0.1947
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.3503,
+              "mean_shortfall_given_gap_pct_D": 0.1637,
+              "P_underwater": 0.0021,
+              "P_cure": 0.3503,
+              "P_extend": 0.2189,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.1782,
+              "cash_in_per_usd_GAV_mean": 0.0297,
+              "cash_in_per_usd_GAV_p95": 0.149,
+              "P_cash_trap_floating_subbook": 0.2537,
+              "mean_value_change": -0.1946
+            },
+            "cash_in_bn_mean_ruthless": 0.046,
+            "cash_in_bn_mean_reputation": 0.05
+          },
+          "residential": {
+            "gav_bn": 3.6,
+            "maturing_gav_bn_24m": 1.44,
+            "ruthless": {
+              "P_shortfall": 0.4965,
+              "mean_shortfall_given_gap_pct_D": 0.2104,
+              "P_underwater": 0.0053,
+              "P_cure": 0.4909,
+              "P_extend": 0.2218,
+              "P_walk": 0.0126,
+              "P_forced_sale": 0.1702,
+              "cash_in_per_usd_GAV_mean": 0.0535,
+              "cash_in_per_usd_GAV_p95": 0.2024,
+              "P_cash_trap_floating_subbook": 0.5897,
+              "mean_value_change": -0.166
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.496,
+              "mean_shortfall_given_gap_pct_D": 0.2109,
+              "P_underwater": 0.0059,
+              "P_cure": 0.496,
+              "P_extend": 0.2185,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.1758,
+              "cash_in_per_usd_GAV_mean": 0.0594,
+              "cash_in_per_usd_GAV_p95": 0.215,
+              "P_cash_trap_floating_subbook": 0.5877,
+              "mean_value_change": -0.1669
+            },
+            "cash_in_bn_mean_ruthless": 0.077,
+            "cash_in_bn_mean_reputation": 0.086
+          },
+          "retail_hotel": {
+            "gav_bn": 1.6,
+            "maturing_gav_bn_24m": 0.64,
+            "ruthless": {
+              "P_shortfall": 0.4935,
+              "mean_shortfall_given_gap_pct_D": 0.2803,
+              "P_underwater": 0.0814,
+              "P_cure": 0.4268,
+              "P_extend": 0.2199,
+              "P_walk": 0.1074,
+              "P_forced_sale": 0.1406,
+              "cash_in_per_usd_GAV_mean": 0.0551,
+              "cash_in_per_usd_GAV_p95": 0.2223,
+              "P_cash_trap_floating_subbook": 0.0816,
+              "mean_value_change": -0.2658
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.4923,
+              "mean_shortfall_given_gap_pct_D": 0.2822,
+              "P_underwater": 0.0809,
+              "P_cure": 0.4923,
+              "P_extend": 0.2195,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.1451,
+              "cash_in_per_usd_GAV_mean": 0.0992,
+              "cash_in_per_usd_GAV_p95": 0.3634,
+              "P_cash_trap_floating_subbook": 0.0812,
+              "mean_value_change": -0.2654
+            },
+            "cash_in_bn_mean_ruthless": 0.035,
+            "cash_in_bn_mean_reputation": 0.064
+          },
+          "gulf_mixed_use": {
+            "gav_bn": 2.0,
+            "maturing_gav_bn_24m": 0.8,
+            "ruthless": {
+              "P_shortfall": 0.409,
+              "mean_shortfall_given_gap_pct_D": 0.238,
+              "P_underwater": 0.0345,
+              "P_cure": 0.3781,
+              "P_extend": 0.2206,
+              "P_walk": 0.0505,
+              "P_forced_sale": 0.1593,
+              "cash_in_per_usd_GAV_mean": 0.0412,
+              "cash_in_per_usd_GAV_p95": 0.1945,
+              "P_cash_trap_floating_subbook": 0.0333,
+              "mean_value_change": -0.2496
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.4121,
+              "mean_shortfall_given_gap_pct_D": 0.2389,
+              "P_underwater": 0.0349,
+              "P_cure": 0.4121,
+              "P_extend": 0.2202,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.1523,
+              "cash_in_per_usd_GAV_mean": 0.0628,
+              "cash_in_per_usd_GAV_p95": 0.2601,
+              "P_cash_trap_floating_subbook": 0.0309,
+              "mean_value_change": -0.2502
+            },
+            "cash_in_bn_mean_ruthless": 0.033,
+            "cash_in_bn_mean_reputation": 0.05
+          },
+          "infrastructure_core": {
+            "gav_bn": 6.2,
+            "maturing_gav_bn_24m": 2.48,
+            "ruthless": {
+              "P_shortfall": 0.4111,
+              "mean_shortfall_given_gap_pct_D": 0.1496,
+              "P_underwater": 0.0092,
+              "P_cure": 0.4014,
+              "P_extend": 0.1958,
+              "P_walk": 0.0193,
+              "P_forced_sale": 0.1486,
+              "cash_in_per_usd_GAV_mean": 0.0351,
+              "cash_in_per_usd_GAV_p95": 0.1643,
+              "P_cash_trap_floating_subbook": 0.307,
+              "mean_value_change": -0.137
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.4094,
+              "mean_shortfall_given_gap_pct_D": 0.147,
+              "P_underwater": 0.0106,
+              "P_cure": 0.4094,
+              "P_extend": 0.1922,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.1474,
+              "cash_in_per_usd_GAV_mean": 0.0451,
+              "cash_in_per_usd_GAV_p95": 0.185,
+              "P_cash_trap_floating_subbook": 0.3101,
+              "mean_value_change": -0.1366
+            },
+            "cash_in_bn_mean_ruthless": 0.087,
+            "cash_in_bn_mean_reputation": 0.112
+          },
+          "energy_natural_resources": {
+            "gav_bn": 2.77,
+            "maturing_gav_bn_24m": 2.77,
+            "ruthless": {
+              "P_shortfall": 0.459,
+              "mean_shortfall_given_gap_pct_D": 0.3755,
+              "P_underwater": 0.0817,
+              "P_cure": 0.3979,
+              "P_extend": 0.2165,
+              "P_walk": 0.0952,
+              "P_forced_sale": 0.1469,
+              "cash_in_per_usd_GAV_mean": 0.0501,
+              "cash_in_per_usd_GAV_p95": 0.2158,
+              "P_cash_trap_floating_subbook": 0.0,
+              "mean_value_change": -0.3104
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.4569,
+              "mean_shortfall_given_gap_pct_D": 0.3732,
+              "P_underwater": 0.079,
+              "P_cure": 0.4569,
+              "P_extend": 0.2222,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.1442,
+              "cash_in_per_usd_GAV_mean": 0.082,
+              "cash_in_per_usd_GAV_p95": 0.327,
+              "P_cash_trap_floating_subbook": 0.0,
+              "mean_value_change": -0.3124
+            },
+            "cash_in_bn_mean_ruthless": 0.139,
+            "cash_in_bn_mean_reputation": 0.227
+          }
+        },
+        "book_totals_bn": {
+          "ruthless": {
+            "cash_in_mean": 0.474,
+            "cash_in_p95": 2.051,
+            "walk_gav": 0.579
+          },
+          "reputation_bound": {
+            "cash_in_mean": 0.699,
+            "cash_in_p95": 2.789
+          }
+        }
+      },
+      "GW": {
+        "cohorts": {
+          "office_US_EU": {
+            "gav_bn": 2.4,
+            "maturing_gav_bn_24m": 0.96,
+            "ruthless": {
+              "P_shortfall": 0.3076,
+              "mean_shortfall_given_gap_pct_D": 0.1443,
+              "P_underwater": 0.0032,
+              "P_cure": 0.304,
+              "P_extend": 0.097,
+              "P_walk": 0.0041,
+              "P_forced_sale": 0.0519,
+              "cash_in_per_usd_GAV_mean": 0.0256,
+              "cash_in_per_usd_GAV_p95": 0.1508,
+              "P_cash_trap_floating_subbook": 0.059,
+              "mean_value_change": -0.03
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.3089,
+              "mean_shortfall_given_gap_pct_D": 0.1461,
+              "P_underwater": 0.004,
+              "P_cure": 0.3089,
+              "P_extend": 0.0938,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0525,
+              "cash_in_per_usd_GAV_mean": 0.0277,
+              "cash_in_per_usd_GAV_p95": 0.1575,
+              "P_cash_trap_floating_subbook": 0.0571,
+              "mean_value_change": -0.0308
+            },
+            "cash_in_bn_mean_ruthless": 0.025,
+            "cash_in_bn_mean_reputation": 0.027
+          },
+          "logistics": {
+            "gav_bn": 4.2,
+            "maturing_gav_bn_24m": 1.68,
+            "ruthless": {
+              "P_shortfall": 0.146,
+              "mean_shortfall_given_gap_pct_D": 0.0896,
+              "P_underwater": 0.0001,
+              "P_cure": 0.1459,
+              "P_extend": 0.0951,
+              "P_walk": 0.0001,
+              "P_forced_sale": 0.0539,
+              "cash_in_per_usd_GAV_mean": 0.0071,
+              "cash_in_per_usd_GAV_p95": 0.0554,
+              "P_cash_trap_floating_subbook": 0.1401,
+              "mean_value_change": 0.071
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.1428,
+              "mean_shortfall_given_gap_pct_D": 0.0888,
+              "P_underwater": 0.0,
+              "P_cure": 0.1428,
+              "P_extend": 0.0972,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0505,
+              "cash_in_per_usd_GAV_mean": 0.0069,
+              "cash_in_per_usd_GAV_p95": 0.0535,
+              "P_cash_trap_floating_subbook": 0.1401,
+              "mean_value_change": 0.0708
+            },
+            "cash_in_bn_mean_ruthless": 0.012,
+            "cash_in_bn_mean_reputation": 0.012
+          },
+          "residential": {
+            "gav_bn": 3.6,
+            "maturing_gav_bn_24m": 1.44,
+            "ruthless": {
+              "P_shortfall": 0.4173,
+              "mean_shortfall_given_gap_pct_D": 0.1253,
+              "P_underwater": 0.0001,
+              "P_cure": 0.4173,
+              "P_extend": 0.0985,
+              "P_walk": 0.0001,
+              "P_forced_sale": 0.0528,
+              "cash_in_per_usd_GAV_mean": 0.0294,
+              "cash_in_per_usd_GAV_p95": 0.1379,
+              "P_cash_trap_floating_subbook": 0.4337,
+              "mean_value_change": 0.0582
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.4114,
+              "mean_shortfall_given_gap_pct_D": 0.1257,
+              "P_underwater": 0.0001,
+              "P_cure": 0.4114,
+              "P_extend": 0.0991,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0541,
+              "cash_in_per_usd_GAV_mean": 0.0292,
+              "cash_in_per_usd_GAV_p95": 0.1373,
+              "P_cash_trap_floating_subbook": 0.4299,
+              "mean_value_change": 0.0606
+            },
+            "cash_in_bn_mean_ruthless": 0.042,
+            "cash_in_bn_mean_reputation": 0.042
+          },
+          "retail_hotel": {
+            "gav_bn": 1.6,
+            "maturing_gav_bn_24m": 0.64,
+            "ruthless": {
+              "P_shortfall": 0.3925,
+              "mean_shortfall_given_gap_pct_D": 0.1759,
+              "P_underwater": 0.014,
+              "P_cure": 0.3782,
+              "P_extend": 0.0998,
+              "P_walk": 0.0162,
+              "P_forced_sale": 0.0483,
+              "cash_in_per_usd_GAV_mean": 0.036,
+              "cash_in_per_usd_GAV_p95": 0.1784,
+              "P_cash_trap_floating_subbook": 0.0295,
+              "mean_value_change": -0.0987
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.4031,
+              "mean_shortfall_given_gap_pct_D": 0.1776,
+              "P_underwater": 0.0138,
+              "P_cure": 0.4031,
+              "P_extend": 0.0941,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0491,
+              "cash_in_per_usd_GAV_mean": 0.0426,
+              "cash_in_per_usd_GAV_p95": 0.2003,
+              "P_cash_trap_floating_subbook": 0.0315,
+              "mean_value_change": -0.0979
+            },
+            "cash_in_bn_mean_ruthless": 0.023,
+            "cash_in_bn_mean_reputation": 0.027
+          },
+          "gulf_mixed_use": {
+            "gav_bn": 2.0,
+            "maturing_gav_bn_24m": 0.8,
+            "ruthless": {
+              "P_shortfall": 0.4399,
+              "mean_shortfall_given_gap_pct_D": 0.2833,
+              "P_underwater": 0.0871,
+              "P_cure": 0.3852,
+              "P_extend": 0.2266,
+              "P_walk": 0.1042,
+              "P_forced_sale": 0.1722,
+              "cash_in_per_usd_GAV_mean": 0.0466,
+              "cash_in_per_usd_GAV_p95": 0.208,
+              "P_cash_trap_floating_subbook": 0.0273,
+              "mean_value_change": -0.3342
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.4372,
+              "mean_shortfall_given_gap_pct_D": 0.2839,
+              "P_underwater": 0.0848,
+              "P_cure": 0.4372,
+              "P_extend": 0.2255,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.1724,
+              "cash_in_per_usd_GAV_mean": 0.0902,
+              "cash_in_per_usd_GAV_p95": 0.4226,
+              "P_cash_trap_floating_subbook": 0.0255,
+              "mean_value_change": -0.3344
+            },
+            "cash_in_bn_mean_ruthless": 0.037,
+            "cash_in_bn_mean_reputation": 0.072
+          },
+          "infrastructure_core": {
+            "gav_bn": 6.2,
+            "maturing_gav_bn_24m": 2.48,
+            "ruthless": {
+              "P_shortfall": 0.1968,
+              "mean_shortfall_given_gap_pct_D": 0.088,
+              "P_underwater": 0.0008,
+              "P_cure": 0.1961,
+              "P_extend": 0.0656,
+              "P_walk": 0.001,
+              "P_forced_sale": 0.036,
+              "cash_in_per_usd_GAV_mean": 0.0111,
+              "cash_in_per_usd_GAV_p95": 0.0805,
+              "P_cash_trap_floating_subbook": 0.1868,
+              "mean_value_change": 0.0076
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.1967,
+              "mean_shortfall_given_gap_pct_D": 0.086,
+              "P_underwater": 0.0006,
+              "P_cure": 0.1967,
+              "P_extend": 0.0636,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0357,
+              "cash_in_per_usd_GAV_mean": 0.0112,
+              "cash_in_per_usd_GAV_p95": 0.081,
+              "P_cash_trap_floating_subbook": 0.1858,
+              "mean_value_change": 0.0059
+            },
+            "cash_in_bn_mean_ruthless": 0.028,
+            "cash_in_bn_mean_reputation": 0.028
+          },
+          "energy_natural_resources": {
+            "gav_bn": 2.77,
+            "maturing_gav_bn_24m": 2.77,
+            "ruthless": {
+              "P_shortfall": 0.0549,
+              "mean_shortfall_given_gap_pct_D": 0.1612,
+              "P_underwater": 0.0023,
+              "P_cure": 0.0524,
+              "P_extend": 0.0197,
+              "P_walk": 0.0027,
+              "P_forced_sale": 0.0094,
+              "cash_in_per_usd_GAV_mean": 0.0036,
+              "cash_in_per_usd_GAV_p95": 0.0034,
+              "P_cash_trap_floating_subbook": 0.0,
+              "mean_value_change": 0.2953
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.0572,
+              "mean_shortfall_given_gap_pct_D": 0.1569,
+              "P_underwater": 0.0023,
+              "P_cure": 0.0572,
+              "P_extend": 0.0206,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0083,
+              "cash_in_per_usd_GAV_mean": 0.0043,
+              "cash_in_per_usd_GAV_p95": 0.0129,
+              "P_cash_trap_floating_subbook": 0.0,
+              "mean_value_change": 0.292
+            },
+            "cash_in_bn_mean_ruthless": 0.01,
+            "cash_in_bn_mean_reputation": 0.012
+          }
+        },
+        "book_totals_bn": {
+          "ruthless": {
+            "cash_in_mean": 0.177,
+            "cash_in_p95": 0.926,
+            "walk_gav": 0.108
+          },
+          "reputation_bound": {
+            "cash_in_mean": 0.219,
+            "cash_in_p95": 1.142
+          }
+        }
+      },
+      "OD": {
+        "cohorts": {
+          "office_US_EU": {
+            "gav_bn": 2.4,
+            "maturing_gav_bn_24m": 0.96,
+            "ruthless": {
+              "P_shortfall": 0.3127,
+              "mean_shortfall_given_gap_pct_D": 0.1444,
+              "P_underwater": 0.0034,
+              "P_cure": 0.3086,
+              "P_extend": 0.097,
+              "P_walk": 0.0045,
+              "P_forced_sale": 0.052,
+              "cash_in_per_usd_GAV_mean": 0.026,
+              "cash_in_per_usd_GAV_p95": 0.1517,
+              "P_cash_trap_floating_subbook": 0.0234,
+              "mean_value_change": -0.0321
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.3092,
+              "mean_shortfall_given_gap_pct_D": 0.1452,
+              "P_underwater": 0.0038,
+              "P_cure": 0.3092,
+              "P_extend": 0.0974,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0535,
+              "cash_in_per_usd_GAV_mean": 0.0276,
+              "cash_in_per_usd_GAV_p95": 0.1601,
+              "P_cash_trap_floating_subbook": 0.0252,
+              "mean_value_change": -0.0313
+            },
+            "cash_in_bn_mean_ruthless": 0.025,
+            "cash_in_bn_mean_reputation": 0.026
+          },
+          "logistics": {
+            "gav_bn": 4.2,
+            "maturing_gav_bn_24m": 1.68,
+            "ruthless": {
+              "P_shortfall": 0.1478,
+              "mean_shortfall_given_gap_pct_D": 0.0895,
+              "P_underwater": 0.0,
+              "P_cure": 0.1478,
+              "P_extend": 0.0969,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0548,
+              "cash_in_per_usd_GAV_mean": 0.0072,
+              "cash_in_per_usd_GAV_p95": 0.0566,
+              "P_cash_trap_floating_subbook": 0.062,
+              "mean_value_change": 0.0706
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.145,
+              "mean_shortfall_given_gap_pct_D": 0.0881,
+              "P_underwater": 0.0,
+              "P_cure": 0.145,
+              "P_extend": 0.0984,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0532,
+              "cash_in_per_usd_GAV_mean": 0.0069,
+              "cash_in_per_usd_GAV_p95": 0.0549,
+              "P_cash_trap_floating_subbook": 0.0604,
+              "mean_value_change": 0.0692
+            },
+            "cash_in_bn_mean_ruthless": 0.012,
+            "cash_in_bn_mean_reputation": 0.012
+          },
+          "residential": {
+            "gav_bn": 3.6,
+            "maturing_gav_bn_24m": 1.44,
+            "ruthless": {
+              "P_shortfall": 0.4137,
+              "mean_shortfall_given_gap_pct_D": 0.1252,
+              "P_underwater": 0.0001,
+              "P_cure": 0.4135,
+              "P_extend": 0.098,
+              "P_walk": 0.0002,
+              "P_forced_sale": 0.052,
+              "cash_in_per_usd_GAV_mean": 0.0292,
+              "cash_in_per_usd_GAV_p95": 0.1388,
+              "P_cash_trap_floating_subbook": 0.2471,
+              "mean_value_change": 0.0608
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.4179,
+              "mean_shortfall_given_gap_pct_D": 0.1251,
+              "P_underwater": 0.0,
+              "P_cure": 0.4179,
+              "P_extend": 0.0963,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0522,
+              "cash_in_per_usd_GAV_mean": 0.0295,
+              "cash_in_per_usd_GAV_p95": 0.137,
+              "P_cash_trap_floating_subbook": 0.2547,
+              "mean_value_change": 0.0595
+            },
+            "cash_in_bn_mean_ruthless": 0.042,
+            "cash_in_bn_mean_reputation": 0.043
+          },
+          "retail_hotel": {
+            "gav_bn": 1.6,
+            "maturing_gav_bn_24m": 0.64,
+            "ruthless": {
+              "P_shortfall": 0.3971,
+              "mean_shortfall_given_gap_pct_D": 0.1777,
+              "P_underwater": 0.0149,
+              "P_cure": 0.3804,
+              "P_extend": 0.1016,
+              "P_walk": 0.0186,
+              "P_forced_sale": 0.0512,
+              "cash_in_per_usd_GAV_mean": 0.0364,
+              "cash_in_per_usd_GAV_p95": 0.1805,
+              "P_cash_trap_floating_subbook": 0.0108,
+              "mean_value_change": -0.0969
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.3977,
+              "mean_shortfall_given_gap_pct_D": 0.1757,
+              "P_underwater": 0.0143,
+              "P_cure": 0.3977,
+              "P_extend": 0.0993,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0506,
+              "cash_in_per_usd_GAV_mean": 0.0418,
+              "cash_in_per_usd_GAV_p95": 0.1998,
+              "P_cash_trap_floating_subbook": 0.0084,
+              "mean_value_change": -0.0978
+            },
+            "cash_in_bn_mean_ruthless": 0.023,
+            "cash_in_bn_mean_reputation": 0.027
+          },
+          "gulf_mixed_use": {
+            "gav_bn": 2.0,
+            "maturing_gav_bn_24m": 0.8,
+            "ruthless": {
+              "P_shortfall": 0.4477,
+              "mean_shortfall_given_gap_pct_D": 0.2378,
+              "P_underwater": 0.0532,
+              "P_cure": 0.4057,
+              "P_extend": 0.191,
+              "P_walk": 0.0612,
+              "P_forced_sale": 0.1363,
+              "cash_in_per_usd_GAV_mean": 0.0428,
+              "cash_in_per_usd_GAV_p95": 0.1917,
+              "P_cash_trap_floating_subbook": 0.0063,
+              "mean_value_change": -0.2874
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.4466,
+              "mean_shortfall_given_gap_pct_D": 0.2398,
+              "P_underwater": 0.0543,
+              "P_cure": 0.4466,
+              "P_extend": 0.1924,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.1383,
+              "cash_in_per_usd_GAV_mean": 0.0673,
+              "cash_in_per_usd_GAV_p95": 0.2701,
+              "P_cash_trap_floating_subbook": 0.0065,
+              "mean_value_change": -0.2864
+            },
+            "cash_in_bn_mean_ruthless": 0.034,
+            "cash_in_bn_mean_reputation": 0.054
+          },
+          "infrastructure_core": {
+            "gav_bn": 6.2,
+            "maturing_gav_bn_24m": 2.48,
+            "ruthless": {
+              "P_shortfall": 0.2929,
+              "mean_shortfall_given_gap_pct_D": 0.1049,
+              "P_underwater": 0.0029,
+              "P_cure": 0.2893,
+              "P_extend": 0.0635,
+              "P_walk": 0.0041,
+              "P_forced_sale": 0.0308,
+              "cash_in_per_usd_GAV_mean": 0.0188,
+              "cash_in_per_usd_GAV_p95": 0.1135,
+              "P_cash_trap_floating_subbook": 0.1033,
+              "mean_value_change": -0.0695
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.2988,
+              "mean_shortfall_given_gap_pct_D": 0.1052,
+              "P_underwater": 0.0032,
+              "P_cure": 0.2988,
+              "P_extend": 0.0643,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.0347,
+              "cash_in_per_usd_GAV_mean": 0.0201,
+              "cash_in_per_usd_GAV_p95": 0.1178,
+              "P_cash_trap_floating_subbook": 0.1042,
+              "mean_value_change": -0.0719
+            },
+            "cash_in_bn_mean_ruthless": 0.047,
+            "cash_in_bn_mean_reputation": 0.05
+          },
+          "energy_natural_resources": {
+            "gav_bn": 2.77,
+            "maturing_gav_bn_24m": 2.77,
+            "ruthless": {
+              "P_shortfall": 0.5077,
+              "mean_shortfall_given_gap_pct_D": 0.3908,
+              "P_underwater": 0.12,
+              "P_cure": 0.4191,
+              "P_extend": 0.1934,
+              "P_walk": 0.1233,
+              "P_forced_sale": 0.1217,
+              "cash_in_per_usd_GAV_mean": 0.0526,
+              "cash_in_per_usd_GAV_p95": 0.2182,
+              "P_cash_trap_floating_subbook": 0.0001,
+              "mean_value_change": -0.3757
+            },
+            "reputation_bound": {
+              "P_shortfall": 0.5171,
+              "mean_shortfall_given_gap_pct_D": 0.3904,
+              "P_underwater": 0.1217,
+              "P_cure": 0.5171,
+              "P_extend": 0.1928,
+              "P_walk": 0.0,
+              "P_forced_sale": 0.1197,
+              "cash_in_per_usd_GAV_mean": 0.0944,
+              "cash_in_per_usd_GAV_p95": 0.3386,
+              "P_cash_trap_floating_subbook": 0.0,
+              "mean_value_change": -0.3828
+            },
+            "cash_in_bn_mean_ruthless": 0.146,
+            "cash_in_bn_mean_reputation": 0.262
+          }
+        },
+        "book_totals_bn": {
+          "ruthless": {
+            "cash_in_mean": 0.329,
+            "cash_in_p95": 1.595,
+            "walk_gav": 0.417
+          },
+          "reputation_bound": {
+            "cash_in_mean": 0.473,
+            "cash_in_p95": 2.017
+          }
+        }
+      }
+    }
+  },
+  "D_decision_example": {
+    "asset": {
+      "GAV_m": 500.0,
+      "debt_m": 200.0,
+      "legacy_coupon": 0.0375,
+      "years_left": 2,
+      "unlevered_expected_return": 0.07,
+      "noi_yield": 0.05
+    },
+    "menus": {
+      "N": {
+        "lockin_value_m": 10.47,
+        "r_new": 0.0663,
+        "rows": [
+          {
+            "action": "JV_selldown_49pct",
+            "cash_m": 138.3,
+            "kappa_oneoff": 0.0626,
+            "s_hat": 0.0,
+            "months": 6.0,
+            "p_success": 0.85,
+            "kappa_T1": 0.0626,
+            "kappa_T2": 0.0626,
+            "kappa_T5": 0.0626
+          },
+          {
+            "action": "cashout_refi_at_maturity",
+            "cash_m": 73.9,
+            "kappa_oneoff": 0.0152,
+            "s_hat": 0.0278,
+            "months": 3,
+            "p_success": 0.97,
+            "kappa_T1": 0.042,
+            "kappa_T2": 0.0677,
+            "kappa_T5": 0.1393
+          },
+          {
+            "action": "SELL_100pct",
+            "cash_m": 283.9,
+            "kappa_oneoff": 0.0937,
+            "s_hat": 0.0,
+            "months": 4.5,
+            "p_success": 0.85,
+            "kappa_T1": 0.0937,
+            "kappa_T2": 0.0937,
+            "kappa_T5": 0.0937
+          },
+          {
+            "action": "mezz_pref_on_senior",
+            "cash_m": 73.9,
+            "kappa_oneoff": 0.0152,
+            "s_hat": 0.0925,
+            "months": 2,
+            "p_success": 0.9,
+            "kappa_T1": 0.1042,
+            "kappa_T2": 0.1899,
+            "kappa_T5": 0.4283
+          },
+          {
+            "action": "cashout_refi_early",
+            "cash_m": 70.9,
+            "kappa_oneoff": 0.2059,
+            "s_hat": 0.029,
+            "months": 3,
+            "p_success": 0.97,
+            "marginal_rate_on_new_cash": 0.1431,
+            "kappa_T1": 0.2338,
+            "kappa_T2": 0.2607,
+            "kappa_T5": 0.3354
+          }
+        ]
+      },
+      "T": {
+        "lockin_value_m": 13.91,
+        "r_new": 0.0763,
+        "rows": [
+          {
+            "action": "cashout_refi_at_maturity",
+            "cash_m": 49.2,
+            "kappa_oneoff": 0.0152,
+            "s_hat": 0.038,
+            "months": 4.5,
+            "p_success": 0.8,
+            "kappa_T1": 0.0518,
+            "kappa_T2": 0.087,
+            "kappa_T5": 0.1849
+          },
+          {
+            "action": "JV_selldown_49pct",
+            "cash_m": 123.2,
+            "kappa_oneoff": 0.1934,
+            "s_hat": 0.0,
+            "months": 8.5,
+            "p_success": 0.7,
+            "kappa_T1": 0.1934,
+            "kappa_T2": 0.1934,
+            "kappa_T5": 0.1934
+          },
+          {
+            "action": "mezz_pref_on_senior",
+            "cash_m": 73.9,
+            "kappa_oneoff": 0.0152,
+            "s_hat": 0.1077,
+            "months": 3,
+            "p_success": 0.75,
+            "kappa_T1": 0.1189,
+            "kappa_T2": 0.2187,
+            "kappa_T5": 0.4961
+          },
+          {
+            "action": "SELL_100pct",
+            "cash_m": 254.2,
+            "kappa_oneoff": 0.2346,
+            "s_hat": 0.0,
+            "months": 7,
+            "p_success": 0.7,
+            "kappa_T1": 0.2346,
+            "kappa_T2": 0.2346,
+            "kappa_T5": 0.2346
+          },
+          {
+            "action": "cashout_refi_early",
+            "cash_m": 46.2,
+            "kappa_oneoff": 0.3818,
+            "s_hat": 0.0404,
+            "months": 4.5,
+            "p_success": 0.8,
+            "marginal_rate_on_new_cash": 0.2315,
+            "kappa_T1": 0.4207,
+            "kappa_T2": 0.4581,
+            "kappa_T5": 0.5622
+          }
+        ]
+      },
+      "C": {
+        "lockin_value_m": 20.51,
+        "r_new": 0.0963,
+        "rows": [
+          {
+            "action": "cashout_refi_at_maturity",
+            "cash_m": 24.6,
+            "kappa_oneoff": 0.0152,
+            "s_hat": 0.0583,
+            "months": 6,
+            "p_success": 0.5,
+            "kappa_T1": 0.0713,
+            "kappa_T2": 0.1253,
+            "kappa_T5": 0.2755
+          },
+          {
+            "action": "mezz_pref_on_senior",
+            "cash_m": 49.2,
+            "kappa_oneoff": 0.0152,
+            "s_hat": 0.1229,
+            "months": 3,
+            "p_success": 0.5,
+            "kappa_T1": 0.1335,
+            "kappa_T2": 0.2474,
+            "kappa_T5": 0.564
+          },
+          {
+            "action": "JV_selldown_49pct",
+            "cash_m": 105.1,
+            "kappa_oneoff": 0.3981,
+            "s_hat": 0.0,
+            "months": 11.5,
+            "p_success": 0.5,
+            "kappa_T1": 0.3981,
+            "kappa_T2": 0.3981,
+            "kappa_T5": 0.3981
+          },
+          {
+            "action": "SELL_100pct",
+            "cash_m": 219.7,
+            "kappa_oneoff": 0.4589,
+            "s_hat": 0.0,
+            "months": 10,
+            "p_success": 0.5,
+            "kappa_T1": 0.4589,
+            "kappa_T2": 0.4589,
+            "kappa_T5": 0.4589
+          },
+          {
+            "action": "cashout_refi_early",
+            "cash_m": 21.6,
+            "kappa_oneoff": 1.1046,
+            "s_hat": 0.0664,
+            "months": 6,
+            "p_success": 0.5,
+            "marginal_rate_on_new_cash": 0.5667,
+            "kappa_T1": 1.1685,
+            "kappa_T2": 1.23,
+            "kappa_T5": 1.4011
+          }
+        ]
+      }
+    }
+  },
+  "D_sell_vs_refi_threshold": {
+    "N": {
+      "kappa_cheapest_sale": 0.0626,
+      "T_star_years": {
+        "cashout_refi_at_maturity": 1.8,
+        "mezz_pref_on_senior": 0.53
+      }
+    },
+    "T": {
+      "kappa_cheapest_sale": 0.1934,
+      "T_star_years": {
+        "cashout_refi_at_maturity": 5.28,
+        "mezz_pref_on_senior": 1.74
+      }
+    },
+    "C": {
+      "kappa_cheapest_sale": 0.3981,
+      "T_star_years": {
+        "cashout_refi_at_maturity": 7.73,
+        "mezz_pref_on_senior": 3.39
+      }
+    }
+  },
+  "E_lookthrough": {
+    "rows": [
+      {
+        "cohort": "office_US_EU",
+        "gav_bn": 2.4,
+        "debt_bn": 1.2,
+        "equity_bn": 1.2,
+        "ltv": 0.5,
+        "delta_equity_wrt_V": 0.997,
+        "delta_adj_exposure_bn": 2.39
+      },
+      {
+        "cohort": "logistics",
+        "gav_bn": 4.2,
+        "debt_bn": 1.76,
+        "equity_bn": 2.44,
+        "ltv": 0.42,
+        "delta_equity_wrt_V": 1.0,
+        "delta_adj_exposure_bn": 4.2
+      },
+      {
+        "cohort": "residential",
+        "gav_bn": 3.6,
+        "debt_bn": 1.73,
+        "equity_bn": 1.87,
+        "ltv": 0.48,
+        "delta_equity_wrt_V": 0.999,
+        "delta_adj_exposure_bn": 3.6
+      },
+      {
+        "cohort": "retail_hotel",
+        "gav_bn": 1.6,
+        "debt_bn": 0.8,
+        "equity_bn": 0.8,
+        "ltv": 0.5,
+        "delta_equity_wrt_V": 0.994,
+        "delta_adj_exposure_bn": 1.59
+      },
+      {
+        "cohort": "gulf_mixed_use",
+        "gav_bn": 2.0,
+        "debt_bn": 0.9,
+        "equity_bn": 1.1,
+        "ltv": 0.45,
+        "delta_equity_wrt_V": 0.998,
+        "delta_adj_exposure_bn": 2.0
+      },
+      {
+        "cohort": "infrastructure_core",
+        "gav_bn": 6.2,
+        "debt_bn": 3.41,
+        "equity_bn": 2.79,
+        "ltv": 0.55,
+        "delta_equity_wrt_V": 0.998,
+        "delta_adj_exposure_bn": 6.19
+      },
+      {
+        "cohort": "energy_natural_resources",
+        "gav_bn": 2.77,
+        "debt_bn": 0.97,
+        "equity_bn": 1.8,
+        "ltv": 0.35,
+        "delta_equity_wrt_V": 0.99,
+        "delta_adj_exposure_bn": 2.74
+      },
+      {
+        "cohort": "closed_end_RE_infra_funds",
+        "gav_bn": 8.0,
+        "debt_bn": 4.0,
+        "equity_bn": 4.0,
+        "ltv": 0.5
+      },
+      {
+        "cohort": "open_end_core_RE",
+        "gav_bn": 2.74,
+        "debt_bn": 0.74,
+        "equity_bn": 2.0,
+        "ltv": 0.271
+      }
+    ],
+    "totals_bn": {
+      "gav": 33.51,
+      "lookthrough_debt": 15.51,
+      "equity_nav": 18.0,
+      "portfolio_ltv": 0.463,
+      "delta_adjusted_exposure": 33.45
+    },
+    "comparison": {
+      "T5_recourse_target_bn_at_177": 17.7,
+      "T5_recourse_hard_bn_at_177": 26.6,
+      "lookthrough_debt_as_pct_fund_NAV_177": 8.8
+    }
+  },
+  "E_delta_by_ltv": {
+    "LTV_0.40": 1.0,
+    "LTV_0.55": 0.993,
+    "LTV_0.70": 0.953,
+    "LTV_0.85": 0.853,
+    "LTV_1.00": 0.702,
+    "LTV_1.15": 0.533
+  },
+  "F_cap_prices": {
+    "3y_strike_0.045_vol_80bp_pct_notional": 0.387,
+    "3y_strike_0.050_vol_80bp_pct_notional": 0.168,
+    "3y_strike_0.055_vol_80bp_pct_notional": 0.067,
+    "3y_strike_0.045_vol_110bp_pct_notional": 0.689,
+    "3y_strike_0.050_vol_110bp_pct_notional": 0.386,
+    "3y_strike_0.055_vol_110bp_pct_notional": 0.208,
+    "3y_strike_0.045_vol_150bp_pct_notional": 1.124,
+    "3y_strike_0.050_vol_150bp_pct_notional": 0.746,
+    "3y_strike_0.055_vol_150bp_pct_notional": 0.484
+  }
+}

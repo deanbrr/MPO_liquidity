@@ -1,0 +1,1614 @@
+{
+ "label": "SYNTHETIC-ADJACENT [I-calc] on public data: listed US industry proxies; not ADIC data",
+ "as_of": {
+  "brent_last_date": "2026-10-14",
+  "brent_last": 126.55,
+  "ff_industry_last": "2026-08",
+  "ff3_last": "2026-08"
+ },
+ "windows": {
+  "1988-2007": {
+   "n_months": 240,
+   "start": "1988-01",
+   "end": "2007-12",
+   "Oil": {
+    "corr_oil": 0.286,
+    "beta_oil_univ": 0.125,
+    "se_univ": 0.036,
+    "beta_mkt": 0.596,
+    "beta_oil_partial": 0.155,
+    "se_oil_partial": 0.033,
+    "r2_two_factor": 0.341,
+    "ann_vol": 0.161,
+    "mean_ret_oil_down10_months": 0.0037,
+    "n_oil_down10": 28,
+    "mean_ret_oil_up10_months": 0.0453,
+    "n_oil_up10": 35
+   },
+   "Coal": {
+    "corr_oil": 0.098,
+    "beta_oil_univ": 0.095,
+    "se_univ": 0.085,
+    "beta_mkt": 0.977,
+    "beta_oil_partial": 0.145,
+    "se_oil_partial": 0.086,
+    "r2_two_factor": 0.153,
+    "ann_vol": 0.355,
+    "mean_ret_oil_down10_months": 0.0163,
+    "n_oil_down10": 28,
+    "mean_ret_oil_up10_months": 0.0298,
+    "n_oil_up10": 35
+   },
+   "Mines": {
+    "corr_oil": 0.064,
+    "beta_oil_univ": 0.036,
+    "se_univ": 0.037,
+    "beta_mkt": 0.834,
+    "beta_oil_partial": 0.079,
+    "se_oil_partial": 0.033,
+    "r2_two_factor": 0.303,
+    "ann_vol": 0.21,
+    "mean_ret_oil_down10_months": 0.0064,
+    "n_oil_down10": 28,
+    "mean_ret_oil_up10_months": 0.0275,
+    "n_oil_up10": 35
+   },
+   "Gold": {
+    "corr_oil": 0.19,
+    "beta_oil_univ": 0.18,
+    "se_univ": 0.062,
+    "beta_mkt": 0.408,
+    "beta_oil_partial": 0.201,
+    "se_oil_partial": 0.068,
+    "r2_two_factor": 0.062,
+    "ann_vol": 0.349,
+    "mean_ret_oil_down10_months": -0.0188,
+    "n_oil_down10": 28,
+    "mean_ret_oil_up10_months": 0.0421,
+    "n_oil_up10": 35
+   },
+   "Agric": {
+    "corr_oil": -0.106,
+    "beta_oil_univ": -0.054,
+    "se_univ": 0.053,
+    "beta_mkt": 0.622,
+    "beta_oil_partial": -0.022,
+    "se_oil_partial": 0.046,
+    "r2_two_factor": 0.218,
+    "ann_vol": 0.189,
+    "mean_ret_oil_down10_months": 0.0251,
+    "n_oil_down10": 28,
+    "mean_ret_oil_up10_months": 0.0151,
+    "n_oil_up10": 35
+   },
+   "Paper": {
+    "corr_oil": -0.201,
+    "beta_oil_univ": -0.089,
+    "se_univ": 0.033,
+    "beta_mkt": 0.741,
+    "beta_oil_partial": -0.051,
+    "se_oil_partial": 0.024,
+    "r2_two_factor": 0.432,
+    "ann_vol": 0.163,
+    "mean_ret_oil_down10_months": 0.0295,
+    "n_oil_down10": 28,
+    "mean_ret_oil_up10_months": -0.0049,
+    "n_oil_up10": 35
+   },
+   "Util": {
+    "corr_oil": -0.066,
+    "beta_oil_univ": -0.024,
+    "se_univ": 0.028,
+    "beta_mkt": 0.332,
+    "beta_oil_partial": -0.007,
+    "se_oil_partial": 0.028,
+    "r2_two_factor": 0.121,
+    "ann_vol": 0.134,
+    "mean_ret_oil_down10_months": 0.0161,
+    "n_oil_down10": 28,
+    "mean_ret_oil_up10_months": 0.0108,
+    "n_oil_up10": 35
+   },
+   "Trans": {
+    "corr_oil": -0.223,
+    "beta_oil_univ": -0.106,
+    "se_univ": 0.037,
+    "beta_mkt": 0.888,
+    "beta_oil_partial": -0.061,
+    "se_oil_partial": 0.026,
+    "r2_two_factor": 0.533,
+    "ann_vol": 0.176,
+    "mean_ret_oil_down10_months": 0.037,
+    "n_oil_down10": 28,
+    "mean_ret_oil_up10_months": -0.0078,
+    "n_oil_up10": 35
+   },
+   "RlEst": {
+    "corr_oil": -0.146,
+    "beta_oil_univ": -0.065,
+    "se_univ": 0.032,
+    "beta_mkt": 0.646,
+    "beta_oil_partial": -0.032,
+    "se_oil_partial": 0.023,
+    "r2_two_factor": 0.313,
+    "ann_vol": 0.165,
+    "mean_ret_oil_down10_months": 0.0116,
+    "n_oil_down10": 28,
+    "mean_ret_oil_up10_months": -0.004,
+    "n_oil_up10": 35
+   },
+   "Chems": {
+    "corr_oil": -0.165,
+    "beta_oil_univ": -0.074,
+    "se_univ": 0.037,
+    "beta_mkt": 0.822,
+    "beta_oil_partial": -0.031,
+    "se_oil_partial": 0.024,
+    "r2_two_factor": 0.502,
+    "ann_vol": 0.164,
+    "mean_ret_oil_down10_months": 0.0343,
+    "n_oil_down10": 28,
+    "mean_ret_oil_up10_months": 0.004,
+    "n_oil_up10": 35
+   },
+   "Steel": {
+    "corr_oil": 0.081,
+    "beta_oil_univ": 0.056,
+    "se_univ": 0.052,
+    "beta_mkt": 1.463,
+    "beta_oil_partial": 0.131,
+    "se_oil_partial": 0.027,
+    "r2_two_factor": 0.63,
+    "ann_vol": 0.255,
+    "mean_ret_oil_down10_months": 0.0058,
+    "n_oil_down10": 28,
+    "mean_ret_oil_up10_months": 0.0264,
+    "n_oil_up10": 35
+   }
+  },
+  "2008-2019": {
+   "n_months": 144,
+   "start": "2008-01",
+   "end": "2019-12",
+   "Oil": {
+    "corr_oil": 0.588,
+    "beta_oil_univ": 0.357,
+    "se_univ": 0.05,
+    "beta_mkt": 0.809,
+    "beta_oil_partial": 0.201,
+    "se_oil_partial": 0.047,
+    "r2_two_factor": 0.63,
+    "ann_vol": 0.213,
+    "mean_ret_oil_down10_months": -0.0766,
+    "n_oil_down10": 19,
+    "mean_ret_oil_up10_months": 0.0475,
+    "n_oil_up10": 13
+   },
+   "Coal": {
+    "corr_oil": 0.516,
+    "beta_oil_univ": 0.703,
+    "se_univ": 0.11,
+    "beta_mkt": 0.974,
+    "beta_oil_partial": 0.516,
+    "se_oil_partial": 0.109,
+    "r2_two_factor": 0.348,
+    "ann_vol": 0.478,
+    "mean_ret_oil_down10_months": -0.1474,
+    "n_oil_down10": 19,
+    "mean_ret_oil_up10_months": 0.0673,
+    "n_oil_up10": 13
+   },
+   "Mines": {
+    "corr_oil": 0.502,
+    "beta_oil_univ": 0.49,
+    "se_univ": 0.109,
+    "beta_mkt": 1.353,
+    "beta_oil_partial": 0.23,
+    "se_oil_partial": 0.073,
+    "r2_two_factor": 0.559,
+    "ann_vol": 0.343,
+    "mean_ret_oil_down10_months": -0.0982,
+    "n_oil_down10": 19,
+    "mean_ret_oil_up10_months": 0.0286,
+    "n_oil_up10": 13
+   },
+   "Gold": {
+    "corr_oil": 0.23,
+    "beta_oil_univ": 0.251,
+    "se_univ": 0.129,
+    "beta_mkt": 0.135,
+    "beta_oil_partial": 0.225,
+    "se_oil_partial": 0.137,
+    "r2_two_factor": 0.055,
+    "ann_vol": 0.383,
+    "mean_ret_oil_down10_months": -0.0272,
+    "n_oil_down10": 19,
+    "mean_ret_oil_up10_months": 0.0385,
+    "n_oil_up10": 13
+   },
+   "Agric": {
+    "corr_oil": 0.364,
+    "beta_oil_univ": 0.245,
+    "se_univ": 0.056,
+    "beta_mkt": 0.8,
+    "beta_oil_partial": 0.091,
+    "se_oil_partial": 0.07,
+    "r2_two_factor": 0.359,
+    "ann_vol": 0.236,
+    "mean_ret_oil_down10_months": -0.0523,
+    "n_oil_down10": 19,
+    "mean_ret_oil_up10_months": 0.0186,
+    "n_oil_up10": 13
+   },
+   "Paper": {
+    "corr_oil": 0.318,
+    "beta_oil_univ": 0.174,
+    "se_univ": 0.056,
+    "beta_mkt": 1.121,
+    "beta_oil_partial": -0.042,
+    "se_oil_partial": 0.033,
+    "r2_two_factor": 0.777,
+    "ann_vol": 0.191,
+    "mean_ret_oil_down10_months": -0.0307,
+    "n_oil_down10": 19,
+    "mean_ret_oil_up10_months": 0.0109,
+    "n_oil_up10": 13
+   },
+   "Util": {
+    "corr_oil": 0.266,
+    "beta_oil_univ": 0.099,
+    "se_univ": 0.047,
+    "beta_mkt": 0.475,
+    "beta_oil_partial": 0.007,
+    "se_oil_partial": 0.031,
+    "r2_two_factor": 0.335,
+    "ann_vol": 0.13,
+    "mean_ret_oil_down10_months": -0.0197,
+    "n_oil_down10": 19,
+    "mean_ret_oil_up10_months": 0.0085,
+    "n_oil_up10": 13
+   },
+   "Trans": {
+    "corr_oil": 0.245,
+    "beta_oil_univ": 0.137,
+    "se_univ": 0.053,
+    "beta_mkt": 1.157,
+    "beta_oil_partial": -0.086,
+    "se_oil_partial": 0.022,
+    "r2_two_factor": 0.748,
+    "ann_vol": 0.196,
+    "mean_ret_oil_down10_months": -0.029,
+    "n_oil_down10": 19,
+    "mean_ret_oil_up10_months": -0.0054,
+    "n_oil_up10": 13
+   },
+   "RlEst": {
+    "corr_oil": 0.347,
+    "beta_oil_univ": 0.318,
+    "se_univ": 0.124,
+    "beta_mkt": 1.751,
+    "beta_oil_partial": -0.019,
+    "se_oil_partial": 0.049,
+    "r2_two_factor": 0.706,
+    "ann_vol": 0.321,
+    "mean_ret_oil_down10_months": -0.0645,
+    "n_oil_down10": 19,
+    "mean_ret_oil_up10_months": 0.0095,
+    "n_oil_up10": 13
+   },
+   "Chems": {
+    "corr_oil": 0.475,
+    "beta_oil_univ": 0.308,
+    "se_univ": 0.07,
+    "beta_mkt": 1.245,
+    "beta_oil_partial": 0.068,
+    "se_oil_partial": 0.034,
+    "r2_two_factor": 0.815,
+    "ann_vol": 0.228,
+    "mean_ret_oil_down10_months": -0.0617,
+    "n_oil_down10": 19,
+    "mean_ret_oil_up10_months": 0.0196,
+    "n_oil_up10": 13
+   },
+   "Steel": {
+    "corr_oil": 0.414,
+    "beta_oil_univ": 0.385,
+    "se_univ": 0.121,
+    "beta_mkt": 1.692,
+    "beta_oil_partial": 0.059,
+    "se_oil_partial": 0.073,
+    "r2_two_factor": 0.7,
+    "ann_vol": 0.327,
+    "mean_ret_oil_down10_months": -0.0867,
+    "n_oil_down10": 19,
+    "mean_ret_oil_up10_months": 0.0067,
+    "n_oil_up10": 13
+   }
+  },
+  "2020-2026": {
+   "n_months": 80,
+   "start": "2020-01",
+   "end": "2026-12",
+   "Oil": {
+    "corr_oil": 0.691,
+    "beta_oil_univ": 0.35,
+    "se_univ": 0.05,
+    "beta_mkt": 0.61,
+    "beta_oil_partial": 0.3,
+    "se_oil_partial": 0.058,
+    "r2_two_factor": 0.559,
+    "ann_vol": 0.351,
+    "mean_ret_oil_down10_months": -0.1076,
+    "n_oil_down10": 13,
+    "mean_ret_oil_up10_months": 0.1267,
+    "n_oil_up10": 13
+   },
+   "Coal": {
+    "corr_oil": 0.477,
+    "beta_oil_univ": 0.334,
+    "se_univ": 0.072,
+    "beta_mkt": 0.657,
+    "beta_oil_partial": 0.28,
+    "se_oil_partial": 0.065,
+    "r2_two_factor": 0.277,
+    "ann_vol": 0.486,
+    "mean_ret_oil_down10_months": -0.0967,
+    "n_oil_down10": 13,
+    "mean_ret_oil_up10_months": 0.0722,
+    "n_oil_up10": 13
+   },
+   "Mines": {
+    "corr_oil": 0.232,
+    "beta_oil_univ": 0.103,
+    "se_univ": 0.069,
+    "beta_mkt": 1.219,
+    "beta_oil_partial": 0.002,
+    "se_oil_partial": 0.031,
+    "r2_two_factor": 0.484,
+    "ann_vol": 0.307,
+    "mean_ret_oil_down10_months": -0.0196,
+    "n_oil_down10": 13,
+    "mean_ret_oil_up10_months": 0.0421,
+    "n_oil_up10": 13
+   },
+   "Gold": {
+    "corr_oil": -0.034,
+    "beta_oil_univ": -0.019,
+    "se_univ": 0.051,
+    "beta_mkt": 0.638,
+    "beta_oil_partial": -0.071,
+    "se_oil_partial": 0.039,
+    "r2_two_factor": 0.077,
+    "ann_vol": 0.382,
+    "mean_ret_oil_down10_months": -0.0283,
+    "n_oil_down10": 13,
+    "mean_ret_oil_up10_months": -0.0047,
+    "n_oil_up10": 13
+   },
+   "Agric": {
+    "corr_oil": 0.276,
+    "beta_oil_univ": 0.092,
+    "se_univ": 0.025,
+    "beta_mkt": 0.603,
+    "beta_oil_partial": 0.043,
+    "se_oil_partial": 0.027,
+    "r2_two_factor": 0.26,
+    "ann_vol": 0.232,
+    "mean_ret_oil_down10_months": -0.0035,
+    "n_oil_down10": 13,
+    "mean_ret_oil_up10_months": 0.0414,
+    "n_oil_up10": 13
+   },
+   "Paper": {
+    "corr_oil": 0.148,
+    "beta_oil_univ": 0.042,
+    "se_univ": 0.048,
+    "beta_mkt": 0.762,
+    "beta_oil_partial": -0.021,
+    "se_oil_partial": 0.023,
+    "r2_two_factor": 0.438,
+    "ann_vol": 0.195,
+    "mean_ret_oil_down10_months": -0.0319,
+    "n_oil_down10": 13,
+    "mean_ret_oil_up10_months": 0.0014,
+    "n_oil_up10": 13
+   },
+   "Util": {
+    "corr_oil": 0.262,
+    "beta_oil_univ": 0.064,
+    "se_univ": 0.032,
+    "beta_mkt": 0.548,
+    "beta_oil_partial": 0.019,
+    "se_oil_partial": 0.018,
+    "r2_two_factor": 0.355,
+    "ann_vol": 0.169,
+    "mean_ret_oil_down10_months": -0.0131,
+    "n_oil_down10": 13,
+    "mean_ret_oil_up10_months": 0.002,
+    "n_oil_up10": 13
+   },
+   "Trans": {
+    "corr_oil": 0.319,
+    "beta_oil_univ": 0.104,
+    "se_univ": 0.046,
+    "beta_mkt": 1.136,
+    "beta_oil_partial": 0.011,
+    "se_oil_partial": 0.009,
+    "r2_two_factor": 0.784,
+    "ann_vol": 0.227,
+    "mean_ret_oil_down10_months": -0.0289,
+    "n_oil_down10": 13,
+    "mean_ret_oil_up10_months": 0.0202,
+    "n_oil_up10": 13
+   },
+   "RlEst": {
+    "corr_oil": 0.47,
+    "beta_oil_univ": 0.224,
+    "se_univ": 0.084,
+    "beta_mkt": 1.327,
+    "beta_oil_partial": 0.114,
+    "se_oil_partial": 0.04,
+    "r2_two_factor": 0.661,
+    "ann_vol": 0.33,
+    "mean_ret_oil_down10_months": -0.0515,
+    "n_oil_down10": 13,
+    "mean_ret_oil_up10_months": 0.0369,
+    "n_oil_up10": 13
+   },
+   "Chems": {
+    "corr_oil": 0.392,
+    "beta_oil_univ": 0.129,
+    "se_univ": 0.032,
+    "beta_mkt": 0.959,
+    "beta_oil_partial": 0.05,
+    "se_oil_partial": 0.017,
+    "r2_two_factor": 0.634,
+    "ann_vol": 0.228,
+    "mean_ret_oil_down10_months": -0.0373,
+    "n_oil_down10": 13,
+    "mean_ret_oil_up10_months": 0.0299,
+    "n_oil_up10": 13
+   },
+   "Steel": {
+    "corr_oil": 0.22,
+    "beta_oil_univ": 0.119,
+    "se_univ": 0.075,
+    "beta_mkt": 1.551,
+    "beta_oil_partial": -0.009,
+    "se_oil_partial": 0.041,
+    "r2_two_factor": 0.512,
+    "ann_vol": 0.376,
+    "mean_ret_oil_down10_months": -0.0444,
+    "n_oil_down10": 13,
+    "mean_ret_oil_up10_months": 0.0208,
+    "n_oil_up10": 13
+   }
+  },
+  "full_1988-2026": {
+   "n_months": 464,
+   "start": "1988-01",
+   "end": "2026-12",
+   "Oil": {
+    "corr_oil": 0.532,
+    "beta_oil_univ": 0.269,
+    "se_univ": 0.032,
+    "beta_mkt": 0.693,
+    "beta_oil_partial": 0.231,
+    "se_oil_partial": 0.025,
+    "r2_two_factor": 0.501,
+    "ann_vol": 0.221,
+    "mean_ret_oil_down10_months": -0.0458,
+    "n_oil_down10": 60,
+    "mean_ret_oil_up10_months": 0.0631,
+    "n_oil_up10": 61
+   },
+   "Coal": {
+    "corr_oil": 0.333,
+    "beta_oil_univ": 0.323,
+    "se_univ": 0.06,
+    "beta_mkt": 1.006,
+    "beta_oil_partial": 0.268,
+    "se_oil_partial": 0.046,
+    "r2_two_factor": 0.236,
+    "ann_vol": 0.423,
+    "mean_ret_oil_down10_months": -0.06,
+    "n_oil_down10": 60,
+    "mean_ret_oil_up10_months": 0.0468,
+    "n_oil_up10": 61
+   },
+   "Mines": {
+    "corr_oil": 0.248,
+    "beta_oil_univ": 0.156,
+    "se_univ": 0.045,
+    "beta_mkt": 1.113,
+    "beta_oil_partial": 0.095,
+    "se_oil_partial": 0.029,
+    "r2_two_factor": 0.425,
+    "ann_vol": 0.275,
+    "mean_ret_oil_down10_months": -0.0324,
+    "n_oil_down10": 60,
+    "mean_ret_oil_up10_months": 0.0308,
+    "n_oil_up10": 61
+   },
+   "Gold": {
+    "corr_oil": 0.129,
+    "beta_oil_univ": 0.108,
+    "se_univ": 0.046,
+    "beta_mkt": 0.353,
+    "beta_oil_partial": 0.089,
+    "se_oil_partial": 0.047,
+    "r2_two_factor": 0.037,
+    "ann_vol": 0.365,
+    "mean_ret_oil_down10_months": -0.0235,
+    "n_oil_down10": 60,
+    "mean_ret_oil_up10_months": 0.0314,
+    "n_oil_up10": 61
+   },
+   "Agric": {
+    "corr_oil": 0.143,
+    "beta_oil_univ": 0.069,
+    "se_univ": 0.032,
+    "beta_mkt": 0.708,
+    "beta_oil_partial": 0.031,
+    "se_oil_partial": 0.023,
+    "r2_two_factor": 0.267,
+    "ann_vol": 0.212,
+    "mean_ret_oil_down10_months": -0.0056,
+    "n_oil_down10": 60,
+    "mean_ret_oil_up10_months": 0.0214,
+    "n_oil_up10": 61
+   },
+   "Paper": {
+    "corr_oil": 0.048,
+    "beta_oil_univ": 0.02,
+    "se_univ": 0.034,
+    "beta_mkt": 0.87,
+    "beta_oil_partial": -0.028,
+    "se_oil_partial": 0.013,
+    "r2_two_factor": 0.531,
+    "ann_vol": 0.178,
+    "mean_ret_oil_down10_months": -0.0029,
+    "n_oil_down10": 60,
+    "mean_ret_oil_up10_months": -0.0002,
+    "n_oil_up10": 61
+   },
+   "Util": {
+    "corr_oil": 0.12,
+    "beta_oil_univ": 0.038,
+    "se_univ": 0.025,
+    "beta_mkt": 0.43,
+    "beta_oil_partial": 0.015,
+    "se_oil_partial": 0.016,
+    "r2_two_factor": 0.226,
+    "ann_vol": 0.139,
+    "mean_ret_oil_down10_months": -0.0015,
+    "n_oil_down10": 60,
+    "mean_ret_oil_up10_months": 0.0084,
+    "n_oil_up10": 61
+   },
+   "Trans": {
+    "corr_oil": 0.074,
+    "beta_oil_univ": 0.033,
+    "se_univ": 0.04,
+    "beta_mkt": 1.029,
+    "beta_oil_partial": -0.024,
+    "se_oil_partial": 0.017,
+    "r2_two_factor": 0.646,
+    "ann_vol": 0.191,
+    "mean_ret_oil_down10_months": 0.0018,
+    "n_oil_down10": 60,
+    "mean_ret_oil_up10_months": -0.0013,
+    "n_oil_up10": 61
+   },
+   "RlEst": {
+    "corr_oil": 0.233,
+    "beta_oil_univ": 0.135,
+    "se_univ": 0.065,
+    "beta_mkt": 1.167,
+    "beta_oil_partial": 0.071,
+    "se_oil_partial": 0.035,
+    "r2_two_factor": 0.522,
+    "ann_vol": 0.254,
+    "mean_ret_oil_down10_months": -0.0262,
+    "n_oil_down10": 60,
+    "mean_ret_oil_up10_months": 0.0076,
+    "n_oil_up10": 61
+   },
+   "Chems": {
+    "corr_oil": 0.199,
+    "beta_oil_univ": 0.09,
+    "se_univ": 0.037,
+    "beta_mkt": 1.018,
+    "beta_oil_partial": 0.034,
+    "se_oil_partial": 0.014,
+    "r2_two_factor": 0.629,
+    "ann_vol": 0.197,
+    "mean_ret_oil_down10_months": -0.0116,
+    "n_oil_down10": 60,
+    "mean_ret_oil_up10_months": 0.0128,
+    "n_oil_up10": 61
+   },
+   "Steel": {
+    "corr_oil": 0.217,
+    "beta_oil_univ": 0.15,
+    "se_univ": 0.047,
+    "beta_mkt": 1.525,
+    "beta_oil_partial": 0.066,
+    "se_oil_partial": 0.027,
+    "r2_two_factor": 0.612,
+    "ann_vol": 0.302,
+    "mean_ret_oil_down10_months": -0.0344,
+    "n_oil_down10": 60,
+    "mean_ret_oil_up10_months": 0.021,
+    "n_oil_up10": 61
+   }
+  },
+  "oil_bust_2014-07_2016-02": {
+   "n_months": 20,
+   "start": "2014-07",
+   "end": "2016-02"
+  },
+  "covid_2020-01_2020-06": {
+   "n_months": 6,
+   "start": "2020-01",
+   "end": "2020-06"
+  },
+  "war_2026-03_latest": {
+   "n_months": 6,
+   "start": "2026-03",
+   "end": "2026-12"
+  }
+ },
+ "shock_type_12m": {
+  "label_shares_since_1988": {
+   "N": 0.5982,
+   "B": 0.181,
+   "SG": 0.1347,
+   "SS": 0.0508,
+   "DB": 0.0353
+  },
+  "industry_rel_returns": {
+   "Oil": {
+    "N": {
+     "n_windows": 274,
+     "mean_12m_rel_vs_mkt": -0.0005,
+     "mean_12m_abs": 0.1159
+    },
+    "B": {
+     "n_windows": 82,
+     "mean_12m_rel_vs_mkt": 0.0859,
+     "mean_12m_abs": 0.3392
+    },
+    "SG": {
+     "n_windows": 62,
+     "mean_12m_rel_vs_mkt": -0.1952,
+     "mean_12m_abs": -0.0641
+    },
+    "DB": {
+     "n_windows": 19,
+     "mean_12m_rel_vs_mkt": 0.0667,
+     "mean_12m_abs": -0.2178
+    },
+    "SS": {
+     "n_windows": 23,
+     "mean_12m_rel_vs_mkt": 0.3671,
+     "mean_12m_abs": 0.2224
+    }
+   },
+   "Coal": {
+    "N": {
+     "n_windows": 274,
+     "mean_12m_rel_vs_mkt": 0.0135,
+     "mean_12m_abs": 0.1215
+    },
+    "B": {
+     "n_windows": 82,
+     "mean_12m_rel_vs_mkt": 0.3997,
+     "mean_12m_abs": 0.7285
+    },
+    "SG": {
+     "n_windows": 62,
+     "mean_12m_rel_vs_mkt": -0.3706,
+     "mean_12m_abs": -0.2617
+    },
+    "DB": {
+     "n_windows": 19,
+     "mean_12m_rel_vs_mkt": -0.0191,
+     "mean_12m_abs": -0.2653
+    },
+    "SS": {
+     "n_windows": 23,
+     "mean_12m_rel_vs_mkt": 0.8513,
+     "mean_12m_abs": 0.668
+    }
+   },
+   "Mines": {
+    "N": {
+     "n_windows": 274,
+     "mean_12m_rel_vs_mkt": 0.0123,
+     "mean_12m_abs": 0.1402
+    },
+    "B": {
+     "n_windows": 82,
+     "mean_12m_rel_vs_mkt": 0.1422,
+     "mean_12m_abs": 0.4226
+    },
+    "SG": {
+     "n_windows": 62,
+     "mean_12m_rel_vs_mkt": -0.126,
+     "mean_12m_abs": 0.0158
+    },
+    "DB": {
+     "n_windows": 19,
+     "mean_12m_rel_vs_mkt": -0.0905,
+     "mean_12m_abs": -0.3175
+    },
+    "SS": {
+     "n_windows": 23,
+     "mean_12m_rel_vs_mkt": 0.1279,
+     "mean_12m_abs": 0.0106
+    }
+   },
+   "Gold": {
+    "N": {
+     "n_windows": 274,
+     "mean_12m_rel_vs_mkt": -0.0349,
+     "mean_12m_abs": 0.0746
+    },
+    "B": {
+     "n_windows": 82,
+     "mean_12m_rel_vs_mkt": -0.0364,
+     "mean_12m_abs": 0.1871
+    },
+    "SG": {
+     "n_windows": 62,
+     "mean_12m_rel_vs_mkt": -0.0689,
+     "mean_12m_abs": 0.0649
+    },
+    "DB": {
+     "n_windows": 19,
+     "mean_12m_rel_vs_mkt": 0.3148,
+     "mean_12m_abs": -0.0336
+    },
+    "SS": {
+     "n_windows": 23,
+     "mean_12m_rel_vs_mkt": 0.2266,
+     "mean_12m_abs": 0.0824
+    }
+   },
+   "Agric": {
+    "N": {
+     "n_windows": 274,
+     "mean_12m_rel_vs_mkt": -0.0031,
+     "mean_12m_abs": 0.1177
+    },
+    "B": {
+     "n_windows": 82,
+     "mean_12m_rel_vs_mkt": -0.0403,
+     "mean_12m_abs": 0.1854
+    },
+    "SG": {
+     "n_windows": 62,
+     "mean_12m_rel_vs_mkt": -0.0376,
+     "mean_12m_abs": 0.1237
+    },
+    "DB": {
+     "n_windows": 19,
+     "mean_12m_rel_vs_mkt": 0.1735,
+     "mean_12m_abs": -0.1398
+    },
+    "SS": {
+     "n_windows": 23,
+     "mean_12m_rel_vs_mkt": 0.4385,
+     "mean_12m_abs": 0.2925
+    }
+   },
+   "Paper": {
+    "N": {
+     "n_windows": 274,
+     "mean_12m_rel_vs_mkt": -0.0187,
+     "mean_12m_abs": 0.1012
+    },
+    "B": {
+     "n_windows": 82,
+     "mean_12m_rel_vs_mkt": -0.0559,
+     "mean_12m_abs": 0.1714
+    },
+    "SG": {
+     "n_windows": 62,
+     "mean_12m_rel_vs_mkt": -0.0937,
+     "mean_12m_abs": 0.052
+    },
+    "DB": {
+     "n_windows": 19,
+     "mean_12m_rel_vs_mkt": 0.1044,
+     "mean_12m_abs": -0.1798
+    },
+    "SS": {
+     "n_windows": 23,
+     "mean_12m_rel_vs_mkt": -0.0151,
+     "mean_12m_abs": -0.1259
+    }
+   },
+   "Util": {
+    "N": {
+     "n_windows": 274,
+     "mean_12m_rel_vs_mkt": 0.0094,
+     "mean_12m_abs": 0.1284
+    },
+    "B": {
+     "n_windows": 82,
+     "mean_12m_rel_vs_mkt": -0.0741,
+     "mean_12m_abs": 0.1398
+    },
+    "SG": {
+     "n_windows": 62,
+     "mean_12m_rel_vs_mkt": -0.037,
+     "mean_12m_abs": 0.1165
+    },
+    "DB": {
+     "n_windows": 19,
+     "mean_12m_rel_vs_mkt": 0.1448,
+     "mean_12m_abs": -0.1599
+    },
+    "SS": {
+     "n_windows": 23,
+     "mean_12m_rel_vs_mkt": 0.1163,
+     "mean_12m_abs": -0.0026
+    }
+   },
+   "Trans": {
+    "N": {
+     "n_windows": 274,
+     "mean_12m_rel_vs_mkt": 0.0097,
+     "mean_12m_abs": 0.1355
+    },
+    "B": {
+     "n_windows": 82,
+     "mean_12m_rel_vs_mkt": -0.0344,
+     "mean_12m_abs": 0.1993
+    },
+    "SG": {
+     "n_windows": 62,
+     "mean_12m_rel_vs_mkt": -0.0398,
+     "mean_12m_abs": 0.119
+    },
+    "DB": {
+     "n_windows": 19,
+     "mean_12m_rel_vs_mkt": 0.0914,
+     "mean_12m_abs": -0.1998
+    },
+    "SS": {
+     "n_windows": 23,
+     "mean_12m_rel_vs_mkt": 0.0089,
+     "mean_12m_abs": -0.103
+    }
+   },
+   "RlEst": {
+    "N": {
+     "n_windows": 274,
+     "mean_12m_rel_vs_mkt": -0.0192,
+     "mean_12m_abs": 0.1032
+    },
+    "B": {
+     "n_windows": 82,
+     "mean_12m_rel_vs_mkt": 0.0285,
+     "mean_12m_abs": 0.2881
+    },
+    "SG": {
+     "n_windows": 62,
+     "mean_12m_rel_vs_mkt": -0.1079,
+     "mean_12m_abs": 0.0367
+    },
+    "DB": {
+     "n_windows": 19,
+     "mean_12m_rel_vs_mkt": -0.0774,
+     "mean_12m_abs": -0.2986
+    },
+    "SS": {
+     "n_windows": 23,
+     "mean_12m_rel_vs_mkt": -0.1527,
+     "mean_12m_abs": -0.2534
+    }
+   },
+   "Chems": {
+    "N": {
+     "n_windows": 274,
+     "mean_12m_rel_vs_mkt": -0.0134,
+     "mean_12m_abs": 0.108
+    },
+    "B": {
+     "n_windows": 82,
+     "mean_12m_rel_vs_mkt": 0.0065,
+     "mean_12m_abs": 0.2495
+    },
+    "SG": {
+     "n_windows": 62,
+     "mean_12m_rel_vs_mkt": -0.0812,
+     "mean_12m_abs": 0.0688
+    },
+    "DB": {
+     "n_windows": 19,
+     "mean_12m_rel_vs_mkt": -0.0206,
+     "mean_12m_abs": -0.2746
+    },
+    "SS": {
+     "n_windows": 23,
+     "mean_12m_rel_vs_mkt": 0.1236,
+     "mean_12m_abs": 0.0025
+    }
+   },
+   "Steel": {
+    "N": {
+     "n_windows": 274,
+     "mean_12m_rel_vs_mkt": -0.0204,
+     "mean_12m_abs": 0.1078
+    },
+    "B": {
+     "n_windows": 82,
+     "mean_12m_rel_vs_mkt": 0.1848,
+     "mean_12m_abs": 0.472
+    },
+    "SG": {
+     "n_windows": 62,
+     "mean_12m_rel_vs_mkt": -0.1681,
+     "mean_12m_abs": -0.0309
+    },
+    "DB": {
+     "n_windows": 19,
+     "mean_12m_rel_vs_mkt": -0.3165,
+     "mean_12m_abs": -0.4849
+    },
+    "SS": {
+     "n_windows": 23,
+     "mean_12m_rel_vs_mkt": 0.0426,
+     "mean_12m_abs": -0.0639
+    }
+   }
+  }
+ },
+ "max_drawdowns_since_1988": {
+  "Oil": {
+   "max_drawdown": -0.648,
+   "trough": "2020-03"
+  },
+  "Coal": {
+   "max_drawdown": -0.987,
+   "trough": "2020-03"
+  },
+  "Mines": {
+   "max_drawdown": -0.664,
+   "trough": "2009-02"
+  },
+  "Gold": {
+   "max_drawdown": -0.777,
+   "trough": "2015-09"
+  },
+  "Agric": {
+   "max_drawdown": -0.604,
+   "trough": "2010-06"
+  },
+  "Paper": {
+   "max_drawdown": -0.587,
+   "trough": "2009-02"
+  },
+  "Util": {
+   "max_drawdown": -0.379,
+   "trough": "2009-02"
+  },
+  "Brent": {
+   "max_drawdown": -0.893,
+   "trough": "2020-03"
+  }
+ },
+ "annual_table": {
+  "1988": {
+   "Oil_tot": 0.1922,
+   "Coal_tot": 0.1212,
+   "Mines_tot": 0.1916,
+   "Gold_tot": -0.1637,
+   "Agric_tot": 0.2044,
+   "Paper_tot": 0.1266,
+   "Util_tot": 0.1641,
+   "Trans_tot": 0.2974,
+   "RlEst_tot": 0.2114,
+   "Chems_tot": 0.0951,
+   "Steel_tot": 0.1653,
+   "mkt_tot": 0.1655,
+   "oil": -0.081,
+   "brent_avg": 14.89
+  },
+  "1989": {
+   "Oil_tot": 0.3162,
+   "Coal_tot": 0.3781,
+   "Mines_tot": 0.1355,
+   "Gold_tot": 0.2708,
+   "Agric_tot": 0.1625,
+   "Paper_tot": 0.2038,
+   "Util_tot": 0.2799,
+   "Trans_tot": 0.2097,
+   "RlEst_tot": -0.0458,
+   "Chems_tot": 0.2342,
+   "Steel_tot": 0.1109,
+   "mkt_tot": 0.2535,
+   "oil": 0.26,
+   "brent_avg": 18.2104
+  },
+  "1990": {
+   "Oil_tot": -0.0111,
+   "Coal_tot": -0.1641,
+   "Mines_tot": -0.1306,
+   "Gold_tot": -0.2069,
+   "Agric_tot": -0.2242,
+   "Paper_tot": -0.0639,
+   "Util_tot": -0.0114,
+   "Trans_tot": -0.1812,
+   "RlEst_tot": -0.4357,
+   "Chems_tot": -0.0863,
+   "Steel_tot": -0.1461,
+   "mkt_tot": -0.0621,
+   "oil": 0.2977,
+   "brent_avg": 23.782
+  },
+  "1991": {
+   "Oil_tot": 0.0659,
+   "Coal_tot": 0.0231,
+   "Mines_tot": 0.258,
+   "Gold_tot": -0.0799,
+   "Agric_tot": 0.3137,
+   "Paper_tot": 0.2248,
+   "Util_tot": 0.218,
+   "Trans_tot": 0.3941,
+   "RlEst_tot": 0.1611,
+   "Chems_tot": 0.285,
+   "Steel_tot": 0.1357,
+   "mkt_tot": 0.2987,
+   "oil": -0.4682,
+   "brent_avg": 20.0332
+  },
+  "1992": {
+   "Oil_tot": 0.0461,
+   "Coal_tot": -0.1843,
+   "Mines_tot": 0.2388,
+   "Gold_tot": -0.1637,
+   "Agric_tot": -0.0203,
+   "Paper_tot": 0.0924,
+   "Util_tot": 0.0814,
+   "Trans_tot": 0.109,
+   "RlEst_tot": 0.0311,
+   "Chems_tot": 0.0812,
+   "Steel_tot": 0.1729,
+   "mkt_tot": 0.0933,
+   "oil": 0.0056,
+   "brent_avg": 19.3118
+  },
+  "1993": {
+   "Oil_tot": 0.1286,
+   "Coal_tot": 0.1351,
+   "Mines_tot": 0.0449,
+   "Gold_tot": 0.3991,
+   "Agric_tot": 0.0958,
+   "Paper_tot": 0.069,
+   "Util_tot": 0.1201,
+   "Trans_tot": 0.2253,
+   "RlEst_tot": 0.2185,
+   "Chems_tot": 0.1,
+   "Steel_tot": 0.1541,
+   "mkt_tot": 0.1058,
+   "oil": -0.3033,
+   "brent_avg": 17.2174
+  },
+  "1994": {
+   "Oil_tot": 0.0261,
+   "Coal_tot": -0.1466,
+   "Mines_tot": -0.0304,
+   "Gold_tot": -0.2357,
+   "Agric_tot": -0.0867,
+   "Paper_tot": 0.0635,
+   "Util_tot": -0.1184,
+   "Trans_tot": -0.1705,
+   "RlEst_tot": -0.0756,
+   "Chems_tot": 0.1191,
+   "Steel_tot": 0.0795,
+   "mkt_tot": -0.0015,
+   "oil": 0.1718,
+   "brent_avg": 15.8214
+  },
+  "1995": {
+   "Oil_tot": 0.2506,
+   "Coal_tot": -0.088,
+   "Mines_tot": 0.1544,
+   "Gold_tot": 0.1122,
+   "Agric_tot": 0.443,
+   "Paper_tot": 0.2393,
+   "Util_tot": 0.2758,
+   "Trans_tot": 0.3455,
+   "RlEst_tot": 0.1803,
+   "Chems_tot": 0.2377,
+   "Steel_tot": 0.0848,
+   "mkt_tot": 0.3137,
+   "oil": 0.1754,
+   "brent_avg": 17.0446
+  },
+  "1996": {
+   "Oil_tot": 0.2438,
+   "Coal_tot": 0.4319,
+   "Mines_tot": 0.0162,
+   "Gold_tot": 0.0199,
+   "Agric_tot": 0.1815,
+   "Paper_tot": 0.195,
+   "Util_tot": 0.0615,
+   "Trans_tot": 0.1222,
+   "RlEst_tot": 0.2436,
+   "Chems_tot": 0.2044,
+   "Steel_tot": 0.0798,
+   "mkt_tot": 0.1923,
+   "oil": 0.248,
+   "brent_avg": 20.8727
+  },
+  "1997": {
+   "Oil_tot": 0.1833,
+   "Coal_tot": -0.1973,
+   "Mines_tot": -0.0663,
+   "Gold_tot": -0.3975,
+   "Agric_tot": 0.3776,
+   "Paper_tot": 0.1021,
+   "Util_tot": 0.2444,
+   "Trans_tot": 0.2628,
+   "RlEst_tot": 0.2795,
+   "Chems_tot": 0.1752,
+   "Steel_tot": 0.0702,
+   "mkt_tot": 0.2719,
+   "oil": -0.4007,
+   "brent_avg": 19.2449
+  },
+  "1998": {
+   "Oil_tot": -0.0194,
+   "Coal_tot": 0.1171,
+   "Mines_tot": 0.0875,
+   "Gold_tot": -0.2267,
+   "Agric_tot": -0.067,
+   "Paper_tot": -0.0111,
+   "Util_tot": 0.1054,
+   "Trans_tot": -0.0512,
+   "RlEst_tot": -0.3082,
+   "Chems_tot": -0.0865,
+   "Steel_tot": -0.1458,
+   "mkt_tot": 0.2172,
+   "oil": -0.418,
+   "brent_avg": 12.7323
+  },
+  "1999": {
+   "Oil_tot": 0.1653,
+   "Coal_tot": 0.5757,
+   "Mines_tot": 0.1426,
+   "Gold_tot": 0.0644,
+   "Agric_tot": -0.0123,
+   "Paper_tot": 0.1998,
+   "Util_tot": -0.1508,
+   "Trans_tot": -0.0599,
+   "RlEst_tot": -0.202,
+   "Chems_tot": 0.1193,
+   "Steel_tot": 0.4696,
+   "mkt_tot": 0.2251,
+   "oil": 0.8609,
+   "brent_avg": 18.1451
+  },
+  "2000": {
+   "Oil_tot": 0.202,
+   "Coal_tot": 0.7149,
+   "Mines_tot": -0.0811,
+   "Gold_tot": -0.44,
+   "Agric_tot": -0.0121,
+   "Paper_tot": 0.0184,
+   "Util_tot": 0.4079,
+   "Trans_tot": 0.1116,
+   "RlEst_tot": 0.0513,
+   "Chems_tot": -0.0309,
+   "Steel_tot": -0.0791,
+   "mkt_tot": -0.1232,
+   "oil": -0.1119,
+   "brent_avg": 28.762
+  },
+  "2001": {
+   "Oil_tot": -0.0748,
+   "Coal_tot": 0.0311,
+   "Mines_tot": 0.0113,
+   "Gold_tot": 0.3267,
+   "Agric_tot": 0.184,
+   "Paper_tot": 0.0126,
+   "Util_tot": -0.1031,
+   "Trans_tot": -0.019,
+   "RlEst_tot": 0.2096,
+   "Chems_tot": -0.088,
+   "Steel_tot": -0.4429,
+   "mkt_tot": -0.1188,
+   "oil": -0.1414,
+   "brent_avg": 24.5089
+  },
+  "2002": {
+   "Oil_tot": -0.0866,
+   "Coal_tot": -0.1447,
+   "Mines_tot": -0.1942,
+   "Gold_tot": 0.4681,
+   "Agric_tot": -0.0727,
+   "Paper_tot": -0.0644,
+   "Util_tot": -0.2503,
+   "Trans_tot": -0.064,
+   "RlEst_tot": -0.0381,
+   "Chems_tot": -0.0544,
+   "Steel_tot": -0.4278,
+   "mkt_tot": -0.2375,
+   "oil": 0.5037,
+   "brent_avg": 25.1436
+  },
+  "2003": {
+   "Oil_tot": 0.2367,
+   "Coal_tot": 0.4624,
+   "Mines_tot": 0.6143,
+   "Gold_tot": 0.5441,
+   "Agric_tot": 0.3279,
+   "Paper_tot": 0.2911,
+   "Util_tot": 0.2283,
+   "Trans_tot": 0.2099,
+   "RlEst_tot": 0.3543,
+   "Chems_tot": 0.2358,
+   "Steel_tot": 0.5745,
+   "mkt_tot": 0.2753,
+   "oil": -0.0552,
+   "brent_avg": 29.0047
+  },
+  "2004": {
+   "Oil_tot": 0.2788,
+   "Coal_tot": 0.4965,
+   "Mines_tot": 0.0792,
+   "Gold_tot": -0.1108,
+   "Agric_tot": 0.1532,
+   "Paper_tot": 0.0584,
+   "Util_tot": 0.2215,
+   "Trans_tot": 0.1781,
+   "RlEst_tot": 0.407,
+   "Chems_tot": 0.1973,
+   "Steel_tot": 0.2144,
+   "mkt_tot": 0.1127,
+   "oil": 0.2872,
+   "brent_avg": 38.7789
+  },
+  "2005": {
+   "Oil_tot": 0.2771,
+   "Coal_tot": 0.5308,
+   "Mines_tot": 0.3615,
+   "Gold_tot": 0.1694,
+   "Agric_tot": -0.0291,
+   "Paper_tot": -0.0131,
+   "Util_tot": 0.1623,
+   "Trans_tot": 0.0922,
+   "RlEst_tot": 0.0708,
+   "Chems_tot": -0.014,
+   "Steel_tot": 0.1426,
+   "mkt_tot": 0.0592,
+   "oil": 0.368,
+   "brent_avg": 54.9011
+  },
+  "2006": {
+   "Oil_tot": 0.2086,
+   "Coal_tot": -0.1328,
+   "Mines_tot": 0.3027,
+   "Gold_tot": -0.1055,
+   "Agric_tot": 0.2132,
+   "Paper_tot": 0.0863,
+   "Util_tot": 0.1898,
+   "Trans_tot": 0.0995,
+   "RlEst_tot": 0.025,
+   "Chems_tot": 0.1495,
+   "Steel_tot": 0.3712,
+   "mkt_tot": 0.1432,
+   "oil": 0.0106,
+   "brent_avg": 65.2466
+  },
+  "2007": {
+   "Oil_tot": 0.267,
+   "Coal_tot": 0.5392,
+   "Mines_tot": 0.5376,
+   "Gold_tot": 0.0902,
+   "Agric_tot": 0.6959,
+   "Paper_tot": 0.0385,
+   "Util_tot": 0.1686,
+   "Trans_tot": -0.0021,
+   "RlEst_tot": -0.2145,
+   "Chems_tot": 0.2572,
+   "Steel_tot": 0.252,
+   "mkt_tot": 0.0558,
+   "oil": 0.463,
+   "brent_avg": 72.6078
+  },
+  "2008": {
+   "Oil_tot": -0.3781,
+   "Coal_tot": -0.9749,
+   "Mines_tot": -0.8062,
+   "Gold_tot": -0.2719,
+   "Agric_tot": -0.4596,
+   "Paper_tot": -0.5411,
+   "Util_tot": -0.3317,
+   "Trans_tot": -0.2598,
+   "RlEst_tot": -0.9832,
+   "Chems_tot": -0.6379,
+   "Steel_tot": -0.8648,
+   "mkt_tot": -0.4566,
+   "oil": -0.9614,
+   "brent_avg": 96.9443
+  },
+  "2009": {
+   "Oil_tot": 0.1086,
+   "Coal_tot": 0.7654,
+   "Mines_tot": 0.6565,
+   "Gold_tot": 0.2122,
+   "Agric_tot": 0.1625,
+   "Paper_tot": 0.4363,
+   "Util_tot": 0.1392,
+   "Trans_tot": 0.2256,
+   "RlEst_tot": 0.5531,
+   "Chems_tot": 0.4708,
+   "Steel_tot": 0.3043,
+   "mkt_tot": 0.2518,
+   "oil": 0.777,
+   "brent_avg": 61.7388
+  },
+  "2010": {
+   "Oil_tot": 0.1848,
+   "Coal_tot": 0.2944,
+   "Mines_tot": 0.3961,
+   "Gold_tot": 0.3335,
+   "Agric_tot": -0.1641,
+   "Paper_tot": 0.133,
+   "Util_tot": 0.0787,
+   "Trans_tot": 0.2505,
+   "RlEst_tot": 0.188,
+   "Chems_tot": 0.3138,
+   "Steel_tot": 0.0748,
+   "mkt_tot": 0.1605,
+   "oil": 0.1795,
+   "brent_avg": 79.6094
+  },
+  "2011": {
+   "Oil_tot": 0.0658,
+   "Coal_tot": -0.5746,
+   "Mines_tot": -0.3965,
+   "Gold_tot": -0.0734,
+   "Agric_tot": -0.0021,
+   "Paper_tot": -0.0099,
+   "Util_tot": 0.1896,
+   "Trans_tot": 0.0038,
+   "RlEst_tot": -0.0766,
+   "Chems_tot": -0.0336,
+   "Steel_tot": -0.3227,
+   "mkt_tot": 0.005,
+   "oil": 0.1479,
+   "brent_avg": 111.2643
+  },
+  "2012": {
+   "Oil_tot": 0.043,
+   "Coal_tot": -0.3089,
+   "Mines_tot": 0.1005,
+   "Gold_tot": -0.1802,
+   "Agric_tot": 0.2988,
+   "Paper_tot": 0.1593,
+   "Util_tot": 0.0353,
+   "Trans_tot": 0.1082,
+   "RlEst_tot": 0.3435,
+   "Chems_tot": 0.1956,
+   "Steel_tot": 0.0321,
+   "mkt_tot": 0.1514,
+   "oil": 0.0248,
+   "brent_avg": 111.5707
+  },
+  "2013": {
+   "Oil_tot": 0.2318,
+   "Coal_tot": -0.1318,
+   "Mines_tot": -0.0086,
+   "Gold_tot": -0.728,
+   "Agric_tot": 0.2326,
+   "Paper_tot": 0.3902,
+   "Util_tot": 0.1527,
+   "Trans_tot": 0.3775,
+   "RlEst_tot": 0.2196,
+   "Chems_tot": 0.2794,
+   "Steel_tot": 0.2556,
+   "mkt_tot": 0.3012,
+   "oil": -0.0077,
+   "brent_avg": 108.555
+  },
+  "2014": {
+   "Oil_tot": -0.1179,
+   "Coal_tot": -0.4549,
+   "Mines_tot": -0.1907,
+   "Gold_tot": -0.2483,
+   "Agric_tot": 0.0629,
+   "Paper_tot": 0.1378,
+   "Util_tot": 0.2107,
+   "Trans_tot": 0.274,
+   "RlEst_tot": 0.0563,
+   "Chems_tot": 0.0852,
+   "Steel_tot": 0.0055,
+   "mkt_tot": 0.111,
+   "oil": -0.6878,
+   "brent_avg": 99.0194
+  },
+  "2015": {
+   "Oil_tot": -0.2093,
+   "Coal_tot": -1.6418,
+   "Mines_tot": -0.2702,
+   "Gold_tot": -0.1171,
+   "Agric_tot": -0.1492,
+   "Paper_tot": -0.051,
+   "Util_tot": -0.1498,
+   "Trans_tot": -0.1792,
+   "RlEst_tot": -0.0925,
+   "Chems_tot": -0.0737,
+   "Steel_tot": -0.3707,
+   "mkt_tot": 0.0021,
+   "oil": -0.4119,
+   "brent_avg": 52.3165
+  },
+  "2016": {
+   "Oil_tot": 0.2314,
+   "Coal_tot": 0.785,
+   "Mines_tot": 0.4008,
+   "Gold_tot": 0.7121,
+   "Agric_tot": 0.097,
+   "Paper_tot": 0.1353,
+   "Util_tot": 0.2029,
+   "Trans_tot": 0.199,
+   "RlEst_tot": -0.0759,
+   "Chems_tot": 0.1501,
+   "Steel_tot": 0.3811,
+   "mkt_tot": 0.1274,
+   "oil": 0.4063,
+   "brent_avg": 43.638
+  },
+  "2017": {
+   "Oil_tot": 0.0086,
+   "Coal_tot": 0.0951,
+   "Mines_tot": 0.2043,
+   "Gold_tot": 0.0391,
+   "Agric_tot": 0.1337,
+   "Paper_tot": 0.2248,
+   "Util_tot": 0.0943,
+   "Trans_tot": 0.1987,
+   "RlEst_tot": 0.2809,
+   "Chems_tot": 0.271,
+   "Steel_tot": 0.2021,
+   "mkt_tot": 0.2015,
+   "oil": 0.194,
+   "brent_avg": 54.1248
+  },
+  "2018": {
+   "Oil_tot": -0.1959,
+   "Coal_tot": -0.1368,
+   "Mines_tot": -0.4336,
+   "Gold_tot": -0.1181,
+   "Agric_tot": -0.2501,
+   "Paper_tot": -0.1748,
+   "Util_tot": 0.0145,
+   "Trans_tot": -0.1095,
+   "RlEst_tot": -0.2863,
+   "Chems_tot": -0.1555,
+   "Steel_tot": -0.3185,
+   "mkt_tot": -0.0516,
+   "oil": -0.2773,
+   "brent_avg": 71.335
+  },
+  "2019": {
+   "Oil_tot": 0.0749,
+   "Coal_tot": -0.5978,
+   "Mines_tot": 0.3604,
+   "Gold_tot": 0.268,
+   "Agric_tot": 0.2032,
+   "Paper_tot": 0.0799,
+   "Util_tot": 0.2173,
+   "Trans_tot": 0.1371,
+   "RlEst_tot": 0.3329,
+   "Chems_tot": 0.145,
+   "Steel_tot": 0.1029,
+   "mkt_tot": 0.2667,
+   "oil": 0.2928,
+   "brent_avg": 64.3006
+  },
+  "2020": {
+   "Oil_tot": -0.4007,
+   "Coal_tot": -0.4086,
+   "Mines_tot": 0.3515,
+   "Gold_tot": 0.3455,
+   "Agric_tot": 0.228,
+   "Paper_tot": 0.0263,
+   "Util_tot": -0.0409,
+   "Trans_tot": 0.2038,
+   "RlEst_tot": 0.0635,
+   "Chems_tot": 0.1587,
+   "Steel_tot": 0.0477,
+   "mkt_tot": 0.2156,
+   "oil": -0.28,
+   "brent_avg": 41.9573
+  },
+  "2021": {
+   "Oil_tot": 0.4793,
+   "Coal_tot": 0.8146,
+   "Mines_tot": 0.2966,
+   "Gold_tot": 0.0134,
+   "Agric_tot": 0.1867,
+   "Paper_tot": 0.1005,
+   "Util_tot": 0.1837,
+   "Trans_tot": 0.1684,
+   "RlEst_tot": 0.368,
+   "Chems_tot": 0.2262,
+   "Steel_tot": 0.5289,
+   "mkt_tot": 0.214,
+   "oil": 0.4108,
+   "brent_avg": 70.8553
+  },
+  "2022": {
+   "Oil_tot": 0.5021,
+   "Coal_tot": 0.6934,
+   "Mines_tot": -0.1065,
+   "Gold_tot": -0.2248,
+   "Agric_tot": 0.1919,
+   "Paper_tot": -0.2361,
+   "Util_tot": 0.0292,
+   "Trans_tot": -0.2536,
+   "RlEst_tot": -0.3889,
+   "Chems_tot": -0.1586,
+   "Steel_tot": 0.068,
+   "mkt_tot": -0.2221,
+   "oil": 0.0698,
+   "brent_avg": 100.9313
+  },
+  "2023": {
+   "Oil_tot": -0.0191,
+   "Coal_tot": 0.4047,
+   "Mines_tot": 0.2687,
+   "Gold_tot": -0.0916,
+   "Agric_tot": -0.1282,
+   "Paper_tot": 0.0015,
+   "Util_tot": -0.0485,
+   "Trans_tot": 0.2653,
+   "RlEst_tot": 0.186,
+   "Chems_tot": 0.0561,
+   "Steel_tot": 0.2894,
+   "mkt_tot": 0.2366,
+   "oil": -0.0639,
+   "brent_avg": 82.4939
+  },
+  "2024": {
+   "Oil_tot": 0.0168,
+   "Coal_tot": -0.1794,
+   "Mines_tot": 0.0558,
+   "Gold_tot": -0.0375,
+   "Agric_tot": 0.2226,
+   "Paper_tot": 0.1035,
+   "Util_tot": 0.2564,
+   "Trans_tot": 0.0699,
+   "RlEst_tot": 0.1685,
+   "Chems_tot": -0.0647,
+   "Steel_tot": -0.1086,
+   "mkt_tot": 0.2233,
+   "oil": -0.0409,
+   "brent_avg": 80.5219
+  },
+  "2025": {
+   "Oil_tot": 0.0759,
+   "Coal_tot": 0.2236,
+   "Mines_tot": 0.3473,
+   "Gold_tot": 1.0447,
+   "Agric_tot": 0.1269,
+   "Paper_tot": -0.1636,
+   "Util_tot": 0.1323,
+   "Trans_tot": 0.0964,
+   "RlEst_tot": 0.186,
+   "Chems_tot": -0.0813,
+   "Steel_tot": 0.4525,
+   "mkt_tot": 0.1616,
+   "oil": -0.1953,
+   "brent_avg": 69.1426
+  }
+ }
+}

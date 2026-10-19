@@ -1,0 +1,78 @@
+# BUILD_SPEC v1.1 S-ADR-42: text files are LF in every checkout, so file and tree hashes agree across machines
+# whatever core.autocrlf says (contracts.hashing additionally normalizes CRLF to LF when it hashes text).
+* text eol=lf
+
+# Binary formats must never be normalized (they override the rule above). A binary format missing from this list
+# would be treated as text; add it here before committing the first file of that type.
+# images and documents
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.bmp binary
+*.tif binary
+*.tiff binary
+*.webp binary
+*.pdf binary
+*.pptx binary
+*.potx binary
+*.pptm binary
+*.docx binary
+*.dotx binary
+*.docm binary
+*.xlsx binary
+*.xlsm binary
+*.xls binary
+*.doc binary
+*.ppt binary
+*.odt binary
+*.ods binary
+# archives
+*.zip binary
+*.gz binary
+*.tgz binary
+*.bz2 binary
+*.xz binary
+*.7z binary
+*.tar binary
+*.whl binary
+# data stores and arrays
+*.npz binary
+*.npy binary
+*.parquet binary
+*.feather binary
+*.arrow binary
+*.avro binary
+*.orc binary
+*.h5 binary
+*.hdf binary
+*.hdf5 binary
+*.mat binary
+*.pkl binary
+*.pickle binary
+*.joblib binary
+*.sqlite binary
+*.sqlite3 binary
+*.db binary
+*.duckdb binary
+# keys, blobs and executables (DPAPI-protected signing keys are binary blobs; S-ADR-40)
+*.dpapi binary
+*.key binary
+*.der binary
+*.bin binary
+*.dat binary
+*.exe binary
+*.dll binary
+*.pyd binary
+*.pyc binary
+*.so binary
+# fonts and media
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.eot binary
+*.mp3 binary
+*.mp4 binary
+*.wav binary

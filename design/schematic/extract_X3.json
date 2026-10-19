@@ -1,0 +1,4023 @@
+{
+ "meta": {
+  "extract_id": "X3",
+  "project": "ADIC Agentic Total-Portfolio Laboratory",
+  "sources": [
+   "design/ARCHITECTURE.md v1.0 (2026-10-18)",
+   "design/00_DESIGN_BRIEF.md §8 (Real Assets, interim rules)"
+  ],
+  "generated": "2026-10-18",
+  "real_assets_badge": "added 18 Oct; research in progress; interim rules (brief §8)",
+  "section_convention": "§x.y = ARCHITECTURE.md; 'brief §8 rule n' = 00_DESIGN_BRIEF.md §8 interim rule n; ADR-nn = ARCHITECTURE.md §12",
+  "optional_fields": {
+   "node": [
+    "detail",
+    "tools",
+    "family",
+    "effort",
+    "output",
+    "gate",
+    "labels",
+    "drills",
+    "tests",
+    "attached_to",
+    "badge",
+    "real_assets",
+    "seq",
+    "day",
+    "produces",
+    "fsm_state",
+    "actors"
+   ]
+  },
+  "synthetic_notice": "SYNTHETIC – NOT ADIC DATA (ARCHITECTURE.md header; §9.5)"
+ },
+ "views": [
+  {
+   "id": "lab",
+   "title": "Agentic laboratory and trust boundaries",
+   "subtitle": "Deterministic meta-controller FSM; LLM roles behind a tool firewall; hashed out-of-process evaluator; commit-reveal seal; registry and rendered claims (§7.1–7.13, §10.1–10.6)",
+   "nodes": [
+    {
+     "id": "cio_cro",
+     "label": "CIO + CRO",
+     "sublabel": "sign the AnalysisContract; Board/owner if STRUCTURAL",
+     "kind": "human",
+     "lane": "l_human",
+     "order": 0,
+     "owner": "CIO; CRO",
+     "section": "§7.4; §10.1; §3.6",
+     "detail": "Co-sign the contract at T−22 (G0). STRUCTURAL_RECOVERY also needs Board (and owner where the mandate is involved) sign-off. Adopting an AmendmentDraft requires new SignOff objects, which no agent tool can create (§10.1)."
+    },
+    {
+     "id": "cro_office",
+     "label": "CRO office",
+     "sublabel": "custodian of the seal salt; dispositions G1 findings",
+     "kind": "human",
+     "lane": "l_human",
+     "order": 1,
+     "owner": "CRO office",
+     "section": "§2.1; §7.2; §3.6",
+     "detail": "The seal service runs under the CRO account and holds the per-campaign salt (TB4). The CRO dispositions the family-B design reviewer's findings at T−21 (G1)."
+    },
+    {
+     "id": "mrm",
+     "label": "MRM",
+     "sublabel": "engine validation, release hashes; approves metrics",
+     "kind": "human",
+     "lane": "l_human",
+     "order": 2,
+     "owner": "MRM",
+     "section": "§2.1; §3.4; §10.3",
+     "detail": "Engine validation, release hashes, revalidation on any model, prompt or tool change; approves metric-registry changes; inventories the lab as an AI system; the calibration plane and the sealed SYN truth (TB8) are readable by MRM only."
+    },
+    {
+     "id": "ai_governance",
+     "label": "AI governance function",
+     "sublabel": "allowed model families; LLM materiality tiers",
+     "kind": "human",
+     "lane": "l_human",
+     "order": 3,
+     "owner": "AI governance function",
+     "section": "§2.1; §11.7",
+     "detail": "Decides allowed model families and LLM materiality tiers (high: drafter, reviewer, translator; medium: writer, auditor, red team, extractors, seats; low: ideators); sees LLM call records and admission tests; acts through the agents configuration."
+    },
+    {
+     "id": "raci_owners",
+     "label": "RACI owners",
+     "sublabel": "answer escalations routed by the contract's raci",
+     "kind": "human",
+     "lane": "l_human",
+     "order": 4,
+     "owner": "",
+     "section": "§7.9; §10.1",
+     "detail": "escalate(kind, question, blocking, proposed_assumption, severity) routes to the RACI owner named in the contract (AnalysisContract.raci)."
+    },
+    {
+     "id": "operators",
+     "label": "Operators",
+     "sublabel": "run jobs; a flag enables holding-level prompts",
+     "kind": "human",
+     "lane": "l_human",
+     "order": 5,
+     "owner": "TPA desk quant developers; data/platform engineer",
+     "section": "§2.1; §9.7",
+     "detail": "Decide nothing about the portfolio; run jobs via the CLI, read-only MCP tools and CI. Holding-level prompt content needs an explicit operator flag for a role and data class declared in llm_policy."
+    },
+    {
+     "id": "tb5",
+     "label": "TB5 decision boundary",
+     "sublabel": "SignOff only by authenticated humans; AI never votes",
+     "kind": "boundary_note",
+     "lane": "l_human",
+     "order": 6,
+     "owner": "",
+     "section": "§2.4",
+     "attached_to": "analysis_contract"
+    },
+    {
+     "id": "analysis_contract",
+     "label": "AnalysisContract",
+     "sublabel": "planes, gates, budgets, llm_policy, raci, hashes",
+     "kind": "store",
+     "lane": "l_stores",
+     "order": 0,
+     "owner": "CIO + CRO (human-owned)",
+     "section": "§10.1",
+     "detail": "Frozen pydantic model: mandate_mode (B by default), mode NORMAL / EXEC_RECOVERY / STRUCT_RECOVERY, recovery plan, pricing_scenario, signoffs, frozen_questions (8–15 per Tier-A item), objective, tier1, floor, actions (lenses per group), anchor P0@hash, controls, planes (with the seal commitment), gates, budgets, horizons, operating_points, llm_policy (family, model, effort per role; prompt hashes), raci, engine/config/snapshot/scenario hashes. Rules: owner_signoff iff mandate_mode ≠ B; OWNER_PROPOSAL outputs never reach cards, envelopes or FTP; STRUCTURAL_RECOVERY needs Board sign-off; ni_comparator = RESTORED_BASELINE whenever mode ≠ NORMAL."
+    },
+    {
+     "id": "data_store",
+     "label": "data: bitemporal store",
+     "sublabel": "freeze → StateSnapshot / BeliefSet @hash; taint",
+     "kind": "store",
+     "lane": "l_stores",
+     "order": 1,
+     "owner": "Data office",
+     "section": "§3.2; §3.4; §3.6; §7.2",
+     "detail": "Schemas, bitemporal store, adapters, freeze and taint. Only synth may create data; everything derived from it is tainted. The T−23 freeze produces StateSnapshot@hash and BeliefSet@hash (G2)."
+    },
+    {
+     "id": "registry",
+     "label": "registry",
+     "sublabel": "append-only, hash-chained; a RunManifest per run",
+     "kind": "store",
+     "lane": "l_stores",
+     "order": 2,
+     "owner": "MRM",
+     "section": "§3.4; §7.2; §10.2",
+     "detail": "Append-only, hash-chained run/metric/claim/forecast/decision store (SQLite + Parquet). Every run writes a RunManifest: engine git SHA and tree hash, config, scenario-set, belief, snapshot and census hashes, seed spawn keys, plane, cache keys, solver and options, thread count, pinned numpy/numba/highspy versions, and per LLM call the served model id, prompt and response hashes, tokens, cost and any fallback event. Manifests map to W3C PROV and OpenTelemetry spans; re-running one reproduces the numbers bit for bit."
+    },
+    {
+     "id": "metric_registry",
+     "label": "metric registry",
+     "sublabel": "metric_id, value, unit, plane, CI, range, MC error",
+     "kind": "store",
+     "lane": "l_stores",
+     "order": 3,
+     "owner": "MRM (approves changes)",
+     "section": "§10.3",
+     "detail": "Every number the IC can see is a metric instance (metric_id, run_id, value, unit, plane, CI, model range, MC error, scenario hash). A definition records code reference and hash, unit, aggregation, CI method, world-range method, ICD-203 applicability and owner; changing a definition creates a new metric id."
+    },
+    {
+     "id": "provenance_dag",
+     "label": "Provenance DAG",
+     "sublabel": "recommendation → spec → attempts → bundles → worker",
+     "kind": "store",
+     "lane": "l_stores",
+     "order": 4,
+     "owner": "",
+     "section": "§10.6",
+     "detail": "recommendation → spec → attempts → bundles → mechanism references → worker, cycle and memory hash (paper l.1410-1412)."
+    },
+    {
+     "id": "tb7",
+     "label": "TB7 synthetic vs real",
+     "sublabel": "is_synthetic + data_class on every row; mixing = error",
+     "kind": "boundary_note",
+     "lane": "l_stores",
+     "order": 5,
+     "owner": "",
+     "section": "§2.4; §9.5",
+     "attached_to": "data_store"
+    },
+    {
+     "id": "tb8",
+     "label": "TB8 truth seal",
+     "sublabel": "SYN ground truth readable only by MRM validation jobs",
+     "kind": "boundary_note",
+     "lane": "l_stores",
+     "order": 6,
+     "owner": "",
+     "section": "§2.4",
+     "attached_to": "data_store"
+    },
+    {
+     "id": "meta_controller",
+     "label": "Meta-controller",
+     "sublabel": "plain-Python FSM; re-validates submit_* (≤ 3 retries)",
+     "kind": "deterministic",
+     "lane": "l_lab",
+     "order": 0,
+     "owner": "CIO office under AI governance",
+     "section": "§7.4; §7.3; §3.4",
+     "detail": "Deterministic orchestration (P9): 2 workers by default, configurable to 4 (ADR-17). Every role ends with a submit_<artifact> tool whose output the meta-controller re-validates with Pydantic; ≤ 3 retries on validation failure. Transcripts are append-only (§11.2)."
+    },
+    {
+     "id": "tool_firewall",
+     "label": "Tool firewall",
+     "sublabel": "per-state allowlists; no file, shell, code or network",
+     "kind": "deterministic",
+     "lane": "l_lab",
+     "order": 1,
+     "owner": "CIO office under AI governance",
+     "section": "§7.2; §7.3; §11.3",
+     "detail": "Per-state tool allowlists enforced by the meta-controller; strict JSON Schema (additionalProperties: false). Agents hold no file, shell, code or network tool (TB3)."
+    },
+    {
+     "id": "llm_gateway",
+     "label": "LLM gateway",
+     "sublabel": "sole egress; redaction filter; frozen hashed prompts",
+     "kind": "deterministic",
+     "lane": "l_lab",
+     "order": 2,
+     "owner": "CIO office under AI governance",
+     "section": "§7.2; §9.7; §11.2",
+     "detail": "Only process with network egress (HTTPS to the LLM provider). The redaction filter tokenizes sensitive fields (owner fiscal items, counterparties, GP names). Role prompts are frozen, versioned and hashed in llm_policy; any prompt, model or tool change reruns the evaluation suite. A refusal fallback that collapses author and reviewer into one family triggers re-routing."
+    },
+    {
+     "id": "budgets",
+     "label": "Budgets + deflation",
+     "sublabel": "24 cycles, ≤ 650 evals, $50/$200; α-investing, DSR",
+     "kind": "deterministic",
+     "lane": "l_lab",
+     "order": 3,
+     "owner": "CIO office under AI governance",
+     "section": "§7.7",
+     "detail": "Defaults [I]: 24 idea cycles (12 per worker); ≤ 650 counted search evaluations; ≤ 2 EvalRequests per attempt; tuning jobs ≤ 24 counted CMA-ES evaluations in the declared box; LLM spend $50 soft / $200 hard per cycle; ≈20 core-hours. Error control: decaying-memory generalized α-investing across cycles (W₀ = 0.05, payout 0.05, escalate below 0.005), Holm within a cycle. The IC sees N_eval incl. failures, clustered N_eff, the deflated search improvement (DSR), the search-to-final optimism gap and PBO."
+    },
+    {
+     "id": "campaign_memory",
+     "label": "Campaign memory",
+     "sublabel": "per-campaign search heuristic; never evidence",
+     "kind": "store",
+     "lane": "l_lab",
+     "order": 4,
+     "owner": "CIO office under AI governance",
+     "section": "§7.8",
+     "detail": "Append-only event log plus a ≤ 300-word conclusions paragraph per worker; shared at cycle boundaries, pruned every 8 cycles [I]; writes close at SELECTION; archived read-only at CLOSED; never loads into another campaign. The writer, auditor and seats cannot read it; the validator rejects any memo citing it. Institutional memory lives only in the forecast registry and the decision log."
+    },
+    {
+     "id": "escalation",
+     "label": "escalate + assumption log",
+     "sublabel": "blocking call pauses worker; assumptions tag outputs",
+     "kind": "deterministic",
+     "lane": "l_lab",
+     "order": 5,
+     "owner": "CIO office under AI governance",
+     "section": "§7.9",
+     "detail": "A blocking call pauses the worker (high-materiality roles always block); a non-blocking call proceeds under a logged assumption that tags every downstream artifact and prints in the memo and the pack appendix. 'Data insufficient' is an admissible output."
+    },
+    {
+     "id": "claims_renderer",
+     "label": "claims renderer",
+     "sublabel": "{{m:metric_id|fmt}} → value, unit, plane, CI, range",
+     "kind": "deterministic",
+     "lane": "l_lab",
+     "order": 6,
+     "owner": "CIO office under AI governance",
+     "section": "§10.6; §3.2",
+     "detail": "Writers use typed placeholders {{m:<metric_id>|<format>}}; the renderer fills each with value, unit, plane label, CI, model range and ICD-203 word (ADR-20)."
+    },
+    {
+     "id": "claims_validator",
+     "label": "claims validator",
+     "sublabel": "rejects literal digits, wrong plane, overclaims",
+     "kind": "deterministic",
+     "lane": "l_lab",
+     "order": 7,
+     "owner": "CIO office under AI governance",
+     "section": "§10.6",
+     "detail": "Rejects literal digits outside a whitelist (dates, section numbers); unknown or wrong-plane metrics; improvement verbs on NOT_QUALIFIED or NOT_ASSESSED results or within MC error; probabilities without a range; citations to memory; synthetic numbers attributed to ADIC; claim coverage below 1."
+    },
+    {
+     "id": "design_linter",
+     "label": "Deterministic linter",
+     "sublabel": "lint_report on the contract, beside the reviewer (G1)",
+     "kind": "deterministic",
+     "lane": "l_lab",
+     "order": 8,
+     "owner": "",
+     "section": "§7.1; §3.6"
+    },
+    {
+     "id": "tb1",
+     "label": "TB1 data perimeter",
+     "sublabel": "holdings stay local; redaction filter at the gateway",
+     "kind": "boundary_note",
+     "lane": "l_lab",
+     "order": 9,
+     "owner": "",
+     "section": "§2.4; §9.7",
+     "attached_to": "llm_gateway"
+    },
+    {
+     "id": "st_draft",
+     "label": "DRAFT",
+     "sublabel": "contract from template; amendments drafted (T−28)",
+     "kind": "deterministic",
+     "lane": "l_fsm",
+     "order": 0,
+     "owner": "CIO office under AI governance",
+     "section": "§7.4; §3.6",
+     "detail": "Contract DRAFT from the template; the Contract Drafter proposes amendments."
+    },
+    {
+     "id": "st_frozen",
+     "label": "FROZEN",
+     "sublabel": "snapshot, initial state and FBE-R hashed (T−23)",
+     "kind": "deterministic",
+     "lane": "l_fsm",
+     "order": 1,
+     "owner": "CIO office under AI governance",
+     "section": "§7.4; §3.6",
+     "detail": "The freeze precedes the contract check because Phase I needs the frozen state."
+    },
+    {
+     "id": "st_signed",
+     "label": "SIGNED",
+     "sublabel": "NORMAL mode; CIO + CRO signed (T−22)",
+     "kind": "deterministic",
+     "lane": "l_fsm",
+     "order": 2,
+     "owner": "CIO office under AI governance",
+     "section": "§7.4; §3.6",
+     "detail": "G0: Phase I for all consent scenarios, NORMAL mode, salt commit, CIO + CRO signatures."
+    },
+    {
+     "id": "st_signed_rec",
+     "label": "SIGNED_IN_RECOVERY",
+     "sublabel": "u*, d0, IIS, glide path; Board/owner if STRUCTURAL",
+     "kind": "deterministic",
+     "lane": "l_fsm",
+     "order": 3,
+     "owner": "CIO office under AI governance",
+     "section": "§7.4; §3.6",
+     "detail": "G0 in recovery: u*, d0, IIS and glide path; Board/owner sign-off if STRUCTURAL."
+    },
+    {
+     "id": "st_design_reviewed",
+     "label": "DESIGN_REVIEWED",
+     "sublabel": "family-B findings dispositioned (T−21)",
+     "kind": "deterministic",
+     "lane": "l_fsm",
+     "order": 4,
+     "owner": "CIO office under AI governance",
+     "section": "§7.4; §3.6",
+     "detail": "G1: family-B reviewer findings plus the deterministic linter, dispositioned by the CRO."
+    },
+    {
+     "id": "st_baseline_priced",
+     "label": "BASELINE_PRICED",
+     "sublabel": "H ×5, cards, Γ, envelopes, C_H (T−20)",
+     "kind": "deterministic",
+     "lane": "l_fsm",
+     "order": 5,
+     "owner": "CIO office under AI governance",
+     "section": "§7.4; §3.6",
+     "detail": "H on 5 parallel SAA replications with no pinned duals; Level-B selection with Γ; cards for every holding; envelopes; draft FTP; candidate C_H; module F."
+    },
+    {
+     "id": "st_ideation",
+     "label": "IDEATION",
+     "sublabel": "IdeaBundles from 2 workers on the search plane",
+     "kind": "deterministic",
+     "lane": "l_fsm",
+     "order": 6,
+     "owner": "CIO office under AI governance",
+     "section": "§7.4; §3.6",
+     "detail": "Ideators submit typed IdeaBundles: anchored residuals, action packages or overlay structures."
+    },
+    {
+     "id": "st_screening",
+     "label": "SCREENING",
+     "sublabel": "counted search evals; G4 correct, G5 selection",
+     "kind": "deterministic",
+     "lane": "l_fsm",
+     "order": 7,
+     "owner": "CIO office under AI governance",
+     "section": "§7.4; §3.6",
+     "detail": "Search stops when the budget is spent, after 6 cycles without a promotion, or when no column has a positive robust reduced cost."
+    },
+    {
+     "id": "st_selection",
+     "label": "SELECTION",
+     "sublabel": "≤ 4 finalists: incumbent, ≤ 3 cells, C_H (T−13)",
+     "kind": "deterministic",
+     "lane": "l_fsm",
+     "order": 8,
+     "owner": "CIO office under AI governance",
+     "section": "§7.4; §3.6",
+     "detail": "Finalists: at most four, the incumbent, the best of up to three distinct MAP-Elites archive cells, and C_H (H's quarter-1 package followed by P0) always. Memory writes close."
+    },
+    {
+     "id": "st_sealed",
+     "label": "SEALED",
+     "sublabel": "final plane run once (T−12)",
+     "kind": "deterministic",
+     "lane": "l_fsm",
+     "order": 9,
+     "owner": "CIO office under AI governance",
+     "section": "§7.4; §3.6",
+     "detail": "Sealed run once on the final plane; certification against T6 bands; G6 labels."
+    },
+    {
+     "id": "st_retrospective",
+     "label": "RETROSPECTIVE",
+     "sublabel": "controls, switch-off null, ablations (T−11)",
+     "kind": "deterministic",
+     "lane": "l_fsm",
+     "order": 10,
+     "owner": "CIO office under AI governance",
+     "section": "§7.4; §3.6",
+     "detail": "Controls at 3/5/10 years, switch-off null, single-change ablations, red team, one bootstrap rerun."
+    },
+    {
+     "id": "st_memo",
+     "label": "MEMO",
+     "sublabel": "briefs drafted as placeholders (T−9…T−8)",
+     "kind": "deterministic",
+     "lane": "l_fsm",
+     "order": 11,
+     "owner": "CIO office under AI governance",
+     "section": "§7.4; §3.6",
+     "detail": "G7 on exit: claim coverage = 1, plane labels, ICD-203 words, P14 fields, validator pass."
+    },
+    {
+     "id": "st_review",
+     "label": "REVIEW",
+     "sublabel": "family-B audit + human countersignature (T−9…T−8)",
+     "kind": "deterministic",
+     "lane": "l_fsm",
+     "order": 12,
+     "owner": "CIO office under AI governance",
+     "section": "§7.4; §3.6",
+     "detail": "G8 on exit: family-B PASS with ≤ 4 findings; both verdicts printed; human countersignature."
+    },
+    {
+     "id": "st_shadow_ic",
+     "label": "SHADOW_IC",
+     "sublabel": "computed seats, minority reports (T−7)",
+     "kind": "deterministic",
+     "lane": "l_fsm",
+     "order": 13,
+     "owner": "CIO office under AI governance",
+     "section": "§7.4; §3.6",
+     "detail": "Pack published; shadow IC S1–S7 (computed seats, one debate round, minority reports)."
+    },
+    {
+     "id": "st_prevote_lock",
+     "label": "PREVOTE_LOCK",
+     "sublabel": "human blind pre-votes locked (T−1)",
+     "kind": "deterministic",
+     "lane": "l_fsm",
+     "order": 14,
+     "owner": "CIO office under AI governance",
+     "section": "§7.4; §3.6",
+     "detail": "Pre-vote hashes locked before the meeting."
+    },
+    {
+     "id": "st_ic",
+     "label": "IC",
+     "sublabel": "human meeting H1–H6 (T)",
+     "kind": "deterministic",
+     "lane": "l_fsm",
+     "order": 15,
+     "owner": "CIO office under AI governance",
+     "section": "§7.4; §3.6",
+     "detail": "Ballots and DecisionRecords."
+    },
+    {
+     "id": "st_closed",
+     "label": "CLOSED",
+     "sublabel": "decision record (T+5); memory archived read-only",
+     "kind": "deterministic",
+     "lane": "l_fsm",
+     "order": 16,
+     "owner": "CIO office under AI governance",
+     "section": "§7.4; §3.6",
+     "detail": "G9: pre-votes locked, ballot, dissent, overrides with reason codes, signposts, review date."
+    },
+    {
+     "id": "st_escalate",
+     "label": "ESCALATE",
+     "sublabel": "from every state; pauses only the requesting worker",
+     "kind": "deterministic",
+     "lane": "l_fsm",
+     "order": 17,
+     "owner": "CIO office under AI governance",
+     "section": "§7.4; §3.6",
+     "detail": "ESCALATE is reachable from every state and pauses only the requesting worker."
+    },
+    {
+     "id": "st_aborted",
+     "label": "ABORTED",
+     "sublabel": "hash mismatch, seal breach, hard cap, human stop",
+     "kind": "deterministic",
+     "lane": "l_fsm",
+     "order": 18,
+     "owner": "CIO office under AI governance",
+     "section": "§7.4; §3.6",
+     "detail": "ABORTED follows a hash mismatch, a seal breach, the hard budget cap or a human stop."
+    },
+    {
+     "id": "contract_drafter",
+     "label": "Contract Drafter",
+     "sublabel": "A, high · AmendmentDraft · G0 + human signature",
+     "kind": "agentic",
+     "lane": "l_agents_a",
+     "order": 0,
+     "owner": "CIO office under AI governance",
+     "section": "§7.3; §7.1",
+     "family": "A",
+     "effort": "high",
+     "output": "AmendmentDraft",
+     "gate": "G0, human signature",
+     "tools": [
+      "read_template",
+      "read_state_card",
+      "phase1_restore",
+      "escalate"
+     ]
+    },
+    {
+     "id": "ideators",
+     "label": "Ideators ×2 workers",
+     "sublabel": "A, high · IdeaBundle · G3; hold no evaluate tool",
+     "kind": "agentic",
+     "lane": "l_agents_a",
+     "order": 1,
+     "owner": "CIO office under AI governance",
+     "section": "§7.3; §7.1",
+     "family": "A",
+     "effort": "high",
+     "gate": "G3",
+     "output": "IdeaBundle (anchored residual, action package or overlay structure)",
+     "tools": [
+      "get_state_card",
+      "get_price_table",
+      "get_cards",
+      "get_archive_summary",
+      "get_memory",
+      "escalate",
+      "submit_idea_bundle"
+     ]
+    },
+    {
+     "id": "executors",
+     "label": "Executors",
+     "sublabel": "A, medium · compiled spec, rubric status · G4–G5",
+     "kind": "agentic",
+     "lane": "l_agents_a",
+     "order": 2,
+     "owner": "CIO office under AI governance",
+     "section": "§7.3",
+     "family": "A",
+     "effort": "medium",
+     "output": "Compiled spec, rubric status",
+     "gate": "G4–G5",
+     "tools": [
+      "compile_spec",
+      "submit_eval_request (counted; search plane; bounded aggregates)",
+      "get_eval_result",
+      "write_rubric_status",
+      "write_memory_event",
+      "escalate"
+     ]
+    },
+    {
+     "id": "ablation_proposer",
+     "label": "Ablation proposer",
+     "sublabel": "A, medium · single-change VariantSet · retrospective",
+     "kind": "agentic",
+     "lane": "l_agents_a",
+     "order": 3,
+     "owner": "CIO office under AI governance",
+     "section": "§7.3; §10.5",
+     "family": "A",
+     "effort": "medium",
+     "gate": "Retrospective",
+     "output": "VariantSet (single-change, relevance-filtered; 'zero accepted' valid)",
+     "tools": [
+      "get_spec_diff",
+      "propose_variants"
+     ],
+     "detail": "§7.3 lists proposer and filter on one row: 'get_spec_diff, propose_variants / filter_variants', families A / B."
+    },
+    {
+     "id": "memo_writer",
+     "label": "Memo / Brief Writer",
+     "sublabel": "A, high · placeholder text only · G7",
+     "kind": "agentic",
+     "lane": "l_agents_a",
+     "order": 4,
+     "owner": "CIO office under AI governance",
+     "section": "§7.3; §10.6",
+     "family": "A",
+     "effort": "high",
+     "output": "Placeholder text",
+     "gate": "G7",
+     "tools": [
+      "list_metrics",
+      "get_metric",
+      "get_provenance",
+      "draft_memo",
+      "validate_claims"
+     ]
+    },
+    {
+     "id": "translator",
+     "label": "Translator",
+     "sublabel": "A, medium · ViewSpec drafts; member confirms the view",
+     "kind": "agentic",
+     "lane": "l_agents_a",
+     "order": 5,
+     "owner": "CIO office under AI governance",
+     "section": "§7.3; §8.7",
+     "family": "A",
+     "effort": "medium",
+     "output": "Drafts for member confirmation",
+     "gate": "Human confirms the effective view",
+     "tools": [
+      "draft_viewspec",
+      "draft_scenariospec",
+      "ep_condition"
+     ]
+    },
+    {
+     "id": "qa_answerer",
+     "label": "Q&A Answerer",
+     "sublabel": "A, medium · grounded answers · claim validator",
+     "kind": "agentic",
+     "lane": "l_agents_a",
+     "order": 6,
+     "owner": "CIO office under AI governance",
+     "section": "§7.3; §8.7",
+     "family": "A",
+     "effort": "medium",
+     "gate": "Claim validator",
+     "output": "Answers citing run_id:artifact:path, each statement labelled model output / agent judgment / assumption",
+     "tools": [
+      "get_metric",
+      "get_provenance",
+      "answer_grounded"
+     ]
+    },
+    {
+     "id": "facilitator",
+     "label": "Facilitator",
+     "sublabel": "A, medium · protocol state only; introduces no claims",
+     "kind": "agentic",
+     "lane": "l_agents_a",
+     "order": 7,
+     "owner": "CIO office under AI governance",
+     "section": "§7.3; §8.5",
+     "family": "A",
+     "effort": "medium",
+     "output": "Agenda flow",
+     "gate": "—",
+     "tools": [
+      "protocol state only"
+     ]
+    },
+    {
+     "id": "minutes_drafter",
+     "label": "Minutes Drafter",
+     "sublabel": "A, medium · draft minutes, dissent verbatim",
+     "kind": "agentic",
+     "lane": "l_agents_a",
+     "order": 8,
+     "owner": "CIO office under AI governance",
+     "section": "§7.3; §8.6",
+     "family": "A",
+     "effort": "medium",
+     "output": "Draft minutes; dissent verbatim",
+     "gate": "Secretary approves",
+     "tools": [
+      "read_ballots",
+      "read_transcript_structured"
+     ]
+    },
+    {
+     "id": "extractors",
+     "label": "Quarantined Extractors ×2",
+     "sublabel": "A, low · ExtractionRecord; real-data phase only",
+     "kind": "agentic",
+     "lane": "l_agents_a",
+     "order": 9,
+     "owner": "CIO office under AI governance",
+     "section": "§7.3; §2.4; §11.7",
+     "family": "A",
+     "effort": "low",
+     "output": "ExtractionRecord",
+     "gate": "Schema + human sample",
+     "tools": [
+      "submit_extraction (only; no outbound tools; dual extraction)"
+     ]
+    },
+    {
+     "id": "design_reviewer",
+     "label": "Design Reviewer",
+     "sublabel": "B, high · findings only · G1, CRO disposition",
+     "kind": "agentic",
+     "lane": "l_agents_b",
+     "order": 0,
+     "owner": "CIO office under AI governance",
+     "section": "§7.3; §7.10",
+     "family": "B",
+     "effort": "high",
+     "output": "Findings only",
+     "gate": "G1, CRO disposition",
+     "tools": [
+      "read_contract",
+      "lint_report"
+     ]
+    },
+    {
+     "id": "ablation_filter",
+     "label": "Ablation filter",
+     "sublabel": "B, medium · relevance filter; 'zero accepted' valid",
+     "kind": "agentic",
+     "lane": "l_agents_b",
+     "order": 1,
+     "owner": "CIO office under AI governance",
+     "section": "§7.3; §7.10; §10.5",
+     "family": "B",
+     "effort": "medium",
+     "gate": "Retrospective",
+     "output": "Filtered VariantSet (relevance, feasibility, single-change scope)",
+     "tools": [
+      "get_spec_diff",
+      "filter_variants"
+     ]
+    },
+    {
+     "id": "red_team",
+     "label": "Red Team",
+     "sublabel": "B, high · 'assigned dissent' findings · disclosed G8",
+     "kind": "agentic",
+     "lane": "l_agents_b",
+     "order": 2,
+     "owner": "CIO office under AI governance",
+     "section": "§7.3; §7.10",
+     "family": "B",
+     "effort": "high",
+     "output": "Findings; labelled 'assigned dissent'",
+     "gate": "Disclosed at G8",
+     "tools": [
+      "submit_scenario_spec (KL-bounded)",
+      "get_exploration_result",
+      "reverse_stress"
+     ]
+    },
+    {
+     "id": "auditor",
+     "label": "Auditor",
+     "sublabel": "B, high · 'supports' verdicts, overclaim flags · G8",
+     "kind": "agentic",
+     "lane": "l_agents_b",
+     "order": 3,
+     "owner": "CIO office under AI governance",
+     "section": "§7.3; §7.10; §10.6",
+     "family": "B",
+     "effort": "high",
+     "output": "'Supports' verdicts, overclaim flags",
+     "gate": "G8",
+     "tools": [
+      "read_ledger",
+      "read_run_logs",
+      "read_engine_diff",
+      "read_rendered_memo",
+      "read_bundles"
+     ],
+     "detail": "Four checks: score recomputation from the ledger, contract violations, reference verification, bundle-versus-executed-spec alignment (§10.6)."
+    },
+    {
+     "id": "ai_validator",
+     "label": "AI Validator",
+     "sublabel": "B, medium · flags packs (priced_on, politics) · gate",
+     "kind": "agentic",
+     "lane": "l_agents_b",
+     "order": 4,
+     "owner": "CIO office under AI governance",
+     "section": "§7.3; §7.10",
+     "family": "B",
+     "effort": "medium",
+     "gate": "Pack gate",
+     "output": "Flags packs where a card lacks priced_on, derives from a reverse stress, or breaks a politics rule",
+     "tools": [
+      "read_pack",
+      "read_registry"
+     ]
+    },
+    {
+     "id": "seat_narrators",
+     "label": "Seat narrators ×12",
+     "sublabel": "≥ 3 families target, ≤ 40% per family; never vote",
+     "kind": "agentic",
+     "lane": "l_agents_mix",
+     "order": 0,
+     "owner": "CIO office under AI governance",
+     "section": "§7.3; §7.10; §8.5",
+     "family": "≥ 3 families target, ≤ 40% per family",
+     "gate": "Rubric; flag, never vote",
+     "output": "Arguments, cruxes, minority reports; no numbers outside placeholders",
+     "tools": [
+      "get_evidence_slice",
+      "implied_actions (read result only)",
+      "submit_assessment",
+      "submit_minority_report"
+     ],
+     "detail": "§7.3 lists ×12 narrators for the twelve §8.5 seats; brief §8 rule 1 adds a Real Assets seat (not yet reflected in ARCHITECTURE.md). With fewer than three approved families, same-family seats are treated as correlated and the family mix is disclosed (§7.10)."
+    },
+    {
+     "id": "backend_live",
+     "label": "AnthropicBackend (live)",
+     "sublabel": "live mode; needs only an API key or provider client",
+     "kind": "external",
+     "lane": "l_llm",
+     "order": 0,
+     "owner": "",
+     "section": "§7.13; §11.1; §11.2",
+     "detail": "client.messages.parse with adaptive thinking, explicit effort per role, strict tool schemas, no sampling parameters, no prefill; the manifest records the model that served each call."
+    },
+    {
+     "id": "backend_replay",
+     "label": "ReplayBackend",
+     "sublabel": "keyed by SHA-256 of the request; any miss raises",
+     "kind": "deterministic",
+     "lane": "l_llm",
+     "order": 1,
+     "owner": "",
+     "section": "§7.13; §11.1",
+     "detail": "Responses keyed by SHA-256 of the canonical request (model, system, tools, messages, parameters). Opus 5.5 accepts no sampling parameters, so replay is the only route to deterministic agent tests; CI runs a full offline campaign on Replay."
+    },
+    {
+     "id": "backend_stub",
+     "label": "StubBackend",
+     "sublabel": "seeded, schema-valid, rule-based outputs (offline)",
+     "kind": "deterministic",
+     "lane": "l_llm",
+     "order": 2,
+     "owner": "",
+     "section": "§7.13; §11.1",
+     "detail": "E.g. DSL-grammar sampling. In offline mode the Stub serves every role; without LLM access only narrative is lost and every number is unchanged."
+    },
+    {
+     "id": "llm_providers",
+     "label": "LLM providers",
+     "sublabel": "Anthropic API; Bedrock, Vertex, Foundry channels",
+     "kind": "external",
+     "lane": "l_external",
+     "order": 0,
+     "owner": "",
+     "section": "§2.3; §11.2",
+     "detail": "Family A claude-opus-5-5; Phase-0 family B claude-sonnet-5-5 (same provider, so 'correlated'). Bedrock, Vertex and Foundry are deployment channels, not families; a second vendor is a Phase-1 addition."
+    },
+    {
+     "id": "untrusted_docs",
+     "label": "Untrusted documents",
+     "sublabel": "GP notices, memos, HF terms: data, never instructions",
+     "kind": "external",
+     "lane": "l_external",
+     "order": 1,
+     "owner": "",
+     "section": "§2.4; §2.2; §11.7"
+    },
+    {
+     "id": "tb6",
+     "label": "TB6 untrusted documents",
+     "sublabel": "quarantined extractors, dual extraction, human sample",
+     "kind": "boundary_note",
+     "lane": "l_external",
+     "order": 2,
+     "owner": "",
+     "section": "§2.4; §11.7",
+     "attached_to": "extractors"
+    },
+    {
+     "id": "evaluator_search",
+     "label": "evaluator (search)",
+     "sublabel": "python -I, no network; hash check; counts every call",
+     "kind": "deterministic",
+     "lane": "l_eval",
+     "order": 0,
+     "owner": "MRM",
+     "section": "§7.2; §10.4",
+     "detail": "Verifies engine, config, scenario, belief and snapshot hashes against the contract on every request (mismatch → ABORTED). Deterministically rejects malformed, duplicate, out-of-bounds, non-finite and over-budget submissions and counts every call, failures and retries included. EvalRequest names a spec hash and optional tuning job, with no fields for metrics, seeds, worlds or path counts. Agent view of EvalResult: {correct, ΔΨ bucket, gate categories, promotable, budget_left}. Refuses tuning for kind = ablation."
+    },
+    {
+     "id": "eval_tools",
+     "label": "Evaluator tool catalogue",
+     "sublabel": "typed MCP tools (stdio); search + exploration only",
+     "kind": "deterministic",
+     "lane": "l_eval",
+     "order": 1,
+     "owner": "MRM",
+     "section": "§7.3; §11.3",
+     "tools": [
+      "state_snapshot",
+      "phase1_restore",
+      "optimize_h",
+      "price_actions",
+      "evaluate_policy",
+      "evaluate_scenario",
+      "implied_actions",
+      "ep_condition",
+      "evsi_crossfit",
+      "flip_thresholds",
+      "robustness_card",
+      "bridge_card",
+      "group_envelopes",
+      "overlay_offset_card",
+      "attribute",
+      "price_trade",
+      "crif_sensitivities",
+      "simm_like",
+      "greek_offsets",
+      "hybrid_quote_check",
+      "get_metric",
+      "list_metrics",
+      "get_provenance",
+      "validate_claims",
+      "register_forecast",
+      "log_assumption",
+      "escalate"
+     ],
+     "detail": "Strict JSON Schema, additionalProperties: false. The evaluator MCP server cannot reach the final plane, the sealed truth or a write path to engines, beliefs or scenarios."
+    },
+    {
+     "id": "caches",
+     "label": "Plane caches",
+     "sublabel": "key = hash(source, snapshot, runtime, plane)",
+     "kind": "store",
+     "lane": "l_eval",
+     "order": 2,
+     "owner": "",
+     "section": "§7.2",
+     "detail": "A miss or mismatch stops evaluation and never triggers silent recomputation; each plane has its own cache."
+    },
+    {
+     "id": "gate1",
+     "label": "Gate 1 correct (G4)",
+     "sublabel": "TR1–TR8, T1–T9 bands, floor, NI ≥ −5bp, OV, duals",
+     "kind": "deterministic",
+     "lane": "l_eval",
+     "order": 3,
+     "owner": "MRM",
+     "section": "§7.6",
+     "labels": [
+      "INVALID_SPEC",
+      "TIER1_FAIL",
+      "FLOOR_FAIL",
+      "NI_FAIL",
+      "OV_FAIL",
+      "PINNED_DUAL",
+      "GAMBLING",
+      "BUDGET_EXHAUSTED",
+      "EXECUTION_FAILED"
+     ],
+     "detail": "Search and final planes, engine-side inputs only: (a) DSL type rules TR1–TR8; (b) hard rows T1–T5, T8 on every path (glide path in recovery), failed paths scored worst-case; (c) T6, T7, T9 within class bands (search point estimate ≤ 0.8 × tolerance at 10k paths; final one-sided 95% CP bound ≤ tolerance); (d) Tier-1B floor; (e) non-inferiority ≥ −5bp CE vs HOLD, or the restored Phase-II baseline in recovery; (f) OV1–OV3; (g) no pinned dual; (h) no gambling signature; (i) within budget."
+    },
+    {
+     "id": "gate2",
+     "label": "Gate 2 selection (G5)",
+     "sublabel": "ΔΨ − 2 SE > ε_mat vs incumbent; ties keep incumbent",
+     "kind": "deterministic",
+     "lane": "l_eval",
+     "order": 4,
+     "owner": "MRM",
+     "section": "§7.6",
+     "labels": [
+      "NOT_PROMOTED"
+     ],
+     "detail": "Search plane, paired CRN; Ψ_τ soft-min over worlds, τ = 0.5pp; ε_mat (CE bp a year): overlay 3, pacing 5, REFI/LEVER 10, SELL and other irreversible actions 15."
+    },
+    {
+     "id": "engines",
+     "label": "Engines L0–L7 (read-only)",
+     "sublabel": "scen/state/owner/priv/pub/overlay/beliefs/ledger/core",
+     "kind": "deterministic",
+     "lane": "l_eval",
+     "order": 5,
+     "owner": "",
+     "section": "§3.2; §7.2; §1.2",
+     "detail": "contracts/rng, data/synth, scen/state/owner, priv/pub/overlay/actions, beliefs/bridge, ledger, core (sim, h, safety…) and icm, robust/attrib/stats. Read-only, content-hashed engines, scenarios, beliefs and cost models (P2); engines never import lab, agents, claims or idm."
+    },
+    {
+     "id": "ra_engine",
+     "label": "Real Assets interim engine",
+     "sublabel": "added 18 Oct; research in progress; interim rules (brief §8)",
+     "kind": "deterministic",
+     "lane": "l_eval",
+     "order": 6,
+     "owner": "",
+     "section": "brief §8 rules 1, 2, 5",
+     "badge": "added 18 Oct; research in progress; interim rules (brief §8)",
+     "real_assets": true,
+     "detail": "Interim, until research G10–G15 lands: closed-end real-asset funds reuse the PE-fund commitment engine with real-asset parameters, including earlier income distributions; core, open-end and direct assets use income yield plus an appraisal-smoothed NAV driven by cap or discount rates, smoothed Geltner-style; capex and development calls; asset-level non-recourse debt with LTV, DSCR, a maturity wall, refinancing risk and rate hedges; open-end funds get a redemption-queue state machine analogous to the hedge-fund liquidity-terms machine. Energy and natural-resource assets are wrong-way with the owner's draw (weak oil raises the draw and lowers those assets). The group taxonomy is configuration, not code."
+    },
+    {
+     "id": "seal_service",
+     "label": "seal service (tpa seal)",
+     "sublabel": "256-bit salt; commits SHA256(salt ‖ contract_hash)",
+     "kind": "deterministic",
+     "lane": "l_seal",
+     "order": 0,
+     "owner": "MRM; seal custody by CRO office",
+     "section": "§7.2; §7.5",
+     "detail": "Holds the per-campaign 256-bit salt; writes SHA256(salt ‖ contract_hash) at signing; spawns 'tpa evaluator serve --plane final' once with HMAC(salt, world) spawn keys; reveals the salt after the run. No network; writes only the sealed final store."
+    },
+    {
+     "id": "evaluator_final",
+     "label": "evaluator (final)",
+     "sublabel": "spawned once with HMAC(salt, world) keys; own cache",
+     "kind": "deterministic",
+     "lane": "l_seal",
+     "order": 1,
+     "owner": "MRM",
+     "section": "§7.2; §7.5"
+    },
+    {
+     "id": "gate3",
+     "label": "Gate 3 qualification (G6)",
+     "sublabel": "Holm LCB95 > ε_mat; PBO ≤ 0.20; MDE ≤ ε_mat",
+     "kind": "deterministic",
+     "lane": "l_seal",
+     "order": 2,
+     "owner": "MRM",
+     "section": "§7.6",
+     "labels": [
+      "QUALIFIED",
+      "NOT_QUALIFIED",
+      "NOT_CORRECT",
+      "NOT_ASSESSED"
+     ],
+     "detail": "Final plane, once: correct on the final plane; Holm-adjusted LCB95(ΔΨ vs comparator, base mixture) > ε_mat; LCB95(ΔJ_m) > −5bp in every world; LCB95(ΔJ_m) > 0 in ≥ 2 worlds, one of them B2; PBO ≤ 0.20 (CSCV, ≥ 8 structural blocks); MDE ≤ ε_mat, else NOT_ASSESSED."
+    },
+    {
+     "id": "sealed_store",
+     "label": "Sealed final store (ACL)",
+     "sublabel": "final results; salt revealed after the run",
+     "kind": "store",
+     "lane": "l_seal",
+     "order": 3,
+     "owner": "",
+     "section": "§7.2; §7.11"
+    },
+    {
+     "id": "plane_calibration",
+     "label": "Calibration plane",
+     "sublabel": "history 1990–2026, ≥ 3-month embargo; MRM only",
+     "kind": "store",
+     "lane": "l_planes",
+     "order": 0,
+     "owner": "",
+     "section": "§7.5"
+    },
+    {
+     "id": "plane_search",
+     "label": "Search plane",
+     "sublabel": "E × M1–M6 + B1; 2k racing, 10k confirm paths",
+     "kind": "store",
+     "lane": "l_planes",
+     "order": 1,
+     "owner": "",
+     "section": "§7.5",
+     "detail": "B1 = block bootstrap to 2015 with a 12-month embargo; spawn keys in the contract; agents see bounded aggregates only."
+    },
+    {
+     "id": "plane_final",
+     "label": "Final plane (sealed, once)",
+     "sublabel": "fresh E seeds, B2 FHS, misspec ensemble; 50k paths",
+     "kind": "store",
+     "lane": "l_planes",
+     "order": 2,
+     "owner": "",
+     "section": "§7.5",
+     "detail": "Fresh E seeds on M1–M6; B2 held-out FHS (2017–2026); misspecification ensemble (engine changes, not seeds); 50k paths (250k or IS below 0.5%); HMAC(salt, world) seeds committed at signing; readable by the seal service only."
+    },
+    {
+     "id": "plane_historical",
+     "label": "Historical plane",
+     "sublabel": "2008–09, 2020, 2022; sign + Tier-1 checks only",
+     "kind": "store",
+     "lane": "l_planes",
+     "order": 3,
+     "owner": "",
+     "section": "§7.5"
+    },
+    {
+     "id": "plane_exploration",
+     "label": "Exploration plane",
+     "sublabel": "fresh keys, ≤ 10k paths; what-ifs, red team",
+     "kind": "store",
+     "lane": "l_planes",
+     "order": 4,
+     "owner": "",
+     "section": "§7.5"
+    },
+    {
+     "id": "integrity_drills",
+     "label": "Integrity drills (CI)",
+     "sublabel": "each observed paper failure becomes a drill (15)",
+     "kind": "deterministic",
+     "lane": "l_ci",
+     "order": 0,
+     "owner": "",
+     "section": "§7.11",
+     "drills": [
+      "Tamper drill → ABORTED",
+      "Hash-chain verification",
+      "Over-budget drill",
+      "Search process opens the final store → permission error",
+      "Hash check at SEALED",
+      "test_failed_paths_worst_case",
+      "Seeded overclaim must be flagged",
+      "Fabricated-number memo must fail",
+      "Planted leak must fail to compile",
+      "Fabrication drill",
+      "test_no_horizon_reference",
+      "Cache drill",
+      "test_memo_cannot_cite_memory",
+      "Escalation drill",
+      "test_no_payout_lever_in_mode_B"
+     ]
+    },
+    {
+     "id": "planted_calibration",
+     "label": "Planted-effect calibration",
+     "sublabel": "planted gain, leak, null: power ≥ 0.8, false-Q ≤ 5%",
+     "kind": "deterministic",
+     "lane": "l_ci",
+     "order": 1,
+     "owner": "",
+     "section": "§7.12",
+     "detail": "Campaigns on SYN-ADIC-177 worlds with a planted true gain, a planted leak and a null world set ε_mat and budgets (targets [I]); the contract states a miss-to-false-discovery cost ratio and the sealed test's MDE. 'Zero qualified' is a valid campaign outcome."
+    },
+    {
+     "id": "tpa_room",
+     "label": "tpa room",
+     "sublabel": "Register compiler, briefs, shadow-IC compute, pack",
+     "kind": "deterministic",
+     "lane": "l_room",
+     "order": 0,
+     "owner": "IC secretariat",
+     "section": "§7.2; §3.4",
+     "detail": "No network; writes pack artifacts and DecisionRecords. See the room view."
+    }
+   ],
+   "edges": [
+    {
+     "from": "contract_drafter",
+     "to": "cio_cro",
+     "label": "AmendmentDraft",
+     "kind": "data",
+     "section": "§7.3; §10.1"
+    },
+    {
+     "from": "cio_cro",
+     "to": "analysis_contract",
+     "label": "SignOff (no agent tool)",
+     "kind": "decision",
+     "section": "§10.1; §2.4"
+    },
+    {
+     "from": "analysis_contract",
+     "to": "meta_controller",
+     "label": "planes, gates, budgets, raci",
+     "kind": "control",
+     "section": "§10.1"
+    },
+    {
+     "from": "analysis_contract",
+     "to": "seal_service",
+     "label": "contract_hash → salt commit",
+     "kind": "control",
+     "section": "§7.2"
+    },
+    {
+     "from": "cro_office",
+     "to": "seal_service",
+     "label": "holds salt (CRO account)",
+     "kind": "control",
+     "section": "§7.2; §2.1"
+    },
+    {
+     "from": "analysis_contract",
+     "to": "design_reviewer",
+     "label": "read_contract",
+     "kind": "data",
+     "section": "§7.3"
+    },
+    {
+     "from": "design_linter",
+     "to": "design_reviewer",
+     "label": "lint_report",
+     "kind": "data",
+     "section": "§7.3"
+    },
+    {
+     "from": "design_reviewer",
+     "to": "cro_office",
+     "label": "findings → disposition",
+     "kind": "evidence",
+     "section": "§7.3; §3.6"
+    },
+    {
+     "from": "operators",
+     "to": "llm_gateway",
+     "label": "operator flag (holdings)",
+     "kind": "control",
+     "section": "§9.7; §2.4"
+    },
+    {
+     "from": "ai_governance",
+     "to": "llm_gateway",
+     "label": "allowed families, tiers",
+     "kind": "control",
+     "section": "§2.1; §11.7"
+    },
+    {
+     "from": "mrm",
+     "to": "metric_registry",
+     "label": "approves definitions",
+     "kind": "control",
+     "section": "§10.3"
+    },
+    {
+     "from": "mrm",
+     "to": "engines",
+     "label": "validation, release hashes",
+     "kind": "control",
+     "section": "§2.1; §11.7"
+    },
+    {
+     "from": "plane_calibration",
+     "to": "mrm",
+     "label": "readable by MRM only",
+     "kind": "data",
+     "section": "§7.5"
+    },
+    {
+     "from": "data_store",
+     "to": "analysis_contract",
+     "label": "snapshot_hash",
+     "kind": "data",
+     "section": "§10.1; §3.6"
+    },
+    {
+     "from": "planted_calibration",
+     "to": "analysis_contract",
+     "label": "sets ε_mat and budgets",
+     "kind": "control",
+     "section": "§7.12; §7.7"
+    },
+    {
+     "from": "meta_controller",
+     "to": "st_draft",
+     "label": "drives the FSM",
+     "kind": "control",
+     "section": "§7.4"
+    },
+    {
+     "from": "st_draft",
+     "to": "st_frozen",
+     "label": "G2 snapshot + FBE-R hashes",
+     "kind": "control",
+     "section": "§7.4; §7.6"
+    },
+    {
+     "from": "st_frozen",
+     "to": "st_signed",
+     "label": "G0 Phase I, NORMAL, salt",
+     "kind": "control",
+     "section": "§7.4; §7.6"
+    },
+    {
+     "from": "st_frozen",
+     "to": "st_signed_rec",
+     "label": "G0 u*, d0, IIS, glide path",
+     "kind": "control",
+     "section": "§7.4; §7.6"
+    },
+    {
+     "from": "st_signed",
+     "to": "st_design_reviewed",
+     "label": "G1 findings dispositioned",
+     "kind": "control",
+     "section": "§7.4; §7.6"
+    },
+    {
+     "from": "st_signed_rec",
+     "to": "st_design_reviewed",
+     "label": "G1",
+     "kind": "control",
+     "section": "§7.4; §7.6"
+    },
+    {
+     "from": "st_design_reviewed",
+     "to": "st_baseline_priced",
+     "label": "H×5, no pinned duals, Γ, C_H",
+     "kind": "control",
+     "section": "§7.4"
+    },
+    {
+     "from": "st_baseline_priced",
+     "to": "st_ideation",
+     "label": "campaign enabled",
+     "kind": "control",
+     "section": "§7.4"
+    },
+    {
+     "from": "st_baseline_priced",
+     "to": "st_selection",
+     "label": "campaign disabled",
+     "kind": "control",
+     "section": "§7.4"
+    },
+    {
+     "from": "st_ideation",
+     "to": "st_screening",
+     "label": "G3 schema + DSL compile",
+     "kind": "control",
+     "section": "§7.4; §7.6"
+    },
+    {
+     "from": "st_screening",
+     "to": "st_ideation",
+     "label": "G4 correct, G5 selection",
+     "kind": "feedback",
+     "section": "§7.4; §7.6"
+    },
+    {
+     "from": "st_screening",
+     "to": "st_selection",
+     "label": "stop rule",
+     "kind": "control",
+     "section": "§7.4"
+    },
+    {
+     "from": "st_selection",
+     "to": "st_sealed",
+     "label": "finalists frozen, mem. closed",
+     "kind": "control",
+     "section": "§7.4"
+    },
+    {
+     "from": "st_sealed",
+     "to": "st_retrospective",
+     "label": "G6 labels",
+     "kind": "control",
+     "section": "§7.4; §7.6"
+    },
+    {
+     "from": "st_retrospective",
+     "to": "st_memo",
+     "label": "",
+     "kind": "control",
+     "section": "§7.4"
+    },
+    {
+     "from": "st_memo",
+     "to": "st_review",
+     "label": "G7 coverage = 1, validator",
+     "kind": "control",
+     "section": "§7.4; §7.6"
+    },
+    {
+     "from": "st_review",
+     "to": "st_shadow_ic",
+     "label": "G8 audit + human countersign",
+     "kind": "control",
+     "section": "§7.4; §7.6"
+    },
+    {
+     "from": "st_shadow_ic",
+     "to": "st_prevote_lock",
+     "label": "",
+     "kind": "control",
+     "section": "§7.4"
+    },
+    {
+     "from": "st_prevote_lock",
+     "to": "st_ic",
+     "label": "",
+     "kind": "control",
+     "section": "§7.4"
+    },
+    {
+     "from": "st_ic",
+     "to": "st_closed",
+     "label": "G9 decision record",
+     "kind": "control",
+     "section": "§7.4; §7.6"
+    },
+    {
+     "from": "escalation",
+     "to": "st_escalate",
+     "label": "from any state",
+     "kind": "control",
+     "section": "§7.4; §7.9"
+    },
+    {
+     "from": "st_escalate",
+     "to": "raci_owners",
+     "label": "routes to RACI owner",
+     "kind": "control",
+     "section": "§7.9"
+    },
+    {
+     "from": "evaluator_search",
+     "to": "st_aborted",
+     "label": "hash mismatch",
+     "kind": "control",
+     "section": "§7.2; §7.4"
+    },
+    {
+     "from": "seal_service",
+     "to": "st_aborted",
+     "label": "seal breach",
+     "kind": "control",
+     "section": "§7.4"
+    },
+    {
+     "from": "budgets",
+     "to": "st_aborted",
+     "label": "hard budget cap",
+     "kind": "control",
+     "section": "§7.4"
+    },
+    {
+     "from": "st_selection",
+     "to": "campaign_memory",
+     "label": "memory writes close",
+     "kind": "control",
+     "section": "§7.8"
+    },
+    {
+     "from": "st_closed",
+     "to": "campaign_memory",
+     "label": "archived read-only",
+     "kind": "control",
+     "section": "§7.8"
+    },
+    {
+     "from": "meta_controller",
+     "to": "tool_firewall",
+     "label": "per-state allowlists",
+     "kind": "control",
+     "section": "§7.3; §11.3"
+    },
+    {
+     "from": "meta_controller",
+     "to": "llm_gateway",
+     "label": "role calls, frozen prompts",
+     "kind": "control",
+     "section": "§7.2; §11.2"
+    },
+    {
+     "from": "llm_gateway",
+     "to": "backend_live",
+     "label": "TPA_LLM_MODE=live",
+     "kind": "data",
+     "section": "§11.1; §7.13"
+    },
+    {
+     "from": "llm_gateway",
+     "to": "backend_replay",
+     "label": "replay",
+     "kind": "data",
+     "section": "§11.1; §7.13"
+    },
+    {
+     "from": "llm_gateway",
+     "to": "backend_stub",
+     "label": "offline",
+     "kind": "data",
+     "section": "§11.1; §7.13"
+    },
+    {
+     "from": "backend_live",
+     "to": "llm_providers",
+     "label": "HTTPS egress (TB3)",
+     "kind": "data",
+     "section": "§7.2; §2.4"
+    },
+    {
+     "from": "tool_firewall",
+     "to": "eval_tools",
+     "label": "typed MCP calls (stdio)",
+     "kind": "data",
+     "section": "§7.2; §11.3"
+    },
+    {
+     "from": "eval_tools",
+     "to": "evaluator_search",
+     "label": "EvalRequest: spec hash only",
+     "kind": "data",
+     "section": "§10.4"
+    },
+    {
+     "from": "evaluator_search",
+     "to": "engines",
+     "label": "evaluate on read-only engines",
+     "kind": "data",
+     "section": "§7.2; §1.2"
+    },
+    {
+     "from": "caches",
+     "to": "evaluator_search",
+     "label": "hit, or hard stop",
+     "kind": "data",
+     "section": "§7.2"
+    },
+    {
+     "from": "evaluator_search",
+     "to": "gate1",
+     "label": "engine-side scores",
+     "kind": "data",
+     "section": "§7.6"
+    },
+    {
+     "from": "gate1",
+     "to": "gate2",
+     "label": "correct",
+     "kind": "control",
+     "section": "§7.6"
+    },
+    {
+     "from": "evaluator_search",
+     "to": "tool_firewall",
+     "label": "agent view: ΔΨ bucket, gates",
+     "kind": "data",
+     "section": "§10.4; §7.2"
+    },
+    {
+     "from": "evaluator_search",
+     "to": "registry",
+     "label": "full record, hash-chained",
+     "kind": "data",
+     "section": "§7.2; §10.4"
+    },
+    {
+     "from": "evaluator_search",
+     "to": "budgets",
+     "label": "every call counted",
+     "kind": "data",
+     "section": "§10.4; §7.7"
+    },
+    {
+     "from": "data_store",
+     "to": "evaluator_search",
+     "label": "StateSnapshot/BeliefSet@hash",
+     "kind": "data",
+     "section": "§7.2; §3.6"
+    },
+    {
+     "from": "plane_search",
+     "to": "evaluator_search",
+     "label": "spawn keys from contract",
+     "kind": "data",
+     "section": "§7.5"
+    },
+    {
+     "from": "plane_exploration",
+     "to": "evaluator_search",
+     "label": "EXPLORATORY requests",
+     "kind": "data",
+     "section": "§7.5; §11.3"
+    },
+    {
+     "from": "plane_historical",
+     "to": "engines",
+     "label": "sign + Tier-1 checks only",
+     "kind": "data",
+     "section": "§7.5"
+    },
+    {
+     "from": "seal_service",
+     "to": "evaluator_final",
+     "label": "spawn once, HMAC keys",
+     "kind": "control",
+     "section": "§7.2"
+    },
+    {
+     "from": "plane_final",
+     "to": "evaluator_final",
+     "label": "worlds hashed at signing",
+     "kind": "data",
+     "section": "§7.5"
+    },
+    {
+     "from": "evaluator_final",
+     "to": "gate3",
+     "label": "final-plane scores",
+     "kind": "data",
+     "section": "§7.6"
+    },
+    {
+     "from": "gate3",
+     "to": "sealed_store",
+     "label": "QUALIFIED / NOT_QUALIFIED",
+     "kind": "data",
+     "section": "§7.6; §7.2"
+    },
+    {
+     "from": "sealed_store",
+     "to": "meta_controller",
+     "label": "G6 labels (run once)",
+     "kind": "evidence",
+     "section": "§7.4; §7.6"
+    },
+    {
+     "from": "integrity_drills",
+     "to": "evaluator_search",
+     "label": "tamper, budget, cache drills",
+     "kind": "control",
+     "section": "§7.11"
+    },
+    {
+     "from": "integrity_drills",
+     "to": "claims_validator",
+     "label": "fabricated number must fail",
+     "kind": "control",
+     "section": "§7.11"
+    },
+    {
+     "from": "integrity_drills",
+     "to": "sealed_store",
+     "label": "search reads final → denied",
+     "kind": "control",
+     "section": "§7.11"
+    },
+    {
+     "from": "ra_engine",
+     "to": "engines",
+     "label": "interim group engine (priv)",
+     "kind": "data",
+     "section": "brief §8 rule 2"
+    },
+    {
+     "from": "tool_firewall",
+     "to": "escalation",
+     "label": "escalate(kind, question…)",
+     "kind": "control",
+     "section": "§7.9; §7.3"
+    },
+    {
+     "from": "escalation",
+     "to": "tpa_room",
+     "label": "assumption tags in pack",
+     "kind": "data",
+     "section": "§7.9"
+    },
+    {
+     "from": "metric_registry",
+     "to": "claims_renderer",
+     "label": "metric instances",
+     "kind": "data",
+     "section": "§10.3; §10.6"
+    },
+    {
+     "from": "claims_validator",
+     "to": "claims_renderer",
+     "label": "validated placeholders",
+     "kind": "control",
+     "section": "§10.6"
+    },
+    {
+     "from": "claims_renderer",
+     "to": "tpa_room",
+     "label": "rendered memo and briefs",
+     "kind": "data",
+     "section": "§10.6; §3.6"
+    },
+    {
+     "from": "registry",
+     "to": "provenance_dag",
+     "label": "spec, attempts, bundles",
+     "kind": "data",
+     "section": "§10.6"
+    },
+    {
+     "from": "llm_gateway",
+     "to": "registry",
+     "label": "LLM call hashes, cost",
+     "kind": "data",
+     "section": "§10.2"
+    },
+    {
+     "from": "contract_drafter",
+     "to": "tool_firewall",
+     "label": "phase1_restore",
+     "kind": "data",
+     "section": "§7.3"
+    },
+    {
+     "from": "ideators",
+     "to": "meta_controller",
+     "label": "submit_idea_bundle (G3)",
+     "kind": "data",
+     "section": "§7.3; §7.6"
+    },
+    {
+     "from": "campaign_memory",
+     "to": "ideators",
+     "label": "get_memory",
+     "kind": "data",
+     "section": "§7.3; §7.8"
+    },
+    {
+     "from": "executors",
+     "to": "tool_firewall",
+     "label": "submit_eval_request (counted)",
+     "kind": "data",
+     "section": "§7.3"
+    },
+    {
+     "from": "executors",
+     "to": "campaign_memory",
+     "label": "write_memory_event",
+     "kind": "data",
+     "section": "§7.3; §7.8"
+    },
+    {
+     "from": "ablation_proposer",
+     "to": "ablation_filter",
+     "label": "propose_variants",
+     "kind": "data",
+     "section": "§7.3; §10.5"
+    },
+    {
+     "from": "ablation_filter",
+     "to": "meta_controller",
+     "label": "VariantSet (single-change)",
+     "kind": "data",
+     "section": "§7.3; §10.5"
+    },
+    {
+     "from": "red_team",
+     "to": "plane_exploration",
+     "label": "submit_scenario_spec (KL)",
+     "kind": "data",
+     "section": "§7.3; §7.5"
+    },
+    {
+     "from": "memo_writer",
+     "to": "claims_validator",
+     "label": "validate_claims",
+     "kind": "data",
+     "section": "§7.3; §10.6"
+    },
+    {
+     "from": "provenance_dag",
+     "to": "memo_writer",
+     "label": "get_provenance",
+     "kind": "data",
+     "section": "§7.3; §10.6"
+    },
+    {
+     "from": "registry",
+     "to": "auditor",
+     "label": "read_ledger, logs, diffs",
+     "kind": "evidence",
+     "section": "§7.3; §10.6"
+    },
+    {
+     "from": "claims_renderer",
+     "to": "auditor",
+     "label": "read_rendered_memo",
+     "kind": "evidence",
+     "section": "§7.3"
+    },
+    {
+     "from": "auditor",
+     "to": "st_review",
+     "label": "'supports' verdicts (G8)",
+     "kind": "evidence",
+     "section": "§7.6; §10.6"
+    },
+    {
+     "from": "translator",
+     "to": "eval_tools",
+     "label": "ep_condition",
+     "kind": "data",
+     "section": "§7.3"
+    },
+    {
+     "from": "registry",
+     "to": "qa_answerer",
+     "label": "get_metric, get_provenance",
+     "kind": "data",
+     "section": "§7.3"
+    },
+    {
+     "from": "qa_answerer",
+     "to": "tpa_room",
+     "label": "grounded answers",
+     "kind": "data",
+     "section": "§7.3; §8.7"
+    },
+    {
+     "from": "eval_tools",
+     "to": "seat_narrators",
+     "label": "implied_actions (read only)",
+     "kind": "data",
+     "section": "§7.3; §8.5"
+    },
+    {
+     "from": "seat_narrators",
+     "to": "tpa_room",
+     "label": "arguments, minority reports",
+     "kind": "data",
+     "section": "§7.3; §8.5"
+    },
+    {
+     "from": "facilitator",
+     "to": "tpa_room",
+     "label": "agenda flow, no claims",
+     "kind": "control",
+     "section": "§7.3"
+    },
+    {
+     "from": "ai_validator",
+     "to": "tpa_room",
+     "label": "pack-gate flags",
+     "kind": "evidence",
+     "section": "§7.3"
+    },
+    {
+     "from": "minutes_drafter",
+     "to": "tpa_room",
+     "label": "draft minutes",
+     "kind": "data",
+     "section": "§7.3"
+    },
+    {
+     "from": "untrusted_docs",
+     "to": "extractors",
+     "label": "documents as data (TB6)",
+     "kind": "data",
+     "section": "§2.4; §7.3"
+    },
+    {
+     "from": "extractors",
+     "to": "data_store",
+     "label": "ExtractionRecord (checked)",
+     "kind": "data",
+     "section": "§7.3; §2.2"
+    }
+   ],
+   "lanes": [
+    {
+     "id": "l_human",
+     "label": "Human plane: signers, custodians, owners",
+     "kind": "actor_group",
+     "order": 0
+    },
+    {
+     "id": "l_stores",
+     "label": "Contract and provenance stores (L1, L8; §10)",
+     "kind": "layer",
+     "order": 1
+    },
+    {
+     "id": "l_lab",
+     "label": "tpa lab run: L9 lab, the only process with egress (TB3)",
+     "kind": "boundary",
+     "order": 2
+    },
+    {
+     "id": "l_fsm",
+     "label": "Meta-controller FSM states (§7.4)",
+     "kind": "phase",
+     "order": 3
+    },
+    {
+     "id": "l_agents_a",
+     "label": "LLM roles, family A (claude-opus-5-5)",
+     "kind": "actor_group",
+     "order": 4
+    },
+    {
+     "id": "l_agents_b",
+     "label": "LLM roles, family B (Phase 0: claude-sonnet-5-5, labelled correlated)",
+     "kind": "actor_group",
+     "order": 5
+    },
+    {
+     "id": "l_agents_mix",
+     "label": "LLM roles, mixed families (shadow-IC seat narrators)",
+     "kind": "actor_group",
+     "order": 6
+    },
+    {
+     "id": "l_llm",
+     "label": "LLMBackend (TPA_LLM_MODE: offline | replay | live)",
+     "kind": "layer",
+     "order": 7
+    },
+    {
+     "id": "l_external",
+     "label": "Outside the machine (beyond the TB1 perimeter)",
+     "kind": "boundary",
+     "order": 8
+    },
+    {
+     "id": "l_eval",
+     "label": "tpa evaluator serve --plane search (TB2)",
+     "kind": "boundary",
+     "order": 9
+    },
+    {
+     "id": "l_seal",
+     "label": "tpa seal + final-plane evaluator (CRO account, TB4)",
+     "kind": "boundary",
+     "order": 10
+    },
+    {
+     "id": "l_planes",
+     "label": "Planes, hashed at contract signing (§7.5)",
+     "kind": "plane",
+     "order": 11
+    },
+    {
+     "id": "l_ci",
+     "label": "CI integrity drills and lab calibration",
+     "kind": "layer",
+     "order": 12
+    },
+    {
+     "id": "l_room",
+     "label": "tpa room (no network; detail in the room view)",
+     "kind": "boundary",
+     "order": 13
+    }
+   ],
+   "notes": [
+    "Motto: LLMs accelerate evidence; deterministic models own numbers; humans own decisions. Nothing executes trades (§0.1; brief P1).",
+    "Processes: tpa lab run (only egress), tpa evaluator serve --plane search (no network), tpa seal under the CRO account, tpa room (no network) (§7.2).",
+    "Trust boundaries: TB1 data perimeter, TB2 evaluator, TB3 LLM egress, TB4 seal, TB5 decision, TB6 untrusted documents, TB7 synthetic vs real, TB8 truth seal (§2.4).",
+    "The evaluator checks engine, config, scenario, belief and snapshot hashes on every request; a mismatch moves the campaign to ABORTED; a cache miss stops evaluation (§7.2).",
+    "Agents see rounded ΔΨ buckets, gate categories and budget left; humans and the auditor see the full ledger (§7.2; §10.4).",
+    "Meta-controller gates: G0 contract; G1 design review; G2 freeze; G3 admissibility (schema, DSL compile, novelty); G4–G6 = engine gates 1–3; G7 brief; G8 audit; G9 record (§7.6).",
+    "Failure taxonomy: INVALID_SPEC, TIER1_FAIL, FLOOR_FAIL, NI_FAIL, OV_FAIL, PINNED_DUAL, GAMBLING, BUDGET_EXHAUSTED, EXECUTION_FAILED; NOT_PROMOTED; QUALIFIED, NOT_QUALIFIED, NOT_CORRECT, NOT_ASSESSED (§7.6).",
+    "Agent-verified rubrics are diagnostics and stopping rules only; a QUALIFIED label never substitutes for the ballot (§7.6).",
+    "Engine faults retry under their own budget as degraded phases, shown and never passed silently; candidate-caused failures count as evaluations (§7.4).",
+    "Search results are never claims: over ≈40 tests, P(at least one false promotion) ≈ 60% (§7.7).",
+    "Memory is a per-campaign search heuristic: closed at SELECTION, archived at CLOSED, never cross-campaign; institutional memory lives in the forecast registry and decision log (§7.8; ADR-33).",
+    "Cross-family review: reviewer, filter, red team, auditor and AI validator run on family B; Phase 0 same-provider reviews are labelled 'correlated', never extremized (§7.10; ADR-30).",
+    "Admission tests before a role is trusted: judges κ ≥ 0.6 on ≥ 50 golden items; auditor ≥ 90% recall; translator pass³ ≥ 0.9; sycophancy < 10% unjustified flips (§7.10).",
+    "Offline first: engines, evaluator, the room's deterministic parts and all tests run with no network; CI runs a full offline campaign on Replay (§7.13; §11.1).",
+    "Laptop isolation relies on NTFS ACLs and separate Windows accounts; weaker than service accounts or containers, and disclosed (§7.2; §11.7).",
+    "Real Assets (added 18 Oct; research in progress; interim rules (brief §8)): the group taxonomy is configuration, not code; an interim Real Assets engine joins priv (brief §8 rules 1–2)."
+   ]
+  },
+  {
+   "id": "room",
+   "title": "Decision room and IC flow",
+   "subtitle": "Register-driven evidence, rendered briefs, computed shadow IC, blind pre-vote, ballots and DecisionRecords; humans own every decision (§8.1–8.11)",
+   "nodes": [
+    {
+     "id": "cio",
+     "label": "CIO",
+     "sublabel": "owns the Register; proposes exposure, pacing, weights",
+     "kind": "human",
+     "lane": "r_actors",
+     "order": 0,
+     "owner": "CIO",
+     "section": "§3.4; §2.1; §8.2",
+     "detail": "Sees first: bridge, package vs archetypes, envelope coherence (§8.4)."
+    },
+    {
+     "id": "cro",
+     "label": "CRO + CRO office",
+     "sublabel": "Tier-1 status; forecast registry; TP committee",
+     "kind": "human",
+     "lane": "r_actors",
+     "order": 1,
+     "owner": "CRO",
+     "section": "§2.1; §8.10",
+     "detail": "Sees first: Tier-1 board, CP bounds, class bands, recovery, k_MS, gambling flags, OV1–OV3 (§8.4). The CRO-office committee decides FTP disputes within 10 business days (§8.10)."
+    },
+    {
+     "id": "treasurer",
+     "label": "Treasurer / CF",
+     "sublabel": "funding, FTP publication; owner's advocate (Q2)",
+     "kind": "human",
+     "lane": "r_actors",
+     "order": 2,
+     "owner": "Corporate Finance",
+     "section": "§2.1; §8.2; §8.4",
+     "detail": "Sees first: LR1–LR8, CFP readings, facility and covenant headroom, VM/IM by CSA, draw fan, decision vs published FTP, mismatch P&L, infeasibility prices."
+    },
+    {
+     "id": "group_heads",
+     "label": "Seven group heads",
+     "sublabel": "forecasts, proposals, quotes; in-envelope deals",
+     "kind": "human",
+     "lane": "r_actors",
+     "order": 3,
+     "owner": "",
+     "section": "§2.1; §8.1; §8.4",
+     "detail": "PE, Secondaries, Capital Solutions, Co-investment, Public Markets, Private Credit, Overlay. Each sees envelope use, hurdle, FTP, delivery share φ_g, cards and own information value."
+    },
+    {
+     "id": "ra_head",
+     "label": "Real Assets head",
+     "sublabel": "added 18 Oct; research in progress; interim rules (brief §8)",
+     "kind": "human",
+     "lane": "r_actors",
+     "order": 4,
+     "owner": "",
+     "section": "brief §8 rules 1, 4, 6",
+     "badge": "added 18 Oct; research in progress; interim rules (brief §8)",
+     "real_assets": true,
+     "detail": "Eighth investment group: real estate, infrastructure, energy and natural resources (agriculture and timber excluded); funds plus co-investments and direct assets or joint ventures; inside the ~60% private allocation. SYNTHETIC working v2 (pending the user): $18bn (~10%) carved from PE funds, unfunded ~$4bn. Files forecasts like every group (forecast registry generic over groups). Marks: underwritten (yield-on-cost, IRR, exit cap rate); current (appraisal NAV, lagged and smoothed); forecast (asset business plans); market-implied (listed REIT and infrastructure NAV discounts, secondary pricing)."
+    },
+    {
+     "id": "ic_secretariat",
+     "label": "IC secretariat",
+     "sublabel": "agenda, pack publication, minutes approval",
+     "kind": "human",
+     "lane": "r_actors",
+     "order": 5,
+     "owner": "IC secretariat",
+     "section": "§2.1; §3.4"
+    },
+    {
+     "id": "ic_members",
+     "label": "IC voting members (TPC)",
+     "sublabel": "Tier-A items; envelopes and FTP; model weights",
+     "kind": "human",
+     "lane": "r_actors",
+     "order": 6,
+     "owner": "Investment Committee",
+     "section": "§2.1; §8.1; §8.6"
+    },
+    {
+     "id": "board_owner",
+     "label": "Board / owner",
+     "sublabel": "Board items: IC recommendation + minority report",
+     "kind": "human",
+     "lane": "r_actors",
+     "order": 7,
+     "owner": "Board (owner where mandate involved)",
+     "section": "§8.1; §2.1"
+    },
+    {
+     "id": "mrm",
+     "label": "MRM",
+     "sublabel": "A9: revalidates the room (IDM) annually",
+     "kind": "human",
+     "lane": "r_actors",
+     "order": 8,
+     "owner": "MRM",
+     "section": "§8.2; §8.11"
+    },
+    {
+     "id": "decision_register",
+     "label": "Decision Register",
+     "sublabel": "signed YAML → DecisionType; Q1–Q10, A1–A9, E1–E4",
+     "kind": "store",
+     "lane": "r_register",
+     "order": 0,
+     "owner": "CIO",
+     "section": "§8.2; §12 ADR-22",
+     "detail": "Each entry declares proposer → decider, tier, cadence and deadline, variables, the options it must always show (status quo, DEFER, recommendation, archetypes A/B/C), signpost rules and an evidence contract of EvidenceSpec(metric, by, plane, max_age_days). Quarterly: Q1 fund state; Q2 owner-draw response; Q3 buffer, funding, leverage; Q4 envelopes and FTP; Q5 pacing by group; Q6 SELL/HOLD/REFI/LEVER cards; Q7 overlay; Q8 HF notices and P2S; Q9 internal transfers; Q10 signpost reviews. Annual (run in Q4): A1 Tier-1 contract … A9 model revalidation incl. the room. Increment 1 ships Q1, Q2, Q4, Q5, Q6."
+    },
+    {
+     "id": "reg_event",
+     "label": "Event decisions E1–E4",
+     "sublabel": "compressed protocol S1, S5, H0, H4 on W2 evidence",
+     "kind": "store",
+     "lane": "r_register",
+     "order": 1,
+     "owner": "",
+     "section": "§8.2; §8.3",
+     "detail": "E1 GP-triggered events; E2 expiring bids and financing windows (letting one lapse is a decision); E3 CFP stage change → pre-approved playbook; E4 owner override or unscheduled draw. Also Q8 on dealing dates. Evidence labelled EXPLORATORY; a confirmatory sealed run precedes an irreversible Tier-A execution when the deadline allows."
+    },
+    {
+     "id": "evidence_compiler",
+     "label": "compile_agenda",
+     "sublabel": "EvidenceSpec(metric, by, plane, max_age_days) → DAG",
+     "kind": "deterministic",
+     "lane": "r_register",
+     "order": 2,
+     "owner": "IC secretariat",
+     "section": "§8.2",
+     "detail": "compile_agenda(register, quarter, snapshot) turns the quarter's entries into a content-hashed DAG of run specs, deduplicated across decisions."
+    },
+    {
+     "id": "evaluator",
+     "label": "evaluator",
+     "sublabel": "runs the EvidencePlan; the room never calls engines",
+     "kind": "deterministic",
+     "lane": "r_register",
+     "order": 3,
+     "owner": "MRM",
+     "section": "§3.2; §8.2"
+    },
+    {
+     "id": "metric_registry",
+     "label": "metric registry",
+     "sublabel": "value, unit, plane, CI, model range, MC error",
+     "kind": "store",
+     "lane": "r_register",
+     "order": 4,
+     "owner": "MRM",
+     "section": "§10.3; §8.4"
+    },
+    {
+     "id": "evidence_missing",
+     "label": "EVIDENCE MISSING: ⟨metric⟩",
+     "sublabel": "brief renders only if every EvidenceSpec resolves",
+     "kind": "boundary_note",
+     "lane": "r_register",
+     "order": 5,
+     "owner": "",
+     "section": "§8.2",
+     "attached_to": "briefs_l1"
+    },
+    {
+     "id": "memo_writer",
+     "label": "Memo / Brief Writer",
+     "sublabel": "family A; writes {{m:metric_id|format}} only",
+     "kind": "agentic",
+     "lane": "r_pack",
+     "order": 0,
+     "owner": "CIO office under AI governance",
+     "section": "§7.3; §10.6"
+    },
+    {
+     "id": "claims",
+     "label": "claims renderer + validator",
+     "sublabel": "fills placeholders; rejects digits and overclaims",
+     "kind": "deterministic",
+     "lane": "r_pack",
+     "order": 1,
+     "owner": "CIO office under AI governance",
+     "section": "§10.6"
+    },
+    {
+     "id": "auditor",
+     "label": "Auditor (family B)",
+     "sublabel": "'supports' verdicts from ledger and logs (G8)",
+     "kind": "agentic",
+     "lane": "r_pack",
+     "order": 2,
+     "owner": "CIO office under AI governance",
+     "section": "§7.3; §10.6"
+    },
+    {
+     "id": "briefs_l1",
+     "label": "L1 briefs",
+     "sublabel": "one page each; ≤ 6 pages per Tier-A item",
+     "kind": "deterministic",
+     "lane": "r_pack",
+     "order": 3,
+     "owner": "IC secretariat",
+     "section": "§8.4",
+     "detail": "Fixed anatomy: (1) question, deadline, decider, recusals; (2) options: status quo, DEFER, recommendation, alternatives; (3) consequences: ΔTier-1 by class with CP bounds, ΔJ, Δsurvival months, ΔP(10%) reported only; (4) economics: λ-priced waterfall, binding constraints, shadow prices, envelope use, priced_on, Γ; (5) beliefs: raw vs fused marks, market anchor, information value; (6) disagreement: implied-action map, belief/value split, minority reports (authentic first); (7) what would change it: flip thresholds, signposts, cross-fitted EVSI when DEFER is live."
+    },
+    {
+     "id": "pack_l0",
+     "label": "L0 fund on a page",
+     "sublabel": "≤ 5 min: CFP, Tier-1, draw, λ/FTP, WYNTB, lab block",
+     "kind": "deterministic",
+     "lane": "r_pack",
+     "order": 4,
+     "owner": "IC secretariat",
+     "section": "§8.4",
+     "detail": "CFP readiness and event stages and T4′ survival; Tier-1 by model-class band (and recovery mode, u*, d0, IIS, glide path); owner draw for the next 4 quarters and its funding; λ and the FTP change; WYNTB verdict by model; package vs controls and archetypes A/B/C; this quarter's decisions with deadlines; the 12-row state panel; the one-page lab block."
+    },
+    {
+     "id": "pack_l2",
+     "label": "L2 drill-down",
+     "sublabel": "every number ≤ 2 clicks from run_id:artifact:path",
+     "kind": "deterministic",
+     "lane": "r_pack",
+     "order": 5,
+     "owner": "IC secretariat",
+     "section": "§8.4"
+    },
+    {
+     "id": "console",
+     "label": "Console (W1–W3)",
+     "sublabel": "HTML/JSON pack with ep.js; cruxes shown at H2",
+     "kind": "deterministic",
+     "lane": "r_pack",
+     "order": 6,
+     "owner": "IC secretariat",
+     "section": "§3.2; §8.6; §8.7",
+     "detail": "The pack embeds 10,000 paths × ≈40 metrics and a ≤ 150-line vanilla-JS dual-Newton solver that runs golden cases against Python on load and disables W1 on any mismatch > 10⁻⁶."
+    },
+    {
+     "id": "controls_arch",
+     "label": "Status quo, DEFER, A/B/C",
+     "sublabel": "frozen archetypes through module F, on CRN",
+     "kind": "deterministic",
+     "lane": "r_pack",
+     "order": 7,
+     "owner": "",
+     "section": "§8.8; §5.10; §12 ADR-26",
+     "detail": "A: de-risking by secondary sales; B: synthetic DPI via REFINANCE (cash-out) plus tail monetization; C: opportunistic alpha expansion. Shown with ΔCE, P(red) by class, Δsurvival and P(10%) beside P(red); a materially projected archetype is labelled 'Tier-1 infeasible as specified'. NOT_QUALIFIED / NOT_ASSESSED recommendations keep their label and the validator blocks improvement verbs."
+    },
+    {
+     "id": "ai_validator",
+     "label": "AI Validator (family B)",
+     "sublabel": "flags missing priced_on, reverse-stress cards, politics",
+     "kind": "agentic",
+     "lane": "r_pack",
+     "order": 8,
+     "owner": "CIO office under AI governance",
+     "section": "§7.3; §8.5",
+     "detail": "Non-voting; sits outside the twelve seats."
+    },
+    {
+     "id": "pack_linter",
+     "label": "Pack linter + visual grammar",
+     "sublabel": "central [range] ± MC, ICD-203 word, plane label",
+     "kind": "deterministic",
+     "lane": "r_pack",
+     "order": 9,
+     "owner": "IC secretariat",
+     "section": "§8.4; §8.10",
+     "detail": "Every probability as '37% [26–38%] ± 0.2pp' with scenario hash, ICD-203 word and plane label (SEALED / SEARCH / EXPLORATORY); greyed when |Δ| < 2 paired SE; P(10%) always beside P(red); SYNTHETIC footer when tainted; rejects cross-group league tables and any blueprint illustrative figure."
+    },
+    {
+     "id": "theta",
+     "label": "Admissible value set Θ",
+     "sublabel": "γ∈[2,6], λ_T∈[0,2], T6 ≤ IC tolerance; no indicators",
+     "kind": "boundary_note",
+     "lane": "r_shadow",
+     "order": 0,
+     "owner": "",
+     "section": "§8.5; §12 ADR-21",
+     "attached_to": "implied_actions",
+     "detail": "Shortfall exponent ≥ 1; a T6 limit no looser than the IC's tolerance; extra costs only on engine metrics; no indicator or probability terms. The blueprint's opposing institutional utilities survive here, but no seat maximizes P(10%)."
+    },
+    {
+     "id": "seat_cio",
+     "label": "CIO seat",
+     "sublabel": "q: IC base mixture · θ: γ 2, λ_T 2, T6 1%",
+     "kind": "deterministic",
+     "lane": "r_shadow",
+     "order": 1,
+     "owner": "",
+     "section": "§8.5",
+     "detail": "'Total-return architect'."
+    },
+    {
+     "id": "seat_cro",
+     "label": "CRO seat",
+     "sublabel": "q: worst model class · θ: γ 3, λ_T 1, 0.5%, k_MS",
+     "kind": "deterministic",
+     "lane": "r_shadow",
+     "order": 2,
+     "owner": "",
+     "section": "§8.5"
+    },
+    {
+     "id": "seat_treasurer",
+     "label": "Treasurer / CF seat",
+     "sublabel": "q: base + owner draw at P90 · θ: γ 5, λ_T 0.5, 0.5%",
+     "kind": "deterministic",
+     "lane": "r_shadow",
+     "order": 3,
+     "owner": "",
+     "section": "§8.5",
+     "detail": "'Liquidity guardian'; owner's advocate. Extra costs: owner financing cost ×2, T7 shortfall."
+    },
+    {
+     "id": "seat_groups",
+     "label": "Seven group-mandate seats",
+     "sublabel": "q: group's filed forecasts · θ: γ 3, λ_T 1, 1% + loss",
+     "kind": "deterministic",
+     "lane": "r_shadow",
+     "order": 4,
+     "owner": "",
+     "section": "§8.5",
+     "detail": "Five private-group heads, Public Markets, Overlay (two briefs: convexity per unit of carry; deflated alpha and margin). Mandate loss terms: κ^GP; dry-powder value; concentration; PIK/kicker; LGD ambiguity; adverse selection; hedge fatigue and hidden short vol. Named by mandate ('PE mandate (AI seat)'), never as people."
+    },
+    {
+     "id": "seat_ra",
+     "label": "Real Assets mandate seat",
+     "sublabel": "added 18 Oct; research in progress; interim rules (brief §8)",
+     "kind": "deterministic",
+     "lane": "r_shadow",
+     "order": 5,
+     "owner": "",
+     "section": "brief §8 rule 1; §8.5",
+     "badge": "added 18 Oct; research in progress; interim rules (brief §8)",
+     "real_assets": true,
+     "detail": "Brief §8 rule 1: the Real Assets head gets a shadow-IC seat. As a group-mandate seat its numbers come only from implied_actions and its belief channel is the group's filed forecasts (§8.5); its value parameters and mandate loss term are not yet specified (research in progress)."
+    },
+    {
+     "id": "seat_outside",
+     "label": "Outside-View Forecaster",
+     "sublabel": "q: reference-class priors only · θ: γ 3, λ_T 1, 1%",
+     "kind": "deterministic",
+     "lane": "r_shadow",
+     "order": 6,
+     "owner": "",
+     "section": "§8.5"
+    },
+    {
+     "id": "seat_red_team",
+     "label": "Red Team seat",
+     "sublabel": "q: minimum-KL failure world vs the recommendation",
+     "kind": "deterministic",
+     "lane": "r_shadow",
+     "order": 7,
+     "owner": "",
+     "section": "§8.5",
+     "detail": "Objective devil's advocate; output labelled 'assigned dissent', aimed at the model recommendation and, after H1, at the human majority."
+    },
+    {
+     "id": "implied_actions",
+     "label": "implied_actions",
+     "sublabel": "a*_k = argmax J(a; q_k, θ_k) over A_T1 (W2 paths)",
+     "kind": "deterministic",
+     "lane": "r_shadow",
+     "order": 8,
+     "owner": "",
+     "section": "§8.5; §7.3",
+     "detail": "Numbers come only from the engine (test_seat_numbers_only_from_implied_actions); regret R_k(a) = J(a*_k) − J(a) under the seat's beliefs and values."
+    },
+    {
+     "id": "regret_split",
+     "label": "Regret + Shapley split",
+     "sublabel": "belief → diligence (EVSI); value → delegation chain",
+     "kind": "deterministic",
+     "lane": "r_shadow",
+     "order": 9,
+     "owner": "",
+     "section": "§8.5",
+     "detail": "Decision-relevant disagreement = average regret of the committee's action; group disagreement shown as the information value of the group's forecast in $; diversity alarm if pairwise seat rank correlation > 0.9; recused positions leave the pool."
+    },
+    {
+     "id": "seat_narrators",
+     "label": "Seat narrators (LLM)",
+     "sublabel": "argue, rank cruxes; probabilities = agent judgment",
+     "kind": "agentic",
+     "lane": "r_shadow",
+     "order": 10,
+     "owner": "CIO office under AI governance",
+     "section": "§7.3; §8.5",
+     "detail": "≥ 3 families target, ≤ 40% per family; never vote; no numbers outside placeholders; any probability they state is labelled 'agent judgment' and never pooled with model outputs."
+    },
+    {
+     "id": "facilitator",
+     "label": "Facilitator (non-voting)",
+     "sublabel": "protocol state only; introduces no claims",
+     "kind": "agentic",
+     "lane": "r_shadow",
+     "order": 11,
+     "owner": "CIO office under AI governance",
+     "section": "§7.3; §8.5"
+    },
+    {
+     "id": "protocol",
+     "label": "Seat protocol S0–S7",
+     "sublabel": "frozen Qs, hashed S1, cruxes, 1 round, influence cap",
+     "kind": "deterministic",
+     "lane": "r_shadow",
+     "order": 12,
+     "owner": "",
+     "section": "§8.5",
+     "detail": "S0 8–15 frozen questions per Tier-A item; S1 independent hashed assessments; S2 reveal with cruxes ranked by value of information; S3 one debate round by default with an influence cap (a move > 5pp needs a new validated artifact); S4 pre-mortem and competing hypotheses on the DPI decline; S5–S7 hashed minority reports, authentic dissent first."
+    },
+    {
+     "id": "minority_reports",
+     "label": "Minority reports",
+     "sublabel": "|Δp| ≥ 15pp or regret ≥ 10bp CE; authentic first",
+     "kind": "store",
+     "lane": "r_shadow",
+     "order": 13,
+     "owner": "",
+     "section": "§8.5"
+    },
+    {
+     "id": "agenda",
+     "label": "Agenda (180 min)",
+     "sublabel": "A total 40 · B group blocks 90 · C cross 20 · D ballot 30",
+     "kind": "deterministic",
+     "lane": "r_meeting",
+     "order": 0,
+     "owner": "",
+     "section": "§8.6",
+     "detail": "A total portfolio (Q1–Q4); B group blocks ordered by decision value at stake (minimax regret in $ + EVSI) and the marginal-asset agenda; C cross-group (internal transfers, desk quotes via the pricing committee, P2S/HF-TRS collateral, overlay offset card); D ballot. At most four Tier-A items per meeting."
+    },
+    {
+     "id": "ra_block",
+     "label": "Real Assets block + cards",
+     "sublabel": "added 18 Oct; research in progress; interim rules (brief §8)",
+     "kind": "deterministic",
+     "lane": "r_meeting",
+     "order": 1,
+     "owner": "",
+     "section": "brief §8 rules 1, 3, 7; §8.6",
+     "badge": "added 18 Oct; research in progress; interim rules (brief §8)",
+     "real_assets": true,
+     "detail": "Group block B and group-keyed Register items (Q4 envelopes and FTP charges, Q5 pacing by group, Q6 cards) are generic over groups. Interim action set: SELL = asset or stake sale, secondary sale of a fund LP interest, open-end redemption subject to the queue; HOLD; REFINANCE (cash-out) = cash-out refinancing of asset-level debt, recap, sale-leaseback or ground lease, JV or partial-stake sell-down, NAV facility on real-asset fund interests; LEVER (exposure-up) = asset-level acquisition or development debt. Asset-level debt is non-recourse and outside Corporate Finance's facilities, but counts in look-through leverage and in stress through refinancing risk and covenant cures. Oil wrong-way risk with the owner's draw applies to the energy and natural-resource book. Interactions: Private Credit, Capital Solutions, Overlay, Secondaries, Corporate Finance."
+    },
+    {
+     "id": "consent_agenda",
+     "label": "Consent agenda",
+     "sublabel": "P(best) ≥ 0.8 in every class; any member may pull",
+     "kind": "deterministic",
+     "lane": "r_meeting",
+     "order": 2,
+     "owner": "",
+     "section": "§8.6",
+     "detail": "Also requires no minority-report trigger, minimax regret ≤ materiality and no Board trigger."
+    },
+    {
+     "id": "h0",
+     "label": "H0 blind pre-vote",
+     "sublabel": "fact pack only; locked and hashed at T−1",
+     "kind": "human",
+     "lane": "r_meeting",
+     "order": 3,
+     "owner": "IC voting members",
+     "section": "§8.6; §3.6",
+     "detail": "No AI narrative, seat map or minority reports before the pre-vote."
+    },
+    {
+     "id": "h1",
+     "label": "H1 reveal",
+     "sublabel": "dispersion → model baseline → seat map → minority",
+     "kind": "human",
+     "lane": "r_meeting",
+     "order": 4,
+     "owner": "",
+     "section": "§8.6"
+    },
+    {
+     "id": "h2",
+     "label": "H2 cruxes + integration",
+     "sublabel": "console cruxes; unique-fact ledger",
+     "kind": "human",
+     "lane": "r_meeting",
+     "order": 5,
+     "owner": "",
+     "section": "§8.6",
+     "detail": "Integration step: 'which uniquely held facts change any score or implied action?', recorded in a unique-fact ledger."
+    },
+    {
+     "id": "h3",
+     "label": "H3 pre-mortem",
+     "sublabel": "rotating human devil's advocate",
+     "kind": "human",
+     "lane": "r_meeting",
+     "order": 6,
+     "owner": "",
+     "section": "§8.6"
+    },
+    {
+     "id": "h4",
+     "label": "H4 simultaneous ballot",
+     "sublabel": "approve / resize / defer / reject; second-chance",
+     "kind": "human",
+     "lane": "r_meeting",
+     "order": 7,
+     "owner": "IC voting members",
+     "section": "§8.6",
+     "detail": "With probabilities, rationale and 'what would change my mind'; anyone accepting the model recommendation writes one line on how it could be wrong."
+    },
+    {
+     "id": "h5",
+     "label": "H5 minutes",
+     "sublabel": "AI-drafted, sourced numbers; secretary approves",
+     "kind": "human",
+     "lane": "r_meeting",
+     "order": 8,
+     "owner": "IC secretariat",
+     "section": "§8.6",
+     "detail": "Dissent recorded verbatim."
+    },
+    {
+     "id": "h6",
+     "label": "H6 signposts armed",
+     "sublabel": "3–6 signposts per decision from the pre-mortem",
+     "kind": "deterministic",
+     "lane": "r_meeting",
+     "order": 9,
+     "owner": "",
+     "section": "§8.6; §8.9"
+    },
+    {
+     "id": "minutes_drafter",
+     "label": "Minutes Drafter (LLM)",
+     "sublabel": "read_ballots, structured transcript; draft only",
+     "kind": "agentic",
+     "lane": "r_meeting",
+     "order": 10,
+     "owner": "CIO office under AI governance",
+     "section": "§7.3; §8.6"
+    },
+    {
+     "id": "decision_rules",
+     "label": "Decision rules",
+     "sublabel": "pooled (reversible); minimax regret (irreversible)",
+     "kind": "deterministic",
+     "lane": "r_meeting",
+     "order": 11,
+     "owner": "",
+     "section": "§8.6",
+     "detail": "Max-min only as a diagnostic. DEFER only if the 80% lower bound of cross-fitted EVSI exceeds the cost of delay, no staged action dominates and fewer than 2 prior deferrals. A discursive-dilemma flag is raised when the pooled answer differs from the vote."
+    },
+    {
+     "id": "qa_answerer",
+     "label": "Q&A Answerer (Ask)",
+     "sublabel": "cites run_id:artifact:path; per-statement labels",
+     "kind": "agentic",
+     "lane": "r_whatif",
+     "order": 0,
+     "owner": "CIO office under AI governance",
+     "section": "§8.7; §7.3",
+     "detail": "Labels: model output / agent judgment / assumption; 'not in the artifacts' is valid."
+    },
+    {
+     "id": "translator",
+     "label": "Translator (NL → typed)",
+     "sublabel": "FBE and entropy-pooling ViewSpec drafts; KL, ESS",
+     "kind": "agentic",
+     "lane": "r_whatif",
+     "order": 1,
+     "owner": "CIO office under AI governance",
+     "section": "§8.7; §7.3",
+     "detail": "E.g. 'Buyout forecast 16% realizes at 8%, spreads +250bp' → an FBE ViewSpec plus an entropy-pooling ViewSpec; acts only after the member confirms."
+    },
+    {
+     "id": "member_confirm",
+     "label": "Member confirms view",
+     "sublabel": "effective view after target shrinkage (c = 0.6)",
+     "kind": "human",
+     "lane": "r_whatif",
+     "order": 2,
+     "owner": "",
+     "section": "§8.7",
+     "detail": "At c = 0.6, 'distributions 30% below base' becomes 18% below."
+    },
+    {
+     "id": "w1",
+     "label": "W1 entropy pooling",
+     "sublabel": "< 1 s in the pack; golden self-test; EXPLORATORY",
+     "kind": "deterministic",
+     "lane": "r_whatif",
+     "order": 3,
+     "owner": "",
+     "section": "§8.7; §12 ADR-23",
+     "detail": "KL flags: inform > 0.05, warn > 0.25, amber > 1.20, red > 2.30 nats (forces W3); Kish ESS ≥ 5,000; weight ratio ≤ 50."
+    },
+    {
+     "id": "w2",
+     "label": "W2 re-fusion + re-opt",
+     "sublabel": "≤ 60 s on cached CRN paths; EXPLORATORY",
+     "kind": "deterministic",
+     "lane": "r_whatif",
+     "order": 4,
+     "owner": "",
+     "section": "§8.7",
+     "detail": "Asset-return and lever views become FBE signals (ω = (P90 − P10)/2.563 until the member is scored); a lever view also updates the bridge; W2 re-scores cards."
+    },
+    {
+     "id": "w3",
+     "label": "W3 re-simulation",
+     "sublabel": "tilted sampler; confirmatory only on the sealed plane",
+     "kind": "deterministic",
+     "lane": "r_whatif",
+     "order": 5,
+     "owner": "",
+     "section": "§8.7"
+    },
+    {
+     "id": "sealed_confirm",
+     "label": "Confirmatory sealed run",
+     "sublabel": "before irreversible Tier-A on exploratory evidence",
+     "kind": "deterministic",
+     "lane": "r_whatif",
+     "order": 6,
+     "owner": "",
+     "section": "§8.7; §8.3"
+    },
+    {
+     "id": "decision_log",
+     "label": "Decision log",
+     "sublabel": "DecisionRecords: append-only, bitemporal, hashed",
+     "kind": "store",
+     "lane": "r_log",
+     "order": 0,
+     "owner": "IC secretariat",
+     "section": "§8.9",
+     "detail": "DecisionRecord: decision_id, register_id, tier, options, engine_recommendation, evidence_plane, run_manifests, priced_on, consent_scenario, recovery_hash, prevote_hashes, ballots, decision, override reason code (belief, value, info_outside_model, implementation, legal_consent, relationship, other), rationale, minority_reports, signposts, commitment_plan, review_date, outcomes q1/q4/q8. Tracks plan consistency and DEFER frequency."
+    },
+    {
+     "id": "signposts",
+     "label": "Signpost monitor",
+     "sublabel": "alarm 0.5σ on safe side → Tier B; flip → Tier A",
+     "kind": "deterministic",
+     "lane": "r_log",
+     "order": 1,
+     "owner": "",
+     "section": "§8.9",
+     "detail": "Flip values by root-finding; alarms re-arm after a 0.25σ retreat."
+    },
+    {
+     "id": "commitment_plan",
+     "label": "Commitment plan",
+     "sublabel": "pre-committed state-contingent actions",
+     "kind": "store",
+     "lane": "r_log",
+     "order": 2,
+     "owner": "",
+     "section": "§8.9",
+     "detail": "Guards committee dynamic inconsistency."
+    },
+    {
+     "id": "forecast_registry",
+     "label": "Forecast registry",
+     "sublabel": "WIS-scored; IC probabilities Brier-scored 1/4/8 q",
+     "kind": "store",
+     "lane": "r_log",
+     "order": 3,
+     "owner": "CRO office",
+     "section": "§9.3; §8.9",
+     "detail": "Append-only, bitemporal; one epistemology for every forecaster; Brier skill against the model measures the value of overrides."
+    },
+    {
+     "id": "room_eval",
+     "label": "Room evaluation",
+     "sublabel": "shadow mode; hidden-profile accuracy; seeded errors",
+     "kind": "deterministic",
+     "lane": "r_log",
+     "order": 4,
+     "owner": "MRM (A9)",
+     "section": "§8.11",
+     "detail": "6–12 months of shadow mode; sycophancy and flip tests; seat-diversity alarm; time-sliced replay. KPIs: reliance split by model correctness, override accuracy, dissent rate, DEFER frequency, anti-portfolio returns, plan consistency, legitimacy survey. No persuasion optimization; one seeded-error drill per Tier-A meeting; a kill switch per item."
+    },
+    {
+     "id": "decision_rights",
+     "label": "Decision rights A/B/C/Board",
+     "sublabel": "machine-enforced tiers; recusal; irreversibility",
+     "kind": "deterministic",
+     "lane": "r_rules",
+     "order": 0,
+     "owner": "",
+     "section": "§8.1",
+     "detail": "A: ≥ 0.25% of NAV, discount > 10%, LTV +5pp or leverage +1pp, tail budget > 10bp, opportunistic limits, conflicted transfers → majority + irreversibility protocol. B: CIO + CRO. C: group / desk. Board/owner items. CFP stage authorities: Green Treasurer, Amber CIO, Red IC weekly, Black Board and owner. Symmetric irreversibility needs a second-chance check and CRO sign-off; a head's vote on its own envelope is recorded but not tallied."
+    },
+    {
+     "id": "politics_rules",
+     "label": "Politics rules (tests)",
+     "sublabel": "information value not a grade; n_eff ≥ 20; no league",
+     "kind": "deterministic",
+     "lane": "r_rules",
+     "order": 1,
+     "owner": "",
+     "section": "§8.10",
+     "tests": [
+      "test_information_value_not_bias_label",
+      "test_credibility_hidden_below_neff_20",
+      "test_no_league_table",
+      "WIS golden tests",
+      "Envelope-invariance test",
+      "Gates G-B–G-E",
+      "Ticket workflow test",
+      "Pack visibility test"
+     ],
+     "detail": "Credibility is a weight on information; own reference class only; no league tables; symmetric WIS scoring; a forecast cannot buy budget; strategic bias modelled; a route to contest; FTP disputes by a CRO-office committee within 10 business days."
+    }
+   ],
+   "edges": [
+    {
+     "from": "cio",
+     "to": "decision_register",
+     "label": "owns the Register",
+     "kind": "control",
+     "section": "§3.4"
+    },
+    {
+     "from": "treasurer",
+     "to": "decision_register",
+     "label": "Register Q1–Q3, A5–A6, E3–E4",
+     "kind": "data",
+     "section": "§8.2; §0.4"
+    },
+    {
+     "from": "cro",
+     "to": "decision_register",
+     "label": "proposes Q1, A1, A8",
+     "kind": "data",
+     "section": "§8.2"
+    },
+    {
+     "from": "group_heads",
+     "to": "decision_register",
+     "label": "proposals Q5–Q9, E1–E2",
+     "kind": "data",
+     "section": "§8.2"
+    },
+    {
+     "from": "group_heads",
+     "to": "forecast_registry",
+     "label": "P10/P50/P90 forecasts",
+     "kind": "data",
+     "section": "§2.1; §3.6"
+    },
+    {
+     "from": "ra_head",
+     "to": "forecast_registry",
+     "label": "forecasts (interim marks)",
+     "kind": "data",
+     "section": "brief §8 rules 1, 4"
+    },
+    {
+     "from": "ra_head",
+     "to": "ra_block",
+     "label": "interim action proposals",
+     "kind": "data",
+     "section": "brief §8 rule 3"
+    },
+    {
+     "from": "decision_register",
+     "to": "evidence_compiler",
+     "label": "quarter's entries",
+     "kind": "data",
+     "section": "§8.2"
+    },
+    {
+     "from": "decision_register",
+     "to": "reg_event",
+     "label": "E1–E4 entries",
+     "kind": "data",
+     "section": "§8.2"
+    },
+    {
+     "from": "evidence_compiler",
+     "to": "evaluator",
+     "label": "EvidencePlan (hashed DAG)",
+     "kind": "control",
+     "section": "§8.2; §3.2"
+    },
+    {
+     "from": "evaluator",
+     "to": "metric_registry",
+     "label": "metric instances",
+     "kind": "data",
+     "section": "§10.3"
+    },
+    {
+     "from": "evidence_compiler",
+     "to": "evidence_missing",
+     "label": "unresolved EvidenceSpec",
+     "kind": "control",
+     "section": "§8.2"
+    },
+    {
+     "from": "evidence_missing",
+     "to": "briefs_l1",
+     "label": "shown, never filled",
+     "kind": "evidence",
+     "section": "§8.2"
+    },
+    {
+     "from": "memo_writer",
+     "to": "claims",
+     "label": "placeholder text",
+     "kind": "data",
+     "section": "§10.6"
+    },
+    {
+     "from": "metric_registry",
+     "to": "claims",
+     "label": "values, CI, plane, range",
+     "kind": "data",
+     "section": "§10.6"
+    },
+    {
+     "from": "claims",
+     "to": "briefs_l1",
+     "label": "rendered briefs",
+     "kind": "data",
+     "section": "§10.6; §8.4"
+    },
+    {
+     "from": "claims",
+     "to": "auditor",
+     "label": "rendered memo",
+     "kind": "evidence",
+     "section": "§7.3"
+    },
+    {
+     "from": "auditor",
+     "to": "briefs_l1",
+     "label": "'supports' + countersign (G8)",
+     "kind": "evidence",
+     "section": "§10.6; §7.6"
+    },
+    {
+     "from": "metric_registry",
+     "to": "pack_l0",
+     "label": "λ/FTP, Tier-1, draw, cards",
+     "kind": "price",
+     "section": "§8.4"
+    },
+    {
+     "from": "metric_registry",
+     "to": "pack_l2",
+     "label": "run_id:artifact:path",
+     "kind": "data",
+     "section": "§8.4"
+    },
+    {
+     "from": "decision_register",
+     "to": "controls_arch",
+     "label": "options always shown",
+     "kind": "control",
+     "section": "§8.2; §8.8"
+    },
+    {
+     "from": "controls_arch",
+     "to": "briefs_l1",
+     "label": "options beside recommendation",
+     "kind": "data",
+     "section": "§8.8; §8.4"
+    },
+    {
+     "from": "ai_validator",
+     "to": "briefs_l1",
+     "label": "pack-gate flags",
+     "kind": "evidence",
+     "section": "§7.3"
+    },
+    {
+     "from": "pack_linter",
+     "to": "pack_l0",
+     "label": "rejects league tables",
+     "kind": "control",
+     "section": "§8.4; §8.10"
+    },
+    {
+     "from": "ic_secretariat",
+     "to": "pack_l0",
+     "label": "publishes pack by T−7",
+     "kind": "control",
+     "section": "§2.1; §8.4"
+    },
+    {
+     "from": "theta",
+     "to": "implied_actions",
+     "label": "θ_k must lie in Θ",
+     "kind": "control",
+     "section": "§8.5"
+    },
+    {
+     "from": "seat_cio",
+     "to": "implied_actions",
+     "label": "(q_k, θ_k)",
+     "kind": "data",
+     "section": "§8.5"
+    },
+    {
+     "from": "seat_cro",
+     "to": "implied_actions",
+     "label": "(q_k, θ_k)",
+     "kind": "data",
+     "section": "§8.5"
+    },
+    {
+     "from": "seat_treasurer",
+     "to": "implied_actions",
+     "label": "(q_k, θ_k)",
+     "kind": "data",
+     "section": "§8.5"
+    },
+    {
+     "from": "seat_groups",
+     "to": "implied_actions",
+     "label": "(q_k, θ_k)",
+     "kind": "data",
+     "section": "§8.5"
+    },
+    {
+     "from": "seat_outside",
+     "to": "implied_actions",
+     "label": "(q_k, θ_k)",
+     "kind": "data",
+     "section": "§8.5"
+    },
+    {
+     "from": "seat_red_team",
+     "to": "implied_actions",
+     "label": "(q_k, θ_k)",
+     "kind": "data",
+     "section": "§8.5"
+    },
+    {
+     "from": "seat_ra",
+     "to": "implied_actions",
+     "label": "(q_k, θ_k)",
+     "kind": "data",
+     "section": "§8.5; brief §8 rule 1"
+    },
+    {
+     "from": "forecast_registry",
+     "to": "seat_groups",
+     "label": "group's filed forecasts",
+     "kind": "data",
+     "section": "§8.5"
+    },
+    {
+     "from": "forecast_registry",
+     "to": "seat_ra",
+     "label": "Real Assets filed forecasts",
+     "kind": "data",
+     "section": "§8.5; brief §8 rule 1"
+    },
+    {
+     "from": "evaluator",
+     "to": "implied_actions",
+     "label": "cached CRN paths (W2)",
+     "kind": "data",
+     "section": "§8.5"
+    },
+    {
+     "from": "implied_actions",
+     "to": "regret_split",
+     "label": "a*_k, regret R_k(a)",
+     "kind": "data",
+     "section": "§8.5"
+    },
+    {
+     "from": "regret_split",
+     "to": "minority_reports",
+     "label": "trigger ≥ 15pp or ≥ 10bp",
+     "kind": "control",
+     "section": "§8.5"
+    },
+    {
+     "from": "implied_actions",
+     "to": "seat_narrators",
+     "label": "result only (read)",
+     "kind": "data",
+     "section": "§7.3; §8.5"
+    },
+    {
+     "from": "seat_narrators",
+     "to": "minority_reports",
+     "label": "arguments, cruxes, reports",
+     "kind": "data",
+     "section": "§8.5"
+    },
+    {
+     "from": "seat_red_team",
+     "to": "minority_reports",
+     "label": "assigned dissent",
+     "kind": "data",
+     "section": "§8.5"
+    },
+    {
+     "from": "facilitator",
+     "to": "protocol",
+     "label": "agenda flow",
+     "kind": "control",
+     "section": "§7.3; §8.5"
+    },
+    {
+     "from": "protocol",
+     "to": "seat_narrators",
+     "label": "S1 hashed; S3 one round",
+     "kind": "control",
+     "section": "§8.5"
+    },
+    {
+     "from": "regret_split",
+     "to": "briefs_l1",
+     "label": "implied-action map, splits",
+     "kind": "data",
+     "section": "§8.4; §8.5"
+    },
+    {
+     "from": "pack_l0",
+     "to": "h0",
+     "label": "fact pack (no AI narrative)",
+     "kind": "data",
+     "section": "§8.6"
+    },
+    {
+     "from": "ic_members",
+     "to": "h0",
+     "label": "blind pre-vote",
+     "kind": "decision",
+     "section": "§8.6"
+    },
+    {
+     "from": "h0",
+     "to": "h1",
+     "label": "pre-vote hashes locked",
+     "kind": "decision",
+     "section": "§8.6; §3.6"
+    },
+    {
+     "from": "briefs_l1",
+     "to": "h1",
+     "label": "model baseline",
+     "kind": "data",
+     "section": "§8.6"
+    },
+    {
+     "from": "implied_actions",
+     "to": "h1",
+     "label": "seat map",
+     "kind": "data",
+     "section": "§8.6"
+    },
+    {
+     "from": "minority_reports",
+     "to": "h1",
+     "label": "revealed last",
+     "kind": "data",
+     "section": "§8.6"
+    },
+    {
+     "from": "h1",
+     "to": "h2",
+     "label": "",
+     "kind": "control",
+     "section": "§8.6"
+    },
+    {
+     "from": "console",
+     "to": "h2",
+     "label": "cruxes on the console",
+     "kind": "data",
+     "section": "§8.6"
+    },
+    {
+     "from": "h2",
+     "to": "h3",
+     "label": "",
+     "kind": "control",
+     "section": "§8.6"
+    },
+    {
+     "from": "h3",
+     "to": "h4",
+     "label": "",
+     "kind": "control",
+     "section": "§8.6"
+    },
+    {
+     "from": "ic_members",
+     "to": "h4",
+     "label": "ballot + probabilities",
+     "kind": "decision",
+     "section": "§8.6"
+    },
+    {
+     "from": "decision_rules",
+     "to": "h4",
+     "label": "pooled / minimax / DEFER",
+     "kind": "control",
+     "section": "§8.6"
+    },
+    {
+     "from": "decision_rights",
+     "to": "h4",
+     "label": "tier; recused votes untallied",
+     "kind": "control",
+     "section": "§8.1"
+    },
+    {
+     "from": "h4",
+     "to": "h5",
+     "label": "",
+     "kind": "control",
+     "section": "§8.6"
+    },
+    {
+     "from": "minutes_drafter",
+     "to": "h5",
+     "label": "draft minutes",
+     "kind": "data",
+     "section": "§7.3; §8.6"
+    },
+    {
+     "from": "ic_secretariat",
+     "to": "h5",
+     "label": "approves minutes",
+     "kind": "decision",
+     "section": "§2.1; §8.6"
+    },
+    {
+     "from": "h5",
+     "to": "h6",
+     "label": "",
+     "kind": "control",
+     "section": "§8.6"
+    },
+    {
+     "from": "h4",
+     "to": "decision_log",
+     "label": "ballots → DecisionRecord",
+     "kind": "decision",
+     "section": "§8.9; §3.6"
+    },
+    {
+     "from": "h6",
+     "to": "signposts",
+     "label": "signposts armed",
+     "kind": "control",
+     "section": "§8.6; §8.9"
+    },
+    {
+     "from": "decision_log",
+     "to": "commitment_plan",
+     "label": "commitment_plan field",
+     "kind": "data",
+     "section": "§8.9"
+    },
+    {
+     "from": "decision_log",
+     "to": "forecast_registry",
+     "label": "Brier at 1, 4, 8 quarters",
+     "kind": "feedback",
+     "section": "§8.9"
+    },
+    {
+     "from": "decision_log",
+     "to": "decision_register",
+     "label": "DecisionRecord, outcomes",
+     "kind": "feedback",
+     "section": "§3.2"
+    },
+    {
+     "from": "signposts",
+     "to": "decision_register",
+     "label": "alarm → B, flip → A (Q10)",
+     "kind": "control",
+     "section": "§8.9; §8.2"
+    },
+    {
+     "from": "decision_register",
+     "to": "agenda",
+     "label": "quarter's items",
+     "kind": "data",
+     "section": "§8.6"
+    },
+    {
+     "from": "agenda",
+     "to": "h1",
+     "label": "≤ 4 Tier-A items",
+     "kind": "control",
+     "section": "§8.6"
+    },
+    {
+     "from": "consent_agenda",
+     "to": "agenda",
+     "label": "qualifying items",
+     "kind": "control",
+     "section": "§8.6"
+    },
+    {
+     "from": "ra_block",
+     "to": "agenda",
+     "label": "B group block (8th group)",
+     "kind": "data",
+     "section": "§8.6; brief §8 rule 1"
+    },
+    {
+     "from": "decision_rights",
+     "to": "board_owner",
+     "label": "Board items + minority",
+     "kind": "decision",
+     "section": "§8.1"
+    },
+    {
+     "from": "metric_registry",
+     "to": "qa_answerer",
+     "label": "get_metric, get_provenance",
+     "kind": "data",
+     "section": "§7.3"
+    },
+    {
+     "from": "qa_answerer",
+     "to": "ic_members",
+     "label": "grounded, labelled answers",
+     "kind": "evidence",
+     "section": "§8.7"
+    },
+    {
+     "from": "ic_members",
+     "to": "translator",
+     "label": "NL question or view",
+     "kind": "data",
+     "section": "§8.7"
+    },
+    {
+     "from": "translator",
+     "to": "member_confirm",
+     "label": "effective view, KL, ESS",
+     "kind": "data",
+     "section": "§8.7"
+    },
+    {
+     "from": "member_confirm",
+     "to": "w2",
+     "label": "FBE ViewSpec (asset/lever)",
+     "kind": "data",
+     "section": "§8.7"
+    },
+    {
+     "from": "member_confirm",
+     "to": "w1",
+     "label": "entropy-pooling ViewSpec",
+     "kind": "data",
+     "section": "§8.7"
+    },
+    {
+     "from": "w1",
+     "to": "w3",
+     "label": "KL red > 2.30 nats forces W3",
+     "kind": "control",
+     "section": "§8.7"
+    },
+    {
+     "from": "w1",
+     "to": "console",
+     "label": "re-weighted paths (< 1 s)",
+     "kind": "data",
+     "section": "§8.7"
+    },
+    {
+     "from": "w2",
+     "to": "console",
+     "label": "re-scored cards",
+     "kind": "data",
+     "section": "§8.7"
+    },
+    {
+     "from": "w2",
+     "to": "evaluator",
+     "label": "optimize_h (what-if size)",
+     "kind": "control",
+     "section": "§8.7; §7.3"
+    },
+    {
+     "from": "w3",
+     "to": "evaluator",
+     "label": "tilted re-simulation",
+     "kind": "control",
+     "section": "§8.7"
+    },
+    {
+     "from": "w1",
+     "to": "decision_log",
+     "label": "recomputed in Python first",
+     "kind": "data",
+     "section": "§8.7"
+    },
+    {
+     "from": "decision_log",
+     "to": "sealed_confirm",
+     "label": "irreversible Tier-A only",
+     "kind": "control",
+     "section": "§8.7; §8.3"
+    },
+    {
+     "from": "reg_event",
+     "to": "w2",
+     "label": "W2 evidence (EXPLORATORY)",
+     "kind": "data",
+     "section": "§8.3"
+    },
+    {
+     "from": "reg_event",
+     "to": "h0",
+     "label": "compressed: S1, S5, H0, H4",
+     "kind": "control",
+     "section": "§8.3"
+    },
+    {
+     "from": "politics_rules",
+     "to": "pack_linter",
+     "label": "no league tables",
+     "kind": "control",
+     "section": "§8.10"
+    },
+    {
+     "from": "politics_rules",
+     "to": "forecast_registry",
+     "label": "hidden below n_eff 20",
+     "kind": "control",
+     "section": "§8.10"
+    },
+    {
+     "from": "cro",
+     "to": "politics_rules",
+     "label": "FTP disputes (10-day SLA)",
+     "kind": "control",
+     "section": "§8.10"
+    },
+    {
+     "from": "group_heads",
+     "to": "politics_rules",
+     "label": "contest bias estimate",
+     "kind": "data",
+     "section": "§8.10"
+    },
+    {
+     "from": "decision_log",
+     "to": "room_eval",
+     "label": "KPIs: reliance, overrides",
+     "kind": "data",
+     "section": "§8.11"
+    },
+    {
+     "from": "mrm",
+     "to": "room_eval",
+     "label": "A9 annual revalidation",
+     "kind": "control",
+     "section": "§8.11; §8.2"
+    }
+   ],
+   "lanes": [
+    {
+     "id": "r_actors",
+     "label": "Humans: proposers, owners, voters",
+     "kind": "actor_group",
+     "order": 0
+    },
+    {
+     "id": "r_register",
+     "label": "Decision Register and evidence (idm)",
+     "kind": "layer",
+     "order": 1
+    },
+    {
+     "id": "r_pack",
+     "label": "IC pack: L0 / L1 / L2 and console (pack)",
+     "kind": "layer",
+     "order": 2
+    },
+    {
+     "id": "r_shadow",
+     "label": "Computed shadow IC: seats (q_k, θ_k ∈ Θ)",
+     "kind": "layer",
+     "order": 3
+    },
+    {
+     "id": "r_meeting",
+     "label": "Agenda and human meeting H0–H6",
+     "kind": "phase",
+     "order": 4
+    },
+    {
+     "id": "r_whatif",
+     "label": "Q&A, what-ifs W1–W3, view conditioning",
+     "kind": "layer",
+     "order": 5
+    },
+    {
+     "id": "r_log",
+     "label": "Decision log, signposts, scoring",
+     "kind": "layer",
+     "order": 6
+    },
+    {
+     "id": "r_rules",
+     "label": "Decision rights and politics rules",
+     "kind": "boundary",
+     "order": 7
+    }
+   ],
+   "notes": [
+    "Every engine output exists because a Register decision consumes it; the room asks the evidence compiler, which asks the evaluator, and never calls an engine directly (§3.2; ADR-22).",
+    "Register cadences: Q1–Q10 quarterly; A1–A9 annual, run in Q4; E1–E4 events on the compressed protocol; increment 1 ships Q1, Q2, Q4, Q5, Q6 (§8.2; §8.3).",
+    "No item reaches the ballot with an unmet evidence contract; a brief shows 'EVIDENCE MISSING: ⟨metric⟩' and is never filled silently (§8.2; §8.4).",
+    "§8.5 defines twelve seats (CIO, CRO, Treasurer/CF, five private-group heads, Public Markets, Overlay, Outside-View Forecaster, Red Team); the Facilitator and AI Validator sit outside them (§8.5).",
+    "Brief §8 rule 1 adds a Real Assets mandate seat to the §8.5 twelve; ARCHITECTURE.md is not yet updated for it (brief §8).",
+    "Seats are named by mandate, never as people; the pack never shows 'regret of the PE head'; AI seats compute and argue but never vote (§8.5; §0.3 rule 8).",
+    "Θ forbids indicator or probability terms, so no seat maximizes P(10%); any LLM-stated probability is 'agent judgment', never pooled with model outputs (§8.5; §3.3).",
+    "Symmetric irreversibility: forfeiting optionality with expected loss > 0.25% of NAV, including letting a bid or financing window lapse, needs a second-chance check and CRO sign-off (§8.1).",
+    "No neural surrogate number is ever shown; any W1 number entering the decision log is recomputed by the Python engine (§8.7; ADR-23).",
+    "Usability acceptance: L0 readable in ≤ 5 minutes; every number ≤ 2 clicks from its manifest; W1 < 1 s; pack published by T−7 (§8.4).",
+    "Between meetings, the standing policy and CFP playbooks act only as IC-approved delegated rules executed by named humans (§8.1; §5.9).",
+    "The IDM is itself an inventoried model, revalidated annually (A9); agents are blind to the chair's and CIO's preferences (§8.11).",
+    "Real Assets (added 18 Oct; research in progress; interim rules (brief §8)): head, seat, forecasts and group block follow the group-generic rules; open-end redemptions queue; asset-level debt is non-recourse and outside CF facilities (brief §8 rules 1–3)."
+   ]
+  },
+  {
+   "id": "cycle",
+   "title": "Quarterly cycle",
+   "subtitle": "T−28 to T+5 and monthly: what each step produces and the gate it must pass; the IC meets on day T (§3.6; gates §7.6)",
+   "nodes": [
+    {
+     "id": "c_t28",
+     "label": "T−28 Contract DRAFT",
+     "sublabel": "AmendmentDrafts; data cut-off announced · gate —",
+     "kind": "agentic",
+     "lane": "p_contract",
+     "order": 0,
+     "owner": "",
+     "section": "§3.6; §7.4",
+     "seq": 0,
+     "day": "T−28",
+     "produces": "AmendmentDrafts",
+     "gate": "—",
+     "fsm_state": "DRAFT",
+     "actors": [
+      "deterministic",
+      "agentic"
+     ],
+     "detail": "Contract DRAFT from the template; the drafter proposes amendments; data cut-off announced."
+    },
+    {
+     "id": "c_t25",
+     "label": "T−25 Filings",
+     "sublabel": "registry records (bitemporal) · schema checks",
+     "kind": "human",
+     "lane": "p_contract",
+     "order": 1,
+     "owner": "Group heads; Corporate Finance",
+     "section": "§3.6",
+     "seq": 1,
+     "day": "T−25",
+     "produces": "Registry records (bitemporal)",
+     "gate": "Schema checks",
+     "fsm_state": "DRAFT",
+     "actors": [
+      "human",
+      "deterministic"
+     ],
+     "detail": "Groups file forecasts (P10/P50/P90), proposals and quotes; CF files facility and draw data."
+    },
+    {
+     "id": "c_t23",
+     "label": "T−23 Snapshot + freeze · G2",
+     "sublabel": "StateSnapshot@hash, BeliefSet@hash · G2",
+     "kind": "deterministic",
+     "lane": "p_contract",
+     "order": 2,
+     "owner": "",
+     "section": "§3.6; §7.4",
+     "seq": 2,
+     "day": "T−23",
+     "produces": "StateSnapshot@hash, BeliefSet@hash",
+     "gate": "G2",
+     "fsm_state": "DRAFT → FROZEN",
+     "actors": [
+      "deterministic",
+      "human"
+     ],
+     "detail": "Bitemporal data, initial state (π₀, e₀, Z₀, F_t, oil state, 12-month draw), FBE-R posteriors using the previous quarter's frozen optimizer outputs; flagged assets reviewed by humans."
+    },
+    {
+     "id": "c_t22",
+     "label": "T−22 Contract check · G0",
+     "sublabel": "signed AnalysisContract; salt committed · G0",
+     "kind": "human",
+     "lane": "p_contract",
+     "order": 3,
+     "owner": "CIO + CRO (Board/owner if structural recovery)",
+     "section": "§3.6; §7.4",
+     "seq": 3,
+     "day": "T−22",
+     "produces": "Signed AnalysisContract",
+     "gate": "G0",
+     "fsm_state": "FROZEN → SIGNED / SIGNED_IN_RECOVERY",
+     "actors": [
+      "deterministic",
+      "human"
+     ],
+     "detail": "Phase I per consent scenario; recovery mode; plane hashes; salt commit; CIO + CRO sign."
+    },
+    {
+     "id": "c_t21",
+     "label": "T−21 Design review · G1",
+     "sublabel": "DesignReview (family-B reviewer + linter) · G1",
+     "kind": "agentic",
+     "lane": "p_contract",
+     "order": 4,
+     "owner": "CRO (dispositions findings)",
+     "section": "§3.6; §7.4",
+     "seq": 4,
+     "day": "T−21",
+     "produces": "DesignReview",
+     "gate": "G1",
+     "fsm_state": "→ DESIGN_REVIEWED",
+     "actors": [
+      "agentic",
+      "deterministic",
+      "human"
+     ],
+     "detail": "Family-B reviewer + deterministic linter; the CRO dispositions findings."
+    },
+    {
+     "id": "c_t20",
+     "label": "T−20 Baseline pricing",
+     "sublabel": "BASELINE_PRICED artifacts · pinned-dual CI test",
+     "kind": "deterministic",
+     "lane": "p_price_lab",
+     "order": 0,
+     "owner": "",
+     "section": "§3.6; §7.4",
+     "seq": 5,
+     "day": "T−20",
+     "produces": "BASELINE_PRICED artifacts",
+     "gate": "Pinned-dual CI test",
+     "fsm_state": "→ BASELINE_PRICED",
+     "actors": [
+      "deterministic"
+     ],
+     "detail": "H on 5 parallel SAA replications; Level-B selection with Γ; cards for every holding; envelopes; draft FTP; candidate C_H; module F."
+    },
+    {
+     "id": "c_t19",
+     "label": "T−19…T−14 Lab campaign",
+     "sublabel": "promoted candidates (optional; 2 workers) · G3–G5",
+     "kind": "agentic",
+     "lane": "p_price_lab",
+     "order": 1,
+     "owner": "",
+     "section": "§3.6; §7.4",
+     "seq": 6,
+     "day": "T−19 to T−14",
+     "produces": "Promoted candidates",
+     "gate": "G3–G5",
+     "fsm_state": "IDEATION ⇄ SCREENING",
+     "actors": [
+      "agentic",
+      "deterministic"
+     ],
+     "detail": "Optional each quarter: ideation ⇄ screening on the search plane, 2 workers."
+    },
+    {
+     "id": "c_t13",
+     "label": "T−13 Selection",
+     "sublabel": "finalist hashes; memory closed · gate —",
+     "kind": "deterministic",
+     "lane": "p_price_lab",
+     "order": 2,
+     "owner": "",
+     "section": "§3.6; §7.4",
+     "seq": 7,
+     "day": "T−13",
+     "produces": "Finalist hashes",
+     "gate": "—",
+     "fsm_state": "→ SELECTION",
+     "actors": [
+      "deterministic"
+     ],
+     "detail": "Finalists frozen: incumbent, ≤ 3 archive cells, C_H always; memory closed."
+    },
+    {
+     "id": "c_t12",
+     "label": "T−12 Sealed run · G6",
+     "sublabel": "QUALIFIED / NOT_QUALIFIED / NOT_ASSESSED · G6",
+     "kind": "deterministic",
+     "lane": "p_price_lab",
+     "order": 3,
+     "owner": "",
+     "section": "§3.6; §7.2; §7.5",
+     "seq": 8,
+     "day": "T−12",
+     "produces": "QUALIFIED / NOT_QUALIFIED / NOT_ASSESSED labels",
+     "gate": "G6",
+     "fsm_state": "→ SEALED",
+     "actors": [
+      "deterministic"
+     ],
+     "detail": "Sealed run once on the final plane; certification against T6 bands."
+    },
+    {
+     "id": "c_t11",
+     "label": "T−11 Retrospective",
+     "sublabel": "controls, switch-off null, ablations, red team · —",
+     "kind": "deterministic",
+     "lane": "p_price_lab",
+     "order": 4,
+     "owner": "",
+     "section": "§3.6; §10.5",
+     "seq": 9,
+     "day": "T−11",
+     "produces": "Retrospective evidence",
+     "gate": "—",
+     "fsm_state": "→ RETROSPECTIVE",
+     "actors": [
+      "deterministic",
+      "agentic"
+     ],
+     "detail": "Controls at 3/5/10 years, switch-off null, single-change ablations, red team, one bootstrap rerun."
+    },
+    {
+     "id": "c_t10",
+     "label": "T−10 Register S0",
+     "sublabel": "agenda: frozen questions and options · gate —",
+     "kind": "deterministic",
+     "lane": "p_room",
+     "order": 0,
+     "owner": "CIO (Register owner)",
+     "section": "§3.6; §8.2; §8.5",
+     "seq": 10,
+     "day": "T−10",
+     "produces": "Agenda",
+     "gate": "—",
+     "fsm_state": "",
+     "actors": [
+      "deterministic",
+      "human"
+     ],
+     "detail": "Frozen questions; options: status quo, DEFER, recommendation, archetypes A/B/C."
+    },
+    {
+     "id": "c_t9",
+     "label": "T−9…T−8 Briefs + audit",
+     "sublabel": "audited pack (rendered briefs, family-B audit) · G7, G8",
+     "kind": "agentic",
+     "lane": "p_room",
+     "order": 1,
+     "owner": "",
+     "section": "§3.6; §10.6",
+     "seq": 11,
+     "day": "T−9 to T−8",
+     "produces": "Audited pack",
+     "gate": "G7, G8",
+     "fsm_state": "→ MEMO → REVIEW",
+     "actors": [
+      "agentic",
+      "deterministic",
+      "human"
+     ],
+     "detail": "Briefs rendered from placeholders; family-B audit; human countersignature."
+    },
+    {
+     "id": "c_t7",
+     "label": "T−7 Pack + shadow IC",
+     "sublabel": "seat map, minority reports (S1–S7) · gate —",
+     "kind": "deterministic",
+     "lane": "p_room",
+     "order": 2,
+     "owner": "",
+     "section": "§3.6; §8.4; §8.5",
+     "seq": 12,
+     "day": "T−7",
+     "produces": "Seat map, minority reports",
+     "gate": "—",
+     "fsm_state": "→ SHADOW_IC",
+     "actors": [
+      "deterministic",
+      "agentic"
+     ],
+     "detail": "Pack published; shadow IC S1–S7 (computed seats, one debate round, minority reports)."
+    },
+    {
+     "id": "c_t1",
+     "label": "T−1 Blind pre-vote locks",
+     "sublabel": "pre-vote hashes · gate —",
+     "kind": "human",
+     "lane": "p_decide",
+     "order": 0,
+     "owner": "IC voting members",
+     "section": "§3.6; §8.6",
+     "seq": 13,
+     "day": "T−1",
+     "produces": "Pre-vote hashes",
+     "gate": "—",
+     "fsm_state": "→ PREVOTE_LOCK",
+     "actors": [
+      "human"
+     ],
+     "detail": "Human blind pre-vote on the fact pack locks."
+    },
+    {
+     "id": "c_t0",
+     "label": "T Meeting H1–H6",
+     "sublabel": "ballots, DecisionRecords · gate —",
+     "kind": "human",
+     "lane": "p_decide",
+     "order": 1,
+     "owner": "Investment Committee",
+     "section": "§3.6; §8.6",
+     "seq": 14,
+     "day": "T",
+     "produces": "Ballots, DecisionRecords",
+     "gate": "—",
+     "fsm_state": "→ IC",
+     "actors": [
+      "human",
+      "deterministic",
+      "agentic"
+     ],
+     "detail": "Reveal, cruxes, pre-mortem, simultaneous ballot, AI-drafted minutes approved by the secretary, signposts armed."
+    },
+    {
+     "id": "c_t5",
+     "label": "T+5 Log closed · G9",
+     "sublabel": "decision log; signposts armed; Brier at 1/4/8 q · G9",
+     "kind": "deterministic",
+     "lane": "p_after",
+     "order": 0,
+     "owner": "",
+     "section": "§3.6; §8.9",
+     "seq": 15,
+     "day": "T+5",
+     "produces": "Decision log",
+     "gate": "G9",
+     "fsm_state": "→ CLOSED",
+     "actors": [
+      "deterministic"
+     ],
+     "detail": "Log closed; signposts armed; forecasts registered for Brier scoring at 1, 4, 8 quarters."
+    },
+    {
+     "id": "c_monthly",
+     "label": "Monthly monitor",
+     "sublabel": "alerts, event records (signposts, CFP readings) · —",
+     "kind": "deterministic",
+     "lane": "p_after",
+     "order": 1,
+     "owner": "",
+     "section": "§3.6; §8.9",
+     "seq": 16,
+     "day": "Monthly",
+     "produces": "Alerts, event records",
+     "gate": "—",
+     "fsm_state": "",
+     "actors": [
+      "deterministic",
+      "human"
+     ],
+     "detail": "Signpost monitor; CFP readings; event decisions (E1–E4) through the compressed protocol."
+    },
+    {
+     "id": "c_event",
+     "label": "Event decisions E1–E4",
+     "sublabel": "compressed: S1, S5, H0, H4 on W2 (EXPLORATORY)",
+     "kind": "human",
+     "lane": "p_offcycle",
+     "order": 0,
+     "owner": "",
+     "section": "§8.3; §8.2",
+     "actors": [
+      "human",
+      "deterministic",
+      "agentic"
+     ],
+     "detail": "Event decisions (E1–E4, and Q8 on dealing dates) run independent assessments (S1), minority reports (S5), human pre-vote (H0) and ballot (H4) on W2 evidence labelled EXPLORATORY, with a confirmatory sealed run before an irreversible Tier-A execution when the deadline allows."
+    },
+    {
+     "id": "c_annual",
+     "label": "Annual items A1–A9",
+     "sublabel": "run in the Q4 cycle through the Register",
+     "kind": "human",
+     "lane": "p_offcycle",
+     "order": 1,
+     "owner": "",
+     "section": "§8.3; §8.2",
+     "actors": [
+      "human",
+      "deterministic"
+     ],
+     "detail": "A1 Tier-1 contract; A2 model weights and bridge; A3 FTP and envelope methodology; A4 pacing plan; A5 leverage limits and facilities; A6 owner mandate proposal; A7 convex budget; A8 credibility release and pay KPIs; A9 model revalidation incl. the room."
+    },
+    {
+     "id": "c_ra",
+     "label": "Real Assets filings",
+     "sublabel": "added 18 Oct; research in progress; interim rules (brief §8)",
+     "kind": "human",
+     "lane": "p_offcycle",
+     "order": 2,
+     "owner": "",
+     "section": "brief §8 rules 1, 3, 4",
+     "badge": "added 18 Oct; research in progress; interim rules (brief §8)",
+     "real_assets": true,
+     "actors": [
+      "human"
+     ],
+     "detail": "Files at T−25 like every group (forecast registry generic over groups). Marks: underwritten (yield-on-cost, IRR, exit cap rate); current (appraisal NAV, lagged and smoothed); forecast (asset business plans); market-implied (listed REIT and infrastructure NAV discounts, secondary pricing). At T−20 its holdings get cards from the interim action set; at T−7 its mandate seat joins the shadow IC."
+    }
+   ],
+   "edges": [
+    {
+     "from": "c_t28",
+     "to": "c_t25",
+     "label": "data cut-off",
+     "kind": "control",
+     "section": "§3.6"
+    },
+    {
+     "from": "c_t25",
+     "to": "c_t23",
+     "label": "registry records",
+     "kind": "data",
+     "section": "§3.6"
+    },
+    {
+     "from": "c_t23",
+     "to": "c_t22",
+     "label": "StateSnapshot@hash",
+     "kind": "data",
+     "section": "§3.6; §7.4"
+    },
+    {
+     "from": "c_t22",
+     "to": "c_t21",
+     "label": "signed AnalysisContract",
+     "kind": "control",
+     "section": "§3.6"
+    },
+    {
+     "from": "c_t21",
+     "to": "c_t20",
+     "label": "DesignReview",
+     "kind": "control",
+     "section": "§3.6"
+    },
+    {
+     "from": "c_t20",
+     "to": "c_t19",
+     "label": "campaign enabled",
+     "kind": "control",
+     "section": "§7.4"
+    },
+    {
+     "from": "c_t20",
+     "to": "c_t13",
+     "label": "campaign off: C_H + incumbent",
+     "kind": "control",
+     "section": "§7.4"
+    },
+    {
+     "from": "c_t19",
+     "to": "c_t13",
+     "label": "promoted candidates",
+     "kind": "data",
+     "section": "§3.6"
+    },
+    {
+     "from": "c_t13",
+     "to": "c_t12",
+     "label": "finalist hashes",
+     "kind": "data",
+     "section": "§3.6"
+    },
+    {
+     "from": "c_t12",
+     "to": "c_t11",
+     "label": "G6 labels",
+     "kind": "data",
+     "section": "§3.6"
+    },
+    {
+     "from": "c_t11",
+     "to": "c_t10",
+     "label": "retrospective evidence",
+     "kind": "evidence",
+     "section": "§3.6"
+    },
+    {
+     "from": "c_t10",
+     "to": "c_t9",
+     "label": "agenda",
+     "kind": "data",
+     "section": "§3.6"
+    },
+    {
+     "from": "c_t9",
+     "to": "c_t7",
+     "label": "audited pack",
+     "kind": "evidence",
+     "section": "§3.6"
+    },
+    {
+     "from": "c_t7",
+     "to": "c_t1",
+     "label": "seat map, minority reports",
+     "kind": "data",
+     "section": "§3.6"
+    },
+    {
+     "from": "c_t1",
+     "to": "c_t0",
+     "label": "pre-vote hashes",
+     "kind": "decision",
+     "section": "§3.6"
+    },
+    {
+     "from": "c_t0",
+     "to": "c_t5",
+     "label": "ballots, DecisionRecords",
+     "kind": "decision",
+     "section": "§3.6"
+    },
+    {
+     "from": "c_t5",
+     "to": "c_monthly",
+     "label": "signposts armed",
+     "kind": "control",
+     "section": "§3.6"
+    },
+    {
+     "from": "c_t22",
+     "to": "c_t12",
+     "label": "salt commit → seeds once",
+     "kind": "control",
+     "section": "§7.2; §7.5"
+    },
+    {
+     "from": "c_t20",
+     "to": "c_t23",
+     "label": "next q: frozen outputs → FBE-R",
+     "kind": "feedback",
+     "section": "§3.6; §12 ADR-24"
+    },
+    {
+     "from": "c_t5",
+     "to": "c_t23",
+     "label": "Brier scores → FBE (later q)",
+     "kind": "feedback",
+     "section": "§3.2; §8.9"
+    },
+    {
+     "from": "c_monthly",
+     "to": "c_event",
+     "label": "signpost flip / stage change",
+     "kind": "control",
+     "section": "§8.9; §8.2"
+    },
+    {
+     "from": "c_annual",
+     "to": "c_t10",
+     "label": "Q4 cycle only",
+     "kind": "control",
+     "section": "§8.3"
+    },
+    {
+     "from": "c_ra",
+     "to": "c_t25",
+     "label": "forecasts, proposals",
+     "kind": "data",
+     "section": "brief §8 rules 1, 4"
+    },
+    {
+     "from": "c_ra",
+     "to": "c_t20",
+     "label": "interim actions → cards",
+     "kind": "data",
+     "section": "brief §8 rule 3"
+    },
+    {
+     "from": "c_ra",
+     "to": "c_t7",
+     "label": "Real Assets mandate seat",
+     "kind": "data",
+     "section": "brief §8 rule 1"
+    }
+   ],
+   "lanes": [
+    {
+     "id": "p_contract",
+     "label": "Contract and data (T−28 to T−21)",
+     "kind": "phase",
+     "order": 0
+    },
+    {
+     "id": "p_price_lab",
+     "label": "Pricing, lab campaign and seal (T−20 to T−11)",
+     "kind": "phase",
+     "order": 1
+    },
+    {
+     "id": "p_room",
+     "label": "Room preparation (T−10 to T−7)",
+     "kind": "phase",
+     "order": 2
+    },
+    {
+     "id": "p_decide",
+     "label": "Decide (T−1 and T)",
+     "kind": "phase",
+     "order": 3
+    },
+    {
+     "id": "p_after",
+     "label": "Close and monitor (T+5 and monthly)",
+     "kind": "phase",
+     "order": 4
+    },
+    {
+     "id": "p_offcycle",
+     "label": "Off-cycle items and group inputs",
+     "kind": "phase",
+     "order": 5
+    }
+   ],
+   "notes": [
+    "The IC meets on day T; gates G0–G9 are defined in §7.6 (§3.6).",
+    "The freeze (T−23) precedes the contract check (T−22) because Phase I needs the frozen state (§7.4).",
+    "The lab campaign is optional each quarter; when disabled, only C_H and the incumbent go forward to the sealed run (§3.6; §7.4).",
+    "C_H (H's quarter-1 package followed by P0) is always a finalist, so the IC is never without a sealed verdict on the optimizer's recommendation (§7.4).",
+    "Final-plane seeds are committed at T−22 and the final plane runs once at T−12; the salt is revealed after the run (§7.2; §7.5).",
+    "Pack published by T−7; no item reaches the ballot with an unmet evidence contract (§8.4).",
+    "A1–A9 run in the Q4 cycle; event decisions (E1–E4, and Q8 on dealing dates) use the compressed protocol on EXPLORATORY W2 evidence (§8.3).",
+    "Between quarters the standing policy and CFP playbooks act only as IC-approved delegated rules executed by named humans; nothing self-executes (§5.9; ADR-32).",
+    "Real Assets (added 18 Oct; research in progress; interim rules (brief §8)) files at T−25 like every group; its holdings get interim-action-set cards at T−20 and its mandate seat joins at T−7 (brief §8 rules 1, 3)."
+   ]
+  }
+ ]
+}

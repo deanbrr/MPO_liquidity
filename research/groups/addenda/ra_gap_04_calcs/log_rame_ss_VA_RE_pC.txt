@@ -1,0 +1,7 @@
+VA_RE ss true SS params {'lam': 0.7, 'mu': 0.004591229648625266, 'sv': 0.06996309209704783, 'sxi': 0.005977387946809766, 'beta': 1.0, 'phip': 0.85, 'sp': 0.05, 'sL': 0.01, 'st': 0.03, 'cL': 0.0}
+resuming; done: ['M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M5s']
+VA_RE ss TB     ALT: R2 0.34 xsCRPS +45.7% xsReg +65.6% cov 0.641 sellbias +2.37 reg 0.226 | AL R2 0.45 cov 0.76 | ALT4 R2 0.41 | lam 0.714 | 459s
+VA_RE ss TBC    ALT: R2 0.28 xsCRPS +15.4% xsReg +2.8% cov 0.757 sellbias -0.03 reg 0.140 | AL R2 0.45 cov 0.76 | ALT4 R2 0.40 | lam 0.706 | 600s
+VA_RE ss TW     ALT: R2 0.71 xsCRPS +85.5% xsReg +98.9% cov 0.350 sellbias -1.24 reg 0.697 | AL R2 0.45 cov 0.76 | ALT4 R2 0.52 | lam 0.389 | 613s
+VA_RE ss MALL_T ALT: R2 0.72 xsCRPS +126.1% xsReg +88.8% cov 0.316 sellbias +1.13 reg 0.884 | AL R2 0.58 cov 0.63 | ALT4 R2 0.65 | lam 0.522 | 357s
+wrote C:\Users\dean\ai_envs\adic_tpa_lab\research\groups\addenda\ra_gap_04_calcs\rame_ens_ss_VA_RE_pC.json 2030.1 s SYNTHETIC - NOT ADIC DATA

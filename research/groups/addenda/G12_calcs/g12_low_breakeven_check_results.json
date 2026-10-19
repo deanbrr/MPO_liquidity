@@ -1,0 +1,17 @@
+{
+ "label": "SYNTHETIC [I-MC]",
+ "PBE35.0": {
+  "mean_draw": 0.0564,
+  "p_inband": 0.3335,
+  "L_eff_pct_nav_h0.10": 4.8,
+  "Hd_kappa0.5_pdp": 0.0066,
+  "Hd_kappa0.5_lev": 0.0132
+ },
+ "PBE40.0": {
+  "mean_draw": 0.0593,
+  "p_inband": 0.4323,
+  "L_eff_pct_nav_h0.10": 6.23,
+  "Hd_kappa0.5_pdp": 0.0083,
+  "Hd_kappa0.5_lev": 0.0165
+ }
+}

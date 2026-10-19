@@ -1,0 +1,752 @@
+{
+ "regtest": {
+  "arith": 0.09166,
+  "vol": 0.13082529264879034,
+  "geo": 0.08390434261498121,
+  "p5_ge10": 0.3912655812224972,
+  "p5_lt7": 0.4044816924257491
+ },
+ "weights": {
+  "PE": 0.4971751412429379,
+  "DL": 0.1016949152542373,
+  "HF": 0.11299435028248588,
+  "EQ": 0.15819209039548024,
+  "FI": 0.04519774011299435,
+  "CASH": 0.0847457627118644
+ },
+ "models": {
+  "M1 JPM-2027": {
+   "beta_geo": 0.08330473857964056,
+   "beta_arith": 0.09167909604519775,
+   "beta_vol": 0.13600288334326668,
+   "central_geo": 0.08844697867691936,
+   "central_vol": 0.14398189435548622,
+   "alpha_total": 0.0037175141242937857,
+   "overlay": 0.00375,
+   "drags": {
+    "convex": 0.0009,
+    "reserve": 0.0014125000000000003,
+    "facilities": 0.00030000000000000003,
+    "pacing": 0.0008549999999999999,
+    "forced_sales": 0.0006,
+    "total": 0.0040675
+   },
+   "contrib": {
+    "PE primaries: selection + fee scale": 0.002221660708837267,
+    "Co-investment (fee saving net of timing/size)": 0.0010253730939313865,
+    "Secondaries (discount capture, net)": 0.0007975111084682351,
+    "Capital Solutions": 0.0,
+    "Private Credit": 0.0,
+    "Hedge-fund selection vs median": 0.0,
+    "Long-only active vs index": -0.00023925156279437643,
+    "Physical-to-synthetic ($10bn, per $ converted)": -5.6964731840664085e-05,
+    "Opportunistic overlay": 0.003711536155566922,
+    "Economic leverage (1.05x)": 0.0017865351079988517
+   },
+   "p10y_beta": 0.34837650339869075,
+   "p5y_beta": 0.3914412258332426,
+   "p10y_central": 0.3996872678175497,
+   "p5y_central": 0.4284810324833014,
+   "gap_to_10": 0.011553021323080642,
+   "breakeven": {
+    "PE primaries: selection + fee scale": {
+     "alpha_be": 4.650510326346515,
+     "p_reach": 6.027546609999046e-05,
+     "p10y_at_p90": 0.4326115123841905,
+     "p10y_at_zero": 0.38104526356295987
+    },
+    "Co-investment (fee saving net of timing/size)": {
+     "alpha_be": 12.268140942778846,
+     "p_reach": 1.1102230246251565e-16,
+     "p10y_at_p90": 0.41275280136771675,
+     "p10y_at_zero": 0.39104752131429776
+    },
+    "Secondaries (discount capture, net)": {
+     "alpha_be": 15.487609783573157,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.4098389272307468,
+     "p10y_at_zero": 0.3929623240427308
+    },
+    "Capital Solutions": {
+     "alpha_be": 25.35331712125239,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.4054790958408262,
+     "p10y_at_zero": 0.3996872678175497
+    },
+    "Private Credit": {
+     "alpha_be": 14.487609783573092,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.40475376832930066,
+     "p10y_at_zero": 0.3996872678175497
+    },
+    "Hedge-fund selection vs median": {
+     "alpha_be": 10.141326848500949,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.4142118778200419,
+     "p10y_at_zero": 0.3996872678175497
+    },
+    "Long-only active vs index": {
+     "alpha_be": 7.093804891786375,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.405769332949133,
+     "p10y_at_zero": 0.40171157813065195
+    },
+    "Physical-to-synthetic ($10bn, per $ converted)": {
+     "alpha_be": 20.182653697002,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.4011328891328163,
+     "p10y_at_zero": 0.40016896607283803
+    },
+    "Opportunistic overlay (SR at 1.5% vol)": {
+     "alpha_be": 1.0159402760854546,
+     "p_reach": 0.0020932180961504843,
+     "p10y_at_p90": 0.4342299515985626,
+     "p10y_at_zero": 0.36795125678593155
+    },
+    "Economic leverage (x)": {
+     "alpha_be": 1.420222106060748,
+     "p_reach": NaN,
+     "p10y_at_p90": 0.4758679770582971,
+     "p10y_at_zero": 0.37883490107761286,
+     "geo_at_1.30_normal": 0.09656166789102226,
+     "geo_at_1.30_jun2026": 0.0950122565141723,
+     "geo_at_1.30_stress": 0.09215634651967237
+    }
+   },
+   "allp90_geo": 0.1135498185129616,
+   "allp90_p10y": 0.5949221020637716,
+   "allp10_geo": 0.06503441654151632,
+   "allp10_p10y": 0.21156538127132873,
+   "drags_low": 0.0016725000000000002,
+   "drags_high": 0.0099875,
+   "p_mu_ge10_L105": 0.009519730156383077,
+   "p_mu_ge10_L130": 0.24264148696447907,
+   "central_geo_L130": 0.09656166789102226,
+   "p10y_hurdles": {
+    "0.079": 0.5839735948984992,
+    "0.100": 0.3996872678175497,
+    "0.108": 0.33332037750778254,
+    "0.139": 0.13769903473633494
+   },
+   "p10y_central_L130": 0.4758679770582971
+  },
+  "M2 BlackRock fee-adj": {
+   "beta_geo": 0.0996743513291002,
+   "beta_arith": 0.10792864406779662,
+   "beta_vol": 0.13600288334326668,
+   "central_geo": 0.10468356089769032,
+   "central_vol": 0.14398189435548622,
+   "alpha_total": 0.0037175141242937857,
+   "overlay": 0.00375,
+   "drags": {
+    "convex": 0.0009,
+    "reserve": 0.0016500000000000002,
+    "facilities": 0.00030000000000000003,
+    "pacing": 0.0012368999999999998,
+    "forced_sales": 0.0006,
+    "total": 0.0046869
+   },
+   "contrib": {
+    "PE primaries: selection + fee scale": 0.002221155282826237,
+    "Co-investment (fee saving net of timing/size)": 0.0010251401768966023,
+    "Secondaries (discount capture, net)": 0.0007973300035065273,
+    "Capital Solutions": 0.0,
+    "Private Credit": 0.0,
+    "Hedge-fund selection vs median": 0.0,
+    "Long-only active vs index": -0.00023919730318336385,
+    "Physical-to-synthetic ($10bn, per $ converted)": -5.695180987953796e-05,
+    "Opportunistic overlay": 0.0037116336866129668,
+    "Economic leverage (1.05x)": 0.002277168929011822
+   },
+   "p10y_beta": 0.4969456676841585,
+   "p5y_beta": 0.49784025035778634,
+   "p10y_central": 0.5413211763260288,
+   "p5y_central": 0.5293302280229399,
+   "gap_to_10": -0.004683560897690314,
+   "breakeven": {
+    "PE primaries: selection + fee scale": {
+     "alpha_be": -0.8314342890380992,
+     "p_reach": 0.9404934382751353,
+     "p10y_at_p90": 0.5750976575182907,
+     "p10y_at_zero": 0.5217322281837333
+    },
+    "Co-investment (fee saving net of timing/size)": {
+     "alpha_be": -3.5685879461097083,
+     "p_reach": 0.9995893455112327,
+     "p10y_at_p90": 0.5548484811940997,
+     "p10y_at_zero": 0.5322851138098335
+    },
+    "Secondaries (discount capture, net)": {
+     "alpha_be": -4.873898787855705,
+     "p_reach": 0.9999997393023221,
+     "p10y_at_p90": 0.5518458492238374,
+     "p10y_at_zero": 0.5342940548009223
+    },
+    "Capital Solutions": {
+     "alpha_be": -10.27932287874765,
+     "p_reach": 1.0,
+     "p10y_at_p90": 0.5473380035036896,
+     "p10y_at_zero": 0.5413211763260288
+    },
+    "Private Credit": {
+     "alpha_be": -5.873898787855707,
+     "p_reach": 0.9999999999889192,
+     "p10y_at_p90": 0.5465862758704751,
+     "p10y_at_zero": 0.5413211763260288
+    },
+    "Hedge-fund selection vs median": {
+     "alpha_be": -4.111729151499483,
+     "p_reach": 0.999778283823569,
+     "p10y_at_p90": 0.5563489527489796,
+     "p10y_at_zero": 0.5413211763260288
+    },
+    "Long-only active vs index": {
+     "alpha_be": -3.0869493939279105,
+     "p_reach": 1.0,
+     "p10y_at_p90": 0.547638662371174,
+     "p10y_at_zero": 0.5434278197980322
+    },
+    "Physical-to-synthetic ($10bn, per $ converted)": {
+     "alpha_be": -8.32345830299812,
+     "p_reach": 1.0,
+     "p10y_at_p90": 0.5428260001773906,
+     "p10y_at_zero": 0.5418228270382042
+    },
+    "Opportunistic overlay (SR at 1.5% vol)": {
+     "alpha_be": -0.05773625875446961,
+     "p_reach": 0.9237770156735513,
+     "p10y_at_p90": 0.5767316006870185,
+     "p10y_at_zero": 0.508627666555574
+    },
+    "Economic leverage (x)": {
+     "alpha_be": NaN,
+     "p_reach": NaN,
+     "p10y_at_p90": 0.6067881319846486,
+     "p10y_at_zero": 0.5223465189647941,
+     "geo_at_1.30_normal": 0.1152723667748216,
+     "geo_at_1.30_jun2026": 0.11372354919127839,
+     "geo_at_1.30_stress": 0.11086873952756811
+    }
+   },
+   "allp90_geo": 0.1327367448992186,
+   "allp90_p10y": 0.7207214511432536,
+   "allp10_geo": 0.08030432132061142,
+   "allp10_p10y": 0.3248132065799476,
+   "drags_low": 0.001815,
+   "drags_high": 0.0110838,
+   "p_mu_ge10_L105": 0.8290855465536773,
+   "p_mu_ge10_L130": 0.9990311603262633,
+   "central_geo_L130": 0.1152723667748216,
+   "p10y_hurdles": {
+    "0.079": 0.7179532149482472,
+    "0.100": 0.5413211763260288,
+    "0.108": 0.46994307981967465,
+    "0.139": 0.22814582935495387
+   },
+   "p10y_central_L130": 0.6067881319846486
+  },
+  "M3 AQR nominal": {
+   "beta_geo": 0.0628105236781895,
+   "beta_arith": 0.0713401129943503,
+   "beta_vol": 0.13600288334326668,
+   "central_geo": 0.06819380135582999,
+   "central_vol": 0.14398189435548622,
+   "alpha_total": 0.0037175141242937857,
+   "overlay": 0.00375,
+   "drags": {
+    "convex": 0.0009,
+    "reserve": 0.0010375,
+    "facilities": 0.00030000000000000003,
+    "pacing": 0.000225,
+    "forced_sales": 0.0006,
+    "total": 0.0030625
+   },
+   "contrib": {
+    "PE primaries: selection + fee scale": 0.0022223213449576174,
+    "Co-investment (fee saving net of timing/size)": 0.0010256775300127585,
+    "Secondaries (discount capture, net)": 0.0007977478221413425,
+    "Capital Solutions": 0.0,
+    "Private Credit": 0.0,
+    "Hedge-fund selection vs median": 0.0,
+    "Long-only active vs index": -0.00023932248155719704,
+    "Physical-to-synthetic ($10bn, per $ converted)": -5.6981621247689795e-05,
+    "Opportunistic overlay": 0.0037114291982600633,
+    "Economic leverage (1.05x)": 0.0010150731378487793
+   },
+   "p10y_beta": 0.1948436178469828,
+   "p5y_beta": 0.27151334651982506,
+   "p10y_central": 0.24400512936528296,
+   "p5y_central": 0.31143034833344163,
+   "gap_to_10": 0.03180619864417002,
+   "breakeven": {
+    "PE primaries: selection + fee scale": {
+     "alpha_be": 11.486789172500353,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.2707517896318674,
+     "p10y_at_zero": 0.22928775917303368
+    },
+    "Co-investment (fee saving net of timing/size)": {
+     "alpha_be": 32.017390942778846,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.25450310022582723,
+     "p10y_at_zero": 0.2371462661731294
+    },
+    "Secondaries (discount capture, net)": {
+     "alpha_be": 40.87950264071565,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.25214868652059275,
+     "p10y_at_zero": 0.23866069888037877
+    },
+    "Capital Solutions": {
+     "alpha_be": 69.78912962125253,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.2486400623304552,
+     "p10y_at_zero": 0.24400512936528296
+    },
+    "Private Credit": {
+     "alpha_be": 39.87950264071566,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.2480579863829251,
+     "p10y_at_zero": 0.24400512936528296
+    },
+    "Hedge-fund selection vs median": {
+     "alpha_be": 27.91565184850094,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.2556848836818907,
+     "p10y_at_zero": 0.24400512936528296
+    },
+    "Long-only active vs index": {
+     "alpha_be": 19.789751320357816,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.24887310876335023,
+     "p10y_at_zero": 0.2456217115996091
+    },
+    "Physical-to-synthetic ($10bn, per $ converted)": {
+     "alpha_be": 55.73130369700223,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.24515920932380464,
+     "p10y_at_zero": 0.24438947706111536
+    },
+    "Opportunistic overlay (SR at 1.5% vol)": {
+     "alpha_be": 2.354872479475286,
+     "p_reach": 1.1102230246251565e-16,
+     "p10y_at_p90": 0.2720917131841083,
+     "p10y_at_zero": 0.2183503943236922
+    },
+    "Economic leverage (x)": {
+     "alpha_be": NaN,
+     "p_reach": NaN,
+     "p10y_at_p90": 0.3154193978688946,
+     "p10y_at_zero": 0.22584392805736075,
+     "geo_at_1.30_normal": 0.07241947763059677,
+     "geo_at_1.30_jun2026": 0.07086925905762632,
+     "geo_at_1.30_stress": 0.06801185315860118
+    }
+   },
+   "allp90_geo": 0.08862627233201482,
+   "allp90_p10y": 0.42091722633807915,
+   "allp10_geo": 0.04633320069289726,
+   "allp10_p10y": 0.1114195897913004,
+   "drags_low": 0.0014475,
+   "drags_high": 0.0082025,
+   "p_mu_ge10_L105": 5.4014570594063116e-11,
+   "p_mu_ge10_L130": 1.0864569577329064e-08,
+   "central_geo_L130": 0.07241947763059677,
+   "p10y_hurdles": {
+    "0.079": 0.4068294645491285,
+    "0.100": 0.24400512936528296,
+    "0.108": 0.1930040082353648,
+    "0.139": 0.06490389922507211
+   },
+   "p10y_central_L130": 0.3154193978688946
+  },
+  "M4 JPM drought": {
+   "beta_geo": 0.08330473857964056,
+   "beta_arith": 0.09167909604519775,
+   "beta_vol": 0.13600288334326668,
+   "central_geo": 0.08614050894263532,
+   "central_vol": 0.14398189435548622,
+   "alpha_total": 0.0037175141242937857,
+   "overlay": 0.00375,
+   "drags": {
+    "convex": 0.0009,
+    "reserve": 0.0016950000000000003,
+    "facilities": 0.0004500000000000001,
+    "pacing": 0.0017099999999999997,
+    "forced_sales": 0.0015999999999999999,
+    "total": 0.0063549999999999995
+   },
+   "contrib": {
+    "PE primaries: selection + fee scale": 0.002221734218084595,
+    "Co-investment (fee saving net of timing/size)": 0.0010254069690413398,
+    "Secondaries (discount capture, net)": 0.0007975374480498343,
+    "Capital Solutions": 0.0,
+    "Private Credit": 0.0,
+    "Hedge-fund selection vs median": 0.0,
+    "Long-only active vs index": -0.0002392594541377746,
+    "Physical-to-synthetic ($10bn, per $ converted)": -5.696661117239599e-05,
+    "Opportunistic overlay": 0.0037115231223581596,
+    "Economic leverage (1.05x)": 0.0017847812142936792
+   },
+   "p10y_beta": 0.34837650339869075,
+   "p5y_beta": 0.3914412258332426,
+   "p10y_central": 0.3803394890936812,
+   "p5y_central": 0.4144905713883471,
+   "gap_to_10": 0.013859491057364684,
+   "breakeven": {
+    "PE primaries: selection + fee scale": {
+     "alpha_be": 5.429140134038823,
+     "p_reach": 1.9887714176602955e-06,
+     "p10y_at_p90": 0.4128068835513533,
+     "p10y_at_zero": 0.36201729192015775
+    },
+    "Co-investment (fee saving net of timing/size)": {
+     "alpha_be": 14.51751594277881,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.3932072749632236,
+     "p10y_at_zero": 0.37184243959090746
+    },
+    "Secondaries (discount capture, net)": {
+     "alpha_be": 18.379663355001796,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.39033562352954343,
+     "p10y_at_zero": 0.3737247955690728
+    },
+    "Capital Solutions": {
+     "alpha_be": 30.41441087125245,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.38604098039836643,
+     "p10y_at_zero": 0.3803394890936812
+    },
+    "Private Credit": {
+     "alpha_be": 17.379663355001775,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.38532673232306325,
+     "p10y_at_zero": 0.3803394890936812
+    },
+    "Hedge-fund selection vs median": {
+     "alpha_be": 12.165764348500964,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.3946456138489004,
+     "p10y_at_zero": 0.3803394890936812
+    },
+    "Long-only active vs index": {
+     "alpha_be": 8.539831677500688,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.38632680284455834,
+     "p10y_at_zero": 0.3823317405444986
+    },
+    "Physical-to-synthetic ($10bn, per $ converted)": {
+     "alpha_be": 24.23152869700201,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.3817621629653867,
+     "p10y_at_zero": 0.3808135114332042
+    },
+    "Opportunistic overlay (SR at 1.5% vol)": {
+     "alpha_be": 1.168440276085455,
+     "p_reach": 0.0002566088762595564,
+     "p10y_at_p90": 0.4144064059481881,
+     "p10y_at_zero": 0.34906194469505736
+    },
+    "Economic leverage (x)": {
+     "alpha_be": 1.507858467012576,
+     "p_reach": NaN,
+     "p10y_at_p90": 0.45969290422430986,
+     "p10y_at_zero": 0.35886938215553965,
+     "geo_at_1.30_normal": 0.09424512734272998,
+     "geo_at_1.30_jun2026": 0.0926956405613648,
+     "geo_at_1.30_stress": 0.089839590832545
+    }
+   },
+   "allp90_geo": 0.11131001378600108,
+   "allp90_p10y": 0.5793884148502382,
+   "allp10_geo": 0.06267863816064931,
+   "allp10_p10y": 0.1965354787963567,
+   "drags_low": 0.003885,
+   "drags_high": 0.012325,
+   "p_mu_ge10_L105": 0.0024550762142261373,
+   "p_mu_ge10_L130": 0.1214059713944664,
+   "central_geo_L130": 0.09424512734272998,
+   "p10y_hurdles": {
+    "0.079": 0.5638247235088096,
+    "0.100": 0.3803394890936812,
+    "0.108": 0.3153184334714766,
+    "0.139": 0.12726409155036134
+   },
+   "p10y_central_L130": 0.45969290422430986
+  },
+  "M5 JPM stagflation": {
+   "beta_geo": 0.08382522692454157,
+   "beta_arith": 0.09544013841807909,
+   "beta_vol": 0.1608023552240339,
+   "central_geo": 0.08855203628886918,
+   "central_vol": 0.17008602990143795,
+   "alpha_total": 0.0037175141242937857,
+   "overlay": 0.00375,
+   "drags": {
+    "convex": 0.0009,
+    "reserve": 0.0016950000000000003,
+    "facilities": 0.00030000000000000003,
+    "pacing": 0.0008549999999999999,
+    "forced_sales": 0.0006,
+    "total": 0.00435
+   },
+   "contrib": {
+    "PE primaries: selection + fee scale": 0.0022283433431919547,
+    "Co-investment (fee saving net of timing/size)": 0.0010284544006425173,
+    "Secondaries (discount capture, net)": 0.0007999072384616973,
+    "Capital Solutions": 0.0,
+    "Private Credit": 0.0,
+    "Hedge-fund selection vs median": 0.0,
+    "Long-only active vs index": -0.00023996979919833905,
+    "Physical-to-synthetic ($10bn, per $ converted)": -5.713576571793333e-05,
+    "Opportunistic overlay": 0.003723836068015976,
+    "Economic leverage (1.05x)": 0.0016462581283487043
+   },
+   "p10y_beta": 0.3741700769437395,
+   "p5y_beta": 0.4102662252838103,
+   "p10y_central": 0.4150394346883508,
+   "p5y_central": 0.4395675007290474,
+   "gap_to_10": 0.011447963711130826,
+   "breakeven": {
+    "PE primaries: selection + fee scale": {
+     "alpha_be": 4.603571471055221,
+     "p_reach": 7.271907162664792e-05,
+     "p10y_at_p90": 0.44336812639290246,
+     "p10y_at_zero": 0.3989263033745394
+    },
+    "Co-investment (fee saving net of timing/size)": {
+     "alpha_be": 12.132539805270634,
+     "p_reach": 2.220446049250313e-16,
+     "p10y_at_p90": 0.4262987585874023,
+     "p10y_at_zero": 0.40757929727131403
+    },
+    "Secondaries (discount capture, net)": {
+     "alpha_be": 15.313265463919347,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.4237898797767634,
+     "p10y_at_zero": 0.40923375275937834
+    },
+    "Capital Solutions": {
+     "alpha_be": 25.04821456185904,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.4200337347185784,
+     "p10y_at_zero": 0.4150394346883508
+    },
+    "Private Credit": {
+     "alpha_be": 14.313265463919391,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.4194085666899805,
+     "p10y_at_zero": 0.4150394346883508
+    },
+    "Hedge-fund selection vs median": {
+     "alpha_be": 10.019285824743566,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.42755459640243587,
+     "p10y_at_zero": 0.4150394346883508
+    },
+    "Long-only active vs index": {
+     "alpha_be": 7.006632731959686,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.42028387120431965,
+     "p10y_at_zero": 0.41678559305914964
+    },
+    "Physical-to-synthetic ($10bn, per $ converted)": {
+     "alpha_be": 19.93857164948741,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.4162864853664704,
+     "p10y_at_zero": 0.4154550037240491
+    },
+    "Opportunistic overlay (SR at 1.5% vol)": {
+     "alpha_be": 1.0067158174339434,
+     "p_reach": 0.002350319700373693,
+     "p10y_at_p90": 0.4447572204892216,
+     "p10y_at_zero": 0.3877550876585705
+    },
+    "Economic leverage (x)": {
+     "alpha_be": NaN,
+     "p_reach": NaN,
+     "p10y_at_p90": 0.4745378978782616,
+     "p10y_at_zero": 0.39816487642644194,
+     "geo_at_1.30_normal": 0.09575219199958722,
+     "geo_at_1.30_jun2026": 0.09419597851103542,
+     "geo_at_1.30_stress": 0.09132748998865617
+    }
+   },
+   "allp90_geo": 0.11281391771004325,
+   "allp90_p10y": 0.5769127632291666,
+   "allp10_geo": 0.06521946259389912,
+   "allp10_p10y": 0.24854007116505672,
+   "drags_low": 0.001955,
+   "drags_high": 0.01027,
+   "p_mu_ge10_L105": 0.010077888018749537,
+   "p_mu_ge10_L130": 0.19431101095201497,
+   "central_geo_L130": 0.09575219199958722,
+   "p10y_hurdles": {
+    "0.079": 0.5724814775446074,
+    "0.100": 0.4150394346883508,
+    "0.108": 0.35751991145140893,
+    "0.139": 0.17683967940716527
+   },
+   "p10y_central_L130": 0.4745378978782616
+  },
+  "M6 BlackRock RPR fee-adj": {
+   "beta_geo": 0.05808181197632159,
+   "beta_arith": 0.06664802259887008,
+   "beta_vol": 0.13600288334326668,
+   "central_geo": 0.060608084194461335,
+   "central_vol": 0.14398189435548622,
+   "alpha_total": 0.0037175141242937857,
+   "overlay": 0.00375,
+   "drags": {
+    "convex": 0.0009,
+    "reserve": 0.0005322,
+    "facilities": 0.0004500000000000001,
+    "pacing": 0.0012209999999999999,
+    "forced_sales": 0.0015999999999999999,
+    "total": 0.004703199999999999
+   },
+   "contrib": {
+    "PE primaries: selection + fee scale": 0.00222257784100844,
+    "Co-investment (fee saving net of timing/size)": 0.0010257957271244816,
+    "Secondaries (discount capture, net)": 0.0007978397257648803,
+    "Capital Solutions": 0.0,
+    "Private Credit": 0.0,
+    "Hedge-fund selection vs median": 0.0,
+    "Long-only active vs index": -0.00023935001521105392,
+    "Physical-to-synthetic ($10bn, per $ converted)": -5.6988178445106785e-05,
+    "Opportunistic overlay": 0.003711393706283893,
+    "Economic leverage (1.05x)": -0.00018834479765898748
+   },
+   "p10y_beta": 0.16665010007584735,
+   "p5y_beta": 0.24695056924946268,
+   "p10y_central": 0.1960109339049072,
+   "p5y_central": 0.27191634214034155,
+   "gap_to_10": 0.03939191580553867,
+   "breakeven": {
+    "PE primaries: selection + fee scale": {
+     "alpha_be": 14.046750518654202,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.21958800751378282,
+     "p10y_at_zero": 0.18317085055837412
+    },
+    "Co-investment (fee saving net of timing/size)": {
+     "alpha_be": 39.41283483166769,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.20522803797722045,
+     "p10y_at_zero": 0.1900150053788745
+    },
+    "Secondaries (discount capture, net)": {
+     "alpha_be": 50.38793049785847,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.20315671736563146,
+     "p10y_at_zero": 0.19133711619128402
+    },
+    "Capital Solutions": {
+     "alpha_be": 86.42887837125231,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.20007443353258914,
+     "p10y_at_zero": 0.1960109339049072
+    },
+    "Private Credit": {
+     "alpha_be": 49.387930497858456,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.199563605263969,
+     "p10y_at_zero": 0.1960109339049072
+    },
+    "Hedge-fund selection vs median": {
+     "alpha_be": 34.57155134850091,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.20626862902422838,
+     "p10y_at_zero": 0.1960109339049072
+    },
+    "Long-only active vs index": {
+     "alpha_be": 24.543965248929222,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.20027899586673148,
+     "p10y_at_zero": 0.1974271428669332
+    },
+    "Physical-to-synthetic ($10bn, per $ converted)": {
+     "alpha_be": 69.04310269700233,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.19702185018570673,
+     "p10y_at_zero": 0.19634753838379226
+    },
+    "Opportunistic overlay (SR at 1.5% vol)": {
+     "alpha_be": 2.8562585058406316,
+     "p_reach": 0.0,
+     "p10y_at_p90": 0.220777209155395,
+     "p10y_at_zero": 0.17343562237760324
+    },
+    "Economic leverage (x)": {
+     "alpha_be": NaN,
+     "p_reach": NaN,
+     "p10y_at_p90": 0.23762188352142488,
+     "p10y_at_zero": 0.1850271164807029,
+     "geo_at_1.30_normal": 0.05877895526675289,
+     "geo_at_1.30_jun2026": 0.05722825893670538,
+     "geo_at_1.30_stress": 0.054369967585894165
+    }
+   },
+   "allp90_geo": 0.07521646483649802,
+   "allp90_p10y": 0.3327494349495831,
+   "allp10_geo": 0.03974949346532118,
+   "allp10_p10y": 0.08621800788715972,
+   "drags_low": 0.0028653,
+   "drags_high": 0.0100411,
+   "p_mu_ge10_L105": 6.661338147750939e-16,
+   "p_mu_ge10_L130": 0.0,
+   "central_geo_L130": 0.05877895526675289,
+   "p10y_hurdles": {
+    "0.079": 0.3440795228215642,
+    "0.100": 0.1960109339049072,
+    "0.108": 0.15193741871841926,
+    "0.139": 0.047295934444441134
+   },
+   "p10y_central_L130": 0.23762188352142488
+  }
+ },
+ "sd_levers_pp": 0.49271711515975924,
+ "mixture": {
+  "beta_geo": {
+   "mean": 0.07850023184457233,
+   "min": 0.05808181197632159,
+   "max": 0.0996743513291002
+  },
+  "central_geo": {
+   "mean": 0.08277082839273424,
+   "min": 0.060608084194461335,
+   "max": 0.10468356089769032
+  },
+  "p10y_beta": {
+   "mean": 0.3215604115580183,
+   "min": 0.16665010007584735,
+   "max": 0.4969456676841585
+  },
+  "p10y_central": {
+   "mean": 0.3627339051993001,
+   "min": 0.1960109339049072,
+   "max": 0.5413211763260288
+  },
+  "p5y_central": {
+   "mean": 0.39920267051623654,
+   "min": 0.27191634214034155,
+   "max": 0.5293302280229399
+  },
+  "allp90_p10y": {
+   "mean": 0.5376018987623487,
+   "min": 0.3327494349495831,
+   "max": 0.7207214511432536
+  },
+  "allp10_p10y": {
+   "mean": 0.196515289248525,
+   "min": 0.08621800788715972,
+   "max": 0.3248132065799476
+  }
+ },
+ "payout_hurdles_real_preserving": {
+  "0.05": 0.07894736842105265,
+  "0.075": 0.10810810810810789,
+  "0.1": 0.13888888888888884
+ }
+}

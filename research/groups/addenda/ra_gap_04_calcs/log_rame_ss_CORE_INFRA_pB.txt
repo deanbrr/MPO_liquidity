@@ -1,0 +1,6 @@
+CORE_INFRA ss true SS params {'lam': 0.85, 'mu': 0.0034151223615480992, 'sv': 0.04923234375190278, 'sxi': 0.0025617376914898998, 'beta': 1.0, 'phip': 0.88, 'sp': 0.06, 'sL': 0.01, 'st': 0.035, 'cL': 0.0}
+resuming; done: ['M0', 'M1', 'M2', 'M3', 'M4', 'M5', 'M5s', 'M6', 'MALL', 'TL1']
+CORE_INFRA ss TL2    ALT: R2 0.58 xsCRPS +54.3% xsReg +58.2% cov 0.397 sellbias -1.15 reg 0.566 | AL R2 0.52 cov 0.70 | ALT4 R2 0.51 | lam 0.736 | 553s
+CORE_INFRA ss TA3    ALT: R2 0.34 xsCRPS +5.7% xsReg +7.5% cov 0.666 sellbias -0.22 reg 0.257 | AL R2 0.52 cov 0.70 | ALT4 R2 0.40 | lam 0.834 | 509s
+CORE_INFRA ss TA5    ALT: R2 0.41 xsCRPS +21.6% xsReg +31.0% cov 0.553 sellbias -0.55 reg 0.361 | AL R2 0.52 cov 0.70 | ALT4 R2 0.44 | lam 0.808 | 484s
+wrote C:\Users\dean\ai_envs\adic_tpa_lab\research\groups\addenda\ra_gap_04_calcs\rame_ens_ss_CORE_INFRA_pB.json 1547.5 s SYNTHETIC - NOT ADIC DATA

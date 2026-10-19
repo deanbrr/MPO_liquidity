@@ -1,0 +1,7 @@
+CORE_RE ss true SS params {'lam': 0.75, 'mu': 0.0033357329104412247, 'sv': 0.05781881563717437, 'sxi': 0.004269562819149833, 'beta': 1.0, 'phip': 0.85, 'sp': 0.05, 'sL': 0.01, 'st': 0.025, 'cL': 0.0}
+resuming; done: ['M0', 'M1', 'M2', 'M3', 'M4', 'M5']
+CORE_RE ss TB     ALT: R2 0.37 xsCRPS +58.0% xsReg +95.3% cov 0.633 sellbias +2.38 reg 0.241 | AL R2 0.50 cov 0.74 | ALT4 R2 0.45 | lam 0.766 | 411s
+CORE_RE ss TBC    ALT: R2 0.29 xsCRPS +18.3% xsReg +0.5% cov 0.751 sellbias +0.06 reg 0.124 | AL R2 0.50 cov 0.74 | ALT4 R2 0.43 | lam 0.753 | 540s
+CORE_RE ss TW     ALT: R2 0.71 xsCRPS +73.5% xsReg +74.6% cov 0.340 sellbias -1.26 reg 0.612 | AL R2 0.50 cov 0.74 | ALT4 R2 0.58 | lam 0.482 | 605s
+CORE_RE ss MALL_T ALT: R2 0.68 xsCRPS +112.6% xsReg +72.5% cov 0.316 sellbias +2.04 reg 0.748 | AL R2 0.59 cov 0.56 | ALT4 R2 0.65 | lam 0.636 | 353s
+wrote C:\Users\dean\ai_envs\adic_tpa_lab\research\groups\addenda\ra_gap_04_calcs\rame_ens_ss_CORE_RE_pC.json 1910.2 s SYNTHETIC - NOT ADIC DATA

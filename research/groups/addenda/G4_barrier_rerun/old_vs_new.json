@@ -1,0 +1,723 @@
+{
+  "label": "SYNTHETIC - NOT ADIC DATA",
+  "section7": {
+    "drought": {
+      "rows": [
+        {
+          "metric": "Distributions 3y, mean ($bn)",
+          "old": "9.2",
+          "new": "9.2",
+          "new_total_sigma": "9.2",
+          "dossier_wrong_sign": "9.2",
+          "old_raw": 9.199043109005226,
+          "new_raw": 9.197958617864158,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Distributions 3y, P10",
+          "old": "3.6",
+          "new": "3.6",
+          "new_total_sigma": "3.6",
+          "dossier_wrong_sign": "3.7",
+          "old_raw": 3.6387855895915147,
+          "new_raw": 3.6387855895915147,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Distributions 3y, P50",
+          "old": "8.4",
+          "new": "8.4",
+          "new_total_sigma": "8.4",
+          "dossier_wrong_sign": "8.4",
+          "old_raw": 8.385344007701196,
+          "new_raw": 8.393085195053635,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Distributions 3y, P90",
+          "old": "16.0",
+          "new": "16.0",
+          "new_total_sigma": "16.0",
+          "dossier_wrong_sign": "16.0",
+          "old_raw": 16.00048561573317,
+          "new_raw": 15.999771697224718,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Calls 3y, mean ($bn)",
+          "old": "5.8",
+          "new": "5.8",
+          "new_total_sigma": "5.8",
+          "dossier_wrong_sign": "5.8",
+          "old_raw": 5.767522662557994,
+          "new_raw": 5.767135099262812,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Net cash flow 3y, mean ($bn)",
+          "old": "3.4",
+          "new": "3.4",
+          "new_total_sigma": "3.4",
+          "dossier_wrong_sign": "3.4",
+          "old_raw": 3.431520446447233,
+          "new_raw": 3.430823518601345,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Net cash flow 3y, P10",
+          "old": "-1.3",
+          "new": "-1.3",
+          "new_total_sigma": "-1.3",
+          "dossier_wrong_sign": "-1.3",
+          "old_raw": -1.272755901560345,
+          "new_raw": -1.2609024393694257,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Net cash flow 3y, P90",
+          "old": "9.4",
+          "new": "9.4",
+          "new_total_sigma": "9.4",
+          "dossier_wrong_sign": "9.4",
+          "old_raw": 9.418937846051207,
+          "new_raw": 9.356295209689485,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Net CF 3y if drought all 12q, mean",
+          "old": "1.6",
+          "new": "1.6",
+          "new_total_sigma": "1.6",
+          "dossier_wrong_sign": "1.6",
+          "old_raw": 1.5903408516110702,
+          "new_raw": 1.5756587802734259,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Net CF 3y if drought all 12q, P10",
+          "old": "-1.8",
+          "new": "-1.8",
+          "new_total_sigma": "-1.8",
+          "dossier_wrong_sign": "-1.8",
+          "old_raw": -1.7893877683632484,
+          "new_raw": -1.7588450620823124,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Year-1 distribution yield, mean (%)",
+          "old": "12.4",
+          "new": "12.4",
+          "new_total_sigma": "12.4",
+          "dossier_wrong_sign": "12.4",
+          "old_raw": 0.12364884025452638,
+          "new_raw": 0.12363652846577759,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Year-1 distribution yield, P10 (%)",
+          "old": "4.3",
+          "new": "4.3",
+          "new_total_sigma": "4.3",
+          "dossier_wrong_sign": "4.3",
+          "old_raw": 0.04266434465185086,
+          "new_raw": 0.04266434465185086,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Year-1 distribution yield, P90 (%)",
+          "old": "22.6",
+          "new": "22.6",
+          "new_total_sigma": "22.6",
+          "dossier_wrong_sign": "22.6",
+          "old_raw": 0.22550627271627025,
+          "new_raw": 0.22550627271627025,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Write-off rate per position-year (%)",
+          "old": "2.5",
+          "new": "3.3",
+          "new_total_sigma": "3.4",
+          "dossier_wrong_sign": "1.9",
+          "old_raw": 0.0250431125170511,
+          "new_raw": 0.033045350197770704,
+          "changes_at_display": true
+        },
+        {
+          "metric": "Write-offs over 3y, mean (count)",
+          "old": "6.74",
+          "new": "8.81",
+          "new_total_sigma": "9.06",
+          "dossier_wrong_sign": "5.15",
+          "old_raw": 6.74,
+          "new_raw": 8.815,
+          "changes_at_display": true
+        },
+        {
+          "metric": "Write-offs over 3y, P10 / P50 / P90",
+          "old": "1/4/15",
+          "new": "1/6/19",
+          "changes_at_display": true
+        },
+        {
+          "metric": "Written-off cost / (initial NAV + new calls) (%)",
+          "old": "5.8",
+          "new": "7.5",
+          "new_total_sigma": "7.7",
+          "dossier_wrong_sign": "4.4",
+          "old_raw": 0.05757913416643816,
+          "new_raw": 0.07531716088547481,
+          "changes_at_display": true
+        },
+        {
+          "metric": "Exits over 3y, mean (count)",
+          "old": "24.6",
+          "new": "24.6",
+          "new_total_sigma": "24.5",
+          "dossier_wrong_sign": "24.7",
+          "old_raw": 24.6335,
+          "new_raw": 24.5575,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Exit rate per position-year (%)",
+          "old": "9.2",
+          "new": "9.2",
+          "new_total_sigma": "9.2",
+          "dossier_wrong_sign": "9.1",
+          "old_raw": 0.09152811753542704,
+          "new_raw": 0.09206025949878095,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Recap dividends / exit proceeds (%)",
+          "old": "3.6",
+          "new": "3.6",
+          "new_total_sigma": "3.6",
+          "dossier_wrong_sign": "3.6",
+          "old_raw": 0.0360485890775898,
+          "new_raw": 0.0360759338916491,
+          "changes_at_display": false
+        },
+        {
+          "metric": "P(exit > next-to-last mark)",
+          "old": "0.72",
+          "new": "0.72",
+          "new_total_sigma": "0.72",
+          "dossier_wrong_sign": "0.72",
+          "old_raw": 0.7195134691590802,
+          "new_raw": 0.7196864752737215,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Reported vs economic NAV gap, P10 (%)",
+          "old": "-18.5",
+          "new": "-18.5",
+          "new_total_sigma": "-18.4",
+          "dossier_wrong_sign": "-18.7",
+          "old_raw": -0.18515001591471106,
+          "new_raw": -0.18462057144862007,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Reported vs economic NAV gap, P50 (%)",
+          "old": "-3.5",
+          "new": "-3.6",
+          "new_total_sigma": "-3.8",
+          "dossier_wrong_sign": "-3.5",
+          "old_raw": -0.03467552982095368,
+          "new_raw": -0.03592382466475591,
+          "changes_at_display": true
+        },
+        {
+          "metric": "Reported vs economic NAV gap, P90 (%)",
+          "old": "21.9",
+          "new": "21.5",
+          "new_total_sigma": "21.4",
+          "dossier_wrong_sign": "22.2",
+          "old_raw": 0.2193717343872194,
+          "new_raw": 0.21524837848729192,
+          "changes_at_display": true
+        },
+        {
+          "metric": "Economic NAV at 3y, mean ($bn)",
+          "old": "20.12",
+          "new": "20.10",
+          "new_total_sigma": "20.09",
+          "dossier_wrong_sign": "20.14",
+          "old_raw": 20.121765286731666,
+          "new_raw": 20.097092672076563,
+          "changes_at_display": true
+        },
+        {
+          "metric": "Reported NAV at 3y, mean ($bn)",
+          "old": "19.41",
+          "new": "19.37",
+          "new_total_sigma": "19.37",
+          "dossier_wrong_sign": "19.43",
+          "old_raw": 19.407813930322543,
+          "new_raw": 19.371286420521418,
+          "changes_at_display": true
+        }
+      ],
+      "fine_grid_writeoff_rate": {
+        "Q": 0.02441953814290822,
+        "Q_bgk": 0.032227264593460044,
+        "Q_bgk_wrong_sign": 0.01851616604350053,
+        "M": 0.02697050820781724,
+        "M_bgk": 0.031638390527239296,
+        "W": 0.029113887060897254,
+        "F": 0.030422890539822056,
+        "continuous_limit_lsq_MWF": 0.031224112750013737,
+        "continuous_limit_two_point_WF": 0.03132596935458578,
+        "se_level": 0.0004024548088774285,
+        "paired_Q_bgk_minus_F": {
+          "diff": 0.0018043740536379874,
+          "se_approx": 5.207566260037171e-05
+        }
+      },
+      "fine_grid_cost_share": {
+        "Q": 0.05598988871944701,
+        "Q_bgk": 0.0732543055404175,
+        "M": 0.061677139459155796,
+        "W": 0.06642597424856461,
+        "F": 0.06931221144588327,
+        "continuous_limit": 0.07108817909901413
+      },
+      "fine_grid_writeoffs_3y_mean": {
+        "Q": 6.56075,
+        "Q_bgk": 8.58275,
+        "M": 7.22725,
+        "W": 7.783625,
+        "F": 8.12175,
+        "continuous_limit": 8.329824496618503
+      }
+    },
+    "normal": {
+      "rows": [
+        {
+          "metric": "Distributions 3y, mean ($bn)",
+          "old": "11.7",
+          "new": "11.7",
+          "new_total_sigma": "11.7",
+          "dossier_wrong_sign": "11.7",
+          "old_raw": 11.662875831204175,
+          "new_raw": 11.656564333015742,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Distributions 3y, P10",
+          "old": "5.4",
+          "new": "5.4",
+          "new_total_sigma": "5.4",
+          "dossier_wrong_sign": "5.4",
+          "old_raw": 5.408558230814833,
+          "new_raw": 5.408558230814833,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Distributions 3y, P50",
+          "old": "11.0",
+          "new": "11.0",
+          "new_total_sigma": "11.0",
+          "dossier_wrong_sign": "11.0",
+          "old_raw": 11.02390355452869,
+          "new_raw": 11.02390355452869,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Distributions 3y, P90",
+          "old": "18.6",
+          "new": "18.6",
+          "new_total_sigma": "18.6",
+          "dossier_wrong_sign": "18.6",
+          "old_raw": 18.627424368042934,
+          "new_raw": 18.627424368042934,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Calls 3y, mean ($bn)",
+          "old": "6.7",
+          "new": "6.7",
+          "new_total_sigma": "6.7",
+          "dossier_wrong_sign": "6.7",
+          "old_raw": 6.678563333539892,
+          "new_raw": 6.678449400516569,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Net cash flow 3y, mean ($bn)",
+          "old": "5.0",
+          "new": "5.0",
+          "new_total_sigma": "5.0",
+          "dossier_wrong_sign": "5.0",
+          "old_raw": 4.984312497664282,
+          "new_raw": 4.978114932499172,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Net cash flow 3y, P10",
+          "old": "-0.4",
+          "new": "-0.4",
+          "new_total_sigma": "-0.4",
+          "dossier_wrong_sign": "-0.4",
+          "old_raw": -0.39323857505105964,
+          "new_raw": -0.4245007729413761,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Net cash flow 3y, P90",
+          "old": "11.4",
+          "new": "11.3",
+          "new_total_sigma": "11.3",
+          "dossier_wrong_sign": "11.4",
+          "old_raw": 11.35567803776172,
+          "new_raw": 11.30186535967114,
+          "changes_at_display": true
+        },
+        {
+          "metric": "Net CF 3y if drought all 12q, mean",
+          "old": "1.4",
+          "new": "1.4",
+          "new_total_sigma": "1.4",
+          "dossier_wrong_sign": "1.4",
+          "old_raw": 1.3832020507189342,
+          "new_raw": 1.3596727080907829,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Net CF 3y if drought all 12q, P10",
+          "old": "-1.2",
+          "new": "-1.2",
+          "new_total_sigma": "-1.1",
+          "dossier_wrong_sign": "-1.2",
+          "old_raw": -1.1608598748089936,
+          "new_raw": -1.2362856034318415,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Year-1 distribution yield, mean (%)",
+          "old": "19.3",
+          "new": "19.3",
+          "new_total_sigma": "19.3",
+          "dossier_wrong_sign": "19.3",
+          "old_raw": 0.1933175160389128,
+          "new_raw": 0.19332433446237468,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Year-1 distribution yield, P10 (%)",
+          "old": "8.7",
+          "new": "8.7",
+          "new_total_sigma": "8.7",
+          "dossier_wrong_sign": "8.7",
+          "old_raw": 0.08685627763493343,
+          "new_raw": 0.08685627763493343,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Year-1 distribution yield, P90 (%)",
+          "old": "31.3",
+          "new": "31.3",
+          "new_total_sigma": "31.3",
+          "dossier_wrong_sign": "31.3",
+          "old_raw": 0.31314069737360734,
+          "new_raw": 0.31314069737360734,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Write-off rate per position-year (%)",
+          "old": "2.1",
+          "new": "2.8",
+          "new_total_sigma": "2.9",
+          "dossier_wrong_sign": "1.6",
+          "old_raw": 0.021216667291752617,
+          "new_raw": 0.027934657307889018,
+          "changes_at_display": true
+        },
+        {
+          "metric": "Write-offs over 3y, mean (count)",
+          "old": "5.66",
+          "new": "7.39",
+          "new_total_sigma": "7.61",
+          "dossier_wrong_sign": "4.30",
+          "old_raw": 5.657,
+          "new_raw": 7.394,
+          "changes_at_display": true
+        },
+        {
+          "metric": "Write-offs over 3y, P10 / P50 / P90",
+          "old": "1/4/12",
+          "new": "1/5/16",
+          "changes_at_display": true
+        },
+        {
+          "metric": "Written-off cost / (initial NAV + new calls) (%)",
+          "old": "4.7",
+          "new": "6.1",
+          "new_total_sigma": "6.3",
+          "dossier_wrong_sign": "3.5",
+          "old_raw": 0.04652227126808995,
+          "new_raw": 0.06081285338685099,
+          "changes_at_display": true
+        },
+        {
+          "metric": "Exits over 3y, mean (count)",
+          "old": "31.1",
+          "new": "31.0",
+          "new_total_sigma": "31.0",
+          "dossier_wrong_sign": "31.1",
+          "old_raw": 31.0525,
+          "new_raw": 30.9805,
+          "changes_at_display": true
+        },
+        {
+          "metric": "Exit rate per position-year (%)",
+          "old": "11.6",
+          "new": "11.7",
+          "new_total_sigma": "11.7",
+          "dossier_wrong_sign": "11.6",
+          "old_raw": 0.11646288864718898,
+          "new_raw": 0.11704485403395398,
+          "changes_at_display": true
+        },
+        {
+          "metric": "Recap dividends / exit proceeds (%)",
+          "old": "3.6",
+          "new": "3.6",
+          "new_total_sigma": "3.6",
+          "dossier_wrong_sign": "3.6",
+          "old_raw": 0.036196104153251175,
+          "new_raw": 0.036223721238062896,
+          "changes_at_display": false
+        },
+        {
+          "metric": "P(exit > next-to-last mark)",
+          "old": "0.74",
+          "new": "0.74",
+          "new_total_sigma": "0.74",
+          "dossier_wrong_sign": "0.74",
+          "old_raw": 0.7370083956772523,
+          "new_raw": 0.7368115193882258,
+          "changes_at_display": false
+        },
+        {
+          "metric": "Reported vs economic NAV gap, P10 (%)",
+          "old": "-18.7",
+          "new": "-18.8",
+          "new_total_sigma": "-18.8",
+          "dossier_wrong_sign": "-18.8",
+          "old_raw": -0.18724549189074313,
+          "new_raw": -0.18841744144520453,
+          "changes_at_display": true
+        },
+        {
+          "metric": "Reported vs economic NAV gap, P50 (%)",
+          "old": "-3.0",
+          "new": "-3.1",
+          "new_total_sigma": "-3.0",
+          "dossier_wrong_sign": "-3.1",
+          "old_raw": -0.03003708144367223,
+          "new_raw": -0.03063541974725925,
+          "changes_at_display": true
+        },
+        {
+          "metric": "Reported vs economic NAV gap, P90 (%)",
+          "old": "19.2",
+          "new": "19.3",
+          "new_total_sigma": "19.3",
+          "dossier_wrong_sign": "19.4",
+          "old_raw": 0.19241837413668336,
+          "new_raw": 0.19274663277282203,
+          "changes_at_display": true
+        },
+        {
+          "metric": "Economic NAV at 3y, mean ($bn)",
+          "old": "20.51",
+          "new": "20.48",
+          "new_total_sigma": "20.48",
+          "dossier_wrong_sign": "20.52",
+          "old_raw": 20.505387521696626,
+          "new_raw": 20.480198649214145,
+          "changes_at_display": true
+        },
+        {
+          "metric": "Reported NAV at 3y, mean ($bn)",
+          "old": "19.73",
+          "new": "19.70",
+          "new_total_sigma": "19.69",
+          "dossier_wrong_sign": "19.75",
+          "old_raw": 19.729820630818974,
+          "new_raw": 19.69631567772044,
+          "changes_at_display": true
+        }
+      ],
+      "fine_grid_writeoff_rate": {
+        "Q": 0.02098313232769701,
+        "Q_bgk": 0.027634576501627886,
+        "Q_bgk_wrong_sign": 0.015784034777258087,
+        "M": 0.023138193645803436,
+        "M_bgk": 0.027157910623633576,
+        "W": 0.024996180124702876,
+        "F": 0.026155237422696865,
+        "continuous_limit_lsq_MWF": 0.02684839421629687,
+        "continuous_limit_two_point_WF": 0.026954868674842515,
+        "se_level": 0.0003528139881829385,
+        "paired_Q_bgk_minus_F": {
+          "diff": 0.001479339078931021,
+          "se_approx": 4.7982421512801214e-05
+        }
+      },
+      "fine_grid_cost_share": {
+        "Q": 0.045951115645394454,
+        "Q_bgk": 0.06008577058169081,
+        "M": 0.05056377075717819,
+        "W": 0.05451930103125589,
+        "F": 0.05697963116206957,
+        "continuous_limit": 0.05845572629844402
+      },
+      "fine_grid_writeoffs_3y_mean": {
+        "Q": 5.588875,
+        "Q_bgk": 7.307,
+        "M": 6.149625,
+        "W": 6.630625,
+        "F": 6.929625,
+        "continuous_limit": 7.109131238482922
+      }
+    }
+  },
+  "decision_example": {
+    "normal": {
+      "trigger": {
+        "published_quarterly": 0.495525,
+        "terminal_closed_form": 0.28701822186349935,
+        "continuous_closed_form": 0.6219017985706694,
+        "quarterly_bgk_predicted_from_continuous": 0.49042697531825863,
+        "sim_terminal": 0.2873075,
+        "sim_quarterly": 0.4957025,
+        "sim_quarterly_bgk_fix": 0.62279,
+        "sim_quarterly_bgk_wrong_sign": 0.3821575,
+        "sim_monthly": 0.5456925,
+        "sim_monthly_bgk_fix": 0.6235275,
+        "sim_weekly": 0.58415,
+        "sim_312_per_year": 0.60628,
+        "sim_continuous_extrapolated": 0.6207329162712636
+      },
+      "default_level": {
+        "published_quarterly": 0.327085,
+        "terminal_closed_form": 0.19774671931267412,
+        "continuous_closed_form": 0.42452959230764986,
+        "quarterly_bgk_predicted_from_continuous": 0.3216340834944664,
+        "sim_terminal": 0.197225,
+        "sim_quarterly": 0.326565,
+        "sim_quarterly_bgk_fix": 0.43014,
+        "sim_quarterly_bgk_wrong_sign": 0.24188,
+        "sim_monthly": 0.3643825,
+        "sim_monthly_bgk_fix": 0.4261975,
+        "sim_weekly": 0.3944025,
+        "sim_312_per_year": 0.4119675,
+        "sim_continuous_extrapolated": 0.4232329973744095
+      },
+      "e3_barrier": {
+        "terminal_closed_form": 0.0036688715842141915,
+        "continuous_closed_form": 0.00762162598904914,
+        "quarterly_bgk_predicted_from_continuous": 0.004318653299341589,
+        "sim_terminal": 0.0037325,
+        "sim_quarterly": 0.00487,
+        "sim_quarterly_bgk_fix": 0.0083275,
+        "sim_quarterly_bgk_wrong_sign": 0.0026025,
+        "sim_monthly": 0.005725,
+        "sim_monthly_bgk_fix": 0.0078425,
+        "sim_weekly": 0.006545,
+        "sim_312_per_year": 0.007165,
+        "sim_continuous_extrapolated": 0.007464759543373754
+      },
+      "wipeout_unlevered": {
+        "published_terminal": 0.0214075,
+        "terminal_only_closed_form": 0.02111194050696136,
+        "terminal_only_sim": 0.0210225,
+        "with_E3_continuous_closed_form": 0.021648969369581623,
+        "with_E3_quarterly_sim": 0.0211675,
+        "with_E3_quarterly_bgk_fix_sim": 0.02159,
+        "with_E3_monthly_sim": 0.0212625,
+        "with_E3_312_per_year_sim": 0.0214875
+      },
+      "wipeout_levered_pik": {
+        "published_terminal": 0.1178525,
+        "terminal_only_closed_form": 0.11852392344076895,
+        "terminal_only_sim": 0.11826,
+        "with_E3_continuous_closed_form": 0.11854577955664133,
+        "with_E3_quarterly_sim": 0.11826,
+        "with_E3_quarterly_bgk_fix_sim": 0.118285,
+        "with_E3_monthly_sim": 0.1182625,
+        "with_E3_312_per_year_sim": 0.1182725
+      }
+    },
+    "drought": {
+      "trigger": {
+        "published_quarterly": 0.6254125,
+        "terminal_closed_form": 0.3746461481081379,
+        "continuous_closed_form": 0.7336692040842734,
+        "quarterly_bgk_predicted_from_continuous": 0.6221863743721433,
+        "sim_terminal": 0.375335,
+        "sim_quarterly": 0.626045,
+        "sim_quarterly_bgk_fix": 0.7332625,
+        "sim_quarterly_bgk_wrong_sign": 0.5233875,
+        "sim_monthly": 0.6695125,
+        "sim_monthly_bgk_fix": 0.735,
+        "sim_weekly": 0.7029975,
+        "sim_312_per_year": 0.7215825,
+        "sim_continuous_extrapolated": 0.7342054800839974
+      },
+      "default_level": {
+        "published_quarterly": 0.478475,
+        "terminal_closed_form": 0.2923889171285088,
+        "continuous_closed_form": 0.5736755599303993,
+        "quarterly_bgk_predicted_from_continuous": 0.47399076808274127,
+        "sim_terminal": 0.29219,
+        "sim_quarterly": 0.4784075,
+        "sim_quarterly_bgk_fix": 0.57816,
+        "sim_quarterly_bgk_wrong_sign": 0.3885975,
+        "sim_monthly": 0.517015,
+        "sim_monthly_bgk_fix": 0.5758275,
+        "sim_weekly": 0.54627,
+        "sim_312_per_year": 0.562825,
+        "sim_continuous_extrapolated": 0.5738353422685702
+      },
+      "e3_barrier": {
+        "terminal_closed_form": 0.02323711830074016,
+        "continuous_closed_form": 0.04594322370425932,
+        "quarterly_bgk_predicted_from_continuous": 0.03146481699836004,
+        "sim_terminal": 0.0230325,
+        "sim_quarterly": 0.032885,
+        "sim_quarterly_bgk_fix": 0.04802,
+        "sim_quarterly_bgk_wrong_sign": 0.0222175,
+        "sim_monthly": 0.037435,
+        "sim_monthly_bgk_fix": 0.046465,
+        "sim_weekly": 0.0413725,
+        "sim_312_per_year": 0.0438575,
+        "sim_continuous_extrapolated": 0.045324829768723006
+      },
+      "wipeout_unlevered": {
+        "published_terminal": 0.069595,
+        "terminal_only_closed_form": 0.06963895399154607,
+        "terminal_only_sim": 0.0693625,
+        "with_E3_continuous_closed_form": 0.0754743279668297,
+        "with_E3_quarterly_sim": 0.0716825,
+        "with_E3_quarterly_bgk_fix_sim": 0.07545,
+        "with_E3_monthly_sim": 0.0727225,
+        "with_E3_312_per_year_sim": 0.0746025
+      },
+      "wipeout_levered_pik": {
+        "published_terminal": 0.22838,
+        "terminal_only_closed_form": 0.2287095447427107,
+        "terminal_only_sim": 0.2289325,
+        "with_E3_continuous_closed_form": 0.22925525610984007,
+        "with_E3_quarterly_sim": 0.22912,
+        "with_E3_quarterly_bgk_fix_sim": 0.22951,
+        "with_E3_monthly_sim": 0.2292375,
+        "with_E3_312_per_year_sim": 0.229445
+      }
+    }
+  }
+}

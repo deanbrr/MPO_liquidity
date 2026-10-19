@@ -1,0 +1,21 @@
+﻿  sales-vs-appraisal CORE_RE: n=10269 mean signed=0.034 mean abs=0.125 median abs=0.102 down=-0.012677643521453846 normal=0.05837875578314964 above-mark=0.56
+  sales-vs-appraisal VA_RE: n=10313 mean signed=0.062 mean abs=0.171 median abs=0.138 down=0.032694880846653486 normal=0.07596076798499764 above-mark=0.58
+  sales-vs-appraisal CORE_INFRA: n=10360 mean signed=0.042 mean abs=0.111 median abs=0.091 down=0.0003674742708888648 normal=0.059886659143166536 above-mark=0.61
+  bias CORE_RE    b_f(8q) true=0.020 naive=0.024�0.066 ctrl_true=0.020�0.010 ctrl_appr=0.023  cov iid/clu=0.17/0.66 w_a=0.36 kappa=1.66
+  bias VA_RE      b_f(8q) true=0.050 naive=0.047�0.083 ctrl_true=0.049�0.017 ctrl_appr=0.048  cov iid/clu=0.20/0.64 w_a=0.33 kappa=1.94
+  bias CORE_INFRA b_f(8q) true=0.015 naive=0.017�0.066 ctrl_true=0.015�0.008 ctrl_appr=0.017  cov iid/clu=0.16/0.59 w_a=0.41 kappa=1.69
+  bias VA_INFRA   b_f(8q) true=0.040 naive=0.036�0.081 ctrl_true=0.041�0.021 ctrl_appr=0.034  cov iid/clu=0.28/0.68 w_a=0.35 kappa=1.95
+  scoring CORE_RE: vs appraisal H=0.00660 S=0.00325 | vs true H=0.01074 S=0.01319 | vs tau H=0.01179 S=0.01419
+  fusion VA_RE: equal mse=0.06476 crps=0.1438 cov80=0.81, inv_mse mse=0.06472 crps=0.1438 cov80=0.81, gls mse=0.06467 crps=0.1437 cov80=0.81, cgls mse=0.06433 crps=0.1434 cov80=0.81, shrink50 mse=0.06447 crps=0.1435 cov80=0.81
+  fusion small-n (n=40) mean/P90 mse: equal=0.06616/0.07102, gls=0.07153/0.08005, cgls=0.06675/0.07105, shrink50=0.06622/0.07079
+  BF/Benktander best estimator by age (quarters): {'8': 'gb_incurred_econ', '12': 'gb_incurred_econ', '16': 'gb_incurred_econ', '20': 'gb_incurred_econ', '24': 'gb_incurred_econ', '28': 'gb_incurred_econ', '32': 'tvpi_econ'}
+    prior              8:0.233 12:0.233 16:0.233 20:0.233 24:0.233 28:0.233 32:0.233
+    prior_biased       8:0.318 12:0.318 16:0.318 20:0.318 24:0.318 28:0.318 32:0.318
+    tvpi_rep           8:0.229 12:0.216 16:0.191 20:0.149 24:0.101 28:0.054 32:0.019
+    tvpi_econ          8:0.209 12:0.193 16:0.164 20:0.122 24:0.076 28:0.037 32:0.011
+    bf_paid            8:0.229 12:0.225 16:0.222 20:0.226 24:0.221 28:0.176 32:0.084
+    gb_paid            8:0.225 12:0.218 16:0.217 20:0.257 24:0.273 28:0.202 32:0.086
+    gb_incurred_econ   8:0.208 12:0.191 16:0.163 20:0.122 24:0.075 28:0.037 32:0.011
+    gb_incurred_econ_biasedprior 8:0.210 12:0.192 16:0.164 20:0.122 24:0.076 28:0.037 32:0.011
+  open-end: {'no_queue': {'mean_transfer_pct_of_fund_cum': 4.107764463309283, 'mean_transfer_bp_per_year': 21.90807713764951, 'p95_abs_transfer_pct_cum': 8.24986815505662, 'mean_max_queue_pct': 0.0, 'p90_max_queue_pct': 0.0}, 'queue_2pct': {'mean_transfer_pct_of_fund_cum': 1.7208170939044576, 'mean_transfer_bp_per_year': 9.17769116749044, 'p95_abs_transfer_pct_cum': 3.7222602535690443, 'mean_max_queue_pct': 9.132750075584205, 'p90_max_queue_pct': 14.858959909004286}, 'queue_2pct_buffer5': {'mean_transfer_pct_of_fund_cum': 2.8184115562502265, 'mean_transfer_bp_per_year': 15.03152830000121, 'p95_abs_transfer_pct_cum': 5.4888042848144485, 'mean_max_queue_pct': 5.86210504006058, 'p90_max_queue_pct': 10.921777378636104}, 'label': 'SYNTHETIC - NOT ADIC DATA'}
+wrote part2 in 3.8 s SYNTHETIC - NOT ADIC DATA

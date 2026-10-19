@@ -1,0 +1,1824 @@
+{
+ "label": "SYNTHETIC - NOT ADIC DATA. Prototype real-estate engine, G10 stream, run 2026-10-18.",
+ "n_paths": 10000,
+ "quarters": 20,
+ "seed": 20261018,
+ "nav0_bn": 9.0,
+ "unfunded0_bn": 1.6,
+ "positions": 31,
+ "scenarios": {
+  "base_mc": {
+   "desc": "Markov regimes from LATE x GW x D (October 2026 state)",
+   "factor_medians_q4_q8": {
+    "y10_pct": [
+     4.91,
+     4.71
+    ],
+    "baa_spread_pct": [
+     2.04,
+     2.04
+    ],
+    "cpi_pct": [
+     3.69,
+     3.27
+    ],
+    "share_crisis_by_q8": 0.344,
+    "share_eRE_drought_or_frozen_q4": 0.736
+   },
+   "cash_y1_bn": {
+    "in": [
+     0.318,
+     0.388,
+     0.589
+    ],
+    "out": [
+     0.464,
+     0.493,
+     0.53
+    ],
+    "net": [
+     -0.184,
+     -0.095,
+     0.071
+    ]
+   },
+   "cash_y2_bn": {
+    "in": [
+     0.292,
+     0.467,
+     0.779
+    ],
+    "out": [
+     0.386,
+     0.441,
+     0.558
+    ],
+    "net": [
+     -0.255,
+     0.034,
+     0.364
+    ]
+   },
+   "p_net_cash_negative": [
+    0.864,
+    0.428
+   ],
+   "components_y1_median_bn": {
+    "inc": 0.193,
+    "dist": 0.196,
+    "call": 0.368,
+    "cure": 0.02,
+    "short": 0.001,
+    "dev": 0.1
+   },
+   "noi_growth_2y_annualised_pct": [
+    -2.93,
+    0.47,
+    3.69
+   ],
+   "nav_reported_end_y1_y2_y3_bn": [
+    [
+     7.777,
+     8.261,
+     8.57
+    ],
+    [
+     7.059,
+     8.303,
+     9.04
+    ],
+    [
+     6.66,
+     8.274,
+     9.421
+    ]
+   ],
+   "nav_true_end_y1_y2_y3_bn": [
+    [
+     6.895,
+     8.157,
+     8.948
+    ],
+    [
+     6.649,
+     8.464,
+     9.739
+    ],
+    [
+     6.439,
+     8.494,
+     10.14
+    ]
+   ],
+   "max_dd_3y_true_pct_P5_P50": [
+    -22.1,
+    -2.9
+   ],
+   "max_dd_3y_reported_pct_P5_P50": [
+    -26.7,
+    -10.5
+   ],
+   "p_true_dd_gt_15pct_3y": 0.134,
+   "p_reported_dd_gt_15pct_3y": 0.264,
+   "stale_gap_ln_navA_over_navT_q4_pct": [
+    -5.9,
+    1.2,
+    13.6
+   ],
+   "trough_lag_reported_vs_true_q_median": 3.0,
+   "share_paths_true_dd_gt_10pct": 0.221,
+   "refi_gap_share_of_maturing_24m_pct_P50": 6.6,
+   "lookthrough_ltv_appraised_q1_pct": 48.1,
+   "lookthrough_ltv_true_peak_3y_P50_P95_pct": [
+    51.1,
+    56.0
+   ],
+   "debt_maturing_24m_bn": [
+    3.093,
+    3.374,
+    3.549
+   ],
+   "refi_gap_24m_bn": [
+    0.085,
+    0.224,
+    0.577
+   ],
+   "p_any_handback_5y": 0.491,
+   "handback_debt_share_of_initial_debt_5y_pct": [
+    0.0,
+    0.0,
+    2.44
+   ],
+   "nav_total_return_3y_ann_pct": {
+    "true": [
+     -8.05,
+     3.59,
+     11.55
+    ],
+    "reported": [
+     -10.86,
+     -1.64,
+     4.4
+    ]
+   },
+   "equity_lost_handback_5y_bn": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "oe_queue_peak_pct_nav_P50_P95": [
+    8.0,
+    21.4
+   ],
+   "adic_full_oe_redemption_cum_paid_share_P5_P50": {
+    "q4": [
+     0.251,
+     0.341
+    ],
+    "q8": [
+     0.428,
+     0.618
+    ],
+    "q12": [
+     0.568,
+     0.827
+    ],
+    "q20": [
+     0.768,
+     0.969
+    ]
+   }
+  },
+  "higher_for_longer": {
+   "desc": "10y held near 5.4%, spreads +40bp, LATE for 8 quarters; Gulf war ends after 4",
+   "factor_medians_q4_q8": {
+    "y10_pct": [
+     5.24,
+     5.32
+    ],
+    "baa_spread_pct": [
+     2.31,
+     2.37
+    ],
+    "cpi_pct": [
+     4.31,
+     3.96
+    ],
+    "share_crisis_by_q8": 0.0,
+    "share_eRE_drought_or_frozen_q4": 1.0
+   },
+   "cash_y1_bn": {
+    "in": [
+     0.346,
+     0.369,
+     0.396
+    ],
+    "out": [
+     0.472,
+     0.492,
+     0.515
+    ],
+    "net": [
+     -0.165,
+     -0.123,
+     -0.08
+    ]
+   },
+   "cash_y2_bn": {
+    "in": [
+     0.338,
+     0.385,
+     0.552
+    ],
+    "out": [
+     0.407,
+     0.453,
+     0.51
+    ],
+    "net": [
+     -0.163,
+     -0.064,
+     0.112
+    ]
+   },
+   "p_net_cash_negative": [
+    1.0,
+    0.8
+   ],
+   "components_y1_median_bn": {
+    "inc": 0.183,
+    "dist": 0.186,
+    "call": 0.369,
+    "cure": 0.022,
+    "short": 0.001,
+    "dev": 0.1
+   },
+   "noi_growth_2y_annualised_pct": [
+    -1.89,
+    0.66,
+    3.47
+   ],
+   "nav_reported_end_y1_y2_y3_bn": [
+    [
+     7.879,
+     8.133,
+     8.38
+    ],
+    [
+     7.564,
+     8.089,
+     8.677
+    ],
+    [
+     7.189,
+     7.948,
+     8.829
+    ]
+   ],
+   "nav_true_end_y1_y2_y3_bn": [
+    [
+     7.252,
+     7.788,
+     8.378
+    ],
+    [
+     7.267,
+     8.083,
+     9.051
+    ],
+    [
+     6.802,
+     8.065,
+     9.351
+    ]
+   ],
+   "max_dd_3y_true_pct_P5_P50": [
+    -15.1,
+    -4.3
+   ],
+   "max_dd_3y_reported_pct_P5_P50": [
+    -20.2,
+    -12.6
+   ],
+   "p_true_dd_gt_15pct_3y": 0.051,
+   "p_reported_dd_gt_15pct_3y": 0.294,
+   "stale_gap_ln_navA_over_navT_q4_pct": [
+    -1.0,
+    4.3,
+    9.5
+   ],
+   "trough_lag_reported_vs_true_q_median": 3.0,
+   "share_paths_true_dd_gt_10pct": 0.142,
+   "refi_gap_share_of_maturing_24m_pct_P50": 7.7,
+   "lookthrough_ltv_appraised_q1_pct": 48.1,
+   "lookthrough_ltv_true_peak_3y_P50_P95_pct": [
+    51.4,
+    53.6
+   ],
+   "debt_maturing_24m_bn": [
+    3.294,
+    3.421,
+    3.539
+   ],
+   "refi_gap_24m_bn": [
+    0.164,
+    0.265,
+    0.381
+   ],
+   "p_any_handback_5y": 0.499,
+   "handback_debt_share_of_initial_debt_5y_pct": [
+    0.0,
+    0.0,
+    2.29
+   ],
+   "nav_total_return_3y_ann_pct": {
+    "true": [
+     -6.03,
+     0.61,
+     6.54
+    ],
+    "reported": [
+     -8.19,
+     -4.06,
+     0.27
+    ]
+   },
+   "equity_lost_handback_5y_bn": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "oe_queue_peak_pct_nav_P50_P95": [
+    8.0,
+    20.0
+   ],
+   "adic_full_oe_redemption_cum_paid_share_P5_P50": {
+    "q4": [
+     0.276,
+     0.337
+    ],
+    "q8": [
+     0.461,
+     0.596
+    ],
+    "q12": [
+     0.598,
+     0.788
+    ],
+    "q20": [
+     0.785,
+     0.95
+    ]
+   }
+  },
+  "demand_bust": {
+   "desc": "Oil demand bust and recession: CRISIS 6 quarters, then RECOVERY 6",
+   "factor_medians_q4_q8": {
+    "y10_pct": [
+     4.47,
+     4.09
+    ],
+    "baa_spread_pct": [
+     3.59,
+     3.74
+    ],
+    "cpi_pct": [
+     2.49,
+     2.01
+    ],
+    "share_crisis_by_q8": 1.0,
+    "share_eRE_drought_or_frozen_q4": 1.0
+   },
+   "cash_y1_bn": {
+    "in": [
+     0.286,
+     0.302,
+     0.321
+    ],
+    "out": [
+     0.484,
+     0.507,
+     0.533
+    ],
+    "net": [
+     -0.239,
+     -0.205,
+     -0.169
+    ]
+   },
+   "cash_y2_bn": {
+    "in": [
+     0.293,
+     0.322,
+     0.356
+    ],
+    "out": [
+     0.534,
+     0.587,
+     0.643
+    ],
+    "net": [
+     -0.34,
+     -0.265,
+     -0.189
+    ]
+   },
+   "p_net_cash_negative": [
+    1.0,
+    1.0
+   ],
+   "components_y1_median_bn": {
+    "inc": 0.192,
+    "dist": 0.11,
+    "call": 0.35,
+    "cure": 0.051,
+    "short": 0.0,
+    "dev": 0.106
+   },
+   "noi_growth_2y_annualised_pct": [
+    -4.61,
+    -2.54,
+    -0.07
+   ],
+   "nav_reported_end_y1_y2_y3_bn": [
+    [
+     7.412,
+     7.652,
+     7.89
+    ],
+    [
+     5.954,
+     6.324,
+     6.726
+    ],
+    [
+     5.669,
+     6.174,
+     6.816
+    ]
+   ],
+   "nav_true_end_y1_y2_y3_bn": [
+    [
+     5.94,
+     6.367,
+     6.816
+    ],
+    [
+     5.453,
+     6.032,
+     6.729
+    ],
+    [
+     5.904,
+     6.646,
+     7.594
+    ]
+   ],
+   "max_dd_3y_true_pct_P5_P50": [
+    -34.4,
+    -28.0
+   ],
+   "max_dd_3y_reported_pct_P5_P50": [
+    -37.4,
+    -32.4
+   ],
+   "p_true_dd_gt_15pct_3y": 0.999,
+   "p_reported_dd_gt_15pct_3y": 1.0,
+   "stale_gap_ln_navA_over_navT_q4_pct": [
+    13.2,
+    18.3,
+    23.6
+   ],
+   "trough_lag_reported_vs_true_q_median": 3.0,
+   "share_paths_true_dd_gt_10pct": 1.0,
+   "refi_gap_share_of_maturing_24m_pct_P50": 20.3,
+   "lookthrough_ltv_appraised_q1_pct": 48.1,
+   "lookthrough_ltv_true_peak_3y_P50_P95_pct": [
+    58.3,
+    60.6
+   ],
+   "debt_maturing_24m_bn": [
+    3.424,
+    3.543,
+    3.66
+   ],
+   "refi_gap_24m_bn": [
+    0.625,
+    0.72,
+    0.812
+   ],
+   "p_any_handback_5y": 0.892,
+   "handback_debt_share_of_initial_debt_5y_pct": [
+    0.0,
+    1.29,
+    3.13
+   ],
+   "nav_total_return_3y_ann_pct": {
+    "true": [
+     -10.97,
+     -6.5,
+     -1.49
+    ],
+    "reported": [
+     -15.91,
+     -12.67,
+     -9.02
+    ]
+   },
+   "equity_lost_handback_5y_bn": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "oe_queue_peak_pct_nav_P50_P95": [
+    15.0,
+    24.8
+   ],
+   "adic_full_oe_redemption_cum_paid_share_P5_P50": {
+    "q4": [
+     0.218,
+     0.256
+    ],
+    "q8": [
+     0.342,
+     0.414
+    ],
+    "q12": [
+     0.483,
+     0.601
+    ],
+    "q20": [
+     0.727,
+     0.903
+    ]
+   }
+  },
+  "stagflation_gulf": {
+   "desc": "10y ~6%, CPI ~5%, spreads +100bp, Gulf war persists 8 quarters",
+   "factor_medians_q4_q8": {
+    "y10_pct": [
+     5.53,
+     5.76
+    ],
+    "baa_spread_pct": [
+     2.76,
+     2.94
+    ],
+    "cpi_pct": [
+     5.13,
+     5.59
+    ],
+    "share_crisis_by_q8": 0.0,
+    "share_eRE_drought_or_frozen_q4": 1.0
+   },
+   "cash_y1_bn": {
+    "in": [
+     0.331,
+     0.352,
+     0.376
+    ],
+    "out": [
+     0.484,
+     0.505,
+     0.529
+    ],
+    "net": [
+     -0.194,
+     -0.154,
+     -0.113
+    ]
+   },
+   "cash_y2_bn": {
+    "in": [
+     0.301,
+     0.335,
+     0.378
+    ],
+    "out": [
+     0.432,
+     0.49,
+     0.554
+    ],
+    "net": [
+     -0.244,
+     -0.154,
+     -0.063
+    ]
+   },
+   "p_net_cash_negative": [
+    1.0,
+    0.998
+   ],
+   "components_y1_median_bn": {
+    "inc": 0.173,
+    "dist": 0.178,
+    "call": 0.376,
+    "cure": 0.027,
+    "short": 0.002,
+    "dev": 0.1
+   },
+   "noi_growth_2y_annualised_pct": [
+    -3.02,
+    -0.91,
+    1.3
+   ],
+   "nav_reported_end_y1_y2_y3_bn": [
+    [
+     7.671,
+     7.907,
+     8.14
+    ],
+    [
+     6.928,
+     7.363,
+     7.846
+    ],
+    [
+     6.481,
+     7.175,
+     7.987
+    ]
+   ],
+   "nav_true_end_y1_y2_y3_bn": [
+    [
+     6.825,
+     7.312,
+     7.837
+    ],
+    [
+     6.324,
+     6.971,
+     7.707
+    ],
+    [
+     6.174,
+     7.409,
+     8.656
+    ]
+   ],
+   "max_dd_3y_true_pct_P5_P50": [
+    -23.7,
+    -13.1
+   ],
+   "max_dd_3y_reported_pct_P5_P50": [
+    -28.1,
+    -21.1
+   ],
+   "p_true_dd_gt_15pct_3y": 0.366,
+   "p_reported_dd_gt_15pct_3y": 0.931,
+   "stale_gap_ln_navA_over_navT_q4_pct": [
+    2.7,
+    7.8,
+    12.9
+   ],
+   "trough_lag_reported_vs_true_q_median": 3.0,
+   "share_paths_true_dd_gt_10pct": 0.731,
+   "refi_gap_share_of_maturing_24m_pct_P50": 10.2,
+   "lookthrough_ltv_appraised_q1_pct": 48.1,
+   "lookthrough_ltv_true_peak_3y_P50_P95_pct": [
+    53.4,
+    56.1
+   ],
+   "debt_maturing_24m_bn": [
+    3.33,
+    3.449,
+    3.565
+   ],
+   "refi_gap_24m_bn": [
+    0.239,
+    0.353,
+    0.474
+   ],
+   "p_any_handback_5y": 0.669,
+   "handback_debt_share_of_initial_debt_5y_pct": [
+    0.0,
+    0.44,
+    2.69
+   ],
+   "nav_total_return_3y_ann_pct": {
+    "true": [
+     -9.85,
+     -2.99,
+     3.05
+    ],
+    "reported": [
+     -12.12,
+     -8.07,
+     -3.89
+    ]
+   },
+   "equity_lost_handback_5y_bn": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "oe_queue_peak_pct_nav_P50_P95": [
+    8.5,
+    20.9
+   ],
+   "adic_full_oe_redemption_cum_paid_share_P5_P50": {
+    "q4": [
+     0.273,
+     0.332
+    ],
+    "q8": [
+     0.448,
+     0.576
+    ],
+    "q12": [
+     0.578,
+     0.757
+    ],
+    "q20": [
+     0.769,
+     0.94
+    ]
+   }
+  },
+  "benign": {
+   "desc": "Disinflation, 10y toward ~3.7%, Gulf war ends next quarter",
+   "factor_medians_q4_q8": {
+    "y10_pct": [
+     4.47,
+     4.09
+    ],
+    "baa_spread_pct": [
+     1.51,
+     1.35
+    ],
+    "cpi_pct": [
+     3.1,
+     2.69
+    ],
+    "share_crisis_by_q8": 0.0,
+    "share_eRE_drought_or_frozen_q4": 0.0
+   },
+   "cash_y1_bn": {
+    "in": [
+     0.572,
+     0.645,
+     0.727
+    ],
+    "out": [
+     0.498,
+     0.529,
+     0.56
+    ],
+    "net": [
+     0.049,
+     0.118,
+     0.189
+    ]
+   },
+   "cash_y2_bn": {
+    "in": [
+     0.753,
+     0.885,
+     0.999
+    ],
+    "out": [
+     0.393,
+     0.418,
+     0.443
+    ],
+    "net": [
+     0.336,
+     0.466,
+     0.587
+    ]
+   },
+   "p_net_cash_negative": [
+    0.002,
+    0.0
+   ],
+   "components_y1_median_bn": {
+    "inc": 0.201,
+    "dist": 0.444,
+    "call": 0.42,
+    "cure": 0.008,
+    "short": 0.0,
+    "dev": 0.1
+   },
+   "noi_growth_2y_annualised_pct": [
+    -1.03,
+    1.55,
+    4.36
+   ],
+   "nav_reported_end_y1_y2_y3_bn": [
+    [
+     8.111,
+     8.38,
+     8.642
+    ],
+    [
+     8.359,
+     8.965,
+     9.631
+    ],
+    [
+     8.563,
+     9.429,
+     10.47
+    ]
+   ],
+   "nav_true_end_y1_y2_y3_bn": [
+    [
+     8.197,
+     8.838,
+     9.544
+    ],
+    [
+     8.838,
+     9.797,
+     10.943
+    ],
+    [
+     9.002,
+     10.168,
+     11.605
+    ]
+   ],
+   "max_dd_3y_true_pct_P5_P50": [
+    -4.1,
+    -1.0
+   ],
+   "max_dd_3y_reported_pct_P5_P50": [
+    -10.2,
+    -7.5
+   ],
+   "p_true_dd_gt_15pct_3y": 0.0,
+   "p_reported_dd_gt_15pct_3y": 0.0,
+   "stale_gap_ln_navA_over_navT_q4_pct": [
+    -11.0,
+    -5.3,
+    0.1
+   ],
+   "trough_lag_reported_vs_true_q_median": null,
+   "share_paths_true_dd_gt_10pct": 0.0,
+   "refi_gap_share_of_maturing_24m_pct_P50": 2.0,
+   "lookthrough_ltv_appraised_q1_pct": 48.1,
+   "lookthrough_ltv_true_peak_3y_P50_P95_pct": [
+    50.7,
+    51.5
+   ],
+   "debt_maturing_24m_bn": [
+    2.918,
+    3.027,
+    3.151
+   ],
+   "refi_gap_24m_bn": [
+    0.031,
+    0.062,
+    0.121
+   ],
+   "p_any_handback_5y": 0.285,
+   "handback_debt_share_of_initial_debt_5y_pct": [
+    0.0,
+    0.0,
+    1.73
+   ],
+   "nav_total_return_3y_ann_pct": {
+    "true": [
+     8.77,
+     13.44,
+     18.65
+    ],
+    "reported": [
+     2.55,
+     6.29,
+     10.34
+    ]
+   },
+   "equity_lost_handback_5y_bn": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "oe_queue_peak_pct_nav_P50_P95": [
+    6.7,
+    8.9
+   ],
+   "adic_full_oe_redemption_cum_paid_share_P5_P50": {
+    "q4": [
+     0.357,
+     0.45
+    ],
+    "q8": [
+     0.687,
+     0.902
+    ],
+    "q12": [
+     0.899,
+     0.999
+    ],
+    "q20": [
+     0.985,
+     1.0
+    ]
+   }
+  },
+  "credit_crunch": {
+   "desc": "GFC-type: Baa spread toward ~6%, CRISIS 6 quarters, listed wedge -22%, then RECOVERY",
+   "factor_medians_q4_q8": {
+    "y10_pct": [
+     4.47,
+     4.09
+    ],
+    "baa_spread_pct": [
+     4.89,
+     5.34
+    ],
+    "cpi_pct": [
+     2.49,
+     2.01
+    ],
+    "share_crisis_by_q8": 1.0,
+    "share_eRE_drought_or_frozen_q4": 1.0
+   },
+   "cash_y1_bn": {
+    "in": [
+     0.283,
+     0.299,
+     0.318
+    ],
+    "out": [
+     0.489,
+     0.513,
+     0.539
+    ],
+    "net": [
+     -0.249,
+     -0.214,
+     -0.178
+    ]
+   },
+   "cash_y2_bn": {
+    "in": [
+     0.28,
+     0.308,
+     0.341
+    ],
+    "out": [
+     0.572,
+     0.628,
+     0.685
+    ],
+    "net": [
+     -0.394,
+     -0.32,
+     -0.245
+    ]
+   },
+   "p_net_cash_negative": [
+    1.0,
+    1.0
+   ],
+   "components_y1_median_bn": {
+    "inc": 0.194,
+    "dist": 0.104,
+    "call": 0.353,
+    "cure": 0.054,
+    "short": 0.0,
+    "dev": 0.106
+   },
+   "noi_growth_2y_annualised_pct": [
+    -4.61,
+    -2.54,
+    -0.07
+   ],
+   "nav_reported_end_y1_y2_y3_bn": [
+    [
+     7.196,
+     7.431,
+     7.664
+    ],
+    [
+     5.361,
+     5.703,
+     6.074
+    ],
+    [
+     4.803,
+     5.242,
+     5.804
+    ]
+   ],
+   "nav_true_end_y1_y2_y3_bn": [
+    [
+     5.419,
+     5.823,
+     6.245
+    ],
+    [
+     4.605,
+     5.118,
+     5.749
+    ],
+    [
+     4.806,
+     5.443,
+     6.278
+    ]
+   ],
+   "max_dd_3y_true_pct_P5_P50": [
+    -44.0,
+    -38.4
+   ],
+   "max_dd_3y_reported_pct_P5_P50": [
+    -46.7,
+    -41.9
+   ],
+   "p_true_dd_gt_15pct_3y": 1.0,
+   "p_reported_dd_gt_15pct_3y": 1.0,
+   "stale_gap_ln_navA_over_navT_q4_pct": [
+    19.0,
+    24.3,
+    29.9
+   ],
+   "trough_lag_reported_vs_true_q_median": 5.0,
+   "share_paths_true_dd_gt_10pct": 1.0,
+   "refi_gap_share_of_maturing_24m_pct_P50": 22.8,
+   "lookthrough_ltv_appraised_q1_pct": 48.1,
+   "lookthrough_ltv_true_peak_3y_P50_P95_pct": [
+    61.9,
+    64.3
+   ],
+   "debt_maturing_24m_bn": [
+    3.427,
+    3.547,
+    3.664
+   ],
+   "refi_gap_24m_bn": [
+    0.717,
+    0.809,
+    0.901
+   ],
+   "p_any_handback_5y": 0.934,
+   "handback_debt_share_of_initial_debt_5y_pct": [
+    0.0,
+    1.86,
+    4.67
+   ],
+   "nav_total_return_3y_ann_pct": {
+    "true": [
+     -18.12,
+     -13.55,
+     -8.34
+    ],
+    "reported": [
+     -21.57,
+     -18.29,
+     -14.54
+    ]
+   },
+   "equity_lost_handback_5y_bn": [
+    0.0,
+    0.0,
+    0.0
+   ],
+   "oe_queue_peak_pct_nav_P50_P95": [
+    26.1,
+    39.4
+   ],
+   "adic_full_oe_redemption_cum_paid_share_P5_P50": {
+    "q4": [
+     0.202,
+     0.231
+    ],
+    "q8": [
+     0.304,
+     0.353
+    ],
+    "q12": [
+     0.41,
+     0.482
+    ],
+    "q20": [
+     0.587,
+     0.717
+    ]
+   }
+  }
+ },
+ "composition": {
+  "by_vehicle_nav_bn": {
+   "OE": 2.701,
+   "CE": 2.599,
+   "JV": 1.523,
+   "DIR": 1.376,
+   "CO": 0.801
+  },
+  "by_region_nav_bn": {
+   "US": 5.359,
+   "EU": 1.92,
+   "AS": 0.523,
+   "GCC": 1.2
+  },
+  "by_sector_nav_bn": {
+   "LOG": 2.358,
+   "RES": 2.421,
+   "OFF": 1.861,
+   "RET": 0.706,
+   "DC": 0.358,
+   "HOT": 0.579,
+   "ALT": 0.717
+  },
+  "by_g15_subbook_nav_bn": {
+   "RE_OE": 2.701,
+   "RE_CE": 2.599,
+   "RE_DIR_GL": 1.699,
+   "RE_DIR_GCC": 1.2,
+   "RE_COI": 0.801
+  },
+  "lookthrough_gav_adic_share_bn": 17.03,
+  "lookthrough_debt_adic_share_bn": 8.03,
+  "lookthrough_ltv_pct": 47.1,
+  "unfunded_by_vehicle_bn": {
+   "CE": 1.2,
+   "JV": 0.2,
+   "DIR": 0.2
+  },
+  "positions": [
+   {
+    "id": "SYN-RE-OE1",
+    "veh": "OE",
+    "reg": "US",
+    "nav": 0.6188,
+    "unf": 0,
+    "ltv": 0.27,
+    "fx": 0.78,
+    "term": 4.5,
+    "cpn": 0.045,
+    "share": 0.04,
+    "mix": {
+     "LOG": 0.35,
+     "RES": 0.3,
+     "OFF": 0.15,
+     "RET": 0.1,
+     "DC": 0.0,
+     "HOT": 0.0,
+     "ALT": 0.1
+    }
+   },
+   {
+    "id": "SYN-RE-OE2",
+    "veh": "OE",
+    "reg": "US",
+    "nav": 0.5625,
+    "unf": 0,
+    "ltv": 0.26,
+    "fx": 0.75,
+    "term": 4.5,
+    "cpn": 0.045,
+    "share": 0.05,
+    "mix": {
+     "LOG": 0.3,
+     "RES": 0.35,
+     "OFF": 0.15,
+     "RET": 0.1,
+     "DC": 0.0,
+     "HOT": 0.0,
+     "ALT": 0.1
+    }
+   },
+   {
+    "id": "SYN-RE-OE3",
+    "veh": "OE",
+    "reg": "US",
+    "nav": 0.45,
+    "unf": 0,
+    "ltv": 0.29,
+    "fx": 0.75,
+    "term": 4.0,
+    "cpn": 0.046,
+    "share": 0.03,
+    "mix": {
+     "LOG": 0.4,
+     "RES": 0.25,
+     "OFF": 0.12,
+     "RET": 0.13,
+     "DC": 0.0,
+     "HOT": 0.0,
+     "ALT": 0.1
+    }
+   },
+   {
+    "id": "SYN-RE-OE4",
+    "veh": "OE",
+    "reg": "US",
+    "nav": 0.3938,
+    "unf": 0,
+    "ltv": 0.28,
+    "fx": 0.8,
+    "term": 4.5,
+    "cpn": 0.044,
+    "share": 0.06,
+    "mix": {
+     "LOG": 0.3,
+     "RES": 0.3,
+     "OFF": 0.2,
+     "RET": 0.1,
+     "DC": 0.0,
+     "HOT": 0.0,
+     "ALT": 0.1
+    }
+   },
+   {
+    "id": "SYN-RE-OE5",
+    "veh": "OE",
+    "reg": "EU",
+    "nav": 0.3938,
+    "unf": 0,
+    "ltv": 0.25,
+    "fx": 0.7,
+    "term": 4.0,
+    "cpn": 0.035,
+    "share": 0.07,
+    "mix": {
+     "LOG": 0.35,
+     "RES": 0.3,
+     "OFF": 0.25,
+     "RET": 0.1,
+     "DC": 0.0,
+     "HOT": 0.0,
+     "ALT": 0.0
+    }
+   },
+   {
+    "id": "SYN-RE-OE6",
+    "veh": "OE",
+    "reg": "EU",
+    "nav": 0.2813,
+    "unf": 0,
+    "ltv": 0.24,
+    "fx": 0.7,
+    "term": 4.0,
+    "cpn": 0.035,
+    "share": 0.08,
+    "mix": {
+     "LOG": 0.3,
+     "RES": 0.35,
+     "OFF": 0.25,
+     "RET": 0.1,
+     "DC": 0.0,
+     "HOT": 0.0,
+     "ALT": 0.0
+    }
+   },
+   {
+    "id": "SYN-RE-VA1",
+    "veh": "CE",
+    "style": "VA",
+    "reg": "US",
+    "nav": 0.2437,
+    "unf": 0.0,
+    "ltv": 0.55,
+    "fx": 0.4,
+    "term": 2.5,
+    "cpn": 0.05,
+    "share": 0.1,
+    "age": 7,
+    "mix": {
+     "LOG": 0.2,
+     "RES": 0.3,
+     "OFF": 0.35,
+     "RET": 0.15,
+     "DC": 0.0,
+     "HOT": 0.0,
+     "ALT": 0.0
+    }
+   },
+   {
+    "id": "SYN-RE-VA2",
+    "veh": "CE",
+    "style": "VA",
+    "reg": "US",
+    "nav": 0.2031,
+    "unf": 0.0375,
+    "ltv": 0.55,
+    "fx": 0.4,
+    "term": 2.5,
+    "cpn": 0.05,
+    "share": 0.1,
+    "age": 5,
+    "mix": {
+     "LOG": 0.3,
+     "RES": 0.4,
+     "OFF": 0.0,
+     "RET": 0.0,
+     "DC": 0.0,
+     "HOT": 0.0,
+     "ALT": 0.3
+    }
+   },
+   {
+    "id": "SYN-RE-VA3",
+    "veh": "CE",
+    "style": "VA",
+    "reg": "US",
+    "nav": 0.2031,
+    "unf": 0.1125,
+    "ltv": 0.55,
+    "fx": 0.4,
+    "term": 2.5,
+    "cpn": 0.05,
+    "share": 0.1,
+    "age": 3,
+    "mix": {
+     "LOG": 0.4,
+     "RES": 0.3,
+     "OFF": 0.1,
+     "RET": 0.0,
+     "DC": 0.0,
+     "HOT": 0.0,
+     "ALT": 0.2
+    }
+   },
+   {
+    "id": "SYN-RE-VA4",
+    "veh": "CE",
+    "style": "VA",
+    "reg": "US",
+    "nav": 0.1625,
+    "unf": 0.1875,
+    "ltv": 0.55,
+    "fx": 0.4,
+    "term": 2.5,
+    "cpn": 0.05,
+    "share": 0.1,
+    "age": 1,
+    "mix": {
+     "LOG": 0.3,
+     "RES": 0.4,
+     "OFF": 0.0,
+     "RET": 0.0,
+     "DC": 0.1,
+     "HOT": 0.0,
+     "ALT": 0.2
+    }
+   },
+   {
+    "id": "SYN-RE-VA5",
+    "veh": "CE",
+    "style": "VA",
+    "reg": "EU",
+    "nav": 0.2031,
+    "unf": 0.0375,
+    "ltv": 0.55,
+    "fx": 0.4,
+    "term": 2.5,
+    "cpn": 0.05,
+    "share": 0.1,
+    "age": 5,
+    "mix": {
+     "LOG": 0.3,
+     "RES": 0.3,
+     "OFF": 0.3,
+     "RET": 0.1,
+     "DC": 0.0,
+     "HOT": 0.0,
+     "ALT": 0.0
+    }
+   },
+   {
+    "id": "SYN-RE-VA6",
+    "veh": "CE",
+    "style": "VA",
+    "reg": "EU",
+    "nav": 0.1625,
+    "unf": 0.15,
+    "ltv": 0.55,
+    "fx": 0.4,
+    "term": 2.5,
+    "cpn": 0.05,
+    "share": 0.1,
+    "age": 2,
+    "mix": {
+     "LOG": 0.4,
+     "RES": 0.4,
+     "OFF": 0.2,
+     "RET": 0.0,
+     "DC": 0.0,
+     "HOT": 0.0,
+     "ALT": 0.0
+    }
+   },
+   {
+    "id": "SYN-RE-VA7",
+    "veh": "CE",
+    "style": "VA",
+    "reg": "US",
+    "nav": 0.1625,
+    "unf": 0.075,
+    "ltv": 0.55,
+    "fx": 0.4,
+    "term": 2.5,
+    "cpn": 0.05,
+    "share": 0.1,
+    "age": 6,
+    "mix": {
+     "LOG": 0.0,
+     "RES": 0.25,
+     "OFF": 0.5,
+     "RET": 0.25,
+     "DC": 0.0,
+     "HOT": 0.0,
+     "ALT": 0.0
+    }
+   },
+   {
+    "id": "SYN-RE-VA8",
+    "veh": "CE",
+    "style": "VA",
+    "reg": "AS",
+    "nav": 0.1219,
+    "unf": 0.075,
+    "ltv": 0.55,
+    "fx": 0.4,
+    "term": 2.5,
+    "cpn": 0.05,
+    "share": 0.1,
+    "age": 3,
+    "mix": {
+     "LOG": 0.5,
+     "RES": 0.3,
+     "OFF": 0.2,
+     "RET": 0.0,
+     "DC": 0.0,
+     "HOT": 0.0,
+     "ALT": 0.0
+    }
+   },
+   {
+    "id": "SYN-RE-OP1",
+    "veh": "CE",
+    "style": "OP",
+    "reg": "US",
+    "nav": 0.2437,
+    "unf": 0.0,
+    "ltv": 0.62,
+    "fx": 0.3,
+    "term": 2.0,
+    "cpn": 0.055,
+    "share": 0.08,
+    "age": 8,
+    "mix": {
+     "LOG": 0.0,
+     "RES": 0.25,
+     "OFF": 0.3,
+     "RET": 0.25,
+     "DC": 0.0,
+     "HOT": 0.2,
+     "ALT": 0.0
+    }
+   },
+   {
+    "id": "SYN-RE-OP2",
+    "veh": "CE",
+    "style": "OP",
+    "reg": "US",
+    "nav": 0.2437,
+    "unf": 0.15,
+    "ltv": 0.62,
+    "fx": 0.3,
+    "term": 2.0,
+    "cpn": 0.055,
+    "share": 0.08,
+    "age": 3,
+    "mix": {
+     "LOG": 0.2,
+     "RES": 0.3,
+     "OFF": 0.0,
+     "RET": 0.0,
+     "DC": 0.2,
+     "HOT": 0.1,
+     "ALT": 0.2
+    }
+   },
+   {
+    "id": "SYN-RE-OP3",
+    "veh": "CE",
+    "style": "OP",
+    "reg": "EU",
+    "nav": 0.2031,
+    "unf": 0.075,
+    "ltv": 0.62,
+    "fx": 0.3,
+    "term": 2.0,
+    "cpn": 0.055,
+    "share": 0.08,
+    "age": 5,
+    "mix": {
+     "LOG": 0.2,
+     "RES": 0.25,
+     "OFF": 0.35,
+     "RET": 0.0,
+     "DC": 0.0,
+     "HOT": 0.2,
+     "ALT": 0.0
+    }
+   },
+   {
+    "id": "SYN-RE-OP4",
+    "veh": "CE",
+    "style": "OP",
+    "reg": "AS",
+    "nav": 0.2031,
+    "unf": 0.1125,
+    "ltv": 0.62,
+    "fx": 0.3,
+    "term": 2.0,
+    "cpn": 0.055,
+    "share": 0.08,
+    "age": 4,
+    "mix": {
+     "LOG": 0.2,
+     "RES": 0.3,
+     "OFF": 0.3,
+     "RET": 0.0,
+     "DC": 0.0,
+     "HOT": 0.2,
+     "ALT": 0.0
+    }
+   },
+   {
+    "id": "SYN-RE-OP5",
+    "veh": "CE",
+    "style": "OP",
+    "reg": "US",
+    "nav": 0.1625,
+    "unf": 0.15,
+    "ltv": 0.62,
+    "fx": 0.3,
+    "term": 2.0,
+    "cpn": 0.055,
+    "share": 0.08,
+    "age": 2,
+    "mix": {
+     "LOG": 0.25,
+     "RES": 0.35,
+     "OFF": 0.0,
+     "RET": 0.0,
+     "DC": 0.0,
+     "HOT": 0.0,
+     "ALT": 0.4
+    }
+   },
+   {
+    "id": "SYN-RE-OP6",
+    "veh": "CE",
+    "style": "OP",
+    "reg": "AS",
+    "nav": 0.0813,
+    "unf": 0.0375,
+    "ltv": 0.62,
+    "fx": 0.3,
+    "term": 2.0,
+    "cpn": 0.055,
+    "share": 0.08,
+    "age": 6,
+    "mix": {
+     "LOG": 0.0,
+     "RES": 0.0,
+     "OFF": 0.4,
+     "RET": 0.3,
+     "DC": 0.0,
+     "HOT": 0.3,
+     "ALT": 0.0
+    }
+   },
+   {
+    "id": "SYN-RE-JV1",
+    "veh": "JV",
+    "reg": "US",
+    "nav": 0.469,
+    "unf": 0.0167,
+    "ltv": 0.4,
+    "fx": 0.65,
+    "term": 3.5,
+    "cpn": 0.045,
+    "share": 0.9,
+    "mix": {
+     "LOG": 1.0,
+     "RES": 0.0,
+     "OFF": 0.0,
+     "RET": 0.0,
+     "DC": 0.0,
+     "HOT": 0.0,
+     "ALT": 0.0
+    }
+   },
+   {
+    "id": "SYN-RE-JV2",
+    "veh": "JV",
+    "reg": "US",
+    "nav": 0.4103,
+    "unf": 0.0167,
+    "ltv": 0.5,
+    "fx": 0.55,
+    "term": 3.0,
+    "cpn": 0.047,
+    "share": 0.85,
+    "mix": {
+     "LOG": 0.0,
+     "RES": 1.0,
+     "OFF": 0.0,
+     "RET": 0.0,
+     "DC": 0.0,
+     "HOT": 0.0,
+     "ALT": 0.0
+    }
+   },
+   {
+    "id": "SYN-RE-JV3",
+    "veh": "JV",
+    "reg": "EU",
+    "nav": 0.2345,
+    "unf": 0.0167,
+    "ltv": 0.45,
+    "fx": 0.7,
+    "term": 4.0,
+    "cpn": 0.036,
+    "share": 0.8,
+    "mix": {
+     "LOG": 0.0,
+     "RES": 1.0,
+     "OFF": 0.0,
+     "RET": 0.0,
+     "DC": 0.0,
+     "HOT": 0.0,
+     "ALT": 0.0
+    }
+   },
+   {
+    "id": "SYN-RE-JV4",
+    "veh": "JV",
+    "reg": "US",
+    "nav": 0.2931,
+    "unf": 0.1333,
+    "ltv": 0.45,
+    "fx": 0.4,
+    "term": 3.0,
+    "cpn": 0.055,
+    "share": 0.8,
+    "dev": true,
+    "mix": {
+     "LOG": 0.0,
+     "RES": 0.0,
+     "OFF": 0.0,
+     "RET": 0.0,
+     "DC": 1.0,
+     "HOT": 0.0,
+     "ALT": 0.0
+    }
+   },
+   {
+    "id": "SYN-RE-JV5",
+    "veh": "JV",
+    "reg": "AS",
+    "nav": 0.1172,
+    "unf": 0.0167,
+    "ltv": 0.4,
+    "fx": 0.6,
+    "term": 3.5,
+    "cpn": 0.03,
+    "share": 0.8,
+    "mix": {
+     "LOG": 1.0,
+     "RES": 0.0,
+     "OFF": 0.0,
+     "RET": 0.0,
+     "DC": 0.0,
+     "HOT": 0.0,
+     "ALT": 0.0
+    }
+   },
+   {
+    "id": "SYN-RE-DIR1",
+    "veh": "DIR",
+    "reg": "GCC",
+    "nav": 0.8,
+    "unf": 0.2,
+    "ltv": 0.45,
+    "fx": 0.5,
+    "term": 4.0,
+    "cpn": 0.055,
+    "share": 1.0,
+    "mix": {
+     "LOG": 0.0,
+     "RES": 0.2,
+     "OFF": 0.5,
+     "RET": 0.3,
+     "DC": 0.0,
+     "HOT": 0.0,
+     "ALT": 0.0
+    }
+   },
+   {
+    "id": "SYN-RE-DIR2",
+    "veh": "DIR",
+    "reg": "GCC",
+    "nav": 0.4,
+    "unf": 0.0,
+    "ltv": 0.45,
+    "fx": 0.4,
+    "term": 3.5,
+    "cpn": 0.058,
+    "share": 1.0,
+    "mix": {
+     "LOG": 0.0,
+     "RES": 0.0,
+     "OFF": 0.0,
+     "RET": 0.0,
+     "DC": 0.0,
+     "HOT": 1.0,
+     "ALT": 0.0
+    }
+   },
+   {
+    "id": "SYN-RE-DIR3",
+    "veh": "DIR",
+    "reg": "EU",
+    "nav": 0.1759,
+    "unf": 0.0,
+    "ltv": 0.4,
+    "fx": 0.8,
+    "term": 5.0,
+    "cpn": 0.04,
+    "share": 1.0,
+    "mix": {
+     "LOG": 0.0,
+     "RES": 0.0,
+     "OFF": 1.0,
+     "RET": 0.0,
+     "DC": 0.0,
+     "HOT": 0.0,
+     "ALT": 0.0
+    }
+   },
+   {
+    "id": "SYN-RE-CO1",
+    "veh": "CO",
+    "reg": "US",
+    "nav": 0.2667,
+    "unf": 0,
+    "ltv": 0.6,
+    "fx": 0.3,
+    "term": 1.5,
+    "cpn": 0.06,
+    "share": 1.0,
+    "mix": {
+     "LOG": 0.0,
+     "RES": 0.0,
+     "OFF": 1.0,
+     "RET": 0.0,
+     "DC": 0.0,
+     "HOT": 0.0,
+     "ALT": 0.0
+    }
+   },
+   {
+    "id": "SYN-RE-CO2",
+    "veh": "CO",
+    "reg": "EU",
+    "nav": 0.2667,
+    "unf": 0,
+    "ltv": 0.5,
+    "fx": 0.6,
+    "term": 3.0,
+    "cpn": 0.042,
+    "share": 1.0,
+    "mix": {
+     "LOG": 1.0,
+     "RES": 0.0,
+     "OFF": 0.0,
+     "RET": 0.0,
+     "DC": 0.0,
+     "HOT": 0.0,
+     "ALT": 0.0
+    }
+   },
+   {
+    "id": "SYN-RE-CO3",
+    "veh": "CO",
+    "reg": "US",
+    "nav": 0.2667,
+    "unf": 0,
+    "ltv": 0.6,
+    "fx": 0.4,
+    "term": 2.5,
+    "cpn": 0.055,
+    "share": 1.0,
+    "mix": {
+     "LOG": 0.0,
+     "RES": 0.0,
+     "OFF": 0.0,
+     "RET": 0.0,
+     "DC": 0.0,
+     "HOT": 0.0,
+     "ALT": 1.0
+    }
+   }
+  ]
+ }
+}

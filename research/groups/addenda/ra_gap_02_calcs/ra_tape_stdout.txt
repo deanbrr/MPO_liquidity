@@ -1,0 +1,178 @@
+﻿{
+ "label": "SYNTHETIC - NOT ADIC DATA",
+ "seed": 20261059,
+ "generated": "2026-10-19",
+ "selection_rule": "min over 64 candidate seeds of the max abs deviation of sleeve 12/24-month maturity shares from the generator expectation (200 reference seeds); chosen before any engine run",
+ "selection_max_abs_dev": 0.1077,
+ "generator_expected_maturity_shares": {
+  "RE_OE_12m": 0.1703,
+  "RE_OE_24m": 0.3722,
+  "RE_CE_12m": 0.3054,
+  "RE_CE_24m": 0.5557,
+  "RE_DIR_GL_12m": 0.1321,
+  "RE_DIR_GL_24m": 0.2737,
+  "RE_DIR_GCC_12m": 0.2098,
+  "RE_DIR_GCC_24m": 0.4227,
+  "RE_COI_12m": 0.0,
+  "RE_COI_24m": 0.3492,
+  "INF_OE_12m": 0.072,
+  "INF_OE_24m": 0.1818,
+  "INF_CE_12m": 0.0715,
+  "INF_CE_24m": 0.1879,
+  "INF_DIR_12m": 0.0668,
+  "INF_DIR_24m": 0.1726,
+  "ENR_CE_12m": 0.0092,
+  "ENR_CE_24m": 0.0998,
+  "ENR_DIR_12m": 0.0201,
+  "ENR_DIR_24m": 0.1245
+ },
+ "files": {
+  "ra_tape_assets_v1.csv": "79e9c5a0598d1282d7b510f21184ab901b9525f44c0a0d179df1b5c537798f6a",
+  "ra_tape_tranches_v1.csv": "6637ce25bbafcc7f774845899e3b68a46a2923f6cac84a614b273572dc9452bf"
+ },
+ "n_assets": 188,
+ "n_tranches": 198,
+ "checks": {
+  "lookthrough_debt_bn": 17.433,
+  "lookthrough_gav_bn": 35.433,
+  "lookthrough_ltv": 0.492,
+  "by_sleeve": {
+   "RE_OE": {
+    "tranches": 30,
+    "debt_bn": 0.999,
+    "maturing_12m": 0.1621,
+    "maturing_24m": 0.3414,
+    "floating_share": 0.209,
+    "unhedged_floating_share": 0.133,
+    "caps_expiring_before_maturity_share_of_capped_floating": 1.0,
+    "w_avg_maturity_years": 3.76
+   },
+   "RE_CE": {
+    "tranches": 42,
+    "debt_bn": 3.9,
+    "maturing_12m": 0.3453,
+    "maturing_24m": 0.5375,
+    "floating_share": 0.681,
+    "unhedged_floating_share": 0.0,
+    "caps_expiring_before_maturity_share_of_capped_floating": 0.451,
+    "w_avg_maturity_years": 1.89
+   },
+   "RE_DIR_GL": {
+    "tranches": 6,
+    "debt_bn": 1.391,
+    "maturing_12m": 0.0665,
+    "maturing_24m": 0.2388,
+    "floating_share": 0.383,
+    "unhedged_floating_share": 0.0,
+    "caps_expiring_before_maturity_share_of_capped_floating": 1.0,
+    "w_avg_maturity_years": 3.59
+   },
+   "RE_DIR_GCC": {
+    "tranches": 4,
+    "debt_bn": 0.982,
+    "maturing_12m": 0.1902,
+    "maturing_24m": 0.4344,
+    "floating_share": 0.5,
+    "unhedged_floating_share": 0.5,
+    "caps_expiring_before_maturity_share_of_capped_floating": null,
+    "w_avg_maturity_years": 1.82
+   },
+   "RE_COI": {
+    "tranches": 4,
+    "debt_bn": 1.2,
+    "maturing_12m": 0.0,
+    "maturing_24m": 0.3492,
+    "floating_share": 0.582,
+    "unhedged_floating_share": 0.0,
+    "caps_expiring_before_maturity_share_of_capped_floating": 0.5,
+    "w_avg_maturity_years": 2.3
+   },
+   "INF_OE": {
+    "tranches": 42,
+    "debt_bn": 2.0,
+    "maturing_12m": 0.1086,
+    "maturing_24m": 0.2124,
+    "floating_share": 0.148,
+    "unhedged_floating_share": 0.107,
+    "caps_expiring_before_maturity_share_of_capped_floating": 0.817,
+    "w_avg_maturity_years": 8.77
+   },
+   "INF_CE": {
+    "tranches": 40,
+    "debt_bn": 3.056,
+    "maturing_12m": 0.0365,
+    "maturing_24m": 0.1933,
+    "floating_share": 0.2,
+    "unhedged_floating_share": 0.105,
+    "caps_expiring_before_maturity_share_of_capped_floating": 0.779,
+    "w_avg_maturity_years": 7.13
+   },
+   "INF_DIR": {
+    "tranches": 15,
+    "debt_bn": 2.444,
+    "maturing_12m": 0.0,
+    "maturing_24m": 0.0649,
+    "floating_share": 0.13,
+    "unhedged_floating_share": 0.13,
+    "caps_expiring_before_maturity_share_of_capped_floating": null,
+    "w_avg_maturity_years": 8.39
+   },
+   "ENR_CE": {
+    "tranches": 10,
+    "debt_bn": 0.862,
+    "maturing_12m": 0.0,
+    "maturing_24m": 0.0,
+    "floating_share": 0.75,
+    "unhedged_floating_share": 0.75,
+    "caps_expiring_before_maturity_share_of_capped_floating": null,
+    "w_avg_maturity_years": 4.35
+   },
+   "ENR_DIR": {
+    "tranches": 5,
+    "debt_bn": 0.6,
+    "maturing_12m": 0.0,
+    "maturing_24m": 0.1667,
+    "floating_share": 0.383,
+    "unhedged_floating_share": 0.383,
+    "caps_expiring_before_maturity_share_of_capped_floating": null,
+    "w_avg_maturity_years": 4.86
+   }
+  },
+  "real_estate": {
+   "maturing_12m": 0.211,
+   "maturing_24m": 0.4267,
+   "targets": "MBA 2026: 17% of all CRE balances mature in the year (CMBS/CLO 25%, credit cos 29%, banks 21%, life cos 10%); G10 RE book 42% within 24 months"
+  },
+  "all": {
+   "maturing_12m": 0.1214,
+   "maturing_24m": 0.2804,
+   "G15_uniform_assumption": "17% a year (MBA 2026 snapshot), i.e. 17% / 34%"
+  },
+  "s7_5_controllable": {
+   "controllable_debt_bn": 4.338,
+   "controllable_gav_bn": 9.079,
+   "portfolio_ltv": 0.4778,
+   "portfolio_target_45pct": false,
+   "portfolio_hard_55pct": true,
+   "maturing_12m": 0.0644,
+   "test_12m_le_25pct": true,
+   "maturing_24m": 0.1749,
+   "test_24m_le_40pct": true,
+   "unhedged_floating_share": 0.1726,
+   "unhedged_or_cap_short_share": 0.2955,
+   "test_unhedged_le_25pct": true,
+   "test_hedged_to_maturity": false,
+   "single_asset_breaches": [],
+   "single_asset_n": 21,
+   "development_ltc_max": 0.55,
+   "test_dev_ltc_le_60pct": true,
+   "note": "P(covenant trigger within 12m) <= 2% per loan is evaluated in ra_engine (simulation)"
+  },
+  "t5_recourse_exposure_bn": {
+   "nonrecourse_carveouts": 0.0221,
+   "completion_guarantee": 0.5065,
+   "corporate_guarantee": 0.5263
+  }
+ },
+ "V_mat_definition": "V^mat_{i,T} = omega_i * V*_{i,T}: ADIC share of the nowcast economic value of tranche i's own collateral at its (possibly extended) maturity quarter T, from that collateral's simulated path (RE: NOI(1+g)/c; INF: structural V^A; ENR: PV at the strip; RBL: PV at the bank deck). Pool-secured fund lines use the pool. Maintenance covenants test appraisal V^A; refinancing capacity tests V^mat."
+}

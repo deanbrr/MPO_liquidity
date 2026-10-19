@@ -1,0 +1,219 @@
+{
+ "label": "SYNTHETIC - NOT ADIC DATA",
+ "copies": {
+  "byte_identical": {
+   "t1_engine.py": {
+    "sha256": "b357646878bd4b9989439465ef4de16569a7b3b4401cb0940b5ba6c2c7a1bbac",
+    "identical_to_original": true
+   },
+   "gap02_study.py": {
+    "sha256": "af23631de02ef8d5f791ab125ed46f6776e5d87004b2c3106f9f29b0f64fb4bd",
+    "identical_to_original": true
+   },
+   "phase1_demo.py": {
+    "sha256": "51640d64973f01a64856e91bc569ad73912ec05865474eb377179679b8056b8c",
+    "identical_to_original": true
+   },
+   "g7_liquidity_ladder_calcs.py": {
+    "sha256": "3a9b790ff4a000b755fae2d73fe46cb5d3e5b3405e3b4fd59f2f65c6031f34e1",
+    "identical_to_original": true
+   },
+   "rfta_v2_book.py": {
+    "sha256": "5d677000c8ffd52e8fcf0b3d8e146038d9d825a48473e95113cd0ef8346547f0",
+    "identical_to_original": true
+   },
+   "seal_history_results.json": {
+    "sha256": "d0bdce57ef399cf236aa44031dc2d34f53a6b76aa8e33dc40455fcc26a16ab34",
+    "identical_to_original": true
+   },
+   "sealed_pe_history_v1_1.csv": {
+    "sha256": "4346dc249e83bff8d952588715a69ec038b9725ab436e0b24b8bb4227f2f54a9",
+    "identical_to_original": true
+   }
+  },
+  "adapted_sha256": {
+   "g01_core.py": "04dc940ad12d46591f4c0dd1c294343b29772872b1c06831540f24787852c8b6",
+   "gs_group_cashmap.py": "f4834d4fdd9289777281168a3582c80ee3ce75dadc3711e7ed619ed98449dcea",
+   "ra_book.py": "b1390d51d38d00fc7c1f804424ee0fff723dbe85c626bfdb4f073ec8717b4e51",
+   "ra_ladder.py": "ca3ecf038cffb2bea0e98cc3db90ca7d6af84c6b647d04cce521fa9e2cfbdc1b",
+   "ra_module.py": "0160c825f582675eb483e78bdeed70d79b7e6e03f15d5d6c574c2672a8e3d371",
+   "ra_engine.py": "caa6527a9c31984acadd9cf1ae44189fcbb31adb3619b439bccd536606f86c30"
+  }
+ },
+ "ladder_reproduction": {
+  "max_abs_diff": 0.0,
+  "mismatches": [],
+  "cases": 48
+ },
+ "published_v1_T4prime": {
+  "do-nothing": {
+   "SH_TP": 17,
+   "gstar": 11.12,
+   "fac": 13.9,
+   "published": {
+    "SH_TP": 17,
+    "gstar": 11.1,
+    "fac": 13.9
+   }
+  },
+  "rule": {
+   "SH_TP": 20,
+   "fac": 6.1,
+   "published": {
+    "SH_TP": 20,
+    "fac": 6.1
+   }
+  },
+  "band": {
+   "SH_TP": 29,
+   "fac": 0.0,
+   "published": {
+    "SH_TP": 29,
+    "fac": 0.0
+   }
+  },
+  "d0": {
+   "value": 11.29,
+   "published": 11.3
+  }
+ },
+ "ra_gap_01_ladder": {
+  "v2u16@theta*": {
+   "gstar": [
+    9.301559532571858,
+    9.301559532571858
+   ],
+   "fac": [
+    11.626949415714822,
+    11.626949415714822
+   ],
+   "SH_TP": [
+    18,
+    18
+   ],
+   "identical": true
+  },
+  "v2u11@theta*": {
+   "gstar": [
+    6.623119947633398,
+    6.623119947633398
+   ],
+   "fac": [
+    8.278899934541748,
+    8.278899934541748
+   ],
+   "SH_TP": [
+    20,
+    20
+   ],
+   "identical": true
+  },
+  "v1s@0.76": {
+   "gstar": [
+    4.065780040843798,
+    4.065780040843798
+   ],
+   "fac": [
+    5.082225051054747,
+    5.082225051054747
+   ],
+   "SH_TP": [
+    22,
+    22
+   ],
+   "identical": true
+  },
+  "d0 v2u16": {
+   "value": 9.473480588194775,
+   "ra_gap_01": 9.473480588194775,
+   "identical": true
+  },
+  "d0 v2u11": {
+   "value": 6.7970362505087465,
+   "ra_gap_01": 6.7970362505087465,
+   "identical": true
+  }
+ },
+ "V-RA-CF": {
+  "normal 12m": {
+   "engine": 0.396,
+   "g15": 0.4,
+   "pass_": true
+  },
+  "drought 12m": {
+   "engine": -0.157,
+   "g15": -0.16,
+   "pass_": true
+  },
+  "T4' 12m": {
+   "engine": -1.325,
+   "g15": -1.32,
+   "pass_": true
+  },
+  "T4' 24m": {
+   "engine": -2.463,
+   "g15": -2.46,
+   "pass_": true
+  }
+ },
+ "mc_t1_reproduction_identical": {
+  "all": true,
+  "cases": {
+   "dn|M1": true,
+   "dn|M4": true,
+   "dn|M6": true,
+   "mixA|M1": true,
+   "mixA|M4": true,
+   "mixA|M6": true,
+   "mixB|M1": true,
+   "mixB|M4": true,
+   "mixB|M6": true
+  }
+ },
+ "mc_ra_gap_01_reproduction": {
+  "v2u16|M1|dn": {
+   "p_red": [
+    0.0145,
+    0.0145
+   ],
+   "mean_w": [
+    279.6456436565301,
+    279.6456436565301
+   ],
+   "identical": true
+  },
+  "v2u16|M1|mixB": {
+   "p_red": [
+    0.0,
+    0.0
+   ],
+   "mean_w": [
+    280.75453269305467,
+    280.75453269305467
+   ],
+   "identical": true
+  },
+  "v2u16|M6|dn": {
+   "p_red": [
+    0.116,
+    0.116
+   ],
+   "mean_w": [
+    221.4752256264358,
+    221.4752256264358
+   ],
+   "identical": true
+  },
+  "v2u16|M6|mixB": {
+   "p_red": [
+    0.0004,
+    0.0004
+   ],
+   "mean_w": [
+    220.72983222138035,
+    220.72983222138035
+   ],
+   "identical": true
+  }
+ }
+}

@@ -1,0 +1,11 @@
+{
+ "label": "SYNTHETIC [I-calc]",
+ "lev_equity_elasticity_unhedged": 0.643,
+ "lev_equity_elasticity_hedged70_3y": 0.242,
+ "sleeve_delta_unhedged_m_bbl": 12.21,
+ "sleeve_delta_after_hedge_m_bbl": 6.08,
+ "sleeve_delta_after_selling_0.6_0.8bn_lev_m_bbl": [
+  6.7,
+  4.86
+ ]
+}

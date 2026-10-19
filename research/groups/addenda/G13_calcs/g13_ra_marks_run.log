@@ -1,0 +1,113 @@
+﻿R1-R3 desmoothing ...
+  desmooth M0        CORE_RE    lam_g=0.641 ac1 asset/fund/agg obs=0.22/0.42/0.63 aggAC1 1s=0.47 3s=0.00 | lam A/AL/ALT/ALT4=0.707/0.737/0.745/0.740 (true 0.75) rmse appr/A/AL/ALT=0.088/0.070/0.055/0.025 beta 1s/3s/true=0.26/0.43/0.57 fbeta obs/1s/3s/true=0.22/0.32/0.45/0.57
+  desmooth M0        VA_RE      lam_g=0.601 ac1 asset/fund/agg obs=0.22/0.39/0.59 aggAC1 1s=0.41 3s=-0.00 | lam A/AL/ALT/ALT4=0.637/0.673/0.701/0.677 (true 0.7) rmse appr/A/AL/ALT=0.108/0.097/0.073/0.030 beta 1s/3s/true=0.37/0.54/0.66 fbeta obs/1s/3s/true=0.32/0.43/0.56/0.66
+  desmooth M0        CORE_INFRA lam_g=0.753 ac1 asset/fund/agg obs=0.30/0.52/0.74 aggAC1 1s=0.54 3s=-0.02 | lam A/AL/ALT/ALT4=0.814/0.834/0.842/0.841 (true 0.85) rmse appr/A/AL/ALT=0.095/0.063/0.053/0.031 beta 1s/3s/true=0.13/0.27/0.40 fbeta obs/1s/3s/true=0.10/0.18/0.30/0.40
+  desmooth M_regime  CORE_RE    lam_g=0.652 ac1 asset/fund/agg obs=0.21/0.41/0.64 aggAC1 1s=0.48 3s=-0.02 | lam A/AL/ALT/ALT4=0.714/0.750/0.770/0.757 (true 0.75) rmse appr/A/AL/ALT=0.092/0.073/0.058/0.028 beta 1s/3s/true=0.24/0.40/0.58 fbeta obs/1s/3s/true=0.20/0.29/0.42/0.58
+  desmooth M_regime  VA_RE      lam_g=0.610 ac1 asset/fund/agg obs=0.22/0.39/0.60 aggAC1 1s=0.42 3s=-0.01 | lam A/AL/ALT/ALT4=0.664/0.697/0.725/0.709 (true 0.7) rmse appr/A/AL/ALT=0.109/0.094/0.073/0.030 beta 1s/3s/true=0.34/0.50/0.66 fbeta obs/1s/3s/true=0.29/0.39/0.53/0.66
+  desmooth M_regime  CORE_INFRA lam_g=0.743 ac1 asset/fund/agg obs=0.28/0.49/0.73 aggAC1 1s=0.54 3s=-0.03 | lam A/AL/ALT/ALT4=0.817/0.841/0.860/0.854 (true 0.85) rmse appr/A/AL/ALT=0.100/0.076/0.064/0.036 beta 1s/3s/true=0.10/0.20/0.41 fbeta obs/1s/3s/true=0.08/0.13/0.23/0.41
+  desmooth M_season  CORE_RE    lam_g=0.531 ac1 asset/fund/agg obs=0.22/0.39/0.53 aggAC1 1s=0.33 3s=-0.03 | lam A/AL/ALT/ALT4=0.611/0.664/0.698/0.701 (true 0.75) rmse appr/A/AL/ALT=0.083/0.072/0.054/0.022 beta 1s/3s/true=0.33/0.44/0.57 fbeta obs/1s/3s/true=0.28/0.38/0.44/0.57
+  desmooth M_season  VA_RE      lam_g=0.499 ac1 asset/fund/agg obs=0.22/0.36/0.49 aggAC1 1s=0.29 3s=-0.01 | lam A/AL/ALT/ALT4=0.577/0.612/0.659/0.642 (true 0.7) rmse appr/A/AL/ALT=0.104/0.094/0.072/0.026 beta 1s/3s/true=0.42/0.53/0.65 fbeta obs/1s/3s/true=0.36/0.47/0.54/0.65
+  desmooth M_season  CORE_INFRA lam_g=0.521 ac1 asset/fund/agg obs=0.28/0.42/0.52 aggAC1 1s=0.22 3s=-0.07 | lam A/AL/ALT/ALT4=0.701/0.742/0.790/0.803 (true 0.85) rmse appr/A/AL/ALT=0.081/0.066/0.055/0.029 beta 1s/3s/true=0.17/0.22/0.40 fbeta obs/1s/3s/true=0.14/0.20/0.22/0.40
+  desmooth M_all     CORE_RE    lam_g=0.527 ac1 asset/fund/agg obs=0.22/0.38/0.52 aggAC1 1s=0.32 3s=-0.04 | lam A/AL/ALT/ALT4=0.647/0.711/0.720/0.731 (true 0.75) rmse appr/A/AL/ALT=0.086/0.073/0.058/0.022 beta 1s/3s/true=0.30/0.40/0.57 fbeta obs/1s/3s/true=0.26/0.35/0.41/0.57
+  desmooth M_all     VA_RE      lam_g=0.506 ac1 asset/fund/agg obs=0.22/0.36/0.50 aggAC1 1s=0.30 3s=-0.02 | lam A/AL/ALT/ALT4=0.603/0.626/0.687/0.670 (true 0.7) rmse appr/A/AL/ALT=0.111/0.100/0.078/0.027 beta 1s/3s/true=0.40/0.51/0.65 fbeta obs/1s/3s/true=0.35/0.44/0.51/0.65
+  desmooth M_all     CORE_INFRA lam_g=0.490 ac1 asset/fund/agg obs=0.27/0.40/0.49 aggAC1 1s=0.19 3s=-0.07 | lam A/AL/ALT/ALT4=0.770/0.787/0.807/0.805 (true 0.85) rmse appr/A/AL/ALT=0.085/0.071/0.066/0.030 beta 1s/3s/true=0.15/0.18/0.41 fbeta obs/1s/3s/true=0.12/0.16/0.18/0.41
+V-RA1 sales vs appraisal ...
+  sales-vs-appraisal CORE_RE: n=10269 mean signed=0.034 mean abs=0.125 median abs=0.102 down=-0.012677643521453846 normal=0.05837875578314964 above-mark=0.56
+  sales-vs-appraisal VA_RE: n=10313 mean signed=0.062 mean abs=0.171 median abs=0.138 down=0.032694880846653486 normal=0.07596076798499764 above-mark=0.58
+  sales-vs-appraisal CORE_INFRA: n=10360 mean signed=0.042 mean abs=0.111 median abs=0.091 down=0.0003674742708888648 normal=0.059886659143166536 above-mark=0.61
+R4-R5 bias/kappa ...
+  bias CORE_RE    b_f(8q) true=0.020 naive=0.024�0.066 ctrl_true=0.020�0.010 ctrl_appr=0.023  cov iid/clu=0.17/0.66 w_a=0.36 kappa=1.66
+  bias VA_RE      b_f(8q) true=0.050 naive=0.047�0.083 ctrl_true=0.049�0.017 ctrl_appr=0.048  cov iid/clu=0.20/0.64 w_a=0.33 kappa=1.94
+  bias CORE_INFRA b_f(8q) true=0.015 naive=0.017�0.066 ctrl_true=0.015�0.008 ctrl_appr=0.017  cov iid/clu=0.16/0.59 w_a=0.41 kappa=1.69
+  bias VA_INFRA   b_f(8q) true=0.040 naive=0.036�0.081 ctrl_true=0.041�0.021 ctrl_appr=0.034  cov iid/clu=0.28/0.68 w_a=0.35 kappa=1.95
+R6 scoring ...
+  scoring CORE_RE: vs appraisal H=0.00660 S=0.00325 | vs true H=0.01074 S=0.01319 | vs tau H=0.01179 S=0.01419
+R7 fusion ...
+  fusion VA_RE: equal mse=0.06476 crps=0.1438 cov80=0.81, inv_mse mse=0.06472 crps=0.1438 cov80=0.81, gls mse=0.06467 crps=0.1437 cov80=0.81, cgls mse=0.06433 crps=0.1434 cov80=0.81, shrink50 mse=0.06447 crps=0.1435 cov80=0.81
+  fusion small-n (n=40) mean/P90 mse: equal=0.06616/0.07102, gls=0.07153/0.08005, cgls=0.06675/0.07105, shrink50=0.06622/0.07079
+R8 BF/Benktander ...
+  BF/Benktander best estimator by age (quarters): {'8': 'gb_incurred_econ', '12': 'gb_incurred_econ', '16': 'gb_incurred_econ', '20': 'gb_incurred_econ', '24': 'gb_incurred_econ', '28': 'gb_incurred_econ', '32': 'tvpi_econ'}
+    prior              8:0.233 12:0.233 16:0.233 20:0.233 24:0.233 28:0.233 32:0.233
+    prior_biased       8:0.318 12:0.318 16:0.318 20:0.318 24:0.318 28:0.318 32:0.318
+    tvpi_rep           8:0.229 12:0.216 16:0.191 20:0.149 24:0.101 28:0.054 32:0.019
+    tvpi_econ          8:0.209 12:0.193 16:0.164 20:0.122 24:0.076 28:0.037 32:0.011
+    bf_paid            8:0.229 12:0.225 16:0.222 20:0.226 24:0.221 28:0.176 32:0.084
+    gb_paid            8:0.225 12:0.218 16:0.217 20:0.257 24:0.273 28:0.202 32:0.086
+    gb_incurred_econ   8:0.208 12:0.191 16:0.163 20:0.122 24:0.075 28:0.037 32:0.011
+    gb_incurred_econ_biasedprior 8:0.210 12:0.192 16:0.164 20:0.122 24:0.076 28:0.037 32:0.011
+R9 open-end ...
+  open-end: {'no_queue': {'mean_transfer_pct_of_fund_cum': 4.107764463309283, 'mean_transfer_bp_per_year': 21.90807713764951, 'p95_abs_transfer_pct_cum': 8.24986815505662, 'mean_max_queue_pct': 0.0, 'p90_max_queue_pct': 0.0}, 'queue_2pct': {'mean_transfer_pct_of_fund_cum': 1.7208170939044576, 'mean_transfer_bp_per_year': 9.17769116749044, 'p95_abs_transfer_pct_cum': 3.7222602535690443, 'mean_max_queue_pct': 9.132750075584205, 'p90_max_queue_pct': 14.858959909004286}, 'queue_2pct_buffer5': {'mean_transfer_pct_of_fund_cum': 2.8184115562502265, 'mean_transfer_bp_per_year': 15.03152830000121, 'p95_abs_transfer_pct_cum': 5.4888042848144485, 'mean_max_queue_pct': 5.86210504006058, 'p90_max_queue_pct': 10.921777378636104}, 'label': 'SYNTHETIC - NOT ADIC DATA'}
+P public illustrations ...
+{
+ "label": "PUBLIC-DATA ILLUSTRATION (not ADIC data; figures as cited in G13 dossier)",
+ "P1_HICL_implied_discount_rate": {
+  "nav_p": 160.2,
+  "discount": 0.24,
+  "appraisal_dr": 0.085,
+  "implied_dr_linear": 0.11327058823529412,
+  "implied_dr_convex": 0.12203451419909334,
+  "note": "upper bound: the share discount also prices fees, gearing, governance and sentiment, not only NAV staleness"
+ },
+ "P2_secondary_implied_theta": {
+  "real_estate": {
+   "price_pct_nav": 0.68,
+   "buyer_target": 0.14,
+   "fund_expected": 0.09,
+   "duration": 3.0,
+   "implied_econ_to_reported_nav": 0.778
+  },
+  "real_estate_lowprem": {
+   "price_pct_nav": 0.68,
+   "buyer_target": 0.12,
+   "fund_expected": 0.09,
+   "duration": 3.0,
+   "implied_econ_to_reported_nav": 0.738
+  },
+  "infrastructure": {
+   "price_pct_nav": 0.91,
+   "buyer_target": 0.14,
+   "fund_expected": 0.1,
+   "duration": 3.5,
+   "implied_econ_to_reported_nav": 1.031
+  },
+  "infrastructure_lowprem": {
+   "price_pct_nav": 0.91,
+   "buyer_target": 0.13,
+   "fund_expected": 0.11,
+   "duration": 3.5,
+   "implied_econ_to_reported_nav": 0.969
+  }
+ },
+ "P3_ODCE_vs_REIT": {
+  "odce_calendar": {
+   "2022": 7.5,
+   "2023": -12.0,
+   "2024": -1.4,
+   "2025": 3.8
+  },
+  "reit_calendar": {
+   "2022": -24.95,
+   "2023": 11.4,
+   "2024": 4.9,
+   "2025": 2.27
+  },
+  "odce_peak_quarter_index": 2,
+  "odce_trough_quarter_index": 9,
+  "odce_peak_to_trough_total_return": -18.8,
+  "quarters_peak_to_trough": 7,
+  "note": "ODCE is gross, levered (27.1% leverage at 2Q26); REITs levered and listed"
+ },
+ "P4_stale_nav_illustration_share0.5": {
+  "assumed_true_return": -0.098,
+  "nav_overstatement": 0.202,
+  "transfer_per_2pct_monthly_redemption_pct_nav": 0.4,
+  "note": "illustrative only; BREIT's true NAV is contested"
+ },
+ "P4_stale_nav_illustration_share1.0": {
+  "assumed_true_return": -0.195,
+  "nav_overstatement": 0.348,
+  "transfer_per_2pct_monthly_redemption_pct_nav": 0.7,
+  "note": "illustrative only; BREIT's true NAV is contested"
+ }
+}
+wrote C:\users\dean\ai_envs\adic_tpa_lab\research\groups\addenda\G13_calcs\g13_ra_marks_results.json in 2234.0s  [SYNTHETIC - NOT ADIC DATA]

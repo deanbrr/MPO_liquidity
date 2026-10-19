@@ -1,0 +1,4 @@
+CORE_RE ss true SS params {'lam': 0.75, 'mu': 0.0033357329104412247, 'sv': 0.05781881563717437, 'sxi': 0.004269562819149833, 'beta': 1.0, 'phip': 0.85, 'sp': 0.05, 'sL': 0.01, 'st': 0.025, 'cL': 0.0}
+resuming; done: ['M0', 'M1', 'M2', 'M3']
+CORE_RE ss M4     ALT: R2 0.42 xsCRPS +44.7% xsReg +67.0% cov 0.507 sellbias -0.75 reg 0.317 | AL R2 0.50 cov 0.74 | ALT4 R2 0.49 | lam 0.649 | 370s
+CORE_RE ss M5     ALT: R2 0.24 xsCRPS +1.7% xsReg +5.9% cov 0.802 sellbias +0.20 reg 0.113 | AL R2 0.54 cov 0.74 | ALT4 R2 0.43 | lam 0.752 | 350s

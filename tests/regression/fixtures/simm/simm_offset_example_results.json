@@ -1,0 +1,74 @@
+{
+ "assumptions": {
+  "vega_per_volpt_usd": 10000000.0,
+  "simm_version": "2.8+2512",
+  "equity_index_RW": 15.0,
+  "HVR": 0.56,
+  "VRW": 0.29,
+  "sigma_simm_equity_index": 32.923,
+  "lambda_theta0": 5.6349,
+  "SF_6m": 0.03836,
+  "SF_1m": 0.23014,
+  "note": "delta-hedged; equity risk class only; IM to POST; illustrative"
+ },
+ "IM_post_usd_m": {
+  "separate_CSAs": {
+   "tail_6m_long": {
+    "vega_margin": 53.5,
+    "curvature_margin": 0.0,
+    "cvr_post": -12.63,
+    "total": 53.5
+   },
+   "opp_1m_short": {
+    "vega_margin": 53.5,
+    "curvature_margin": 502.7,
+    "cvr_post": 75.77,
+    "total": 556.2
+   }
+  },
+  "separate_total": 609.7,
+  "same_CSA": {
+   "vega_margin": 0.0,
+   "curvature_margin": 418.9,
+   "cvr_post": 63.14,
+   "total": 418.9
+  },
+  "saving_from_colocation": 190.8,
+  "saving_pct": 31.3
+ },
+ "vix_equivalent_vega_usd_m_per_vixpt": {
+  "tail": [
+   4.24,
+   5.64
+  ],
+  "opp": -10.0,
+  "net": [
+   -5.76,
+   -4.36
+  ],
+  "beta_6m_used": [
+   0.4243,
+   0.564
+  ]
+ },
+ "covid_spike_vega_only_usd_m": {
+  "dVIX": 69.01,
+  "dVIX6M": 38.94,
+  "tail_gain": 389.0,
+  "opp_loss": -690.0,
+  "net": -301.0,
+  "offset_ratio_opp_loss_over_tail_gain": 1.77,
+  "note": "first-order vega only; VIX indices proxy ATM vol at matching tenor; gamma/vanna/volga ignored"
+ },
+ "beta_power_law": {
+  "fit": "ln beta = c - g ln(T/30d), all-days betas",
+  "g": 0.426,
+  "intercept": -0.057,
+  "betas_all_days": {
+   "VIX9D": 1.5202,
+   "VIX3M": 0.6388,
+   "VIX6M": 0.4539,
+   "VIX1Y": 0.3013
+  }
+ }
+}

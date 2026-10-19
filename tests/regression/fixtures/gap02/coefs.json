@@ -1,0 +1,653 @@
+{
+ "caps": {
+  "amber": 6.0,
+  "band": 1.0,
+  "pace": 6.0,
+  "rcf": 15.0,
+  "reserve": 10.62
+ },
+ "costs": {
+  "amber": 0.21,
+  "band": 0.065,
+  "pace": 0.16,
+  "rcf": 0.009,
+  "reserve": 0.075
+ },
+ "ig_coefficients": {
+  "amber": 0.89,
+  "reserve": 1.0
+ },
+ "ig_short_t0_bn": 0.5600000000000005,
+ "lever_units": {
+  "amber": "bn",
+  "band": "share",
+  "pace": "bn",
+  "rcf": "bn",
+  "reserve": "bn"
+ },
+ "m_tiers": {
+  "IG": 10.0,
+  "M": 10000.0,
+  "S": 100.0,
+  "crit": 1000.0,
+  "red": 50.0
+ },
+ "nav0_bn": 177.0,
+ "note": "SYNTHETIC \u2013 NOT ADIC DATA. gap_02 linearised H liquidity block (phase1_demo.py): T4 row = minimum 24-month TPF headroom ($bn) with finite-difference lever slopes from t1_engine.ladder; IG row = t0 T2 8% target shortfall. Lever costs and capacities are research design assumptions [I]. Units: USD bn; slopes $bn of headroom per $bn of lever (band: per unit share).",
+ "readings": {
+  "as_written": {
+   "expected": {
+    "case1_dual_T4_penalty_x10": 0.2867764582370492,
+    "case1_elastic_modeB": {
+     "cards": [
+      {
+       "action": "SELL",
+       "reservation_price": 0.7382789713930183
+      },
+      {
+       "action": "SELL",
+       "reservation_price": 0.7382789713930183
+      },
+      {
+       "action": "HOLD",
+       "reservation_price": 0.7382789713930183
+      }
+     ],
+     "duals": {
+      "IG": 0.0,
+      "T4": 0.2867764582370492
+     },
+     "sell": [
+      0.5,
+      0.5,
+      0.0
+     ],
+     "u_IG": 0.0,
+     "u_S": 0.0,
+     "x": {
+      "amber": 5.480921341331839,
+      "band": 0.0,
+      "pace": 6.0,
+      "rcf": 15.0,
+      "reserve": 10.62
+     }
+    },
+    "case1_pinned_rows": [],
+    "modeB": {
+     "cushion_on_glide_path": -4.704334850106595e-18,
+     "elastic_x10_duals": {
+      "IG": 0.0,
+      "T4": 0.2867764582370492
+     },
+     "elastic_x1_duals": {
+      "IG": 0.0,
+      "T4": 0.2867764582370492
+     },
+     "phase1": {
+      "iis": [
+       "T4 row",
+       "cap:rcf",
+       "cap:reserve",
+       "cap:amber",
+       "cap:pace",
+       "Mode B (no band)"
+      ],
+      "levers": {
+       "amber": 6.0,
+       "band": 0.0,
+       "pace": 6.0,
+       "rcf": 15.0,
+       "reserve": 10.62
+      },
+      "u_IG_star": 0.0,
+      "u_S_star": 0.45989028321770675
+     },
+     "restored": {
+      "duals": {
+       "IG": 0.0,
+       "T4": 0.2867764582370492
+      },
+      "obj": -3.02060748830442,
+      "relax": [
+       0.4598912832177067,
+       0.0
+      ],
+      "sell": [
+       0.5,
+       0.5,
+       0.0
+      ],
+      "status": "optimal",
+      "x": {
+       "amber": 4.85289280144962,
+       "band": 0.0,
+       "pace": 6.0,
+       "rcf": 15.0,
+       "reserve": 10.62
+      }
+     },
+     "restored_cards": [
+      {
+       "action": "SELL",
+       "bid": 0.88,
+       "hold": 0.95,
+       "reservation_price": 0.7382789713930183,
+       "y_cash": 0.2867764582370492
+      },
+      {
+       "action": "SELL",
+       "bid": 0.8,
+       "hold": 0.95,
+       "reservation_price": 0.7382789713930183,
+       "y_cash": 0.2867764582370492
+      },
+      {
+       "action": "HOLD",
+       "bid": 0.7,
+       "hold": 0.95,
+       "reservation_price": 0.7382789713930183,
+       "y_cash": 0.2867764582370492
+      }
+     ]
+    },
+    "modeH": {
+     "cushion_on_glide_path": -7.213313436830113e-18,
+     "elastic_x10_duals": {
+      "IG": 0.054702972770015346,
+      "T4": 0.065
+     },
+     "elastic_x1_duals": {
+      "IG": 0.054702972770015346,
+      "T4": 0.065
+     },
+     "phase1": {
+      "iis": [],
+      "levers": {
+       "amber": 6.0,
+       "band": 0.03443530476138133,
+       "pace": 6.0,
+       "rcf": 15.0,
+       "reserve": 10.62
+      },
+      "u_IG_star": 0.0,
+      "u_S_star": 0.0
+     },
+     "restored": {
+      "duals": {
+       "IG": 0.054702972770015346,
+       "T4": 0.065
+      },
+      "obj": -1.0116355710245748,
+      "relax": [
+       0.0,
+       0.0
+      ],
+      "sell": [
+       0.5,
+       0.0,
+       0.0
+      ],
+      "status": "optimal",
+      "x": {
+       "amber": 0.0,
+       "band": 0.9591605345782335,
+       "pace": 0.0,
+       "rcf": 15.0,
+       "reserve": 0.1200000000000005
+      }
+     },
+     "restored_cards": [
+      {
+       "action": "SELL",
+       "bid": 0.88,
+       "hold": 0.95,
+       "reservation_price": 0.8484392942619506,
+       "y_cash": 0.11970297277001535
+      },
+      {
+       "action": "HOLD",
+       "bid": 0.8,
+       "hold": 0.95,
+       "reservation_price": 0.8484392942619506,
+       "y_cash": 0.11970297277001535
+      },
+      {
+       "action": "HOLD",
+       "bid": 0.7,
+       "hold": 0.95,
+       "reservation_price": 0.8484392942619506,
+       "y_cash": 0.11970297277001535
+      }
+     ]
+    }
+   },
+   "h0": -20.730033450648833,
+   "research_key": "T4_as_written",
+   "slope": {
+    "amber": 0.7322776816861799,
+    "band": 13.35519712703303,
+    "pace": 0.8529118483153203,
+    "rcf": 0.49618560000000117,
+    "reserve": 0.31226195738437923
+   },
+   "stress": "T4 literal (C1 T1.4)"
+  },
+  "canonical": {
+   "expected": {
+    "case1_dual_T4_penalty_x10": 0.011306225861207763,
+    "case1_elastic_modeB": {
+     "cards": [
+      {
+       "action": "SELL",
+       "reservation_price": 0.8772689880664474
+      },
+      {
+       "action": "HOLD",
+       "reservation_price": 0.8772689880664474
+      },
+      {
+       "action": "HOLD",
+       "reservation_price": 0.8772689880664474
+      }
+     ],
+     "duals": {
+      "IG": 0.07159994422221909,
+      "T4": 0.011306225861207763
+     },
+     "sell": [
+      0.5,
+      0.0,
+      0.0
+     ],
+     "u_IG": 0.0,
+     "u_S": 0.0,
+     "x": {
+      "amber": 0.0,
+      "band": 0.0,
+      "pace": 0.0,
+      "rcf": 13.367723905711703,
+      "reserve": 0.1200000000000005
+     }
+    },
+    "case1_pinned_rows": [],
+    "modeB": {
+     "cushion_on_glide_path": 2.8226009100639575e-18,
+     "elastic_x10_duals": {
+      "IG": 0.07159994422221909,
+      "T4": 0.011306225861207763
+     },
+     "elastic_x1_duals": {
+      "IG": 0.07159994422221909,
+      "T4": 0.011306225861207763
+     },
+     "phase1": {
+      "iis": [],
+      "levers": {
+       "amber": 6.0,
+       "band": 0.0,
+       "pace": 0.0,
+       "rcf": 15.0,
+       "reserve": 10.62
+      },
+      "u_IG_star": 0.0,
+      "u_S_star": 0.0
+     },
+     "restored": {
+      "duals": {
+       "IG": 0.07159994422221909,
+       "T4": 0.011306225861207763
+      },
+      "obj": -0.16430951515140532,
+      "relax": [
+       0.0,
+       0.0
+      ],
+      "sell": [
+       0.5,
+       0.0,
+       0.0
+      ],
+      "status": "optimal",
+      "x": {
+       "amber": 0.0,
+       "band": 0.0,
+       "pace": 0.0,
+       "rcf": 13.367723905711703,
+       "reserve": 0.1200000000000005
+      }
+     },
+     "restored_cards": [
+      {
+       "action": "SELL",
+       "bid": 0.88,
+       "hold": 0.95,
+       "reservation_price": 0.8772689880664474,
+       "y_cash": 0.08290617008342685
+      },
+      {
+       "action": "HOLD",
+       "bid": 0.8,
+       "hold": 0.95,
+       "reservation_price": 0.8772689880664474,
+       "y_cash": 0.08290617008342685
+      },
+      {
+       "action": "HOLD",
+       "bid": 0.7,
+       "hold": 0.95,
+       "reservation_price": 0.8772689880664474,
+       "y_cash": 0.08290617008342685
+      }
+     ]
+    },
+    "modeH": {
+     "cushion_on_glide_path": 2.8226009100639575e-18,
+     "elastic_x10_duals": {
+      "IG": 0.07159994422221909,
+      "T4": 0.011306225861207763
+     },
+     "elastic_x1_duals": {
+      "IG": 0.07159994422221909,
+      "T4": 0.011306225861207763
+     },
+     "phase1": {
+      "iis": [],
+      "levers": {
+       "amber": 6.0,
+       "band": 0.0,
+       "pace": 6.0,
+       "rcf": 15.0,
+       "reserve": 10.62
+      },
+      "u_IG_star": 0.0,
+      "u_S_star": 0.0
+     },
+     "restored": {
+      "duals": {
+       "IG": 0.07159994422221909,
+       "T4": 0.011306225861207763
+      },
+      "obj": -0.16430951515140532,
+      "relax": [
+       0.0,
+       0.0
+      ],
+      "sell": [
+       0.5,
+       0.0,
+       0.0
+      ],
+      "status": "optimal",
+      "x": {
+       "amber": 0.0,
+       "band": 0.0,
+       "pace": 0.0,
+       "rcf": 13.367723905711703,
+       "reserve": 0.1200000000000005
+      }
+     },
+     "restored_cards": [
+      {
+       "action": "SELL",
+       "bid": 0.88,
+       "hold": 0.95,
+       "reservation_price": 0.8772689880664474,
+       "y_cash": 0.08290617008342685
+      },
+      {
+       "action": "HOLD",
+       "bid": 0.8,
+       "hold": 0.95,
+       "reservation_price": 0.8772689880664474,
+       "y_cash": 0.08290617008342685
+      },
+      {
+       "action": "HOLD",
+       "bid": 0.7,
+       "hold": 0.95,
+       "reservation_price": 0.8772689880664474,
+       "y_cash": 0.08290617008342685
+      }
+     ]
+    }
+   },
+   "h0": -11.117083876320478,
+   "research_key": "s_star_canonical",
+   "slope": {
+    "amber": 0.7255602999301232,
+    "band": 13.418083668483824,
+    "pace": 0.8031886565869945,
+    "rcf": 0.7960216000000017,
+    "reserve": 0.30072420447982323
+   },
+   "stress": "s*(theta=0.76)"
+  },
+  "critic": {
+   "expected": {
+    "case1_dual_T4_penalty_x10": 1000.0,
+    "case1_elastic_modeB": {
+     "cards": [
+      {
+       "action": "SELL",
+       "reservation_price": 0.009405940594059406
+      },
+      {
+       "action": "SELL",
+       "reservation_price": 0.009405940594059406
+      },
+      {
+       "action": "SELL",
+       "reservation_price": 0.009405940594059406
+      }
+     ],
+     "duals": {
+      "IG": 0.0,
+      "T4": 100.0
+     },
+     "sell": [
+      0.5,
+      0.5,
+      0.5
+     ],
+     "u_IG": 0.0,
+     "u_S": 22.986021745290437,
+     "x": {
+      "amber": 6.0,
+      "band": 0.0,
+      "pace": 6.0,
+      "rcf": 15.0,
+      "reserve": 10.62
+     }
+    },
+    "case1_pinned_rows": [
+     "T4"
+    ],
+    "modeB": {
+     "cushion_on_glide_path": 0.0,
+     "elastic_x10_duals": {
+      "IG": 0.0,
+      "T4": 0.23707136597698372
+     },
+     "elastic_x1_duals": {
+      "IG": 0.0,
+      "T4": 0.23707136597698372
+     },
+     "phase1": {
+      "iis": [
+       "T4 row",
+       "cap:rcf",
+       "cap:reserve",
+       "cap:amber",
+       "cap:pace",
+       "Mode B (no band)"
+      ],
+      "levers": {
+       "amber": 6.0,
+       "band": 0.0,
+       "pace": 6.0,
+       "rcf": 15.0,
+       "reserve": 10.62
+      },
+      "u_IG_star": 0.0,
+      "u_S_star": 24.176021745290438
+     },
+     "restored": {
+      "duals": {
+       "IG": 0.0,
+       "T4": 0.23707136597698372
+      },
+      "obj": -3.062359815507967,
+      "relax": [
+       24.17602274529044,
+       0.0
+      ],
+      "sell": [
+       0.5,
+       0.5,
+       0.0
+      ],
+      "status": "optimal",
+      "x": {
+       "amber": 5.051713407180798,
+       "band": 0.0,
+       "pace": 6.0,
+       "rcf": 15.0,
+       "reserve": 10.62
+      }
+     },
+     "restored_cards": [
+      {
+       "action": "SELL",
+       "bid": 0.88,
+       "hold": 0.95,
+       "reservation_price": 0.7679427607232121,
+       "y_cash": 0.23707136597698372
+      },
+      {
+       "action": "SELL",
+       "bid": 0.8,
+       "hold": 0.95,
+       "reservation_price": 0.7679427607232121,
+       "y_cash": 0.23707136597698372
+      },
+      {
+       "action": "HOLD",
+       "bid": 0.7,
+       "hold": 0.95,
+       "reservation_price": 0.7679427607232121,
+       "y_cash": 0.23707136597698372
+      }
+     ]
+    },
+    "modeH": {
+     "cushion_on_glide_path": 1.5053871520341106e-17,
+     "elastic_x10_duals": {
+      "IG": 0.0,
+      "T4": 0.23707136597698372
+     },
+     "elastic_x1_duals": {
+      "IG": 0.0,
+      "T4": 0.23707136597698372
+     },
+     "phase1": {
+      "iis": [
+       "T4 row",
+       "cap:rcf",
+       "cap:reserve",
+       "cap:amber",
+       "cap:pace",
+       "cap:band"
+      ],
+      "levers": {
+       "amber": 6.0,
+       "band": 1.0,
+       "pace": 6.0,
+       "rcf": 15.0,
+       "reserve": 10.62
+      },
+      "u_IG_star": 0.0,
+      "u_S_star": 7.833021745290427
+     },
+     "restored": {
+      "duals": {
+       "IG": 0.0,
+       "T4": 0.23707136597698372
+      },
+      "obj": -4.124654815507969,
+      "relax": [
+       7.833022745290427,
+       0.0
+      ],
+      "sell": [
+       0.5,
+       0.5,
+       0.0
+      ],
+      "status": "optimal",
+      "x": {
+       "amber": 5.051713407180801,
+       "band": 1.0,
+       "pace": 6.0,
+       "rcf": 15.0,
+       "reserve": 10.62
+      }
+     },
+     "restored_cards": [
+      {
+       "action": "SELL",
+       "bid": 0.88,
+       "hold": 0.95,
+       "reservation_price": 0.7679427607232121,
+       "y_cash": 0.23707136597698372
+      },
+      {
+       "action": "SELL",
+       "bid": 0.8,
+       "hold": 0.95,
+       "reservation_price": 0.7679427607232121,
+       "y_cash": 0.23707136597698372
+      },
+      {
+       "action": "HOLD",
+       "bid": 0.7,
+       "hold": 0.95,
+       "reservation_price": 0.7679427607232121,
+       "y_cash": 0.23707136597698372
+      }
+     ]
+    }
+   },
+   "h0": -45.84480042991447,
+   "research_key": "T4_critic_reading",
+   "slope": {
+    "amber": 0.8858092124899978,
+    "band": 16.34300000000001,
+    "pace": 0.8677704554805246,
+    "rcf": 0.49590760000000245,
+    "reserve": 0.3492172012053544
+   },
+   "stress": "T4 literal (C1 T1.4)"
+  }
+ },
+ "source": "research/addenda/gap_02_calcs/phase1_demo_results.json",
+ "test_funds": [
+  {
+   "bid": 0.88,
+   "hold": 0.95,
+   "name": "2018 buyout fund (report s4.4 example)",
+   "nav": 0.5
+  },
+  {
+   "bid": 0.8,
+   "hold": 0.95,
+   "name": "late-life buyout fund",
+   "nav": 0.5
+  },
+  {
+   "bid": 0.7,
+   "hold": 0.95,
+   "name": "tail-end fund",
+   "nav": 0.5
+  }
+ ]
+}

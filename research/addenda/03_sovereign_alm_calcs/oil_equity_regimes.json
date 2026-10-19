@@ -1,0 +1,486 @@
+{
+ "as_of": {
+  "brent_last_date": "2026-10-14",
+  "brent_last": 126.55,
+  "ff_us_last": "2026-08",
+  "ff_dev_last": "2026-08",
+  "vix_last_date": "2026-10-16",
+  "vix_last": 19.99
+ },
+ "period_stats": {
+  "1988-2007": {
+   "n_months": 240,
+   "corr_oil_us": -0.137,
+   "corr_oil_dev": -0.081,
+   "corr_oil_dvix": 0.076,
+   "oil_vol_ann": 0.369,
+   "us_vol_ann": 0.139,
+   "oil_cum_logret": 1.672,
+   "us_cum_logret": 2.24
+  },
+  "2008-2019": {
+   "n_months": 144,
+   "corr_oil_us": 0.434,
+   "corr_oil_dev": 0.473,
+   "corr_oil_dvix": -0.325,
+   "oil_vol_ann": 0.351,
+   "us_vol_ann": 0.156,
+   "oil_cum_logret": -0.324,
+   "us_cum_logret": 1.07
+  },
+  "2020-2026": {
+   "n_months": 82,
+   "corr_oil_us": 0.323,
+   "corr_oil_dev": 0.332,
+   "corr_oil_dvix": -0.313,
+   "oil_vol_ann": 0.692,
+   "us_vol_ann": 0.175,
+   "oil_cum_logret": 0.625,
+   "us_cum_logret": 0.949
+  },
+  "full_1988-2026": {
+   "n_months": 466,
+   "corr_oil_us": 0.159,
+   "corr_oil_dev": 0.207,
+   "corr_oil_dvix": -0.188,
+   "oil_vol_ann": 0.437,
+   "us_vol_ann": 0.151,
+   "oil_cum_logret": 1.973,
+   "us_cum_logret": 4.26
+  },
+  "GFC_2008-07_2009-03": {
+   "n_months": 9,
+   "corr_oil_us": 0.353,
+   "corr_oil_dev": 0.337,
+   "corr_oil_dvix": -0.201,
+   "oil_vol_ann": 0.671,
+   "us_vol_ann": 0.29,
+   "oil_cum_logret": -1.099,
+   "us_cum_logret": -0.441
+  },
+  "OilBust_2014-07_2016-02": {
+   "n_months": 20,
+   "corr_oil_us": 0.402,
+   "corr_oil_dev": 0.496,
+   "corr_oil_dvix": -0.429,
+   "oil_vol_ann": 0.422,
+   "us_vol_ann": 0.122,
+   "oil_cum_logret": -1.129,
+   "us_cum_logret": -0.006
+  },
+  "Covid_2020-01_2020-06": {
+   "n_months": 6,
+   "corr_oil_us": 0.809,
+   "corr_oil_dev": 0.845,
+   "corr_oil_dvix": -0.57,
+   "oil_vol_ann": 2.201,
+   "us_vol_ann": 0.336,
+   "oil_cum_logret": -0.487,
+   "us_cum_logret": -0.02
+  },
+  "Infl_2022-01_2022-12": {
+   "n_months": 12,
+   "corr_oil_us": -0.006,
+   "corr_oil_dev": -0.0,
+   "corr_oil_dvix": 0.003,
+   "oil_vol_ann": 0.351,
+   "us_vol_ann": 0.234,
+   "oil_cum_logret": 0.07,
+   "us_cum_logret": -0.222
+  },
+  "War_2026-03_2026-08": {
+   "n_months": 6,
+   "corr_oil_us": -0.575,
+   "corr_oil_dev": -0.631,
+   "corr_oil_dvix": 0.459,
+   "oil_vol_ann": 1.19,
+   "us_vol_ann": 0.178,
+   "oil_cum_logret": 0.23,
+   "us_cum_logret": 0.116
+  },
+  "2023-2025": {
+   "n_months": 36,
+   "corr_oil_us": 0.008,
+   "corr_oil_dev": -0.061,
+   "corr_oil_dvix": -0.058,
+   "oil_vol_ann": 0.237,
+   "us_vol_ann": 0.124,
+   "oil_cum_logret": -0.3,
+   "us_cum_logret": 0.621
+  }
+ },
+ "lower_tail_dep_q10": {
+  "1988-2007": 0.083,
+  "2008-2026": 0.304,
+  "full": 0.213
+ },
+ "rolling36_corr_oil_us": {
+  "min": -0.595,
+  "min_at": "1993-05",
+  "max": 0.71,
+  "max_at": "2021-12",
+  "last": -0.278,
+  "last_at": "2026-08",
+  "share_positive_pre2008": 0.396,
+  "share_positive_post2008": 0.897
+ },
+ "calendar_years": {
+  "1988": {
+   "brent_chg": -0.078,
+   "us_eq_ret": 0.18,
+   "brent_avg": 14.94
+  },
+  "1989": {
+   "brent_chg": 0.297,
+   "us_eq_ret": 0.289,
+   "brent_avg": 18.25
+  },
+  "1990": {
+   "brent_chg": 0.347,
+   "us_eq_ret": -0.06,
+   "brent_avg": 23.68
+  },
+  "1991": {
+   "brent_chg": -0.374,
+   "us_eq_ret": 0.348,
+   "brent_avg": 20.0
+  },
+  "1992": {
+   "brent_chg": 0.006,
+   "us_eq_ret": 0.098,
+   "brent_avg": 19.3
+  },
+  "1993": {
+   "brent_chg": -0.262,
+   "us_eq_ret": 0.112,
+   "brent_avg": 17.03
+  },
+  "1994": {
+   "brent_chg": 0.187,
+   "us_eq_ret": -0.001,
+   "brent_avg": 15.87
+  },
+  "1995": {
+   "brent_chg": 0.192,
+   "us_eq_ret": 0.369,
+   "brent_avg": 17.15
+  },
+  "1996": {
+   "brent_chg": 0.282,
+   "us_eq_ret": 0.212,
+   "brent_avg": 20.68
+  },
+  "1997": {
+   "brent_chg": -0.33,
+   "us_eq_ret": 0.312,
+   "brent_avg": 19.11
+  },
+  "1998": {
+   "brent_chg": -0.342,
+   "us_eq_ret": 0.243,
+   "brent_avg": 12.79
+  },
+  "1999": {
+   "brent_chg": 1.365,
+   "us_eq_ret": 0.252,
+   "brent_avg": 17.93
+  },
+  "2000": {
+   "brent_chg": -0.106,
+   "us_eq_ret": -0.116,
+   "brent_avg": 28.59
+  },
+  "2001": {
+   "brent_chg": -0.132,
+   "us_eq_ret": -0.112,
+   "brent_avg": 24.26
+  },
+  "2002": {
+   "brent_chg": 0.655,
+   "us_eq_ret": -0.211,
+   "brent_avg": 24.98
+  },
+  "2003": {
+   "brent_chg": -0.054,
+   "us_eq_ret": 0.317,
+   "brent_avg": 28.92
+  },
+  "2004": {
+   "brent_chg": 0.333,
+   "us_eq_ret": 0.119,
+   "brent_avg": 38.29
+  },
+  "2005": {
+   "brent_chg": 0.445,
+   "us_eq_ret": 0.061,
+   "brent_avg": 54.48
+  },
+  "2006": {
+   "brent_chg": 0.011,
+   "us_eq_ret": 0.154,
+   "brent_avg": 65.16
+  },
+  "2007": {
+   "brent_chg": 0.589,
+   "us_eq_ret": 0.057,
+   "brent_avg": 72.47
+  },
+  "2008": {
+   "brent_chg": -0.618,
+   "us_eq_ret": -0.367,
+   "brent_avg": 96.85
+  },
+  "2009": {
+   "brent_chg": 1.175,
+   "us_eq_ret": 0.286,
+   "brent_avg": 61.49
+  },
+  "2010": {
+   "brent_chg": 0.197,
+   "us_eq_ret": 0.174,
+   "brent_avg": 79.51
+  },
+  "2011": {
+   "brent_chg": 0.159,
+   "us_eq_ret": 0.005,
+   "brent_avg": 111.26
+  },
+  "2012": {
+   "brent_chg": 0.025,
+   "us_eq_ret": 0.163,
+   "brent_avg": 111.62
+  },
+  "2013": {
+   "brent_chg": -0.008,
+   "us_eq_ret": 0.352,
+   "brent_avg": 108.64
+  },
+  "2014": {
+   "brent_chg": -0.497,
+   "us_eq_ret": 0.117,
+   "brent_avg": 99.03
+  },
+  "2015": {
+   "brent_chg": -0.338,
+   "us_eq_ret": 0.002,
+   "brent_avg": 52.35
+  },
+  "2016": {
+   "brent_chg": 0.501,
+   "us_eq_ret": 0.136,
+   "brent_avg": 43.55
+  },
+  "2017": {
+   "brent_chg": 0.214,
+   "us_eq_ret": 0.223,
+   "brent_avg": 54.25
+  },
+  "2018": {
+   "brent_chg": -0.242,
+   "us_eq_ret": -0.05,
+   "brent_avg": 71.06
+  },
+  "2019": {
+   "brent_chg": 0.34,
+   "us_eq_ret": 0.306,
+   "brent_avg": 64.35
+  },
+  "2020": {
+   "brent_chg": -0.244,
+   "us_eq_ret": 0.241,
+   "brent_avg": 41.76
+  },
+  "2021": {
+   "brent_chg": 0.508,
+   "us_eq_ret": 0.239,
+   "brent_avg": 70.68
+  },
+  "2022": {
+   "brent_chg": 0.072,
+   "us_eq_ret": -0.199,
+   "brent_avg": 100.78
+  },
+  "2023": {
+   "brent_chg": -0.062,
+   "us_eq_ret": 0.267,
+   "brent_avg": 82.47
+  },
+  "2024": {
+   "brent_chg": -0.04,
+   "us_eq_ret": 0.25,
+   "brent_avg": 80.53
+  },
+  "2025": {
+   "brent_chg": -0.177,
+   "us_eq_ret": 0.175,
+   "brent_avg": 69.1
+  }
+ },
+ "calendar_year_quadrants": {
+  "oil_down_eq_down": 4,
+  "oil_down_eq_up": 13,
+  "oil_up_eq_down": 4,
+  "oil_up_eq_up": 17,
+  "n_years": 38,
+  "years_brent_drop_ge30pct": [
+   1991,
+   1997,
+   1998,
+   2008,
+   2014,
+   2015
+  ],
+  "years_brent_drop_ge20pct": [
+   1991,
+   1993,
+   1997,
+   1998,
+   2008,
+   2014,
+   2015,
+   2018,
+   2020
+  ],
+  "years_brent_rise_ge40pct": [
+   1999,
+   2002,
+   2005,
+   2007,
+   2009,
+   2016,
+   2021
+  ]
+ },
+ "overlapping_12m": {
+  "P(oil12<-30%)": 0.117,
+  "P(oil12<-40%)": 0.061,
+  "P(oil12>+50%)": 0.152,
+  "P(eq12<-10%)": 0.113,
+  "P(eq12<-10% | oil12<-30%)": {
+   "n_cond": 54,
+   "p": 0.259
+  },
+  "P(eq12<-20% | oil12<-30%)": {
+   "n_cond": 54,
+   "p": 0.185
+  },
+  "P(oil12<-30% | eq12<-20%)": {
+   "n_cond": 19,
+   "p": 0.526
+  },
+  "P(eq12<-10% | oil12>+50%)": {
+   "n_cond": 70,
+   "p": 0.129
+  },
+  "pre2008: P(eq12<-10% | oil12<-30%)": {
+   "n_cond": 17,
+   "p": 0.176
+  },
+  "post2008: P(eq12<-10% | oil12<-30%)": {
+   "n_cond": 37,
+   "p": 0.297
+  }
+ },
+ "low_price_spells_lt70pct_of_trailing36m": [
+  {
+   "start": "1998-03",
+   "months": 1
+  },
+  {
+   "start": "1998-06",
+   "months": 3
+  },
+  {
+   "start": "1998-11",
+   "months": 4
+  },
+  {
+   "start": "2008-11",
+   "months": 6
+  },
+  {
+   "start": "2014-12",
+   "months": 22
+  },
+  {
+   "start": "2016-11",
+   "months": 1
+  },
+  {
+   "start": "2020-03",
+   "months": 4
+  },
+  {
+   "start": "2020-09",
+   "months": 2
+  }
+ ],
+ "brent_2026_monthly_avg": {
+  "2025-10": 64.54,
+  "2025-11": 63.8,
+  "2025-12": 62.54,
+  "2026-01": 66.6,
+  "2026-02": 70.89,
+  "2026-03": 103.13,
+  "2026-04": 117.29,
+  "2026-05": 107.14,
+  "2026-06": 85.4,
+  "2026-07": 83.76,
+  "2026-08": 91.08,
+  "2026-09": 114.16,
+  "2026-10": 126.98
+ },
+ "brent_2026_month_end": {
+  "2025-12": 61.35,
+  "2026-01": 72.25,
+  "2026-02": 71.32,
+  "2026-03": 126.69,
+  "2026-04": 124.24,
+  "2026-05": 92.88,
+  "2026-06": 70.46,
+  "2026-07": 96.95,
+  "2026-08": 89.75,
+  "2026-09": 115.91,
+  "2026-10": 126.55
+ },
+ "us_eq_2026_monthly_ret": {
+  "2025-12": -0.0002,
+  "2026-01": 0.0133,
+  "2026-02": -0.0089,
+  "2026-03": -0.0489,
+  "2026-04": 0.1024,
+  "2026-05": 0.0522,
+  "2026-06": -0.0078,
+  "2026-07": -0.0028,
+  "2026-08": 0.0285
+ },
+ "dev_eq_2026_monthly_ret": {
+  "2025-12": 0.0101,
+  "2026-01": 0.0242,
+  "2026-02": 0.0133,
+  "2026-03": -0.0645,
+  "2026-04": 0.0911,
+  "2026-05": 0.0443,
+  "2026-06": -0.0069,
+  "2026-07": -0.0018,
+  "2026-08": 0.0277
+ },
+ "vix_2026_month_end": {
+  "2025-12": 14.95,
+  "2026-01": 17.44,
+  "2026-02": 19.86,
+  "2026-03": 25.25,
+  "2026-04": 16.89,
+  "2026-05": 15.32,
+  "2026-06": 16.45,
+  "2026-07": 15.99,
+  "2026-08": 14.92,
+  "2026-09": 16.34,
+  "2026-10": 19.99
+ },
+ "brent_daily_realized_vol_ann": {
+  "2015-2019": 0.357,
+  "2026-03-01_to_last": 0.768,
+  "2025": 0.306
+ }
+}

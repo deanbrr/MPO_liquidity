@@ -1,0 +1,52 @@
+{
+ "contracts_version": "1.0",
+ "fixtures": {
+  "fixture_h_lp": {
+   "call": "build_fixture_lp('canonical')",
+   "checksum": "sha256:873cccab640f15b0524d07e0c8aa99cbc5bfb041ad837f763c599bbd4cc81aa3",
+   "shape": [
+    2,
+    8
+   ]
+  },
+  "fixture_tree": {
+   "call": "fixture_tree((2, 2, 2), unreduced=True)",
+   "checksum": "sha256:5c0f9dc26a99f283314c5e1387a84367203533f621a18ab406355914f4422aa8",
+   "n_nodes": 15,
+   "tree_hash": "sha256:24d6784fcbad6cc0f3a5fb8fe1a4e2ff4ad2a22e374c1f9b81ef70d370d205eb"
+  },
+  "mini_book_v1": {
+   "call": "mini_book('v1', seed=7)",
+   "content_hash": "sha256:2d6603aef45034e50e73d0d83d3b7e5affe84c980dc71c17239a45cea74a9113",
+   "n_holdings": 21,
+   "nav_total_reported_bn": 177.0
+  },
+  "mini_book_v2": {
+   "call": "mini_book('v2', seed=7)",
+   "content_hash": "sha256:79fff9aa7c137f3c4512b832afd197ed118455552b1b352d3350fb4a9d4dee49",
+   "n_holdings": 23,
+   "nav_total_reported_bn": 177.0
+  },
+  "mini_cube": {
+   "call": "mini_cube(200, 'M1', seed=7)",
+   "checksum": "sha256:8572f08c4268abc59d07a06b7e63395a908b68d11ffebc4c26779d5d439fe35a",
+   "scenario_checksum": "sha256:92ed0ce6904e451fa26c95ca5b50f43da7fe3b00b5520c3386e9ba9ed1850fe8",
+   "shape": [
+    200,
+    120,
+    8
+   ]
+  },
+  "mini_flowcube": {
+   "call": "mini_flowcube(mini_book('v2'), mini_cube())",
+   "checksum": "sha256:33854023d3f3a9c81515b9499ea24f8f549172101570d653eea926b68913ddfc",
+   "shape": [
+    200,
+    40,
+    20,
+    18
+   ]
+  }
+ },
+ "note": "SYNTHETIC \u2013 NOT ADIC DATA. Frozen checksums of the WP-03 fixtures (BUILD_SPEC \u00a74.5 DoD, \u00a710.4). Bit for bit on the same machine and pinned versions (\u00a710.5); changing one needs pytest --update-golden and a contract-change note."
+}

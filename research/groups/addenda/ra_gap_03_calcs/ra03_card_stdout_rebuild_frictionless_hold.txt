@@ -1,0 +1,110 @@
+﻿[   84s] k=1.3 do_nothing done
+[  132s] k=1.3 mix_B done
+[  206s] k=0.8 do_nothing done
+[  284s] k=0.8 mix_B done
+[  366s] k=2.2 do_nothing done
+[  450s] k=2.2 mix_B done
+{
+ "g_pq": {
+  "1.3": {
+   "V_P_over_V_Q": 0.943,
+   "g_pq_a_year": -0.014
+  },
+  "0.8": {
+   "V_P_over_V_Q": 0.9727,
+   "g_pq_a_year": -0.0067
+  },
+  "2.2": {
+   "V_P_over_V_Q": 0.9222,
+   "g_pq_a_year": -0.0192
+  }
+ },
+ "pdp_cash_flow_duration_years": 4.06,
+ "delta_bbl_removed": {
+  "now": [
+   -4.73,
+   -5.52,
+   -6.31
+  ],
+  "SG": [
+   -4.98,
+   -5.81,
+   -6.64
+  ],
+  "DB": [
+   -4.96,
+   -5.79,
+   -6.62
+  ],
+  "SG24": [
+   -5.49,
+   -6.4,
+   -7.32
+  ],
+  "DB24": [
+   -5.5,
+   -6.41,
+   -7.33
+  ]
+ },
+ "reservation_prices": {
+  "do_nothing|alpha-0.02": {
+   "p_star_bid_x_theta_M1-M5": 0.8482,
+   "p_star_M6": 1.0553,
+   "dCE_bp_at_base_bid_M1-M5": 0.107
+  },
+  "do_nothing|alpha+0.00": {
+   "p_star_bid_x_theta_M1-M5": 0.9214,
+   "p_star_M6": NaN,
+   "dCE_bp_at_base_bid_M1-M5": -0.562
+  },
+  "do_nothing|alpha+0.02": {
+   "p_star_bid_x_theta_M1-M5": 1.0008,
+   "p_star_M6": NaN,
+   "dCE_bp_at_base_bid_M1-M5": -1.288
+  },
+  "do_nothing|war_k0.8": {
+   "p_star_M1M4M5": 0.9346,
+   "p_star_M1M4M5_base_k1.3": 0.91
+  },
+  "do_nothing|war_k2.2": {
+   "p_star_M1M4M5": 0.8957,
+   "p_star_M1M4M5_base_k1.3": 0.91
+  },
+  "mix_B|alpha-0.02": {
+   "p_star_bid_x_theta_M1-M5": 0.957,
+   "p_star_M6": NaN,
+   "dCE_bp_at_base_bid_M1-M5": -0.784
+  },
+  "mix_B|alpha+0.00": {
+   "p_star_bid_x_theta_M1-M5": 1.0373,
+   "p_star_M6": NaN,
+   "dCE_bp_at_base_bid_M1-M5": -1.432
+  },
+  "mix_B|alpha+0.02": {
+   "p_star_bid_x_theta_M1-M5": NaN,
+   "p_star_M6": NaN,
+   "dCE_bp_at_base_bid_M1-M5": -2.133
+  },
+  "mix_B|war_k0.8": {
+   "p_star_M1M4M5": 1.0545,
+   "p_star_M1M4M5_base_k1.3": 1.0306
+  },
+  "mix_B|war_k2.2": {
+   "p_star_M1M4M5": 1.0109,
+   "p_star_M1M4M5_base_k1.3": 1.0306
+  }
+ }
+}
+do_nothing|M1 {'dP_red_pp_sell_minus_hold': -0.1267, 'dG*_q99.6_bn_sell_minus_hold': -0.6406, 'regret_SELL_bn': 0.1641, 'regret_HOLD_bn': 0.2049, 'P(SELL better)': 0.501, 'E[dW] war persists to Jul-27 (bn)': 0.052, 'E[dW] glut in 2028 (bn)': 0.0957, 'share_war_persists': 0.185, 'share_glut_2028': 0.464}
+do_nothing|M2 {'dP_red_pp_sell_minus_hold': -0.1167, 'dG*_q99.6_bn_sell_minus_hold': -0.6636, 'regret_SELL_bn': 0.1695, 'regret_HOLD_bn': 0.2144, 'P(SELL better)': 0.524, 'E[dW] war persists to Jul-27 (bn)': 0.0566, 'E[dW] glut in 2028 (bn)': 0.0987, 'share_war_persists': 0.185, 'share_glut_2028': 0.471}
+do_nothing|M3 {'dP_red_pp_sell_minus_hold': -0.16, 'dG*_q99.6_bn_sell_minus_hold': -0.6425, 'regret_SELL_bn': 0.1753, 'regret_HOLD_bn': 0.1778, 'P(SELL better)': 0.473, 'E[dW] war persists to Jul-27 (bn)': 0.0154, 'E[dW] glut in 2028 (bn)': 0.0565, 'share_war_persists': 0.186, 'share_glut_2028': 0.456}
+do_nothing|M4 {'dP_red_pp_sell_minus_hold': -0.41, 'dG*_q99.6_bn_sell_minus_hold': -0.6196, 'regret_SELL_bn': 0.1474, 'regret_HOLD_bn': 0.1736, 'P(SELL better)': 0.512, 'E[dW] war persists to Jul-27 (bn)': 0.0497, 'E[dW] glut in 2028 (bn)': 0.0821, 'share_war_persists': 0.186, 'share_glut_2028': 0.456}
+do_nothing|M5 {'dP_red_pp_sell_minus_hold': -0.3533, 'dG*_q99.6_bn_sell_minus_hold': -0.6197, 'regret_SELL_bn': 0.165, 'regret_HOLD_bn': 0.1695, 'P(SELL better)': 0.463, 'E[dW] war persists to Jul-27 (bn)': 0.0263, 'E[dW] glut in 2028 (bn)': 0.0641, 'share_war_persists': 0.186, 'share_glut_2028': 0.444}
+do_nothing|M6 {'dP_red_pp_sell_minus_hold': -0.46, 'dG*_q99.6_bn_sell_minus_hold': -0.647, 'regret_SELL_bn': 0.186, 'regret_HOLD_bn': 0.1196, 'P(SELL better)': 0.378, 'E[dW] war persists to Jul-27 (bn)': -0.0423, 'E[dW] glut in 2028 (bn)': -0.013, 'share_war_persists': 0.185, 'share_glut_2028': 0.451}
+mix_B|M1 {'dP_red_pp_sell_minus_hold': 0.0, 'dG*_q99.6_bn_sell_minus_hold': -0.6518, 'regret_SELL_bn': 0.1599, 'regret_HOLD_bn': 0.2538, 'P(SELL better)': 0.52, 'E[dW] war persists to Jul-27 (bn)': 0.1147, 'E[dW] glut in 2028 (bn)': 0.1421, 'share_war_persists': 0.185, 'share_glut_2028': 0.464}
+mix_B|M2 {'dP_red_pp_sell_minus_hold': 0.0, 'dG*_q99.6_bn_sell_minus_hold': -0.5308, 'regret_SELL_bn': 0.1511, 'regret_HOLD_bn': 0.2889, 'P(SELL better)': 0.564, 'E[dW] war persists to Jul-27 (bn)': 0.1524, 'E[dW] glut in 2028 (bn)': 0.1819, 'share_war_persists': 0.185, 'share_glut_2028': 0.471}
+mix_B|M3 {'dP_red_pp_sell_minus_hold': 0.0033, 'dG*_q99.6_bn_sell_minus_hold': -0.6126, 'regret_SELL_bn': 0.1746, 'regret_HOLD_bn': 0.2038, 'P(SELL better)': 0.481, 'E[dW] war persists to Jul-27 (bn)': 0.0435, 'E[dW] glut in 2028 (bn)': 0.0807, 'share_war_persists': 0.186, 'share_glut_2028': 0.456}
+mix_B|M4 {'dP_red_pp_sell_minus_hold': -0.02, 'dG*_q99.6_bn_sell_minus_hold': -0.633, 'regret_SELL_bn': 0.1536, 'regret_HOLD_bn': 0.2151, 'P(SELL better)': 0.518, 'E[dW] war persists to Jul-27 (bn)': 0.0821, 'E[dW] glut in 2028 (bn)': 0.1159, 'share_war_persists': 0.186, 'share_glut_2028': 0.456}
+mix_B|M5 {'dP_red_pp_sell_minus_hold': -0.0133, 'dG*_q99.6_bn_sell_minus_hold': -0.6021, 'regret_SELL_bn': 0.1695, 'regret_HOLD_bn': 0.2121, 'P(SELL better)': 0.474, 'E[dW] war persists to Jul-27 (bn)': 0.0613, 'E[dW] glut in 2028 (bn)': 0.0975, 'share_war_persists': 0.186, 'share_glut_2028': 0.444}
+mix_B|M6 {'dP_red_pp_sell_minus_hold': -0.0333, 'dG*_q99.6_bn_sell_minus_hold': -0.6136, 'regret_SELL_bn': 0.2193, 'regret_HOLD_bn': 0.1012, 'P(SELL better)': 0.325, 'E[dW] war persists to Jul-27 (bn)': -0.0986, 'E[dW] glut in 2028 (bn)': -0.0663, 'share_war_persists': 0.185, 'share_glut_2028': 0.451}

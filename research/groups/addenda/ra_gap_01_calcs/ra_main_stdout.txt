@@ -1,0 +1,84 @@
+﻿main runs: 78 in 153s
+v2u16|M1|off P(red) 26.93% CE 243.3 W 281.0 RA cures24 cvar 2.3856305162517373
+v2u16|M1|dn P(red) 1.45% CE 247.1 W 279.6 RA cures24 cvar 2.3199887100855827
+v2u16|M1|mixA P(red) 0.00% CE 249.7 W 277.4 RA cures24 cvar 2.313974718997727
+v2u16|M1|mixB P(red) 0.00% CE 246.4 W 280.8 RA cures24 cvar 2.311127815052591
+v2u16|M1|mixB_raoff P(red) 0.00% CE 246.5 W 281.1 RA cures24 cvar 2.385689943877127
+v2u16|M6|off P(red) 66.82% CE 177.5 W 217.2 RA cures24 cvar 2.5116703453730764
+v2u16|M6|dn P(red) 11.60% CE 197.2 W 221.5 RA cures24 cvar 2.455586822197755
+v2u16|M6|mixA P(red) 0.04% CE 201.3 W 222.8 RA cures24 cvar 2.4370101144264567
+v2u16|M6|mixB P(red) 0.04% CE 195.1 W 220.7 RA cures24 cvar 2.4386309151807883
+v2u16|M6|mixB_raoff P(red) 0.10% CE 195.3 W 220.9 RA cures24 cvar 2.519013767703195
+v2u11|M1|off P(red) 21.38% CE 244.3 W 280.5 RA cures24 cvar 2.3856750927784134
+v2u11|M1|dn P(red) 0.83% CE 247.2 W 278.9 RA cures24 cvar 2.3200224703462347
+v2u11|M1|mixA P(red) 0.00% CE 249.9 W 276.9 RA cures24 cvar 2.3149192069227547
+v2u11|M1|mixB P(red) 0.00% CE 246.6 W 279.9 RA cures24 cvar 2.3124927331399046
+v2u11|M1|mixB_raoff P(red) 0.00% CE 246.6 W 280.4 RA cures24 cvar 2.385689943877127
+v2u11|M6|off P(red) 58.57% CE 180.4 W 217.8 RA cures24 cvar 2.515772532509254
+v2u11|M6|dn P(red) 7.87% CE 197.7 W 221.2 RA cures24 cvar 2.4556156870412207
+v2u11|M6|mixA P(red) 0.00% CE 201.5 W 222.6 RA cures24 cvar 2.437889312953351
+v2u11|M6|mixB P(red) 0.01% CE 195.3 W 220.5 RA cures24 cvar 2.440049877714055
+v2u11|M6|mixB_raoff P(red) 0.05% CE 195.5 W 220.6 RA cures24 cvar 2.519013767703195
+v1|M1|dn P(red) 1.60% CE 247.5 W 283.5 RA cures24 cvar None
+v1|M1|mixB P(red) 0.00% CE 246.5 W 284.7 RA cures24 cvar None
+v1|M1|off P(red) 24.78% CE 243.3 W 284.8 RA cures24 cvar None
+v1|M6|dn P(red) 14.52% CE 195.5 W 222.7 RA cures24 cvar None
+v1|M6|mixB P(red) 0.09% CE 193.8 W 221.9 RA cures24 cvar None
+v1|M6|off P(red) 66.24% CE 174.4 W 218.1 RA cures24 cvar None
+{
+ "v2u16|off": {
+  "cvar95_12_pooled": 1.290546470687251,
+  "cvar95_24_pooled": 2.444211480018918,
+  "mean24": 0.8330663722469799,
+  "worst_model_24": "M6",
+  "cvar95_24_worst": 2.5116703453730764,
+  "clc_bn_yr_15pct_pooled": 0.03666317220028377,
+  "clc_bn_yr_15pct_worst": 0.03767505518059615
+ },
+ "v2u16|dn": {
+  "cvar95_12_pooled": 1.2633387570869523,
+  "cvar95_24_pooled": 2.3813881538146533,
+  "mean24": 0.7933219820084008,
+  "worst_model_24": "M6",
+  "cvar95_24_worst": 2.455586822197755,
+  "clc_bn_yr_15pct_pooled": 0.0357208223072198,
+  "clc_bn_yr_15pct_worst": 0.03683380233296633
+ },
+ "v2u16|mixB": {
+  "cvar95_12_pooled": 1.2619214277978983,
+  "cvar95_24_pooled": 2.369501166516792,
+  "mean24": 0.7917203776827967,
+  "worst_model_24": "M6",
+  "cvar95_24_worst": 2.4386309151807883,
+  "clc_bn_yr_15pct_pooled": 0.03554251749775188,
+  "clc_bn_yr_15pct_worst": 0.03657946372771182
+ },
+ "v2u11|off": {
+  "cvar95_12_pooled": 1.2905480305921955,
+  "cvar95_24_pooled": 2.4450359365547305,
+  "mean24": 0.8331130681567658,
+  "worst_model_24": "M6",
+  "cvar95_24_worst": 2.515772532509254,
+  "clc_bn_yr_15pct_pooled": 0.03667553904832096,
+  "clc_bn_yr_15pct_worst": 0.03773658798763881
+ },
+ "v2u11|dn": {
+  "cvar95_12_pooled": 1.2633389460958002,
+  "cvar95_24_pooled": 2.381422302822355,
+  "mean24": 0.7933216921247929,
+  "worst_model_24": "M6",
+  "cvar95_24_worst": 2.4556156870412207,
+  "clc_bn_yr_15pct_pooled": 0.03572133454233532,
+  "clc_bn_yr_15pct_worst": 0.03683423530561831
+ },
+ "v2u11|mixB": {
+  "cvar95_12_pooled": 1.2620656771986318,
+  "cvar95_24_pooled": 2.3710033621144566,
+  "mean24": 0.7926344397868236,
+  "worst_model_24": "M6",
+  "cvar95_24_worst": 2.440049877714055,
+  "clc_bn_yr_15pct_pooled": 0.03556505043171685,
+  "clc_bn_yr_15pct_worst": 0.03660074816571082
+ }
+}
+[main] done in 153s

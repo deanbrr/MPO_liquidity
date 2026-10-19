@@ -1,0 +1,164 @@
+{
+ "sample": [
+  "1987-06",
+  "2026-08"
+ ],
+ "n": 471,
+ "shock_regimes_12m": {
+  "share_of_12m_windows": {
+   "normal": 0.596,
+   "demand_boom(oil>=+30%,eq>=+10%)": 0.178,
+   "supply_glut(oil<=-20%,eq>0)": 0.135,
+   "supply_spike(oil>=+30%,eq<0)": 0.05,
+   "demand_bust(oil<=-20%,eq<=-10%)": 0.041
+  },
+  "episode_starts": {
+   "demand_bust(oil<=-20%,eq<=-10%)": [
+    "1988-07",
+    "2001-08",
+    "2002-01",
+    "2008-10"
+   ],
+   "supply_glut(oil<=-20%,eq>0)": [
+    "1988-10",
+    "1991-08",
+    "1993-11",
+    "1994-02",
+    "1997-09",
+    "1997-12",
+    "2014-10",
+    "2015-10",
+    "2016-05",
+    "2019-08",
+    "2020-02",
+    "2020-05",
+    "2023-04",
+    "2024-09",
+    "2025-04",
+    "2025-06"
+   ],
+   "demand_boom(oil>=+30%,eq>=+10%)": [
+    "1989-03",
+    "1989-09",
+    "1995-03",
+    "1996-09",
+    "1997-01",
+    "1999-06",
+    "2000-08",
+    "2004-04",
+    "2004-07",
+    "2004-11",
+    "2005-07",
+    "2006-01",
+    "2006-04",
+    "2007-09",
+    "2009-11",
+    "2011-01",
+    "2016-12",
+    "2017-10",
+    "2018-03",
+    "2019-12",
+    "2021-03",
+    "2026-03",
+    "2026-07"
+   ],
+   "supply_spike(oil>=+30%,eq<0)": [
+    "1990-08",
+    "2002-09",
+    "2002-11",
+    "2008-01",
+    "2022-04"
+   ]
+  },
+  "window_range": [
+   "1988-05",
+   "2026-08"
+  ]
+ },
+ "winsor_oil_bounds_monthly_logret": [
+  -0.288,
+  0.329
+ ],
+ "hmm_2state_winsor": {
+  "loglik": 1272.69,
+  "states_sorted_by_oil_vol": [
+   {
+    "oil_mean_ann": 0.096,
+    "eq_mean_ann": 0.18,
+    "oil_vol_ann": 0.254,
+    "eq_vol_ann": 0.106,
+    "corr": 0.01,
+    "stationary_prob": 0.686,
+    "expected_duration_months": 18.6
+   },
+   {
+    "oil_mean_ann": -0.036,
+    "eq_mean_ann": -0.06,
+    "oil_vol_ann": 0.523,
+    "eq_vol_ann": 0.228,
+    "corr": 0.156,
+    "stationary_prob": 0.314,
+    "expected_duration_months": 8.9
+   }
+  ],
+  "transmat_monthly": [
+   [
+    0.946,
+    0.054
+   ],
+   [
+    0.112,
+    0.888
+   ]
+  ]
+ },
+ "hmm_3state_winsor": {
+  "loglik": 1287.53,
+  "states_sorted_by_oil_vol": [
+   {
+    "oil_mean_ann": 0.116,
+    "eq_mean_ann": 0.167,
+    "oil_vol_ann": 0.258,
+    "eq_vol_ann": 0.103,
+    "corr": 0.015,
+    "stationary_prob": 0.705,
+    "expected_duration_months": 16.9
+   },
+   {
+    "oil_mean_ann": -0.365,
+    "eq_mean_ann": -0.433,
+    "oil_vol_ann": 0.513,
+    "eq_vol_ann": 0.206,
+    "corr": 0.003,
+    "stationary_prob": 0.196,
+    "expected_duration_months": 2.9
+   },
+   {
+    "oil_mean_ann": 0.447,
+    "eq_mean_ann": 0.724,
+    "oil_vol_ann": 0.53,
+    "eq_vol_ann": 0.114,
+    "corr": 0.102,
+    "stationary_prob": 0.099,
+    "expected_duration_months": 1.5
+   }
+  ],
+  "transmat_monthly": [
+   [
+    0.941,
+    0.059,
+    0.0
+   ],
+   [
+    0.0,
+    0.659,
+    0.341
+   ],
+   [
+    0.408,
+    0.262,
+    0.33
+   ]
+  ]
+ }
+}

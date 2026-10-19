@@ -1,0 +1,33 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Run artifacts (large, regenerable); keep the folder
+runs/*
+!runs/.gitkeep
+
+# Secrets
+.env
+*.key
+
+# OS / editor
+Thumbs.db
+.DS_Store
+.vscode/
+.idea/
+
+# Large regenerable research grids (rerun gap02_study.py to rebuild)
+research/addenda/gap_02_calcs/gap02_grid_raw.json
+
+# Third-party paper text: not redistributed (see README)
+inputs/agentic_scientist_2610.18933v1.txt
+# Large regenerable research artifacts (>5 MB); rebuild with the scripts in the same folders
+research/groups/addenda/gap_04_calcs/g04_shapley_M*_mixB.npz
+research/groups/addenda/gap_04_calcs/g04_main_results.json
