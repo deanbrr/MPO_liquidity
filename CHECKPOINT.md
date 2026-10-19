@@ -101,6 +101,28 @@ Checkpoint taken 2026-10-18 at about 12:35 local time, because the session may s
 | `09_adic-chat-analyst-design.js` | **Done** (run wf_8da695b9-a0d): CHAT_ANALYST v1.1 with 30 tools and 11 WP-CHAT packages (folded into BUILD_SPEC as WP-39 and WP-40), and a 140-item golden set. 40 critique issues, all fixed | `design/addenda/` |
 | `10_adic-build-wave0.js` (run wf_e0b12325-d2f, launched about 00:40 on 19 Oct) | **BUILD wave 0:** WP-01 contracts (with analyst contracts), then WP-02 rng/numerics/stats, WP-03 testing kit and walking skeleton, WP-04 registry. Each is implemented, reviewed and fixed, then integrated. The orchestrator tags contracts-v1.0 once the gate is green | `src/adic_tpa/`, `tests/`, `pyproject.toml`, `design/build_log/` |
 
+**Update, 19 Oct about 13:00.** The user approved the SLIM engine-first design with five components:
+1. data and three-return fusion;
+2. scenario tree;
+3. optimizer;
+4. simulator;
+5. reports and chat.
+
+The user asked for a goal-seeking optimizer over the full decision space. Workflow `12_adic-mpo-v2.js` (run wf_e67ea94f-aa7) produces:
+- `design/SLIM_ARCHITECTURE.md`;
+- `design/DECISION_SPACE_AND_GOAL_OBJECTIVE.md`;
+- the prototype in `examples/mpo_v2/` (bPOE main objective, exact max-P MILP, baselines, ablations, out-of-sample);
+- `design/examples/MPO_v2_Plan.html` and its walkthrough.
+
+The build is paused after wave 0 until the slim plan is applied.
+
+The worked tree example is done: `examples/tree_demo/` and `design/examples/Tree_Example.html`.
+
+**GitHub:** https://github.com/deanbrr/MPO_liquidity was PUBLIC. The user chose to make it private before the push.
+- Local `main` is now a clean export branch (paper text and the large regenerable npz/json excluded; README added; merged with GitHub's initial commit).
+- The full previous local history is on branch `archive/local-history`. Never push it: it contains the paper text.
+- Push only after the repo is private: `git push -u origin main`.
+
 **Open decisions** are consolidated in `design/OPEN_DECISIONS.md` (18 items, each with its working assumption). The build proceeds on the working assumptions.
 
 **Next steps after wave 0:**
