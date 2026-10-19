@@ -1,0 +1,38 @@
+{
+ "reduced_tie_clarabel_tight_scale1": {
+  "obj": -0.3858334655766606,
+  "status": "Solved",
+  "iters": 215
+ },
+ "reduced_tie_clarabel_tight_scale1000": {
+  "obj": -0.38583326268199625,
+  "status": "Solved",
+  "iters": 58
+ },
+ "reduced_mean_clarabel_tight": 275.0894057252014,
+ "O1_R_leaf": {
+  "P(R=0)": 0.6692058083333334,
+  "P(R<0)": 0.3307941916666666,
+  "P(R>0)": 0.0,
+  "eta_R": -0.0,
+  "CVaR_eps(R)": 0.0
+ },
+ "H9_variants": {
+  "eps 0.006 (as run)": {
+   "E_star": 285.16754603616266,
+   "phi_exact": 0.9566958084738266
+  },
+  "eps 0.05": {
+   "E_star": 285.17513028760413,
+   "phi_exact": 0.9566434187954717
+  },
+  "hard per-node rule": {
+   "E_star": 285.16754603616266,
+   "phi_exact": 0.9566958084738266
+  },
+  "no H9": {
+   "E_star": 285.97472587844146,
+   "phi_exact": 0.9531529507272061
+  }
+ }
+}

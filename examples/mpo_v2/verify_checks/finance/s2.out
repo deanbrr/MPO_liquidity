@@ -1,0 +1,463 @@
+TOP KEYS: ['_meta', 'rates', 'goal', 'worlds', 'regimes', 'factors', 'owner_draw', 'private_engine', 'tree', 'seeds', 'treasury', 'overlay', 'corporate_finance', 'templates', 'pacing', 'trading', 'constraints', 'valuation', 'objective', 'solver', 'simulation', 'baselines', 'frontier', 'report', 'bids', 'fusion', 'truth_model', 'book']
+_meta:
+  label = 'SYNTHETIC - NOT ADIC DATA. Illustrative parameters for the slimmed five-component prototype. Not ADIC data and not a forecast.'
+  spec = 'design/DECISION_SPACE_AND_GOAL_OBJECTIVE.md v1.1 (DSGO), as revised by examples/mpo_v2/spec_review.md; design/SLIM_ARCHITECTURE.md (SLIM)'
+  version = 'mpo_v2 prototype 1.0, 2026-10-19'
+  how_to_change = "Every number the program uses is a 'value' in this file. Edit and re-run mpo_v2.py. The run lists any parameter the code never read (results.json checks.params_unused) and any entry missing a unit, rationale or source."
+  units = 'Money in $bn; rates and returns are annual decimals unless the key ends in _q (quarterly) or _pp (percentage points a year).'
+  source_tags = 'SYN = research/00_SYNTHESIS.md; GRP = research/groups/01_GROUPS_SYNTHESIS.md; RA = research/groups/02_REAL_ASSETS_SYNTHESIS.md; LIT = research/literature/00_LITERATURE_SYNTHESIS.md; ARCH = design/ARCHITECTURE.md; DSGO = design/DECISION_SPACE_AND_GOAL_OBJECTIVE.md; TD = examples/tree_demo; [A] = wor
+rates:
+  sofr:
+    ... ['value', 'unit', 'rationale', 'source']
+goal:
+  rate:
+    ... ['value', 'unit', 'rationale', 'source']
+  years:
+    ... ['value', 'unit', 'rationale', 'source']
+  W0_reported:
+    ... ['value', 'unit', 'rationale', 'source']
+  eps_g:
+    ... ['value', 'unit', 'rationale', 'source']
+  inflation:
+    ... ['value', 'unit', 'rationale', 'source']
+  c_max_factor:
+    ... ['value', 'unit', 'rationale', 'source']
+worlds:
+  names:
+    ... ['value', 'unit', 'rationale', 'source']
+  weights:
+    ... ['value', 'unit', 'rationale', 'source']
+  eq_log_excess:
+    ... ['value', 'unit', 'rationale', 'source']
+  credit_drift:
+    ... ['value', 'unit', 'rationale', 'source']
+  term_premium:
+    ... ['value', 'unit', 'rationale', 'source']
+regimes:
+  macro:
+    ... ['P_q', 'start']
+  exit:
+    ... ['P_q', 'start', 'crisis_push_q']
+  oil:
+    ... ['P_q', 'start', 'crisis_given_demand_bust_q', 'crisis_given_glut_q']
+factors:
+  t_dof:
+    ... ['value', 'unit', 'rationale', 'source']
+  eq:
+    ... ['regime_shift_q', 'vol_annual']
+  cr:
+    ... ['level', 'start', 'kappa_q', 'vol_q', 'duration', 'pd_annual', 'lgd']
+  rt:
+    ... ['start', 'mean', 'kappa_q', 'vol_q', 'crisis_shift_q', 'duration']
+  oil:
+    ... ['spot', 'level', 'kappa_q', 'vol_q']
+  ex:
+    ... ['level', 'start', 'phi_q', 'sigma_q']
+  vix:
+    ... ['level', 'start', 'kappa_q', 'spot_down', 'spot_up', 'sigma_q', 'floor']
+  corr_normal:
+    ... ['value', 'unit', 'rationale', 'source']
+  corr_crisis:
+    ... ['value', 'unit', 'rationale', 'source']
+owner_draw:
+  prior_rate:
+    ... ['value', 'unit', 'rationale', 'source']
+  floor:
+    ... ['value', 'unit', 'rationale', 'source']
+  cap:
+    ... ['value', 'unit', 'rationale', 'source']
+  kink_high:
+    ... ['value', 'unit', 'rationale', 'source']
+  kink_low:
+    ... ['value', 'unit', 'rationale', 'source']
+  smoothing:
+    ... ['value', 'unit', 'rationale', 'source']
+  override_prob:
+    ... ['value', 'unit', 'rationale', 'source']
+  override_size:
+    ... ['value', 'unit', 'rationale', 'source']
+private_engine:
+  exit_dist_mult:
+    ... ['value', 'unit', 'rationale', 'source']
+  exit_call_mult:
+    ... ['value', 'unit', 'rationale', 'source']
+  crisis_call_stress:
+    ... ['value', 'unit', 'rationale', 'source']
+  kappa_theta_q:
+    ... ['value', 'unit', 'rationale', 'source']
+tree:
+  str_draw_threshold:
+    ... ['value', 'unit', 'rationale', 'source']
+  n_factor_mean_paths:
+    ... ['value', 'unit', 'rationale', 'source']
+  branches:
+    ... ['value', 'unit', 'rationale', 'source']
+  fan_paths:
+    ... ['value', 'unit', 'rationale', 'source']
+  n_stage1_paths:
+    ... ['value', 'unit', 'rationale', 'source']
+  n_stage2_paths:
+    ... ['value', 'unit', 'rationale', 'source']
+  n_fan_candidates:
+    ... ['value', 'unit', 'rationale', 'source']
+  stage1_strata:
+    ... ['value', 'unit', 'rationale', 'source']
+  min_stratum_paths:
+    ... ['value', 'unit', 'rationale', 'source']
+  stage2_min_class_mass:
+    ... ['value', 'unit', 'rationale', 'source']
+  seed:
+    ... ['value', 'unit', 'rationale', 'source']
+  belief_error_fan_scale:
+    ... ['value', 'unit', 'rationale', 'source']
+  stage2_recourse_only:
+    ... ['value', 'unit', 'rationale', 'source']
+seeds:
+  book:
+    ... ['value', 'unit', 'rationale', 'source']
+  factor_means:
+    ... ['value', 'unit', 'rationale', 'source']
+  select:
+    ... ['value', 'unit', 'rationale', 'source']
+  cert:
+    ... ['value', 'unit', 'rationale', 'source']
+  replication_books:
+    ... ['value', 'unit', 'rationale', 'source']
+treasury:
+  cash0:
+    ... ['value', 'unit', 'rationale', 'source']
+  fi_liquidity_weight:
+    ... ['value', 'unit', 'rationale', 'source']
+overlay:
+  beta_sq:
+    ... ['value', 'unit', 'rationale', 'source']
+  im_rate:
+    ... ['value', 'unit', 'rationale', 'source']
+  beta_fin_spread:
+    ... ['value', 'unit', 'rationale', 'source']
+  p2s_fin_spread:
+    ... ['value', 'unit', 'rationale', 'source']
+  p2s_cap:
+    ... ['value', 'unit', 'rationale', 'source']
+  trs_fin_spread:
+    ... ['value', 'unit', 'rationale', 'source']
+  trs_ia:
+    ... ['value', 'unit', 'rationale', 'source']
+  trs_cap_share:
+    ... ['value', 'unit', 'rationale', 'source']
+  gross_max:
+    ... ['value', 'unit', 'rationale', 'source']
+  tail_premium:
+    ... ['value', 'unit', 'rationale', 'source']
+  tail_strike_lo:
+    ... ['value', 'unit', 'rationale', 'source']
+  tail_width:
+    ... ['value', 'unit', 'rationale', 'source']
+  tail_rung_factor:
+    ... ['value', 'unit', 'rationale', 'source']
+  tail_budget:
+    ... ['value', 'unit', 'rationale', 'source']
+  opp_im_sq:
+    ... ['value', 'unit', 'rationale', 'source']
+  opp_im_max:
+    ... ['value', 'unit', 'rationale', 'source']
+  opp_vol_per_im:
+    ... ['value', 'unit', 'rationale', 'source']
+  opp_sr_prior:
+    ... ['value', 'unit', 'rationale', 'source']
+  opp_load_eq:
+    ... ['value', 'unit', 'rationale', 'source']
+  opp_load_vol:
+    ... ['value', 'unit', 'rationale', 'source']
+  opp_idio_share:
+    ... ['value', 'unit', 'rationale', 'source']
+  eq_vol_ref:
+    ... ['value', 'unit', 'rationale', 'source']
+  vix_vol_ref:
+    ... ['value', 'unit', 'rationale', 'source']
+corporate_finance:
+  consent_scenario:
+    ... ['value', 'unit', 'rationale', 'source']
+  revolver_signed:
+    ... ['value', 'unit', 'rationale', 'source']
+  revolver_upsize_max:
+    ... ['value', 'unit', 'rationale', 'source']
+  revolver_spread:
+    ... ['value', 'unit', 'rationale', 'source']
+  revolver_undrawn_fee:
+    ... ['value', 'unit', 'rationale', 'source']
+  revolver_upfront_fee:
+    ... ['value', 'unit', 'rationale', 'source']
+  revolver_avail:
+    ... ['value', 'unit', 'rationale', 'source']
+  term_spread:
+    ... ['value', 'unit', 'rationale', 'source']
+  term_avail:
+    ... ['value', 'unit', 'rationale', 'source']
+  recourse_cap:
+    ... ['value', 'unit', 'rationale', 'source']
+  encumbrance_cap:
+    ... ['value', 'unit', 'rationale', 'source']
+  navf:
+    ... ['value', 'unit', 'rationale', 'source']
+  pref:
+    ... ['value', 'unit', 'rationale', 'source']
+  csbl:
+    ... ['value', 'unit', 'rationale', 'source']
+  smabl:
+    ... ['value', 'unit', 'rationale', 'source']
+  raco:
+    ... ['value', 'unit', 'rationale', 'source']
+templates:
+  SEC_BUY:
+    ... ['value', 'unit', 'rationale', 'source']
+  CO_DEAL:
+    ... ['value', 'unit', 'rationale', 'source']
+  CS_NEW:
+    ... ['value', 'unit', 'rationale', 'source']
+  PC_NEW:
+    ... ['value', 'unit', 'rationale', 'source']
+  INFRA_LEV:
+    ... ['value', 'unit', 'rationale', 'source']
+  SMA_LEV:
+    ... ['value', 'unit', 'rationale', 'source']
+pacing:
+  plan:
+    ... ['value', 'unit', 'rationale', 'source']
+  segments:
+    ... ['value', 'unit', 'rationale', 'source']
+  mult_range:
+    ... ['value', 'unit', 'rationale', 'source']
+  c_pace:
+    ... ['value', 'unit', 'rationale', 'source']
+trading:
+  tc:
+    ... ['value', 'unit', 'rationale', 'source']
+  k_sel:
+    ... ['value', 'unit', 'rationale', 'source']
+  xmax_liquid:
+    ... ['value', 'unit', 'rationale', 'source']
+  lp_depth_year:
+    ... ['value', 'unit', 'rationale', 'source']
+  co_sale_share:
+    ... ['value', 'unit', 'rationale', 'source']
+  ra_sale_share:
+    ... ['value', 'unit', 'rationale', 'source']
+  amber_sale_share:
+    ... ['value', 'unit', 'rationale', 'source']
+  hf_secondary_share:
+    ... ['value', 'unit', 'rationale', 'source']
+  redeem_phi:
+    ... ['value', 'unit', 'rationale', 'source']
+constraints:
+  floor_hard:
+    ... ['value', 'unit', 'rationale', 'source']
+  floor_target:
+    ... ['value', 'unit', 'rationale', 'source']
+  lev_cap:
+    ... ['value', 'unit', 'rationale', 'source']
+  class_caps:
+    ... ['value', 'unit', 'rationale', 'source']
+  behind_cap_share:
+    ... ['value', 'unit', 'rationale', 'source']
+  kappa_c:
+    ... ['value', 'unit', 'rationale', 'source']
+  behind_gap:
+    ... ['value', 'unit', 'rationale', 'source']
+  thin_cash:
+    ... ['value', 'unit', 'rationale', 'source']
+  overcommit:
+    ... ['value', 'unit', 'rationale', 'source']
+  range_band:
+    ... ['value', 'unit', 'rationale', 'source']
+  range_charge:
+    ... ['value', 'unit', 'rationale', 'source']
+  red_eps_tree:
+    ... ['value', 'unit', 'rationale', 'source']
+  red_eps_certified:
+    ... ['value', 'unit', 'rationale', 'source']
+  red_sale_threshold:
+    ... ['value', 'unit', 'rationale', 'source']
+  red_bid_ratio:
+    ... ['value', 'unit', 'rationale', 'source']
+  stage_cash_bands:
+    ... ['value', 'unit', 'rationale', 'source']
+  margin_lo_haircut:
+    ... ['value', 'unit', 'rationale', 'source']
+  margin_hf_phi:
+    ... ['value', 'unit', 'rationale', 'source']
+  margin_amber_share:
+    ... ['value', 'unit', 'rationale', 'source']
+  margin_vm_drop:
+    ... ['value', 'unit', 'rationale', 'source']
+  h3_share:
+    ... ['value', 'unit', 'rationale', 'source']
+  h3_hf_phi:
+    ... ['value', 'unit', 'rationale', 'source']
+  h4:
+    ... ['value', 'unit', 'rationale', 'source']
+  depth_levels:
+    ... ['value', 'unit', 'rationale', 'source']
+  depth_delta:
+    ... ['value', 'unit', 'rationale', 'source']
+valuation:
+  psi_unfunded:
+    ... ['value', 'unit', 'rationale', 'source']
+objective:
+  crra_gamma:
+    ... ['value', 'unit', 'rationale', 'source']
+  crra_tangents:
+    ... ['value', 'unit', 'rationale', 'source']
+  crra_w_range:
+    ... ['value', 'unit', 'rationale', 'source']
+  lambda_T:
+    ... ['value', 'unit', 'rationale', 'source']
+  l2_segments:
+    ... ['value', 'unit', 'rationale', 'source']
+  tiebreak_tol:
+    ... ['value', 'unit', 'rationale', 'source']
+  bisection_tol:
+    ... ['value', 'unit', 'rationale', 'source']
+  milp_gap:
+    ... ['value', 'unit', 'rationale', 'source']
+  milp_time_limit:
+    ... ['value', 'unit', 'rationale', 'source']
+  milp_node_limit:
+    ... ['value', 'unit', 'rationale', 'source']
+  milp_frontier_time_limit:
+    ... ['value', 'unit', 'rationale', 'source']
+  milp_frontier_node_limit:
+    ... ['value', 'unit', 'rationale', 'source']
+  milp_method:
+    ... ['value', 'unit', 'rationale', 'source']
+  milp_heuristic_effort:
+    ... ['value', 'unit', 'rationale', 'source']
+solver:
+  threads:
+    ... ['value', 'unit', 'rationale', 'source']
+  feas_tol:
+    ... ['value', 'unit', 'rationale', 'source']
+simulation:
+  n_cert:
+    ... ['value', 'unit', 'rationale', 'source']
+  n_select:
+    ... ['value', 'unit', 'rationale', 'source']
+  chunk:
+    ... ['value', 'unit', 'rationale', 'source']
+  idio:
+    ... ['value', 'unit', 'rationale', 'source']
+  n_replication_paths:
+    ... ['value', 'unit', 'rationale', 'source']
+baselines:
+  b0_penalties:
+    ... ['value', 'unit', 'rationale', 'source']
+  b3_vix_F:
+    ... ['value', 'unit', 'rationale', 'source']
+  b3_F_band:
+    ... ['value', 'unit', 'rationale', 'source']
+  b3_lev:
+    ... ['value', 'unit', 'rationale', 'source']
+  b4_scales:
+    ... ['value', 'unit', 'rationale', 'source']
+frontier:
+  eps_grid:
+    ... ['value', 'unit', 'rationale', 'source']
+  milp_points:
+    ... ['value', 'unit', 'rationale', 'source']
+  delta_grid:
+    ... ['value', 'unit', 'rationale', 'source']
+report:
+  n_forced:
+    ... ['value', 'unit', 'rationale', 'source']
+  n_red_cards:
+    ... ['value', 'unit', 'rationale', 'source']
+bids:
+  rho:
+    ... ['value', 'unit', 'rationale', 'source']
+  age_multiplier:
+    ... ['value', 'unit', 'rationale', 'source']
+fusion:
+  alpha_star_pp:
+    ... ['value', 'unit', 'rationale', 'source']
+  unit_prior_sd_pp:
+    ... ['value', 'unit', 'rationale', 'source']
+  bias_prior_underwritten_pp:
+    ... ['value', 'unit', 'rationale', 'source']
+  bias_prior_forecast_pp:
+    ... ['value', 'unit', 'rationale', 'source']
+  bias_prior_sd_pp:
+    ... ['value', 'unit', 'rationale', 'source']
+  archive_n_eff:
+    ... ['value', 'unit', 'rationale', 'source']
+  credibility_constant:
+    ... ['value', 'unit', 'rationale', 'source']
+  precision_weights_after_n_eff:
+    ... ['value', 'unit', 'rationale', 'source']
+  kappa_prior_median:
+    ... ['value', 'unit', 'rationale', 'source']
+  benktander_t:
+    ... ['value', 'unit', 'rationale', 'source']
+  actual_weight_phi:
+    ... ['value', 'unit', 'rationale', 'source']
+  actual_min_age:
+    ... ['value', 'unit', 'rationale', 'source']
+  outcome_noise:
+    ... ['value', 'unit', 'rationale', 'source']
+  buyer_required_return:
+    ... ['value', 'unit', 'rationale', 'source']
+  buyer_seller_gap_age_edges:
+    ... ['value', 'unit', 'rationale', 'source']
+  buyer_seller_gap_by_age:
+    ... ['value', 'unit', 'rationale', 'source']
+  market_anchor_min_age:
+    ... ['value', 'unit', 'rationale', 'source']
+  bid_dispersion:
+    ... ['value', 'unit', 'rationale', 'source']
+  student_t_dof:
+    ... ['value', 'unit', 'rationale', 'source']
+  precision_horizon_quarters:
+    ... ['value', 'unit', 'rationale', 'source']
+  flags:
+    ... ['value', 'unit', 'rationale', 'source']
+truth_model:
+  alpha_dispersion_main:
+    ... ['value', 'unit', 'rationale', 'source']
+  alpha_dispersion_variants:
+    ... ['value', 'unit', 'rationale', 'source']
+  bid_info_main:
+    ... ['value', 'unit', 'rationale', 'source']
+  bid_info_variants:
+    ... ['value', 'unit', 'rationale', 'source']
+  bias_shift_sd:
+    ... ['value', 'unit', 'rationale', 'source']
+  drought_forecast_optimism_pp:
+    ... ['value', 'unit', 'rationale', 'source']
+  range_kappa_true:
+    ... ['value', 'unit', 'rationale', 'source']
+  actual_persistence:
+    ... ['value', 'unit', 'rationale', 'source']
+  forecast_error_sd_pp:
+    ... ['value', 'unit', 'rationale', 'source']
+  underwriting_error_sd_pp:
+    ... ['value', 'unit', 'rationale', 'source']
+  underwritten_case_down_pp:
+    ... ['value', 'unit', 'rationale', 'source']
+  underwritten_case_up_pp:
+    ... ['value', 'unit', 'rationale', 'source']
+  bid_noise_sd:
+    ... ['value', 'unit', 'rationale', 'source']
+  bid_alpha_passthrough:
+    ... ['value', 'unit', 'rationale', 'source']
+  archive_error_sd_pp:
+    ... ['value', 'unit', 'rationale', 'source']
+  realized_benchmark_sd_pp:
+    ... ['value', 'unit', 'rationale', 'source']
+  opp_sr_mean:
+    ... ['value', 'unit', 'rationale', 'source']
+  opp_sr_sd:
+    ... ['value', 'unit', 'rationale', 'source']
+book:
+  segments:
+    ... ['pe_buyout', 'pe_growth', 'pe_asia', 'sec_fund', 'sec_portfolio', 'sec_cv', 'co_deal', 'cs_credit', 'pc_sma', 'pc_fund', 'pc_evergreen', 'pc_bdc', 'hf_multi', 'hf_macro', 'hf_credit', 'hf_els', 'hf_rv', 'lo_dm_core', 'lo_dm_active', 'lo_em']
+  units:
+    ... ['value', 'unit', 'rationale', 'source']

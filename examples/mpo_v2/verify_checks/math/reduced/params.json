@@ -1,0 +1,4284 @@
+{
+ "_meta": {
+  "label": "SYNTHETIC - NOT ADIC DATA. Illustrative parameters for the slimmed five-component prototype. Not ADIC data and not a forecast.",
+  "spec": "design/DECISION_SPACE_AND_GOAL_OBJECTIVE.md v1.1 (DSGO), as revised by examples/mpo_v2/spec_review.md; design/SLIM_ARCHITECTURE.md (SLIM)",
+  "version": "mpo_v2 prototype 1.0, 2026-10-19",
+  "how_to_change": "Every number the program uses is a 'value' in this file. Edit and re-run mpo_v2.py. The run lists any parameter the code never read (results.json checks.params_unused) and any entry missing a unit, rationale or source.",
+  "units": "Money in $bn; rates and returns are annual decimals unless the key ends in _q (quarterly) or _pp (percentage points a year).",
+  "source_tags": "SYN = research/00_SYNTHESIS.md; GRP = research/groups/01_GROUPS_SYNTHESIS.md; RA = research/groups/02_REAL_ASSETS_SYNTHESIS.md; LIT = research/literature/00_LITERATURE_SYNTHESIS.md; ARCH = design/ARCHITECTURE.md; DSGO = design/DECISION_SPACE_AND_GOAL_OBJECTIVE.md; TD = examples/tree_demo; [A] = working assumption of this prototype, owned and swept; [I] = derived in this prototype."
+ },
+ "rates": {
+  "sofr": {
+   "value": 0.0389,
+   "unit": "per year",
+   "rationale": "Cash, IG and posted margin earn SOFR; base rate of every floating loan.",
+   "source": "SYN section 2.1 (SOFR 3.89% on 15 Oct 2026)"
+  }
+ },
+ "goal": {
+  "rate": {
+   "value": 0.1,
+   "unit": "per year",
+   "rationale": "10% nominal USD time-weighted return, gross of distributions.",
+   "source": "User mandate; DSGO section 4.1"
+  },
+  "years": {
+   "value": 5,
+   "unit": "years",
+   "rationale": "Decision horizon of the goal; the 10-year horizon is a sensitivity not run in this prototype.",
+   "source": "DSGO section 4.1 [A]"
+  },
+  "W0_reported": {
+   "value": 177.0,
+   "unit": "$bn",
+   "rationale": "Reported NAV today (allocation v2). The goal is measured on economic NAV, so W0 for the goal ratio is the economic NAV computed from the book.",
+   "source": "inputs section 1A; DSGO RV-18"
+  },
+  "eps_g": {
+   "value": 0.001,
+   "unit": "share of W0",
+   "rationale": "Margin above the goal wealth that the MILP requires for a leaf to count as a success; stops knife-edge successes.",
+   "source": "DSGO section 4.4 [A]"
+  },
+  "inflation": {
+   "value": 0.025,
+   "unit": "per year",
+   "rationale": "Deflator for the CRRA comparison's real wealth.",
+   "source": "SYN section 2.3(a) (pi = 2.5%)"
+  },
+  "c_max_factor": {
+   "value": 2.0,
+   "unit": "x W*/W0",
+   "rationale": "Cap on the GBO buffer: c_max = 2 W*/W0 (about 3.2 at 5 years), above the largest optimal buffer in the lognormal check.",
+   "source": "DSGO section 4.3"
+  }
+ },
+ "worlds": {
+  "names": {
+   "value": [
+    "M1",
+    "M2",
+    "M6"
+   ],
+   "unit": "labels",
+   "rationale": "The three CMA worlds the prototype pools (J.P. Morgan 2027; BlackRock fee-adjusted; BlackRock risk premia rise).",
+   "source": "DSGO RV-14, section 5.1"
+  },
+  "weights": {
+   "value": [
+    0.3333333333,
+    0.3333333334,
+    0.3333333333
+   ],
+   "unit": "probability",
+   "rationale": "Equal IC weights.",
+   "source": "DSGO section 5.1 [A]"
+  },
+  "eq_log_excess": {
+   "value": [
+    0.03,
+    0.046,
+    0.01
+   ],
+   "unit": "per year, log excess of SOFR",
+   "rationale": "World equity premia, calibrated so the status-quo book's expected 5-year geometric return is near the bridge's evidence-central 8.8% (M1), 10.5% (M2) and 6.1% (M6); pooled near 8.5%.",
+   "source": "SYN section 4.12 bridge table; calibration in this prototype [I]"
+  },
+  "credit_drift": {
+   "value": [
+    0.0,
+    0.002,
+    -0.006
+   ],
+   "unit": "per year added to the credit excess return",
+   "rationale": "M2 slightly richer credit carry; M6 reprices credit (risk premia rise).",
+   "source": "SYN section 4.12 (M6 'risk premia rise') [A]"
+  },
+  "term_premium": {
+   "value": [
+    0.008,
+    0.01,
+    0.004
+   ],
+   "unit": "per year",
+   "rationale": "Duration excess return per world.",
+   "source": "SYN section 4.12 [A]"
+  }
+ },
+ "regimes": {
+  "macro": {
+   "P_q": {
+    "value": [
+     [
+      0.9,
+      0.07,
+      0.03,
+      0.0
+     ],
+     [
+      0.05,
+      0.82,
+      0.13,
+      0.0
+     ],
+     [
+      0.0,
+      0.0,
+      0.7,
+      0.3
+     ],
+     [
+      0.25,
+      0.0,
+      0.05,
+      0.7
+     ]
+    ],
+    "unit": "quarterly transition matrix over [expansion, late_cycle, crisis, recovery]",
+    "rationale": "Crisis persistence 0.70 a quarter gives a mean dwell of 10 months (inside 6-18); P(stress within 12 months from calm) is about 17% including the oil coupling (inside 13-35%).",
+    "source": "SYN section 4.1 (dwell 6-18 months; P(stress within 12 months) 13-35%)"
+   },
+   "start": {
+    "value": [
+     1.0,
+     0.0,
+     0.0,
+     0.0
+    ],
+    "unit": "probability",
+    "rationale": "Market regime reads calm (>= 0.99) in October 2026.",
+    "source": "SYN section 4.1 October 2026 readings"
+   }
+  },
+  "exit": {
+   "P_q": {
+    "value": [
+     [
+      0.85,
+      0.15,
+      0.0,
+      0.0
+     ],
+     [
+      0.06,
+      0.88,
+      0.06,
+      0.0
+     ],
+     [
+      0.0,
+      0.1,
+      0.88,
+      0.02
+     ],
+     [
+      0.0,
+      0.1,
+      0.15,
+      0.75
+     ]
+    ],
+    "unit": "quarterly transition matrix over [open, normal, drought, frozen]",
+    "rationale": "Quarterly persistence 0.85 / 0.88 / 0.88 / 0.75; drought persists with probability about 0.60 after 12 months.",
+    "source": "SYN section 4.2 exit-window table; section 4.1 (drought 0.87, 0.61 after 12 months)"
+   },
+   "start": {
+    "value": [
+     0.0,
+     0.13,
+     0.87,
+     0.0
+    ],
+    "unit": "probability",
+    "rationale": "Exit window drought 0.87 today.",
+    "source": "SYN section 4.1"
+   },
+   "crisis_push_q": {
+    "value": 0.35,
+    "unit": "probability a quarter",
+    "rationale": "In a macro crisis quarter the exit window moves one step worse with this probability (crisis -> frozen exits).",
+    "source": "SYN section 4.1 coupled chains [A]"
+   }
+  },
+  "oil": {
+   "P_q": {
+    "value": [
+     [
+      0.885,
+      0.03,
+      0.04,
+      0.015,
+      0.02,
+      0.01
+     ],
+     [
+      0.15,
+      0.8,
+      0.05,
+      0.0,
+      0.0,
+      0.0
+     ],
+     [
+      0.2,
+      0.0,
+      0.75,
+      0.05,
+      0.0,
+      0.0
+     ],
+     [
+      0.25,
+      0.0,
+      0.15,
+      0.6,
+      0.0,
+      0.0
+     ],
+     [
+      0.25,
+      0.05,
+      0.0,
+      0.0,
+      0.7,
+      0.0
+     ],
+     [
+      0.33,
+      0.0,
+      0.1,
+      0.02,
+      0.05,
+      0.5
+     ]
+    ],
+    "unit": "quarterly transition matrix over [normal, boom, glut, demand_bust, supply_shock, gulf_war]",
+    "rationale": "Gulf-war state decays (about 20% of 2027 in the war state, against the IMF's 17%), with a post-war glut channel; normal is about 60% of steady-state time and demand bust 2-6%.",
+    "source": "SYN section 4.1 (shock-type shares N 0.55-0.65, DB 0.02-0.06; IMF 17%); RA section 9.3"
+   },
+   "start": {
+    "value": [
+     0.15,
+     0.0,
+     0.0,
+     0.0,
+     0.0,
+     0.85
+    ],
+    "unit": "probability",
+    "rationale": "Gulf war about 0.85 today.",
+    "source": "SYN section 4.1"
+   },
+   "crisis_given_demand_bust_q": {
+    "value": 0.85,
+    "unit": "probability a quarter",
+    "rationale": "A demand bust pushes the macro regime into crisis (P(crisis | DB) >= 0.8).",
+    "source": "SYN section 4.1; DSGO section 5.1"
+   },
+   "crisis_given_glut_q": {
+    "value": 0.05,
+    "unit": "probability a quarter",
+    "rationale": "A glut raises crisis odds modestly (P(crisis | glut) about 0.15 over a glut spell).",
+    "source": "SYN section 4.1; DSGO section 5.1"
+   }
+  }
+ },
+ "factors": {
+  "t_dof": {
+   "value": 5,
+   "unit": "degrees of freedom",
+   "rationale": "Student-t shocks (fat tails).",
+   "source": "SYN section 4.1; DSGO section 5.1"
+  },
+  "eq": {
+   "regime_shift_q": {
+    "value": [
+     0.008,
+     -0.005,
+     -0.08,
+     0.03
+    ],
+    "unit": "quarterly log return shift by regime entered",
+    "rationale": "Shape of the quarter by regime; centred on its expectation given the regime left, so the expected return is the same from every regime (nothing to time).",
+    "source": "TD verify_finance M2; SYN section 4.8 [A]"
+   },
+   "vol_annual": {
+    "value": [
+     0.13,
+     0.16,
+     0.32,
+     0.2
+    ],
+    "unit": "annual volatility by regime entered",
+    "rationale": "Calm, late-cycle, crisis and recovery equity volatility.",
+    "source": "SYN section 4.1 [A]"
+   }
+  },
+  "cr": {
+   "level": {
+    "value": [
+     0.035,
+     0.045,
+     0.085,
+     0.05
+    ],
+    "unit": "credit spread level by regime",
+    "rationale": "Spread levels for a direct-lending / high-yield index by regime.",
+    "source": "SYN section 4.3 (unitranche S+525, crisis +700-900) [A]"
+   },
+   "start": {
+    "value": 0.036,
+    "unit": "spread",
+    "rationale": "Tight spreads in a calm October 2026 market.",
+    "source": "SYN section 4.1 (market calm) [A]"
+   },
+   "kappa_q": {
+    "value": 0.25,
+    "unit": "per quarter",
+    "rationale": "Mean reversion of the spread toward its regime level.",
+    "source": "[A]"
+   },
+   "vol_q": {
+    "value": [
+     0.003,
+     0.004,
+     0.012,
+     0.006
+    ],
+    "unit": "quarterly spread shock sd by regime",
+    "rationale": "Spread volatility.",
+    "source": "[A]"
+   },
+   "duration": {
+    "value": 3.5,
+    "unit": "years",
+    "rationale": "Spread duration of the credit index.",
+    "source": "SYN section 4.3 (3-year WAL loans) [A]"
+   },
+   "pd_annual": {
+    "value": [
+     0.011,
+     0.016,
+     0.06,
+     0.022
+    ],
+    "unit": "annual default rate by regime",
+    "rationale": "PD_N 1.1% with regime multipliers.",
+    "source": "SYN section 4.3 (PD_N 1.1%, multipliers 1 / 1.5 / 3, crisis higher)"
+   },
+   "lgd": {
+    "value": 0.67,
+    "unit": "share",
+    "rationale": "Direct-loan loss given default.",
+    "source": "SYN section 4.3 (LGD 0.67, Cai & Haque 2024)"
+   }
+  },
+  "rt": {
+   "start": {
+    "value": 0.0509,
+    "unit": "10-year yield",
+    "rationale": "10-year UST 5.09%.",
+    "source": "SYN section 4.5"
+   },
+   "mean": {
+    "value": 0.046,
+    "unit": "10-year yield",
+    "rationale": "Long-run level.",
+    "source": "[A]"
+   },
+   "kappa_q": {
+    "value": 0.05,
+    "unit": "per quarter",
+    "rationale": "Slow mean reversion.",
+    "source": "[A]"
+   },
+   "vol_q": {
+    "value": 0.004,
+    "unit": "quarterly yield shock sd",
+    "rationale": "About 0.8% a year.",
+    "source": "[A]"
+   },
+   "crisis_shift_q": {
+    "value": -0.004,
+    "unit": "per crisis quarter",
+    "rationale": "Flight to quality lowers yields in a crisis.",
+    "source": "[A]"
+   },
+   "duration": {
+    "value": 6.0,
+    "unit": "years",
+    "rationale": "Duration of the bond index.",
+    "source": "[A]"
+   }
+  },
+  "oil": {
+   "spot": {
+    "value": 126.55,
+    "unit": "$ per bbl",
+    "rationale": "Brent today.",
+    "source": "SYN section 4.7"
+   },
+   "level": {
+    "value": [
+     70.0,
+     95.0,
+     45.0,
+     38.0,
+     110.0,
+     120.0
+    ],
+    "unit": "$ per bbl by shock type",
+    "rationale": "Mean-reversion targets by oil-shock type; long-run 70.",
+    "source": "SYN section 4.1 (long-run $70) [A]"
+   },
+   "kappa_q": {
+    "value": 0.3,
+    "unit": "per quarter",
+    "rationale": "Mean reversion of log Brent toward the shock-type level; reproduces a backwardated strip from today's spot.",
+    "source": "SYN section 4.1 (start from the futures strip) [A]"
+   },
+   "vol_q": {
+    "value": [
+     0.08,
+     0.1,
+     0.12,
+     0.15,
+     0.12,
+     0.14
+    ],
+    "unit": "quarterly log shock sd by shock type",
+    "rationale": "Oil volatility by state.",
+    "source": "[A]"
+   }
+  },
+  "ex": {
+   "level": {
+    "value": [
+     1.0,
+     0.0,
+     -1.0,
+     -2.0
+    ],
+    "unit": "exit factor level by exit window",
+    "rationale": "Exit factor X: open +1, normal 0, drought -1, frozen -2.",
+    "source": "SYN section 4.1 [A]"
+   },
+   "start": {
+    "value": -1.0,
+    "unit": "level",
+    "rationale": "Drought today.",
+    "source": "SYN section 4.1"
+   },
+   "phi_q": {
+    "value": 0.6,
+    "unit": "AR(1) per quarter",
+    "rationale": "Persistence of the exit factor around its window level.",
+    "source": "SYN section 4.1 [A]"
+   },
+   "sigma_q": {
+    "value": 0.25,
+    "unit": "quarterly shock sd",
+    "rationale": "Noise in exit activity.",
+    "source": "[A]"
+   }
+  },
+  "vix": {
+   "level": {
+    "value": [
+     15.0,
+     19.0,
+     34.0,
+     22.0
+    ],
+    "unit": "VIX points by regime",
+    "rationale": "Implied-volatility level by regime (RV-20 adds implied vol as a driver).",
+    "source": "SYN section 4.6; DSGO RV-20 [A]"
+   },
+   "start": {
+    "value": 16.0,
+    "unit": "VIX points",
+    "rationale": "Calm market today (F_t = 0.10).",
+    "source": "SYN section 4.1"
+   },
+   "kappa_q": {
+    "value": 0.5,
+    "unit": "per quarter",
+    "rationale": "Mean reversion to the regime level.",
+    "source": "[A]"
+   },
+   "spot_down": {
+    "value": -0.5,
+    "unit": "VIX points per 1% fall in the quarter's equity return",
+    "rationale": "Spot-vol response (quarterly analogue of s- = -1.35 daily).",
+    "source": "SYN section 4.6 [A]"
+   },
+   "spot_up": {
+    "value": -0.15,
+    "unit": "VIX points per 1% rise",
+    "rationale": "Weaker response to rallies.",
+    "source": "SYN section 4.6 [A]"
+   },
+   "sigma_q": {
+    "value": 2.5,
+    "unit": "VIX points",
+    "rationale": "Idiosyncratic VIX noise.",
+    "source": "[A]"
+   },
+   "floor": {
+    "value": 9.0,
+    "unit": "VIX points",
+    "rationale": "Lower bound.",
+    "source": "[A]"
+   }
+  },
+  "corr_normal": {
+   "value": [
+    [
+     1.0,
+     -0.55,
+     0.15,
+     0.25,
+     0.45
+    ],
+    [
+     -0.55,
+     1.0,
+     -0.1,
+     -0.2,
+     -0.4
+    ],
+    [
+     0.15,
+     -0.1,
+     1.0,
+     0.15,
+     0.05
+    ],
+    [
+     0.25,
+     -0.2,
+     0.15,
+     1.0,
+     0.15
+    ],
+    [
+     0.45,
+     -0.4,
+     0.05,
+     0.15,
+     1.0
+    ]
+   ],
+   "unit": "correlation of shocks [equity, spread, yield, oil, exit] outside crisis",
+   "rationale": "Spreads widen and exits shut when equities fall.",
+   "source": "SYN section 4.1 [A]"
+  },
+  "corr_crisis": {
+   "value": [
+    [
+     1.0,
+     -0.7,
+     -0.3,
+     0.45,
+     0.55
+    ],
+    [
+     -0.7,
+     1.0,
+     0.2,
+     -0.35,
+     -0.55
+    ],
+    [
+     -0.3,
+     0.2,
+     1.0,
+     -0.1,
+     -0.15
+    ],
+    [
+     0.45,
+     -0.35,
+     -0.1,
+     1.0,
+     0.3
+    ],
+    [
+     0.55,
+     -0.55,
+     -0.15,
+     0.3,
+     1.0
+    ]
+   ],
+   "unit": "correlation of shocks in crisis quarters",
+   "rationale": "Correlations rise in a crisis; yields fall with equities (flight to quality); oil falls with equities (demand bust).",
+   "source": "SYN section 4.1 (R_s blend) [A]"
+  }
+ },
+ "owner_draw": {
+  "prior_rate": {
+   "value": 0.065,
+   "unit": "share of opening-year reported NAV",
+   "rationale": "Last year's rate; with smoothing 0.5 and today's high Brent it gives a 2027 draw of 5.75%, about $10.2bn (research: $9.9-10.8bn).",
+   "source": "SYN section 4.7 (12-month draw $9.9-10.8bn)"
+  },
+  "floor": {
+   "value": 0.05,
+   "unit": "share",
+   "rationale": "Mandated band floor.",
+   "source": "User mandate (5-10%)"
+  },
+  "cap": {
+   "value": 0.1,
+   "unit": "share",
+   "rationale": "Mandated band cap.",
+   "source": "User mandate (5-10%)"
+  },
+  "kink_high": {
+   "value": 67.0,
+   "unit": "$ per bbl",
+   "rationale": "Draw target at the 5% floor above about $67 Brent.",
+   "source": "SYN section 4.7 (linear kinks about $67 / $23)"
+  },
+  "kink_low": {
+   "value": 23.0,
+   "unit": "$ per bbl",
+   "rationale": "Draw target at the 10% cap below about $23 Brent.",
+   "source": "SYN section 4.7"
+  },
+  "smoothing": {
+   "value": 0.5,
+   "unit": "weight on last year's rate",
+   "rationale": "d_y = 0.5 d_(y-1) + 0.5 target.",
+   "source": "SYN section 4.7 (rho_d = 0.5)"
+  },
+  "override_prob": {
+   "value": [
+    0.0025,
+    0.0025,
+    0.01,
+    0.01,
+    0.0025,
+    0.02
+   ],
+   "unit": "probability a year by shock type",
+   "rationale": "Owner override of the rule: 0.25% (N, B, SS), 1% (SG, DB), 2% (GW).",
+   "source": "SYN section 4.7"
+  },
+  "override_size": {
+   "value": 0.02,
+   "unit": "added to the draw target",
+   "rationale": "Size of an override.",
+   "source": "SYN section 4.7 (overrides 0.25-2%) [A]"
+  }
+ },
+ "private_engine": {
+  "exit_dist_mult": {
+   "value": [
+    1.25,
+    1.0,
+    0.47,
+    0.32
+   ],
+   "unit": "multiplier on distribution intensity by exit window",
+   "rationale": "m_D open / normal / drought / frozen.",
+   "source": "SYN section 4.2 exit-window table (1.25 / 1.0 / 0.45-0.50 / 0.30-0.35)"
+  },
+  "exit_call_mult": {
+   "value": [
+    1.3,
+    1.0,
+    0.97,
+    0.8
+   ],
+   "unit": "multiplier on call intensity by exit window",
+   "rationale": "m_C open / normal / drought / frozen.",
+   "source": "SYN section 4.2 (1.3 / 1.0 / 0.95-1.0 / 0.8)"
+  },
+  "crisis_call_stress": {
+   "value": 1.29,
+   "unit": "multiplier on calls in crisis quarters",
+   "rationale": "Stressed calls (s* calls x1.29).",
+   "source": "DSGO section 4.6 H4 (calls x1.29); SYN section 2.3"
+  },
+  "kappa_theta_q": {
+   "value": 0.04,
+   "unit": "per quarter",
+   "rationale": "Pull of reported NAV toward economic NAV (marks catch up as assets exit); with smoothing phi it gives the path-dependent theta = V/N of DSGO section 5.1.",
+   "source": "SYN section 4.2 (reported NAV smoothing, autocorrelation 0.66-0.71) [A]"
+  }
+ },
+ "tree": {
+  "str_draw_threshold": {
+   "value": 0.08,
+   "unit": "draw rate",
+   "rationale": "A glut or demand-bust node is STR when next year's draw is at least 8%.",
+   "source": "DSGO section 1.1 node classes"
+  },
+  "n_factor_mean_paths": {
+   "value": 20000,
+   "unit": "paths",
+   "rationale": "Paths used to compute the 5-year average expected factor returns that translate beliefs into alphas.",
+   "source": "[I]"
+  },
+  "branches": {
+   "value": [
+    5,
+    4
+   ],
+   "unit": "children at t = 0 and t = 1",
+   "rationale": "Rank rule (children >= matched drivers + 1): 10 children match 7 drivers at stage 1 (6 factors + belief error), 7 children match 6 factors at stage 2. DSGO's 10 x 8 x 8 = 640 leaves does not fit the 15-minute budget; the computed task asks for about 200 leaves.",
+   "source": "DSGO section 5.2 rank rule (RV-06); computed task (about 200 leaves)"
+  },
+  "fan_paths": {
+   "value": 3,
+   "unit": "3-year fan paths per stage-2 node",
+   "rationale": "One medoid path per tercile of the status-quo 3-year return, moment-matched on that return: 10 x 7 x 3 = 210 leaves.",
+   "source": "DSGO section 5.2 (octiles scaled to terciles) [A]"
+  },
+  "n_stage1_paths": {
+   "value": 20000,
+   "unit": "paths",
+   "rationale": "One-year paths simulated from today for the stage-1 clustering.",
+   "source": "DSGO section 5.2"
+  },
+  "n_stage2_paths": {
+   "value": 2000,
+   "unit": "paths per stage-1 node",
+   "rationale": "Continuations clustered into the stage-2 children.",
+   "source": "DSGO section 5.2"
+  },
+  "n_fan_candidates": {
+   "value": 300,
+   "unit": "paths per stage-2 node",
+   "rationale": "Three-year candidate paths from which the tercile medoids are chosen.",
+   "source": "[A]"
+  },
+  "stage1_strata": {
+   "value": {
+    "STR_DB": 1,
+    "STR_other": 1,
+    "DRT_GW": 1,
+    "DRT": 1,
+    "BEN": 1
+   },
+   "unit": "branches per stratum",
+   "rationale": "Stage 1 is stratified by shock type: at least one demand-bust STR branch, one other STR branch and a Gulf-war continuation, because the three call on liquidity differently. Strata with too few paths merge into a neighbour.",
+   "source": "DSGO section 5.1 start-state stratification; SYN L3"
+  },
+  "min_stratum_paths": {
+   "value": 40,
+   "unit": "paths",
+   "rationale": "A stratum with fewer simulated paths than this (or than its branch count) is merged into its neighbour.",
+   "source": "[A]"
+  },
+  "stage2_min_class_mass": {
+   "value": 0.03,
+   "unit": "probability",
+   "rationale": "A node class with at least this conditional mass gets its own stage-2 branch; paths of rarer classes join the nearest cluster, so no probability mass is dropped.",
+   "source": "[A]"
+  },
+  "seed": {
+   "value": 11,
+   "unit": "seed",
+   "rationale": "Tree seed (deterministic).",
+   "source": "[A]"
+  },
+  "belief_error_fan_scale": {
+   "value": 1.6666666667,
+   "unit": "multiplier on sigma_post x e in each fan year",
+   "rationale": "The belief-error driver is drawn at the fan branching (so no decision node can condition on it) and acts in the three fan years; scaling by 5/3 gives it the 5-year log-wealth impact of a 5-year alpha error. Drawn at stage 1 (DSGO section 3.3) it was a look-ahead leak: stage-1 decisions traded on it in the tree while the executed playbook could not see it.",
+   "source": "DSGO section 3.3 (RV-01), implementation deviation [I]"
+  },
+  "stage2_recourse_only": {
+   "value": true,
+   "unit": "flag",
+   "rationale": "With three fan paths per stage-2 node, discretionary stage-2 trades are fitted to three outcomes; stage-2 nodes keep funding moves, forced deleveraging and the stage-1 pacing and overlay (like the fans). Year-1 contingent plans (stage 1) remain fully discretionary.",
+   "source": "DSGO sections 5.2-5.3 deviation, measured in the out-of-sample diagnostics [I]"
+  }
+ },
+ "seeds": {
+  "book": {
+   "value": 20261019,
+   "unit": "seed",
+   "rationale": "Headline synthetic book (holdings marks, bids and sealed truth).",
+   "source": "[A]"
+  },
+  "factor_means": {
+   "value": 41,
+   "unit": "seed",
+   "rationale": "Paths for the expected factor returns that turn beliefs into alphas.",
+   "source": "[A]"
+  },
+  "select": {
+   "value": 21,
+   "unit": "seed",
+   "rationale": "Selection path set (best simple rule, tie-breaks); disjoint from certification.",
+   "source": "DSGO section 4.3 selection set"
+  },
+  "cert": {
+   "value": 31,
+   "unit": "seed",
+   "rationale": "Certification path set: every reported out-of-sample number.",
+   "source": "DSGO section 5.5"
+  },
+  "replication_books": {
+   "value": [
+    7101,
+    7102,
+    7103,
+    7104
+   ],
+   "unit": "seeds",
+   "rationale": "Extra synthetic books (truth-model variants) for the replication check; the placebo book uses the headline seed with true alpha independent of the marks.",
+   "source": "DSGO RV-02 (K books; scaled down for the time budget)"
+  }
+ },
+ "treasury": {
+  "cash0": {
+   "value": 15.0,
+   "unit": "$bn",
+   "rationale": "Corporate Finance / Treasury cash and money-market holdings at t0 (177 reported NAV minus the 162 held across the eight groups). Posted margin is paid out of it at the root.",
+   "source": "SYN section 2.2 holder table (Corporate Finance / Treasury 15)"
+  },
+  "fi_liquidity_weight": {
+   "value": 0.98,
+   "unit": "share",
+   "rationale": "Investment-grade fixed income (LO-04) counts toward IG + cash at 98% of value.",
+   "source": "SYN section 2.3(d) canonical IG + cash [A haircut]"
+  }
+ },
+ "overlay": {
+  "beta_sq": {
+   "value": 10.0,
+   "unit": "$bn notional",
+   "rationale": "Synthetic equity beta the Overlay runs at t0; the status quo keeps it in dollars.",
+   "source": "SYN section 2.2 (Overlay supplies synthetic beta, $10bn at t0); section 2.3(d)"
+  },
+  "im_rate": {
+   "value": [
+    0.04,
+    0.06,
+    0.1
+   ],
+   "unit": "initial margin per $ notional by class [BEN, DRT, STR]",
+   "rationale": "Futures IM rising from 4% to 10% in stress.",
+   "source": "SYN section 2.3(d) (IM rising from 4% to 10%)"
+  },
+  "beta_fin_spread": {
+   "value": [
+    0.003,
+    0.006,
+    0.0175
+   ],
+   "unit": "per year over SOFR by class",
+   "rationale": "Embedded financing of synthetic beta: 30bp average, 81bp at the June-2026 roll, 175bp in stress.",
+   "source": "DSGO section 2.6; GRP section 3.7"
+  },
+  "p2s_fin_spread": {
+   "value": [
+    0.0045,
+    0.009,
+    0.025
+   ],
+   "unit": "per year per $ notional by class",
+   "rationale": "Cost of physical-to-synthetic per $ freed: 0.40-0.70% normal, 0.80-1.11% (June 2026), 2.2-3.3% stress.",
+   "source": "DSGO section 2.6; SYN section 4.4"
+  },
+  "p2s_cap": {
+   "value": 10.0,
+   "unit": "$bn notional",
+   "rationale": "P2S capacity on the DM core sleeve.",
+   "source": "DSGO section 2.6 (<= $10bn) [A]"
+  },
+  "trs_fin_spread": {
+   "value": 0.01,
+   "unit": "per year over SOFR",
+   "rationale": "Hedge-fund TRS / portable-alpha financing.",
+   "source": "DSGO section 2.6 [A]"
+  },
+  "trs_ia": {
+   "value": 0.1,
+   "unit": "share of TRS notional",
+   "rationale": "Independent amount posted as collateral.",
+   "source": "DSGO section 2.6 (10% independent amount)"
+  },
+  "trs_cap_share": {
+   "value": 0.5,
+   "unit": "share of the hedge-fund lot's NAV",
+   "rationale": "TRS notional per lot is capped at half the lot (counterparty capacity).",
+   "source": "[A]"
+  },
+  "gross_max": {
+   "value": 0.3,
+   "unit": "share of W",
+   "rationale": "Gross overlay (synthetic beta + P2S + TRS notional) cap.",
+   "source": "DSGO section 4.6 H13"
+  },
+  "tail_premium": {
+   "value": 0.0374,
+   "unit": "per $ notional per year",
+   "rationale": "90/72 put-spread ladder premium.",
+   "source": "DSGO section 2.8; GRP section 3.7"
+  },
+  "tail_strike_lo": {
+   "value": 0.1,
+   "unit": "equity fall",
+   "rationale": "Upper strike of the put spread (90).",
+   "source": "DSGO section 2.8"
+  },
+  "tail_width": {
+   "value": 0.18,
+   "unit": "equity fall",
+   "rationale": "Spread width 90 to 72.",
+   "source": "DSGO section 2.8"
+  },
+  "tail_rung_factor": {
+   "value": 0.922,
+   "unit": "multiplier",
+   "rationale": "Scales the annual put-spread payoff so a crash pays 0.166 per $ notional (0.166 / 0.18).",
+   "source": "DSGO section 2.8 (crash payoff 0.166 per $)"
+  },
+  "tail_budget": {
+   "value": [
+    0.0015,
+    0.005
+   ],
+   "unit": "premium as share of NAV per year [floor, cap]",
+   "rationale": "Tail budget 0.15-0.50% of NAV; the status quo sits at the floor ($7.1bn notional).",
+   "source": "DSGO section 2.8"
+  },
+  "opp_im_sq": {
+   "value": 1.0,
+   "unit": "$bn IM",
+   "rationale": "Opportunistic book at t0.",
+   "source": "DSGO section 2.8"
+  },
+  "opp_im_max": {
+   "value": 1.5,
+   "unit": "$bn IM",
+   "rationale": "Opportunistic IM cap.",
+   "source": "DSGO section 2.8 (IM <= $1.5bn)"
+  },
+  "opp_vol_per_im": {
+   "value": 1.77,
+   "unit": "annual P&L sd per $ of IM",
+   "rationale": "Vol 1.0% of NAV at $1bn of IM (1.0-1.5% in the research; low end).",
+   "source": "DSGO section 2.8 [I]"
+  },
+  "opp_sr_prior": {
+   "value": 0.3,
+   "unit": "Sharpe ratio",
+   "rationale": "Belief: prior N(0.3, 0.25^2).",
+   "source": "SYN section 4.6"
+  },
+  "opp_load_eq": {
+   "value": 0.3,
+   "unit": "loading on the standardized equity surprise",
+   "rationale": "Short-volatility templates lose with equities.",
+   "source": "[A]"
+  },
+  "opp_load_vol": {
+   "value": -0.6,
+   "unit": "loading on the standardized implied-vol surprise",
+   "rationale": "Short-volatility carry: loses when implied vol jumps (RV-20).",
+   "source": "DSGO RV-20 [A]"
+  },
+  "opp_idio_share": {
+   "value": 0.6,
+   "unit": "share of P&L variance",
+   "rationale": "Idiosyncratic share of the opportunistic book's P&L variance: in the simulator only (the tree carries the factor part).",
+   "source": "[A]"
+  },
+  "eq_vol_ref": {
+   "value": 0.16,
+   "unit": "annual equity sd",
+   "rationale": "Standardizes the equity surprise for the opportunistic book.",
+   "source": "[A]"
+  },
+  "vix_vol_ref": {
+   "value": 0.08,
+   "unit": "annual sd of the vol factor",
+   "rationale": "Standardizes the implied-vol surprise.",
+   "source": "[A]"
+  }
+ },
+ "corporate_finance": {
+  "consent_scenario": {
+   "value": "R1",
+   "unit": "label",
+   "rationale": "R1: a committed revolver is signed and every policy (baselines included) can use it before any red sale (facility parity).",
+   "source": "DSGO sections 6.1-6.2 (R0 / R1 / R2; RV-21)"
+  },
+  "revolver_signed": {
+   "value": 10.0,
+   "unit": "$bn",
+   "rationale": "Committed revolver signed under R1.",
+   "source": "SYN Mix B ($10bn revolver)"
+  },
+  "revolver_upsize_max": {
+   "value": 5.0,
+   "unit": "$bn",
+   "rationale": "FUND can upsize to $15bn, effective from stage 1 (2-quarter lead).",
+   "source": "DSGO section 2.9 (capacity L <= $15bn)"
+  },
+  "revolver_spread": {
+   "value": 0.0085,
+   "unit": "per year over SOFR",
+   "rationale": "Drawn margin.",
+   "source": "DSGO section 2.9 (SOFR + 85bp)"
+  },
+  "revolver_undrawn_fee": {
+   "value": 0.0015,
+   "unit": "per year",
+   "rationale": "Undrawn fee, paid by every policy under parity.",
+   "source": "DSGO section 2.9"
+  },
+  "revolver_upfront_fee": {
+   "value": 0.0005,
+   "unit": "per year on new capacity",
+   "rationale": "15bp upfront per 3 years.",
+   "source": "DSGO section 2.9"
+  },
+  "revolver_avail": {
+   "value": [
+    1.0,
+    1.0,
+    0.5
+   ],
+   "unit": "share of capacity drawable by class",
+   "rationale": "At most 50% available in STR.",
+   "source": "DSGO section 2.9; LIT section 4.3"
+  },
+  "term_spread": {
+   "value": 0.0085,
+   "unit": "per year over SOFR",
+   "rationale": "5-year bullet term debt (SOFR + 70-100bp).",
+   "source": "DSGO section 2.9 [A midpoint]"
+  },
+  "term_avail": {
+   "value": [
+    1.0,
+    1.0,
+    0.0
+   ],
+   "unit": "1 = can issue at the class",
+   "rationale": "Facilities signed in stress count zero.",
+   "source": "DSGO section 2.9"
+  },
+  "recourse_cap": {
+   "value": 0.15,
+   "unit": "share of W",
+   "rationale": "Recourse debt cap (hard; 0.10 reported as target).",
+   "source": "DSGO section 4.6 H5"
+  },
+  "encumbrance_cap": {
+   "value": 0.2,
+   "unit": "share of total assets",
+   "rationale": "Encumbered collateral cap.",
+   "source": "DSGO section 4.6 H5"
+  },
+  "navf": {
+   "value": {
+    "ltv": [
+     0.1,
+     0.1,
+     0.05
+    ],
+    "spread": [
+     0.03,
+     0.03,
+     0.044
+    ],
+    "oid": 0.015,
+    "pool_cap_share": 0.2,
+    "avail": [
+     1.0,
+     1.0,
+     0.5
+    ],
+    "pik": true
+   },
+   "unit": "LTV / spread over SOFR by class; OID; pool cap as share of private NAV; availability",
+   "rationale": "LP-portfolio NAV facility (Corporate Finance): 10% LTV (5% stressed) on a pledge pool <= 20% of private NAV, SOFR + 300bp (+140bp stress), PIK, forced paydown when the LTV cap tightens.",
+   "source": "DSGO section 2.1; SYN section 4.4"
+  },
+  "pref": {
+   "value": {
+    "advance": 0.3,
+    "rate": [
+     0.12,
+     0.12,
+     0.14
+    ],
+    "fee": 0.01,
+    "avail": [
+     1.0,
+     1.0,
+     0.0
+    ]
+   },
+   "unit": "advance as share of pool NAV; accrual rate by class; fee; availability",
+   "rationale": "LP-portfolio preferred equity: cash 20-35% of pool NAV, 12% preferred return (14% in stress), accruing; deducted at the leaf with accruals.",
+   "source": "DSGO section 2.1; GRP section 3.1"
+  },
+  "csbl": {
+   "value": {
+    "debt_to_value": 0.333,
+    "spread": 0.03,
+    "avail": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "max debt / book value; spread; availability",
+   "rationale": "Capital Solutions back-leverage at D/E <= 0.5, bank SOFR + 300bp, arranged in BEN only.",
+   "source": "DSGO section 2.4; GRP section 3.3"
+  },
+  "smabl": {
+   "value": {
+    "ltv": 0.45,
+    "spread": 0.0225,
+    "avail": [
+     1.0,
+     0.0,
+     0.0
+    ]
+   },
+   "unit": "LTV; spread; availability",
+   "rationale": "SMA back-leverage, LTV <= 40-45%, SOFR + 200-275bp, BEN with lender lead time.",
+   "source": "DSGO section 2.5; GRP section 3.6"
+  },
+  "raco": {
+   "value": {
+    "cap": 0.9,
+    "ltv": 0.55,
+    "spread": [
+     0.032,
+     0.044,
+     0.072
+    ],
+    "avail": [
+     0.97,
+     0.85,
+     0.6
+    ]
+   },
+   "unit": "$bn capacity; portfolio LTV; spread by class; availability",
+   "rationale": "Real-asset cash-out refinancing at maturity (controlled assets only): capacity $0.53-0.90bn, portfolio LTV <= 55%, spreads 3.2 / 4.4 / 7.2% over SOFR.",
+   "source": "DSGO section 2.7; RA section 7.3"
+  }
+ },
+ "templates": {
+  "SEC_BUY": {
+   "value": {
+    "group": "SEC",
+    "family": "ADD",
+    "segment": "sec_portfolio",
+    "age": 6,
+    "unfunded_per_nav": 0.15,
+    "winners_curse": 0.045,
+    "discount_gate": 0.2,
+    "cap_year": 4.0,
+    "group_cap_share": 0.1,
+    "alpha_pp": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "classes": [
+     0,
+     1,
+     2
+    ],
+    "green_only": false,
+    "lever_debt": 0.0,
+    "lever_spread": 0.0
+   },
+   "unit": "template spec",
+   "rationale": "Contingent discount purchase of LP interests at price rho x theta per $ of reported NAV (rho = buyer residual on economic NAV by class), gated on a discount > 20% and stage not Black; group NAV <= 10% of the fund; winner's-curse haircut 4.5%.",
+   "source": "DSGO section 2.2 (RV-10); GRP section 3.2"
+  },
+  "CO_DEAL": {
+   "value": {
+    "group": "CO",
+    "family": "ADD",
+    "segment": "co_deal",
+    "age": 0,
+    "unfunded_per_nav": 0.0,
+    "winners_curse": 0.0,
+    "discount_gate": 0.0,
+    "cap_year": 1.2,
+    "group_cap_share": 1.0,
+    "alpha_pp": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "classes": [
+     0,
+     1,
+     2
+    ],
+    "green_only": true,
+    "lever_debt": 0.0,
+    "lever_spread": 0.0
+   },
+   "unit": "template spec",
+   "rationale": "New co-investments, $0.6-1.2bn a year, paused in Amber or worse.",
+   "source": "DSGO section 2.3"
+  },
+  "CS_NEW": {
+   "value": {
+    "group": "CS",
+    "family": "ADD",
+    "segment": "cs_credit",
+    "age": 0,
+    "unfunded_per_nav": 0.0,
+    "winners_curse": 0.0,
+    "discount_gate": 0.0,
+    "cap_year": 1.2,
+    "group_cap_share": 1.0,
+    "alpha_pp": [
+     0.0,
+     0.5,
+     2.0
+    ],
+    "classes": [
+     0,
+     1,
+     2
+    ],
+    "green_only": false,
+    "lever_debt": 0.0,
+    "lever_spread": 0.0
+   },
+   "unit": "template spec",
+   "rationale": "Capital Solutions new money, <= $1.2bn a year; rescue deals in stress earn more (15-20% gross).",
+   "source": "DSGO section 2.4; GRP section 3.3"
+  },
+  "PC_NEW": {
+   "value": {
+    "group": "PC",
+    "family": "ADD",
+    "segment": "pc_sma",
+    "age": 0,
+    "unfunded_per_nav": 0.0,
+    "winners_curse": 0.0,
+    "discount_gate": 0.0,
+    "cap_year": 2.0,
+    "group_cap_share": 1.0,
+    "alpha_pp": [
+     0.0,
+     0.5,
+     2.0
+    ],
+    "classes": [
+     0,
+     1,
+     2
+    ],
+    "green_only": false,
+    "lever_debt": 0.0,
+    "lever_spread": 0.0
+   },
+   "unit": "template spec",
+   "rationale": "New senior loans: unitranche S+525 normal, +525-600 tight, +700-900 in a crisis (excess spread entered as alpha).",
+   "source": "DSGO section 2.5; SYN section 4.3"
+  },
+  "INFRA_LEV": {
+   "value": {
+    "group": "RA",
+    "family": "LEVER",
+    "segment": "ra_infra_direct",
+    "age": 0,
+    "unfunded_per_nav": 0.0,
+    "winners_curse": 0.0,
+    "discount_gate": 0.0,
+    "cap_year": 1.0,
+    "group_cap_share": 1.0,
+    "alpha_pp": [
+     0.65,
+     0.65,
+     0.65
+    ],
+    "classes": [
+     0
+    ],
+    "green_only": false,
+    "lever_debt": 1.0,
+    "lever_spread": 0.02
+   },
+   "unit": "template spec",
+   "rationale": "Contracted-infrastructure add-on with acquisition debt at SOFR + 200bp, 50% LTV (debt 1.0 per $ equity), BEN only; asset alpha 0.25pp prior + 0.4pp after charges.",
+   "source": "RA sections 7.4-7.5; DSGO section 2.7"
+  },
+  "SMA_LEV": {
+   "value": {
+    "group": "PC",
+    "family": "LEVER",
+    "segment": "pc_sma",
+    "age": 0,
+    "unfunded_per_nav": 0.0,
+    "winners_curse": 0.0,
+    "discount_gate": 0.0,
+    "cap_year": 1.0,
+    "group_cap_share": 1.0,
+    "alpha_pp": [
+     0.0,
+     0.0,
+     0.0
+    ],
+    "classes": [
+     0
+    ],
+    "green_only": false,
+    "lever_debt": 1.0,
+    "lever_spread": 0.0225
+   },
+   "unit": "template spec",
+   "rationale": "Levered SMA sleeve, D/E 1.0 at SOFR + 225bp, senior non-software loans, BEN only.",
+   "source": "DSGO section 2.5; GRP section 3.6"
+  }
+ },
+ "pacing": {
+  "plan": {
+   "value": {
+    "PE": 3.5,
+    "SEC": 1.0,
+    "RA": 1.2,
+    "PC": 1.2,
+    "CS": 0.6
+   },
+   "unit": "$bn of new commitments a year",
+   "rationale": "Commitment plan in allocation v2: PE $3.5bn (v1.1's $5.34bn x 34/52); RA infrastructure-led $1.2bn; Secondaries, Private Credit and Capital Solutions from the 60/10/10/10/10 split scaled to v2.",
+   "source": "DSGO section 2.1 (PE plan $3.5bn); RA section 2.3 ($1.2bn); SYN section 2.3 (split) [A]"
+  },
+  "segments": {
+   "value": {
+    "PE": "pe_buyout",
+    "SEC": "sec_fund",
+    "RA": "ra_infra_fund",
+    "PC": "pc_fund",
+    "CS": "cs_credit"
+   },
+   "unit": "segment of each commitment template",
+   "rationale": "Flow profile of a new commitment (calls by age, distributions, loadings).",
+   "source": "this file, book.segments"
+  },
+  "mult_range": {
+   "value": [
+    0.25,
+    1.25
+   ],
+   "unit": "x plan",
+   "rationale": "Commitment budget range with the protected 25% core; the stage ranges (Green 0.75-1.25x, Amber 0.25-0.5x) are reported, not imposed, so the plan is not driven by a hard IC range (TD verify_finance H3).",
+   "source": "DSGO section 2.1 [A deviation noted]"
+  },
+  "c_pace": {
+   "value": {
+    "PE": 0.086,
+    "SEC": 0.05,
+    "RA": 0.03,
+    "PC": 0.01,
+    "CS": 0.01
+   },
+   "unit": "$ per $ of commitment above (+) or below (-) plan, at the leaf",
+   "rationale": "Post-horizon part of the alpha of commitments made or forgone, counted once at the leaf (8.6 cents per PE $).",
+   "source": "DSGO sections 2.1, 4.1 (RV-18); [A] for non-PE groups"
+  }
+ },
+ "trading": {
+  "tc": {
+   "value": {
+    "lo_dm": 0.0008,
+    "lo_em": 0.003,
+    "lo_fi": 0.0005,
+    "hf": 0.0
+   },
+   "unit": "cost per $ traded",
+   "rationale": "Impact + half-spread: 4-13bp US large cap, 23-40bp EM; hedge-fund subscriptions at NAV.",
+   "source": "DSGO section 2.6; GRP section 2.3"
+  },
+  "k_sel": {
+   "value": 0.005,
+   "unit": "share of W0 per unit per node at the median posterior sd",
+   "rationale": "Per-unit trade cap |dv_i| <= k_sel W0 sigma_ref / sigma_post,i: units with weaker evidence trade in smaller size (belief risk).",
+   "source": "DSGO section 3.3 (RV-01)"
+  },
+  "xmax_liquid": {
+   "value": 3.0,
+   "unit": "x original position",
+   "rationale": "Upper bound on a liquid holding (other rows bind first).",
+   "source": "[A]"
+  },
+  "lp_depth_year": {
+   "value": [
+    9.0,
+    7.0,
+    5.0
+   ],
+   "unit": "$bn of PE + Secondaries LP sales per year by class",
+   "rationale": "<= 5% of segment depth per half-year (secondary volume about $230bn a year) times the success probability 0.80 / 0.60 / 0.45.",
+   "source": "DSGO section 4.6 H7; section 2.1"
+  },
+  "co_sale_share": {
+   "value": 0.1,
+   "unit": "share of group NAV per year",
+   "rationale": "Co-investment sales cap.",
+   "source": "DSGO section 4.6 H7 [A]"
+  },
+  "ra_sale_share": {
+   "value": [
+    0.21,
+    0.175,
+    0.125
+   ],
+   "unit": "share of RA NAV per year by class",
+   "rationale": "<= 25% of segment volume times availability 0.85 / 0.70 / 0.50.",
+   "source": "DSGO section 2.7; H7"
+  },
+  "amber_sale_share": {
+   "value": {
+    "CS": [
+     0.3,
+     0.2,
+     0.1
+    ],
+    "PC": [
+     0.5,
+     0.4,
+     0.25
+    ]
+   },
+   "unit": "share of group NAV per year by class",
+   "rationale": "Syndication / loan-sale depth; thin in STR.",
+   "source": "DSGO sections 2.4-2.5 [A]"
+  },
+  "hf_secondary_share": {
+   "value": 0.5,
+   "unit": "share of HF NAV per year",
+   "rationale": "Hedge-fund secondary depth.",
+   "source": "[A]"
+  },
+  "redeem_phi": {
+   "value": {
+    "hf": [
+     1.0,
+     0.95,
+     0.66
+    ],
+    "re_open_end": [
+     0.8,
+     0.34,
+     0.14
+    ]
+   },
+   "unit": "share of a redemption paid within 12 months by class",
+   "rationale": "Hedge funds: P5 66% by 12 months in a crisis; open-end real estate 34% by month 12 (14% under stress).",
+   "source": "DSGO sections 2.6-2.7; GRP section 3.5; RA section 4.6"
+  }
+ },
+ "constraints": {
+  "floor_hard": {
+   "value": 0.04,
+   "unit": "IG + cash / W",
+   "rationale": "Hard floor at every node, fan year and leaf.",
+   "source": "DSGO section 4.6 H2"
+  },
+  "floor_target": {
+   "value": 0.08,
+   "unit": "IG + cash / W",
+   "rationale": "8% at BEN and DRT nodes (except the first node after a STR node); hard, with its dual as the price.",
+   "source": "DSGO section 4.6 H2"
+  },
+  "lev_cap": {
+   "value": 1.3,
+   "unit": "E / W",
+   "rationale": "Economic exposure cap.",
+   "source": "DSGO section 4.6 H5"
+  },
+  "class_caps": {
+   "value": [
+    1.3,
+    1.15,
+    1.1
+   ],
+   "unit": "E / W by class",
+   "rationale": "Cushion-monotone class caps.",
+   "source": "DSGO section 4.7 G5"
+  },
+  "behind_cap_share": {
+   "value": 0.5,
+   "unit": "share of (L_class - 1)",
+   "rationale": "At behind nodes the cap is 1 + 0.5 (L_class - 1).",
+   "source": "DSGO section 4.7 G5"
+  },
+  "kappa_c": {
+   "value": 1.0,
+   "unit": "$ of borrowed exposure per $ of B0 cushion",
+   "rationale": "Borrowed exposure <= kappa_c x the status quo's non-red liquidity cushion (exogenous).",
+   "source": "DSGO section 4.7 G5"
+  },
+  "behind_gap": {
+   "value": 0.02,
+   "unit": "log TWR gap",
+   "rationale": "A node is behind if the status quo's cumulative TWR trails the 10% path by more than 2pp.",
+   "source": "DSGO section 4.7 G4"
+  },
+  "thin_cash": {
+   "value": 0.06,
+   "unit": "Treasury / NAV",
+   "rationale": "Thin node threshold.",
+   "source": "DSGO section 4.7 G4"
+  },
+  "overcommit": {
+   "value": 0.8,
+   "unit": "(private NAV + unfunded) / W",
+   "rationale": "Overcommitment ceiling; STR nodes exempt.",
+   "source": "DSGO section 4.6 H11"
+  },
+  "range_band": {
+   "value": [
+    0.5,
+    1.5
+   ],
+   "unit": "x SAA weight",
+   "rationale": "No charge inside 0.5-1.5x the group's SAA (t0) weight.",
+   "source": "DSGO section 2.10 (RV-19)"
+  },
+  "range_charge": {
+   "value": 0.005,
+   "unit": "per $ of breach per decision year",
+   "rationale": "Elastic, priced IC ranges; waived at STR nodes.",
+   "source": "DSGO section 2.10 [A]"
+  },
+  "red_eps_tree": {
+   "value": 0.006,
+   "unit": "CVaR tail share",
+   "rationale": "Tree buffer of the red-event CVaR surrogate (tighter than the certified 1%).",
+   "source": "DSGO section 4.6 H9 (RV-22)"
+  },
+  "red_eps_certified": {
+   "value": 0.01,
+   "unit": "probability over 5 years",
+   "rationale": "Certified red-event limit.",
+   "source": "DSGO section 4.6 H9"
+  },
+  "red_sale_threshold": {
+   "value": 0.05,
+   "unit": "$bn",
+   "rationale": "A red-tier sale above this size at a non-Green node (or a fire-sale bid) is a red event in the CVaR row.",
+   "source": "[A]"
+  },
+  "red_bid_ratio": {
+   "value": 0.9,
+   "unit": "bid / normal-class bid",
+   "rationale": "ADR-39: a red-tier sale below 0.9 x the normal bid is a red event.",
+   "source": "ARCH ADR-39; DSGO H9"
+  },
+  "stage_cash_bands": {
+   "value": [
+    0.08,
+    0.06,
+    0.04
+   ],
+   "unit": "IG + cash / W thresholds Green / Amber / Red",
+   "rationale": "CFP event bands: Green >= 8%, Amber 6-8%, Red 4-6%, Black < 4%; class adds DRT -> Amber, STR -> Red.",
+   "source": "ARCH CFP indicators; TD verify_finance H6"
+  },
+  "margin_lo_haircut": {
+   "value": 0.358,
+   "unit": "share",
+   "rationale": "Long-only equity counts at (1 - 35.8%) in the 12-month non-red capacity.",
+   "source": "DSGO H4 (equity -35.8%)"
+  },
+  "margin_hf_phi": {
+   "value": 0.66,
+   "unit": "share",
+   "rationale": "Hedge-fund pass-through within 12 months in stress (P5).",
+   "source": "DSGO section 2.6"
+  },
+  "margin_amber_share": {
+   "value": 0.25,
+   "unit": "share",
+   "rationale": "Amber (CS + PC) saleable within 12 months in stress at stressed bids.",
+   "source": "[A]"
+  },
+  "margin_vm_drop": {
+   "value": 0.358,
+   "unit": "equity fall",
+   "rationale": "Variation margin on futures notional in the stressed year.",
+   "source": "DSGO H4; SYN section 2.3(d)"
+  },
+  "h3_share": {
+   "value": 0.5,
+   "unit": "share of 12-month needs",
+   "rationale": "Six-month coverage at decision nodes.",
+   "source": "DSGO section 4.6 H3"
+  },
+  "h3_hf_phi": {
+   "value": 0.55,
+   "unit": "share",
+   "rationale": "Hedge-fund pass-through within 6 months (P5).",
+   "source": "DSGO section 2.6"
+  },
+  "h4": {
+   "value": {
+    "equity_drop": 0.358,
+    "dist_factor": 0.189,
+    "call_mult": 1.29,
+    "draw_rate": 0.1,
+    "revolver_credit": 0.5,
+    "navf_ltv": 0.05,
+    "hf_pass": 0.83
+   },
+   "unit": "named 24-month stress s*(0.58)",
+   "rationale": "T4' at the root: equity -35.8%, distributions 0.189 x drought, calls x1.29, draws 10% for 2 years, revolver 50%, NAV facility at 5% LTV, hedge funds at 0.83.",
+   "source": "DSGO section 4.6 H4; SYN section 2.3(d)"
+  },
+  "depth_levels": {
+   "value": [
+    0.9,
+    0.95,
+    0.99
+   ],
+   "unit": "CVaR levels",
+   "rationale": "Multi-level relative depth guard against the status quo's leaf distribution.",
+   "source": "DSGO section 4.6 H10(a) (RV-03)"
+  },
+  "depth_delta": {
+   "value": 0.0,
+   "unit": "share of W0",
+   "rationale": "delta = 0 for the recommendation (approximately SSD at three levels).",
+   "source": "DSGO section 4.6 H10 (RV-05)"
+  }
+ },
+ "valuation": {
+  "psi_unfunded": {
+   "value": 0.03,
+   "unit": "$ per $ of unfunded at the leaf",
+   "rationale": "Burden of unfunded commitments at the horizon.",
+   "source": "DSGO section 4.1 ($0.02-0.05)"
+  }
+ },
+ "objective": {
+  "crra_gamma": {
+   "value": 3,
+   "unit": "relative risk aversion",
+   "rationale": "CRRA comparison and the mandatory GBO tie-break.",
+   "source": "DSGO sections 4.3, 4.5"
+  },
+  "crra_tangents": {
+   "value": 32,
+   "unit": "tangent lines",
+   "rationale": "Piecewise-linear outer approximation of the CRRA utility (DSGO uses 48 adaptive tangents; 32 geometric tangents on [0.25, 4] keep the approximation error below 0.2% of utility in the relevant range and cut 3,400 rows).",
+   "source": "DSGO section 4.5 [A scaled]"
+  },
+  "crra_w_range": {
+   "value": [
+    0.25,
+    4.0
+   ],
+   "unit": "real W~ / W0",
+   "rationale": "Tangent points, geometric.",
+   "source": "[A]"
+  },
+  "lambda_T": {
+   "value": 1.0,
+   "unit": "weight",
+   "rationale": "Quadratic shortfall weight in the CRRA comparison.",
+   "source": "DSGO section 4.5"
+  },
+  "l2_segments": {
+   "value": 16,
+   "unit": "segments",
+   "rationale": "Secant approximation of the squared shortfall on [0, 1].",
+   "source": "DSGO section 4.5"
+  },
+  "tiebreak_tol": {
+   "value": 0.005,
+   "unit": "STRETCH: share of c_max W0 of mean wealth; PLAN: bPOE",
+   "rationale": "Hold the goal value within this tolerance, then maximize CRRA(3).",
+   "source": "DSGO section 4.3 (RV-16)"
+  },
+  "bisection_tol": {
+   "value": 0.001,
+   "unit": "bPOE",
+   "rationale": "Bisection precision in PLAN.",
+   "source": "DSGO section 4.3"
+  },
+  "milp_gap": {
+   "value": 1e-06,
+   "unit": "relative MIP gap",
+   "rationale": "HiGHS MIP stopping gap.",
+   "source": "DSGO section 4.4"
+  },
+  "milp_time_limit": {
+   "value": 700,
+   "unit": "seconds",
+   "rationale": "Safety time limit of the main MILP; the node limit below binds first, so results are deterministic. DSGO allows 1,800 s and expects 30-90 minutes to optimality at full scale; a prototype run shows the root alone needs minutes, so the MILP is reported with its gap.",
+   "source": "DSGO section 4.4 [A scaled]"
+  },
+  "milp_node_limit": {
+   "value": 1,
+   "unit": "branch-and-bound nodes",
+   "rationale": "Deterministic work limit: root processing only (IPM relaxation, cuts, root heuristics including the sub-MIP), then stop with the incumbent and the root bound.",
+   "source": "[A]"
+  },
+  "milp_frontier_time_limit": {
+   "value": 400,
+   "unit": "seconds",
+   "rationale": "Safety time limit of each frontier MILP (the node limit binds first).",
+   "source": "[A]"
+  },
+  "milp_frontier_node_limit": {
+   "value": 1,
+   "unit": "nodes",
+   "rationale": "Frontier MILPs run the root relaxation and cuts (a valid upper bound on max P(goal)) from the GBO start; the expensive sub-MIP heuristics are off.",
+   "source": "[A]"
+  },
+  "milp_method": {
+   "value": "round",
+   "unit": "'round' or 'highs'",
+   "rationale": "The exact MILP (HiGHS branch and bound with an IPM root) did not leave the root node within the budget (frontier MILPs hit a 400 s safety limit inside the root cut loop; a single uncontended 240 s run reached a 69% gap). 'round' reports a valid upper bound (the MILP relaxation) and a deterministic incumbent from LP rounding of that relaxation; 'highs' runs branch and bound.",
+   "source": "DSGO section 4.4 deviation, measured [I]"
+  },
+  "milp_heuristic_effort": {
+   "value": 0.1,
+   "unit": "HiGHS share",
+   "rationale": "Main MILP heuristic effort (root sub-MIP / RINS improve the incumbent; measured +1.3pp of in-tree P(goal) in a 240 s test).",
+   "source": "[I]"
+  }
+ },
+ "solver": {
+  "threads": {
+   "value": 1,
+   "unit": "threads",
+   "rationale": "Single-threaded HiGHS for deterministic results.",
+   "source": "DSGO A16"
+  },
+  "feas_tol": {
+   "value": 1e-07,
+   "unit": "tolerance",
+   "rationale": "HiGHS primal and dual feasibility tolerance.",
+   "source": "DSGO section 4.3 (RV-17)"
+  }
+ },
+ "simulation": {
+  "n_cert": {
+   "value": 10000,
+   "unit": "paths",
+   "rationale": "Fresh certification paths (pooled worlds), common random numbers across policies.",
+   "source": "computed task; DSGO section 5.5"
+  },
+  "n_select": {
+   "value": 4000,
+   "unit": "paths",
+   "rationale": "Selection paths (choose the best simple rule) on their own seed.",
+   "source": "DSGO section 4.3"
+  },
+  "chunk": {
+   "value": 1250,
+   "unit": "paths",
+   "rationale": "Paths per certification batch (one batch per worker; 10,000 paths = 8 batches run in parallel).",
+   "source": "[A]"
+  },
+  "idio": {
+   "value": true,
+   "unit": "flag",
+   "rationale": "Idiosyncratic outcome noise per holding in the simulator (sigma_idio of the segment), absent from the tree.",
+   "source": "DSGO section 3.3"
+  },
+  "n_replication_paths": {
+   "value": 4000,
+   "unit": "paths",
+   "rationale": "Paths per replication / placebo book.",
+   "source": "[A scaled]"
+  }
+ },
+ "baselines": {
+  "b0_penalties": {
+   "value": {
+    "LIQ": 1.0,
+    "HF": 2.0,
+    "REV": 3.0,
+    "AMB": 5.0,
+    "RED": 50.0,
+    "REV_BAL": 0.05
+   },
+   "unit": "relative cost per $ (B0 funding LP)",
+   "rationale": "Encodes the status-quo waterfall in the tree: Treasury, long-only, hedge funds, revolver, amber, red; revolver balances are repaid when cash allows.",
+   "source": "DSGO section 6.1 B0 [A]"
+  },
+  "b3_vix_F": {
+   "value": [
+    10.0,
+    60.0
+   ],
+   "unit": "F = (VIX - a) / b",
+   "rationale": "Maps implied vol to the v8 stress indicator F_t (VIX 16 -> F 0.10 today).",
+   "source": "SYN section 4.1 (F_t = 0.10) [A]"
+  },
+  "b3_F_band": {
+   "value": [
+    0.17,
+    0.34
+   ],
+   "unit": "F thresholds",
+   "rationale": "Exposure up to 1.30x when F < 0.17, down to 1.0x when F >= 0.34, linear between.",
+   "source": "DSGO section 6.1 B3"
+  },
+  "b3_lev": {
+   "value": [
+    1.3,
+    1.0
+   ],
+   "unit": "E / W",
+   "rationale": "v8-style exposure targets.",
+   "source": "DSGO section 6.1 B3"
+  },
+  "b4_scales": {
+   "value": [
+    1.0,
+    1.1,
+    1.2,
+    1.3,
+    1.45,
+    1.6
+   ],
+   "unit": "x status-quo exposure",
+   "rationale": "Risk-matched line: status quo plus synthetic beta financed at SOFR + f (a measurement device that may exceed H5).",
+   "source": "DSGO sections 4.8, 6.1 (RV-04)"
+  }
+ },
+ "frontier": {
+  "eps_grid": {
+   "value": [
+    0.003,
+    0.006,
+    0.012,
+    0.025,
+    0.05,
+    1.0
+   ],
+   "unit": "tree red-event CVaR share (1.0 = unbounded)",
+   "rationale": "At least five points of max P(goal) and min bPOE against the red-event limit.",
+   "source": "computed task; DSGO section 4.8"
+  },
+  "milp_points": {
+   "value": [
+    0.003,
+    1.0
+   ],
+   "unit": "red-event CVaR shares",
+   "rationale": "Frontier points that also run the max-P(goal) comparison (the 0.6% point is the main MILP); the remaining points reuse it when their GBO solution is identical.",
+   "source": "[A]"
+  },
+  "delta_grid": {
+   "value": [
+    0.01,
+    0.02,
+    0.04
+   ],
+   "unit": "share of W0",
+   "rationale": "Depth-guard frontier points beyond delta = 0 (GBO only).",
+   "source": "DSGO section 4.8"
+  }
+ },
+ "report": {
+  "n_forced": {
+   "value": 6,
+   "unit": "change-list rows",
+   "rationale": "Root actions with the largest goal value get a forced re-solve and an out-of-sample delta (the rest show LP readings only).",
+   "source": "DSGO section 6.4 [A scaled]"
+  },
+  "n_red_cards": {
+   "value": 3,
+   "unit": "red-tier units",
+   "rationale": "Red-tier root SELL candidates shown by forced re-solve (ADR-39, Amber today).",
+   "source": "DSGO section 6.4"
+  }
+ },
+ "bids": {
+  "rho": {
+   "value": {
+    "fund": [
+     1.0,
+     0.96,
+     0.82
+    ],
+    "co": [
+     0.82,
+     0.68,
+     0.55
+    ],
+    "cs": [
+     0.93,
+     0.88,
+     0.77
+    ],
+    "pc_sma": [
+     1.0,
+     0.97,
+     0.86
+    ],
+    "pc_lp": [
+     0.95,
+     0.89,
+     0.75
+    ],
+    "pc_evergreen": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "pc_bdc": [
+     0.97,
+     0.88,
+     0.72
+    ],
+    "hf": [
+     0.97,
+     0.92,
+     0.8
+    ],
+    "lo_dm": [
+     0.9992,
+     0.999,
+     0.997
+    ],
+    "lo_em": [
+     0.997,
+     0.996,
+     0.99
+    ],
+    "lo_fi": [
+     0.9995,
+     0.9995,
+     0.998
+    ],
+    "ra_direct": [
+     1.0,
+     0.95,
+     0.85
+    ],
+    "ra_lp_core": [
+     0.85,
+     0.75,
+     0.6
+    ],
+    "ra_lp_va": [
+     0.88,
+     0.78,
+     0.62
+    ],
+    "ra_lp_infra": [
+     0.97,
+     0.9,
+     0.8
+    ],
+    "ra_enr_fund": [
+     0.9,
+     0.8,
+     0.65
+    ],
+    "ra_enr_direct": [
+     0.95,
+     0.88,
+     0.75
+    ],
+    "ra_gcc": [
+     0.95,
+     0.9,
+     0.8
+    ]
+   },
+   "unit": "bid per $ of ECONOMIC value by node class [BEN, DRT, STR]; the bid per $ of reported NAV is rho x theta",
+   "rationale": "One price primitive: buyers price economic NAV (rho about 1 at BEN for fund interests, 0.80-0.84 crisis residual at STR); co-investment bids embed a 20-25% buyer hurdle; credit sells near par; RE LP interests carry large value costs.",
+   "source": "DSGO section 2.1-2.7, RV-10; GRP sections 3.1-3.6; RA sections 6.2, 7.3"
+  },
+  "age_multiplier": {
+   "value": [
+    1.0,
+    1.0,
+    0.97,
+    0.9
+   ],
+   "unit": "multiplier by the unit's age bucket",
+   "rationale": "Late-life and tail-end interests sell at a further discount beyond the stale-mark theta.",
+   "source": "DSGO section 2.1 (age multipliers 0.99 / 0.96 / 0.88 / 0.79 / 0.70 on lagged NAV; theta carries the staleness here)"
+  }
+ },
+ "fusion": {
+  "alpha_star_pp": {
+   "value": {
+    "PE": 0.75,
+    "SEC": 1.0,
+    "CO": 1.0,
+    "CS": 0.0,
+    "PC": 0.0,
+    "HF": 0.0,
+    "LO": -0.15,
+    "RA": 0.25
+   },
+   "unit": "pp a year over the factor-implied return",
+   "rationale": "Evidence-central selection alpha priors by group; hedge funds at zero (Jurek-Stafford).",
+   "source": "DSGO section 3.1 prior row; SYN section 4.12; LIT section 3.9"
+  },
+  "unit_prior_sd_pp": {
+   "value": {
+    "PE": 3.0,
+    "SEC": 2.5,
+    "CO": 4.5,
+    "CS": 2.5,
+    "PC": 1.5,
+    "HF": 2.5,
+    "LO": 0.8,
+    "RA": 2.5
+   },
+   "unit": "pp a year",
+   "rationale": "Prior dispersion of a single holding's forward alpha (manager / deal dispersion), wider than the sleeve-level alpha prior.",
+   "source": "SYN section 4.3 (sigma_k about 5.5% for single buyout deals) [A]"
+  },
+  "bias_prior_underwritten_pp": {
+   "value": {
+    "PE": 5.0,
+    "SEC": 2.0,
+    "CO": 6.0,
+    "CS": 2.0,
+    "PC": 0.75,
+    "HF": 3.0,
+    "LO": 1.0,
+    "RA": 2.5
+   },
+   "unit": "pp a year",
+   "rationale": "Prior underwriting optimism by group.",
+   "source": "DSGO section 3.2 bias priors (b_u)"
+  },
+  "bias_prior_forecast_pp": {
+   "value": {
+    "PE": 3.0,
+    "SEC": 1.5,
+    "CO": 3.5,
+    "CS": 1.5,
+    "PC": 0.75,
+    "HF": 2.0,
+    "LO": 0.75,
+    "RA": 1.5
+   },
+   "unit": "pp a year",
+   "rationale": "Prior forecast optimism by group.",
+   "source": "DSGO section 3.2 bias priors (b_f)"
+  },
+  "bias_prior_sd_pp": {
+   "value": {
+    "PE": 1.5,
+    "SEC": 1.0,
+    "CO": 2.0,
+    "CS": 1.0,
+    "PC": 0.5,
+    "HF": 1.0,
+    "LO": 0.5,
+    "RA": 1.0
+   },
+   "unit": "pp a year",
+   "rationale": "Uncertainty of the bias priors; the truth model shifts the true bias by +1 of these.",
+   "source": "DSGO RV-02 [A]"
+  },
+  "archive_n_eff": {
+   "value": {
+    "PE": 24,
+    "SEC": 10,
+    "CO": 18,
+    "CS": 8,
+    "PC": 12,
+    "HF": 30,
+    "LO": 30,
+    "RA": 10
+   },
+   "unit": "effective archived forecasts",
+   "rationale": "Size of each group's scored quarterly forecast archive (clustered by vintage).",
+   "source": "DSGO section 3.2 [A]"
+  },
+  "credibility_constant": {
+   "value": 20,
+   "unit": "observations",
+   "rationale": "Buhlmann credibility Z = n_eff / (n_eff + 20).",
+   "source": "DSGO section 3.2"
+  },
+  "precision_weights_after_n_eff": {
+   "value": 20,
+   "unit": "observations",
+   "rationale": "Weights are shrunk halfway to equal until the archive reaches n_eff >= 20.",
+   "source": "DSGO section 3.3; LIT section 4.10"
+  },
+  "kappa_prior_median": {
+   "value": 1.75,
+   "unit": "ratio of true to stated 80% width",
+   "rationale": "Stated ranges are too narrow; prior LN(ln 1.75, 0.25^2), updated on the archive's range coverage.",
+   "source": "DSGO section 3.2"
+  },
+  "benktander_t": {
+   "value": 0.4,
+   "unit": "credibility parameter",
+   "rationale": "Benktander c* = p / (p + t) between the forecast's chain-ladder estimate and the outside-view prior for fund interests.",
+   "source": "SYN section 4.3 (t about 0.3-0.5)"
+  },
+  "actual_weight_phi": {
+   "value": {
+    "buyout": 0.5,
+    "growth": 0.4,
+    "secondary": 0.4,
+    "deal": 0.3,
+    "credit": 0.5,
+    "hf": 0.3,
+    "lo": 0.2,
+    "ra": 0.4
+   },
+   "unit": "weight on actual minus benchmark",
+   "rationale": "Persistence shrinkage of since-inception performance (0.5 for buyout).",
+   "source": "DSGO section 3.1 (phi_a = 0.5 buyout) [A for other classes]"
+  },
+  "actual_min_age": {
+   "value": 3,
+   "unit": "years",
+   "rationale": "Actual performance unused before year 3.",
+   "source": "DSGO section 3.1"
+  },
+  "outcome_noise": {
+   "value": {
+    "fund": 0.15,
+    "deal": 0.3,
+    "credit": 0.06,
+    "real_asset": 0.12,
+    "liquid": 0.06
+   },
+   "unit": "annual sd by noise class",
+   "rationale": "Outcome noise in the predictive variance (15% funds, 30% single deals; credit, real assets and liquid mandates lower).",
+   "source": "DSGO section 3.3"
+  },
+  "buyer_required_return": {
+   "value": {
+    "fund": 0.14,
+    "co": 0.22,
+    "cs": 0.12,
+    "pc_sma": 0.085,
+    "pc_lp": 0.11,
+    "pc_evergreen": 0.085,
+    "pc_bdc": 0.1,
+    "hf": 0.08,
+    "lo_dm": 0.07,
+    "lo_em": 0.08,
+    "lo_fi": 0.05,
+    "ra_direct": 0.09,
+    "ra_lp_core": 0.1,
+    "ra_lp_va": 0.13,
+    "ra_lp_infra": 0.1,
+    "ra_enr_fund": 0.16,
+    "ra_enr_direct": 0.12,
+    "ra_gcc": 0.11
+   },
+   "unit": "per year",
+   "rationale": "Buyer's required return y_b in the market-anchor translation (LP buyout 14%, single-asset co-investment 22%).",
+   "source": "DSGO section 3.1 market-anchor row; GRP section 3.4 [A for credit and RA]"
+  },
+  "buyer_seller_gap_age_edges": {
+   "value": [
+    4,
+    10
+   ],
+   "unit": "years",
+   "rationale": "Age edges of the buyer-seller PME gap for fund interests.",
+   "source": "DSGO section 3.1"
+  },
+  "buyer_seller_gap_by_age": {
+   "value": [
+    0.245,
+    0.03,
+    -0.048
+   ],
+   "unit": "per year",
+   "rationale": "pi_b: +24.5pp below age 4 (anchor unused), about 3pp at ages 4-9; the tail-end value folds the 18% tail-end buyer return into the 14% base.",
+   "source": "DSGO section 3.1 (pi_b about 3pp ages 4-9, -0.8pp tail-end; y_b 18% tail-end)"
+  },
+  "market_anchor_min_age": {
+   "value": {
+    "fund": 4
+   },
+   "unit": "years",
+   "rationale": "The fund market anchor is unused below age 4.",
+   "source": "DSGO section 3.1"
+  },
+  "bid_dispersion": {
+   "value": 0.05,
+   "unit": "sd of log bid",
+   "rationale": "Error scale of the market anchor (bid dispersion / D).",
+   "source": "DSGO section 3.1 [A]"
+  },
+  "student_t_dof": {
+   "value": 5,
+   "unit": "degrees of freedom",
+   "rationale": "Predictive tails.",
+   "source": "DSGO section 3.3"
+  },
+  "precision_horizon_quarters": {
+   "value": 8,
+   "unit": "quarters",
+   "rationale": "Forecast precision is capped beyond about 8 quarters: precision x min(1, 8/h).",
+   "source": "DSGO section 3.2; LIT section 4.10"
+  },
+  "flags": {
+   "value": {
+    "hockey_min_age": 3,
+    "hockey_gap": 0.08,
+    "stale_theta": 0.85,
+    "market_disagreement": 0.04,
+    "zombie_age": 12,
+    "zombie_tvpi": 1.3
+   },
+   "unit": "thresholds (years, IRR gap, theta, return gap, years, TVPI)",
+   "rationale": "Belief-card flags: hockey-stick forecast, stale NAV, market disagreement > 400bp, zombie NAV.",
+   "source": "SYN section 4.3 flags F1-F10"
+  }
+ },
+ "truth_model": {
+  "alpha_dispersion_main": {
+   "value": 1.0,
+   "unit": "x prior sd",
+   "rationale": "Dispersion of true alpha in the headline book; the replication books use 0.5 and 1.5.",
+   "source": "DSGO RV-02 [A]"
+  },
+  "alpha_dispersion_variants": {
+   "value": [
+    0.5,
+    1.5
+   ],
+   "unit": "x prior sd",
+   "rationale": "True alpha dispersion different from the belief model's prior.",
+   "source": "DSGO RV-02 (0.5x and 1.5x)"
+  },
+  "bid_info_main": {
+   "value": 1.0,
+   "unit": "share",
+   "rationale": "Bid informativeness in the headline book.",
+   "source": "DSGO RV-02"
+  },
+  "bid_info_variants": {
+   "value": [
+    1.0,
+    0.5
+   ],
+   "unit": "share",
+   "rationale": "Bid informativeness variants.",
+   "source": "DSGO RV-02 (1.0 and 0.5)"
+  },
+  "bias_shift_sd": {
+   "value": 1.0,
+   "unit": "prior sds",
+   "rationale": "True group biases sit one prior sd above the bias priors the fusion uses.",
+   "source": "DSGO RV-02 (+1 sd)"
+  },
+  "drought_forecast_optimism_pp": {
+   "value": 1.0,
+   "unit": "pp a year",
+   "rationale": "Regime component: forecasts are more optimistic in a drought (today).",
+   "source": "DSGO RV-02; LIT section 4.10 (Hribar & McInnis)"
+  },
+  "range_kappa_true": {
+   "value": 2.2,
+   "unit": "ratio",
+   "rationale": "Stated 80% ranges cover about 44% of outcomes (36-52%).",
+   "source": "SYN L7; DSGO RV-02"
+  },
+  "actual_persistence": {
+   "value": 0.5,
+   "unit": "share of true alpha in since-inception returns",
+   "rationale": "Realized performance reflects true alpha only partly.",
+   "source": "[A]"
+  },
+  "forecast_error_sd_pp": {
+   "value": {
+    "fund": 3.0,
+    "deal": 5.0,
+    "credit": 1.5,
+    "real_asset": 3.0,
+    "liquid": 2.0
+   },
+   "unit": "pp a year by noise class",
+   "rationale": "Forecast error around the truth.",
+   "source": "SYN section 4.3 (forecast error sd 6%; funds lower) [A]"
+  },
+  "underwriting_error_sd_pp": {
+   "value": 3.0,
+   "unit": "pp a year",
+   "rationale": "Noise in the underwritten case.",
+   "source": "[A]"
+  },
+  "underwritten_case_down_pp": {
+   "value": 6.0,
+   "unit": "pp a year",
+   "rationale": "Down case below base in the underwriting memo.",
+   "source": "[A]"
+  },
+  "underwritten_case_up_pp": {
+   "value": 5.0,
+   "unit": "pp a year",
+   "rationale": "Up case above base in the underwriting memo.",
+   "source": "[A]"
+  },
+  "bid_noise_sd": {
+   "value": 0.02,
+   "unit": "sd of log bid",
+   "rationale": "Noise in an external bid.",
+   "source": "[A]"
+  },
+  "bid_alpha_passthrough": {
+   "value": 0.5,
+   "unit": "share of true alpha deviation priced by buyers per year of duration",
+   "rationale": "Bids are only partly informative about true alpha.",
+   "source": "DSGO RV-02 [A]"
+  },
+  "archive_error_sd_pp": {
+   "value": 4.0,
+   "unit": "pp a year",
+   "rationale": "Spread of scored past forecast errors in the archive.",
+   "source": "[A]"
+  },
+  "realized_benchmark_sd_pp": {
+   "value": 3.0,
+   "unit": "pp a year",
+   "rationale": "Vintage dispersion of realized benchmark returns behind since-inception performance.",
+   "source": "[A]"
+  },
+  "opp_sr_mean": {
+   "value": 0.3,
+   "unit": "Sharpe ratio",
+   "rationale": "True opportunistic-book Sharpe is drawn per book from the prior N(0.3, 0.25^2).",
+   "source": "SYN section 4.6 (prior N(0.3, 0.25^2))"
+  },
+  "opp_sr_sd": {
+   "value": 0.25,
+   "unit": "Sharpe ratio",
+   "rationale": "See opp_sr_mean.",
+   "source": "SYN section 4.6"
+  }
+ },
+ "book": {
+  "segments": {
+   "pe_buyout": {
+    "value": {
+     "kind": "fund",
+     "noise": "fund",
+     "tier": "red",
+     "vehicle": "LP fund interest",
+     "control": "LP",
+     "B": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.03,
+      0.0
+     ],
+     "sigma_idio": 0.12,
+     "yield": 0.0,
+     "dist": [
+      0.03,
+      0.14,
+      0.24,
+      0.3
+     ],
+     "call": [
+      0.35,
+      0.25,
+      0.15,
+      0.08
+     ],
+     "edges": [
+      4,
+      7,
+      10
+     ],
+     "phi": 0.55,
+     "theta_by_age": [
+      0.99,
+      0.95,
+      0.92,
+      0.84
+     ],
+     "life": 11,
+     "min_remaining": 1.5,
+     "duration_share": 0.55,
+     "bid_key": "fund",
+     "age_mult": true,
+     "bid_external": true,
+     "actual_class": "buyout",
+     "realize_start": 3,
+     "realize_span": 8,
+     "realize_max": 0.85,
+     "marked": false,
+     "flags": [
+      "pledge_pool"
+     ]
+    },
+    "unit": "segment defaults (B = loadings on [eq, cr, rt, oil, ex, vol]; dist/call = annual intensities by age bucket)",
+    "rationale": "Buyout fund interest: de-smoothed beta 1.0; drought distribution rate about 9% and calls about 28-31% of unfunded at the book level; stale tail-end marks (theta 0.84).",
+    "source": "DSGO section 3.3 (buyout beta 1.0); SYN sections 2.3, 4.2; GRP section 3.2 (tail-end theta 0.78-0.83)"
+   },
+   "pe_growth": {
+    "value": {
+     "kind": "fund",
+     "noise": "fund",
+     "tier": "red",
+     "vehicle": "LP fund interest",
+     "control": "LP",
+     "B": [
+      1.4,
+      0.0,
+      0.0,
+      0.0,
+      0.04,
+      0.0
+     ],
+     "sigma_idio": 0.2,
+     "yield": 0.0,
+     "dist": [
+      0.02,
+      0.1,
+      0.2,
+      0.28
+     ],
+     "call": [
+      0.35,
+      0.25,
+      0.15,
+      0.08
+     ],
+     "edges": [
+      4,
+      7,
+      10
+     ],
+     "phi": 0.55,
+     "theta_by_age": [
+      0.99,
+      0.94,
+      0.9,
+      0.82
+     ],
+     "life": 11,
+     "min_remaining": 1.5,
+     "duration_share": 0.55,
+     "bid_key": "fund",
+     "age_mult": true,
+     "bid_external": true,
+     "actual_class": "growth",
+     "realize_start": 3,
+     "realize_span": 8,
+     "realize_max": 0.85,
+     "marked": false,
+     "flags": [
+      "pledge_pool"
+     ]
+    },
+    "unit": "segment defaults",
+    "rationale": "VC/growth fund interest: beta 1.4.",
+    "source": "DSGO section 3.3 (VC beta 1.4)"
+   },
+   "pe_asia": {
+    "value": {
+     "kind": "fund",
+     "noise": "fund",
+     "tier": "red",
+     "vehicle": "LP fund interest",
+     "control": "LP",
+     "B": [
+      1.15,
+      0.0,
+      0.0,
+      0.05,
+      0.03,
+      0.0
+     ],
+     "sigma_idio": 0.15,
+     "yield": 0.0,
+     "dist": [
+      0.02,
+      0.1,
+      0.2,
+      0.26
+     ],
+     "call": [
+      0.35,
+      0.25,
+      0.15,
+      0.08
+     ],
+     "edges": [
+      4,
+      7,
+      10
+     ],
+     "phi": 0.55,
+     "theta_by_age": [
+      0.99,
+      0.93,
+      0.9,
+      0.82
+     ],
+     "life": 11,
+     "min_remaining": 1.5,
+     "duration_share": 0.55,
+     "bid_key": "fund",
+     "age_mult": true,
+     "bid_external": true,
+     "actual_class": "buyout",
+     "realize_start": 3,
+     "realize_span": 8,
+     "realize_max": 0.85,
+     "marked": false,
+     "flags": [
+      "pledge_pool"
+     ]
+    },
+    "unit": "segment defaults",
+    "rationale": "Asia/EM buyout fund interest; slower distributions.",
+    "source": "SYN section 4.4 (Asia/EM feature in the hedonic price) [A]"
+   },
+   "sec_fund": {
+    "value": {
+     "kind": "fund",
+     "noise": "fund",
+     "tier": "red",
+     "vehicle": "secondary fund",
+     "control": "LP",
+     "B": [
+      0.8,
+      0.0,
+      0.0,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "sigma_idio": 0.08,
+     "yield": 0.0,
+     "dist": [
+      0.12,
+      0.22,
+      0.28,
+      0.32
+     ],
+     "call": [
+      0.45,
+      0.3,
+      0.15,
+      0.1
+     ],
+     "edges": [
+      3,
+      6,
+      9
+     ],
+     "phi": 0.5,
+     "theta_by_age": [
+      0.97,
+      0.95,
+      0.92,
+      0.85
+     ],
+     "life": 9,
+     "min_remaining": 1.5,
+     "duration_share": 0.5,
+     "bid_key": "fund",
+     "age_mult": true,
+     "bid_external": true,
+     "actual_class": "secondary",
+     "realize_start": 1,
+     "realize_span": 6,
+     "realize_max": 0.85,
+     "marked": false,
+     "flags": [
+      "pledge_pool"
+     ]
+    },
+    "unit": "segment defaults",
+    "rationale": "Two-layer secondary fund: calls 45% a year of the remainder early, faster distributions.",
+    "source": "DSGO section 2.2 (secondary-fund calls 45% a year); SYN section 4.2"
+   },
+   "sec_portfolio": {
+    "value": {
+     "kind": "deal",
+     "noise": "fund",
+     "tier": "red",
+     "vehicle": "direct LP-portfolio purchase",
+     "control": "LP",
+     "B": [
+      0.9,
+      0.0,
+      0.0,
+      0.0,
+      0.025,
+      0.0
+     ],
+     "sigma_idio": 0.1,
+     "yield": 0.0,
+     "dist": [
+      0.18,
+      0.22,
+      0.26,
+      0.3
+     ],
+     "call": [
+      0.15,
+      0.12,
+      0.08,
+      0.05
+     ],
+     "edges": [
+      2,
+      4,
+      6
+     ],
+     "phi": 0.5,
+     "theta_by_age": [
+      0.95,
+      0.93,
+      0.9,
+      0.85
+     ],
+     "life": 6,
+     "min_remaining": 1.5,
+     "duration_share": 0.5,
+     "bid_key": "fund",
+     "age_mult": true,
+     "bid_external": true,
+     "actual_class": "secondary",
+     "realize_start": 0.5,
+     "realize_span": 5,
+     "realize_max": 0.85,
+     "marked": false,
+     "flags": [
+      "pledge_pool"
+     ]
+    },
+    "unit": "segment defaults",
+    "rationale": "Purchased LP interests (hybrid Secondaries book).",
+    "source": "GRP section 3.2"
+   },
+   "sec_cv": {
+    "value": {
+     "kind": "deal",
+     "noise": "deal",
+     "tier": "red",
+     "vehicle": "GP-led CV stake",
+     "control": "LP",
+     "B": [
+      1.5,
+      0.0,
+      0.0,
+      0.0,
+      0.04,
+      0.0
+     ],
+     "sigma_idio": 0.22,
+     "yield": 0.0,
+     "dist": [
+      0.08,
+      0.18,
+      0.28,
+      0.3
+     ],
+     "call": [
+      0.1,
+      0.08,
+      0.05,
+      0.0
+     ],
+     "edges": [
+      2,
+      4,
+      6
+     ],
+     "phi": 0.5,
+     "theta_by_age": [
+      0.98,
+      0.95,
+      0.92,
+      0.88
+     ],
+     "life": 5,
+     "min_remaining": 1.5,
+     "duration_share": 0.6,
+     "bid_key": "fund",
+     "age_mult": true,
+     "bid_external": true,
+     "actual_class": "deal",
+     "realize_start": 2,
+     "realize_span": 4,
+     "realize_max": 0.6,
+     "marked": false,
+     "flags": []
+    },
+    "unit": "segment defaults",
+    "rationale": "Continuation-vehicle stake: beta 1.5-1.6, median exit 4.5 years.",
+    "source": "DSGO section 3.3 (CV stakes 1.5-1.6); SYN section 4.2"
+   },
+   "co_deal": {
+    "value": {
+     "kind": "deal",
+     "noise": "deal",
+     "tier": "red",
+     "vehicle": "co-investment (minority)",
+     "control": "minority",
+     "B": [
+      1.3,
+      0.3,
+      0.0,
+      0.0,
+      0.04,
+      0.0
+     ],
+     "sigma_idio": 0.22,
+     "yield": 0.0,
+     "dist": [
+      0.04,
+      0.14,
+      0.24,
+      0.32
+     ],
+     "call": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "edges": [
+      3,
+      5,
+      7
+     ],
+     "phi": 0.5,
+     "theta_by_age": [
+      0.97,
+      0.93,
+      0.9,
+      0.85
+     ],
+     "life": 6.5,
+     "min_remaining": 1.5,
+     "duration_share": 0.6,
+     "bid_key": "co",
+     "age_mult": false,
+     "bid_external": true,
+     "actual_class": "deal",
+     "realize_start": 3,
+     "realize_span": 4,
+     "realize_max": 0.6,
+     "marked": false,
+     "flags": []
+    },
+    "unit": "segment defaults",
+    "rationale": "Co-investment cohort: levered equity beta beta_A V/E about 1.3; hold +1.5 years in the deal model; single-asset REFINANCE inadmissible.",
+    "source": "DSGO sections 2.3, 3.3; GRP section 3.4"
+   },
+   "cs_credit": {
+    "value": {
+     "kind": "deal",
+     "noise": "credit",
+     "tier": "amber",
+     "vehicle": "structured / preferred",
+     "control": "LP",
+     "B": [
+      0.4,
+      0.6,
+      0.0,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "sigma_idio": 0.08,
+     "yield": 0.07,
+     "dist": [
+      0.05,
+      0.15,
+      0.25,
+      0.3
+     ],
+     "call": [
+      0.3,
+      0.2,
+      0.1,
+      0.0
+     ],
+     "edges": [
+      2,
+      4,
+      6
+     ],
+     "phi": 0.3,
+     "theta_by_age": [
+      0.99,
+      0.98,
+      0.96,
+      0.92
+     ],
+     "life": 5.5,
+     "min_remaining": 1.5,
+     "duration_share": 0.6,
+     "bid_key": "cs",
+     "age_mult": false,
+     "bid_external": false,
+     "actual_class": "credit",
+     "realize_start": 1,
+     "realize_span": 4,
+     "realize_max": 0.7,
+     "marked": false,
+     "flags": [
+      "cs_book"
+     ]
+    },
+    "unit": "segment defaults",
+    "rationale": "Capital Solutions claim: cash 7% of NAV a year; net alpha about 0 once equity risk is priced.",
+    "source": "SYN section 2.3 (Capital Solutions cash 7%); SYN section 4.3 (Erel-Flanagan-Weisbach)"
+   },
+   "pc_sma": {
+    "value": {
+     "kind": "deal",
+     "noise": "credit",
+     "tier": "amber",
+     "vehicle": "SMA loan book",
+     "control": "controlled (SMA)",
+     "B": [
+      0.2,
+      0.9,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "sigma_idio": 0.03,
+     "yield": 0.09,
+     "dist": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "call": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "edges": [
+      3,
+      6,
+      9
+     ],
+     "phi": 0.3,
+     "theta_by_age": [
+      0.99,
+      0.99,
+      0.98,
+      0.97
+     ],
+     "life": 4,
+     "min_remaining": 2,
+     "duration_share": 0.7,
+     "bid_key": "pc_sma",
+     "age_mult": false,
+     "bid_external": false,
+     "actual_class": "credit",
+     "realize_start": 0,
+     "realize_span": 1,
+     "realize_max": 0.0,
+     "marked": false,
+     "flags": [
+      "sma"
+     ]
+    },
+    "unit": "segment defaults",
+    "rationale": "SMA senior loans: coupons paid out, principal reinvested (run-off is a SELL at par); LAY about 7-9%.",
+    "source": "GRP section 3.6; SYN section 4.3"
+   },
+   "pc_fund": {
+    "value": {
+     "kind": "fund",
+     "noise": "credit",
+     "tier": "amber",
+     "vehicle": "closed-end credit fund",
+     "control": "LP",
+     "B": [
+      0.25,
+      0.9,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "sigma_idio": 0.04,
+     "yield": 0.09,
+     "dist": [
+      0.0,
+      0.1,
+      0.25,
+      0.35
+     ],
+     "call": [
+      0.4,
+      0.3,
+      0.1,
+      0.0
+     ],
+     "edges": [
+      2,
+      4,
+      6
+     ],
+     "phi": 0.3,
+     "theta_by_age": [
+      0.99,
+      0.98,
+      0.97,
+      0.95
+     ],
+     "life": 7,
+     "min_remaining": 1.5,
+     "duration_share": 0.6,
+     "bid_key": "pc_lp",
+     "age_mult": false,
+     "bid_external": true,
+     "actual_class": "credit",
+     "realize_start": 1,
+     "realize_span": 5,
+     "realize_max": 0.85,
+     "marked": false,
+     "flags": []
+    },
+    "unit": "segment defaults",
+    "rationale": "Closed-end direct-lending / ABF fund: coupons and amortization (Private Credit cash 10% of NAV a year at the book level).",
+    "source": "SYN section 2.3 (Private Credit cash 10%)"
+   },
+   "pc_evergreen": {
+    "value": {
+     "kind": "deal",
+     "noise": "credit",
+     "tier": "amber",
+     "vehicle": "evergreen credit fund",
+     "control": "LP",
+     "B": [
+      0.25,
+      0.9,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "sigma_idio": 0.04,
+     "yield": 0.08,
+     "dist": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "call": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "edges": [
+      3,
+      6,
+      9
+     ],
+     "phi": 0.3,
+     "theta_by_age": [
+      0.99,
+      0.99,
+      0.99,
+      0.99
+     ],
+     "life": 4,
+     "min_remaining": 2,
+     "duration_share": 0.7,
+     "bid_key": "pc_evergreen",
+     "age_mult": false,
+     "bid_external": false,
+     "actual_class": "credit",
+     "realize_start": 0,
+     "realize_span": 1,
+     "realize_max": 0.0,
+     "marked": false,
+     "flags": [
+      "evergreen"
+     ]
+    },
+    "unit": "segment defaults",
+    "rationale": "Evergreen fund: tenders at NAV but prorated (about 38% filled).",
+    "source": "GRP section 3.6; LIT section 4.11 (Couts 2025)"
+   },
+   "pc_bdc": {
+    "value": {
+     "kind": "deal",
+     "noise": "credit",
+     "tier": "amber",
+     "vehicle": "listed BDC shares",
+     "control": "LP",
+     "B": [
+      0.6,
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "sigma_idio": 0.12,
+     "yield": 0.1,
+     "dist": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "call": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "edges": [
+      3,
+      6,
+      9
+     ],
+     "phi": 0.0,
+     "theta_by_age": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "life": 4,
+     "min_remaining": 2,
+     "duration_share": 0.7,
+     "bid_key": "pc_bdc",
+     "age_mult": false,
+     "bid_external": true,
+     "actual_class": "credit",
+     "realize_start": 0,
+     "realize_span": 1,
+     "realize_max": 0.0,
+     "marked": true,
+     "flags": []
+    },
+    "unit": "segment defaults",
+    "rationale": "Listed BDC shares: marked to market, sold at a market discount to NAV in stress.",
+    "source": "GRP section 3.6"
+   },
+   "hf_multi": {
+    "value": {
+     "kind": "deal",
+     "noise": "liquid",
+     "tier": "liquid",
+     "vehicle": "hedge-fund lot",
+     "control": "LP",
+     "B": [
+      0.2,
+      0.1,
+      0.0,
+      0.0,
+      0.0,
+      -0.15
+     ],
+     "sigma_idio": 0.05,
+     "yield": 0.0,
+     "dist": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "call": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "edges": [
+      3,
+      6,
+      9
+     ],
+     "phi": 0.0,
+     "theta_by_age": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "life": 5,
+     "min_remaining": 5,
+     "duration_share": 1.0,
+     "bid_key": "hf",
+     "age_mult": false,
+     "bid_external": false,
+     "actual_class": "hf",
+     "realize_start": 0,
+     "realize_span": 1,
+     "realize_max": 0.0,
+     "marked": true,
+     "flags": [
+      "hf"
+     ]
+    },
+    "unit": "segment defaults",
+    "rationale": "Multi-strategy lot: low beta, short-volatility exposure (put-writing-like returns).",
+    "source": "GRP section 3.5; LIT section 3.9 (Jurek & Stafford 2015)"
+   },
+   "hf_macro": {
+    "value": {
+     "kind": "deal",
+     "noise": "liquid",
+     "tier": "liquid",
+     "vehicle": "hedge-fund lot",
+     "control": "LP",
+     "B": [
+      0.0,
+      0.0,
+      0.1,
+      0.05,
+      0.0,
+      0.05
+     ],
+     "sigma_idio": 0.07,
+     "yield": 0.0,
+     "dist": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "call": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "edges": [
+      3,
+      6,
+      9
+     ],
+     "phi": 0.0,
+     "theta_by_age": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "life": 5,
+     "min_remaining": 5,
+     "duration_share": 1.0,
+     "bid_key": "hf",
+     "age_mult": false,
+     "bid_external": false,
+     "actual_class": "hf",
+     "realize_start": 0,
+     "realize_span": 1,
+     "realize_max": 0.0,
+     "marked": true,
+     "flags": [
+      "hf"
+     ]
+    },
+    "unit": "segment defaults",
+    "rationale": "Global macro lot: near-zero beta, slightly long volatility.",
+    "source": "GRP section 3.5 [A]"
+   },
+   "hf_credit": {
+    "value": {
+     "kind": "deal",
+     "noise": "liquid",
+     "tier": "liquid",
+     "vehicle": "hedge-fund lot",
+     "control": "LP",
+     "B": [
+      0.3,
+      0.4,
+      0.0,
+      0.0,
+      0.0,
+      -0.25
+     ],
+     "sigma_idio": 0.05,
+     "yield": 0.0,
+     "dist": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "call": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "edges": [
+      3,
+      6,
+      9
+     ],
+     "phi": 0.0,
+     "theta_by_age": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "life": 5,
+     "min_remaining": 5,
+     "duration_share": 1.0,
+     "bid_key": "hf",
+     "age_mult": false,
+     "bid_external": false,
+     "actual_class": "hf",
+     "realize_start": 0,
+     "realize_span": 1,
+     "realize_max": 0.0,
+     "marked": true,
+     "flags": [
+      "hf"
+     ]
+    },
+    "unit": "segment defaults",
+    "rationale": "Credit / event lot.",
+    "source": "GRP section 3.5 [A]"
+   },
+   "hf_els": {
+    "value": {
+     "kind": "deal",
+     "noise": "liquid",
+     "tier": "liquid",
+     "vehicle": "hedge-fund lot",
+     "control": "LP",
+     "B": [
+      0.5,
+      0.1,
+      0.0,
+      0.0,
+      0.0,
+      -0.2
+     ],
+     "sigma_idio": 0.07,
+     "yield": 0.0,
+     "dist": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "call": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "edges": [
+      3,
+      6,
+      9
+     ],
+     "phi": 0.0,
+     "theta_by_age": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "life": 5,
+     "min_remaining": 5,
+     "duration_share": 1.0,
+     "bid_key": "hf",
+     "age_mult": false,
+     "bid_external": false,
+     "actual_class": "hf",
+     "realize_start": 0,
+     "realize_span": 1,
+     "realize_max": 0.0,
+     "marked": true,
+     "flags": [
+      "hf"
+     ]
+    },
+    "unit": "segment defaults",
+    "rationale": "Equity long/short lot.",
+    "source": "GRP section 3.5 [A]"
+   },
+   "hf_rv": {
+    "value": {
+     "kind": "deal",
+     "noise": "liquid",
+     "tier": "liquid",
+     "vehicle": "hedge-fund lot",
+     "control": "LP",
+     "B": [
+      0.1,
+      0.2,
+      0.1,
+      0.0,
+      0.0,
+      -0.2
+     ],
+     "sigma_idio": 0.04,
+     "yield": 0.0,
+     "dist": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "call": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "edges": [
+      3,
+      6,
+      9
+     ],
+     "phi": 0.0,
+     "theta_by_age": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "life": 5,
+     "min_remaining": 5,
+     "duration_share": 1.0,
+     "bid_key": "hf",
+     "age_mult": false,
+     "bid_external": false,
+     "actual_class": "hf",
+     "realize_start": 0,
+     "realize_span": 1,
+     "realize_max": 0.0,
+     "marked": true,
+     "flags": [
+      "hf"
+     ]
+    },
+    "unit": "segment defaults",
+    "rationale": "Relative-value lot (funding-liquidity sensitive).",
+    "source": "GRP section 3.5 [A]"
+   },
+   "lo_dm_core": {
+    "value": {
+     "kind": "deal",
+     "noise": "liquid",
+     "tier": "liquid",
+     "vehicle": "long-only mandate",
+     "control": "own",
+     "B": [
+      1.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "sigma_idio": 0.005,
+     "yield": 0.0,
+     "dist": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "call": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "edges": [
+      3,
+      6,
+      9
+     ],
+     "phi": 0.0,
+     "theta_by_age": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "life": 5,
+     "min_remaining": 5,
+     "duration_share": 1.0,
+     "bid_key": "lo_dm",
+     "age_mult": false,
+     "bid_external": false,
+     "actual_class": "lo",
+     "realize_start": 0,
+     "realize_span": 1,
+     "realize_max": 0.0,
+     "marked": true,
+     "flags": [
+      "p2s"
+     ]
+    },
+    "unit": "segment defaults",
+    "rationale": "Index-like DM equity core: the physical-to-synthetic sleeve.",
+    "source": "GRP section 3.5; SYN section 4.4"
+   },
+   "lo_dm_active": {
+    "value": {
+     "kind": "deal",
+     "noise": "liquid",
+     "tier": "liquid",
+     "vehicle": "long-only mandate",
+     "control": "own",
+     "B": [
+      1.05,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "sigma_idio": 0.03,
+     "yield": 0.0,
+     "dist": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "call": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "edges": [
+      3,
+      6,
+      9
+     ],
+     "phi": 0.0,
+     "theta_by_age": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "life": 5,
+     "min_remaining": 5,
+     "duration_share": 1.0,
+     "bid_key": "lo_dm",
+     "age_mult": false,
+     "bid_external": false,
+     "actual_class": "lo",
+     "realize_start": 0,
+     "realize_span": 1,
+     "realize_max": 0.0,
+     "marked": true,
+     "flags": []
+    },
+    "unit": "segment defaults",
+    "rationale": "Active DM equity; net IR about -0.05.",
+    "source": "SYN section 4.3 (long-only net IR -0.05)"
+   },
+   "lo_em": {
+    "value": {
+     "kind": "deal",
+     "noise": "liquid",
+     "tier": "liquid",
+     "vehicle": "long-only mandate",
+     "control": "own",
+     "B": [
+      1.15,
+      0.0,
+      0.0,
+      0.1,
+      0.0,
+      0.0
+     ],
+     "sigma_idio": 0.04,
+     "yield": 0.0,
+     "dist": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "call": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "edges": [
+      3,
+      6,
+      9
+     ],
+     "phi": 0.0,
+     "theta_by_age": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "life": 5,
+     "min_remaining": 5,
+     "duration_share": 1.0,
+     "bid_key": "lo_em",
+     "age_mult": false,
+     "bid_external": false,
+     "actual_class": "lo",
+     "realize_start": 0,
+     "realize_span": 1,
+     "realize_max": 0.0,
+     "marked": true,
+     "flags": []
+    },
+    "unit": "segment defaults",
+    "rationale": "Active EM equity: higher beta, some oil sensitivity, higher impact cost.",
+    "source": "GRP section 2.3 (EM impact 23-40bp) [A]"
+   },
+   "lo_fi": {
+    "value": {
+     "kind": "deal",
+     "noise": "liquid",
+     "tier": "liquid",
+     "vehicle": "long-only mandate",
+     "control": "own",
+     "B": [
+      0.0,
+      0.2,
+      1.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "sigma_idio": 0.01,
+     "yield": 0.0,
+     "dist": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "call": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "edges": [
+      3,
+      6,
+      9
+     ],
+     "phi": 0.0,
+     "theta_by_age": [
+      1.0,
+      1.0,
+      1.0,
+      1.0
+     ],
+     "life": 5,
+     "min_remaining": 5,
+     "duration_share": 1.0,
+     "bid_key": "lo_fi",
+     "age_mult": false,
+     "bid_external": false,
+     "actual_class": "lo",
+     "realize_start": 0,
+     "realize_span": 1,
+     "realize_max": 0.0,
+     "marked": true,
+     "flags": []
+    },
+    "unit": "segment defaults",
+    "rationale": "Fixed income (Treasuries and IG): duration 6, a little credit.",
+    "source": "inputs section 1A (fixed income $8bn) [A]"
+   },
+   "ra_core_re_direct": {
+    "value": {
+     "kind": "deal",
+     "noise": "real_asset",
+     "tier": "red",
+     "vehicle": "JV / direct asset",
+     "control": "controlled",
+     "B": [
+      0.57,
+      0.0,
+      0.5,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "sigma_idio": 0.08,
+     "yield": 0.05,
+     "dist": [
+      0.02,
+      0.04,
+      0.06,
+      0.08
+     ],
+     "call": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "edges": [
+      3,
+      6,
+      9
+     ],
+     "phi": 0.6,
+     "theta_by_age": [
+      0.96,
+      0.95,
+      0.94,
+      0.92
+     ],
+     "life": 8,
+     "min_remaining": 2,
+     "duration_share": 0.6,
+     "bid_key": "ra_direct",
+     "age_mult": false,
+     "bid_external": true,
+     "actual_class": "ra",
+     "realize_start": 2,
+     "realize_span": 8,
+     "realize_max": 0.5,
+     "marked": false,
+     "flags": [
+      "controlled"
+     ]
+    },
+    "unit": "segment defaults",
+    "rationale": "Controlled core real estate: true beta 0.57 (0.22 observed), income 5%, cash-out REFINANCE allowed at maturity.",
+    "source": "DSGO sections 2.7, 3.3 (core RE 0.57 true vs 0.22 observed); RA section 7.3"
+   },
+   "ra_core_re_fund": {
+    "value": {
+     "kind": "fund",
+     "noise": "real_asset",
+     "tier": "red",
+     "vehicle": "open-end core RE fund",
+     "control": "LP",
+     "B": [
+      0.57,
+      0.0,
+      0.5,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "sigma_idio": 0.06,
+     "yield": 0.045,
+     "dist": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "call": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "edges": [
+      3,
+      6,
+      9
+     ],
+     "phi": 0.6,
+     "theta_by_age": [
+      0.94,
+      0.94,
+      0.94,
+      0.94
+     ],
+     "life": 8,
+     "min_remaining": 4,
+     "duration_share": 0.6,
+     "bid_key": "ra_lp_core",
+     "age_mult": false,
+     "bid_external": false,
+     "actual_class": "ra",
+     "realize_start": 0,
+     "realize_span": 1,
+     "realize_max": 0.3,
+     "marked": false,
+     "flags": [
+      "open_end"
+     ]
+    },
+    "unit": "segment defaults",
+    "rationale": "Open-end core RE fund: redemption queue (34% paid by month 12) or a costly LP sale.",
+    "source": "RA sections 4.6, 7.4"
+   },
+   "ra_va_re_fund": {
+    "value": {
+     "kind": "fund",
+     "noise": "real_asset",
+     "tier": "red",
+     "vehicle": "value-add RE fund",
+     "control": "LP",
+     "B": [
+      0.9,
+      0.1,
+      0.4,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "sigma_idio": 0.14,
+     "yield": 0.02,
+     "dist": [
+      0.02,
+      0.1,
+      0.2,
+      0.28
+     ],
+     "call": [
+      0.3,
+      0.2,
+      0.1,
+      0.05
+     ],
+     "edges": [
+      3,
+      6,
+      9
+     ],
+     "phi": 0.6,
+     "theta_by_age": [
+      0.97,
+      0.9,
+      0.86,
+      0.8
+     ],
+     "life": 9,
+     "min_remaining": 1.5,
+     "duration_share": 0.55,
+     "bid_key": "ra_lp_va",
+     "age_mult": true,
+     "bid_external": true,
+     "actual_class": "ra",
+     "realize_start": 3,
+     "realize_span": 6,
+     "realize_max": 0.85,
+     "marked": false,
+     "flags": []
+    },
+    "unit": "segment defaults",
+    "rationale": "Value-add RE fund interest: RE LP interests carry large value costs (kappa 31% / 45%).",
+    "source": "RA section 7.3"
+   },
+   "ra_gcc_re": {
+    "value": {
+     "kind": "deal",
+     "noise": "real_asset",
+     "tier": "red",
+     "vehicle": "direct asset",
+     "control": "controlled",
+     "B": [
+      0.3,
+      0.0,
+      0.2,
+      0.1,
+      0.0,
+      0.0
+     ],
+     "sigma_idio": 0.12,
+     "yield": 0.06,
+     "dist": [
+      0.02,
+      0.04,
+      0.06,
+      0.08
+     ],
+     "call": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "edges": [
+      3,
+      6,
+      9
+     ],
+     "phi": 0.6,
+     "theta_by_age": [
+      0.92,
+      0.92,
+      0.92,
+      0.92
+     ],
+     "life": 8,
+     "min_remaining": 2,
+     "duration_share": 0.6,
+     "bid_key": "ra_gcc",
+     "age_mult": false,
+     "bid_external": false,
+     "actual_class": "ra",
+     "realize_start": 2,
+     "realize_span": 8,
+     "realize_max": 0.4,
+     "marked": false,
+     "flags": [
+      "gcc",
+      "controlled"
+     ]
+    },
+    "unit": "segment defaults",
+    "rationale": "GCC real estate: small oil sensitivity (0 today, 0.18 in glut/demand-bust states); capped at 1% of NAV.",
+    "source": "DSGO section 3.3; RA section 9.3"
+   },
+   "ra_infra_direct": {
+    "value": {
+     "kind": "deal",
+     "noise": "real_asset",
+     "tier": "red",
+     "vehicle": "controlled platform",
+     "control": "controlled",
+     "B": [
+      0.45,
+      0.0,
+      0.4,
+      0.0,
+      0.01,
+      0.0
+     ],
+     "sigma_idio": 0.07,
+     "yield": 0.06,
+     "dist": [
+      0.0,
+      0.02,
+      0.04,
+      0.06
+     ],
+     "call": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+     ],
+     "edges": [
+      3,
+      6,
+      9
+     ],
+     "phi": 0.6,
+     "theta_by_age": [
+      0.96,
+      0.96,
+      0.96,
+      0.96
+     ],
+     "life": 10,
+     "min_remaining": 3,
+     "duration_share": 0.6,
+     "bid_key": "ra_direct",
+     "age_mult": false,
+     "bid_external": true,
+     "actual_class": "ra",
+     "realize_start": 2,
+     "realize_span": 10,
+     "realize_max": 0.4,
+     "marked": false,
+     "flags": [
+      "controlled"
+     ]
+    },
+    "unit": "segment defaults",
+    "rationale": "Contracted infrastructure platform: acquisition debt passes at SOFR + 200bp (alpha* about +0.4% after charges).",
+    "source": "RA sections 7.4-7.5"
+   },
+   "ra_infra_fund": {
+    "value": {
+     "kind": "fund",
+     "noise": "real_asset",
+     "tier": "red",
+     "vehicle": "infrastructure fund",
+     "control": "LP",
+     "B": [
+      0.55,
+      0.0,
+      0.3,
+      0.0,
+      0.02,
+      0.0
+     ],
+     "sigma_idio": 0.08,
+     "yield": 0.03,
+     "dist": [
+      0.02,
+      0.1,
+      0.18,
+      0.25
+     ],
+     "call": [
+      0.3,
+      0.2,
+      0.1,
+      0.05
+     ],
+     "edges": [
+      3,
+      6,
+      9
+     ],
+     "phi": 0.6,
+     "theta_by_age": [
+      0.98,
+      0.94,
+      0.92,
+      0.88
+     ],
+     "life": 10,
+     "min_remaining": 1.5,
+     "duration_share": 0.55,
+     "bid_key": "ra_lp_infra",
+     "age_mult": true,
+     "bid_external": true,
+     "actual_class": "ra",
+     "realize_start": 3,
+     "realize_span": 7,
+     "realize_max": 0.85,
+     "marked": false,
+     "flags": []
+    },
+    "unit": "segment defaults",
+    "rationale": "Infrastructure core+ fund interest (infra LP kappa 5% / 15%).",
+    "source": "RA section 7.3"
+   },
+   "ra_enr_fund": {
+    "value": {
+     "kind": "fund",
+     "noise": "real_asset",
+     "tier": "red",
+     "vehicle": "levered upstream fund",
+     "control": "LP",
+     "B": [
+      0.4,
+      0.0,
+      0.0,
+      0.84,
+      0.02,
+      0.0
+     ],
+     "sigma_idio": 0.18,
+     "yield": 0.0,
+     "dist": [
+      0.05,
+      0.14,
+      0.22,
+      0.3
+     ],
+     "call": [
+      0.3,
+      0.2,
+      0.1,
+      0.05
+     ],
+     "edges": [
+      3,
+      6,
+      9
+     ],
+     "phi": 0.6,
+     "theta_by_age": [
+      0.95,
+      0.9,
+      0.86,
+      0.8
+     ],
+     "life": 8,
+     "min_remaining": 1.5,
+     "duration_share": 0.55,
+     "bid_key": "ra_enr_fund",
+     "age_mult": true,
+     "bid_external": true,
+     "actual_class": "ra",
+     "realize_start": 3,
+     "realize_span": 6,
+     "realize_max": 0.85,
+     "marked": false,
+     "flags": [
+      "enr"
+     ]
+    },
+    "unit": "segment defaults",
+    "rationale": "Levered upstream ENR fund: oil elasticity 0.84.",
+    "source": "DSGO section 3.3 (0.84 levered upstream); RA section 9.3"
+   },
+   "ra_enr_direct": {
+    "value": {
+     "kind": "deal",
+     "noise": "real_asset",
+     "tier": "red",
+     "vehicle": "controlled royalties + midstream",
+     "control": "controlled",
+     "B": [
+      0.3,
+      0.0,
+      0.0,
+      0.3,
+      0.0,
+      0.0
+     ],
+     "sigma_idio": 0.12,
+     "yield": 0.09,
+     "dist": [
+      0.0,
+      0.03,
+      0.05,
+      0.08
+     ],
+     "call": [
+      0.3,
+      0.2,
+      0.1,
+      0.05
+     ],
+     "edges": [
+      3,
+      6,
+      9
+     ],
+     "phi": 0.6,
+     "theta_by_age": [
+      0.95,
+      0.95,
+      0.95,
+      0.95
+     ],
+     "life": 10,
+     "min_remaining": 3,
+     "duration_share": 0.6,
+     "bid_key": "ra_enr_direct",
+     "age_mult": false,
+     "bid_external": false,
+     "actual_class": "ra",
+     "realize_start": 2,
+     "realize_span": 10,
+     "realize_max": 0.4,
+     "marked": false,
+     "flags": [
+      "enr",
+      "controlled"
+     ]
+    },
+    "unit": "segment defaults",
+    "rationale": "Royalties (0.41) and fee midstream (0.13) blended oil elasticity about 0.3.",
+    "source": "DSGO section 3.3; RA section 9.3"
+   }
+  },
+  "units": {
+   "value": [
+    {
+     "id": "PE-01",
+     "name": "Buyout fund 2014 (tail-end)",
+     "group": "PE",
+     "segment": "pe_buyout",
+     "nav": 6.415094,
+     "unfunded": 0.320755,
+     "age": 12
+    },
+    {
+     "id": "PE-05",
+     "name": "Buyout fund 2018",
+     "group": "PE",
+     "segment": "pe_buyout",
+     "nav": 12.830189,
+     "unfunded": 1.283019,
+     "age": 8
+    },
+    {
+     "id": "PE-08",
+     "name": "VC / growth fund 2021",
+     "group": "PE",
+     "segment": "pe_growth",
+     "nav": 8.339623,
+     "unfunded": 3.207547,
+     "age": 5
+    },
+    {
+     "id": "PE-12",
+     "name": "Buyout fund 2024",
+     "group": "PE",
+     "segment": "pe_buyout",
+     "nav": 6.415094,
+     "unfunded": 8.339623,
+     "age": 2
+    },
+    {
+     "id": "SEC-02",
+     "name": "Secondary fund VIII (2020)",
+     "group": "SEC",
+     "segment": "sec_fund",
+     "nav": 5.454545,
+     "unfunded": 1.090909,
+     "age": 6
+    },
+    {
+     "id": "SEC-04",
+     "name": "LP-portfolio purchase (2024)",
+     "group": "SEC",
+     "segment": "sec_portfolio",
+     "nav": 4.545455,
+     "unfunded": 0.909091,
+     "age": 2
+    },
+    {
+     "id": "SEC-05",
+     "name": "GP-led CV stake A (2022)",
+     "group": "SEC",
+     "segment": "sec_cv",
+     "nav": 4.0,
+     "unfunded": 0.363636,
+     "age": 4
+    },
+    {
+     "id": "CO-01",
+     "name": "Co-invest: industrials (2019)",
+     "group": "CO",
+     "segment": "co_deal",
+     "nav": 8.666667,
+     "unfunded": 0.0,
+     "age": 7
+    },
+    {
+     "id": "CO-02",
+     "name": "Co-invest: software (2021)",
+     "group": "CO",
+     "segment": "co_deal",
+     "nav": 9.333333,
+     "unfunded": 0.0,
+     "age": 5
+    },
+    {
+     "id": "CS-01",
+     "name": "Preferred equity (2023)",
+     "group": "CS",
+     "segment": "cs_credit",
+     "nav": 8.0,
+     "unfunded": 1.2,
+     "age": 3
+    },
+    {
+     "id": "PC-01",
+     "name": "SMA senior direct lending (non-software)",
+     "group": "PC",
+     "segment": "pc_sma",
+     "nav": 7.4375,
+     "unfunded": 0.0,
+     "age": 4
+    },
+    {
+     "id": "PC-03",
+     "name": "Closed-end direct-lending fund (2021)",
+     "group": "PC",
+     "segment": "pc_fund",
+     "nav": 6.5625,
+     "unfunded": 1.3125,
+     "age": 5
+    },
+    {
+     "id": "HF-01",
+     "name": "Multi-strategy A",
+     "group": "HF",
+     "segment": "hf_multi",
+     "nav": 11.764706,
+     "unfunded": 0.0,
+     "age": 6
+    },
+    {
+     "id": "HF-03",
+     "name": "Global macro",
+     "group": "HF",
+     "segment": "hf_macro",
+     "nav": 8.235294,
+     "unfunded": 0.0,
+     "age": 7
+    },
+    {
+     "id": "LO-01",
+     "name": "DM equity core (index-like)",
+     "group": "LO",
+     "segment": "lo_dm_core",
+     "nav": 18.0,
+     "unfunded": 0.0,
+     "age": 8
+    },
+    {
+     "id": "LO-03",
+     "name": "EM equity active",
+     "group": "LO",
+     "segment": "lo_em",
+     "nav": 7.714286,
+     "unfunded": 0.0,
+     "age": 5
+    },
+    {
+     "id": "LO-04",
+     "name": "Fixed income (Treasuries and IG)",
+     "group": "LO",
+     "segment": "lo_fi",
+     "nav": 10.285714,
+     "unfunded": 0.0,
+     "age": 8
+    },
+    {
+     "id": "RA-01",
+     "name": "US logistics JV (core RE, controlled)",
+     "group": "RA",
+     "segment": "ra_core_re_direct",
+     "nav": 8.75,
+     "unfunded": 0.0,
+     "age": 5
+    },
+    {
+     "id": "RA-02",
+     "name": "Core RE open-end fund",
+     "group": "RA",
+     "segment": "ra_core_re_fund",
+     "nav": 6.25,
+     "unfunded": 0.0,
+     "age": 6
+    },
+    {
+     "id": "RA-08",
+     "name": "ENR royalties + midstream (controlled)",
+     "group": "RA",
+     "segment": "ra_enr_direct",
+     "nav": 3.0,
+     "unfunded": 2.0,
+     "age": 3
+    }
+   ],
+   "unit": "holdings ($bn reported NAV and unfunded; age in years)",
+   "rationale": "VERIFICATION REDUCED INSTANCE (SYNTHETIC): 20 of the 55 holdings, group totals rescaled to the full book.",
+   "source": "inputs section 1A (allocation v2); DSGO sections 2.1-2.8; CHECKPOINT section 2 (census v1.1 rescaled)"
+  }
+ }
+}

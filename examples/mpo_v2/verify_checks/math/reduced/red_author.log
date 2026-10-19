@@ -1,0 +1,26 @@
+[    1.8s]   solve B0: status-quo funding LP (tree readings): Optimal t=0.21s obj=5.2885769221823296 gap=None nodes=None bound=None
+[    3.5s]   solve Phase I (min hard-row violation): Optimal t=1.10s obj=0.0 gap=None nodes=None bound=None
+[    3.5s] Phase I: u* = 0.000000 -> FEASIBLE {}
+[    3.5s] W0 169.6810 W* 273.2730 T 206 ND 26 leaves 60 nvar 13896 nrow 16178 rank_rule False
+[    4.7s]   solve R-O1 GBO: mean LP: Optimal t=1.21s obj=275.08940572465644 gap=None nodes=None bound=None
+[    6.1s]   solve R-O1 GBO: min CVaR at p=0.9913: Optimal t=1.40s obj=-0.0003243854499739296 gap=None nodes=None bound=None
+[    7.5s]   solve R-O1 GBO: certificate p=0.9900: Optimal t=1.38s obj=0.0011699401413653998 gap=None nodes=None bound=None
+[    9.4s]   solve R-O1 GBO: CRRA(3) tie-break: Optimal t=1.92s obj=-0.3858332626836129 gap=None nodes=None bound=None
+[    9.4s] O1 label PLAN phi 0.9909835409669074 hist [0.9912598404732811, 0.9909835409669074] E* 275.08940572465644 tie {'label': 'PLAN', 'pt': 0.9959835409669074}
+[    9.4s] O1 stats {"p_goal": 0.4426041833333334, "E_Wt_over_Wstar": 1.00281872586484, "E_Wt_bn": 274.0432493781746, "twr_mean": 0.08812103265143544, "twr_median": 0.09189962059594281, "cvar10_twr": -0.05908845867219955, "cvar5_twr": -0.0746130000664234, "cvar1_twr": -0.11196289601490794, "bpoe": 0.9959835409669089, "phi": 0.9959835409669089, "p_red": 0.0, "leaf_condition_ok": true, "pileup_mass": 0.0, "deep_miss_mass": 0.3609997666666667, "min_Wt_bn": 93.71061905354405}
+[   43.3s]   solve R-O2 exact: max P(goal): Optimal t=33.88s obj=0.48653803333333334 gap=0.0 nodes=3 bound=0.48653803333333334
+[   43.3s] exact MILP done in 33.9s: {'name': 'R-O2 exact: max P(goal)', 'kind': 'MIP', 'status': 'Optimal', 'cols': 13956, 'rows': 16238, 'nnz': 128398, 'ints': 60, 'time_s': 33.88342475891113, 'mip_gap': 0.0, 'mip_nodes': 3, 'obj': 0.48653803333333334, 'dual_bound': 0.48653803333333334, 'start_p_goal': 0.4426041833333334, 'time_limited': False, 'node_limit': 1000000000, 'heuristics': True}
+[   43.3s] MILP stats {"p_goal": 0.4865380333333334, "E_Wt_over_Wstar": 0.9316856359254899, "E_Wt_bn": 254.60449878197085, "twr_mean": 0.073183036864027, "twr_median": 0.07261515656941597, "cvar10_twr": -0.06095092313483517, "cvar5_twr": -0.07887187933117941, "cvar1_twr": -0.12393302658072744, "bpoe": 0.9999999999999999, "phi": 1.034157182037255, "p_red": 0.046280100000000005, "leaf_condition_ok": true, "pileup_mass": 0.1200246, "deep_miss_mass": 0.4692076666666668, "min_Wt_bn": 83.49353051352365}
+[   44.8s]   solve R-O2 round: MILP relaxation (g continuous): upper bound on max P(goal): Optimal t=1.43s obj=-0.861595600919354 gap=None nodes=None bound=None
+[   45.7s]   solve R-O2 round: rounding tau=0.5: fix 55 successes (P >= 0.9534): Infeasible t=0.95s obj=None gap=None nodes=None bound=None
+[   46.7s]   solve R-O2 round: rounding tau=0.75: fix 37 successes (P >= 0.7563): Infeasible t=0.98s obj=None gap=None nodes=None bound=None
+[   47.8s]   solve R-O2 round: rounding tau=0.9: fix 31 successes (P >= 0.5321): Infeasible t=1.09s obj=None gap=None nodes=None bound=None
+[   49.3s]   solve R-O2 round: rounding tau=0.99: fix 24 successes (P >= 0.4576): Optimal t=1.55s obj=0.37161452706124726 gap=None nodes=None bound=None
+[   52.1s]   solve R-O2 round: rounding bisection +3 leaves: fix 27 successes (P >= 0.5071): Infeasible t=2.72s obj=None gap=None nodes=None bound=None
+[   53.6s]   solve R-O2 round: rounding bisection +1 leaves: fix 25 successes (P >= 0.4616): Optimal t=1.54s obj=0.3717629903456795 gap=None nodes=None bound=None
+[   55.2s]   solve R-O2 round: rounding bisection +2 leaves: fix 26 successes (P >= 0.4631): Optimal t=1.57s obj=0.37181673375993296 gap=None nodes=None bound=None
+[   55.2s] round: {"name": "R-O2 round: max P(goal) (relaxation bound + LP rounding)", "kind": "MIP-R", "status": "Improved", "cols": 13956, "rows": 16238, "nnz": 128398, "ints": 60, "time_s": 11.826856136322021, "mip_gap": 0.8606772317037551, "mip_nodes": 0, "obj": 0.4630548416666667, "dual_bound": 0.861595600919354, "start_p_goal": 0.4426041833333334}
+[   55.2s] round tries: [{'tau': 0.5, 'p_set': 0.95338385, 'status': 'Infeasible'}, {'tau': 0.75, 'p_set': 0.756259525, 'status': 'Infeasible'}, {'tau': 0.9, 'p_set': 0.5320524583333334, 'status': 'Infeasible'}, {'tau': 0.99, 'p_set': 0.4576257166666667, 'status': 'Optimal'}, {'tau': 'bisection +3', 'p_set': 0.5070850916666667, 'status': 'Infeasible'}, {'tau': 'bisection +1', 'p_set': 0.4615706666666667, 'status': 'Optimal'}, {'tau': 'bisection +2', 'p_set': 0.4630548416666667, 'status': 'Optimal'}]
+[   56.8s]   solve CRRA+L2: CRRA(3) - lambda_T x squared shortfall: Optimal t=1.63s obj=-0.4208237440198884 gap=None nodes=None bound=None
+[   56.8s] dump written
+[   56.8s] done

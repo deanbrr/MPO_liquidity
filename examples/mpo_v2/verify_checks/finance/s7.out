@@ -1,0 +1,12 @@
+book | SR draw | own: B0 / O1_rule / O1_playbook / veq_rule / veq_playbook / veq_rule_opp1.0 | SR0.30: veq_rule / veq_rule_opp1.0 / veq_playbook | SR0: veq_rule / veq_rule_opp1.0
+BOOK_7101 | 0.417 | 43.84 / 46.63 / 44.99 / +1.34 / -0.43 / +0.83 | +1.20 / +0.86 / -0.24 | +0.30 / +1.04  [root opp 1.50 beta 21.48 E/W 1.150]
+     first 4000 (published paths): B0 43.450 O1_rule 45.950 O1_playbook 44.425 veq_rule +1.108 veq_playbook -0.450
+BOOK_7102 | 0.181 | 40.42 / 43.41 / 42.39 / +1.36 / +0.56 / +1.49 | +1.67 / +1.35 / +0.68 | +0.90 / +1.51  [root opp 1.50 beta 23.89 E/W 1.150]
+     first 4000 (published paths): B0 40.225 O1_rule 43.025 O1_playbook 41.650 veq_rule +0.982 veq_playbook -0.075
+BOOK_7103 | 0.558 | 44.58 / 47.56 / 45.84 / +1.53 / -0.23 / +0.69 | +1.20 / +0.79 / -0.11 | +0.17 / +0.87  [root opp 1.50 beta 22.97 E/W 1.150]
+     first 4000 (published paths): B0 44.050 O1_rule 46.725 O1_playbook 45.225 veq_rule +1.285 veq_playbook -0.186
+BOOK_7104 | 0.150 | 41.74 / 43.71 / 42.75 / -0.05 / -0.71 / +0.20 | +0.46 / +0.20 / -0.65 | -0.39 / +0.21  [root opp 1.50 beta 23.43 E/W 1.150]
+     first 4000 (published paths): B0 41.700 O1_rule 43.250 O1_playbook 42.025 veq_rule -0.297 veq_playbook -1.250
+BOOK_PLACEBO | 0.672 | 45.15 / 48.67 / 46.74 / +2.39 / +0.18 / +1.23 | +1.55 / +1.28 / +0.07 | +0.63 / +1.27  [root opp 1.50 beta 22.12 E/W 1.150]
+     first 4000 (published paths): B0 44.525 O1_rule 47.925 O1_playbook 46.175 veq_rule +2.129 veq_playbook +0.169
+HEADLINE (cert seed) | 0.672 | 42.91 / 46.90 / n.a. / +2.85 / n.a. / +1.39 | +1.65 / +1.43 / n.a. | +1.02 / +1.63

@@ -1,0 +1,9 @@
+[    5.0s] reduced tie-break Clarabel tol 1e-12, objective x1: Solved obj -0.38583346557666 iters 215 (author -0.38583326268361)
+[    6.5s] reduced tie-break Clarabel tol 1e-12, objective x1000: Solved obj -0.38583326268200 iters 58 (author -0.38583326268361)
+[    8.6s] reduced mean LP Clarabel tol 1e-12: Solved obj 275.089405725201 (author 275.089405724656)
+[    8.7s] O1 red statistic R_l: {"P(R=0)": 0.6692058083333334, "P(R<0)": 0.3307941916666666, "P(R>0)": 0.0, "eta_R": -0.0, "CVaR_eps(R)": 0.0}
+[   59.2s] H9 variant [eps 0.006 (as run)]: E* 285.16754603616266  exact Phi* 0.9566958084738266
+[  107.9s] H9 variant [eps 0.05]: E* 285.17513028760413  exact Phi* 0.9566434187954717
+[  145.2s] H9 variant [hard per-node rule]: E* 285.16754603616266  exact Phi* 0.9566958084738266
+[  181.7s] H9 variant [no H9]: E* 285.97472587844146  exact Phi* 0.9531529507272061
+[  181.7s] done

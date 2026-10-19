@@ -1,0 +1,13 @@
+﻿SYNTHETIC - NOT ADIC DATA. Output of optimism_check.py (spec review pilot), run 2026-10-19.
+solves done in 72s; MILP Optimal gap 0.000
+in-tree (full contingent plan): P(goal) SQ 0.395  meanLP 0.495  MILP 0.670
+root decision frozen (buy-and-hold + funding rule); P(goal) and E[W~]/W*:
+  SQ     exposure/W 0.92  illiquid share 0.60  tree 0.410  fresh(truth=belief) 0.340  fresh(truth!=belief, idio) 0.343  E/W* tree 1.007 fresh 0.913 0.916
+  meanLP exposure/W 1.30  illiquid share 0.47  tree 0.480  fresh(truth=belief) 0.421  fresh(truth!=belief, idio) 0.412  E/W* tree 1.135 fresh 0.992 0.982
+  MILP   exposure/W 1.30  illiquid share 0.02  tree 0.450  fresh(truth=belief) 0.383  fresh(truth!=belief, idio) 0.368  E/W* tree 1.028 fresh 0.932 0.920
+  uplift vs SQ, meanLP: tree +7.0pp  fresh(t=b) +8.1pp  fresh(t!=b) +6.9pp   (MC se per estimate ~0.4pp)
+  uplift vs SQ, MILP: tree +4.0pp  fresh(t=b) +4.3pp  fresh(t!=b) +2.5pp   (MC se per estimate ~0.4pp)
+  meanLP: worst-decile mean W~/W0 0.374 (SQ 0.665); B4 matched at liquid scale 3.03, exposure/W 1.67: P(goal) B4 0.404 vs meanLP 0.412 -> value at equal tail +0.8pp
+  MILP: worst-decile mean W~/W0 0.503 (SQ 0.665); B4 matched at liquid scale 2.13, exposure/W 1.34: P(goal) B4 0.382 vs MILP 0.368 -> value at equal tail -1.3pp
+
+[exited with code 0]

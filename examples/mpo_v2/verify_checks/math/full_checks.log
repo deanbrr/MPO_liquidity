@@ -1,0 +1,141 @@
+[    0.0s] captured solves: ['O1 GBO: mean LP', 'O1 GBO: min CVaR at p=0.9573', 'O1 GBO: certificate p=0.9557', 'O1 GBO: CRRA(3) tie-break']
+[    0.0s] A {
+ "mean LP": {
+  "bpoe_enum": 0.9572695202620741,
+  "a_star": 0.738303135252255,
+  "buffer_c_star_W0": 1.3544572036231857,
+  "bpoe_by_cvar_root": 0.9572695202619315,
+  "P_goal": 0.44686932499999993,
+  "E_Wt": 285.1675460361627,
+  "max_Wt_minus_Wstar_W0": 2.066665200771212
+ },
+ "min-CVaR (p=0.9573)": {
+  "bpoe_enum": 0.9566960633916035,
+  "a_star": 0.7508569279680065,
+  "buffer_c_star_W0": 1.3318116444716472,
+  "bpoe_by_cvar_root": 0.956696063391562,
+  "P_goal": 0.4620741583333332,
+  "E_Wt": 284.6637011212151,
+  "max_Wt_minus_Wstar_W0": 1.9011097587723902
+ },
+ "certificate (p=0.9557)": {
+  "bpoe_enum": 0.956703983546786,
+  "a_star": 0.7584485011604244,
+  "buffer_c_star_W0": 1.318481081405003,
+  "bpoe_by_cvar_root": 0.9567039835470019,
+  "P_goal": 0.4620741583333332,
+  "E_Wt": 284.80482867544083,
+  "max_Wt_minus_Wstar_W0": 2.018264857603534
+ },
+ "O1 tie-break": {
+  "bpoe_enum": 0.9616960633916024,
+  "a_star": 0.7738949294989113,
+  "buffer_c_star_W0": 1.2921650754935032,
+  "bpoe_by_cvar_root": 0.9616960633916662,
+  "P_goal": 0.4666462749999999,
+  "E_Wt": 283.54669724565855,
+  "max_Wt_minus_Wstar_W0": 1.9688852744894096
+ },
+ "minCVaR_LP_obj": -0.0007978281158331768,
+ "minCVaR_direct_sort": -0.0007978281158319712,
+ "minCVaR_direct_RU_scan": -0.0007978281158329548,
+ "minCVaR_LP_eta": -1.3318116444716461,
+ "minCVaR_ub_minus_hinge_maxabs": 4.440892098500626e-16,
+ "certificate_p": 0.9556960633916035,
+ "certificate_LP_obj": 0.0013905295910277005,
+ "certificate_direct_CVaR_of_its_solution": 0.0013905295910288235,
+ "O1_tie_pt": 0.9616960633916035,
+ "O1_tie_row_value": -1.5543122344752192e-15,
+ "O1_CVaR_at_pt_direct": -5.862404465961596e-16,
+ "O1_CVaR_at_phi_direct": 0.006753268487969472,
+ "O1_ub_ge_hinge_min": -4.440892098500626e-16
+}
+[    0.5s] B rows: max violation by row family
+[    0.5s]    E          rows    711 max_viol 7.105e-14 binding   711 min_slack -7.105e-14 worst ('E', 323)
+[    0.5s]    H10        rows      3 max_viol 0.000e+00 binding     3 min_slack 0.000e+00 worst None
+[    0.5s]    H10u       rows    630 max_viol 0.000e+00 binding    41 min_slack 0.000e+00 worst None
+[    0.5s]    H11        rows    495 max_viol 7.105e-15 binding    21 min_slack -7.105e-15 worst ('H11', 120)
+[    0.5s]    H15        rows    210 max_viol 0.000e+00 binding     0 min_slack 2.044e+01 worst None
+[    0.5s]    H3         rows     81 max_viol 0.000e+00 binding     0 min_slack 2.061e+01 worst None
+[    0.5s]    H4         rows      1 max_viol 6.217e-15 binding     1 min_slack -6.217e-15 worst ('H4', 0)
+[    0.5s]    H9         rows      1 max_viol 0.000e+00 binding     1 min_slack 0.000e+00 worst None
+[    0.5s]    H9m        rows   1260 max_viol 0.000e+00 binding     0 min_slack 1.622e+01 worst None
+[    0.5s]    H9s        rows   1260 max_viol 0.000e+00 binding   258 min_slack 0.000e+00 worst None
+[    0.5s]    HM         rows    711 max_viol 7.105e-15 binding   711 min_slack -7.105e-15 worst ('HM', 179)
+[    0.5s]    HN         rows    711 max_viol 1.705e-13 binding   711 min_slack -1.705e-13 worst ('HN', 179)
+[    0.5s]    HU         rows    711 max_viol 2.309e-14 binding   711 min_slack -2.309e-14 worst ('HU', 378)
+[    0.5s]    HV         rows    711 max_viol 8.811e-13 binding   711 min_slack -8.811e-13 worst ('HV', 38)
+[    0.5s]    IM         rows    711 max_viol 4.441e-16 binding   711 min_slack -4.441e-16 worst ('IM', 52)
+[    0.5s]    LQ         rows    711 max_viol 1.599e-14 binding   711 min_slack -1.599e-14 worst ('LQ', 606)
+[    0.5s]    M          rows    711 max_viol 4.619e-14 binding   711 min_slack -4.619e-14 worst ('M', 395)
+[    0.5s]    NR         rows    711 max_viol 1.066e-13 binding   711 min_slack -1.066e-13 worst ('NR', 333)
+[    0.5s]    PP         rows    711 max_viol 2.842e-14 binding   711 min_slack -2.842e-14 worst ('PP', 206)
+[    0.5s]    PV         rows    711 max_viol 5.684e-14 binding   711 min_slack -5.684e-14 worst ('PV', 251)
+[    0.5s]    Q          rows    290 max_viol 8.882e-16 binding   290 min_slack -8.882e-16 worst ('Q', 1)
+[    0.5s]    Q0         rows      1 max_viol 0.000e+00 binding     1 min_slack 0.000e+00 worst None
+[    0.5s]    RS         rows    711 max_viol 6.939e-18 binding   711 min_slack -6.939e-18 worst ('RS', 7)
+[    0.5s]    TM         rows    711 max_viol 1.776e-15 binding   711 min_slack -1.776e-15 worst ('TM', 25)
+[    0.5s]    TN         rows    711 max_viol 7.105e-15 binding   711 min_slack -7.105e-15 worst ('TN', 178)
+[    0.5s]    TU         rows    711 max_viol 7.105e-15 binding   711 min_slack -7.105e-15 worst ('TU', 246)
+[    0.5s]    TV         rows    711 max_viol 1.155e-14 binding   711 min_slack -1.155e-14 worst ('TV', 168)
+[    0.5s]    W          rows    711 max_viol 7.816e-14 binding   711 min_slack -7.816e-14 worst ('W', 671)
+[    0.5s]    Wt         rows    210 max_viol 1.479e-13 binding   210 min_slack -1.479e-13 worst ('Wt', 170)
+[    0.5s]    bal        rows   4977 max_viol 1.421e-14 binding  4977 min_slack -1.421e-14 worst ('bal', 91, 0)
+[    0.5s]    betacut    rows    630 max_viol 7.105e-15 binding   499 min_slack -7.105e-15 worst ('betacut', 408)
+[    0.5s]    betacut2   rows     70 max_viol 3.553e-15 binding    48 min_slack -3.553e-15 worst ('betacut2', 32)
+[    0.5s]    bis        rows    210 max_viol 4.441e-16 binding   201 min_slack -4.441e-16 worst ('bis', 9)
+[    0.5s]    brk_hi     rows    464 max_viol 1.421e-14 binding    53 min_slack -1.421e-14 worst ('brk_hi', 18, 'LO')
+[    0.5s]    brk_lo     rows    464 max_viol 1.776e-15 binding    63 min_slack -1.776e-15 worst ('brk_lo', 0, 'HF')
+[    0.5s]    cash       rows    711 max_viol 7.573e-14 binding   711 min_slack -7.573e-14 worst ('cash', 42)
+[    0.5s]    cq         rows   2520 max_viol 2.220e-16 binding  2520 min_slack -2.220e-16 worst ('cq', 180, 0)
+[    0.5s]    cqpos      rows   2100 max_viol 0.000e+00 binding  1569 min_slack 0.000e+00 worst None
+[    0.5s]    cqpos_agg  rows    420 max_viol 0.000e+00 binding     1 min_slack 0.000e+00 worst None
+[    0.5s]    csbl       rows    711 max_viol 0.000e+00 binding     0 min_slack 1.914e-01 worst None
+[    0.5s]    cvarrow    rows      1 max_viol 0.000e+00 binding     0 min_slack inf worst None
+[    0.5s]    depth      rows    405 max_viol 0.000e+00 binding    43 min_slack 0.000e+00 worst None
+[    0.5s]    depth_lp   rows     81 max_viol 0.000e+00 binding     0 min_slack 3.996e+00 worst None
+[    0.5s]    encumb     rows    711 max_viol 0.000e+00 binding     0 min_slack 1.136e+01 worst None
+[    0.5s]    floor4     rows    711 max_viol 0.000e+00 binding     0 min_slack 3.947e+00 worst None
+[    0.5s]    floor8     rows    391 max_viol 0.000e+00 binding     1 min_slack 0.000e+00 worst None
+[    0.5s]    g4         rows    406 max_viol 2.842e-14 binding   134 min_slack -2.842e-14 worst ('g4', 4)
+[    0.5s]    g4add      rows     39 max_viol 0.000e+00 binding    21 min_slack 0.000e+00 worst None
+[    0.5s]    g4lev      rows     39 max_viol 3.553e-15 binding    20 min_slack -3.553e-15 worst ('g4lev', 32)
+[    0.5s]    gross      rows    711 max_viol 7.105e-15 binding     8 min_slack -7.105e-15 worst ('gross', 74)
+[    0.5s]    hed2       rows     70 max_viol 0.000e+00 binding    70 min_slack 0.000e+00 worst None
+[    0.5s]    hedhi      rows     11 max_viol 0.000e+00 binding     2 min_slack 0.000e+00 worst None
+[    0.5s]    hedlo      rows     11 max_viol 8.882e-16 binding     9 min_slack -8.882e-16 worst ('hedlo', 0)
+[    0.5s]    lbor       rows    711 max_viol 7.105e-15 binding     1 min_slack -7.105e-15 worst ('lbor', 80)
+[    0.5s]    lev        rows    711 max_viol 0.000e+00 binding    28 min_slack 0.000e+00 worst None
+[    0.5s]    meanrow    rows      1 max_viol 0.000e+00 binding     0 min_slack inf worst None
+[    0.5s]    navf_ltv   rows    711 max_viol 0.000e+00 binding     0 min_slack 5.528e-01 worst None
+[    0.5s]    navf_pool  rows    711 max_viol 0.000e+00 binding     0 min_slack 2.889e-01 worst None
+[    0.5s]    need       rows    711 max_viol 2.665e-14 binding   102 min_slack -2.665e-14 worst ('need', 684)
+[    0.5s]    opp2       rows     70 max_viol 0.000e+00 binding    70 min_slack 0.000e+00 worst None
+[    0.5s]    p2s        rows     81 max_viol 0.000e+00 binding    81 min_slack 0.000e+00 worst None
+[    0.5s]    pace2      rows    350 max_viol 0.000e+00 binding   350 min_slack 0.000e+00 worst None
+[    0.5s]    pref_cap   rows    711 max_viol 0.000e+00 binding     0 min_slack 2.917e+00 worst None
+[    0.5s]    raco       rows    711 max_viol 0.000e+00 binding     0 min_slack 1.618e+00 worst None
+[    0.5s]    rebal_hi   rows    648 max_viol 0.000e+00 binding     0 min_slack inf worst None
+[    0.5s]    rebal_lo   rows    648 max_viol 0.000e+00 binding     0 min_slack inf worst None
+[    0.5s]    recourse   rows    711 max_viol 0.000e+00 binding     0 min_slack 8.523e+00 worst None
+[    0.5s]    revcap     rows    711 max_viol 0.000e+00 binding     6 min_slack 0.000e+00 worst None
+[    0.5s]    sdepth     rows   2133 max_viol 0.000e+00 binding   136 min_slack 0.000e+00 worst None
+[    0.5s]    seccap     rows      2 max_viol 0.000e+00 binding     0 min_slack 1.605e+00 worst None
+[    0.5s]    sh         rows    210 max_viol 0.000e+00 binding   116 min_slack 0.000e+00 worst None
+[    0.5s]    smabl      rows    711 max_viol 0.000e+00 binding    13 min_slack 0.000e+00 worst None
+[    0.5s]    trs2       rows    420 max_viol 0.000e+00 binding   420 min_slack 0.000e+00 worst None
+[    0.5s]    trscap     rows     66 max_viol 0.000e+00 binding    62 min_slack 0.000e+00 worst None
+[    0.5s]    util       rows   6720 max_viol 0.000e+00 binding   215 min_slack 0.000e+00 worst None
+[    0.5s]    v2         rows   3360 max_viol 0.000e+00 binding   210 min_slack 0.000e+00 worst None
+[    0.5s]    xbal       rows   4455 max_viol 1.638e-15 binding  4455 min_slack -1.638e-15 worst ('xbal', 23, 35)
+[    0.5s]    bounds: lo viol 0.000e+00 (x), hi viol 0.000e+00 (x); slacks 0.000e+00
+[    0.6s] B0 BRK cells 464, with BRK above the minimal breach: 0; max excess 0.000e+00
+[    0.6s] perspective LP [bPOE (a>=0)]: 66213 rows x 58911 cols, nnz 653731
+[   30.9s]    HiGHS IPM status Optimal time 30.3s obj 0.9566958084738267
+[   30.9s]    {"obj": 0.9566958084738267, "tau": 0.751465073403367, "buffer_W0": 1.3307338363325716, "bpoe_of_x": 0.9566958084738265, "a_star_of_x": 0.7514650734033671, "max_row_viol_of_x": 3.410605131648481e-13, "P_goal": 0.4620741583333332, "E_Wt": 284.9514921838353}
+[   30.9s] perspective LP [GBO Phi (a>=a_min)]: 66213 rows x 58911 cols, nnz 653731
+[   64.1s]    HiGHS IPM status Optimal time 33.1s obj 0.9566958084738267
+[   64.1s]    {"obj": 0.9566958084738267, "tau": 0.7514650734033667, "buffer_W0": 1.330733836332572, "bpoe_of_x": 0.9566958084738264, "a_star_of_x": 0.7514650734033671, "max_row_viol_of_x": 3.446132268436486e-13, "P_goal": 0.4620741583333332, "E_Wt": 284.9517439662152}
+[   76.3s] MILP relaxation eps=0.001: Optimal obj 0.859875521459144 time 12.2s
+[   88.5s] MILP relaxation eps=0.0: Optimal obj 0.8601295740959818 time 12.2s
+[   88.5s] done

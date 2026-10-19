@@ -1,0 +1,226 @@
+['meta', 'config', 'phase1', 'beliefs', 'fusion_quality', 'tree', 'b0_readings', 'solutions', 'in_tree', 'in_tree_simulator', 'root', 'lens_r1', 'cards', 'change_list', 'red_cards', 'contingent_year1', 'selection', 'oos', 'hypotheses', 'attribution', 'frontier', 'frontier_delta', 'a20_limit_sensitivity', 'replication_books', 'a9', 'checks', 'solves']
+{
+ "label": "PLAN",
+ "phi": 0.956696,
+ "phi_history": [
+  0.95727,
+  0.956696
+ ],
+ "E_star_bn": 285.168,
+ "tree": {
+  "p_goal": 0.466646,
+  "E_Wt_over_Wstar": 1.03716,
+  "E_Wt_bn": 283.547,
+  "twr_mean": 0.0937818,
+  "twr_median": 0.0910746,
+  "cvar10_twr": -0.0622509,
+  "cvar5_twr": -0.0933406,
+  "cvar1_twr": -0.122752,
+  "bpoe": 0.961696,
+  "phi": 0.961696,
+  "p_red": 0.0,
+  "leaf_condition_ok": true,
+  "pileup_mass": 0.0142149,
+  "deep_miss_mass": 0.417599,
+  "min_Wt_bn": 85.77
+ },
+ "tie_tol_bn": null
+}
+{
+ "rec": {
+  "name": "O2_MILP: max P(goal) (relaxation bound + LP rounding)",
+  "kind": "MIP-R",
+  "status": "Improved",
+  "cols": 58910,
+  "rows": 59877,
+  "nnz": 635800,
+  "ints": 210,
+  "time_s": 241.56,
+  "mip_gap": 0.79156,
+  "mip_nodes": 0,
+  "obj": 0.479959,
+  "dual_bound": 0.859876,
+  "start_p_goal": 0.466646,
+  "rounding": [
+   {
+    "tau": 0.5,
+    "p_set": 0.948821,
+    "status": "Infeasible"
+   },
+   {
+    "tau": 0.75,
+    "p_set": 0.737374,
+    "status": "Infeasible"
+   },
+   {
+    "tau": 0.9,
+    "p_set": 0.55409,
+    "status": "Infeasible"
+   },
+   {
+    "tau": 0.99,
+    "p_set": 0.479027,
+    "status": "Optimal"
+   },
+   {
+    "tau": "bisection +9",
+    "p_set": 0.520386,
+    "status": "Infeasible"
+   },
+   {
+    "tau": "bisection +4",
+    "p_set": 0.493291,
+    "status": "Infeasible"
+   },
+   {
+    "tau": "bisection +2",
+    "p_set": 0.479959,
+    "status": "Optimal"
+   }
+  ]
+ },
+ "tree": {
+  "p_goal": 0.479959,
+  "E_Wt_over_Wstar": 1.01365,
+  "E_Wt_bn": 277.121,
+  "twr_mean": 0.0906368,
+  "twr_median": 0.0875818,
+  "cvar10_twr": -0.0584679,
+  "cvar5_twr": -0.0903209,
+  "cvar1_twr": -0.120504,
+  "bpoe": 0.986156,
+  "phi": 0.986156,
+  "p_red": 0.0,
+  "leaf_condition_ok": true,
+  "pileup_mass": 0.0604056,
+  "deep_miss_mass": 0.422122,
+  "min_Wt_bn": 86.3606
+ }
+}
+{
+ "tree": {
+  "p_goal": 0.432308,
+  "E_Wt_over_Wstar": 0.978259,
+  "E_Wt_bn": 267.445,
+  "twr_mean": 0.0820348,
+  "twr_median": 0.0799053,
+  "cvar10_twr": -0.0709892,
+  "cvar5_twr": -0.101132,
+  "cvar1_twr": -0.139869,
+  "bpoe": 1.0,
+  "phi": 1.01087,
+  "p_red": 0.0123838,
+  "leaf_condition_ok": true,
+  "pileup_mass": 0.00695738,
+  "deep_miss_mass": 0.46632,
+  "min_Wt_bn": 77.5661
+ }
+}
+{
+ "goal": {
+  "rate": 0.1,
+  "years": 5,
+  "basis": "TWR gross of distributions on economic NAV",
+  "W0_bn": 169.753,
+  "Wstar_bn": 273.389,
+  "W0_reported_bn": 177.0
+ },
+ "c_max_W0": 3.22102,
+ "eps_red_tree": 0.006,
+ "eps_red_certified": 0.01,
+ "depth_guard": {
+  "levels": [
+   0.9,
+   0.95,
+   0.99
+  ],
+  "delta_W0": 0.0
+ },
+ "consent_scenario": "R1",
+ "tree": {
+  "branches": [
+   10,
+   7
+  ],
+  "fan_paths": 3,
+  "leaves": 210,
+  "decision_nodes": 81,
+  "stage2_recourse_only": true
+ }
+}
+{
+ "u_star": 0.0,
+ "label": "FEASIBLE",
+ "allowances": {}
+}
+{
+ "B0": {
+  "p_goal": 0.432308,
+  "E_Wt_over_Wstar": 0.978259,
+  "E_Wt_bn": 267.445,
+  "twr_mean": 0.0820348,
+  "twr_median": 0.0799053,
+  "cvar10_twr": -0.0709892,
+  "cvar5_twr": -0.101132,
+  "cvar1_twr": -0.139869,
+  "bpoe": 1.0,
+  "phi": 1.01087,
+  "p_red": 0.0123838,
+  "leaf_condition_ok": true,
+  "pileup_mass": 0.00695738,
+  "deep_miss_mass": 0.46632,
+  "min_Wt_bn": 77.5661
+ },
+ "O1": {
+  "p_goal": 0.466646,
+  "E_Wt_over_Wstar": 1.03716,
+  "E_Wt_bn": 283.547,
+  "twr_mean": 0.0937818,
+  "twr_median": 0.0910746,
+  "cvar10_twr": -0.0622509,
+  "cvar5_twr": -0.0933406,
+  "cvar1_twr": -0.122752,
+  "bpoe": 0.961696,
+  "phi": 0.961696,
+  "p_red": 0.0,
+  "leaf_condition_ok": true,
+  "pileup_mass": 0.0142149,
+  "deep_miss_mass": 0.417599,
+  "min_Wt_bn": 85.77
+ },
+ "O2": {
+  "p_goal": 0.479959,
+  "E_Wt_over_Wstar": 1.01365,
+  "E_Wt_bn": 277.121,
+  "twr_mean": 0.0906368,
+  "twr_median": 0.0875818,
+  "cvar10_twr": -0.0584679,
+  "cvar5_twr": -0.0903209,
+  "cvar1_twr": -0.120504,
+  "bpoe": 0.986156,
+  "phi": 0.986156,
+  "p_red": 0.0,
+  "leaf_condition_ok": true,
+  "pileup_mass": 0.0604056,
+  "deep_miss_mass": 0.422122,
+  "min_Wt_bn": 86.3606
+ },
+ "O3": {
+  "p_goal": 0.37499,
+  "E_Wt_over_Wstar": 0.964407,
+  "E_Wt_bn": 263.658,
+  "twr_mean": 0.0831321,
+  "twr_median": 0.0768332,
+  "cvar10_twr": -0.0309267,
+  "cvar5_twr": -0.0507598,
+  "cvar1_twr": -0.0712652,
+  "bpoe": 1.0,
+  "phi": 1.0178,
+  "p_red": 0.0,
+  "leaf_condition_ok": true,
+  "pileup_mass": 0.00296807,
+  "deep_miss_mass": 0.477966,
+  "min_Wt_bn": 113.312
+ }
+}
+2.5.4 1.18.1 1.9.3 ['CLARABEL', 'SCS', 'ECOS', 'SCIPY', 'HIGHS', 'ECOS_BB', 'OSQP']

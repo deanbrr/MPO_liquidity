@@ -1,0 +1,14 @@
+published 4k paths, own draw (headline + 4 books): mean +1.19pp sd 1.12 se 0.50; vs +1pp: t 0.37, one-sided p 0.365
+published 4k paths, own draw (headline + 4 books): mean +1.19pp sd 1.12 se 0.50; vs +0pp: t 2.37, one-sided p 0.039
+10k paths, own draw: mean +1.41pp sd 1.03 se 0.46; vs +1pp: t 0.88, one-sided p 0.214
+10k paths, own draw: mean +1.41pp sd 1.03 se 0.46; vs +0pp: t 3.06, one-sided p 0.019
+10k paths, opp Sharpe 0.30: mean +1.24pp sd 0.49 se 0.22; vs +1pp: t 1.07, one-sided p 0.172
+10k paths, opp Sharpe 0.30: mean +1.24pp sd 0.49 se 0.22; vs +0pp: t 5.63, one-sided p 0.002
+10k paths, opp Sharpe 0: mean +0.40pp sd 0.57 se 0.26; vs +1pp: t -2.33, one-sided p 0.960
+10k paths, opp Sharpe 0: mean +0.40pp sd 0.57 se 0.26; vs +0pp: t 1.56, one-sided p 0.097
+10k paths, O1 with opp IM 1.0, Sharpe 0.30: mean +0.93pp sd 0.50 se 0.22; vs +1pp: t -0.33, one-sided p 0.622
+10k paths, O1 with opp IM 1.0, Sharpe 0.30: mean +0.93pp sd 0.50 se 0.22; vs +0pp: t 4.18, one-sided p 0.007
+10k paths, playbook own draw: mean -0.20pp sd 0.47 se 0.21; vs +1pp: t -5.66, one-sided p 0.998
+10k paths, playbook own draw: mean -0.20pp sd 0.47 se 0.21; vs +0pp: t -0.93, one-sided p 0.797
+veq (own draw, 10k) on opp Sharpe across 6 books: slope 3.70pp per unit Sharpe, intercept -0.07, r 0.86
+published 4k: rank corr 0.942857142857143

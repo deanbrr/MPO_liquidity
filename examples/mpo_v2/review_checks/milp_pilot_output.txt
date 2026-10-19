@@ -1,0 +1,14 @@
+﻿SYNTHETIC - NOT ADIC DATA. Output of milp_pilot.py (spec review pilot), run 2026-10-19.
+model: 9643 columns (200 binaries), 8328 rows, 109711 nonzeros
+SQ LP: Optimal 0.2s
+SQ: P(goal) in tree 0.395, E[W~]/W* 0.984, CVaR90(X) 0.8606
+mean LP: Optimal 1.3s  E[W~]/W* 1.213  P(goal) tree 0.495
+  bounds leaf 0: 2.2s
+  bounds leaf 50: 125.2s
+  bounds leaf 100: 269.8s
+  bounds leaf 150: 398.8s
+leaf bounds: 400 LPs in 513.8s; fixed to 1: 0, fixed to 0: 54, free: 146
+MILP fix=False: Optimal 65.5s  P(goal) 0.670  bound 0.670  gap 0.0000  nodes 441
+MILP fix=True: Optimal 94.5s  P(goal) 0.670  bound 0.670  gap 0.0000  nodes 430
+
+[exited with code 0]

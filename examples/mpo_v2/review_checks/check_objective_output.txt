@@ -1,0 +1,19 @@
+﻿SYNTHETIC - NOT ADIC DATA. Output of check_objective.py (spec review of DECISION_SPACE_AND_GOAL_OBJECTIVE.md v1.1), run 2026-10-19.
+C1 complete-market bPOE optimum (SYNTHETIC)
+ geo 0.083 {'bpoe': 0.6196, 'p_goal': np.float64(0.74), 'p_zero': np.float64(0.26), 'levels': [0.0, 2.7748], 'n_levels': 2, 'K_over_Wstar': 1.7229, 'idx_p_goal': 0.4025, 'idx_E': 1.5662, 'sq_p_zero': 0.0025, 'sq_n_levels': 400}
+ geo 0.1047 {'bpoe': 0.4013, 'p_goal': np.float64(0.8675), 'p_zero': np.float64(0.1325), 'levels': [0.0, 2.4043], 'n_levels': 2, 'K_over_Wstar': 1.4929, 'idx_p_goal': 0.52, 'idx_E': 1.7245, 'sq_p_zero': 0.0025, 'sq_n_levels': 400}
+C2 pure-beta frontier (SYNTHETIC, bridge model)
+  geo 0.0830 L 1.00  P(goal) 0.4046  dP +0.00pp  CVaR90 worsening 0.0000 W0  E/W* 0.974
+  geo 0.0830 L 1.02  P(goal) 0.4096  dP +0.49pp  CVaR90 worsening 0.0070 W0  E/W* 0.979
+  geo 0.0830 L 1.05  P(goal) 0.4168  dP +1.22pp  CVaR90 worsening 0.0175 W0  E/W* 0.986
+  geo 0.0830 L 1.10  P(goal) 0.4276  dP +2.29pp  CVaR90 worsening 0.0349 W0  E/W* 0.998
+  geo 0.0830 L 1.15  P(goal) 0.4369  dP +3.23pp  CVaR90 worsening 0.0522 W0  E/W* 1.010
+  geo 0.0830 L 1.30  P(goal) 0.4595  dP +5.49pp  CVaR90 worsening 0.1028 W0  E/W* 1.046
+  geo 0.0884 L 1.00  P(goal) 0.4347  dP +0.00pp  CVaR90 worsening 0.0000 W0  E/W* 0.999
+  geo 0.0884 L 1.02  P(goal) 0.4395  dP +0.49pp  CVaR90 worsening 0.0068 W0  E/W* 1.004
+  geo 0.0884 L 1.05  P(goal) 0.4466  dP +1.19pp  CVaR90 worsening 0.0170 W0  E/W* 1.012
+  geo 0.0884 L 1.10  P(goal) 0.4575  dP +2.28pp  CVaR90 worsening 0.0338 W0  E/W* 1.025
+  geo 0.0884 L 1.15  P(goal) 0.4670  dP +3.23pp  CVaR90 worsening 0.0506 W0  E/W* 1.039
+  geo 0.0884 L 1.30  P(goal) 0.4898  dP +5.51pp  CVaR90 worsening 0.1000 W0  E/W* 1.080
+C3 moment-matching rank (SYNTHETIC correlation)
+  {'eigenvalues': [2.556, 1.447, 0.985, 0.463, 0.362, 0.188], 'rank4': {'max_vol_err': 0.12504339591980085, 'max_corr_err': 0.2546583300216937}, 'rank3': {'max_vol_err': 0.15459525088503245, 'max_corr_err': 0.4051797936690472}}

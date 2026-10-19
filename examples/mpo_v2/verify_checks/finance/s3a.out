@@ -1,0 +1,190 @@
+============================== rates
+- sofr = 0.0389  [per year]
+    rationale: Cash, IG and posted margin earn SOFR; base rate of every floating loan.
+    source: SYN section 2.1 (SOFR 3.89% on 15 Oct 2026)
+============================== goal
+- rate = 0.1  [per year]
+    rationale: 10% nominal USD time-weighted return, gross of distributions.
+    source: User mandate; DSGO section 4.1
+- years = 5  [years]
+    rationale: Decision horizon of the goal; the 10-year horizon is a sensitivity not run in this prototype.
+    source: DSGO section 4.1 [A]
+- W0_reported = 177.0  [$bn]
+    rationale: Reported NAV today (allocation v2). The goal is measured on economic NAV, so W0 for the goal ratio is the economic NAV computed from the book.
+    source: inputs section 1A; DSGO RV-18
+- eps_g = 0.001  [share of W0]
+    rationale: Margin above the goal wealth that the MILP requires for a leaf to count as a success; stops knife-edge successes.
+    source: DSGO section 4.4 [A]
+- inflation = 0.025  [per year]
+    rationale: Deflator for the CRRA comparison's real wealth.
+    source: SYN section 2.3(a) (pi = 2.5%)
+- c_max_factor = 2.0  [x W*/W0]
+    rationale: Cap on the GBO buffer: c_max = 2 W*/W0 (about 3.2 at 5 years), above the largest optimal buffer in the lognormal check.
+    source: DSGO section 4.3
+============================== worlds
+- names = ["M1", "M2", "M6"]  [labels]
+    rationale: The three CMA worlds the prototype pools (J.P. Morgan 2027; BlackRock fee-adjusted; BlackRock risk premia rise).
+    source: DSGO RV-14, section 5.1
+- weights = [0.3333333333, 0.3333333334, 0.3333333333]  [probability]
+    rationale: Equal IC weights.
+    source: DSGO section 5.1 [A]
+- eq_log_excess = [0.03, 0.046, 0.01]  [per year, log excess of SOFR]
+    rationale: World equity premia, calibrated so the status-quo book's expected 5-year geometric return is near the bridge's evidence-central 8.8% (M1), 10.5% (M2) and 6.1% (M6); pooled near 8.5%.
+    source: SYN section 4.12 bridge table; calibration in this prototype [I]
+- credit_drift = [0.0, 0.002, -0.006]  [per year added to the credit excess return]
+    rationale: M2 slightly richer credit carry; M6 reprices credit (risk premia rise).
+    source: SYN section 4.12 (M6 'risk premia rise') [A]
+- term_premium = [0.008, 0.01, 0.004]  [per year]
+    rationale: Duration excess return per world.
+    source: SYN section 4.12 [A]
+============================== owner_draw
+- prior_rate = 0.065  [share of opening-year reported NAV]
+    rationale: Last year's rate; with smoothing 0.5 and today's high Brent it gives a 2027 draw of 5.75%, about $10.2bn (research: $9.9-10.8bn).
+    source: SYN section 4.7 (12-month draw $9.9-10.8bn)
+- floor = 0.05  [share]
+    rationale: Mandated band floor.
+    source: User mandate (5-10%)
+- cap = 0.1  [share]
+    rationale: Mandated band cap.
+    source: User mandate (5-10%)
+- kink_high = 67.0  [$ per bbl]
+    rationale: Draw target at the 5% floor above about $67 Brent.
+    source: SYN section 4.7 (linear kinks about $67 / $23)
+- kink_low = 23.0  [$ per bbl]
+    rationale: Draw target at the 10% cap below about $23 Brent.
+    source: SYN section 4.7
+- smoothing = 0.5  [weight on last year's rate]
+    rationale: d_y = 0.5 d_(y-1) + 0.5 target.
+    source: SYN section 4.7 (rho_d = 0.5)
+- override_prob = [0.0025, 0.0025, 0.01, 0.01, 0.0025, 0.02]  [probability a year by shock type]
+    rationale: Owner override of the rule: 0.25% (N, B, SS), 1% (SG, DB), 2% (GW).
+    source: SYN section 4.7
+- override_size = 0.02  [added to the draw target]
+    rationale: Size of an override.
+    source: SYN section 4.7 (overrides 0.25-2%) [A]
+============================== treasury
+- cash0 = 15.0  [$bn]
+    rationale: Corporate Finance / Treasury cash and money-market holdings at t0 (177 reported NAV minus the 162 held across the eight groups). Posted margin is paid out of it at the root.
+    source: SYN section 2.2 holder table (Corporate Finance / Treasury 15)
+- fi_liquidity_weight = 0.98  [share]
+    rationale: Investment-grade fixed income (LO-04) counts toward IG + cash at 98% of value.
+    source: SYN section 2.3(d) canonical IG + cash [A haircut]
+============================== overlay
+- beta_sq = 10.0  [$bn notional]
+    rationale: Synthetic equity beta the Overlay runs at t0; the status quo keeps it in dollars.
+    source: SYN section 2.2 (Overlay supplies synthetic beta, $10bn at t0); section 2.3(d)
+- im_rate = [0.04, 0.06, 0.1]  [initial margin per $ notional by class [BEN, DRT, STR]]
+    rationale: Futures IM rising from 4% to 10% in stress.
+    source: SYN section 2.3(d) (IM rising from 4% to 10%)
+- beta_fin_spread = [0.003, 0.006, 0.0175]  [per year over SOFR by class]
+    rationale: Embedded financing of synthetic beta: 30bp average, 81bp at the June-2026 roll, 175bp in stress.
+    source: DSGO section 2.6; GRP section 3.7
+- p2s_fin_spread = [0.0045, 0.009, 0.025]  [per year per $ notional by class]
+    rationale: Cost of physical-to-synthetic per $ freed: 0.40-0.70% normal, 0.80-1.11% (June 2026), 2.2-3.3% stress.
+    source: DSGO section 2.6; SYN section 4.4
+- p2s_cap = 10.0  [$bn notional]
+    rationale: P2S capacity on the DM core sleeve.
+    source: DSGO section 2.6 (<= $10bn) [A]
+- trs_fin_spread = 0.01  [per year over SOFR]
+    rationale: Hedge-fund TRS / portable-alpha financing.
+    source: DSGO section 2.6 [A]
+- trs_ia = 0.1  [share of TRS notional]
+    rationale: Independent amount posted as collateral.
+    source: DSGO section 2.6 (10% independent amount)
+- trs_cap_share = 0.5  [share of the hedge-fund lot's NAV]
+    rationale: TRS notional per lot is capped at half the lot (counterparty capacity).
+    source: [A]
+- gross_max = 0.3  [share of W]
+    rationale: Gross overlay (synthetic beta + P2S + TRS notional) cap.
+    source: DSGO section 4.6 H13
+- tail_premium = 0.0374  [per $ notional per year]
+    rationale: 90/72 put-spread ladder premium.
+    source: DSGO section 2.8; GRP section 3.7
+- tail_strike_lo = 0.1  [equity fall]
+    rationale: Upper strike of the put spread (90).
+    source: DSGO section 2.8
+- tail_width = 0.18  [equity fall]
+    rationale: Spread width 90 to 72.
+    source: DSGO section 2.8
+- tail_rung_factor = 0.922  [multiplier]
+    rationale: Scales the annual put-spread payoff so a crash pays 0.166 per $ notional (0.166 / 0.18).
+    source: DSGO section 2.8 (crash payoff 0.166 per $)
+- tail_budget = [0.0015, 0.005]  [premium as share of NAV per year [floor, cap]]
+    rationale: Tail budget 0.15-0.50% of NAV; the status quo sits at the floor ($7.1bn notional).
+    source: DSGO section 2.8
+- opp_im_sq = 1.0  [$bn IM]
+    rationale: Opportunistic book at t0.
+    source: DSGO section 2.8
+- opp_im_max = 1.5  [$bn IM]
+    rationale: Opportunistic IM cap.
+    source: DSGO section 2.8 (IM <= $1.5bn)
+- opp_vol_per_im = 1.77  [annual P&L sd per $ of IM]
+    rationale: Vol 1.0% of NAV at $1bn of IM (1.0-1.5% in the research; low end).
+    source: DSGO section 2.8 [I]
+- opp_sr_prior = 0.3  [Sharpe ratio]
+    rationale: Belief: prior N(0.3, 0.25^2).
+    source: SYN section 4.6
+- opp_load_eq = 0.3  [loading on the standardized equity surprise]
+    rationale: Short-volatility templates lose with equities.
+    source: [A]
+- opp_load_vol = -0.6  [loading on the standardized implied-vol surprise]
+    rationale: Short-volatility carry: loses when implied vol jumps (RV-20).
+    source: DSGO RV-20 [A]
+- opp_idio_share = 0.6  [share of P&L variance]
+    rationale: Idiosyncratic share of the opportunistic book's P&L variance: in the simulator only (the tree carries the factor part).
+    source: [A]
+- eq_vol_ref = 0.16  [annual equity sd]
+    rationale: Standardizes the equity surprise for the opportunistic book.
+    source: [A]
+- vix_vol_ref = 0.08  [annual sd of the vol factor]
+    rationale: Standardizes the implied-vol surprise.
+    source: [A]
+============================== corporate_finance
+- consent_scenario = "R1"  [label]
+    rationale: R1: a committed revolver is signed and every policy (baselines included) can use it before any red sale (facility parity).
+    source: DSGO sections 6.1-6.2 (R0 / R1 / R2; RV-21)
+- revolver_signed = 10.0  [$bn]
+    rationale: Committed revolver signed under R1.
+    source: SYN Mix B ($10bn revolver)
+- revolver_upsize_max = 5.0  [$bn]
+    rationale: FUND can upsize to $15bn, effective from stage 1 (2-quarter lead).
+    source: DSGO section 2.9 (capacity L <= $15bn)
+- revolver_spread = 0.0085  [per year over SOFR]
+    rationale: Drawn margin.
+    source: DSGO section 2.9 (SOFR + 85bp)
+- revolver_undrawn_fee = 0.0015  [per year]
+    rationale: Undrawn fee, paid by every policy under parity.
+    source: DSGO section 2.9
+- revolver_upfront_fee = 0.0005  [per year on new capacity]
+    rationale: 15bp upfront per 3 years.
+    source: DSGO section 2.9
+- revolver_avail = [1.0, 1.0, 0.5]  [share of capacity drawable by class]
+    rationale: At most 50% available in STR.
+    source: DSGO section 2.9; LIT section 4.3
+- term_spread = 0.0085  [per year over SOFR]
+    rationale: 5-year bullet term debt (SOFR + 70-100bp).
+    source: DSGO section 2.9 [A midpoint]
+- term_avail = [1.0, 1.0, 0.0]  [1 = can issue at the class]
+    rationale: Facilities signed in stress count zero.
+    source: DSGO section 2.9
+- recourse_cap = 0.15  [share of W]
+    rationale: Recourse debt cap (hard; 0.10 reported as target).
+    source: DSGO section 4.6 H5
+- encumbrance_cap = 0.2  [share of total assets]
+    rationale: Encumbered collateral cap.
+    source: DSGO section 4.6 H5
+- navf = {"ltv": [0.1, 0.1, 0.05], "spread": [0.03, 0.03, 0.044], "oid": 0.015, "pool_cap_share": 0.2, "avail": [1.0, 1.0, 0.5], "pik": true}  [LTV / spread over SOFR by class; OID; pool cap as share of private NAV; availability]
+    rationale: LP-portfolio NAV facility (Corporate Finance): 10% LTV (5% stressed) on a pledge pool <= 20% of private NAV, SOFR + 300bp (+140bp stress), PIK, forced paydown when the LTV cap tightens.
+    source: DSGO section 2.1; SYN section 4.4
+- pref = {"advance": 0.3, "rate": [0.12, 0.12, 0.14], "fee": 0.01, "avail": [1.0, 1.0, 0.0]}  [advance as share of pool NAV; accrual rate by class; fee; availability]
+    rationale: LP-portfolio preferred equity: cash 20-35% of pool NAV, 12% preferred return (14% in stress), accruing; deducted at the leaf with accruals.
+    source: DSGO section 2.1; GRP section 3.1
+- csbl = {"debt_to_value": 0.333, "spread": 0.03, "avail": [1.0, 0.0, 0.0]}  [max debt / book value; spread; availability]
+    rationale: Capital Solutions back-leverage at D/E <= 0.5, bank SOFR + 300bp, arranged in BEN only.
+    source: DSGO section 2.4; GRP section 3.3
+- smabl = {"ltv": 0.45, "spread": 0.0225, "avail": [1.0, 0.0, 0.0]}  [LTV; spread; availability]
+    rationale: SMA back-leverage, LTV <= 40-45%, SOFR + 200-275bp, BEN with lender lead time.
+    source: DSGO section 2.5; GRP section 3.6
+- raco = {"cap": 0.9, "ltv": 0.55, "spread": [0.032, 0.044, 0.072], "avail": [0.97, 0.85, 0.6]}  [$bn capacity; portfolio LTV; spread by class; availability]
+    rationale: Real-asset cash-out refinancing at maturity (controlled assets only): capacity $0.53-0.90bn, portfolio LTV <= 55%, spreads 3.2 / 4.4 / 7.2% over SOFR.
+    source: DSGO section 2.7; RA section 7.3

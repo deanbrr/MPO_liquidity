@@ -1,0 +1,150 @@
+============================== fusion
+- alpha_star_pp = {"PE": 0.75, "SEC": 1.0, "CO": 1.0, "CS": 0.0, "PC": 0.0, "HF": 0.0, "LO": -0.15, "RA": 0.25}  [pp a year over the factor-implied return]
+    rationale: Evidence-central selection alpha priors by group; hedge funds at zero (Jurek-Stafford).
+    source: DSGO section 3.1 prior row; SYN section 4.12; LIT section 3.9
+- unit_prior_sd_pp = {"PE": 3.0, "SEC": 2.5, "CO": 4.5, "CS": 2.5, "PC": 1.5, "HF": 2.5, "LO": 0.8, "RA": 2.5}  [pp a year]
+    rationale: Prior dispersion of a single holding's forward alpha (manager / deal dispersion), wider than the sleeve-level alpha prior.
+    source: SYN section 4.3 (sigma_k about 5.5% for single buyout deals) [A]
+- bias_prior_underwritten_pp = {"PE": 5.0, "SEC": 2.0, "CO": 6.0, "CS": 2.0, "PC": 0.75, "HF": 3.0, "LO": 1.0, "RA": 2.5}  [pp a year]
+    rationale: Prior underwriting optimism by group.
+    source: DSGO section 3.2 bias priors (b_u)
+- bias_prior_forecast_pp = {"PE": 3.0, "SEC": 1.5, "CO": 3.5, "CS": 1.5, "PC": 0.75, "HF": 2.0, "LO": 0.75, "RA": 1.5}  [pp a year]
+    rationale: Prior forecast optimism by group.
+    source: DSGO section 3.2 bias priors (b_f)
+- bias_prior_sd_pp = {"PE": 1.5, "SEC": 1.0, "CO": 2.0, "CS": 1.0, "PC": 0.5, "HF": 1.0, "LO": 0.5, "RA": 1.0}  [pp a year]
+    rationale: Uncertainty of the bias priors; the truth model shifts the true bias by +1 of these.
+    source: DSGO RV-02 [A]
+- archive_n_eff = {"PE": 24, "SEC": 10, "CO": 18, "CS": 8, "PC": 12, "HF": 30, "LO": 30, "RA": 10}  [effective archived forecasts]
+    rationale: Size of each group's scored quarterly forecast archive (clustered by vintage).
+    source: DSGO section 3.2 [A]
+- credibility_constant = 20  [observations]
+    rationale: Buhlmann credibility Z = n_eff / (n_eff + 20).
+    source: DSGO section 3.2
+- precision_weights_after_n_eff = 20  [observations]
+    rationale: Weights are shrunk halfway to equal until the archive reaches n_eff >= 20.
+    source: DSGO section 3.3; LIT section 4.10
+- kappa_prior_median = 1.75  [ratio of true to stated 80% width]
+    rationale: Stated ranges are too narrow; prior LN(ln 1.75, 0.25^2), updated on the archive's range coverage.
+    source: DSGO section 3.2
+- benktander_t = 0.4  [credibility parameter]
+    rationale: Benktander c* = p / (p + t) between the forecast's chain-ladder estimate and the outside-view prior for fund interests.
+    source: SYN section 4.3 (t about 0.3-0.5)
+- actual_weight_phi = {"buyout": 0.5, "growth": 0.4, "secondary": 0.4, "deal": 0.3, "credit": 0.5, "hf": 0.3, "lo": 0.2, "ra": 0.4}  [weight on actual minus benchmark]
+    rationale: Persistence shrinkage of since-inception performance (0.5 for buyout).
+    source: DSGO section 3.1 (phi_a = 0.5 buyout) [A for other classes]
+- actual_min_age = 3  [years]
+    rationale: Actual performance unused before year 3.
+    source: DSGO section 3.1
+- outcome_noise = {"fund": 0.15, "deal": 0.3, "credit": 0.06, "real_asset": 0.12, "liquid": 0.06}  [annual sd by noise class]
+    rationale: Outcome noise in the predictive variance (15% funds, 30% single deals; credit, real assets and liquid mandates lower).
+    source: DSGO section 3.3
+- buyer_required_return = {"fund": 0.14, "co": 0.22, "cs": 0.12, "pc_sma": 0.085, "pc_lp": 0.11, "pc_evergreen": 0.085, "pc_bdc": 0.1, "hf": 0.08, "lo_dm": 0.07, "lo_em": 0.08, "lo_fi": 0.05, "ra_direct": 0.09, "ra_lp_core": 0.1, "ra_lp_va": 0.13, "ra_lp_infra": 0.1, "ra_enr_fund": 0.16, "ra_enr_direct": 0.12, "ra_gcc": 0.11}  [per year]
+    rationale: Buyer's required return y_b in the market-anchor translation (LP buyout 14%, single-asset co-investment 22%).
+    source: DSGO section 3.1 market-anchor row; GRP section 3.4 [A for credit and RA]
+- buyer_seller_gap_age_edges = [4, 10]  [years]
+    rationale: Age edges of the buyer-seller PME gap for fund interests.
+    source: DSGO section 3.1
+- buyer_seller_gap_by_age = [0.245, 0.03, -0.048]  [per year]
+    rationale: pi_b: +24.5pp below age 4 (anchor unused), about 3pp at ages 4-9; the tail-end value folds the 18% tail-end buyer return into the 14% base.
+    source: DSGO section 3.1 (pi_b about 3pp ages 4-9, -0.8pp tail-end; y_b 18% tail-end)
+- market_anchor_min_age = {"fund": 4}  [years]
+    rationale: The fund market anchor is unused below age 4.
+    source: DSGO section 3.1
+- bid_dispersion = 0.05  [sd of log bid]
+    rationale: Error scale of the market anchor (bid dispersion / D).
+    source: DSGO section 3.1 [A]
+- student_t_dof = 5  [degrees of freedom]
+    rationale: Predictive tails.
+    source: DSGO section 3.3
+- precision_horizon_quarters = 8  [quarters]
+    rationale: Forecast precision is capped beyond about 8 quarters: precision x min(1, 8/h).
+    source: DSGO section 3.2; LIT section 4.10
+- flags = {"hockey_min_age": 3, "hockey_gap": 0.08, "stale_theta": 0.85, "market_disagreement": 0.04, "zombie_age": 12, "zombie_tvpi": 1.3}  [thresholds (years, IRR gap, theta, return gap, years, TVPI)]
+    rationale: Belief-card flags: hockey-stick forecast, stale NAV, market disagreement > 400bp, zombie NAV.
+    source: SYN section 4.3 flags F1-F10
+============================== regimes
+- macro = {"P_q": {"value": [[0.9, 0.07, 0.03, 0.0], [0.05, 0.82, 0.13, 0.0], [0.0, 0.0, 0.7, 0.3], [0.25, 0.0, 0.05, 0.7]], "unit": "quarterly transition matrix over [expansion, late_cycle, crisis, recovery]", "rationale": "Crisis persistence 0.70 a quarter gives a mean dwell of 10 months (inside 6-18); P(stress within 12 months from calm) is about 17% including the oil coupling (inside 13-35%).", "source": "SYN section 4.1 (dwell 6-18 months; P(stress within 12 months) 13-35%)"}, "start": {"value": [1.0, 0.0, 0.0, 0.0], "unit": "probability", "rationale": "Market regime reads calm (>= 0.99) in October 2026.", "source": "SYN section 4.1 October 2026 readings"}}
+- exit = {"P_q": {"value": [[0.85, 0.15, 0.0, 0.0], [0.06, 0.88, 0.06, 0.0], [0.0, 0.1, 0.88, 0.02], [0.0, 0.1, 0.15, 0.75]], "unit": "quarterly transition matrix over [open, normal, drought, frozen]", "rationale": "Quarterly persistence 0.85 / 0.88 / 0.88 / 0.75; drought persists with probability about 0.60 after 12 months.", "source": "SYN section 4.2 exit-window table; section 4.1 (drought 0.87, 0.61 after 12 months)"}, "start": {"value": [0.0, 0.13, 0.87, 0.0], "unit": "probability", "rationale": "Exit window drought 0.87 today.", "source": "SYN section 4.1"}, "crisis_push_q": {"value": 0.35, "unit": "probability a quarter", "rationale": "In a macro crisis quarter the exit window moves one step worse with this probability (crisis -> frozen exits).", "source": "SYN section 4.1 coupled chains [A]"}}
+- oil = {"P_q": {"value": [[0.885, 0.03, 0.04, 0.015, 0.02, 0.01], [0.15, 0.8, 0.05, 0.0, 0.0, 0.0], [0.2, 0.0, 0.75, 0.05, 0.0, 0.0], [0.25, 0.0, 0.15, 0.6, 0.0, 0.0], [0.25, 0.05, 0.0, 0.0, 0.7, 0.0], [0.33, 0.0, 0.1, 0.02, 0.05, 0.5]], "unit": "quarterly transition matrix over [normal, boom, glut, demand_bust, supply_shock, gulf_war]", "rationale": "Gulf-war state decays (about 20% of 2027 in the war state, against the IMF's 17%), with a post-war glut channel; normal is about 60% of steady-state time and demand bust 2-6%.", "source": "SYN section 4.1 (shock-type shares N 0.55-0.65, DB 0.02-0.06; IMF 17%); RA section 9.3"}, "start": {"value": [0.15, 0.0, 0.0, 0.0, 0.0, 0.85], "unit": "probability", "rationale": "Gulf war about 0.85 today.", "source": "SYN section 4.1"}, "crisis_given_demand_bust_q": {"value": 0.85, "unit": "probability a quarter", "rationale": "A demand bust pushes the macro regime into crisis (P(crisis | DB) >= 0.8).", "source": "SYN section 4.1; DSGO section 5.1"}, "crisis_given_glut_q": {"value": 0.05, "unit": "probability a quarter", "rationale": "A glut raises crisis odds modestly (P(crisis | glut) about 0.15 over a glut spell).", "source": "SYN section 4.1; DSGO section 5.1"}}
+============================== factors
+- t_dof = 5  [degrees of freedom]
+    rationale: Student-t shocks (fat tails).
+    source: SYN section 4.1; DSGO section 5.1
+- eq = {"regime_shift_q": {"value": [0.008, -0.005, -0.08, 0.03], "unit": "quarterly log return shift by regime entered", "rationale": "Shape of the quarter by regime; centred on its expectation given the regime left, so the expected return is the same from every regime (nothing to time).", "source": "TD verify_finance M2; SYN section 4.8 [A]"}, "vol_annual": {"value": [0.13, 0.16, 0.32, 0.2], "unit": "annual volatility by regime entered", "rationale": "Calm, late-cycle, crisis and recovery equity volatility.", "source": "SYN section 4.1 [A]"}}
+- cr = {"level": {"value": [0.035, 0.045, 0.085, 0.05], "unit": "credit spread level by regime", "rationale": "Spread levels for a direct-lending / high-yield index by regime.", "source": "SYN section 4.3 (unitranche S+525, crisis +700-900) [A]"}, "start": {"value": 0.036, "unit": "spread", "rationale": "Tight spreads in a calm October 2026 market.", "source": "SYN section 4.1 (market calm) [A]"}, "kappa_q": {"value": 0.25, "unit": "per quarter", "rationale": "Mean reversion of the spread toward its regime level.", "source": "[A]"}, "vol_q": {"value": [0.003, 0.004, 0.012, 0.006], "unit": "quarterly spread shock sd by regime", "rationale": "Spread volatility.", "source": "[A]"}, "duration": {"value": 3.5, "unit": "years", "rationale": "Spread duration of the credit index.", "source": "SYN section 4.3 (3-year WAL loans) [A]"}, "pd_annual": {"value": [0.011, 0.016, 0.06, 0.022], "unit": "annual default rate by regime", "rationale": "PD_N 1.1% with regime multipliers.", "source": "SYN section 4.3 (PD_N 1.1%, multipliers 1 / 1.5 / 3, crisis higher)"}, "lgd": {"value": 0.67, "unit": "share", "rationale": "Direct-loan loss given default.", "source": "SYN section 4.3 (LGD 0.67, Cai & Haque 2024)"}}
+- rt = {"start": {"value": 0.0509, "unit": "10-year yield", "rationale": "10-year UST 5.09%.", "source": "SYN section 4.5"}, "mean": {"value": 0.046, "unit": "10-year yield", "rationale": "Long-run level.", "source": "[A]"}, "kappa_q": {"value": 0.05, "unit": "per quarter", "rationale": "Slow mean reversion.", "source": "[A]"}, "vol_q": {"value": 0.004, "unit": "quarterly yield shock sd", "rationale": "About 0.8% a year.", "source": "[A]"}, "crisis_shift_q": {"value": -0.004, "unit": "per crisis quarter", "rationale": "Flight to quality lowers yields in a crisis.", "source": "[A]"}, "duration": {"value": 6.0, "unit": "years", "rationale": "Duration of the bond index.", "source": "[A]"}}
+- oil = {"spot": {"value": 126.55, "unit": "$ per bbl", "rationale": "Brent today.", "source": "SYN section 4.7"}, "level": {"value": [70.0, 95.0, 45.0, 38.0, 110.0, 120.0], "unit": "$ per bbl by shock type", "rationale": "Mean-reversion targets by oil-shock type; long-run 70.", "source": "SYN section 4.1 (long-run $70) [A]"}, "kappa_q": {"value": 0.3, "unit": "per quarter", "rationale": "Mean reversion of log Brent toward the shock-type level; reproduces a backwardated strip from today's spot.", "source": "SYN section 4.1 (start from the futures strip) [A]"}, "vol_q": {"value": [0.08, 0.1, 0.12, 0.15, 0.12, 0.14], "unit": "quarterly log shock sd by shock type", "rationale": "Oil volatility by state.", "source": "[A]"}}
+- ex = {"level": {"value": [1.0, 0.0, -1.0, -2.0], "unit": "exit factor level by exit window", "rationale": "Exit factor X: open +1, normal 0, drought -1, frozen -2.", "source": "SYN section 4.1 [A]"}, "start": {"value": -1.0, "unit": "level", "rationale": "Drought today.", "source": "SYN section 4.1"}, "phi_q": {"value": 0.6, "unit": "AR(1) per quarter", "rationale": "Persistence of the exit factor around its window level.", "source": "SYN section 4.1 [A]"}, "sigma_q": {"value": 0.25, "unit": "quarterly shock sd", "rationale": "Noise in exit activity.", "source": "[A]"}}
+- vix = {"level": {"value": [15.0, 19.0, 34.0, 22.0], "unit": "VIX points by regime", "rationale": "Implied-volatility level by regime (RV-20 adds implied vol as a driver).", "source": "SYN section 4.6; DSGO RV-20 [A]"}, "start": {"value": 16.0, "unit": "VIX points", "rationale": "Calm market today (F_t = 0.10).", "source": "SYN section 4.1"}, "kappa_q": {"value": 0.5, "unit": "per quarter", "rationale": "Mean reversion to the regime level.", "source": "[A]"}, "spot_down": {"value": -0.5, "unit": "VIX points per 1% fall in the quarter's equity return", "rationale": "Spot-vol response (quarterly analogue of s- = -1.35 daily).", "source": "SYN section 4.6 [A]"}, "spot_up": {"value": -0.15, "unit": "VIX points per 1% rise", "rationale": "Weaker response to rallies.", "source": "SYN section 4.6 [A]"}, "sigma_q": {"value": 2.5, "unit": "VIX points", "rationale": "Idiosyncratic VIX noise.", "source": "[A]"}, "floor": {"value": 9.0, "unit": "VIX points", "rationale": "Lower bound.", "source": "[A]"}}
+- corr_normal = [[1.0, -0.55, 0.15, 0.25, 0.45], [-0.55, 1.0, -0.1, -0.2, -0.4], [0.15, -0.1, 1.0, 0.15, 0.05], [0.25, -0.2, 0.15, 1.0, 0.15], [0.45, -0.4, 0.05, 0.15, 1.0]]  [correlation of shocks [equity, spread, yield, oil, exit] outside crisis]
+    rationale: Spreads widen and exits shut when equities fall.
+    source: SYN section 4.1 [A]
+- corr_crisis = [[1.0, -0.7, -0.3, 0.45, 0.55], [-0.7, 1.0, 0.2, -0.35, -0.55], [-0.3, 0.2, 1.0, -0.1, -0.15], [0.45, -0.35, -0.1, 1.0, 0.3], [0.55, -0.55, -0.15, 0.3, 1.0]]  [correlation of shocks in crisis quarters]
+    rationale: Correlations rise in a crisis; yields fall with equities (flight to quality); oil falls with equities (demand bust).
+    source: SYN section 4.1 (R_s blend) [A]
+============================== tree
+- str_draw_threshold = 0.08  [draw rate]
+    rationale: A glut or demand-bust node is STR when next year's draw is at least 8%.
+    source: DSGO section 1.1 node classes
+- n_factor_mean_paths = 20000  [paths]
+    rationale: Paths used to compute the 5-year average expected factor returns that translate beliefs into alphas.
+    source: [I]
+- branches = [10, 7]  [children at t = 0 and t = 1]
+    rationale: Rank rule (children >= matched drivers + 1): 10 children match 7 drivers at stage 1 (6 factors + belief error), 7 children match 6 factors at stage 2. DSGO's 10 x 8 x 8 = 640 leaves does not fit the 15-minute budget; the computed task asks for about 200 leaves.
+    source: DSGO section 5.2 rank rule (RV-06); computed task (about 200 leaves)
+- fan_paths = 3  [3-year fan paths per stage-2 node]
+    rationale: One medoid path per tercile of the status-quo 3-year return, moment-matched on that return: 10 x 7 x 3 = 210 leaves.
+    source: DSGO section 5.2 (octiles scaled to terciles) [A]
+- n_stage1_paths = 20000  [paths]
+    rationale: One-year paths simulated from today for the stage-1 clustering.
+    source: DSGO section 5.2
+- n_stage2_paths = 2000  [paths per stage-1 node]
+    rationale: Continuations clustered into the stage-2 children.
+    source: DSGO section 5.2
+- n_fan_candidates = 300  [paths per stage-2 node]
+    rationale: Three-year candidate paths from which the tercile medoids are chosen.
+    source: [A]
+- stage1_strata = {"STR_DB": 1, "STR_other": 1, "DRT_GW": 2, "DRT": 3, "BEN": 3}  [branches per stratum]
+    rationale: Stage 1 is stratified by shock type: at least one demand-bust STR branch, one other STR branch and a Gulf-war continuation, because the three call on liquidity differently. Strata with too few paths merge into a neighbour.
+    source: DSGO section 5.1 start-state stratification; SYN L3
+- min_stratum_paths = 40  [paths]
+    rationale: A stratum with fewer simulated paths than this (or than its branch count) is merged into its neighbour.
+    source: [A]
+- stage2_min_class_mass = 0.03  [probability]
+    rationale: A node class with at least this conditional mass gets its own stage-2 branch; paths of rarer classes join the nearest cluster, so no probability mass is dropped.
+    source: [A]
+- seed = 11  [seed]
+    rationale: Tree seed (deterministic).
+    source: [A]
+- belief_error_fan_scale = 1.6666666667  [multiplier on sigma_post x e in each fan year]
+    rationale: The belief-error driver is drawn at the fan branching (so no decision node can condition on it) and acts in the three fan years; scaling by 5/3 gives it the 5-year log-wealth impact of a 5-year alpha error. Drawn at stage 1 (DSGO section 3.3) it was a look-ahead leak: stage-1 decisions traded on it in the tree while the executed playbook could not see it.
+    source: DSGO section 3.3 (RV-01), implementation deviation [I]
+- stage2_recourse_only = true  [flag]
+    rationale: With three fan paths per stage-2 node, discretionary stage-2 trades are fitted to three outcomes; stage-2 nodes keep funding moves, forced deleveraging and the stage-1 pacing and overlay (like the fans). Year-1 contingent plans (stage 1) remain fully discretionary.
+    source: DSGO sections 5.2-5.3 deviation, measured in the out-of-sample diagnostics [I]
+============================== simulation
+- n_cert = 10000  [paths]
+    rationale: Fresh certification paths (pooled worlds), common random numbers across policies.
+    source: computed task; DSGO section 5.5
+- n_select = 4000  [paths]
+    rationale: Selection paths (choose the best simple rule) on their own seed.
+    source: DSGO section 4.3
+- chunk = 1250  [paths]
+    rationale: Paths per certification batch (one batch per worker; 10,000 paths = 8 batches run in parallel).
+    source: [A]
+- idio = true  [flag]
+    rationale: Idiosyncratic outcome noise per holding in the simulator (sigma_idio of the segment), absent from the tree.
+    source: DSGO section 3.3
+- n_replication_paths = 4000  [paths]
+    rationale: Paths per replication / placebo book.
+    source: [A scaled]
+============================== frontier
+- eps_grid = [0.003, 0.006, 0.012, 0.025, 0.05, 1.0]  [tree red-event CVaR share (1.0 = unbounded)]
+    rationale: At least five points of max P(goal) and min bPOE against the red-event limit.
+    source: computed task; DSGO section 4.8
+- milp_points = [0.003, 1.0]  [red-event CVaR shares]
+    rationale: Frontier points that also run the max-P(goal) comparison (the 0.6% point is the main MILP); the remaining points reuse it when their GBO solution is identical.
+    source: [A]
+- delta_grid = [0.01, 0.02, 0.04]  [share of W0]
+    rationale: Depth-guard frontier points beyond delta = 0 (GBO only).
+    source: DSGO section 4.8

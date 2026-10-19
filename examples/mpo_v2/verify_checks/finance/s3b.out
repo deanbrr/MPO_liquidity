@@ -1,0 +1,274 @@
+============================== templates
+- SEC_BUY = {"group": "SEC", "family": "ADD", "segment": "sec_portfolio", "age": 6, "unfunded_per_nav": 0.15, "winners_curse": 0.045, "discount_gate": 0.2, "cap_year": 4.0, "group_cap_share": 0.1, "alpha_pp": [1.0, 1.0, 1.0], "classes": [0, 1, 2], "green_only": false, "lever_debt": 0.0, "lever_spread": 0.0}  [template spec]
+    rationale: Contingent discount purchase of LP interests at price rho x theta per $ of reported NAV (rho = buyer residual on economic NAV by class), gated on a discount > 20% and stage not Black; group NAV <= 10% of the fund; winner's-curse haircut 4.5%.
+    source: DSGO section 2.2 (RV-10); GRP section 3.2
+- CO_DEAL = {"group": "CO", "family": "ADD", "segment": "co_deal", "age": 0, "unfunded_per_nav": 0.0, "winners_curse": 0.0, "discount_gate": 0.0, "cap_year": 1.2, "group_cap_share": 1.0, "alpha_pp": [1.0, 1.0, 1.0], "classes": [0, 1, 2], "green_only": true, "lever_debt": 0.0, "lever_spread": 0.0}  [template spec]
+    rationale: New co-investments, $0.6-1.2bn a year, paused in Amber or worse.
+    source: DSGO section 2.3
+- CS_NEW = {"group": "CS", "family": "ADD", "segment": "cs_credit", "age": 0, "unfunded_per_nav": 0.0, "winners_curse": 0.0, "discount_gate": 0.0, "cap_year": 1.2, "group_cap_share": 1.0, "alpha_pp": [0.0, 0.5, 2.0], "classes": [0, 1, 2], "green_only": false, "lever_debt": 0.0, "lever_spread": 0.0}  [template spec]
+    rationale: Capital Solutions new money, <= $1.2bn a year; rescue deals in stress earn more (15-20% gross).
+    source: DSGO section 2.4; GRP section 3.3
+- PC_NEW = {"group": "PC", "family": "ADD", "segment": "pc_sma", "age": 0, "unfunded_per_nav": 0.0, "winners_curse": 0.0, "discount_gate": 0.0, "cap_year": 2.0, "group_cap_share": 1.0, "alpha_pp": [0.0, 0.5, 2.0], "classes": [0, 1, 2], "green_only": false, "lever_debt": 0.0, "lever_spread": 0.0}  [template spec]
+    rationale: New senior loans: unitranche S+525 normal, +525-600 tight, +700-900 in a crisis (excess spread entered as alpha).
+    source: DSGO section 2.5; SYN section 4.3
+- INFRA_LEV = {"group": "RA", "family": "LEVER", "segment": "ra_infra_direct", "age": 0, "unfunded_per_nav": 0.0, "winners_curse": 0.0, "discount_gate": 0.0, "cap_year": 1.0, "group_cap_share": 1.0, "alpha_pp": [0.65, 0.65, 0.65], "classes": [0], "green_only": false, "lever_debt": 1.0, "lever_spread": 0.02}  [template spec]
+    rationale: Contracted-infrastructure add-on with acquisition debt at SOFR + 200bp, 50% LTV (debt 1.0 per $ equity), BEN only; asset alpha 0.25pp prior + 0.4pp after charges.
+    source: RA sections 7.4-7.5; DSGO section 2.7
+- SMA_LEV = {"group": "PC", "family": "LEVER", "segment": "pc_sma", "age": 0, "unfunded_per_nav": 0.0, "winners_curse": 0.0, "discount_gate": 0.0, "cap_year": 1.0, "group_cap_share": 1.0, "alpha_pp": [0.0, 0.0, 0.0], "classes": [0], "green_only": false, "lever_debt": 1.0, "lever_spread": 0.0225}  [template spec]
+    rationale: Levered SMA sleeve, D/E 1.0 at SOFR + 225bp, senior non-software loans, BEN only.
+    source: DSGO section 2.5; GRP section 3.6
+============================== pacing
+- plan = {"PE": 3.5, "SEC": 1.0, "RA": 1.2, "PC": 1.2, "CS": 0.6}  [$bn of new commitments a year]
+    rationale: Commitment plan in allocation v2: PE $3.5bn (v1.1's $5.34bn x 34/52); RA infrastructure-led $1.2bn; Secondaries, Private Credit and Capital Solutions from the 60/10/10/10/10 split scaled to v2.
+    source: DSGO section 2.1 (PE plan $3.5bn); RA section 2.3 ($1.2bn); SYN section 2.3 (split) [A]
+- segments = {"PE": "pe_buyout", "SEC": "sec_fund", "RA": "ra_infra_fund", "PC": "pc_fund", "CS": "cs_credit"}  [segment of each commitment template]
+    rationale: Flow profile of a new commitment (calls by age, distributions, loadings).
+    source: this file, book.segments
+- mult_range = [0.25, 1.25]  [x plan]
+    rationale: Commitment budget range with the protected 25% core; the stage ranges (Green 0.75-1.25x, Amber 0.25-0.5x) are reported, not imposed, so the plan is not driven by a hard IC range (TD verify_finance H3).
+    source: DSGO section 2.1 [A deviation noted]
+- c_pace = {"PE": 0.086, "SEC": 0.05, "RA": 0.03, "PC": 0.01, "CS": 0.01}  [$ per $ of commitment above (+) or below (-) plan, at the leaf]
+    rationale: Post-horizon part of the alpha of commitments made or forgone, counted once at the leaf (8.6 cents per PE $).
+    source: DSGO sections 2.1, 4.1 (RV-18); [A] for non-PE groups
+============================== trading
+- tc = {"lo_dm": 0.0008, "lo_em": 0.003, "lo_fi": 0.0005, "hf": 0.0}  [cost per $ traded]
+    rationale: Impact + half-spread: 4-13bp US large cap, 23-40bp EM; hedge-fund subscriptions at NAV.
+    source: DSGO section 2.6; GRP section 2.3
+- k_sel = 0.005  [share of W0 per unit per node at the median posterior sd]
+    rationale: Per-unit trade cap |dv_i| <= k_sel W0 sigma_ref / sigma_post,i: units with weaker evidence trade in smaller size (belief risk).
+    source: DSGO section 3.3 (RV-01)
+- xmax_liquid = 3.0  [x original position]
+    rationale: Upper bound on a liquid holding (other rows bind first).
+    source: [A]
+- lp_depth_year = [9.0, 7.0, 5.0]  [$bn of PE + Secondaries LP sales per year by class]
+    rationale: <= 5% of segment depth per half-year (secondary volume about $230bn a year) times the success probability 0.80 / 0.60 / 0.45.
+    source: DSGO section 4.6 H7; section 2.1
+- co_sale_share = 0.1  [share of group NAV per year]
+    rationale: Co-investment sales cap.
+    source: DSGO section 4.6 H7 [A]
+- ra_sale_share = [0.21, 0.175, 0.125]  [share of RA NAV per year by class]
+    rationale: <= 25% of segment volume times availability 0.85 / 0.70 / 0.50.
+    source: DSGO section 2.7; H7
+- amber_sale_share = {"CS": [0.3, 0.2, 0.1], "PC": [0.5, 0.4, 0.25]}  [share of group NAV per year by class]
+    rationale: Syndication / loan-sale depth; thin in STR.
+    source: DSGO sections 2.4-2.5 [A]
+- hf_secondary_share = 0.5  [share of HF NAV per year]
+    rationale: Hedge-fund secondary depth.
+    source: [A]
+- redeem_phi = {"hf": [1.0, 0.95, 0.66], "re_open_end": [0.8, 0.34, 0.14]}  [share of a redemption paid within 12 months by class]
+    rationale: Hedge funds: P5 66% by 12 months in a crisis; open-end real estate 34% by month 12 (14% under stress).
+    source: DSGO sections 2.6-2.7; GRP section 3.5; RA section 4.6
+============================== constraints
+- floor_hard = 0.04  [IG + cash / W]
+    rationale: Hard floor at every node, fan year and leaf.
+    source: DSGO section 4.6 H2
+- floor_target = 0.08  [IG + cash / W]
+    rationale: 8% at BEN and DRT nodes (except the first node after a STR node); hard, with its dual as the price.
+    source: DSGO section 4.6 H2
+- lev_cap = 1.3  [E / W]
+    rationale: Economic exposure cap.
+    source: DSGO section 4.6 H5
+- class_caps = [1.3, 1.15, 1.1]  [E / W by class]
+    rationale: Cushion-monotone class caps.
+    source: DSGO section 4.7 G5
+- behind_cap_share = 0.5  [share of (L_class - 1)]
+    rationale: At behind nodes the cap is 1 + 0.5 (L_class - 1).
+    source: DSGO section 4.7 G5
+- kappa_c = 1.0  [$ of borrowed exposure per $ of B0 cushion]
+    rationale: Borrowed exposure <= kappa_c x the status quo's non-red liquidity cushion (exogenous).
+    source: DSGO section 4.7 G5
+- behind_gap = 0.02  [log TWR gap]
+    rationale: A node is behind if the status quo's cumulative TWR trails the 10% path by more than 2pp.
+    source: DSGO section 4.7 G4
+- thin_cash = 0.06  [Treasury / NAV]
+    rationale: Thin node threshold.
+    source: DSGO section 4.7 G4
+- overcommit = 0.8  [(private NAV + unfunded) / W]
+    rationale: Overcommitment ceiling; STR nodes exempt.
+    source: DSGO section 4.6 H11
+- range_band = [0.5, 1.5]  [x SAA weight]
+    rationale: No charge inside 0.5-1.5x the group's SAA (t0) weight.
+    source: DSGO section 2.10 (RV-19)
+- range_charge = 0.005  [per $ of breach per decision year]
+    rationale: Elastic, priced IC ranges; waived at STR nodes.
+    source: DSGO section 2.10 [A]
+- red_eps_tree = 0.006  [CVaR tail share]
+    rationale: Tree buffer of the red-event CVaR surrogate (tighter than the certified 1%).
+    source: DSGO section 4.6 H9 (RV-22)
+- red_eps_certified = 0.01  [probability over 5 years]
+    rationale: Certified red-event limit.
+    source: DSGO section 4.6 H9
+- red_sale_threshold = 0.05  [$bn]
+    rationale: A red-tier sale above this size at a non-Green node (or a fire-sale bid) is a red event in the CVaR row.
+    source: [A]
+- red_bid_ratio = 0.9  [bid / normal-class bid]
+    rationale: ADR-39: a red-tier sale below 0.9 x the normal bid is a red event.
+    source: ARCH ADR-39; DSGO H9
+- stage_cash_bands = [0.08, 0.06, 0.04]  [IG + cash / W thresholds Green / Amber / Red]
+    rationale: CFP event bands: Green >= 8%, Amber 6-8%, Red 4-6%, Black < 4%; class adds DRT -> Amber, STR -> Red.
+    source: ARCH CFP indicators; TD verify_finance H6
+- margin_lo_haircut = 0.358  [share]
+    rationale: Long-only equity counts at (1 - 35.8%) in the 12-month non-red capacity.
+    source: DSGO H4 (equity -35.8%)
+- margin_hf_phi = 0.66  [share]
+    rationale: Hedge-fund pass-through within 12 months in stress (P5).
+    source: DSGO section 2.6
+- margin_amber_share = 0.25  [share]
+    rationale: Amber (CS + PC) saleable within 12 months in stress at stressed bids.
+    source: [A]
+- margin_vm_drop = 0.358  [equity fall]
+    rationale: Variation margin on futures notional in the stressed year.
+    source: DSGO H4; SYN section 2.3(d)
+- h3_share = 0.5  [share of 12-month needs]
+    rationale: Six-month coverage at decision nodes.
+    source: DSGO section 4.6 H3
+- h3_hf_phi = 0.55  [share]
+    rationale: Hedge-fund pass-through within 6 months (P5).
+    source: DSGO section 2.6
+- h4 = {"equity_drop": 0.358, "dist_factor": 0.189, "call_mult": 1.29, "draw_rate": 0.1, "revolver_credit": 0.5, "navf_ltv": 0.05, "hf_pass": 0.83}  [named 24-month stress s*(0.58)]
+    rationale: T4' at the root: equity -35.8%, distributions 0.189 x drought, calls x1.29, draws 10% for 2 years, revolver 50%, NAV facility at 5% LTV, hedge funds at 0.83.
+    source: DSGO section 4.6 H4; SYN section 2.3(d)
+- depth_levels = [0.9, 0.95, 0.99]  [CVaR levels]
+    rationale: Multi-level relative depth guard against the status quo's leaf distribution.
+    source: DSGO section 4.6 H10(a) (RV-03)
+- depth_delta = 0.0  [share of W0]
+    rationale: delta = 0 for the recommendation (approximately SSD at three levels).
+    source: DSGO section 4.6 H10 (RV-05)
+============================== valuation
+- psi_unfunded = 0.03  [$ per $ of unfunded at the leaf]
+    rationale: Burden of unfunded commitments at the horizon.
+    source: DSGO section 4.1 ($0.02-0.05)
+============================== objective
+- crra_gamma = 3  [relative risk aversion]
+    rationale: CRRA comparison and the mandatory GBO tie-break.
+    source: DSGO sections 4.3, 4.5
+- crra_tangents = 32  [tangent lines]
+    rationale: Piecewise-linear outer approximation of the CRRA utility (DSGO uses 48 adaptive tangents; 32 geometric tangents on [0.25, 4] keep the approximation error below 0.2% of utility in the relevant range and cut 3,400 rows).
+    source: DSGO section 4.5 [A scaled]
+- crra_w_range = [0.25, 4.0]  [real W~ / W0]
+    rationale: Tangent points, geometric.
+    source: [A]
+- lambda_T = 1.0  [weight]
+    rationale: Quadratic shortfall weight in the CRRA comparison.
+    source: DSGO section 4.5
+- l2_segments = 16  [segments]
+    rationale: Secant approximation of the squared shortfall on [0, 1].
+    source: DSGO section 4.5
+- tiebreak_tol = 0.005  [STRETCH: share of c_max W0 of mean wealth; PLAN: bPOE]
+    rationale: Hold the goal value within this tolerance, then maximize CRRA(3).
+    source: DSGO section 4.3 (RV-16)
+- bisection_tol = 0.001  [bPOE]
+    rationale: Bisection precision in PLAN.
+    source: DSGO section 4.3
+- milp_gap = 0.005  [relative MIP gap]
+    rationale: HiGHS MIP stopping gap.
+    source: DSGO section 4.4
+- milp_time_limit = 700  [seconds]
+    rationale: Safety time limit of the main MILP; the node limit below binds first, so results are deterministic. DSGO allows 1,800 s and expects 30-90 minutes to optimality at full scale; a prototype run shows the root alone needs minutes, so the MILP is reported with its gap.
+    source: DSGO section 4.4 [A scaled]
+- milp_node_limit = 1  [branch-and-bound nodes]
+    rationale: Deterministic work limit: root processing only (IPM relaxation, cuts, root heuristics including the sub-MIP), then stop with the incumbent and the root bound.
+    source: [A]
+- milp_frontier_time_limit = 400  [seconds]
+    rationale: Safety time limit of each frontier MILP (the node limit binds first).
+    source: [A]
+- milp_frontier_node_limit = 1  [nodes]
+    rationale: Frontier MILPs run the root relaxation and cuts (a valid upper bound on max P(goal)) from the GBO start; the expensive sub-MIP heuristics are off.
+    source: [A]
+- milp_method = "round"  ['round' or 'highs']
+    rationale: The exact MILP (HiGHS branch and bound with an IPM root) did not leave the root node within the budget (frontier MILPs hit a 400 s safety limit inside the root cut loop; a single uncontended 240 s run reached a 69% gap). 'round' reports a valid upper bound (the MILP relaxation) and a deterministic incumbent from LP rounding of that relaxation; 'highs' runs branch and bound.
+    source: DSGO section 4.4 deviation, measured [I]
+- milp_heuristic_effort = 0.1  [HiGHS share]
+    rationale: Main MILP heuristic effort (root sub-MIP / RINS improve the incumbent; measured +1.3pp of in-tree P(goal) in a 240 s test).
+    source: [I]
+============================== baselines
+- b0_penalties = {"LIQ": 1.0, "HF": 2.0, "REV": 3.0, "AMB": 5.0, "RED": 50.0, "REV_BAL": 0.05}  [relative cost per $ (B0 funding LP)]
+    rationale: Encodes the status-quo waterfall in the tree: Treasury, long-only, hedge funds, revolver, amber, red; revolver balances are repaid when cash allows.
+    source: DSGO section 6.1 B0 [A]
+- b3_vix_F = [10.0, 60.0]  [F = (VIX - a) / b]
+    rationale: Maps implied vol to the v8 stress indicator F_t (VIX 16 -> F 0.10 today).
+    source: SYN section 4.1 (F_t = 0.10) [A]
+- b3_F_band = [0.17, 0.34]  [F thresholds]
+    rationale: Exposure up to 1.30x when F < 0.17, down to 1.0x when F >= 0.34, linear between.
+    source: DSGO section 6.1 B3
+- b3_lev = [1.3, 1.0]  [E / W]
+    rationale: v8-style exposure targets.
+    source: DSGO section 6.1 B3
+- b4_scales = [1.0, 1.1, 1.2, 1.3, 1.45, 1.6]  [x status-quo exposure]
+    rationale: Risk-matched line: status quo plus synthetic beta financed at SOFR + f (a measurement device that may exceed H5).
+    source: DSGO sections 4.8, 6.1 (RV-04)
+============================== truth_model
+- alpha_dispersion_main = 1.0  [x prior sd]
+    rationale: Dispersion of true alpha in the headline book; the replication books use 0.5 and 1.5.
+    source: DSGO RV-02 [A]
+- alpha_dispersion_variants = [0.5, 1.5]  [x prior sd]
+    rationale: True alpha dispersion different from the belief model's prior.
+    source: DSGO RV-02 (0.5x and 1.5x)
+- bid_info_main = 1.0  [share]
+    rationale: Bid informativeness in the headline book.
+    source: DSGO RV-02
+- bid_info_variants = [1.0, 0.5]  [share]
+    rationale: Bid informativeness variants.
+    source: DSGO RV-02 (1.0 and 0.5)
+- bias_shift_sd = 1.0  [prior sds]
+    rationale: True group biases sit one prior sd above the bias priors the fusion uses.
+    source: DSGO RV-02 (+1 sd)
+- drought_forecast_optimism_pp = 1.0  [pp a year]
+    rationale: Regime component: forecasts are more optimistic in a drought (today).
+    source: DSGO RV-02; LIT section 4.10 (Hribar & McInnis)
+- range_kappa_true = 2.2  [ratio]
+    rationale: Stated 80% ranges cover about 44% of outcomes (36-52%).
+    source: SYN L7; DSGO RV-02
+- actual_persistence = 0.5  [share of true alpha in since-inception returns]
+    rationale: Realized performance reflects true alpha only partly.
+    source: [A]
+- forecast_error_sd_pp = {"fund": 3.0, "deal": 5.0, "credit": 1.5, "real_asset": 3.0, "liquid": 2.0}  [pp a year by noise class]
+    rationale: Forecast error around the truth.
+    source: SYN section 4.3 (forecast error sd 6%; funds lower) [A]
+- underwriting_error_sd_pp = 3.0  [pp a year]
+    rationale: Noise in the underwritten case.
+    source: [A]
+- underwritten_case_down_pp = 6.0  [pp a year]
+    rationale: Down case below base in the underwriting memo.
+    source: [A]
+- underwritten_case_up_pp = 5.0  [pp a year]
+    rationale: Up case above base in the underwriting memo.
+    source: [A]
+- bid_noise_sd = 0.02  [sd of log bid]
+    rationale: Noise in an external bid.
+    source: [A]
+- bid_alpha_passthrough = 0.5  [share of true alpha deviation priced by buyers per year of duration]
+    rationale: Bids are only partly informative about true alpha.
+    source: DSGO RV-02 [A]
+- archive_error_sd_pp = 4.0  [pp a year]
+    rationale: Spread of scored past forecast errors in the archive.
+    source: [A]
+- realized_benchmark_sd_pp = 3.0  [pp a year]
+    rationale: Vintage dispersion of realized benchmark returns behind since-inception performance.
+    source: [A]
+- opp_sr_mean = 0.3  [Sharpe ratio]
+    rationale: True opportunistic-book Sharpe is drawn per book from the prior N(0.3, 0.25^2).
+    source: SYN section 4.6 (prior N(0.3, 0.25^2))
+- opp_sr_sd = 0.25  [Sharpe ratio]
+    rationale: See opp_sr_mean.
+    source: SYN section 4.6
+============================== bids
+- rho = {"fund": [1.0, 0.96, 0.82], "co": [0.82, 0.68, 0.55], "cs": [0.93, 0.88, 0.77], "pc_sma": [1.0, 0.97, 0.86], "pc_lp": [0.95, 0.89, 0.75], "pc_evergreen": [1.0, 1.0, 1.0], "pc_bdc": [0.97, 0.88, 0.72], "hf": [0.97, 0.92, 0.8], "lo_dm": [0.9992, 0.999, 0.997], "lo_em": [0.997, 0.996, 0.99], "lo_fi": [0.9995, 0.9995, 0.998], "ra_direct": [1.0, 0.95, 0.85], "ra_lp_core": [0.85, 0.75, 0.6], "ra_lp_va": [0.88, 0.78, 0.62], "ra_lp_infra": [0.97, 0.9, 0.8], "ra_enr_fund": [0.9, 0.8, 0.65], "ra_enr_direct": [0.95, 0.88, 0.75], "ra_gcc": [0.95, 0.9, 0.8]}  [bid per $ of ECONOMIC value by node class [BEN, DRT, STR]; the bid per $ of reported NAV is rho x theta]
+    rationale: One price primitive: buyers price economic NAV (rho about 1 at BEN for fund interests, 0.80-0.84 crisis residual at STR); co-investment bids embed a 20-25% buyer hurdle; credit sells near par; RE LP interests carry large value costs.
+    source: DSGO section 2.1-2.7, RV-10; GRP sections 3.1-3.6; RA sections 6.2, 7.3
+- age_multiplier = [1.0, 1.0, 0.97, 0.9]  [multiplier by the unit's age bucket]
+    rationale: Late-life and tail-end interests sell at a further discount beyond the stale-mark theta.
+    source: DSGO section 2.1 (age multipliers 0.99 / 0.96 / 0.88 / 0.79 / 0.70 on lagged NAV; theta carries the staleness here)
+============================== private_engine
+- exit_dist_mult = [1.25, 1.0, 0.47, 0.32]  [multiplier on distribution intensity by exit window]
+    rationale: m_D open / normal / drought / frozen.
+    source: SYN section 4.2 exit-window table (1.25 / 1.0 / 0.45-0.50 / 0.30-0.35)
+- exit_call_mult = [1.3, 1.0, 0.97, 0.8]  [multiplier on call intensity by exit window]
+    rationale: m_C open / normal / drought / frozen.
+    source: SYN section 4.2 (1.3 / 1.0 / 0.95-1.0 / 0.8)
+- crisis_call_stress = 1.29  [multiplier on calls in crisis quarters]
+    rationale: Stressed calls (s* calls x1.29).
+    source: DSGO section 4.6 H4 (calls x1.29); SYN section 2.3
+- kappa_theta_q = 0.04  [per quarter]
+    rationale: Pull of reported NAV toward economic NAV (marks catch up as assets exit); with smoothing phi it gives the path-dependent theta = V/N of DSGO section 5.1.
+    source: SYN section 4.2 (reported NAV smoothing, autocorrelation 0.66-0.71) [A]

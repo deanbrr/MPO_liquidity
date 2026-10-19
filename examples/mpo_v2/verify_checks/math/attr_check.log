@@ -1,0 +1,35 @@
+[   16.3s] P1 SELL       cols   571 {'s@lvl0': 21, 's@lvl1': 550} rows 0 [] coef 0 [] restored True
+[   16.4s] P1 ADD        cols   137 {'a@lvl0': 10, 'a@lvl1': 100, 'y@lvl0': 2, 'y@lvl1': 25} rows 0 [] coef 0 [] restored True
+[   16.5s] P1 REFINANCE  cols    48 {'pu@lvl0': 1, 'pu@lvl1': 10, 'dr@lvl0': 3, 'dr@lvl1': 34} rows 0 [] coef 0 [] restored True
+[   16.7s] P1 BETA       cols    81 {'beta@lvl0': 1, 'beta@lvl1': 10, 'beta@lvl2': 70} rows 0 [] coef 0 [] restored True
+[   16.8s] P1 LEVER      cols   492 {'y@lvl1': 6, 'trs@lvl0': 6, 'trs@lvl1': 60, 'trs@lvl2': 420} rows 0 [] coef 0 [] restored True
+[   16.9s] P1 PACE       cols   405 {'y@lvl0': 5, 'y@lvl1': 50, 'y@lvl2': 350} rows 0 [] coef 0 [] restored True
+[   17.0s] P1 REDEEM     cols    77 {'r@lvl0': 7, 'r@lvl1': 70} rows 0 [] coef 0 [] restored True
+[   17.1s] P1 HEDGE      cols    81 {'opp@lvl0': 1, 'opp@lvl1': 10, 'opp@lvl2': 70} rows 0 [] coef 11 [('hedhi', 'W')] restored True
+[   17.3s] P1 FUND       cols   511 {'dr@lvl0': 2, 'dr@lvl1': 18, 'dr@lvl2': 70, 'dr@lvl3': 210, 'dr@lvl4': 210, 'Lup@lvl-1': 1} rows 0 [] coef 0 [] restored True
+[   17.4s] P1 REBALANCE  cols     0 {} rows 1296 ['rebal_hi', 'rebal_lo'] coef 0 [] restored True
+[   17.4s] P1 column overlaps between families: {}
+[   17.4s] P1 free decision columns in no family (block: {level: count}): {'pd': {0: 1, 1: 10}, 'hed': {0: 1, 1: 10, 2: 70}, 'beta': {3: 210, 4: 210, 5: 210}}
+[   69.4s] P2 SELL       mine {"mean_status": "Optimal", "E_star": 284.5174306539744, "label": "PLAN", "phi_exact": 0.9590580590580939, "tie_status": "Optimal", "tie_util": -0.3884308039189161, "p_goal": 0.4733393416666666, "E_Wt": 282.993085471155, "time_s": 51.086793661117554}
+[   69.4s]               author {"label": "PLAN", "phi": 0.959058, "E_star_runlog": 284.517, "p_goal_tree": 0.47333907000000003, "E_Wt_tree": 282.993355, "phase1": null}
+[  124.0s] P2 ADD        mine {"mean_status": "Optimal", "E_star": 281.19577882986584, "label": "PLAN", "phi_exact": 0.9711487478134136, "tie_status": "Optimal", "tie_util": -0.38995920126462347, "p_goal": 0.44558459166666664, "E_Wt": 279.85169719202867, "time_s": 54.58789944648743}
+[  124.0s]               author {"label": "PLAN", "phi": 0.971149, "E_star_runlog": 281.196, "p_goal_tree": 0.4455843, "E_Wt_tree": 279.85206000000005, "phase1": null}
+[  166.9s] P2 REFINANCE  mine {"mean_status": "Optimal", "E_star": 285.16754603616266, "label": "PLAN", "phi_exact": 0.9566958929531424, "tie_status": "Optimal", "tie_util": -0.3874241570687984, "p_goal": 0.4666462749999999, "E_Wt": 283.5467319935514, "time_s": 42.909934997558594}
+[  166.9s]               author {"label": "PLAN", "phi": 0.956696, "E_star_runlog": 285.168, "p_goal_tree": 0.466646, "E_Wt_tree": 283.5469853388, "phase1": null}
+[  221.4s] P2 BETA       mine {"mean_status": "Optimal", "E_star": 280.4219694377454, "label": "PLAN", "phi_exact": 0.9734953555001502, "tie_status": "Optimal", "tie_util": -0.3877430955783119, "p_goal": 0.44845334166666667, "E_Wt": 279.12322185559395, "time_s": 54.485296964645386}
+[  221.4s]               author {"label": "PLAN", "phi": 0.973495, "E_star_runlog": 280.422, "p_goal_tree": 0.4484531, "E_Wt_tree": 279.12344, "phase1": null}
+[  284.7s] P2 LEVER      mine {"mean_status": "Optimal", "E_star": 285.16754603616266, "label": "PLAN", "phi_exact": 0.9566958929531424, "tie_status": "Optimal", "tie_util": -0.3876031088931463, "p_goal": 0.4666462749999999, "E_Wt": 283.595183727364, "time_s": 63.33666181564331}
+[  284.7s]               author {"label": "PLAN", "phi": 0.956696, "E_star_runlog": 285.168, "p_goal_tree": 0.466646, "E_Wt_tree": 283.5952922, "phase1": null}
+[  331.3s] P2 PACE       mine {"mean_status": "Infeasible", "phase1_u_star": 0.00268911571160171, "phase1_rows": [["('H9', 0)", 0.00268911571160171]], "E_star_after_phase1": 263.99716800814923, "time_s": 46.59801411628723}
+[  331.3s]               author {"label": "STRETCH", "phi": 1.01718, "E_star_runlog": 263.997, "p_goal_tree": 0.393687, "E_Wt_tree": 261.2636, "phase1": {"u_star": 0.00268912, "label": "STRUCTURAL_RECOVERY", "allowances": {"SL9": {"total": 0.00268912, "n_rows": 1}}}}
+[  391.4s] P2 REDEEM     mine {"mean_status": "Optimal", "E_star": 282.96630242485185, "label": "PLAN", "phi_exact": 0.9664370378215777, "tie_status": "Optimal", "tie_util": -0.39293961608231565, "p_goal": 0.4574920416666666, "E_Wt": 281.3086753045399, "time_s": 60.11155366897583}
+[  391.4s]               author {"label": "PLAN", "phi": 0.966437, "E_star_runlog": 282.966, "p_goal_tree": 0.45749177, "E_Wt_tree": 281.30890000000005, "phase1": null}
+[  448.8s] P2 HEDGE      mine {"mean_status": "Optimal", "E_star": 284.25217819630404, "label": "PLAN", "phi_exact": 0.9599509195867526, "tie_status": "Optimal", "tie_util": -0.38899851492609155, "p_goal": 0.4515273249999999, "E_Wt": 282.6365719480792, "time_s": 57.33947801589966}
+[  448.8s]               author {"label": "PLAN", "phi": 0.959951, "E_star_runlog": 284.252, "p_goal_tree": 0.4515271, "E_Wt_tree": 282.63691600000004, "phase1": null}
+[  498.5s] P2 FUND       mine {"mean_status": "Optimal", "E_star": 282.8299672627546, "label": "PLAN", "phi_exact": 0.9660586841796168, "tie_status": "Optimal", "tie_util": -0.3936494270409818, "p_goal": 0.45754649999999997, "E_Wt": 281.0480901795088, "time_s": 49.74026274681091}
+[  498.5s]               author {"label": "PLAN", "phi": 0.966062, "E_star_runlog": 282.83, "p_goal_tree": 0.45754623, "E_Wt_tree": 281.04839000000004, "phase1": null}
+[  580.5s] P2 REBALANCE  mine {"mean_status": "Optimal", "E_star": 277.34725542699937, "label": "PLAN", "phi_exact": 0.9854104633711331, "tie_status": "Optimal", "tie_util": -0.3891876587895904, "p_goal": 0.4340186416666667, "E_Wt": 276.0025349641937, "time_s": 81.93230390548706}
+[  580.5s]               author {"label": "PLAN", "phi": 0.98541, "E_star_runlog": 277.347, "p_goal_tree": 0.4340184, "E_Wt_tree": 276.00391, "phase1": null}
+[  640.8s] P2 BELIEFS    mine {"mean_status": "Optimal", "E_star": 280.6875712032593, "label": "PLAN", "phi_exact": 0.9745403162682931, "tie_status": "Optimal", "tie_util": -0.39913927282419087, "p_goal": 0.44465222499999996, "E_Wt": 279.22035081667224, "time_s": 54.988234519958496}
+[  640.8s]               author {"label": "PLAN", "phi": 0.97454, "E_star_runlog": 280.688, "p_goal_tree": 0.444652, "E_Wt_tree": 279.22058000000004, "phase1": null}
+[  640.8s] done

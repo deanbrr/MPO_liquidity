@@ -1,0 +1,168 @@
+[    0.0s] SYNTHETIC - NOT ADIC DATA. MPO v2 prototype run. params hash f39d2ae004b742a6
+[    0.2s] worker pool: 20 processes (single-threaded HiGHS each)
+[    0.2s] submitted 20 independent tasks (switch-offs, beliefs, frontier, CRRA, books)
+[    5.4s]   solve B0: status-quo funding LP (tree readings): LP status=Optimal cols=58700 rows=52632 nnz=602028 ints=0 time=2.51s obj=5.57201
+[   38.3s]   solve Phase I (min hard-row violation): LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=30.37s obj=0
+[   38.3s] Phase I: u* = 0.000000 -> FEASIBLE {}
+[   38.3s] world: W0 = 169.75 $bn economic (177 reported), W* = 273.39 $bn; tree 711 time-nodes, 210 leaves; model 58700 cols 59667 rows 635380 nnz (built 2.4s)
+[   71.9s]   solve O1 GBO: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=33.66s obj=285.168
+[  110.8s]   solve O1 GBO: min CVaR at p=0.9573: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=38.86s obj=-0.000797828
+[  147.9s]   solve O1 GBO: certificate p=0.9557: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=37.03s obj=0.00139053
+[  180.1s]   solve O1 GBO: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=32.26s obj=-0.387424
+[  180.1s] O1: label PLAN  Phi 0.9567  E*[W~] 285.17  in-tree P(goal) 0.4666 (B0 0.4323)
+[  180.1s] submitted 10 O1-dependent tasks (MILP, 6 forced re-solves, 3 red cards)
+[  180.2s] submitted 9 further tasks (books, depth-guard frontier, A20)
+[  234.3s]   solve A9: root cash +0.01 $bn (finite difference on the decision LP): LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=54.09s obj=0.387279
+[  287.3s]   solve A9: root cash -0.01 $bn (finite difference on the decision LP): LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=53.05s obj=0.38757
+[  287.3s]   solve OFF_SELL: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=32.53s obj=284.517
+[  287.3s]   solve OFF_SELL: min CVaR at p=0.9597: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=36.32s obj=-0.000905001
+[  287.3s]   solve OFF_SELL: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=47.30s obj=-0.388431
+[  287.3s]   solve OFF_ADD: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=31.32s obj=281.196
+[  287.3s]   solve OFF_ADD: min CVaR at p=0.9714: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=33.72s obj=-0.000281017
+[  287.3s]   solve OFF_ADD: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=48.53s obj=-0.38996
+[  287.3s]   solve OFF_REFINANCE: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=25.21s obj=285.168
+[  287.3s]   solve OFF_REFINANCE: min CVaR at p=0.9573: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=29.76s obj=-0.000797828
+[  287.3s]   solve OFF_REFINANCE: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=38.18s obj=-0.387424
+[  287.3s]   solve OFF_BETA: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=34.10s obj=280.422
+[  287.3s]   solve OFF_BETA: min CVaR at p=0.9737: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=35.62s obj=-0.000339377
+[  287.3s]   solve OFF_BETA: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=45.92s obj=-0.387743
+[  287.3s]   solve OFF_LEVER: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=29.01s obj=285.168
+[  287.3s]   solve OFF_LEVER: min CVaR at p=0.9573: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=33.90s obj=-0.000797828
+[  287.3s]   solve OFF_LEVER: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=45.09s obj=-0.387603
+[  287.3s]   solve OFF_PACE: mean LP: LP status=Infeasible cols=58700 rows=59667 nnz=635380 ints=0 time=38.89s
+[  287.3s]   solve [OFF_PACE] Phase I (min hard-row violation): LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=40.23s obj=0.00268912
+[  287.3s]   solve OFF_PACE (after Phase I): mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=32.54s obj=263.997
+[  287.3s]   solve OFF_PACE (after Phase I): CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=38.26s obj=-0.377752
+[  287.3s]   solve OFF_REDEEM: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=33.40s obj=282.966
+[  287.3s]   solve OFF_REDEEM: min CVaR at p=0.9668: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=35.86s obj=-0.000596229
+[  287.3s]   solve OFF_REDEEM: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=43.37s obj=-0.392939
+[  287.3s]   solve OFF_HEDGE: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=36.99s obj=284.252
+[  287.3s]   solve OFF_HEDGE: min CVaR at p=0.9603: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=38.61s obj=-0.000525567
+[  287.3s]   solve OFF_HEDGE: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=46.84s obj=-0.388999
+[  287.3s]   solve OFF_FUND: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=30.73s obj=282.83
+[  287.3s]   solve OFF_FUND: min CVaR at p=0.9668: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=31.18s obj=-0.00107448
+[  287.3s]   solve OFF_FUND: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=42.19s obj=-0.393649
+[  287.3s]   solve OFF_REBALANCE: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=40.49s obj=277.347
+[  287.3s]   solve OFF_REBALANCE: min CVaR at p=0.9854: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=43.69s obj=-1.05214e-05
+[  287.3s]   solve OFF_REBALANCE: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=49.19s obj=-0.389182
+[  287.3s]   solve [OFF_BELIEFS] B0: status-quo funding LP (tree readings): LP status=Optimal cols=58700 rows=52632 nnz=602028 ints=0 time=3.54s obj=5.74043
+[  287.3s]   solve OFF_BELIEFS: mean LP: LP status=Optimal cols=58700 rows=59674 nnz=635394 ints=0 time=37.20s obj=280.688
+[  287.3s]   solve OFF_BELIEFS: min CVaR at p=0.9748: LP status=Optimal cols=58700 rows=59674 nnz=635394 ints=0 time=36.79s obj=-0.000415962
+[  287.3s]   solve OFF_BELIEFS: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59674 nnz=635394 ints=0 time=44.42s obj=-0.399139
+[  407.5s]   solve FR_eps_0.003: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=34.48s obj=285.168
+[  407.5s]   solve FR_eps_0.003: min CVaR at p=0.9573: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=36.72s obj=-0.000797828
+[  407.5s]   solve FR_eps_0.003: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=48.82s obj=-0.387424
+[  407.5s]   solve FR_eps_0.003 MILP: MILP relaxation (g continuous): upper bound on max P(goal): LP status=Optimal cols=58910 rows=59877 nnz=635800 ints=0 time=18.58s obj=-0.859876
+[  407.5s]   solve FR_eps_0.003 MILP: rounding tau=0.5: fix 196 successes (P >= 0.9488): LP status=Infeasible cols=58910 rows=59877 nnz=635800 ints=0 time=24.83s
+[  407.5s]   solve FR_eps_0.003 MILP: rounding tau=0.75: fix 154 successes (P >= 0.7374): LP status=Infeasible cols=58910 rows=59877 nnz=635800 ints=0 time=26.40s
+[  407.5s]   solve FR_eps_0.003 MILP: rounding tau=0.9: fix 116 successes (P >= 0.5541): LP status=Infeasible cols=58910 rows=59877 nnz=635800 ints=0 time=83.21s
+[  407.5s]   solve FR_eps_0.003 MILP: rounding tau=0.99: fix 98 successes (P >= 0.4790): LP status=Optimal cols=58910 rows=59877 nnz=635800 ints=0 time=20.85s obj=0.380277
+[  407.5s]   solve FR_eps_0.003 MILP: rounding bisection +9 leaves: fix 107 successes (P >= 0.5204): LP status=Infeasible cols=58910 rows=59877 nnz=635800 ints=0 time=10.52s
+[  407.5s]   solve FR_eps_0.003 MILP: rounding bisection +4 leaves: fix 102 successes (P >= 0.4933): LP status=Infeasible cols=58910 rows=59877 nnz=635800 ints=0 time=43.27s
+[  407.5s]   solve FR_eps_0.003 MILP: rounding bisection +2 leaves: fix 100 successes (P >= 0.4800): LP status=Optimal cols=58910 rows=59877 nnz=635800 ints=0 time=17.82s obj=0.381351
+[  407.5s]   solve FR_eps_0.006: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=34.93s obj=285.168
+[  407.5s]   solve FR_eps_0.006: min CVaR at p=0.9573: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=38.81s obj=-0.000797828
+[  407.5s]   solve FR_eps_0.006: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=46.88s obj=-0.387424
+[  407.5s]   solve FR_eps_0.012: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=36.98s obj=285.168
+[  407.5s]   solve FR_eps_0.012: min CVaR at p=0.9573: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=39.05s obj=-0.000797828
+[  407.5s]   solve FR_eps_0.012: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=47.26s obj=-0.387424
+[  407.5s]   solve FR_eps_0.025: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=35.75s obj=285.168
+[  407.5s]   solve FR_eps_0.025: min CVaR at p=0.9573: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=41.06s obj=-0.000797838
+[  407.5s]   solve FR_eps_0.025: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=46.85s obj=-0.387417
+[  407.5s]   solve FR_eps_0.05: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=39.44s obj=285.175
+[  407.5s]   solve FR_eps_0.05: min CVaR at p=0.9572: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=43.05s obj=-0.000814031
+[  407.5s]   solve FR_eps_0.05: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=46.53s obj=-0.38745
+[  407.5s]   solve FR_eps_1.0: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=24.24s obj=285.975
+[  407.5s]   solve FR_eps_1.0: min CVaR at p=0.9540: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=29.31s obj=-0.00115418
+[  407.5s]   solve FR_eps_1.0: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=41.65s obj=-0.385328
+[  407.5s]   solve FR_eps_1.0 MILP: MILP relaxation (g continuous): upper bound on max P(goal): LP status=Optimal cols=58910 rows=59877 nnz=635800 ints=0 time=23.66s obj=-0.863782
+[  407.5s]   solve FR_eps_1.0 MILP: rounding tau=0.5: fix 196 successes (P >= 0.9488): LP status=Infeasible cols=58910 rows=59877 nnz=635800 ints=0 time=11.44s
+[  407.5s]   solve FR_eps_1.0 MILP: rounding tau=0.75: fix 156 successes (P >= 0.7517): LP status=Infeasible cols=58910 rows=59877 nnz=635800 ints=0 time=9.79s
+[  407.5s]   solve FR_eps_1.0 MILP: rounding tau=0.9: fix 117 successes (P >= 0.5704): LP status=Infeasible cols=58910 rows=59877 nnz=635800 ints=0 time=23.43s
+[  407.5s]   solve FR_eps_1.0 MILP: rounding bisection +11 leaves: fix 106 successes (P >= 0.5141): LP status=Infeasible cols=58910 rows=59877 nnz=635800 ints=0 time=23.30s
+[  407.5s]   solve FR_eps_1.0 MILP: rounding bisection +5 leaves: fix 100 successes (P >= 0.4681): LP status=Optimal cols=58910 rows=59877 nnz=635800 ints=0 time=42.77s obj=0.374529
+[  407.5s]   solve FR_eps_1.0 MILP: rounding bisection +8 leaves: fix 103 successes (P >= 0.5010): LP status=Infeasible cols=58910 rows=59877 nnz=635800 ints=0 time=56.63s
+[  407.5s]   solve [O3_CRRA] CRRA+L2: CRRA(3) - lambda_T x squared shortfall: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=43.98s obj=-0.409008
+[  407.5s]   solve [BOOK_7101] B0: status-quo funding LP (tree readings): LP status=Optimal cols=58700 rows=52632 nnz=602028 ints=0 time=3.17s obj=5.58155
+[  407.5s]   solve BOOK_7101 GBO: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=37.65s obj=284.606
+[  407.5s]   solve BOOK_7101 GBO: min CVaR at p=0.9597: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=39.91s obj=-0.000978578
+[  407.5s]   solve BOOK_7101 GBO: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=42.52s obj=-0.388456
+[  407.5s]   solve [BOOK_7102] B0: status-quo funding LP (tree readings): LP status=Optimal cols=58700 rows=52632 nnz=602028 ints=0 time=3.37s obj=5.56195
+[  407.5s]   solve BOOK_7102 GBO: mean LP: LP status=Optimal cols=58700 rows=59671 nnz=635388 ints=0 time=36.67s obj=282.881
+[  407.5s]   solve BOOK_7102 GBO: min CVaR at p=0.9664: LP status=Optimal cols=58700 rows=59671 nnz=635388 ints=0 time=39.95s obj=-0.000611927
+[  407.5s]   solve BOOK_7102 GBO: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59671 nnz=635388 ints=0 time=45.26s obj=-0.392246
+[  422.0s]   solve O2_MILP: MILP relaxation (g continuous): upper bound on max P(goal): LP status=Optimal cols=58910 rows=59877 nnz=635800 ints=0 time=37.17s obj=-0.859876
+[  422.0s]   solve O2_MILP: rounding tau=0.5: fix 196 successes (P >= 0.9488): LP status=Infeasible cols=58910 rows=59877 nnz=635800 ints=0 time=25.80s
+[  422.0s]   solve O2_MILP: rounding tau=0.75: fix 154 successes (P >= 0.7374): LP status=Infeasible cols=58910 rows=59877 nnz=635800 ints=0 time=26.40s
+[  422.0s]   solve O2_MILP: rounding tau=0.9: fix 116 successes (P >= 0.5541): LP status=Infeasible cols=58910 rows=59877 nnz=635800 ints=0 time=63.72s
+[  422.0s]   solve O2_MILP: rounding tau=0.99: fix 98 successes (P >= 0.4790): LP status=Optimal cols=58910 rows=59877 nnz=635800 ints=0 time=19.16s obj=0.380277
+[  422.0s]   solve O2_MILP: rounding bisection +9 leaves: fix 107 successes (P >= 0.5204): LP status=Infeasible cols=58910 rows=59877 nnz=635800 ints=0 time=9.97s
+[  422.0s]   solve O2_MILP: rounding bisection +4 leaves: fix 102 successes (P >= 0.4933): LP status=Infeasible cols=58910 rows=59877 nnz=635800 ints=0 time=41.97s
+[  422.0s]   solve O2_MILP: rounding bisection +2 leaves: fix 100 successes (P >= 0.4800): LP status=Optimal cols=58910 rows=59877 nnz=635800 ints=0 time=17.36s obj=0.381351
+[  422.0s]   solve FORCE_SYNTH_BETA: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=36.15s obj=284.248
+[  422.0s]   solve FORCE_SYNTH_BETA: min CVaR at p=0.9601: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=39.91s obj=-0.000843781
+[  422.0s]   solve FORCE_SYNTH_BETA: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=50.16s obj=-0.385399
+[  422.0s]   solve FORCE_TERM: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=34.37s obj=285.147
+[  422.0s]   solve FORCE_TERM: min CVaR at p=0.9574: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=39.22s obj=-0.00068729
+[  422.0s]   solve FORCE_TERM: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=49.02s obj=-0.387685
+[  422.0s]   solve FORCE_HF-01: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=36.99s obj=284.974
+[  422.0s]   solve FORCE_HF-01: min CVaR at p=0.9580: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=41.77s obj=-0.000902978
+[  422.0s]   solve FORCE_HF-01: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=48.62s obj=-0.3879
+[  422.0s]   solve FORCE_LO-01: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=34.54s obj=284.071
+[  422.0s]   solve FORCE_LO-01: min CVaR at p=0.9618: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=39.72s obj=-0.00101973
+[  422.0s]   solve FORCE_LO-01: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=50.57s obj=-0.389098
+[  422.0s]   solve FORCE_LO-04: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=35.26s obj=284.925
+[  422.0s]   solve FORCE_LO-04: min CVaR at p=0.9584: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=38.38s obj=-0.000749791
+[  422.0s]   solve FORCE_LO-04: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=51.25s obj=-0.388604
+[  422.0s]   solve FORCE_LO-03: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=35.32s obj=284.884
+[  422.0s]   solve FORCE_LO-03: min CVaR at p=0.9576: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=41.42s obj=-0.000640895
+[  422.0s]   solve FORCE_LO-03: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=47.39s obj=-0.387273
+[  422.0s]   solve RED_PE-12: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=23.88s obj=285.937
+[  422.0s]   solve RED_PE-12: min CVaR at p=0.9541: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=30.22s obj=-0.00128601
+[  422.0s]   solve RED_PE-12: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=44.84s obj=-0.385039
+[  422.0s]   solve RED_PE-08: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=24.42s obj=285.925
+[  422.0s]   solve RED_PE-08: min CVaR at p=0.9539: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=29.71s obj=-0.00119001
+[  422.0s]   solve RED_PE-08: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=44.24s obj=-0.384632
+[  422.0s]   solve RED_RA-08: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=25.51s obj=286.02
+[  422.0s]   solve RED_RA-08: min CVaR at p=0.9538: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=29.19s obj=-0.00125473
+[  422.0s]   solve RED_RA-08: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=43.40s obj=-0.385169
+[  422.0s]   solve [BOOK_7103] B0: status-quo funding LP (tree readings): LP status=Optimal cols=58700 rows=52632 nnz=602028 ints=0 time=3.51s obj=5.63918
+[  422.0s]   solve BOOK_7103 GBO: mean LP: LP status=Optimal cols=58700 rows=59670 nnz=635386 ints=0 time=37.37s obj=283.309
+[  422.0s]   solve BOOK_7103 GBO: min CVaR at p=0.9650: LP status=Optimal cols=58700 rows=59670 nnz=635386 ints=0 time=42.19s obj=-0.000609904
+[  422.0s]   solve BOOK_7103 GBO: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59670 nnz=635386 ints=0 time=45.07s obj=-0.392788
+[  422.0s]   solve [BOOK_7104] B0: status-quo funding LP (tree readings): LP status=Optimal cols=58700 rows=52632 nnz=602028 ints=0 time=3.60s obj=5.60721
+[  422.0s]   solve BOOK_7104 GBO: mean LP: LP status=Optimal cols=58700 rows=59670 nnz=635386 ints=0 time=37.69s obj=283.845
+[  422.0s]   solve BOOK_7104 GBO: min CVaR at p=0.9630: LP status=Optimal cols=58700 rows=59670 nnz=635386 ints=0 time=40.59s obj=-0.000718596
+[  422.0s]   solve BOOK_7104 GBO: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59670 nnz=635386 ints=0 time=45.48s obj=-0.392825
+[  422.0s]   solve [BOOK_PLACEBO] B0: status-quo funding LP (tree readings): LP status=Optimal cols=58700 rows=52632 nnz=602028 ints=0 time=3.67s obj=5.55528
+[  422.0s]   solve BOOK_PLACEBO GBO: mean LP: LP status=Optimal cols=58700 rows=59663 nnz=635372 ints=0 time=36.94s obj=286.099
+[  422.0s]   solve BOOK_PLACEBO GBO: min CVaR at p=0.9538: LP status=Optimal cols=58700 rows=59663 nnz=635372 ints=0 time=43.18s obj=-0.00105681
+[  422.0s]   solve BOOK_PLACEBO GBO: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59663 nnz=635372 ints=0 time=43.47s obj=-0.385641
+[  422.0s]   solve [BOOK_PLACEBO] B0: status-quo funding LP (tree readings): LP status=Optimal cols=58700 rows=52632 nnz=602028 ints=0 time=2.24s obj=5.73981
+[  422.0s]   solve BOOK_PLACEBO GBO priors: mean LP: LP status=Optimal cols=58700 rows=59674 nnz=635394 ints=0 time=15.06s obj=280.742
+[  422.0s]   solve BOOK_PLACEBO GBO priors: min CVaR at p=0.9747: LP status=Optimal cols=58700 rows=59674 nnz=635394 ints=0 time=15.32s obj=-0.000475079
+[  422.0s]   solve BOOK_PLACEBO GBO priors: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59674 nnz=635394 ints=0 time=21.40s obj=-0.399178
+[  422.0s]   solve FR_delta_0.01: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=35.28s obj=285.479
+[  422.0s]   solve FR_delta_0.01: min CVaR at p=0.9560: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=39.87s obj=-0.000870811
+[  422.0s]   solve FR_delta_0.01: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=48.59s obj=-0.389436
+[  422.0s]   solve FR_delta_0.02: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=35.44s obj=285.744
+[  422.0s]   solve FR_delta_0.02: min CVaR at p=0.9549: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=40.43s obj=-0.000817663
+[  422.0s]   solve FR_delta_0.02: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=47.93s obj=-0.391329
+[  422.0s]   solve FR_delta_0.04: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=33.39s obj=286.087
+[  422.0s]   solve FR_delta_0.04: min CVaR at p=0.9535: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=41.24s obj=-0.000804531
+[  422.0s]   solve FR_delta_0.04: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=49.88s obj=-0.394061
+[  422.0s]   solve A20_floor8: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=35.48s obj=285.168
+[  422.0s]   solve A20_floor8: min CVaR at p=0.9573: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=41.18s obj=-0.000798054
+[  422.0s]   solve A20_floor8: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=48.49s obj=-0.387424
+[  422.0s]   solve A20_class_caps: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=38.68s obj=287.36
+[  422.0s]   solve A20_class_caps: min CVaR at p=0.9501: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=40.48s obj=-0.00128814
+[  422.0s]   solve A20_class_caps: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=43.50s obj=-0.389643
+[  422.0s]   solve A20_H11: mean LP: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=27.36s obj=286.001
+[  422.0s]   solve A20_H11: min CVaR at p=0.9538: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=16.05s obj=-0.000764197
+[  422.0s]   solve A20_H11: CRRA(3) tie-break: LP status=Optimal cols=58700 rows=59667 nnz=635380 ints=0 time=19.58s obj=-0.386949
+[  422.0s] all optimization tasks done at 422.0s
+[  423.0s] selection set: 4000 paths x 10 policies in 1.1s
+[  423.0s] selection: best simple rule B3; recourse chosen {'O1': 'rule', 'O2': 'playbook', 'O3': 'playbook'}
+[  432.3s] certification: 10000 paths x 50 policies in 9.3s
+[  448.3s] results.json written; determinism hash aa5cc5d8c04bea4c
+[  448.3s] RESULTS.md written. total runtime 448.3s

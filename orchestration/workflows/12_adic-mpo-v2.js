@@ -61,7 +61,7 @@ TASK: adversarial QUANT REVIEW of ${DSPEC} (and consistency with ${SLIM}). Check
 phase('Build')
 const build = await agent(`${COMMON}
 
-TASK: BUILD the prototype in ${EX} exactly to ${DSPEC} (as revised; see ${EX}\\spec_review.md). Deliverables: mpo_v2.py (or a small package under ${EX}), params.json (every parameter with rationale and source), a synthetic book of about 50-70 holdings across all eight groups with the three marks as since-inception net IRR/MOIC with cases plus market bids, results.json, and RESULTS.md. Required runs and outputs:
+TASK: BUILD the prototype in ${EX} exactly to ${DSPEC} (as revised; see ${EX}\\spec_review.md). RESUME NOTE: a previous build attempt was cut off by a network outage after writing common.py, book.py, fusion.py, params.json, scenarios.py and tree.py in ${EX}. Read them first; reuse and complete them where they match the spec (fix them where they do not), rather than starting over. Deliverables: mpo_v2.py (or a small package under ${EX}), params.json (every parameter with rationale and source), a synthetic book of about 50-70 holdings across all eight groups with the three marks as since-inception net IRR/MOIC with cases plus market bids, results.json, and RESULTS.md. Required runs and outputs:
 1. Fused beliefs per holding (show raw marks vs fused belief).
 2. The tree (~200 leaves) and the three objectives (bPOE main; exact max-P(goal) MILP; CRRA/shortfall), each under the same hard constraints.
 3. For the main objective: the here-and-now CHANGE LIST at t0 by group and holding (lens, size in $bn, and the justifying numbers: bid vs reservation price, fused return vs hurdle, liquidity price), plus contingent plans for the year-1 branches.

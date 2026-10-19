@@ -1,0 +1,56 @@
+{
+ "chk": {
+  "S_sl": 0.0,
+  "bid_sl": 0.0,
+  "W0": 0.0,
+  "Wstar": 0.0,
+  "cap_trade": 0.0,
+  "r_saa": 0.0,
+  "acc": 8.881784197001252e-16,
+  "callS": 0.0,
+  "distL": 0.0,
+  "calls24": 0.0,
+  "dist24": 0.0
+ },
+ "size": [
+  51259,
+  50586,
+  736979
+ ],
+ "author_3_in_mine": {
+  "max_row_viol": 8.952838470577262e-13,
+  "max_bound_viol": 0.0
+ },
+ "author_0_in_mine": {
+  "max_row_viol": 6.394884621840902e-13,
+  "max_bound_viol": 0.0
+ },
+ "author_1_in_mine": {
+  "max_row_viol": 1.9042545318370685e-12,
+  "max_bound_viol": 0.0
+ },
+ "author_O1_my_util": -0.3874240687366748,
+ "author_O1_my_mean": 283.5466972456586,
+ "my_mean_highs": 285.16754603616266,
+ "my_mincvar_highs": -0.000797945519912302,
+ "my_mincvar_bpoe": 0.9566959790047858,
+ "my_persp_highs": 0.9566958084738266,
+ "my_tie_highs": -0.38742406873667445,
+ "root_decision_maxdiff_bn": {
+  "sell": 0.0,
+  "redeem": 7.188694084447889e-14,
+  "add": 2.3092638912203256e-14,
+  "tpl": 3.952393967665557e-14,
+  "beta": 5.684341886080802e-14,
+  "trs": 3.597122599785507e-14,
+  "hed": 2.6645352591003757e-15,
+  "opp": 0.0,
+  "fin": 3.2862601528904634e-14,
+  "pi": 0.0
+ },
+ "leaf_Wt_maxdiff": 4.433786671143025e-12,
+ "my_mean_clarabel": 285.1675475456378,
+ "my_mean_clarabel_status": "Solved",
+ "my_tie_clarabel": -0.38746057772166004,
+ "my_tie_clarabel_status": "Solved"
+}

@@ -1,0 +1,80 @@
+1 STR STR_DB p=0.0386 eq=-0.290 brent=42.3 draw=0.0679 W=113.4 E/W=1.019 LQ=0.094 beta=-0.00 tail=15.16 opp=-0.00 M=-26.23 ell=-0.0019
+    sales {'LO': 1.4295, 'PC': 0.277, 'PE': 0.05} debt {'REV': 5.0, 'TERM': 3.067} tpl {'COMMIT_PE': 0.875, 'COMMIT_SEC': 0.25, 'COMMIT_RA': 0.3, 'COMMIT_PC': 0.3, 'COMMIT_CS': 0.15}
+2 STR STR_other p=0.1719 eq=-0.129 brent=83.9 draw=0.0539 W=139.2 E/W=1.026 LQ=0.111 beta=-0.00 tail=18.61 opp=0.99 M=-40.24 ell=0.0277
+    sales {'PC': 0.2981} debt {'REV': 5.0, 'TERM': 6.013} tpl {'PC_NEW': 1.2, 'COMMIT_PE': 1.593, 'COMMIT_SEC': 0.25, 'COMMIT_RA': 0.3, 'COMMIT_PC': 0.3, 'COMMIT_CS': 0.15}
+3 DRT DRT_GW p=0.0178 eq=0.181 brent=162.7 draw=0.0539 W=195.2 E/W=1.150 LQ=0.148 beta=51.06 tail=7.83 opp=-0.00 M=-37.06 ell=0.0569
+    sales {'LO': 0.4223, 'PC': 2.2513, 'PE': 0.05} debt {} tpl {'COMMIT_PE': 4.375, 'COMMIT_SEC': 1.25, 'COMMIT_RA': 1.5, 'COMMIT_PC': 0.3, 'COMMIT_CS': 0.15}
+4 DRT DRT_GW p=0.0147 eq=-0.025 brent=84.7 draw=0.0539 W=154.3 E/W=1.075 LQ=0.093 beta=17.68 tail=6.19 opp=1.50 M=-33.07 ell=0.0629
+    sales {'PC': 2.5027, 'PE': 0.05} debt {} tpl {'COMMIT_PE': 4.25, 'COMMIT_SEC': 0.25, 'COMMIT_RA': 0.3, 'COMMIT_PC': 0.3, 'COMMIT_CS': 0.15}
+5 DRT DRT p=0.0343 eq=0.335 brent=37.2 draw=0.0708 W=220.6 E/W=1.150 LQ=0.130 beta=52.63 tail=8.85 opp=1.50 M=-37.35 ell=-0.0012
+    sales {'LO': 0.7089, 'PC': 1.3541, 'PE': 0.05} debt {} tpl {'COMMIT_PE': 2.699, 'COMMIT_SEC': 0.25, 'COMMIT_RA': 0.3, 'COMMIT_PC': 0.3, 'COMMIT_CS': 0.15}
+6 DRT DRT p=0.2171 eq=0.190 brent=91.3 draw=0.0538 W=201.2 E/W=1.150 LQ=0.144 beta=54.67 tail=8.07 opp=1.50 M=-35.26 ell=0.1008
+    sales {'HF': 2.7495, 'LO': 0.4218, 'PC': 4.4968, 'RA': 0.05} debt {} tpl {'COMMIT_PE': 4.375, 'COMMIT_SEC': 1.25, 'COMMIT_RA': 0.3, 'COMMIT_PC': 0.886, 'COMMIT_CS': 0.15}
+7 DRT DRT p=0.1934 eq=-0.009 brent=79.3 draw=0.0538 W=161.8 E/W=1.072 LQ=0.124 beta=21.87 tail=6.49 opp=0.12 M=-35.51 ell=0.0002
+    sales {'LO': 0.0274, 'PC': 2.2691, 'PE': 0.05} debt {} tpl {'COMMIT_PE': 4.375, 'COMMIT_SEC': 0.611, 'COMMIT_RA': 0.3, 'COMMIT_PC': 0.3, 'COMMIT_CS': 0.15}
+8 BEN BEN p=0.1280 eq=-0.217 brent=72.4 draw=0.0538 W=132.0 E/W=1.121 LQ=0.181 beta=25.25 tail=5.30 opp=-0.00 M=-32.31 ell=-0.0005
+    sales {'PC': 2.9384, 'PE': 3.4695, 'RA': 2.4653, 'SEC': 1.5347} debt {} tpl {'CO_DEAL': 1.2, 'COMMIT_PE': 4.375, 'COMMIT_SEC': 0.25, 'COMMIT_RA': 0.3, 'COMMIT_PC': 0.3, 'COMMIT_CS': 0.15}
+9 BEN BEN p=0.0239 eq=0.152 brent=44.3 draw=0.0667 W=196.2 E/W=1.163 LQ=0.186 beta=58.86 tail=7.87 opp=1.50 M=-35.43 ell=0.0104
+    sales {'LO': 0.3176, 'PC': 3.9367, 'PE': 3.4695, 'RA': 2.5323, 'SEC': 0.7954} debt {} tpl {'CO_DEAL': 1.2, 'COMMIT_PE': 4.375, 'COMMIT_SEC': 1.011, 'COMMIT_RA': 0.3, 'COMMIT_PC': 0.3, 'COMMIT_CS': 0.15}
+10 BEN BEN p=0.1603 eq=0.195 brent=95.9 draw=0.0538 W=205.5 E/W=1.201 LQ=0.142 beta=61.66 tail=8.24 opp=1.50 M=-33.48 ell=0.0112
+    sales {'PC': 0.6552, 'PE': 1.6254, 'RA': 2.4494} debt {} tpl {'CO_DEAL': 1.2, 'CS_NEW': 1.2, 'PC_NEW': 2.0, 'SMA_LEV': 0.589, 'COMMIT_PE': 4.375, 'COMMIT_SEC': 1.25, 'COMMIT_RA': 1.5, 'COMMIT_PC': 1.5, 'COMMIT_CS': 0.15}
+== cards HF/PC/RA/LO
+PC-01 HOLD sell 0.000 red 0.000 add 0.000 size 0.000 pce 0.9450 p* 0.9659 theta 0.990 mu 0.0706 h 0.0882 hu 0.0932 D 1.40 goal_driven False
+PC-02 SELL sell 0.340 red 0.000 add 0.000 size 0.740 pce 0.9491 p* 0.9428 theta 0.990 mu 0.0643 h 0.0992 hu 0.0932 D 1.40 goal_driven False
+PC-03 HOLD sell -0.000 red 0.000 add 0.000 size 0.000 pce 0.8407 p* 0.9259 theta 0.970 mu 0.0763 h 0.1151 hu 0.0947 D 1.20 goal_driven False
+PC-04 HOLD sell 0.000 red 0.000 add 0.000 size 0.000 pce 0.8737 p* 0.8959 theta 0.980 mu 0.0676 h 0.1050 hu 0.0947 D 2.40 goal_driven False
+PC-05 SELL sell 0.534 red 0.000 add 0.000 size 0.740 pce 0.9969 p* 0.9821 theta 0.990 mu 0.0520 h 0.0577 hu 0.0947 D 1.40 goal_driven False
+PC-06 HOLD sell 0.000 red 0.000 add 0.000 size 0.000 pce 0.9083 p* 0.9734 theta 1.000 mu 0.0856 h 0.1049 hu 0.1080 D 1.40 goal_driven False
+HF-01 REDEEM sell 0.000 red 1.000 add 0.000 size 5.000 pce 0.9200 p* 0.9738 theta 1.000 mu 0.0444 h 0.0497 hu 0.0702 D 5.00 goal_driven False
+HF-02 REDEEM sell 0.000 red 0.257 add 0.000 size 0.900 pce 0.9200 p* 0.9870 theta 1.000 mu 0.0578 h 0.0604 hu 0.0702 D 5.00 goal_driven False
+HF-03 HOLD sell 0.000 red 0.000 add 0.000 size 0.000 pce 0.9200 p* 0.9862 theta 1.000 mu 0.0405 h 0.0433 hu 0.0618 D 5.00 goal_driven False
+HF-04 REDEEM sell 0.000 red 1.000 add 0.000 size 3.000 pce 0.9200 p* 0.9801 theta 1.000 mu 0.0586 h 0.0626 hu 0.0820 D 5.00 goal_driven False
+HF-05 REDEEM sell 0.000 red 1.000 add 0.000 size 3.000 pce 0.9200 p* 0.9716 theta 1.000 mu 0.0521 h 0.0579 hu 0.0792 D 5.00 goal_driven False
+HF-06 REDEEM sell 0.000 red 1.000 add 0.000 size 2.000 pce 0.9200 p* 0.9754 theta 1.000 mu 0.0443 h 0.0492 hu 0.0710 D 5.00 goal_driven False
+LO-01 ADD sell 0.000 red 0.000 add 0.282 size 3.952 pce 0.9992 p* 1.0998 theta 1.000 mu 0.0703 h 0.0513 hu 0.0908 D 5.00 goal_driven True
+LO-02 ADD sell 0.000 red 0.000 add 0.185 size 1.480 pce 0.9992 p* 1.0008 theta 1.000 mu 0.0681 h 0.0680 hu 0.0923 D 5.00 goal_driven True
+LO-03 ADD sell 0.000 red 0.000 add 0.560 size 3.362 pce 0.9970 p* 1.0030 theta 1.000 mu 0.0724 h 0.0718 hu 0.0952 D 5.00 goal_driven True
+LO-04 ADD sell 0.000 red 0.000 add 0.494 size 3.952 pce 0.9995 p* 1.0132 theta 1.000 mu 0.0492 h 0.0466 hu 0.0742 D 5.00 goal_driven True
+RA-01 HOLD sell 0.000 red 0.000 add 0.000 size 0.000 pce 0.9545 p* 0.9616 theta 0.950 mu 0.0965 h 0.0897 hu 0.0818 D 1.80 goal_driven False
+RA-02 REDEEM sell -0.000 red 0.998 add 0.000 size 2.346 pce 0.6672 p* 0.8552 theta 0.940 mu 0.0340 h 0.0734 hu 0.0818 D 2.40 goal_driven False
+RA-03 HOLD sell 0.000 red 0.000 add 0.000 size 0.000 pce 0.6874 p* 0.7207 theta 0.900 mu 0.0795 h 0.1805 hu 0.0938 D 2.20 goal_driven False
+RA-04 HOLD sell 0.000 red 0.000 add 0.000 size 0.000 pce 0.8218 p* 0.7838 theta 0.920 mu 0.0408 h 0.1076 hu 0.0714 D 2.40 goal_driven False
+RA-05 HOLD sell 0.000 red 0.000 add 0.000 size 0.000 pce 0.8963 p* 0.8650 theta 0.960 mu 0.0684 h 0.0974 hu 0.0775 D 3.60 goal_driven False
+RA-06 HOLD sell 0.000 red 0.000 add 0.000 size 0.000 pce 0.8049 p* 0.8434 theta 0.940 mu 0.0744 h 0.1073 hu 0.0797 D 3.30 goal_driven False
+RA-07 HOLD sell 0.000 red 0.000 add 0.000 size 0.000 pce 0.6722 p* 0.6399 theta 0.860 mu 0.0353 h 0.3042 hu 0.0726 D 1.10 goal_driven False
+RA-08 HOLD sell 0.000 red 0.000 add 0.000 size 0.000 pce 0.8189 p* 0.7410 theta 0.950 mu 0.0419 h 0.1010 hu 0.0699 D 4.20 goal_driven False
+== change list flags
+PC-02 sell SELL 0.74 dp_forced None eqtail None risk_budget False limit_driven False goal_driven False
+PC-05 sell SELL 0.74 dp_forced None eqtail None risk_budget False limit_driven False goal_driven False
+HF-01 redeem REDEEM 5.0 dp_forced 0.0014 eqtail 0.00503982 risk_budget False limit_driven False goal_driven False
+HF-02 redeem REDEEM 0.9 dp_forced None eqtail None risk_budget False limit_driven False goal_driven False
+HF-04 redeem REDEEM 3.0 dp_forced None eqtail None risk_budget False limit_driven False goal_driven False
+HF-05 redeem REDEEM 3.0 dp_forced None eqtail None risk_budget False limit_driven False goal_driven False
+HF-06 redeem REDEEM 2.0 dp_forced None eqtail None risk_budget False limit_driven False goal_driven False
+LO-01 add ADD 3.952 dp_forced 0.0043 eqtail 0.00275984 risk_budget False limit_driven False goal_driven True
+LO-02 add ADD 1.48 dp_forced None eqtail None risk_budget False limit_driven False goal_driven True
+LO-03 add ADD 3.362 dp_forced 0.0012 eqtail 0.000709114 risk_budget False limit_driven False goal_driven True
+LO-04 add ADD 3.952 dp_forced -0.0013 eqtail 0.00108498 risk_budget False limit_driven False goal_driven True
+RA-02 redeem REDEEM 2.346 dp_forced None eqtail None risk_budget False limit_driven False goal_driven False
+PC_NEW buy ADD 1.2 dp_forced None eqtail None risk_budget False limit_driven False goal_driven None
+COMMIT_PE pace PACE 0.362 dp_forced None eqtail None risk_budget False limit_driven False goal_driven None
+COMMIT_SEC pace PACE -0.75 dp_forced None eqtail None risk_budget False limit_driven False goal_driven None
+COMMIT_RA pace PACE -0.9 dp_forced None eqtail None risk_budget False limit_driven False goal_driven None
+COMMIT_PC pace PACE -0.9 dp_forced None eqtail None risk_budget False limit_driven False goal_driven None
+COMMIT_CS pace PACE -0.45 dp_forced None eqtail None risk_budget False limit_driven False goal_driven None
+TERM borrow LEVER 6.013 dp_forced -0.0025 eqtail -0.00174891 risk_budget False limit_driven False goal_driven None
+SYNTH_BETA resize LEVER 12.198 dp_forced 0.0064 eqtail -0.00131496 risk_budget True limit_driven False goal_driven None
+TRS:HF-02 trs LEVER 1.3 dp_forced None eqtail None risk_budget False limit_driven False goal_driven None
+TRS:HF-03 trs LEVER 1.75 dp_forced None eqtail None risk_budget False limit_driven False goal_driven None
+TAIL_LADDER size HEDGE 6.146 dp_forced None eqtail None risk_budget False limit_driven False goal_driven None
+OPPORTUNISTIC resize HEDGE 0.5 dp_forced None eqtail None risk_budget False limit_driven False goal_driven None
+== in_tree_simulator {"B0": {"p_goal": 0.449264, "twr_mean": 0.0829844, "cvar10": -0.076717}, "B1": {"p_goal": 0.449264, "twr_mean": 0.0829596, "cvar10": -0.0763371}, "B2": {"p_goal": 0.449264, "twr_mean": 0.0823834, "cvar10": -0.0778814}, "B3": {"p_goal": 0.446609, "twr_mean": 0.0845804, "cvar10": -0.104933}, "O1_playbook": {"p_goal": 0.448392, "twr_mean": 0.0842526, "cvar10": -0.0871513}, "O1_rule": {"p_goal": 0.451759, "twr_mean": 0.0853616, "cvar10": -0.09041}}
+== selection {"B0": {"p_goal": 0.461, "twr_mean": 0.0917602, "cvar10": -0.061548}, "B1": {"p_goal": 0.46, "twr_mean": 0.0916952, "cvar10": -0.061302}, "B2": {"p_goal": 0.45975, "twr_mean": 0.0912033, "cvar10": -0.0614928}, "B3": {"p_goal": 0.47025, "twr_mean": 0.093634, "cvar10": -0.104288}, "O1_playbook": {"p_goal": 0.47175, "twr_mean": 0.0938475, "cvar10": -0.0818704}, "O1_rule": {"p_goal": 0.49425, "twr_mean": 0.097051, "cvar10": -0.0753023}, "O2_playbook": {"p_goal": 0.465, "twr_mean": 0.091859, "cvar10": -0.0815908}, "O2_rule": {"p_goal": 0.44475, "twr_mean": 0.0894539, "cvar10": -0.0665521}, "O3_playbook": {"p_goal": 0.40325, "twr_mean": 0.084685, "cvar10": -0.0521715}, "O3_rule": {"p_goal": 0.357, "twr_mean": 0.0808185, "cvar10": -0.0264119}}
+== beliefs PC-05/SEC-06/CO-08 signals
+SEC-06 {"f": {"raw": -0.00560144, "debiased": -0.025733, "sd": 0.19633}, "u": {"raw": 0.127572, "debiased": 0.100701, "sd": 0.0839523}} w {"prior": 0.619199, "f": 0.174004, "u": 0.206796} mu 0.0742989 own bid 0.0742989
+CO-02 {"f": {"raw": 0.0358466, "debiased": -0.0180667, "sd": 0.220415}, "u": {"raw": 0.459776, "debiased": 0.387803, "sd": 0.216425}, "a": {"raw": 0.06404, "debiased": 0.06404, "sd": 0.0511102}, "m": {"raw": -0.202399, "debiased": -0.202399, "sd": 0.0555556}} w {"prior": 0.393802, "f": 0.136204, "u": 0.136621, "a": 0.333373} mu 0.109821 own bid 0.0385833
+CO-08 {"f": {"raw": -0.0477724, "debiased": -0.101686, "sd": 0.198373}, "u": {"raw": 0.0570711, "debiased": -0.014902, "sd": 0.0721415}, "m": {"raw": 0.0173686, "debiased": 0.0173686, "sd": 0.0185185}} w {"prior": 0.513756, "f": 0.184527, "u": 0.301717} mu 0.0262504 own bid 0.0124339
+PC-02 {"f": {"raw": 0.101435, "debiased": 0.0808568, "sd": 0.0369202}, "u": {"raw": 0.0364578, "debiased": 0.0306402, "sd": 0.216891}, "a": {"raw": 0.0602105, "debiased": 0.0602105, "sd": 0.0188746}, "m": {"raw": 0.0548688, "debiased": 0.0548688, "sd": 0.0357143}} w {"prior": 0.402558, "f": 0.170815, "u": 0.126328, "a": 0.3003} mu 0.0643319 own bid 0.0631666
+PC-05 {"f": {"raw": 0.120171, "debiased": 0.0995928, "sd": 0.0369202}, "u": {"raw": -0.165312, "debiased": -0.17113, "sd": 0.216891}, "a": {"raw": 0.0913825, "debiased": 0.0913825, "sd": 0.0188746}, "m": {"raw": 0.0899287, "debiased": 0.0899287, "sd": 0.0357143}} w {"prior": 0.402558, "f": 0.170815, "u": 0.126328, "a": 0.3003} mu 0.0520012 own bid 0.0590881
+HF-03 {"f": {"raw": 0.0866747, "debiased": 0.0595643, "sd": 0.051435}, "a": {"raw": 0.0385517, "debiased": 0.0385517, "sd": 0.0187759}} w {"prior": 0.332324, "f": 0.0785097, "a": 0.589167} mu 0.0405242 own bid 0.0405242
+RA-02 {"f": {"raw": 0.0181302, "debiased": 0.0327012, "sd": 0.041415}, "a": {"raw": 0.0347697, "debiased": 0.0347697, "sd": 0.0246779}, "m": {"raw": -0.0427994, "debiased": -0.0427994, "sd": 0.0208333}} w {"f": 0.163291, "a": 0.618987, "prior": 0.217722} mu 0.0339815 own bid 0.00163332

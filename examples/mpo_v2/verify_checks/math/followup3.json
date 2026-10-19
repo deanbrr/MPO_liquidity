@@ -1,0 +1,56 @@
+{
+ "same_node_draw_and_repay": {
+  "node_instrument_pairs": 102,
+  "levels": [
+   2,
+   3,
+   4
+  ],
+  "max_cycled_bn": 82.36703023920502
+ },
+ "author_need_duals": {
+  "max_abs": 0.0,
+  "n_nonzero_1e-9": 0,
+  "by_level_max_abs": {
+   "0": 0.0,
+   "1": 0.0,
+   "2": 0.0,
+   "3": 0.0,
+   "4": 0.0,
+   "5": 0.0
+  }
+ },
+ "need_variants": {
+  "strict cap everywhere (no RP, no 8% W)": {
+   "mean_status": "Optimal",
+   "E_star": 281.84224858769977,
+   "phi_exact": 0.9707001283202966,
+   "tie_P_goal": 0.4335358916666667,
+   "tie_util": -0.3978171339792708,
+   "root_beta": 24.757566344749506,
+   "root_sales_bn": 1.4545471592513222,
+   "root_adds_bn": 11.414688236059186
+  },
+  "strict cap in fans only": {
+   "mean_status": "Optimal",
+   "E_star": 281.9838827620098,
+   "phi_exact": 0.9699368823088433,
+   "tie_P_goal": 0.434235625,
+   "tie_util": -0.3987658805688209,
+   "root_beta": 24.03591206815509,
+   "root_sales_bn": 1.4545471592513222,
+   "root_adds_bn": 12.136234644356627
+  },
+  "no same-node draw-and-repay (rp=0 where dr>0 allowed)": {
+   "mean_status": "Optimal",
+   "E_star": 284.3790630731115,
+   "phi_exact": 0.9600214156620489,
+   "tie_P_goal": 0.4689271499999999,
+   "tie_util": -0.389925135890699,
+   "root_beta": 22.649978761555744,
+   "root_sales_bn": 1.4545471592513222,
+   "root_adds_bn": 12.798120461548866
+  }
+ },
+ "green_first_after_str_decision_nodes": 2
+}

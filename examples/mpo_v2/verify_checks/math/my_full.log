@@ -1,0 +1,16 @@
+[    0.9s] my LP built in 0.9s: 51259 rows x 50586 cols, nnz 736979 (author: 59667 x 58700)
+[    0.9s] data recomputed vs prepared arrays (max abs diff): {"S_sl": 0.0, "bid_sl": 0.0, "W0": 0.0, "Wstar": 0.0, "cap_trade": 0.0, "r_saa": 0.0, "acc": 8.881784197001252e-16, "callS": 0.0, "distL": 0.0, "calls24": 0.0, "dist24": 0.0}
+[    0.9s] author's O1 (tie-break) in my rows: worst row violation 8.953e-13; bounds lo 0.000e+00 hi 0.000e+00
+[    0.9s] author's mean LP in my rows: worst row violation 6.395e-13; bounds lo 0.000e+00 hi 0.000e+00
+[    0.9s] author's min-CVaR in my rows: worst row violation 1.904e-12; bounds lo 0.000e+00 hi 0.000e+00
+[    0.9s] author O1 objective values in my model: E[util] -0.387424068737 (author LP 0.387424068737); E[Wt] 283.546697246
+[   12.1s] MY mean LP (HiGHS ipm): Optimal obj 285.16754603616266 time 11.1s  (author 285.1675460361626)
+[   24.5s] MY min CVaR at p=0.9572695202620741: Optimal obj -0.000797945519912302 time 12.3s (author -0.0007978281158331768)
+[   24.5s]    bPOE of my min-CVaR solution 0.9566959790
+[   62.7s] MY perspective LP (exact min bPOE): Optimal obj 0.9566958084738266 time 38.2s
+[   87.9s] MY tie-break (bPOE <= 0.961696): Optimal obj -0.38742406873667445 time 25.1s (author 0.3874240687366748)
+[   87.9s] root decision max |mine - author| ($bn): {"sell": 0.0, "redeem": 7.188694084447889e-14, "add": 2.3092638912203256e-14, "tpl": 3.952393967665557e-14, "beta": 5.684341886080802e-14, "trs": 3.597122599785507e-14, "hed": 2.6645352591003757e-15, "opp": 0.0, "fin": 3.2862601528904634e-14, "pi": 0.0}
+[   87.9s] leaf W~ max |mine - author| 4.434e-12 $bn; P(goal) mine 0.466646 author 0.466646
+[  158.4s] MY mean LP (Clarabel): Solved obj 285.1675475456378 iters 104 time 70.5s
+[  250.8s] MY tie-break (Clarabel): Solved obj -0.38746057772166004 iters 154 time 92.4s
+[  250.8s] done

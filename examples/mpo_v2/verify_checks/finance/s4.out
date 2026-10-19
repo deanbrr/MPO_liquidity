@@ -1,0 +1,232 @@
+== replication books
+{"id": "BOOK_7101", "seed": 7101, "variant": {"alpha_dispersion": 0.5, "bid_info": 1.0, "placebo": false}, "ok": true, "label": "PLAN", "p_goal": {"B0": 0.4345, "B4_1.0": 0.4345, "B4_1.1": 0.44975, "B4_1.2": 0.46125, "B4_1.3": 0.469, "O1_playbook": 0.44425, "O1_rule": 0.4595}, "cvar10": {"B0": -0.0696146, "B4_1.0": -0.0706203, "B4_1.1": -0.0910623, "B4_1.2": -0.117445, "B4_1.3": -0.150666, "O1_playbook": -0.0897257, "O1_rule": -0.0892786}, "veq_O1_playbook": -0.00450294, "dp_vs_B0_O1_playbook": 0.00975, "veq_O1_rule": 0.0110807, "dp_vs_B0_O1_rule": 0.025}
+{"id": "BOOK_7102", "seed": 7102, "variant": {"alpha_dispersion": 1.5, "bid_info": 1.0, "placebo": false}, "ok": true, "label": "PLAN", "p_goal": {"B0": 0.40225, "B4_1.0": 0.40225, "B4_1.1": 0.42075, "B4_1.2": 0.435, "B4_1.3": 0.4435, "O1_playbook": 0.4165, "O1_rule": 0.43025}, "cvar10": {"B0": -0.0818324, "B4_1.0": -0.081709, "B4_1.1": -0.102881, "B4_1.2": -0.129823, "B4_1.3": -0.172246, "O1_playbook": -0.0988699, "O1_rule": -0.102518}, "veq_O1_playbook": -0.000745039, "dp_vs_B0_O1_playbook": 0.01425, "veq_O1_rule": 0.0098174, "dp_vs_B0_O1_rule": 0.028}
+{"id": "BOOK_7103", "seed": 7103, "variant": {"alpha_dispersion": 0.5, "bid_info": 0.5, "placebo": false}, "ok": true, "label": "PLAN", "p_goal": {"B0": 0.4405, "B4_1.0": 0.4405, "B4_1.1": 0.45425, "B4_1.2": 0.46575, "B4_1.3": 0.4745, "O1_playbook": 0.45225, "O1_rule": 0.46725}, "cvar10": {"B0": -0.0688701, "B4_1.0": -0.0699918, "B4_1.1": -0.0889656, "B4_1.2": -0.11577, "B4_1.3": -0.147067, "O1_playbook": -0.0887741, "O1_rule": -0.0893164}, "veq_O1_playbook": -0.00186126, "dp_vs_B0_O1_playbook": 0.01175, "veq_O1_rule": 0.0128495, "dp_vs_B0_O1_rule": 0.02675}
+{"id": "BOOK_7104", "seed": 7104, "variant": {"alpha_dispersion": 1.5, "bid_info": 0.5, "placebo": false}, "ok": true, "label": "PLAN", "p_goal": {"B0": 0.417, "B4_1.0": 0.417, "B4_1.1": 0.434, "B4_1.2": 0.445, "B4_1.3": 0.45375, "O1_playbook": 0.42025, "O1_rule": 0.4325}, "cvar10": {"B0": -0.0789248, "B4_1.0": -0.0788441, "B4_1.1": -0.0996984, "B4_1.2": -0.126196, "B4_1.3": -0.166876, "O1_playbook": -0.0981693, "O1_rule": -0.10323}, "veq_O1_playbook": -0.0125035, "dp_vs_B0_O1_playbook": 0.00325, "veq_O1_rule": -0.00296597, "dp_vs_B0_O1_rule": 0.0155}
+{"id": "BOOK_PLACEBO", "seed": 20261019, "variant": {"alpha_dispersion": 1.0, "bid_info": 1.0, "placebo": true}, "ok": true, "label": "PLAN", "p_goal": {"B0": 0.44525, "B4_1.0": 0.44525, "B4_1.1": 0.4605, "B4_1.2": 0.47175, "B4_1.3": 0.47825, "O1_playbook": 0.46175, "O1_rule": 0.47925, "F10_playbook": 0.46025, "F10_rule": 0.47875}, "cvar10": {"B0": -0.0659723, "B4_1.0": -0.0671209, "B4_1.1": -0.0867884, "B4_1.2": -0.112166, "B4_1.3": -0.143275, "O1_playbook": -0.0862212, "O1_rule": -0.0835125, "F10_playbook": -0.0860437, "F10_rule": -0.0854465}, "veq_O1_playbook": 0.00168974, "dp_vs_B0_O1_playbook": 0.0165, "veq_O1_rule": 0.0212901, "dp_vs_B0_O1_rule": 0.034, "veq_F10_playbook": 0.000327398, "dp_vs_B0_F10_playbook": 0.015, "veq_F10_rule": 0.0192904, "dp_vs_B0_F10_rule": 0.0335}
+== lens_r1
+{'node': 0, 'level': 0, 'dB_bn': 19.6241, 'dE_disc_bn': 27.7137, 'LEVER_bn': 19.6241, 'REFINANCE_bn': 0.0}
+{'node': 1, 'level': 1, 'dB_bn': -21.5575, 'dE_disc_bn': -24.4497, 'LEVER_bn': 0.0, 'REFINANCE_bn': 0.0}
+{'node': 2, 'level': 1, 'dB_bn': -18.6111, 'dE_disc_bn': -13.9039, 'LEVER_bn': 0.0, 'REFINANCE_bn': 0.0}
+{'node': 3, 'level': 1, 'dB_bn': 18.3752, 'dE_disc_bn': 30.3467, 'LEVER_bn': 18.3752, 'REFINANCE_bn': 0.0}
+{'node': 4, 'level': 1, 'dB_bn': -13.0013, 'dE_disc_bn': -2.64715, 'LEVER_bn': 0.0, 'REFINANCE_bn': 0.0}
+{'node': 5, 'level': 1, 'dB_bn': 19.8485, 'dE_disc_bn': 36.4956, 'LEVER_bn': 19.8485, 'REFINANCE_bn': 0.0}
+{'node': 6, 'level': 1, 'dB_bn': 21.765, 'dE_disc_bn': 28.4899, 'LEVER_bn': 21.765, 'REFINANCE_bn': 0.0}
+{'node': 7, 'level': 1, 'dB_bn': -9.06955, 'dE_disc_bn': 1.73569, 'LEVER_bn': 0.0, 'REFINANCE_bn': 0.0}
+{'node': 8, 'level': 1, 'dB_bn': -5.38611, 'dE_disc_bn': 1.73489, 'LEVER_bn': 0.0, 'REFINANCE_bn': 0.0}
+{'node': 9, 'level': 1, 'dB_bn': 26.8861, 'dE_disc_bn': 31.0748, 'LEVER_bn': 26.8861, 'REFINANCE_bn': 0.0}
+{'node': 10, 'level': 1, 'dB_bn': 30.1613, 'dE_disc_bn': 48.051, 'LEVER_bn': 30.1613, 'REFINANCE_bn': 0.0}
+== root
+{
+"node": 0,
+"class": "DRT",
+"prob": 1.0,
+"stratum": null,
+"eq_year_log_excess": 0.0,
+"brent": 126.55,
+"vix": 16.0,
+"draw_rate_next": 0.0577,
+"W_bn": 153.236,
+"E_over_W": 1.15,
+"IGcash_over_W": 0.109972,
+"sales_bn_by_group": {
+"PC": 1.45455
+},
+"adds_bn": {
+"LO-01": 3.95185,
+"LO-02": 1.48031,
+"LO-03": 3.3617,
+"LO-04": 3.95185
+},
+"redeem_frac": {
+"HF-01": 1.0,
+"HF-02": 0.257004,
+"HF-04": 1.0,
+"HF-05": 1.0,
+"HF-06": 1.0,
+"RA-02": 0.998307
+},
+"templates_bn": {
+"PC_NEW": 1.2,
+"COMMIT_PE": 3.86162,
+"COMMIT_SEC": 0.25,
+"COMMIT_RA": 0.3,
+"COMMIT_PC": 0.3,
+"COMMIT_CS": 0.15
+},
+"debt_bn": {
+"TERM": 6.01308
+},
+"synthetic_beta_bn": 22.1977,
+"p2s_bn": 0.0,
+"tail_notional_bn": 6.14582,
+"opp_im_bn": 1.5,
+"red_margin_bn": -28.9157,
+"ell": 0.0178526
+}
+== cvar table (OOS)
+B0                 P=0.4291 Prep=0.3825 mean=0.0860 med=0.0862 cv10=-0.0679 cv5=-0.0988 cv1=-0.1662 bpoe=1.0000 bpoe7=0.8454 bpoe0=0.3402 EW=1.6082 dd50=0.185 dd95=0.489 lev=1.016 bim=0.229 pile=0.0069 red=0.0010 veq={'dp_goal': 0.000395221, 'ci95': [-0.000142123, 0.00165], 'cvar10': -0.0678882}
+B1                 P=0.4285 Prep=0.3822 mean=0.0860 med=0.0861 cv10=-0.0676 cv5=-0.0984 cv1=-0.1658 bpoe=1.0000 bpoe7=0.8458 bpoe0=0.3394 EW=1.6076 dd50=0.184 dd95=0.489 lev=1.013 bim=0.229 pile=0.0072 red=0.0010 veq={'dp_goal': 6.38759e-05, 'ci95': [-0.000732904, 0.00151136], 'cvar10': -0.0675547}
+B2                 P=0.4267 Prep=0.3793 mean=0.0854 med=0.0862 cv10=-0.0688 cv5=-0.1019 cv1=-0.1780 bpoe=1.0000 bpoe7=0.8461 bpoe0=0.3338 EW=1.6011 dd50=0.180 dd95=0.486 lev=0.991 bim=0.152 pile=0.0064 red=0.0014 veq={'dp_goal': -0.0027149, 'ci95': [-0.00482754, -0.000847752], 'cvar10': -0.0687698}
+B3                 P=0.4474 Prep=0.4117 mean=0.0864 med=0.0866 cv10=-0.1158 cv5=-0.1629 cv1=-0.3181 bpoe=0.9795 bpoe7=0.8511 bpoe0=0.4513 EW=1.6828 dd50=0.253 dd95=0.598 lev=1.302 bim=0.139 pile=0.0049 red=0.0117 veq={'dp_goal': -0.0107767, 'ci95': [-0.0135387, -0.0075116], 'cvar10': -0.115822}
+B4_1.0             P=0.4291 Prep=0.3825 mean=0.0860 med=0.0862 cv10=-0.0684 cv5=-0.0997 cv1=-0.1711 bpoe=1.0000 bpoe7=0.8454 bpoe0=0.3402 EW=1.6082 dd50=0.185 dd95=0.489 lev=1.016 bim=0.155 pile=0.0069 red=0.0010 veq=None
+B4_1.1             P=0.4455 Prep=0.4006 mean=0.0862 med=0.0883 cv10=-0.0887 cv5=-0.1270 cv1=-0.2227 bpoe=0.9950 bpoe7=0.8429 bpoe0=0.3821 EW=1.6311 dd50=0.206 dd95=0.545 lev=1.113 bim=0.160 pile=0.0062 red=0.0038 veq=None
+B4_1.2             P=0.4583 Prep=0.4130 mean=0.0855 med=0.0900 cv10=-0.1161 cv5=-0.1682 cv1=-0.3354 bpoe=0.9876 bpoe7=0.8422 bpoe0=0.4184 EW=1.6522 dd50=0.226 dd95=0.600 lev=1.204 bim=0.177 pile=0.0055 red=0.0118 veq=None
+B4_1.3             P=0.4673 Prep=0.4247 mean=0.0844 med=0.0915 cv10=-0.1433 cv5=-0.2084 cv1=-0.4256 bpoe=0.9807 bpoe7=0.8423 bpoe0=0.4501 EW=1.6719 dd50=0.245 dd95=0.652 lev=1.290 bim=0.219 pile=0.0061 red=0.0270 veq=None
+B4_1.45            P=0.4752 Prep=0.4391 mean=0.0803 med=0.0934 cv10=-0.2039 cv5=-0.3039 cv1=-0.6966 bpoe=0.9724 bpoe7=0.8444 bpoe0=0.4923 EW=1.6983 dd50=0.271 dd95=0.731 lev=1.416 bim=0.341 pile=0.0047 red=0.0607 veq=None
+B4_1.6             P=0.4822 Prep=0.4481 mean=0.0748 med=0.0948 cv10=-0.2721 cv5=-0.4095 cv1=-0.9729 bpoe=0.9659 bpoe7=0.8472 bpoe0=0.5277 EW=1.7225 dd50=0.296 dd95=0.807 lev=1.555 bim=0.436 pile=0.0042 red=0.1041 veq=None
+O1_playbook        P=0.4442 Prep=0.4037 mean=0.0875 med=0.0874 cv10=-0.0896 cv5=-0.1244 cv1=-0.2105 bpoe=0.9878 bpoe7=0.8431 bpoe0=0.4009 EW=1.6522 dd50=0.220 dd95=0.549 lev=1.075 bim=0.165 pile=0.0051 red=0.0023 veq={'dp_goal': -0.00172408, 'ci95': [-0.00575023, 0.00213754], 'cvar10': -0.0896455}
+O1_rule            P=0.4690 Prep=0.4222 mean=0.0912 med=0.0935 cv10=-0.0825 cv5=-0.1193 cv1=-0.2085 bpoe=0.9794 bpoe7=0.8107 bpoe0=0.3557 EW=1.6665 dd50=0.204 dd95=0.538 lev=1.050 bim=0.140 pile=0.0065 red=0.0008 veq={'dp_goal': 0.0285235, 'ci95': [0.0252029, 0.0315511], 'cvar10': -0.0825028}
+O2_playbook        P=0.4395 Prep=0.3976 mean=0.0859 med=0.0866 cv10=-0.0877 cv5=-0.1216 cv1=-0.1990 bpoe=0.9941 bpoe7=0.8506 bpoe0=0.3988 EW=1.6348 dd50=0.214 dd95=0.544 lev=1.051 bim=0.192 pile=0.0069 red=0.0013 veq={'dp_goal': -0.00512679, 'ci95': [-0.00795924, -0.00164461], 'cvar10': -0.0876554}
+O2_rule            P=0.4181 Prep=0.3770 mean=0.0842 med=0.0833 cv10=-0.0717 cv5=-0.0997 cv1=-0.1549 bpoe=1.0000 bpoe7=0.8626 bpoe0=0.3728 EW=1.6040 dd50=0.194 dd95=0.492 lev=1.050 bim=0.259 pile=0.0052 red=0.0000 veq={'dp_goal': -0.013712, 'ci95': [-0.0161349, -0.0110217], 'cvar10': -0.0717458}
+O3_playbook        P=0.3779 Prep=0.3353 mean=0.0800 med=0.0763 cv10=-0.0560 cv5=-0.0812 cv1=-0.1402 bpoe=1.0000 bpoe7=0.8953 bpoe0=0.3428 EW=1.5559 dd50=0.168 dd95=0.444 lev=0.873 bim=0.246 pile=0.0073 red=0.0001 veq={'dp_goal': -0.0412498, 'ci95': [-0.0463795, -0.0360679], 'cvar10': -0.0560258}
+O3_rule            P=0.3361 Prep=0.2877 mean=0.0773 med=0.0729 cv10=-0.0295 cv5=-0.0463 cv1=-0.0781 bpoe=1.0000 bpoe7=0.9155 bpoe0=0.2524 EW=1.5089 dd50=0.133 dd95=0.335 lev=0.822 bim=0.277 pile=0.0076 red=0.0000 veq={'dp_goal': -0.0616489, 'ci95': [-0.0670509, -0.0541606], 'cvar10': -0.0294564}
+OFF_PACE           P=0.3498 Prep=0.3040 mean=0.0764 med=0.0730 cv10=-0.0442 cv5=-0.0642 cv1=-0.1033 bpoe=1.0000 bpoe7=0.9195 bpoe0=0.3146 EW=1.5144 dd50=0.158 dd95=0.395 lev=1.045 bim=0.268 pile=0.0072 red=0.0000 veq={'dp_goal': -0.0598151, 'ci95': [-0.0657254, -0.0524032], 'cvar10': -0.0441884}
+OFF_HEDGE          P=0.4412 Prep=0.3974 mean=0.0871 med=0.0880 cv10=-0.0779 cv5=-0.1107 cv1=-0.1786 bpoe=0.9958 bpoe7=0.8399 bpoe0=0.3644 EW=1.6284 dd50=0.197 dd95=0.518 lev=1.034 bim=0.242 pile=0.0072 red=0.0004 veq={'dp_goal': 0.00439163, 'ci95': [0.00252522, 0.0070939], 'cvar10': -0.0779489}
+OFF_BETA           P=0.4648 Prep=0.4179 mean=0.0917 med=0.0930 cv10=-0.0738 cv5=-0.1078 cv1=-0.1820 bpoe=0.9812 bpoe7=0.8075 bpoe0=0.3367 EW=1.6619 dd50=0.196 dd95=0.519 lev=1.006 bim=0.175 pile=0.0069 red=0.0008 veq={'dp_goal': 0.0313279, 'ci95': [0.0280029, 0.0342599], 'cvar10': -0.0738069}
+OFF_REBALANCE      P=0.4474 Prep=0.4007 mean=0.0890 med=0.0901 cv10=-0.0668 cv5=-0.0983 cv1=-0.1689 bpoe=0.9946 bpoe7=0.8222 bpoe0=0.3264 EW=1.6301 dd50=0.185 dd95=0.492 lev=1.050 bim=0.158 pile=0.0067 red=0.0006 veq={'dp_goal': 0.0195915, 'ci95': [0.0171403, 0.0229039], 'cvar10': -0.0667755}
+OFF_REDEEM         P=0.4614 Prep=0.4157 mean=0.0904 med=0.0918 cv10=-0.0802 cv5=-0.1151 cv1=-0.1967 bpoe=0.9831 bpoe7=0.8187 bpoe0=0.3587 EW=1.6594 dd50=0.205 dd95=0.535 lev=1.090 bim=0.153 pile=0.0079 red=0.0010 veq={'dp_goal': 0.0227503, 'ci95': [0.0201095, 0.0246681], 'cvar10': -0.0802348}
+OFF_ADD            P=0.4721 Prep=0.4249 mean=0.0908 med=0.0940 cv10=-0.0848 cv5=-0.1227 cv1=-0.2210 bpoe=0.9799 bpoe7=0.8102 bpoe0=0.3589 EW=1.6642 dd50=0.205 dd95=0.544 lev=1.050 bim=0.141 pile=0.0067 red=0.0021 veq={'dp_goal': 0.0297476, 'ci95': [0.0263214, 0.0328657], 'cvar10': -0.0848318}
+OFF_SELL           P=0.4660 Prep=0.4195 mean=0.0907 med=0.0929 cv10=-0.0814 cv5=-0.1173 cv1=-0.1987 bpoe=0.9817 bpoe7=0.8141 bpoe0=0.3557 EW=1.6618 dd50=0.203 dd95=0.535 lev=1.043 bim=0.154 pile=0.0069 red=0.0007 veq={'dp_goal': 0.0264149, 'ci95': [0.0230936, 0.0283252], 'cvar10': -0.0813961}
+OFF_FUND           P=0.4663 Prep=0.4189 mean=0.0914 med=0.0930 cv10=-0.0755 cv5=-0.1100 cv1=-0.1862 bpoe=0.9817 bpoe7=0.8082 bpoe0=0.3401 EW=1.6604 dd50=0.197 dd95=0.522 lev=1.021 bim=0.179 pile=0.0061 red=0.0014 veq={'dp_goal': 0.0314477, 'ci95': [0.0278096, 0.0341097], 'cvar10': -0.0755204}
+OFF_LEVER          P=0.4683 Prep=0.4224 mean=0.0907 med=0.0934 cv10=-0.0853 cv5=-0.1230 cv1=-0.2143 bpoe=0.9802 bpoe7=0.8133 bpoe0=0.3613 EW=1.6650 dd50=0.205 dd95=0.544 lev=1.050 bim=0.147 pile=0.0069 red=0.0009 veq={'dp_goal': 0.0255845, 'ci95': [0.0222262, 0.027992], 'cvar10': -0.0852826}
+OFF_BELIEFS        P=0.4658 Prep=0.4211 mean=0.0904 med=0.0929 cv10=-0.0860 cv5=-0.1238 cv1=-0.2144 bpoe=0.9814 bpoe7=0.8162 bpoe0=0.3638 EW=1.6631 dd50=0.206 dd95=0.545 lev=1.044 bim=0.146 pile=0.0061 red=0.0008 veq={'dp_goal': 0.0225229, 'ci95': [0.0196444, 0.0247786], 'cvar10': -0.0859798}
+FORCE_SYNTH_BETA   P=0.4626 Prep=0.4153 mean=0.0914 med=0.0927 cv10=-0.0729 cv5=-0.1065 cv1=-0.1794 bpoe=0.9828 bpoe7=0.8097 bpoe0=0.3361 EW=1.6585 dd50=0.195 dd95=0.516 lev=1.002 bim=0.172 pile=0.0073 red=0.0006 veq={'dp_goal': 0.0298385, 'ci95': [0.026526, 0.0324786], 'cvar10': -0.0729247}
+FORCE_TERM         P=0.4715 Prep=0.4248 mean=0.0915 med=0.0939 cv10=-0.0834 cv5=-0.1207 cv1=-0.2127 bpoe=0.9778 bpoe7=0.8086 bpoe0=0.3561 EW=1.6699 dd50=0.205 dd95=0.540 lev=1.050 bim=0.142 pile=0.0071 red=0.0018 veq={'dp_goal': 0.0302725, 'ci95': [0.0265951, 0.0328227], 'cvar10': -0.0834353}
+FORCE_HF-01        P=0.4676 Prep=0.4224 mean=0.0905 med=0.0930 cv10=-0.0870 cv5=-0.1251 cv1=-0.2175 bpoe=0.9805 bpoe7=0.8153 bpoe0=0.3660 EW=1.6648 dd50=0.208 dd95=0.548 lev=1.050 bim=0.151 pile=0.0060 red=0.0009 veq={'dp_goal': 0.0234837, 'ci95': [0.0196969, 0.0261223], 'cvar10': -0.0870216}
+FORCE_LO-01        P=0.4647 Prep=0.4187 mean=0.0905 med=0.0929 cv10=-0.0806 cv5=-0.1171 cv1=-0.2072 bpoe=0.9833 bpoe7=0.8137 bpoe0=0.3521 EW=1.6572 dd50=0.200 dd95=0.531 lev=1.050 bim=0.139 pile=0.0062 red=0.0013 veq={'dp_goal': 0.0257637, 'ci95': [0.0226954, 0.0279145], 'cvar10': -0.0805907}
+FORCE_LO-04        P=0.4703 Prep=0.4245 mean=0.0912 med=0.0936 cv10=-0.0855 cv5=-0.1228 cv1=-0.2143 bpoe=0.9780 bpoe7=0.8115 bpoe0=0.3625 EW=1.6703 dd50=0.207 dd95=0.545 lev=1.050 bim=0.143 pile=0.0062 red=0.0014 veq={'dp_goal': 0.0274386, 'ci95': [0.0245433, 0.0295695], 'cvar10': -0.0854637}
+FORCE_LO-03        P=0.4678 Prep=0.4208 mean=0.0909 med=0.0933 cv10=-0.0819 cv5=-0.1186 cv1=-0.2078 bpoe=0.9807 bpoe7=0.8117 bpoe0=0.3547 EW=1.6633 dd50=0.203 dd95=0.536 lev=1.050 bim=0.140 pile=0.0066 red=0.0009 veq={'dp_goal': 0.0278144, 'ci95': [0.0243822, 0.0299981], 'cvar10': -0.0818934}
+A20_class_caps     P=0.4671 Prep=0.4221 mean=0.0910 med=0.0929 cv10=-0.0840 cv5=-0.1204 cv1=-0.2096 bpoe=0.9787 bpoe7=0.8139 bpoe0=0.3642 EW=1.6689 dd50=0.208 dd95=0.543 lev=1.102 bim=0.141 pile=0.0070 red=0.0005 veq={'dp_goal': 0.0254196, 'ci95': [0.0225951, 0.0284115], 'cvar10': -0.0839975}
+FR_delta_0.04      P=0.4720 Prep=0.4259 mean=0.0915 med=0.0941 cv10=-0.0849 cv5=-0.1224 cv1=-0.2137 bpoe=0.9770 bpoe7=0.8087 bpoe0=0.3596 EW=1.6717 dd50=0.207 dd95=0.546 lev=1.050 bim=0.148 pile=0.0063 red=0.0010 veq={'dp_goal': 0.0295981, 'ci95': [0.0262793, 0.0320178], 'cvar10': -0.0848933}
+== attribution
+{"family": "SELL", "ok": true, "dp_goal": -0.003, "ci95": [-0.00426893, -0.00173107], "dtwr_mean": -0.000428766, "dcvar10": 0.00110666, "dp_red": -0.0001, "dp_goal_equal_tail": -0.00210861, "tree_dp_goal": 0.00669307, "tree_dE_Wt_bn": -0.553645, "label": "PLAN", "phi": 0.959058, "phase1": null}
+{"family": "ADD", "ok": true, "dp_goal": 0.0031, "ci95": [0.00147295, 0.00472705], "dtwr_mean": -0.000341643, "dcvar10": -0.002329, "dp_red": 0.0013, "dp_goal_equal_tail": 0.00122404, "tree_dp_goal": -0.0210617, "tree_dE_Wt_bn": -3.69494, "label": "PLAN", "phi": 0.971149, "phase1": null}
+{"family": "REFINANCE", "ok": true, "dp_goal": 0.0, "ci95": [0.0, 0.0], "dtwr_mean": 2.77556e-17, "dcvar10": 1.38778e-17, "dp_red": 0.0, "dp_goal_equal_tail": 0.0, "tree_dp_goal": 0.0, "tree_dE_Wt_bn": -1.46612e-05, "label": "PLAN", "phi": 0.956696, "phase1": null}
+{"family": "BETA", "ok": true, "dp_goal": -0.0042, "ci95": [-0.00588413, -0.00251587], "dtwr_mean": 0.000498389, "dcvar10": 0.00869592, "dp_red": 0.0, "dp_goal_equal_tail": 0.00280436, "tree_dp_goal": -0.0181929, "tree_dE_Wt_bn": -4.42356, "label": "PLAN", "phi": 0.973495, "phase1": null}
+{"family": "LEVER", "ok": true, "dp_goal": -0.0007, "ci95": [-0.00163993, 0.00023993], "dtwr_mean": -0.000446969, "dcvar10": -0.00277977, "dp_red": 0.0001, "dp_goal_equal_tail": -0.00293904, "tree_dp_goal": 0.0, "tree_dE_Wt_bn": 0.0482922, "label": "PLAN", "phi": 0.956696, "phase1": null}
+{"family": "PACE", "ok": true, "dp_goal": -0.1192, "ci95": [-0.125569, -0.112831], "dtwr_mean": -0.0147674, "dcvar10": 0.0383144, "dp_red": -0.0008, "dp_goal_equal_tail": -0.0883386, "tree_dp_goal": -0.072959, "tree_dE_Wt_bn": -22.2834, "label": "STRETCH", "phi": 1.01718, "phase1": {"u_star": 0.00268912, "label": "STRUCTURAL_RECOVERY", "allowances": {"SL9": {"total": 0.00268912, "n_rows": 1}}}}
+{"family": "REDEEM", "ok": true, "dp_goal": -0.0076, "ci95": [-0.00945354, -0.00574646], "dtwr_mean": -0.000822269, "dcvar10": 0.00226795, "dp_red": 0.0002, "dp_goal_equal_tail": -0.00577322, "tree_dp_goal": -0.00915423, "tree_dE_Wt_bn": -2.2381, "label": "PLAN", "phi": 0.966437, "phase1": null}
+{"family": "HEDGE", "ok": true, "dp_goal": -0.0278, "ci95": [-0.0310461, -0.0245539], "dtwr_mean": -0.00410633, "dcvar10": 0.00455393, "dp_red": -0.0004, "dp_goal_equal_tail": -0.0241319, "tree_dp_goal": -0.0151189, "tree_dE_Wt_bn": -0.910084, "label": "PLAN", "phi": 0.959951, "phase1": null}
+{"family": "FUND", "ok": true, "dp_goal": -0.0027, "ci95": [-0.00409879, -0.00130121], "dtwr_mean": 0.000233312, "dcvar10": 0.00698241, "dp_red": 0.0006, "dp_goal_equal_tail": 0.00292417, "tree_dp_goal": -0.00909977, "tree_dE_Wt_bn": -2.49861, "label": "PLAN", "phi": 0.966062, "phase1": null}
+{"family": "REBALANCE", "ok": true, "dp_goal": -0.0216, "ci95": [-0.0244896, -0.0187104], "dtwr_mean": -0.00221396, "dcvar10": 0.0157273, "dp_red": -0.0002, "dp_goal_equal_tail": -0.00893201, "tree_dp_goal": -0.0326276, "tree_dE_Wt_bn": -7.54309, "label": "PLAN", "phi": 0.98541, "phase1": null}
+{"family": "BELIEFS", "ok": true, "dp_goal": -0.0032, "ci95": [-0.00449867, -0.00190133], "dtwr_mean": -0.000799916, "dcvar10": -0.00347698, "dp_red": 0.0, "dp_goal_equal_tail": -0.00600063, "tree_dp_goal": -0.021994, "tree_dE_Wt_bn": -4.32642, "label": "PLAN", "phi": 0.97454, "phase1": null}
+== frontier
+{"eps_red_tree": 0.003, "ok": true, "label": "PLAN", "phi_min_bpoe_tree": 0.956696, "gbo_p_goal_tree": 0.466646, "gbo_p_red_tree": 0.0, "gbo_p_goal_oos": 0.469, "gbo_bpoe_oos": 0.979406, "gbo_p_red_oos": 0.0008, "gbo_cvar10_oos": -0.0825028, "gbo_value_at_equal_tail": 0.0285235, "milp_max_p_goal_tree": 0.479959, "milp_status": "Improved", "milp_gap": 0.79156, "milp_bound_tree": 0.859876, "milp_p_goal_oos": 0.4181, "milp_bpoe_oos": 1.0, "milp_p_red_oos": 0.0}
+{"eps_red_tree": 0.006, "ok": true, "label": "PLAN", "phi_min_bpoe_tree": 0.956696, "gbo_p_goal_tree": 0.466646, "gbo_p_red_tree": 0.0, "gbo_p_goal_oos": 0.469, "gbo_bpoe_oos": 0.979406, "gbo_p_red_oos": 0.0008, "gbo_cvar10_oos": -0.0825028, "gbo_value_at_equal_tail": 0.0285235, "milp_max_p_goal_tree": 0.479959, "milp_status": "Improved (O2 reused: identical GBO solution)", "milp_gap": 0.79156, "milp_bound_tree": 0.859876, "milp_p_goal_oos": 0.4395, "milp_bpoe_oos": 0.994087, "milp_p_red_oos": 0.0013}
+{"eps_red_tree": 0.012, "ok": true, "label": "PLAN", "phi_min_bpoe_tree": 0.956696, "gbo_p_goal_tree": 0.466646, "gbo_p_red_tree": 0.0, "gbo_p_goal_oos": 0.469, "gbo_bpoe_oos": 0.979406, "gbo_p_red_oos": 0.0008, "gbo_cvar10_oos": -0.0825028, "gbo_value_at_equal_tail": 0.0285235, "milp_max_p_goal_tree": 0.479959, "milp_status": "Improved (O2 reused: identical GBO solution)", "milp_gap": 0.79156, "milp_bound_tree": 0.859876, "milp_p_goal_oos": 0.4395, "milp_bpoe_oos": 0.994087, "milp_p_red_oos": 0.0013}
+{"eps_red_tree": 0.025, "ok": true, "label": "PLAN", "phi_min_bpoe_tree": 0.956696, "gbo_p_goal_tree": 0.466646, "gbo_p_red_tree": 0.00184398, "gbo_p_goal_oos": 0.4689, "gbo_bpoe_oos": 0.979499, "gbo_p_red_oos": 0.0008, "gbo_cvar10_oos": -0.082518, "gbo_value_at_equal_tail": 0.0284113}
+{"eps_red_tree": 0.05, "ok": true, "label": "PLAN", "phi_min_bpoe_tree": 0.956644, "gbo_p_goal_tree": 0.466646, "gbo_p_red_tree": 0.0037779, "gbo_p_goal_oos": 0.4689, "gbo_bpoe_oos": 0.979525, "gbo_p_red_oos": 0.0008, "gbo_cvar10_oos": -0.0825225, "gbo_value_at_equal_tail": 0.0284077}
+{"eps_red_tree": 1.0, "ok": true, "label": "PLAN", "phi_min_bpoe_tree": 0.953154, "gbo_p_goal_tree": 0.476845, "gbo_p_red_tree": 0.675225, "gbo_p_goal_oos": 0.4693, "gbo_bpoe_oos": 0.979164, "gbo_p_red_oos": 0.0009, "gbo_cvar10_oos": -0.0828097, "gbo_value_at_equal_tail": 0.0285763, "milp_max_p_goal_tree": 0.476845, "milp_status": "Start kept", "milp_gap": 0.811451, "milp_bound_tree": 0.863782, "milp_p_goal_oos": 0.4693, "milp_bpoe_oos": 0.979164, "milp_p_red_oos": 0.0009}
+== frontier delta
+{"delta_W0": 0.01, "label": "PLAN", "phi_tree": 0.955388, "p_goal_tree": 0.468927, "p_goal_oos": 0.4685, "cvar10_oos": -0.0833841, "value_at_equal_tail": 0.0273136, "ssd_vs_B0": false}
+{"delta_W0": 0.02, "label": "PLAN", "phi_tree": 0.954318, "p_goal_tree": 0.468927, "p_goal_oos": 0.4703, "cvar10_oos": -0.0846866, "value_at_equal_tail": 0.0280645, "ssd_vs_B0": false}
+{"delta_W0": 0.04, "label": "PLAN", "phi_tree": 0.952962, "p_goal_tree": 0.468927, "p_goal_oos": 0.472, "cvar10_oos": -0.0848933, "value_at_equal_tail": 0.0295981, "ssd_vs_B0": false}
+== a20
+{"limit": "floor8", "dp_goal_oos": -0.0003, "named": false, "tree_dp_goal": 0.0}
+   root keys ['sell', 'redeem', 'add', 'tpl', 'fin', 'beta', 'p2s', 'trs', 'hed', 'opp', 'Lup', 'C0', 'W0post', 'E_W0', 'LQ_W0']
+   beta 22.2565 opp 1.5 hed 6.1423 fin [0.0, 6.03886, 0.0, -0.0, 0.0, 0.0, 0.0] tpl [0.0, 0.0, 0.0, 1.2, 0.0, 0.0, 3.79147, 0.25, 0.3, 0.3, 0.15]
+{"limit": "class_caps", "dp_goal_oos": -0.0019, "named": false, "tree_dp_goal": 0.00186827}
+   root keys ['sell', 'redeem', 'add', 'tpl', 'fin', 'beta', 'p2s', 'trs', 'hed', 'opp', 'Lup', 'C0', 'W0post', 'E_W0', 'LQ_W0']
+   beta 29.2058 opp 1.5 hed 6.16796 fin [0.255609, 9.95564, 0.0, -0.0, 0.0, 0.0, 0.0] tpl [0.0, 0.0, 0.0, 2.0, 0.0, 0.0, 2.76336, 0.25, 0.3, 0.3, 0.15]
+{"limit": "H11", "dp_goal_oos": -0.0002, "named": false, "tree_dp_goal": 0.00996388}
+   root keys ['sell', 'redeem', 'add', 'tpl', 'fin', 'beta', 'p2s', 'trs', 'hed', 'opp', 'Lup', 'C0', 'W0post', 'E_W0', 'LQ_W0']
+   beta 19.1796 opp 1.5 hed 6.09748 fin [0.0, 7.69353, 0.0, -0.0, 0.0, 0.0, 0.0] tpl [0.0, 0.0, 0.0, 2.0, 0.0, 0.0, 4.375, 0.25, 0.3, 0.3, 0.15]
+== b0 readings
+{"green_decision_nodes": 28, "behind_nodes": 374, "thin_decision_nodes": 60, "loss_nodes": 211, "cvar_X_levels": [0.907896, 1.018, 1.13948]}
+== tree stage1
+{'node': 1, 'stratum': 'STR_DB', 'prob': 0.03855, 'class': 'STR', 'eq_total_return': -0.222077, 'brent': 42.3074, 'draw_next': 0.0678799}
+{'node': 2, 'stratum': 'STR_other', 'prob': 0.1719, 'class': 'STR', 'eq_total_return': -0.0863582, 'brent': 83.9184, 'draw_next': 0.05385}
+{'node': 3, 'stratum': 'DRT_GW', 'prob': 0.0178, 'class': 'DRT', 'eq_total_return': 0.245378, 'brent': 162.692, 'draw_next': 0.05395}
+{'node': 4, 'stratum': 'DRT_GW', 'prob': 0.0147, 'class': 'DRT', 'eq_total_return': 0.0135644, 'brent': 84.6686, 'draw_next': 0.05395}
+{'node': 5, 'stratum': 'DRT', 'prob': 0.03425, 'class': 'DRT', 'eq_total_return': 0.453042, 'brent': 37.1891, 'draw_next': 0.0707687}
+{'node': 6, 'stratum': 'DRT', 'prob': 0.2171, 'class': 'DRT', 'eq_total_return': 0.257605, 'brent': 91.3065, 'draw_next': 0.053775}
+{'node': 7, 'stratum': 'DRT', 'prob': 0.1934, 'class': 'DRT', 'eq_total_return': 0.0300364, 'brent': 79.3033, 'draw_next': 0.053775}
+{'node': 8, 'stratum': 'BEN', 'prob': 0.12805, 'class': 'BEN', 'eq_total_return': -0.163293, 'brent': 72.3742, 'draw_next': 0.053775}
+{'node': 9, 'stratum': 'BEN', 'prob': 0.02395, 'class': 'BEN', 'eq_total_return': 0.210062, 'brent': 44.3249, 'draw_next': 0.0667336}
+{'node': 10, 'stratum': 'BEN', 'prob': 0.1603, 'class': 'BEN', 'eq_total_return': 0.262918, 'brent': 95.9483, 'draw_next': 0.053775}
+== hypotheses
+{
+"H1": {
+"dp_goal": 0.0399,
+"se": 0.00197261,
+"ci95": [
+0.0360337,
+0.0437663
+],
+"mcnemar_p_gt0": 1.33992e-115,
+"p_margin": 0.0,
+"margin": 0.02,
+"b": 402,
+"c": 3,
+"dtwr_mean": 0.00516519,
+"dcvar10": -0.0146146,
+"dp_red": -0.0002,
+"holm_p": 0.0,
+"established": true
+},
+"H2": {
+"dp_goal": 0.0216,
+"se": 0.00185841,
+"ci95": [
+0.0179575,
+0.0252425
+],
+"mcnemar_p_gt0": 5.1322e-33,
+"p_margin": 2.16153e-10,
+"margin": 0.01,
+"b": 283,
+"c": 67,
+"dtwr_mean": 0.00479106,
+"dcvar10": 0.0333196,
+"dp_red": -0.0109,
+"holm_p": 4.32305e-10,
+"established": true
+},
+"H3": {
+"books": 5,
+"dp_goal_mean": 0.02703,
+"se_clustered_by_book": 0.00389691,
+"per_book": [
+0.025,
+0.028,
+0.02675,
+0.0155,
+0.0399
+],
+"p_margin": 0.0727802,
+"holm_p": 0.0727802,
+"established": false
+},
+"H4": {
+"signatures": {
+"bimodality_flag": false,
+"lev_up_after_loss": 0.000175,
+"lev_at_cap_while_behind": 0.000525,
+"pileup_mass": 0.0065
+},
+"ssd_vs_B0": false,
+"a14_pass": true,
+"pass": false
+},
+"H5": {
+"gap_O2": 0.040459,
+"gap_O1": -0.00235373,
+"pass": true
+},
+"H6": {
+"value_at_equal_tail": 0.0285235,
+"ci95": [
+0.0252029,
+0.0315511
+],
+"p_margin": 0.0,
+"holm_p": 0.0,
+"established": true
+},
+"H7": {
+"placebo_F10_dp_goal": 0.0005,
+"placebo_O1_value_at_equal_tail": 0.0212901,
+"pass": false
+}
+}
