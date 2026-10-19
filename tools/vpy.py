@@ -20,7 +20,10 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-VENV_SITE = ROOT / ".venv" / "Lib" / "site-packages"
+# A git worktree of this repo has no .venv of its own; fall back to the main checkout's.
+MAIN_ROOT = Path(r"C:\users\dean\ai_envs\adic_tpa_lab")
+VENV_SITE = next((r / ".venv" / "Lib" / "site-packages" for r in (ROOT, MAIN_ROOT)
+                  if (r / ".venv" / "Lib" / "site-packages").is_dir()), ROOT / ".venv" / "Lib" / "site-packages")
 SRC = ROOT / "src"
 
 
