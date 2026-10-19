@@ -121,7 +121,7 @@ The worked tree example is done: `examples/tree_demo/` and `design/examples/Tree
 **GitHub:** https://github.com/deanbrr/MPO_liquidity was PUBLIC. The user chose to make it private before the push.
 - Local `main` is now a clean export branch (paper text and the large regenerable npz/json excluded; README added; merged with GitHub's initial commit).
 - The full previous local history is on branch `archive/local-history`. Never push it: it contains the paper text.
-- Push only after the repo is private: `git push -u origin main`.
+- **Pushed on 19 Oct (private repo):** `main` → origin/main at c48aab7, 810 files. Credentials are stored in GCM. Later pushes use `git push`. If a sign-in is needed, set `GCM_INTERACTIVE=always` for that call.
 
 **Open decisions** are consolidated in `design/OPEN_DECISIONS.md` (18 items, each with its working assumption). The build proceeds on the working assumptions.
 
