@@ -9,6 +9,7 @@ Checkpoint taken 2026-10-18 at about 12:35 local time, because the session may s
 The work stopped at this logical point:
 - **`examples/mpo_v2`:** stays exactly as first run (commit `2aafbad`). Its verification findings are documented in `verify_math.md` and `verify_finance.md` and are not fixed. `RESULTS.md` carries a hand-written status note saying so.
 - **`design/FRAMEWORK_DESCRIPTION.md`:** taken to v1.1 by `13r_adic-framework-description-verify.js` (run wf_ab2d51b3-dfe). Two verifiers checked it, then a fix and a closure check followed. Because the user decided not to rebuild, it describes the prototype as it is and flags the unfixed verification findings as known issues. The reviews are in `design/reviews/framework_description_review_{math,scenarios}.md`.
+- **`README.md` (21 Oct):** rewritten at the user's request as the comprehensive framework readme, covering variables, formulas, constraints, objectives, fusion, simulator, scenarios, outputs and status, in v0's compact style with v1.1's verified content. `orchestration/workflows/15_adic-readme-framework.js` wrote it, then hit the spend limit before its verifiers ran. It was checked by hand instead: static GitHub-rendering and link checks, and a read-through against v1.1.
 - **Repo:** committed and pushed to `origin/main`.
 
 **Python (current).** Windows Smart App Control now blocks `.venv\Scripts\python.exe`, and `pythonw.exe` is unreliable. Run Python as:
