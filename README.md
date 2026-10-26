@@ -622,7 +622,7 @@ Running `mpo_v2.py` rewrites `results.json`, `RESULTS.md` and `run_log.txt`. The
 - **Goal-seeking optimizer prototype** (`examples/mpo_v2`): the first full run is complete and independently verified. The verification found 1 critical and 5 high findings, all documented. By decision of 19 October 2026 they have not been fixed, and the prototype stays as first run.
 - **Framework description:** `design/FRAMEWORK_DESCRIPTION.md` v1.1, verified against the specification and the prototype code; this README summarizes it. It flags the prototype's unfixed findings as known issues.
 - **Production build:** wave 0 (foundations). The slim build, which would productionize the prototype, has not started.
-- **Stakeholder platform demo** (`demo/`, 25 October 2026): built on the user's data (git-ignored), with the PE program ($20bn of exposure over three years, underperformers first) and the falling-DPI base case the user specified. Internal sleeves and drawn debt are assumptions until the user supplies actual balances.
+- **Stakeholder platform demo** (`demo/`, 25 October 2026): built on the user's data (git-ignored), with the PE program ($20bn of exposure over three years, underperformers first) and the falling-DPI base case the user specified. Internal sleeves and drawn debt are assumptions until the user supplies actual balances. The optimization is multi-period with yearly recourse but a fixed dated schedule; state-contingent (adaptive) decisions are the proposed next step (see [`demo/README.md`](demo/README.md), *Multi-period, precisely*).
 
 Open decisions and their working assumptions are listed in [`design/OPEN_DECISIONS.md`](design/OPEN_DECISIONS.md).
 
