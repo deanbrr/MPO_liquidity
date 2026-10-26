@@ -684,13 +684,13 @@
       () => ({ cols: ["Year", "North star", "Paid to the owner on the north star", "Plan P5", "Plan median", "Plan P95", "Status quo median", "Do nothing median"], rows: YEARS.map((y2, i) => [y2, F.bn(star[i], 0), F.bn(sp.paid[i], 0), F.bn(fP.fans.nav.p5[i], 0), F.bn(fP.fans.nav.p50[i], 0), F.bn(fP.fans.nav.p95[i], 0), F.bn(fS.fans.nav.p50[i], 0), F.bn(fD.fans.nav.p50[i], 0)]) }));
     const yr5 = [["North star", star[5], sp.paid[5], null, null, null], ["Do nothing", med5(fD), fD.owner5_p50_bn, fD.p_preserve, rD.goal, rD.all], ["Status quo", med5(fS), fS.owner5_p50_bn, fS.p_preserve, rS.goal, rS.all], [`${title} plan`, med5(fP), fP.owner5_p50_bn, fP.p_preserve, rP.goal, rP.all]];
     const t5 = el("table", { class: "t" });
-    t5.append(el("thead", null, el("tr", null, ...["", "Fund in year 5 (median)", "Gap to the north star", "Paid to the owner (median)", "Fund keeps its size", `Chance of ${F.pct(h, 0)} a year`, "With every objective"].map((c, i) => el("th", { class: i ? "num" : "", text: c })))));
+    t5.append(el("thead", null, el("tr", null, ...["", "Fund, year 5", "Paid to owner", "Keeps its size", `P(${F.pct(h, 0)})`, "Every objective"].map((c, i) => el("th", { class: i ? "num" : "", text: c })))));
     const tb5 = el("tbody");
     const pc = (x) => (x == null ? "\u2013" : F.pct(x, 1));
-    for (const [nm, v5, paid, keep, pg, pa] of yr5) tb5.append(el("tr", null, el("td", { class: "nm", text: nm }), el("td", { class: "num", text: F.bn(v5, 0) }), el("td", { class: "num", text: nm === "North star" ? "\u2013" : F.sbn(v5 - star[5], 0) }), el("td", { class: "num", text: F.bn(paid, 0) }), el("td", { class: "num", text: pc(keep) }), el("td", { class: "num", text: pc(pg) }), el("td", { class: "num", text: pc(pa) })));
+    for (const [nm, v5, paid, keep, pg, pa] of yr5) tb5.append(el("tr", null, el("td", { class: "nm", text: nm }), el("td", { class: "num", text: F.bn(v5, 0) }), el("td", { class: "num", text: F.bn(paid, 0) }), el("td", { class: "num", text: pc(keep) }), el("td", { class: "num", text: pc(pg) }), el("td", { class: "num", text: pc(pa) })));
     t5.append(tb5);
     const side = el("div", { class: "card" }, el("h3", { text: "Where each lands in year 5" }),
-      el("p", { class: "sub", text: "The median fund after the owner's distributions against the north star, what the owner received over the five years (median), the chance the fund is at least today's size in year 5, and the chance of the target (alone, and with every group's objective met). Fund sizes and the owner's take are at the default world weights; probabilities of the target follow the controls." }),
+      el("p", { class: "sub", text: "The median fund after the owner's distributions against the north star, what the owner received over the five years (median), the chance the fund is at least today's size in year 5, and the chance of the target (alone, and with every group's objective met). Fund sizes and the owner's take are at the default world weights; the chances of the target follow the controls." }),
       el("div", { class: "tablewrap full" }, t5),
       el("p", { class: "note", style: "margin-top:10px", text: `Doing nothing ${rD.goal >= rS.goal ? "beats" : "trails"} the status quo by ${(Math.abs(rD.goal - rS.goal) * 100).toFixed(1)}pp${rD.goal >= rS.goal ? ": the status quo sells PE at drought bids" : ""}; the ${title} plan ${rP.goal >= rD.goal ? "adds" : "gives up"} ${(Math.abs(rP.goal - rD.goal) * 100).toFixed(1)}pp against doing nothing.` }));
     const grid = el("div", { class: "grid g2", style: "margin-top:12px" }, chart, side);
@@ -960,7 +960,7 @@
     const p = R(role).plan, c = p.contingent, cl = R(role).change_list;
     if (!c) return el("div");
     const nav0 = unitNav(cl), sh = (x) => ` (${F.pct(x, 0)} of paths)`;
-    const tbl = (head, rows) => { const t = el("table", { class: "t" }); t.append(el("thead", null, el("tr", null, ...head.map((x, i) => el("th", { class: i ? "num" : "", text: x }))))); const tb = el("tbody"); for (const r of rows) tb.append(el("tr", null, ...r.map((x, i) => el("td", { class: i ? "num" : "", text: x })))); t.append(tb); return el("div", { class: "tablewrap full" }, t); };
+    const tbl = (head, rows) => { const t = el("table", { class: "t" }); t.append(el("thead", null, el("tr", null, ...head.map((x, i) => el("th", { class: i ? "num" : "", text: x }))))); const tb = el("tbody"); for (const r of rows) tb.append(el("tr", null, ...r.map((x, i) => el("td", { class: i ? "num" : "", style: i ? null : "white-space:nowrap", text: x })))); t.append(tb); return el("div", { class: "tablewrap full" }, t); };
     const com = (k, s2, ok) => Object.entries(c.commit).filter(([b]) => ok(b)).reduce((a, [, x]) => a + x[k][s2], 0);
     const comRows = [0, 1, 2, 3].map((k) => [`Year ${k + 2}`, ...[0, 1, 2].map((s2) => { const sec = com(k, s2, (b) => b.startsWith("SEC_")); return `${F.bn(com(k, s2, () => true))}${sec > 0.05 ? `, of which secondaries ${F.bn(sec)}` : ""}${sh(c.freq_commit[k][s2])}`; })]);
     const saleY2 = [0, 1, 2].map((s1) => Object.entries(c.sell).reduce((a, [u, v]) => a + v[0][s1] * (nav0[u] || 0), 0));
@@ -992,11 +992,16 @@
     for (const r of A.stresses) tb.append(el("tr", null, el("td", { text: stressLabel(r.stress) }), el("td", { class: "num", text: F.pct(r.fixed.p_goal, 1) }), el("td", { class: "num", text: F.pct(r.adaptive.p_goal, 1) }), el("td", { class: "num", text: ci(r) }), el("td", { class: "num", text: `${F.pct(r.fixed.p_preserve, 1)} / ${F.pct(r.adaptive.p_preserve, 1)}` }), el("td", { class: "num", text: `${F.pct(r.fixed.p_red, 1)} / ${F.pct(r.adaptive.p_red, 1)}` })));
     t.append(tb);
     const up = A.stresses.filter((r) => r.d_p_goal_ci[0] > 0).length, down = A.stresses.filter((r) => r.d_p_goal_ci[1] < 0).length;
-    const nm = A.no_mandate;
+    const nm = A.no_mandate, lc = (r) => { const t = stressLabel(r.stress); return t.charAt(0).toLowerCase() + t.slice(1); };
     const msg = [
-      `In the ${stressLabel(base.stress).toLowerCase()}, the adaptive plan is ${sig(base)} the fixed schedule: ${ci(base)} of P(target) on the same ${F.int(D.meta.n_oos * 3)} paths. Across the ${A.stresses.length} stresses it is significantly ahead in ${up} and significantly behind in ${down}.`,
-      nm ? `Where the gain comes from: without the countercyclical secondaries mandate, the market-class rules alone are ${sig(nm)} the fixed schedule (${ci(nm)}). The mandate lets the plan buy secondaries when sellers need liquidity and prices are low, which a fixed schedule cannot time.` : null,
-      base.adaptive.p_red > base.fixed.p_red + 0.002 ? `The cost: buying in stress years leaves less cash for the next one, so forced private sales rise to ${F.pct(base.adaptive.p_red, 1)} of paths (fixed: ${F.pct(base.fixed.p_red, 1)}).` : `Forced private sales stay at ${F.pct(base.adaptive.p_red, 1)} of paths (fixed: ${F.pct(base.fixed.p_red, 1)}).`,
+      `In the ${lc(base)}, the adaptive plan is ${sig(base)} the fixed schedule: ${ci(base)} of P(target) on the same ${F.int(D.meta.n_oos * 3)} paths. Across the ${A.stresses.length} stresses it is significantly ahead in ${up}${down ? ` and significantly behind in ${down}` : " and never significantly behind"}.`,
+      nm ? `Where the gain comes from: without the countercyclical secondaries mandate, the market-class rules alone add ${ci(nm)}. The mandate lets the plan buy secondaries when sellers need liquidity and prices are low, which a fixed schedule cannot time.` : null,
+      (() => {
+        const app = (D.house && D.house.forced_eps) || 0.01, lbl = lc;
+        const over = A.stresses.filter((r) => r.adaptive.p_red > app + 1e-9 && r.adaptive.p_red > r.fixed.p_red + 0.002);
+        const head = `Forced private sales: ${F.pct(base.adaptive.p_red, 1)} of paths in the ${lbl(base)} (fixed: ${F.pct(base.fixed.p_red, 1)}), within the ${F.pct(app, 0)} appetite the plan was validated against.`;
+        return over.length ? `${head} The cost shows in harsher stresses: buying in a stress year leaves less cash for what follows, and forced sales exceed the appetite in ${over.map((r) => `${lbl(r)} (${F.pct(r.adaptive.p_red, 1)} against ${F.pct(r.fixed.p_red, 1)} fixed)`).join(", ")}. Requiring the guard to hold in those stresses too would give back part of the gain.` : head;
+      })(),
       "Why the gain is not larger: returns are not predictable in this model (regimes move risk, not expected returns), realistic timing gains in private equity are small (Brown, Harris, Hu, Jenkinson, Kaplan and Robinson, JFE 2021), and most decisions sit at their limits whatever happens. The owner's distribution, about what the fund earns, is what makes timing worth something: cash is scarce exactly when prices are low.",
     ].filter(Boolean);
     return el("div", { class: "card", style: "margin-top:14px" }, el("h3", { text: "What adaptivity adds: the adaptive plan against one fixed schedule" }),
@@ -1123,7 +1128,7 @@
     t.append(tb);
     const pe = R(role).change_list.pe_program;
     g2.append(el("div", { class: "card" }, el("h3", { text: "Owner distributions and the PE program" }),
-      el("p", { class: "sub", text: `Under the '${stressLabel(R(role).stress)}' view. The owner's draw is set each year from Brent (5-10%, smoothed; higher when oil is weak) unless a fixed policy is chosen.` }),
+      el("p", { class: "sub", text: `Under the '${stressLabel(R(role).stress)}' view. The owner's draw is set each year from Brent (${F.pct((D.meta.owner || {}).floor || 0.09, 0)}-${F.pct((D.meta.owner || {}).cap || 0.1, 0)} of opening NAV: about what the fund earns, more when oil is weak; smoothed) unless a fixed policy is chosen.` }),
       el("div", { class: "tablewrap short" }, t),
       el("div", { class: "callout" }, el("strong", { text: "The PE program as a liquidity source. " }), `In the Liquidity plan it sells ${F.bn(pe.exposure_bn)} of PE exposure: ${F.bn(pe.nav_bn)} of NAV for expected proceeds of ${F.bn(pe.proceeds_bn)}, and the buyers take ${F.bn(pe.unfunded_bn)} of unfunded commitments (future capital calls ADIC no longer pays).`)));
     v.append(g2);

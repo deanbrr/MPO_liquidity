@@ -470,7 +470,8 @@ def liquidity_extras(pf) -> dict:
     v = pf.view("liquidity")
     g = float(pf.house()["goal_rate"])
     say("Liquidity: owner-distribution policies")
-    for name, patch in (("Oil-linked rule (5-10%)", {"draw_mode": "rule"}),
+    lo, hi = float(pf.P.get("owner_distribution.rule_floor")), float(pf.P.get("owner_distribution.rule_cap"))
+    for name, patch in ((f"Oil-linked rule ({lo:.0%}-{hi:.0%})", {"draw_mode": "rule"}),
                         ("Fixed 7% of NAV", {"draw_mode": "fixed_rate", "draw_rate": 0.07}),
                         ("Fixed 10% of NAV", {"draw_mode": "fixed_rate", "draw_rate": 0.10})):
         hs = {**pf.house(), **patch}
