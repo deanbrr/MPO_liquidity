@@ -328,7 +328,16 @@ class Platform:
             pg = float(house.get("p_goal_min", 0.0) or 0.0)
             M.apply_eps(p_goal_min=(pg if objective != "gbo" and pg > 0 else None), forced_eps=(fe if fe > 0 else None),
                         ret_min=(float(house["ret_min"]) if objective == "liquidity" else None))
+            bsg = float(house.get("bs_guard_prob", self.P.get("constraints.bs_guard_prob")) or 0.0)
+            if 0.0 < bsg < 1.0:
+                M.apply_bs_guard(1.0 - bsg, bsg)
+                progress(f"balance-sheet guard: leverage and overcommitment within limits at every year end on at least "
+                         f"{bsg:.0%} of paths (buffered)")
             res = lp.solve(M, objective)
+            while res.get("x") is None and M.bs_alpha is not None and M.bs_alpha < 0.5:
+                M.apply_bs_guard(min(2.0 * M.bs_alpha, 0.5), bsg)
+                progress(f"balance-sheet guard infeasible; relaxed to a buffered breach probability of {M.bs_alpha:.0%}")
+                res = lp.solve(M, objective)
             if res.get("x") is None:
                 raise RuntimeError("no feasible plan under the current limits: relax a house limit (see the LP log)")
             res, calib = self._calibrate_guards(M, res, objective, sq, ev, house, bkey, B, stress, prefs, progress)
@@ -382,9 +391,12 @@ class Platform:
         from .legacy import cvar_lower
         guard = bool(house.get("depth_guard", True))
         fe = float(house.get("forced_eps", 0.0) or 0.0)
+        bsg = float(house.get("bs_guard_prob", self.P.get("constraints.bs_guard_prob")) or 0.0)
+        bs_on = 0.0 < bsg < 1.0 and M.bs_alpha is not None
+        lcap, ocap = float(house["lev_cap"]), float(house["overcommit"])
         rounds = int(house.get("calibration_rounds", 3))
         calib = []
-        if rounds <= 0 or (not guard and fe <= 0):
+        if rounds <= 0 or (not guard and fe <= 0 and not bs_on):
             return res, calib
         S_val = self.paths_for(bkey, B, "val", stress, self._pi(prefs), house)
         sset = self._sim_settings(house)
@@ -397,17 +409,27 @@ class Platform:
             o = sim.simulate(S_val, M.extract(res["x"], "validation"), self.P, sset)
             gap = ref - cvar_lower((1 + o["twr"]) ** 5, 0.10, w) if guard else 0.0
             red = float(w @ o["red"].astype(float))
-            calib.append({"round": it, "tail_gap": float(gap), "p_red": red, "tighten": tighten, "forced_eps": fe_eff})
-            ok = gap <= 0.002 and (fe <= 0 or red <= fe + 0.002)
+            within = float(w @ ((o["r_lev"].max(1) <= lcap + 1e-6) & (o["r_ovc"].max(1) <= ocap + 1e-6))) if bs_on else None
+            calib.append({"round": it, "tail_gap": float(gap), "p_red": red, "tighten": tighten, "forced_eps": fe_eff,
+                          "bs_within": within, "bs_alpha": M.bs_alpha})
+            # the balance-sheet guard is calibrated both ways: tightened when breached on fresh paths, loosened when
+            # it binds yet holds with room to spare (a buffered probability is conservative)
+            bs_low = bs_on and within < bsg - 0.005
+            bs_high = bs_on and within > bsg + 0.02 and M.bs_binding(res["x"])
+            ok = gap <= 0.002 and (fe <= 0 or red <= fe + 0.002) and not bs_low and not bs_high
             if ok or it == rounds:
                 break
+            if bs_low or bs_high:
+                a = M.bs_alpha * (1.0 - bsg) / max(1.0 - within, 1e-3)
+                M.apply_bs_guard(float(np.clip(np.clip(a, M.bs_alpha / 4, 4 * M.bs_alpha), 0.002, 0.5)), bsg)
             if gap > 0.002:
                 tighten += gap
                 M.apply_depth_guard(ev["cvar10"], delta - tighten)
             if fe > 0 and red > fe + 0.002:
                 fe_eff = max(fe_eff / 2, 0.001)
                 M.apply_eps(forced_eps=fe_eff)
-            progress(f"validation round {it + 1}: tail short by {gap:.4f}, forced-sale probability {red:.3f}; re-solving")
+            progress(f"validation round {it + 1}: tail short by {gap:.4f}, forced-sale probability {red:.3f}"
+                     + (f", within balance-sheet limits {within:.3f}" if bs_on else "") + "; re-solving")
             new = lp.solve(M, objective)
             if new.get("x") is None:
                 calib[-1]["infeasible"] = True

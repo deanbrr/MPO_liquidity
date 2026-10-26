@@ -35,7 +35,7 @@ LENSES = {
                   "uw_debias": True},
         "stress": "base",
         "owns": ["total_nav_bn", "sleeve_split", "lev_cap", "recourse_cap", "new_term_max_bn", "navf_ltv_max",
-                 "allow_debt", "allow_beta", "beta_max", "overcommit", "revolver_signed_bn", "revolver_drawn0_bn",
+                 "allow_debt", "allow_beta", "beta_max", "overcommit", "bs_guard_prob", "revolver_signed_bn", "revolver_drawn0_bn",
                  "term_debt0_bn"],
     },
     "liquidity": {
@@ -67,7 +67,7 @@ LENSES = {
 HOUSE_DEFAULTS = {
     "goal_rate": 0.10, "depth_guard": True, "depth_delta": 0.0, "p_goal_min": 0.0,
     "total_nav_bn": 177.0, "sleeve_split": {}, "lev_cap": 1.15, "recourse_cap": 0.15, "new_term_max_bn": 10.0,
-    "navf_ltv_max": 0.10, "allow_debt": True, "allow_beta": True, "beta_max": 25.0, "overcommit": 0.80,
+    "navf_ltv_max": 0.10, "allow_debt": True, "allow_beta": True, "beta_max": 25.0, "overcommit": 0.80, "bs_guard_prob": 0.95,
     "revolver_signed_bn": 10.0, "revolver_drawn0_bn": 0.0, "term_debt0_bn": 0.0,
     "floor_target": 0.08, "floor_hard": 0.04, "forced_eps": 0.01, "ret_min": 0.085,
     "waterfall": ["AGG", "GE_DM", "GE_GLOBAL", "GE_EM", "HF", "MAO_EXT", "MAO_INT", "REVOLVER", "FORCED"],
@@ -101,7 +101,7 @@ def target_only(lev_cap: float = 1.0, liquid_caps: dict | None = None) -> dict:
     return {"depth_guard": False, "forced_eps": 0.0, "p_goal_min": 0.0, "ret_min": 0.0, "lev_cap": float(lev_cap),
             "recourse_cap": 1.0, "new_term_max_bn": 1e6, "navf_ltv_max": 0.5, "beta_max": 1e4, "overcommit": 50.0,
             "floor_target": 0.0, "floor_hard": 0.0, "range_band": [0.0, 1e3], "pace_mult": [0.0, 5.0],
-            "commit_agg_mult": 5.0, "pe_program_enabled": False, "x_bounds": caps}
+            "commit_agg_mult": 5.0, "pe_program_enabled": False, "x_bounds": caps, "bs_guard_prob": 0.0}
 
 
 def default_state(role: str) -> dict:

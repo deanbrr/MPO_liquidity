@@ -49,6 +49,9 @@ def test_adaptive_rules_never_see_the_future(platform):
     op = platform.optimize("strategy", persist=False, progress=lambda m: None)
     p = planmod.Plan.from_dict(op["plan"])
     assert p.contingent and "beta" not in p.contingent    # the overlay has no state rule unless asked for
+    assert "bs_guard" in op["eps"]                        # the balance-sheet guard binds every optimized plan
+    last = op["calibration"][-1]
+    assert last["bs_within"] is not None and last["bs_within"] >= 0.85    # quick mode: few paths, loose bound
     v = platform.view("strategy")
     house = platform.house()
     bkey, B, _ = platform.book_for(v["prefs"], house)

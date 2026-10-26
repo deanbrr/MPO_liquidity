@@ -116,6 +116,7 @@ class TPPModel:
         lev = lambda X: X[:, ::4]                                                   # (m, 21, k) -> (m, 6, k)
         yf = lambda X: X.reshape(X.shape[0], 5, 4, X.shape[-1]).sum(2)              # (m, 20, k) -> (m, 5, k)
         self.uV = lev(S.uV)                                                         # (m, 6, K)
+        self.uU = lev(S.uU)                                                         # (m, 6, K) unfunded
         self.uNF = yf(S.uD) - yf(S.uC)                                              # (m, 5, K)
         self.ubid = S.ubid                                                          # (m, 6, K)
         self.nav0 = np.array([u.nav0 for u in bk.units]) * (1 - S.shock["private_markdown"])
@@ -312,6 +313,8 @@ class TPPModel:
         self.ZF = cl.add("zf", (m,))
         self.ETAL = cl.add("etal", (), -INF, INF)
         self.ZL = cl.add("zl", (m,))
+        self.ETAB = cl.add("etab", (), -INF, INF)                                  # balance-sheet guard
+        self.ZB = cl.add("zb", (m,))
         self.cols = cl
         lb = np.concatenate(cl.lb)
         ub = np.concatenate(cl.ub)
@@ -505,6 +508,39 @@ class TPPModel:
             R.add(f"floor{t}", np.c_[self.KP[:, ti], self.NAV[:, ti], colB(t), self.U[:, ti]],
                   np.c_[np.ones(m), -np.full(m, ft), -self.im[:, t], np.ones(m)], 0.0, INF, nrows=m)
         self.rows_nav, self.rows_res = rows_nav, rows_res
+        # balance-sheet guard (the Balance Sheet group's limits at every year end): within the leverage cap and the
+        # overcommitment ceiling on (at least) a share of paths, as a buffered probability: zb_j >= the path's worst
+        # year-end excess (over W0) - etab, and alpha etab + sum p zb <= 0, switched on by apply_bs_guard after the
+        # status quo is evaluated. Private NAV comes from the year's NAV identity (NAV - reserve + liquid sold
+        # + revolver - liquid sleeves + term debt + NAV facility); unfunded from the units kept and templates started
+        ovc_cap = float(self._g("overcommit", P.get("constraints.overcommit")))
+        lcap = float(self._g("lev_cap", P.get("constraints.lev_cap")))
+        iw = 1.0 / self.W0
+        for t in range(1, 6):
+            ti = t - 1
+            dts = np.stack([colD(k) for k in range(min(t, 2) + 1)], 1)
+            nd, nfg = dts.shape[1], (1 + self.navf_rate) ** t
+            Ut = self.uU[:, t, :]
+            cols = [self.NAV[:, ti][:, None], self.KP[:, ti][:, None], self.KM[:, ti][:, None], self.RV[:, ti][:, None],
+                    np.broadcast_to(self.X, (m, nLR)), dts, np.full((m, 1), self.DN), self.ZB[:, None],
+                    np.full((m, 1), self.ETAB)]
+            vals = [np.full((m, 1), (1.0 - ovc_cap) * iw), np.full((m, 1), -iw), np.full((m, 1), iw), np.full((m, 1), iw),
+                    -self.G[:, t, :] * iw, np.full((m, nd), iw), np.full((m, 1), nfg * iw), -np.ones((m, 1)),
+                    -np.ones((m, 1))]
+            for tau in range(min(t, 2) + 1):                                         # unfunded leaves with a sale
+                cols.append(colS(tau))
+                vals.append(-Ut * iw)
+            for tau in range(min(t, 4) + 1):                                         # and comes with a commitment
+                cols.append(colC(tau))
+                vals.append(self.tU[tau][:, t, :] * iw)
+            R.add(f"bsovc{t}", np.concatenate(cols, 1), np.concatenate(vals, 1), -INF, -Ut.sum(1) * iw, nrows=m)
+            cols = [self.RV[:, ti][:, None], dts, np.full((m, 1), self.DN), colB(min(t + 1, 5))[:, None],
+                    self.NAV[:, ti][:, None], self.ZB[:, None], np.full((m, 1), self.ETAB)]
+            vals = [np.full((m, 1), iw), np.full((m, nd), iw), np.full((m, 1), nfg * iw), np.full((m, 1), iw),
+                    np.full((m, 1), -(lcap - 1.0) * iw), -np.ones((m, 1)), -np.ones((m, 1))]
+            R.add(f"bslev{t}", np.concatenate(cols, 1), np.concatenate(vals, 1), -INF, 0.0, nrows=m)
+        self.row_bs = R.add("bscvar", np.r_[self.ETAB, self.ZB], np.r_[1.0, self.p], -INF, INF)
+        self.bs_alpha = None
         # goal wealth: WT - NAV5 - sum_t d_t A_t NAV_{t-1} = 0
         cols = [self.WT[:, None], self.NAV[:, 4][:, None], np.full((m, 1), self.NAV0)]
         vals = [np.ones((m, 1)), -np.ones((m, 1)), -(self.d[:, 0] * self.A[:, 1])[:, None]]
@@ -661,6 +697,21 @@ class TPPModel:
         if ret_min is not None:
             self.set_row(self.row_mean, self.W0 * (1 + float(ret_min)) ** 5, INF)
             self.eps["ret_min"] = ret_min
+
+    def apply_bs_guard(self, alpha: float, prob: float | None = None):
+        """Balance-sheet guard on: buffered P(a year-end breach of the leverage cap or the overcommitment ceiling)
+        <= alpha on the in-sample scenarios (alpha starts at 1 - prob; the validation paths move it)."""
+        self.highs().changeCoeff(int(np.atleast_1d(self.row_bs)[0]), int(self.ETAB), float(alpha))
+        self.set_row(self.row_bs, -INF, 0.0)
+        self.bs_alpha = float(alpha)
+        self.eps["bs_guard"] = {"prob": float(prob if prob is not None else 1.0 - alpha), "alpha": float(alpha)}
+
+    def bs_binding(self, x) -> bool:
+        """Whether the balance-sheet guard is tight at the solution x."""
+        if self.bs_alpha is None:
+            return False
+        x = np.asarray(x)
+        return float(self.bs_alpha * x[int(self.ETAB)] + self.p @ x[np.asarray(self.ZB)]) > -1e-7
 
     def apply_depth_guard(self, cvar_ref: float, delta: float = 0.0):
         """CVaR10 of WT/W0 >= cvar_ref - delta (cvar_ref from the status quo on the same scenarios)."""
