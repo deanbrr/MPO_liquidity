@@ -26,6 +26,18 @@ Thumbs.db
 # Large regenerable research grids (rerun gap02_study.py to rebuild)
 research/addenda/gap_02_calcs/gap02_grid_raw.json
 
+# Stakeholder demo: ADIC portfolio files are MSIP-labelled and never committed; the cache and saved
+# stakeholder state are derived from them. Keep only the placeholders.
+demo/data/*
+!demo/data/.gitkeep
+demo/state/*
+!demo/state/.gitkeep
+demo/out/
+*.xlsx
+# the classifier's patterns and overrides name managers and holdings from the (MSIP-labelled) fund file
+demo/config/classifier_rules.json
+demo/config/mapping_overrides.csv
+
 # Third-party paper text: not redistributed (see README)
 inputs/agentic_scientist_2610.18933v1.txt
 # Large regenerable research artifacts (>5 MB); rebuild with the scripts in the same folders

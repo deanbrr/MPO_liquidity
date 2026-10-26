@@ -1,0 +1,120 @@
+{
+  "_doc": "Every non-data number the TPP demo uses. Leaves are {value, unit, rationale, source} as in examples/mpo_v2/params.json, so tpp.legacy.Params reads both. DATA comes from the user's two workbooks; everything here is an ASSUMPTION until replaced by ADIC figures. The regime / factor / owner-draw model is read from examples/mpo_v2/params.json (overridden where noted).",
+  "fund": {
+    "total_nav_bn": {"value": 177.0, "unit": "$bn", "rationale": "Whole-fund NAV. The fund file holds only the externally managed fund and co-investment book; the gap is the internally managed sleeves below.", "source": "User, 2026-10-18 (about $177bn) and 2026-10-25 (probably over $170bn)"},
+    "max_stale_months": {"value": 12, "unit": "months", "rationale": "A row counts as a live holding when its latest performance date is within this window of the file's as-of date. Older marks are legacy rows, reported on the Data page.", "source": "Data review, 2026-10-25"},
+    "include_legacy_rows": {"value": false, "unit": "flag", "rationale": "Rows last marked before the staleness window (pre-restructuring stakes, old deposits, futures and loans) are excluded unless the user confirms they are still held.", "source": "Data review, 2026-10-25"},
+    "min_live_nav_usd": {"value": 1.0, "unit": "$", "rationale": "Rows below this NAV and with no unfunded commitment are fully realized and carry no exposure.", "source": "Design default"}
+  },
+  "internal_sleeves": {
+    "gap_split": {"value": {"GE_DM": 0.38, "GE_EM": 0.08, "GE_GLOBAL": 0.1, "AGG": 0.12, "TREASURY": 0.2, "CASH": 0.09, "MAO_INT": 0.02, "MAO_EXT": 0.01}, "unit": "share of (total NAV - fund-file NAV)", "rationale": "Sleeves priced in the ER file but absent from the fund file: Global Equities Division (DM, EM, global), Global Agg, Treasury, Cash and the multi-asset overlay's capital. Working split until the Balance Sheet group enters actual balances.", "source": "Assumption; prior working allocation v2 (long-only 20%, Treasury 8.5% of $177bn)"}
+  },
+  "rates": {
+    "sofr": {"value": 0.0389, "unit": "per year", "rationale": "Financing base rate, held flat over the horizon (rate shocks are a stress, not a path).", "source": "examples/mpo_v2/params.json rates.sofr"}
+  },
+  "corporate_finance": {
+    "revolver_signed_bn": {"value": 10.0, "unit": "$bn", "rationale": "Committed revolving facility (contingent liquidity, last in the waterfall before forced sales).", "source": "examples/mpo_v2/params.json corporate_finance.revolver_signed"},
+    "revolver_drawn0_bn": {"value": 0.0, "unit": "$bn", "rationale": "Drawn balance today; enter the actual figure.", "source": "Assumption"},
+    "revolver_spread": {"value": 0.0085, "unit": "per year over SOFR", "rationale": "Drawn margin.", "source": "examples/mpo_v2/params.json"},
+    "revolver_undrawn_fee": {"value": 0.0015, "unit": "per year", "rationale": "Commitment fee on the undrawn amount.", "source": "examples/mpo_v2/params.json"},
+    "revolver_avail": {"value": [1.0, 1.0, 0.5], "unit": "share drawable by market state [BEN, DRT, STR]", "rationale": "Banks cut availability in a crisis.", "source": "examples/mpo_v2/params.json"},
+    "term_debt0_bn": {"value": 0.0, "unit": "$bn", "rationale": "Existing term debt; enter the actual figure.", "source": "Assumption"},
+    "term_spread": {"value": 0.0085, "unit": "per year over SOFR", "rationale": "Senior unsecured term loan margin.", "source": "examples/mpo_v2/params.json"},
+    "navf_spread": {"value": 0.03, "unit": "per year over SOFR", "rationale": "NAV facility margin, PIK.", "source": "examples/mpo_v2/params.json corporate_finance.navf"},
+    "navf_oid": {"value": 0.015, "unit": "share of amount drawn", "rationale": "Upfront fee / original-issue discount.", "source": "examples/mpo_v2/params.json"},
+    "navf_ltv_max": {"value": 0.1, "unit": "debt / pledged private NAV", "rationale": "Maximum loan-to-value on the private pledge pool.", "source": "examples/mpo_v2/params.json"},
+    "navf_ltv_stress": {"value": 0.05, "unit": "debt / pledged private NAV", "rationale": "LTV covenant in a crisis; a breach forces repayment from the reserve.", "source": "examples/mpo_v2/params.json"},
+    "recourse_cap": {"value": 0.15, "unit": "share of NAV", "rationale": "Revolver + term debt cap.", "source": "examples/mpo_v2/params.json"},
+    "encumbrance_cap": {"value": 0.2, "unit": "share of total assets", "rationale": "Pledged collateral cap.", "source": "examples/mpo_v2/params.json"}
+  },
+  "overlay": {
+    "beta0_bn": {"value": 0.0, "unit": "$bn notional", "rationale": "Synthetic equity beta held today (the MAO sleeves carry the existing overlay strategies). LEVER adds to it.", "source": "Assumption"},
+    "beta_max_bn": {"value": 25.0, "unit": "$bn notional", "rationale": "Upper bound for the LEVER lever (gross overlay cap applies too).", "source": "Assumption; prototype gross overlay cap 30% of NAV"},
+    "beta_fin_spread": {"value": [0.003, 0.006, 0.0175], "unit": "per year over SOFR by state", "rationale": "Implied financing of equity futures.", "source": "examples/mpo_v2/params.json overlay.beta_fin_spread"},
+    "im_rate": {"value": [0.04, 0.06, 0.1], "unit": "IM per $ notional by state", "rationale": "Initial margin posted from the reserve (encumbered).", "source": "examples/mpo_v2/params.json overlay.im_rate"},
+    "mao_returns_are_excess": {"value": true, "unit": "flag", "rationale": "The ER file's Internal MAO base (3.3%) is below cash (3.8%), so the MAO figures are read as excess return over cash on allocated capital. Set false to read them as total returns.", "source": "Data review, 2026-10-25"}
+  },
+  "owner_distribution": {
+    "mode": {"value": "rule", "unit": "rule | fixed_rate", "rationale": "rule = the prototype's oil-linked draw (5-10% of opening NAV, smoothed, higher when Brent is weak); fixed_rate = a flat rate.", "source": "User 2026-10-18 (5-10%, higher when oil is weak); examples/mpo_v2 owner_draw"},
+    "fixed_rate": {"value": 0.07, "unit": "share of opening-year NAV", "rationale": "Used when mode = fixed_rate.", "source": "Assumption"}
+  },
+  "liquidity": {
+    "floor_hard": {"value": 0.04, "unit": "(cash + Treasury) / NAV", "rationale": "Hard liquidity floor; below it the waterfall sells liquid assets.", "source": "examples/mpo_v2/params.json constraints.floor_hard"},
+    "floor_target": {"value": 0.08, "unit": "(cash + Treasury) / NAV", "rationale": "Target reserve restored at year ends from surplus.", "source": "examples/mpo_v2/params.json constraints.floor_target"},
+    "waterfall": {"value": ["AGG", "GE_DM", "GE_GLOBAL", "GE_EM", "HF", "MAO_EXT", "MAO_INT", "REVOLVER", "FORCED"], "unit": "order", "rationale": "Liquid sales after the reserve, then the revolver, then forced secondary sales of private holdings (a red event).", "source": "Liquidity policy default; editable by the Liquidity group"},
+    "hf_quarterly_liquidity": {"value": [0.25, 0.2, 0.1], "unit": "share of HF NAV redeemable per quarter by state", "rationale": "Quarterly dealing with gates in stress.", "source": "examples/mpo_v2 trading.redeem_phi (100/95/66% within 12 months), made quarterly"},
+    "forced_sale_extra_discount": {"value": 0.1, "unit": "share of the stressed bid", "rationale": "Distressed-seller discount on top of the market bid.", "source": "Assumption"},
+    "red_event_threshold_bn": {"value": 0.05, "unit": "$bn", "rationale": "A forced private sale above this is a red event.", "source": "examples/mpo_v2/params.json constraints.red_sale_threshold"}
+  },
+  "pe_program": {
+    "enabled": {"value": true, "unit": "flag", "rationale": "Private Equity has decided to sell $20bn of its overall exposure over the next three years, underperforming assets first.", "source": "User, 2026-10-25"},
+    "total_bn": {"value": 20.0, "unit": "$bn", "rationale": "Program size.", "source": "User, 2026-10-25"},
+    "years": {"value": 3, "unit": "annual tranches", "rationale": "Tranches at the start of each program year (quarters 0, 4, 8).", "source": "User, 2026-10-25"},
+    "basis": {"value": "exposure", "unit": "exposure | nav", "rationale": "'Overall exposure' read as NAV + unfunded commitment; set to nav to count NAV only.", "source": "Interpretation of the user's wording; switchable"},
+    "selection": {"value": "underperformers", "unit": "underperformers | pro_rata", "rationale": "Underperformers first: lowest forward return against the hold value, then the actual-vs-underwritten shortfall.", "source": "User, 2026-10-25"},
+    "departments": {"value": ["Private Equity"], "unit": "ER departments", "rationale": "Buyout EU, Buyout US and Venture Capital, funds and co-investments.", "source": "ER file taxonomy"}
+  },
+  "exits": {
+    "start_in_drought": {"value": 1.0, "unit": "probability", "rationale": "DPI has been falling: today's exit window is a drought (distributions at 0.47x normal).", "source": "User, 2026-10-25; examples/mpo_v2 regimes.exit (0.87)"},
+    "prolonged_drought_persistence": {"value": 0.95, "unit": "quarterly probability of staying in drought", "rationale": "The 'prolonged DPI decline' stress (base 0.88).", "source": "Assumption"}
+  },
+  "returns": {
+    "er_return_type": {"value": "geometric", "unit": "geometric | arithmetic", "rationale": "ER figures read as expected compound annual returns; the simulator matches their log mean.", "source": "Assumption about the ER file"},
+    "uw_bias_prior_pp": {"value": 4.0, "unit": "pp a year", "rationale": "Prior underwriting optimism (underwritten minus realized IRR) where a bucket has few mature holdings.", "source": "examples/mpo_v2 fusion.bias_prior_underwritten_pp (2-6pp by group)"},
+    "credibility_constant": {"value": 20, "unit": "observations", "rationale": "Buhlmann credibility Z = n / (n + k) for the bucket's measured underwriting bias.", "source": "examples/mpo_v2 fusion.credibility_constant"},
+    "mature_age": {"value": 6, "unit": "years", "rationale": "A holding is mature (its since-inception IRR is informative about underwriting accuracy) at this age or with DPI >= mature_dpi.", "source": "Design default"},
+    "mature_dpi": {"value": 0.75, "unit": "x paid-in", "rationale": "See mature_age.", "source": "Design default"},
+    "actual_min_age": {"value": 3, "unit": "years", "rationale": "Below this age the since-inception IRR is J-curve noise and is not used.", "source": "examples/mpo_v2 fusion.actual_min_age"},
+    "tilt_cap_pp": {"value": 8.0, "unit": "pp a year", "rationale": "Cap on any holding-level tilt from the strategy return.", "source": "Design default"},
+    "clip": {"value": [-0.2, 0.35], "unit": "annual return", "rationale": "Sanity bounds on any forward return.", "source": "Design default"},
+    "horizon_years": {"value": 5, "unit": "years", "rationale": "Horizon of the utility certainty equivalent.", "source": "Goal horizon"}
+  },
+  "risk": {
+    "bucket_overrides": {"value": {"HF": {"B": [0.3, 0.15, 0.0, 0.0, 0.0, -0.15], "idio": 0.04}}, "unit": "loadings on [equity, credit, rates, oil, exit, vol]; annual idiosyncratic vol", "rationale": "Hedge funds are not riskless. A diversified institutional program carries an equity beta of about 0.4 (higher in sell-offs), credit and short-volatility exposure (crowding and deleveraging), and manager-specific risk. With these loadings the program runs about 9% annual volatility in the model (equities about 21%) with an equity beta of about 0.4, and loses about 23% in the worst 5% of year-1 crisis paths (the composite lost about 19% in 2008). The multi-strategy segment alone (beta 0.2, 2% idiosyncratic) ran 6% volatility and lost almost nothing on average in that stress, which made hedge funds look like a free lunch to the optimizer. The ER file still sets each world's mean return.", "source": "HFRI Fund Weighted Composite: beta to global equities about 0.4, 2008 loss about -19%; Getmansky, Lo and Makarov (2004) on smoothed hedge-fund returns understating volatility; Jurek and Stafford (2015) on hedge funds' put-writing-like risk"}
+  },
+  "yale": {
+    "families": {"value": {"buyout": {"rc": [0.25, 0.333, 0.5], "life": 12, "bow": 2.5, "yield": 0.0}, "venture": {"rc": [0.25, 0.333, 0.5], "life": 12, "bow": 2.5, "yield": 0.0}, "secondaries": {"rc": [0.5, 0.5, 0.5], "life": 8, "bow": 1.5, "yield": 0.0}, "credit": {"rc": [0.4, 0.5, 0.5], "life": 7, "bow": 1.0, "yield": 0.08}, "infrastructure": {"rc": [0.25, 0.333, 0.5], "life": 15, "bow": 2.0, "yield": 0.04}, "real_estate": {"rc": [0.25, 0.333, 0.5], "life": 10, "bow": 2.0, "yield": 0.03}, "coinvest_equity": {"rc": [1.0], "life": 7, "bow": 2.5, "yield": 0.0}, "coinvest_income": {"rc": [1.0], "life": 7, "bow": 1.5, "yield": 0.05}}, "unit": "rate of contribution by fund year (then the last rate), fund life L in years, bow factor B, minimum distribution yield Y", "rationale": "The benchmark: the Takahashi-Alexander model's contribution, distribution and NAV recursions with typical practitioner settings by strategy (closed-end funds call 25% / 33% / 50% of the remaining commitment; equity funds distribute on a bow of 2.5 over a 12-year life; credit and real assets pay a yield). Growth G is each bucket's ER base return, the same expected return the engine uses, so the comparison isolates what the deterministic model leaves out.", "source": "Takahashi and Alexander (2002), Illiquid Alternative Asset Fund Modeling, Journal of Portfolio Management; parameters are assumptions to calibrate"}
+  },
+  "bids": {
+    "quality_passthrough": {"value": 0.5, "unit": "share", "rationale": "Secondary buyers price half of a holding's credible under- or out-performance against its vintage peers to persist over its remaining duration (capped at 4 years), so underperformers trade at deeper discounts.", "source": "Assumption (cf. examples/mpo_v2 market anchor)"},
+    "rho_extra": {"value": {"vc": [0.85, 0.78, 0.62]}, "unit": "bid per $ of NAV by state [BEN, DRT, STR]", "rationale": "Venture LP interests trade at deeper discounts than buyout; the prototype had no venture bid key.", "source": "Assumption"},
+    "today_state": {"value": 1, "unit": "0 = BEN, 1 = DRT, 2 = STR", "rationale": "Today's market state for t0 bids: an exit drought (DPI falling) without a macro crisis.", "source": "User 2026-10-25; examples/mpo_v2 (root is DRT)"},
+    "clip": {"value": [0.35, 1.05], "unit": "bid / reported NAV", "rationale": "Bounds on a modeled secondary bid.", "source": "Design default"}
+  },
+  "trading": {
+    "tc_liquid": {"value": 0.0008, "unit": "per $ traded", "rationale": "Liquid sleeve trading cost.", "source": "examples/mpo_v2 trading.tc lo_dm"},
+    "lp_depth_year_bn": {"value": [9.0, 7.0, 5.0], "unit": "$bn a year by state", "rationale": "Secondary-market depth for ADIC's LP sales (PE + Secondaries).", "source": "examples/mpo_v2 trading.lp_depth_year"},
+    "coinvest_sale_share": {"value": 0.1, "unit": "share of bucket NAV a year", "rationale": "Depth for co-investment sales.", "source": "examples/mpo_v2 trading.co_sale_share"},
+    "buy_cap_year_bn": {"value": {"SEC_LP": 4.0, "SEC_GP": 1.5, "COINVEST": 1.5}, "unit": "$bn a year", "rationale": "Capacity for new secondary purchases and co-investments.", "source": "examples/mpo_v2 templates (cap_year)"}
+  },
+  "pacing": {
+    "basis_vintages": {"value": [2023, 2024, 2025], "unit": "vintage years", "rationale": "Status-quo pacing = average original commitment per vintage over these years, by bucket.", "source": "DATA-derived"},
+    "mult_range": {"value": [0.0, 1.5], "unit": "x status-quo pacing", "rationale": "Bounds for the optimizer's pacing plan.", "source": "Assumption (prototype 0.25-1.25)"}
+  },
+  "constraints": {
+    "lev_cap": {"value": 1.15, "unit": "exposure / NAV", "rationale": "Gross exposure cap in today's drought state.", "source": "examples/mpo_v2 constraints.class_caps (1.30 / 1.15 / 1.10)"},
+    "overcommit": {"value": 0.8, "unit": "(private NAV + unfunded) / NAV", "rationale": "Overcommitment ceiling.", "source": "examples/mpo_v2 constraints.overcommit"},
+    "range_band": {"value": [0.5, 1.5], "unit": "x current weight", "rationale": "IC ranges for liquid sleeves.", "source": "examples/mpo_v2 constraints.range_band"},
+    "forced_sale_eps": {"value": 0.01, "unit": "probability over 5 years", "rationale": "Liquidity appetite: tolerated probability of a forced private sale.", "source": "examples/mpo_v2 red_eps_certified"}
+  },
+  "simulation": {
+    "n_lp_paths": {"value": 120, "unit": "factor paths (x 3 worlds)", "rationale": "In-sample scenarios for the LP (360 scenarios: a GBO solve takes about 15 s). Certification uses separate, larger paths.", "source": "Design default (speed)"},
+    "n_oos_paths": {"value": 1000, "unit": "factor paths (x 3 worlds)", "rationale": "Out-of-sample certification paths.", "source": "Design default"},
+    "seed_lp": {"value": 21, "unit": "seed", "rationale": "In-sample paths.", "source": "Design default"},
+    "seed_oos": {"value": 31, "unit": "seed", "rationale": "Certification paths (never seen by the LP).", "source": "Design default"},
+    "seed_factor_means": {"value": 41, "unit": "seed", "rationale": "Factor-mean estimate used to calibrate alphas.", "source": "examples/mpo_v2 seeds.factor_means"},
+    "years": {"value": 5, "unit": "years", "rationale": "Goal horizon.", "source": "User: 10% over a multi-period horizon; prototype 5 years"}
+  },
+  "goal": {
+    "rate": {"value": 0.1, "unit": "per year", "rationale": "The fund's hurdle: 10% a year time-weighted, gross of owner distributions.", "source": "User"},
+    "c_max_factor": {"value": 2.0, "unit": "x W*/W0", "rationale": "GBO buffer cap.", "source": "examples/mpo_v2 goal.c_max_factor"}
+  },
+  "objective": {
+    "crra_tangents": {"value": 24, "unit": "tangent lines", "rationale": "Piecewise-linear CRRA utility.", "source": "examples/mpo_v2 objective.crra_tangents (32)"},
+    "crra_w_range": {"value": [0.4, 3.0], "unit": "W~/W0", "rationale": "Tangent range.", "source": "examples/mpo_v2 objective.crra_w_range"},
+    "tiebreak_tol": {"value": 0.005, "unit": "bPOE", "rationale": "GBO tie-break tolerance.", "source": "examples/mpo_v2 objective.tiebreak_tol"},
+    "bisection_tol": {"value": 0.002, "unit": "bPOE", "rationale": "GBO fixed-point stopping rule.", "source": "examples/mpo_v2 objective.bisection_tol (0.001)"},
+    "floor_breach_cost": {"value": 0.1, "unit": "per $ per year", "rationale": "LP cost of the reserve sitting below its TARGET (soft): above the cost of topping it up from liquid sales, far below a forced sale. The hard floor is never breached.", "source": "Design default"},
+    "liquid_sale_cost": {"value": 0.004, "unit": "per $ per year", "rationale": "LP opportunity cost on liquid risk assets sold to fund needs, on top of their expected excess return.", "source": "Design default"}
+  }
+}
