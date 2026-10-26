@@ -53,7 +53,9 @@ def rep_paths(out: dict) -> list[dict]:
                                                                              "rev_draw", "forced")},
                         "lcr": np.asarray(out["lcr"][i]).tolist(),
                         "macro": np.asarray(out["macro_y"][i]).astype(int).tolist() if "macro_y" in out else None,
-                        "exit": np.asarray(out["exit_y"][i]).astype(int).tolist() if "exit_y" in out else None})
+                        "exit": np.asarray(out["exit_y"][i]).astype(int).tolist() if "exit_y" in out else None,
+                        "cls": np.asarray(out["cls_y"][i]).astype(int).tolist() if "cls_y" in out else None,
+                        "prog": np.asarray(out["prog_y"][i]).astype(int).tolist() if "prog_y" in out else None})
     return res
 
 

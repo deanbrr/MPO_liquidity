@@ -22,7 +22,7 @@ from __future__ import annotations
 import numpy as np
 
 from .buckets import BY_ID, LIQUID_RISK
-from .plan import Plan
+from .plan import PROGRESS_BAND, Plan, beta_paths, schedule_paths
 
 NQ = 20
 
@@ -66,14 +66,8 @@ def simulate(S, plan: Plan, P, settings: dict | None = None, keep_paths: bool = 
     T = len(S.tpl_buckets)
     rf = S.rf_fin
     uid = [u.id for u in book.units]
-    sell = np.zeros((3, K))
-    for k, u in enumerate(uid):
-        if u in plan.sell:
-            sell[:, k] = np.asarray(plan.sell[u], float)[:3]
-    amt = np.zeros((5, T))
-    for j, b in enumerate(S.tpl_buckets):
-        if b in plan.commit:
-            amt[:, j] = np.asarray(plan.commit[b], float)[:5]
+    # per-path schedules: a state-contingent plan's later decisions follow each path's observed market state
+    sell, amt, sched = schedule_paths(plan, uid, list(S.tpl_buckets), S.cls_y)
     is_fund = S.tpl_is_fund
     LR = [b for b in cfg["waterfall"] if b in LIQUID_RISK] + [b for b in LIQUID_RISK if b not in cfg["waterfall"]]
     pledge_u = np.array([BY_ID[u.bucket].is_fund for u in book.units], float)
@@ -89,11 +83,12 @@ def simulate(S, plan: Plan, P, settings: dict | None = None, keep_paths: bool = 
     cash = np.full(m, float(book.liquid.get("CASH", 0.0)))
     tre = np.full(m, float(book.liquid.get("TREASURY", 0.0)))
     rev = np.full(m, cfg["rev_drawn0"])
-    sched = list(getattr(plan, "term_sched", None) or [float(plan.term_bn), 0.0, 0.0])
-    term = cfg["term0"] + float(sched[0])
+    term = cfg["term0"] + sched[0]
     navf = np.full(m, float(plan.navf_bn))
     rev_cap = cfg["rev_signed"] + float(plan.rev_upsize_bn)
-    beta = float(plan.beta_bn)
+    pctx = S.progress_ctx(cfg["goal"], PROGRESS_BAND)                            # (m, 6) behind / on track / ahead
+    beta_y = beta_paths(plan, pctx)                                                 # (5, m): year t+1's beta
+    beta = beta_y[0]
     IM = np.zeros(m)
     # ---------------- records
     rec = {k: np.zeros((m, 6)) for k in ("nav", "reserve", "lr", "priv", "unf", "debt", "lev", "ovc", "rev")}
@@ -111,7 +106,7 @@ def simulate(S, plan: Plan, P, settings: dict | None = None, keep_paths: bool = 
         uu = np.zeros(m)
         pv = np.zeros(m)
         for tau in range(min(t_idx, 4) + 1):
-            w = tkeep[:, tau, :] * amt[tau][None, :]
+            w = tkeep[:, tau, :] * amt[tau]
             v += (w * S.tV[tau, :, t_idx, :]).sum(1)
             uu += (w * S.tU[tau, :, t_idx, :]).sum(1)
             pv += (w * S.tV[tau, :, t_idx, :] * pledge_t[None, :]).sum(1)
@@ -155,7 +150,7 @@ def simulate(S, plan: Plan, P, settings: dict | None = None, keep_paths: bool = 
         upx = S.unit_bid_state[:, tau, :][:, st].T                                 # (m, K)
         tval = np.zeros((m, 5, T))
         for k in range(min(t_idx, 4) + 1):
-            tval[:, k, :] = tkeep[:, k, :] * amt[k][None, :] * S.tV[k, :, min(t_idx, 5), :]
+            tval[:, k, :] = tkeep[:, k, :] * amt[k] * S.tV[k, :, min(t_idx, 5), :]
         tpx = S.tpl_bid_state[:, :][:, st].T                                       # (m, T)
         val_tot = uval.sum(1) + tval.sum((1, 2))
         proceeds_cap = ((uval * upx).sum(1) + (tval * tpx[:, None, :]).sum((1, 2))) * (1 - cfg["forced_disc"])
@@ -166,9 +161,9 @@ def simulate(S, plan: Plan, P, settings: dict | None = None, keep_paths: bool = 
         return share * proceeds_cap, share * val_tot
 
     # ---------------- t0: planned sales at today's bid, trades to the plan's targets, new debt
-    p0 = (sell[0][None, :] * S.uV[:, 0, :] * S.ubid[:, 0, :]).sum(1)
+    p0 = (sell[0] * S.uV[:, 0, :] * S.ubid[:, 0, :]).sum(1)
     yr["sales"][:, 0] += p0
-    keep = keep - sell[0][None, :]
+    keep = keep - sell[0]
     budget = cash + tre + sum(L[b] for b in LIQUID_RISK) + p0 + term - cfg["term0"] + navf * (1 - cfg["navf_oid"])
     tc_cost = sum(abs(float(plan.liquid.get(b, 0.0)) - float(book.liquid.get(b, 0.0))) for b in LIQUID_RISK) * cfg["tc"]
     for b in LIQUID_RISK:
@@ -181,6 +176,7 @@ def simulate(S, plan: Plan, P, settings: dict | None = None, keep_paths: bool = 
     for q in range(NQ):
         t = q // 4
         if q % 4 == 0:
+            beta = beta_y[t]                                                        # this year's synthetic beta
             if t > 0:
                 # year-end housekeeping for year t-1 (records at year end t)
                 nv = nav_now(t)
@@ -209,18 +205,18 @@ def simulate(S, plan: Plan, P, settings: dict | None = None, keep_paths: bool = 
                     cash += got
                     yr["lr_sold"][:, t - 1] += got
                 # planned term-debt draw for this year
-                if t <= 2 and sched[t] > 0:
-                    term = term + float(sched[t])
-                    cash = cash + float(sched[t])
+                if t <= 2 and sched[t].any():
+                    term = term + sched[t]
+                    cash = cash + sched[t]
                 # planned sales at this year's bid
                 if t <= 2 and sell[t].any():
-                    frac = np.minimum(sell[t][None, :], keep)
+                    frac = np.minimum(sell[t], keep)
                     proceeds = (frac * S.uV[:, 4 * t, :] * S.ubid[:, t, :]).sum(1)
                     keep = keep - frac
                     cash += proceeds
                     yr["sales"][:, t] += proceeds
             # this year's deployments (co-invest buckets pay at once; fund commitments create unfunded)
-            dep = float((amt[t] * (~is_fund)).sum())
+            dep = (amt[t] * (~is_fund)[None, :]).sum(1)
             cash = cash - dep
             yr["deploy"][:, t] += dep
             nav_start = nav_now(t)
@@ -250,7 +246,7 @@ def simulate(S, plan: Plan, P, settings: dict | None = None, keep_paths: bool = 
         dist = (keep * S.uD[:, q, :]).sum(1)
         calls = (keep * S.uC[:, q, :]).sum(1)
         for tau in range(t + 1):
-            w = tkeep[:, tau, :] * amt[tau][None, :]
+            w = tkeep[:, tau, :] * amt[tau]
             dist += (w * S.tD[tau, :, q, :]).sum(1)
             calls += (w * S.tC[tau, :, q, :]).sum(1)
         interest = (term * (rf + cfg["term_spread"]) + rev * (rf + cfg["rev_spread"])
@@ -323,6 +319,7 @@ def simulate(S, plan: Plan, P, settings: dict | None = None, keep_paths: bool = 
         "red": forced_q.sum(1) * 1.0 > cfg["red_thr"], "forced_total": forced_q.sum(1),
         "rev_max": rev_max, "rev_used": rev_max > 1e-6, "min_reserve_ratio": min_res_ratio,
         "lcr": lcr, "nav0_post": rec_t0, "W0": W0, "macro_y": S.macro_y, "exit_y": S.exit_y,
+        "cls_y": S.cls_y, "prog_y": pctx,
         "wealth": W0 * (1 + twr) ** 5,
         **{f"y_{k}": v for k, v in yr.items() if k != "lcr"},
         **{f"r_{k}": v for k, v in rec.items()},

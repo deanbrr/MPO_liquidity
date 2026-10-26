@@ -11,6 +11,13 @@
                    exposure: R1 labels them from the balance-sheet change)
   rev_upsize_bn    extra committed revolver capacity
   beta_bn          synthetic equity beta notional (LEVER)
+  contingent       optional: the later decisions by the market state observed when they are taken (benign / exit
+                   drought / stress, the engine's year-end classes): commitments in years 2-5 by the state at that
+                   year end; sales and term debt at the start of year 2 by the year-1 state and at the start of year 3
+                   by the year-1 and year-2 states together (9 histories, year-1 state major); sell, commit and
+                   term_sched then hold today's decisions and the probability-weighted average of the later ones;
+                   beta: the synthetic beta for years 2-5 by progress against the goal at the start of the year
+                   (behind / on track / ahead, on today's book held unchanged; beta_bn is year 1's)
 The status quo is today's book, status-quo pacing from the 2023-25 vintages, no new debt and, if enabled, the PE
 program as decided: $20bn of exposure over three years, underperformers first.
 """
@@ -18,7 +25,13 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field
 
+import numpy as np
+
 from .buckets import BY_ID, LIQUID_RISK, PRIVATE
+
+STATES = ["benign", "exit drought", "stress"]
+PROGRESS = ["behind", "on track", "ahead"]
+PROGRESS_BAND = 0.02          # on track: annualized return to date within 2pp of the goal
 
 
 @dataclass
@@ -35,9 +48,17 @@ class Plan:
     rev_upsize_bn: float = 0.0
     beta_bn: float = 0.0
     meta: dict = field(default_factory=dict)
+    contingent: dict | None = None
 
     def to_dict(self) -> dict:
         return asdict(self)
+
+    def restrict_units(self, ids: set) -> "Plan":
+        """Keep only sales of units in ids (a plan read on another view's book)."""
+        self.sell = {k: v for k, v in self.sell.items() if k in ids}
+        if self.contingent and self.contingent.get("sell"):
+            self.contingent["sell"] = {k: v for k, v in self.contingent["sell"].items() if k in ids}
+        return self
 
     @staticmethod
     def from_dict(d: dict) -> "Plan":
@@ -100,6 +121,56 @@ def do_nothing(book, P, settings: dict | None = None) -> Plan:
                 commit={b: [0.0] * 5 for b in PRIVATE}, term_bn=0.0, term_sched=[0.0, 0.0, 0.0], navf_bn=0.0,
                 rev_upsize_bn=0.0, beta_bn=float(st.get("beta0_bn", P.get("overlay.beta0_bn"))),
                 meta={"kind": "do_nothing", "program": False})
+
+
+def schedule_paths(plan: Plan, unit_ids: list, tpl_buckets: list, cls_y) -> tuple:
+    """Per-path schedules for the simulator: sales (3, m, K), commitments (5, m, T), term draws (3, m). A decision
+    taken at the start of a later year tau follows the state observed then, cls_y[:, tau], when the plan is
+    state-contingent; otherwise every path gets the same schedule."""
+    cls_y = np.asarray(cls_y, int)
+    m = cls_y.shape[0]
+    sell = np.zeros((3, m, len(unit_ids)))
+    amt = np.zeros((5, m, len(tpl_buckets)))
+    c = plan.contingent or {}
+    for k, u in enumerate(unit_ids):
+        if u in plan.sell:
+            sell[:, :, k] = np.asarray(plan.sell[u], float)[:3, None]
+        cs = (c.get("sell") or {}).get(u)
+        if cs is not None:
+            for tau in (1, 2):
+                sell[tau, :, k] = np.asarray(cs[tau - 1], float)[_ctx(cs[tau - 1], tau, cls_y)]
+    for j, b in enumerate(tpl_buckets):
+        if b in plan.commit:
+            amt[:, :, j] = np.asarray(plan.commit[b], float)[:5, None]
+        cc = (c.get("commit") or {}).get(b)
+        if cc is not None:
+            for tau in range(1, 5):
+                amt[tau, :, j] = np.asarray(cc[tau - 1], float)[cls_y[:, tau]]
+    ts = list(plan.term_sched or [plan.term_bn, 0.0, 0.0])
+    sched = np.repeat(np.asarray(ts, float)[:3, None], m, 1)
+    if c.get("term"):
+        for tau in (1, 2):
+            sched[tau] = np.asarray(c["term"][tau - 1], float)[_ctx(c["term"][tau - 1], tau, cls_y)]
+    return sell, amt, sched
+
+
+def beta_paths(plan: Plan, pctx) -> np.ndarray:
+    """(5, m) synthetic beta per year: year 1 today's; years 2-5 by the path's progress at the start of the year."""
+    pctx = np.asarray(pctx, int)
+    b = np.full((5, pctx.shape[0]), float(plan.beta_bn))
+    cb = (plan.contingent or {}).get("beta")
+    if cb:
+        for t in range(1, 5):
+            b[t] = np.asarray(cb[t - 1], float)[pctx[:, t]]
+    return b
+
+
+def _ctx(values, tau: int, cls_y):
+    """The context a later sale or debt draw follows: the year-2 one the year-1 state; the year-3 one the year-1 and
+    year-2 states together (9 histories), or the year-2 state alone for a plan stored by state (3 values)."""
+    if tau == 2 and len(values) == len(STATES) ** 2:
+        return cls_y[:, 1] * len(STATES) + cls_y[:, 2]
+    return cls_y[:, tau]
 
 
 def program_summary(book, plan: Plan) -> dict:

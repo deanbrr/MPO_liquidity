@@ -136,6 +136,38 @@ def role_block(pf, role: str) -> dict:
     return block
 
 
+def adaptivity_extras(pf) -> dict:
+    """What adaptivity adds: the Strategy plan as built (later decisions by market state and progress) against the
+    same objective with one fixed schedule for every path, both with validated guards, paired on the same paths:
+    at the house limits under every stress, and with a 5% tail allowance."""
+    v = pf.view("strategy")
+    house = pf.house()
+    g = float(house["goal_rate"])
+    bkey, B, R = pf.book_for(v["prefs"], house)
+    sset = pf._sim_settings(house)
+    say("Strategy: what adaptivity adds")
+    adaptive = planmod.Plan.from_dict(pf.plans["strategy"]["plan"])
+    fixed = planmod.Plan.from_dict(pf.optimize("strategy", persist=False, house_override={"contingent": False},
+                                               progress=lambda m: None)["plan"])
+    pick = lambda s_: {k: s_[k] for k in ("p_goal", "p_goal_ci", "twr_mean", "cvar10", "p_red", "p_revolver")}
+    rows = []
+    for st in paths.STRESSES:
+        S = pf.paths_for(bkey, B, "oos", st, pf._pi(v["prefs"]), house)
+        o_f, o_a = sim.simulate(S, fixed, pf.P, sset), sim.simulate(S, adaptive, pf.P, sset)
+        d = metrics.paired_delta(o_a, o_f)
+        rows.append({"stress": st, "fixed": pick(metrics.summarize(o_f, g)), "adaptive": pick(metrics.summarize(o_a, g)),
+                     "d_p_goal": d["d_p_goal"], "d_p_goal_ci": d["d_p_goal_ci"]})
+    loose = {}
+    for name, ov in (("adaptive", {"depth_delta": 0.05}), ("fixed", {"contingent": False, "depth_delta": 0.05})):
+        op = pf.optimize("strategy", persist=False, house_override=ov, keep_paths=True, progress=lambda m: None)
+        loose[name] = {"metrics": pick(op["metrics"]), "_o": op["_paths"]["plan"]}
+    d = metrics.paired_delta(loose["adaptive"]["_o"], loose["fixed"]["_o"])
+    loose = {k: x["metrics"] for k, x in loose.items()} | {"d_p_goal": d["d_p_goal"], "d_p_goal_ci": d["d_p_goal_ci"]}
+    base = next(r for r in rows if r["stress"] == v["stress"])
+    say(f"   adaptive minus fixed: {base['d_p_goal']:+.4f} at the house limits; {loose['d_p_goal']:+.4f} at a 5% tail allowance")
+    return {"stresses": rows, "loose": loose, "fixed_plan": fixed.to_dict()}
+
+
 def strategy_extras(pf) -> dict:
     """Risk frontier (depth-guard allowance and leverage cap) and what each lever buys (switch-offs)."""
     out = {"frontier": [], "levers": []}
@@ -536,6 +568,7 @@ def main():
         data["roles"][role] = role_block(pf, role)
     data["meta"]["hist_edges"] = np.linspace(-0.10, 0.25, 36).tolist()
     data["roles"]["strategy"]["extras"] = strategy_extras(pf)
+    data["roles"]["strategy"]["extras"]["adaptivity"] = adaptivity_extras(pf)
     to = target_only_extras(pf)
     data["roles"]["strategy"]["extras"]["target_only"] = to["rows"]
     data["roles"]["asset_allocation"]["extras"] = aa_extras(pf)

@@ -376,6 +376,16 @@ class PathSet:
         r[:, 1:] = (tot[:, 1:] + Dy[:, 1:] - Cy[:, 1:]) / np.maximum(tot[:, :-1], 1e-9) - 1.0
         self.r_sq = r
 
+    def progress_ctx(self, goal: float, band: float) -> np.ndarray:
+        """(m, 6) progress against the goal at each year end, from today's book held unchanged (markets only, so a
+        rule on it never sees the future): 0 behind (annualized return to date below goal - band), 1 on track,
+        2 ahead (above goal + band); today: on track."""
+        cum = np.cumprod(1.0 + self.r_sq[:, 1:], axis=1)
+        ann = cum ** (1.0 / np.arange(1, 6)) - 1.0
+        ctx = np.ones((self.m, 6), int)
+        ctx[:, 1:] = np.where(ann < goal - band, 0, np.where(ann > goal + band, 2, 1))
+        return ctx
+
     def accrual(self) -> np.ndarray:
         """A[m, t]: growth factor from the end of year t to year 5 at the status-quo return (t = 1..5; A[:, 5] = 1)."""
         A = np.ones((self.m, 6))

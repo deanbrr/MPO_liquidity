@@ -68,6 +68,7 @@ class Platform:
         self.fund_file = Path(fund_file) if fund_file else self.data_dir / "fund_returns.xlsx"
         self.er_file = Path(er_file) if er_file else self.data_dir / "er_strategy_returns.xlsx"
         self.n_lp = int(self.P.get("simulation.n_lp_paths")) if not quick else 60
+        self.n_val = int(self.P.get("simulation.n_val_paths")) if not quick else 150
         self.n_oos = int(self.P.get("simulation.n_oos_paths")) if not quick else 300
         self.lock = threading.RLock()
         self._books: dict = {}
@@ -176,13 +177,13 @@ class Platform:
         return key, self._books[key][0], self._books[key][1]
 
     def paths_for(self, bkey: str, B, kind: str, stress: str, pi, house: dict):
-        n = self.n_lp if kind == "lp" else self.n_oos
-        seed = int(self.P.get("simulation.seed_lp" if kind == "lp" else "simulation.seed_oos"))
+        n = {"lp": self.n_lp, "val": self.n_val}.get(kind, self.n_oos)
+        seed = int(self.P.get({"lp": "simulation.seed_lp", "val": "simulation.seed_val"}.get(kind, "simulation.seed_oos")))
         dset = {k: house.get(k) for k in ("draw_mode", "draw_rate")}
         key = self._key(bkey, kind, stress, dset, n)
         if key not in self._paths:
             self._paths[key] = paths.PathSet(B, self.P, n, seed, stress, pi, dset)
-            if len(self._paths) > 10:
+            if len(self._paths) > 12:
                 self._paths.pop(next(iter(self._paths)))
         S = self._paths[key]
         S.pi = np.asarray(pi, float) / np.sum(pi)
@@ -330,6 +331,7 @@ class Platform:
             res = lp.solve(M, objective)
             if res.get("x") is None:
                 raise RuntimeError("no feasible plan under the current limits: relax a house limit (see the LP log)")
+            res, calib = self._calibrate_guards(M, res, objective, sq, ev, house, bkey, B, stress, prefs, progress)
             x = res["x"]
             ins = M.in_sample(x)
             duals = M.duals(x, res.get("y"), res.get("rc"))
@@ -360,6 +362,7 @@ class Platform:
                    "status_quo": s_sq, "delta": d, "in_sample": ins, "change_list": cl, "duals": duals,
                    "card_counts": counts, "solve_log": res["log"], "phi": res.get("phi"), "E_star": res.get("E_star"),
                    "eps": M.eps, "lp_size": {"cols": M.nvar, "rows": M.nrow, "nnz": int(M.A_mat.nnz)},
+                   "calibration": calib,
                    "alternatives": substitution.alternatives(B, prefs, self.P, duals),
                    "W0": B.W0, "Wstar": B.Wstar, "use_house": use_house}
             if persist:
@@ -370,6 +373,47 @@ class Platform:
                 out["_paths"] = {"plan": o_pl, "status_quo": o_sq}
                 out["_cards"] = cards
             return out
+
+    def _calibrate_guards(self, M, res, objective, sq, ev, house, bkey, B, stress, prefs, progress):
+        """The house guards must also hold on fresh paths: the plan and the status quo run on the validation set
+        (its own seed; never the certification paths). If the plan's worst-10% average of five-year wealth falls
+        short of the guard, or its forced-sale probability exceeds the appetite, the LP's guard is tightened by the
+        measured gap and the LP re-solved (up to three rounds; an infeasible tightening keeps the last plan)."""
+        from .legacy import cvar_lower
+        guard = bool(house.get("depth_guard", True))
+        fe = float(house.get("forced_eps", 0.0) or 0.0)
+        rounds = int(house.get("calibration_rounds", 3))
+        calib = []
+        if rounds <= 0 or (not guard and fe <= 0):
+            return res, calib
+        S_val = self.paths_for(bkey, B, "val", stress, self._pi(prefs), house)
+        sset = self._sim_settings(house)
+        w = S_val.prob / S_val.prob.sum()
+        o_sq = sim.simulate(S_val, sq, self.P, sset)
+        delta = float(house.get("depth_delta", 0.0))
+        ref = cvar_lower((1 + o_sq["twr"]) ** 5, 0.10, w) - delta
+        tighten, fe_eff = 0.0, fe
+        for it in range(rounds + 1):
+            o = sim.simulate(S_val, M.extract(res["x"], "validation"), self.P, sset)
+            gap = ref - cvar_lower((1 + o["twr"]) ** 5, 0.10, w) if guard else 0.0
+            red = float(w @ o["red"].astype(float))
+            calib.append({"round": it, "tail_gap": float(gap), "p_red": red, "tighten": tighten, "forced_eps": fe_eff})
+            ok = gap <= 0.002 and (fe <= 0 or red <= fe + 0.002)
+            if ok or it == rounds:
+                break
+            if gap > 0.002:
+                tighten += gap
+                M.apply_depth_guard(ev["cvar10"], delta - tighten)
+            if fe > 0 and red > fe + 0.002:
+                fe_eff = max(fe_eff / 2, 0.001)
+                M.apply_eps(forced_eps=fe_eff)
+            progress(f"validation round {it + 1}: tail short by {gap:.4f}, forced-sale probability {red:.3f}; re-solving")
+            new = lp.solve(M, objective)
+            if new.get("x") is None:
+                calib[-1]["infeasible"] = True
+                break
+            res = new
+        return res, calib
 
     def holdings(self, role: str) -> dict:
         with self.lock:

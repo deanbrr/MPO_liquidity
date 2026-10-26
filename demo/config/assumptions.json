@@ -102,6 +102,8 @@
     "n_oos_paths": {"value": 1000, "unit": "factor paths (x 3 worlds)", "rationale": "Out-of-sample certification paths.", "source": "Design default"},
     "seed_lp": {"value": 21, "unit": "seed", "rationale": "In-sample paths.", "source": "Design default"},
     "seed_oos": {"value": 31, "unit": "seed", "rationale": "Certification paths (never seen by the LP).", "source": "Design default"},
+    "seed_val": {"value": 51, "unit": "seed", "rationale": "Validation paths: the house guards (depth guard, forced-sale appetite) are re-checked on them after each solve and tightened if breached; never used for certification.", "source": "Design default"},
+    "n_val_paths": {"value": 400, "unit": "paths per ER world", "rationale": "Validation set size (1,200 paths): enough to estimate the worst-10% average within a few tenths of a point.", "source": "Design default"},
     "seed_factor_means": {"value": 41, "unit": "seed", "rationale": "Factor-mean estimate used to calibrate alphas.", "source": "examples/mpo_v2 seeds.factor_means"},
     "years": {"value": 5, "unit": "years", "rationale": "Goal horizon.", "source": "User: 10% over a multi-period horizon; prototype 5 years"}
   },

@@ -29,7 +29,7 @@ import scipy.sparse as sp
 
 from .buckets import BY_ID, LIQUID_RISK
 from .legacy import bpoe
-from .plan import Plan
+from .plan import PROGRESS, PROGRESS_BAND, STATES, Plan
 
 INF = highspy.kHighsInf
 
@@ -233,6 +233,68 @@ class TPPModel:
         self.DN = cl.add("navf", (), 0.0, INF if allow_debt else 0.0)
         self.BETA = cl.add("beta", (), 0.0, float(self._g("beta_max", P.get("overlay.beta_max_bn"))) if allow_beta else 0.0)
         self.NAV0 = cl.add("nav0", (), -INF, INF)
+        # ---- state-contingent copies of the later dated decisions. A decision taken at the start of a later year
+        # follows what has been observed by then (the year-end market class: benign / exit drought / stress):
+        # commitments the state at that year end; the year-2 sale and debt draw the year-1 state; the year-3 ones the
+        # year-1 and year-2 states together, so the year-3 tranche can make up what year 2 did and the PE program's
+        # total and the debt cap hold on every path. Each scenario uses its context's copy: the plan adapts without
+        # seeing the future. A context seen in fewer than n_min scenarios shares the most populous related context's
+        # copy; contingent=False gives one schedule for every path (the fixed-schedule LP).
+        NS = 3
+        self.contingent_on = cont = bool(self._g("contingent", True))
+        n_min = int(self._g("contingent_min_scenarios", 24))
+        cls = np.asarray(self.S.cls_y, int)
+        ctx_sd = [np.zeros(m, int), cls[:, 1], cls[:, 1] * NS + cls[:, 2]]            # sales and debt, tau = 0, 1, 2
+        ctx_c = [np.zeros(m, int)] + [cls[:, tau] for tau in range(1, 5)]           # commitments, tau = 0..4
+        n_sd = [1, NS, NS * NS]
+
+        def ctx_map(ctx, n, parent=None):
+            cnt = np.bincount(ctx, minlength=n)
+            mp = np.arange(n)
+            if not cont:
+                return np.zeros(n, int)
+            for k_ in range(n):
+                if cnt[k_] < n_min:
+                    group = [j for j in range(n) if parent is None or parent[j] == parent[k_]]
+                    mp[k_] = max(group, key=lambda j: cnt[j])
+            return mp
+
+        map_sd = [np.zeros(1, int), ctx_map(ctx_sd[1], NS), ctx_map(ctx_sd[2], NS * NS, np.repeat(np.arange(NS), NS))]
+        map_c = [np.zeros(1, int)] + [ctx_map(ctx_c[tau], NS) for tau in range(1, 5)]
+        freq_sd = [np.ones(1)] + [np.bincount(ctx_sd[tau], weights=self.p, minlength=n_sd[tau]) for tau in (1, 2)]
+        freq_c = [np.ones(1)] + [np.bincount(ctx_c[tau], weights=self.p, minlength=NS) for tau in range(1, 5)]
+        ex_S1 = cl.add("sell_s1", (K, NS - 1), 0.0, np.repeat(sell_ub[:, 1:2], NS - 1, 1))
+        ex_S2 = cl.add("sell_s2", (K, NS * NS - 1), 0.0, np.repeat(sell_ub[:, 2:3], NS * NS - 1, 1))
+        ex_D1 = cl.add("term_s1", (NS - 1,), 0.0, INF if allow_debt else 0.0)
+        ex_D2 = cl.add("term_s2", (NS * NS - 1,), 0.0, INF if allow_debt else 0.0)
+        ex_C = cl.add("commit_s", (Tb, 4, NS - 1), np.repeat(c_lo[:, 1:, None], NS - 1, 2),
+                      np.repeat(c_hi[:, 1:, None], NS - 1, 2))
+        S_col = lambda tau, c: self.Sx[:, tau] if c == 0 else (ex_S1 if tau == 1 else ex_S2)[:, c - 1]
+        D_col = lambda tau, c: self.DT[tau] if c == 0 else (ex_D1 if tau == 1 else ex_D2)[c - 1]
+        C_col = lambda tau, c: self.Cc[:, tau] if c == 0 else ex_C[:, tau - 1, c - 1]
+        # per context: the column of the copy it uses
+        self.SxI = [np.stack([S_col(tau, int(map_sd[tau][k_])) for k_ in range(n_sd[tau])], 1) for tau in range(3)]
+        self.DTI = [np.array([D_col(tau, int(map_sd[tau][k_])) for k_ in range(n_sd[tau])]) for tau in range(3)]
+        self.CcI = [np.stack([C_col(tau, int(map_c[tau][k_])) for k_ in range(len(map_c[tau]))], 1) for tau in range(5)]
+        self.ctx_sd, self.ctx_c, self.map_sd, self.map_c = ctx_sd, ctx_c, map_sd, map_c
+        self.freq_sd, self.freq_c = freq_sd, freq_c
+        copies_sd = [sorted(set(int(c) for c in map_sd[tau])) for tau in range(3)]
+        copies_c = [sorted(set(int(c) for c in map_c[tau])) for tau in range(5)]
+        # the synthetic beta held in years 2-5 follows progress against the goal at the start of the year (behind /
+        # on track / ahead on today's book held unchanged): the risk dial a goal-seeking fund turns as it goes;
+        # fixed schedule: one beta for all five years
+        goal = float(self._g("goal_rate", P.get("goal.rate")))
+        pctx = self.S.progress_ctx(goal, PROGRESS_BAND)
+        ctx_b = [np.zeros(m, int)] + [pctx[:, t] for t in range(1, 5)]
+        map_b = [np.zeros(1, int)] + [ctx_map(ctx_b[t], NS) for t in range(1, 5)]
+        freq_b = [np.ones(1)] + [np.bincount(ctx_b[t], weights=self.p, minlength=NS) for t in range(1, 5)]
+        beta_ub = float(self._g("beta_max", P.get("overlay.beta_max_bn"))) if allow_beta else 0.0
+        ex_B = cl.add("beta_s", (4, NS), 0.0, beta_ub) if cont else None
+        B_col = lambda t, c: self.BETA if (t == 0 or not cont) else ex_B[t - 1, c]
+        self.BI = [np.array([self.BETA])] + [np.array([B_col(t, int(map_b[t][k_])) for k_ in range(NS)]) for t in range(1, 5)]
+        self.ctx_b, self.map_b, self.freq_b = ctx_b, map_b, freq_b
+        copies_b = [[0]] + [sorted(set(int(c) for c in map_b[t])) for t in range(1, 5)]
+        beta_cols = sorted({int(self.BETA)} | {int(B_col(t, c)) for t in range(1, 5) for c in copies_b[t]})
         # ---- recourse
         self.KP = cl.add("kp", (m, 5))
         self.KM = cl.add("km", (m, 5))
@@ -254,6 +316,31 @@ class TPPModel:
         self.cols = cl
         lb = np.concatenate(cl.lb)
         ub = np.concatenate(cl.ub)
+        for tau in (1, 2):                                                         # copies no context uses stay at zero
+            for c in range(n_sd[tau]):
+                if c not in copies_sd[tau]:
+                    idx = np.r_[np.ravel(S_col(tau, c)), np.atleast_1d(D_col(tau, c))]
+                    lb[idx] = 0.0
+                    ub[idx] = 0.0
+        for tau in range(1, 5):
+            for c in range(NS):
+                if c not in copies_c[tau]:
+                    lb[C_col(tau, c)] = 0.0
+                    ub[C_col(tau, c)] = 0.0
+                if cont and c not in copies_b[tau]:
+                    lb[B_col(tau, c)] = 0.0
+                    ub[B_col(tau, c)] = 0.0
+        # every path's pair of later copies (year-2 by its year-1 state, year-3 by both): path-wise rows hold on each
+        paths_sd = sorted({(int(map_sd[1][s1]), int(map_sd[2][s1 * NS + s2])) for s1 in range(NS) for s2 in range(NS)})
+        nC = len(paths_sd)
+        colS = lambda tau: self.SxI[tau][:, self.ctx_sd[tau]].T                    # (m, K): each scenario's copy
+
+        def colC(tau, mask=None):
+            A_ = self.CcI[tau] if mask is None else self.CcI[tau][mask]
+            return A_[:, self.ctx_c[tau]].T
+
+        colD = lambda tau: self.DTI[tau][self.ctx_sd[tau]]
+        colB = lambda t: np.full(m, self.BETA) if t == 1 else self.BI[t - 1][self.ctx_b[t - 1]]   # beta held in year t
         R = Rows()
         Sx = self.Sx
         # ---- today
@@ -271,21 +358,24 @@ class TPPModel:
         vals = np.r_[1.0, -1.0, -np.ones(nLR), self.nav0, -np.ones(coinv.sum()), 1.0, 1.0]
         R.add("nav0", cols, vals, self.nav0.sum() - debt0, self.nav0.sum() - debt0)
         # leverage: all planned term debt + navf + beta + debt0 <= (L - 1) NAV0 (planned draws count in full today)
-        R.add("lev0", np.r_[self.DT, self.DN, self.BETA, self.NAV0], np.r_[1.0, 1.0, 1.0, 1.0, 1.0, -(lev_cap - 1.0)],
-              -INF, -debt0)
+        dt_c = np.array([[self.DT[0], D_col(1, c1), D_col(2, c2)] for c1, c2 in paths_sd])   # (nC, 3): every path's draws
+        lev_rows = np.array([np.r_[d_, self.DN, bc, self.NAV0] for d_ in dt_c for bc in beta_cols])  # every path, every year's beta
+        R.add("lev0", lev_rows, np.r_[1.0, 1.0, 1.0, 1.0, 1.0, -(lev_cap - 1.0)], -INF, -debt0, nrows=len(lev_rows))
         rc = float(self._g("recourse_cap", P.get("corporate_finance.recourse_cap")))
-        R.add("recourse0", np.r_[self.DT, self.NAV0], np.r_[1.0, 1.0, 1.0, -rc], -INF, -debt0)
+        R.add("recourse0", np.c_[dt_c, np.full(nC, self.NAV0)], np.r_[1.0, 1.0, 1.0, -rc], -INF, -debt0, nrows=nC)
         new_term_max = float(self._g("new_term_max_bn", INF))
         if new_term_max < INF:
-            R.add("term_max", self.DT, np.ones(3), -INF, new_term_max)
+            R.add("term_max", dt_c, np.ones(3), -INF, new_term_max, nrows=nC)
         # private capacity: fund commitments and co-invest / secondary deployments per year
         fund_t = self.is_fund_t
         agg = float(self._g("commit_agg_mult", 1.25))
         co_extra = float(self._g("coinvest_extra_bn", P.get("trading.buy_cap_year_bn")["COINVEST"]))
         for tau in range(5):
-            R.add(f"commit_cap{tau}", self.Cc[fund_t, tau], np.ones(int(fund_t.sum())), -INF, agg * pace[fund_t].sum())
-            R.add(f"deploy_cap{tau}", self.Cc[~fund_t, tau], np.ones(int((~fund_t).sum())), -INF,
-                  pace[~fund_t].sum() + co_extra)
+            cps = copies_c[tau]
+            R.add(f"commit_cap{tau}", np.stack([C_col(tau, c)[fund_t] for c in cps]), np.ones(int(fund_t.sum())), -INF,
+                  agg * pace[fund_t].sum(), nrows=len(cps))
+            R.add(f"deploy_cap{tau}", np.stack([C_col(tau, c)[~fund_t] for c in cps]), np.ones(int((~fund_t).sum())), -INF,
+                  pace[~fund_t].sum() + co_extra, nrows=len(cps))
         ltv = float(self._g("navf_ltv_max", P.get("corporate_finance.navf_ltv_max")))
         fund_v0 = self.nav0 * self.is_fund_u
         R.add("navf_ltv0", np.r_[self.DN, Sx[:, 0]], np.r_[1.0, ltv * fund_v0], -INF, ltv * fund_v0.sum())
@@ -297,10 +387,12 @@ class TPPModel:
         fh = float(self._g("floor_hard", P.get("liquidity.floor_hard")))
         self.floor, self.floor_hard = ft, fh
         R.add("reserve0", np.r_[self.R0, self.NAV0, self.BETA], np.r_[1.0, -ft, -self.im[0, 0]], 0.0, INF)
-        R.add("sell_total", np.c_[Sx[:, 0], Sx[:, 1], Sx[:, 2]], np.ones(3), 0.0, 1.0, nrows=K)
+        R.add("sell_total", np.concatenate([np.c_[self.Sx[:, 0], S_col(1, c1), S_col(2, c2)] for c1, c2 in paths_sd]),
+              np.ones(3), 0.0, 1.0, nrows=K * nC)
         depth = self.depth[1] * float(self._g("depth_mult", 1.0))
         for tau in range(3):
-            R.add(f"depth{tau}", Sx[:, tau], self.nav0, -INF, depth)
+            cps = copies_sd[tau]
+            R.add(f"depth{tau}", np.stack([S_col(tau, c) for c in cps]), self.nav0, -INF, depth, nrows=len(cps))
         # PE program: sum over PE units and tranches of the sold size = total (exposure or NAV basis)
         if prog_on:
             total = float(self._g("pe_program_total_bn", P.get("pe_program.total_bn")))
@@ -308,15 +400,19 @@ class TPPModel:
             basis = self._g("pe_program_basis", P.get("pe_program.basis"))
             size = self.expo0 if basis == "exposure" else self.nav0
             pe = np.array([u.pe_program for u in bk.units])
-            cols = np.concatenate([Sx[pe, tau] for tau in range(years)])
+            # the program total holds on every path: one row per combination of later states
+            cols = np.stack([np.concatenate([S_col(tau, (0, c1, c2)[tau])[pe] for tau in range(years)])
+                             for c1, c2 in paths_sd])
             vals = np.concatenate([size[pe]] * years)
-            R.add("program", cols, vals, total, total)
+            R.add("program", cols, vals, total, total, nrows=nC)
             for tau in range(years, 3):
-                lb[Sx[pe, tau]] = 0.0
-                ub[Sx[pe, tau]] = 0.0
+                lb[self.SxI[tau][pe].ravel()] = 0.0
+                ub[self.SxI[tau][pe].ravel()] = 0.0
             if bool(self._g("even_program", False)):
                 for tau in range(years):
-                    R.add(f"program{tau}", Sx[pe, tau], size[pe], total / years, total / years)
+                    cps = copies_sd[tau]
+                    R.add(f"program{tau}", np.stack([S_col(tau, c)[pe] for c in cps]), size[pe], total / years,
+                          total / years, nrows=len(cps))
         # ---- per scenario and year
         rows_nav, rows_res = [], []
         for t in range(1, 6):
@@ -328,17 +424,17 @@ class TPPModel:
                     self.RV[:, ti][:, None], np.broadcast_to(self.X, (m, nLR))]
             vals = [np.ones((m, 1)), -np.ones((m, 1)), np.ones((m, 1)), np.ones((m, 1)), -self.G[:, t, :]]
             for tau in taus:
-                cols.append(np.broadcast_to(Sx[:, tau], (m, K)))
+                cols.append(colS(tau))
                 vals.append(Vt)
             for tau in range(min(t, 4) + 1):
-                cols.append(np.broadcast_to(self.Cc[:, tau], (m, Tb)))
+                cols.append(colC(tau))
                 vals.append(-self.tV[tau][:, t, :])
             for tp in range(1, t + 1):
                 cols.append(self.PHI[:, tp - 1][:, None])
                 vals.append(self.cont_v[tp][:, t][:, None])
-            dts = [self.DT[k] for k in range(min(t, 2) + 1)]                       # term draws made by end of year t
-            cols.append(np.broadcast_to(np.r_[dts, self.DN], (m, len(dts) + 1)))
-            vals.append(np.broadcast_to(np.r_[np.ones(len(dts)), (1 + self.navf_rate) ** t], (m, len(dts) + 1)))
+            dts = np.stack([colD(k) for k in range(min(t, 2) + 1)], 1)             # term draws made by end of year t
+            cols.append(np.c_[dts, np.full(m, self.DN)])
+            vals.append(np.broadcast_to(np.r_[np.ones(dts.shape[1]), (1 + self.navf_rate) ** t], (m, dts.shape[1] + 1)))
             rows_nav.append(R.add(f"nav{t}", np.concatenate(cols, 1), np.concatenate(vals, 1), Vt.sum(1), Vt.sum(1),
                                   nrows=m))
             # reserve ledger
@@ -357,25 +453,25 @@ class TPPModel:
                 cols += [self.KP[:, ti - 1][:, None], self.KM[:, ti - 1][:, None], self.NAV[:, ti - 1][:, None]]
                 vals += [-(1 + self.r_res[:, ti:ti + 1]), (1 + self.c_neg[:, ti:ti + 1]), self.d[:, ti:ti + 1]]
             for tau in range(min(t - 1, 2) + 1):                                    # units sold before year t
-                cols.append(np.broadcast_to(Sx[:, tau], (m, K)))
+                cols.append(colS(tau))
                 vals.append(NFt)
             if t <= 2:                                                              # planned sale at end of year t
-                cols.append(np.broadcast_to(Sx[:, t], (m, K)))
+                cols.append(colS(t))
                 vals.append(-self.uV[:, t, :] * self.ubid[:, t, :])
             for tau in range(min(t - 1, 4) + 1):                                    # templates started before year t
-                cols.append(np.broadcast_to(self.Cc[:, tau], (m, Tb)))
+                cols.append(colC(tau))
                 vals.append(-self.tNF[tau][:, ti, :])
             if t <= 4:                                                              # deployments for year t + 1
-                cols.append(np.broadcast_to(self.Cc[coinv, t], (m, int(coinv.sum()))))
+                cols.append(colC(t, coinv))
                 vals.append(np.ones((m, int(coinv.sum()))))
             # interest on term draws outstanding during year t; a draw at the end of year t brings cash in
-            dts = [self.DT[k] for k in range(min(t - 1, 2) + 1)]
-            cols.append(np.broadcast_to(np.r_[dts], (m, len(dts))))
-            vals.append(np.full((m, len(dts)), self.term_rate))
+            dts = np.stack([colD(k) for k in range(min(t - 1, 2) + 1)], 1)
+            cols.append(dts)
+            vals.append(np.full(dts.shape, self.term_rate))
             if t <= 2:
-                cols.append(np.broadcast_to(np.r_[self.DT[t]], (m, 1)))
+                cols.append(colD(t)[:, None])
                 vals.append(-np.ones((m, 1)))
-            cols.append(np.broadcast_to(np.r_[self.BETA], (m, 1)))
+            cols.append(colB(t)[:, None])
             vals.append(-self.beta_pl[:, ti][:, None])
             cols.append(self.PHI[:, ti][:, None])
             vals.append(-(self.cont_v[t][:, t] * self.pf[:, t])[:, None])
@@ -389,9 +485,9 @@ class TPPModel:
                   np.c_[np.ones((m, 1)), -self.G[:, t, :]], -INF, 0.0, nrows=m)
             # hard floor (as the simulator: restored by liquid sales, then forced sales) and the soft target
             # (as the simulator's year-end top-up from liquid sales: costly to miss, never a forced sale)
-            R.add(f"floorh{t}", np.c_[self.KP[:, ti], self.NAV[:, ti], np.full(m, self.BETA), self.UH[:, ti]],
+            R.add(f"floorh{t}", np.c_[self.KP[:, ti], self.NAV[:, ti], colB(t), self.UH[:, ti]],
                   np.c_[np.ones(m), -np.full(m, fh), -self.im[:, t], np.ones(m)], 0.0, INF, nrows=m)
-            R.add(f"floor{t}", np.c_[self.KP[:, ti], self.NAV[:, ti], np.full(m, self.BETA), self.U[:, ti]],
+            R.add(f"floor{t}", np.c_[self.KP[:, ti], self.NAV[:, ti], colB(t), self.U[:, ti]],
                   np.c_[np.ones(m), -np.full(m, ft), -self.im[:, t], np.ones(m)], 0.0, INF, nrows=m)
         self.rows_nav, self.rows_res = rows_nav, rows_res
         # goal wealth: WT - NAV5 - sum_t d_t A_t NAV_{t-1} = 0
@@ -565,20 +661,38 @@ class TPPModel:
         lo, hi = self.lb.copy(), self.ub.copy()
         bk = self.S.book
         vals = {}
+        cont = plan.contingent or {}
+        osd = [np.argsort(f) for f in self.freq_sd]                          # the most frequent context's value wins
+        oc = [np.argsort(f) for f in self.freq_c]
+        ctx_val = lambda arr, tau, k_: arr[k_] if len(arr) > k_ else arr[k_ % len(arr)]   # a 3-state plan on 9 histories
         for k, u in enumerate(bk.units):
             fr = plan.sell.get(u.id, [0.0, 0.0, 0.0])
+            cs = (cont.get("sell") or {}).get(u.id)
             for tau in range(3):
-                vals[int(self.Sx[k, tau])] = float(fr[tau])
+                for k_ in osd[tau]:
+                    v = fr[tau] if (tau == 0 or cs is None) else ctx_val(cs[tau - 1], tau, k_)
+                    vals[int(self.SxI[tau][k, k_])] = float(v)
         for i, b in enumerate(self.LR):
             vals[int(self.X[i])] = float(plan.liquid.get(b, self.x0[i]))
         for j, b in enumerate(self.tb):
             cm = plan.commit.get(b, [0.0] * 5)
+            cc = (cont.get("commit") or {}).get(b)
             for tau in range(5):
-                vals[int(self.Cc[j, tau])] = float(cm[tau])
+                for k_ in oc[tau]:
+                    v = cm[tau] if (tau == 0 or cc is None) else cc[tau - 1][k_]
+                    vals[int(self.CcI[tau][j, k_])] = float(v)
         sched = list(getattr(plan, "term_sched", None) or [plan.term_bn, 0.0, 0.0])
-        for k in range(3):
-            vals[int(self.DT[k])] = float(sched[k])
+        for tau in range(3):
+            for k_ in osd[tau]:
+                v = sched[tau] if (tau == 0 or not cont.get("term")) else ctx_val(cont["term"][tau - 1], tau, k_)
+                vals[int(self.DTI[tau][k_])] = float(v)
         vals[int(self.DN)] = float(plan.navf_bn)
+        cb = cont.get("beta")
+        ob = [np.argsort(f) for f in self.freq_b]
+        for t in range(5):
+            for k_ in ob[t]:
+                v = plan.beta_bn if (t == 0 or not cb) else cb[t - 1][k_]
+                vals[int(self.BI[t][k_])] = float(v)
         vals[int(self.BETA)] = float(plan.beta_bn)
         idx = np.array(list(vals.keys()), np.int32)
         v = np.array(list(vals.values()), float)
@@ -614,20 +728,43 @@ class TPPModel:
     def X_miss(self, x):
         return (self.Wstar - x[self.WT]) / self.W0
 
+    def _by_state(self, x, idx) -> list:
+        """Values of a decision's copies for each observed state."""
+        return [float(max(x[int(i)], 0.0)) for i in idx]
+
     def extract(self, x, name) -> Plan:
+        """The plan: today's decisions, the later ones by observed state (plan.contingent) and their state-weighted
+        averages in sell / commit / term_sched (in-sample state frequencies)."""
         bk = self.S.book
-        sell = {}
+        fsd, fc = self.freq_sd, self.freq_c
+        sell, c_sell = {}, {}
         for k, u in enumerate(bk.units):
-            fr = [float(max(x[self.Sx[k, tau]], 0.0)) for tau in range(3)]
-            if sum(fr) > 1e-7:
-                sell[u.id] = fr
+            v0 = float(max(x[self.SxI[0][k, 0]], 0.0))
+            vs = [self._by_state(x, self.SxI[tau][k]) for tau in (1, 2)]
+            if v0 + sum(map(sum, vs)) > 1e-7:
+                sell[u.id] = [v0] + [float(np.dot(fsd[tau], vs[tau - 1])) for tau in (1, 2)]
+                c_sell[u.id] = vs
         liquid = {b: float(x[self.X[i]]) for i, b in enumerate(self.LR)}
         r0 = float(x[self.R0])
-        commit = {b: [float(max(x[self.Cc[j, tau]], 0.0)) for tau in range(5)] for j, b in enumerate(self.tb)}
-        sched = [float(max(x[self.DT[k]], 0.0)) for k in range(3)]
+        commit, c_commit = {}, {}
+        for j, b in enumerate(self.tb):
+            vs = [self._by_state(x, self.CcI[tau][j]) for tau in range(1, 5)]
+            commit[b] = [float(max(x[self.CcI[0][j, 0]], 0.0))] + [float(np.dot(fc[tau], vs[tau - 1])) for tau in range(1, 5)]
+            c_commit[b] = vs
+        ts = [self._by_state(x, self.DTI[tau]) for tau in (1, 2)]
+        sched = [float(max(x[self.DTI[0][0]], 0.0))] + [float(np.dot(fsd[tau], ts[tau - 1])) for tau in (1, 2)]
+        contingent = None
+        if self.contingent_on:
+            contingent = {"sell": c_sell, "commit": c_commit, "term": ts, "states": STATES,
+                          "freq_commit": [f.tolist() for f in fc[1:]], "freq_sale": [f.tolist() for f in fsd[1:]],
+                          "map_commit": [m_.tolist() for m_ in self.map_c[1:]],
+                          "map_sale": [m_.tolist() for m_ in self.map_sd[1:]],
+                          "beta": [self._by_state(x, self.BI[t]) for t in range(1, 5)], "progress": PROGRESS,
+                          "freq_beta": [f.tolist() for f in self.freq_b[1:]], "map_beta": [m_.tolist() for m_ in self.map_b[1:]]}
         return Plan(name=name, sell=sell, liquid=liquid, cash=r0 * (1 - self.treasury_share),
                     treasury=r0 * self.treasury_share, commit=commit, term_bn=sum(sched), term_sched=sched,
-                    navf_bn=float(x[self.DN]), beta_bn=float(x[self.BETA]), meta={"kind": "optimized"})
+                    navf_bn=float(x[self.DN]), beta_bn=float(x[self.BETA]),
+                    meta={"kind": "optimized", "contingent": bool(self.contingent_on)}, contingent=contingent)
 
     def in_sample(self, x) -> dict:
         Wt = x[self.WT]
@@ -666,7 +803,9 @@ class TPPModel:
             p_raw = bid0[k] + r / (lam0 * V) if abs(lam0) > 1e-14 else np.nan
             p_econ = bid0[k] + (r + r_perm) / (lam0 * V) if abs(lam0) > 1e-14 else np.nan
             res.append({"unit": u.id, "bid0": float(bid0[k]), "p_star": float(p_raw), "p_star_econ": float(p_econ),
-                        "sold0": float(x[col]), "sold_total": float(sum(x[self.Sx[k, t]] for t in range(3))),
+                        "sold0": float(x[col]),
+                        "sold_total": float(x[col] + sum(np.dot(self.freq_sd[t], [x[int(i)] for i in self.SxI[t][k]])
+                                                         for t in (1, 2))),
                         "sell_ub": float(self.ub[col])})
         out["units"] = res
         # liquid buckets: reduced cost of x (value of $1 more in the bucket vs cash, per $)
