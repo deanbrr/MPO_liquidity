@@ -16,8 +16,8 @@
                    year end; sales and term debt at the start of year 2 by the year-1 state and at the start of year 3
                    by the year-1 and year-2 states together (9 histories, year-1 state major); sell, commit and
                    term_sched then hold today's decisions and the probability-weighted average of the later ones;
-                   beta: the synthetic beta for years 2-5 by progress against the goal at the start of the year
-                   (behind / on track / ahead, on today's book held unchanged; beta_bn is year 1's)
+                   beta: the synthetic beta for years 2-5 by the market class at the start of the year (beta_bn
+                   is year 1's)
 The status quo is today's book, status-quo pacing from the 2023-25 vintages, no new debt and, if enabled, the PE
 program as decided: $20bn of exposure over three years, underperformers first.
 """
@@ -30,8 +30,6 @@ import numpy as np
 from .buckets import BY_ID, LIQUID_RISK, PRIVATE
 
 STATES = ["benign", "exit drought", "stress"]
-PROGRESS = ["behind", "on track", "ahead"]
-PROGRESS_BAND = 0.02          # on track: annualized return to date within 2pp of the goal
 
 
 @dataclass
@@ -154,14 +152,14 @@ def schedule_paths(plan: Plan, unit_ids: list, tpl_buckets: list, cls_y) -> tupl
     return sell, amt, sched
 
 
-def beta_paths(plan: Plan, pctx) -> np.ndarray:
-    """(5, m) synthetic beta per year: year 1 today's; years 2-5 by the path's progress at the start of the year."""
-    pctx = np.asarray(pctx, int)
-    b = np.full((5, pctx.shape[0]), float(plan.beta_bn))
+def beta_paths(plan: Plan, cls_y) -> np.ndarray:
+    """(5, m) synthetic beta per year: year 1 today's; years 2-5 by the path's market class at the start of the year."""
+    cls_y = np.asarray(cls_y, int)
+    b = np.full((5, cls_y.shape[0]), float(plan.beta_bn))
     cb = (plan.contingent or {}).get("beta")
     if cb:
         for t in range(1, 5):
-            b[t] = np.asarray(cb[t - 1], float)[pctx[:, t]]
+            b[t] = np.asarray(cb[t - 1], float)[cls_y[:, t]]
     return b
 
 

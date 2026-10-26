@@ -54,8 +54,7 @@ def rep_paths(out: dict) -> list[dict]:
                         "lcr": np.asarray(out["lcr"][i]).tolist(),
                         "macro": np.asarray(out["macro_y"][i]).astype(int).tolist() if "macro_y" in out else None,
                         "exit": np.asarray(out["exit_y"][i]).astype(int).tolist() if "exit_y" in out else None,
-                        "cls": np.asarray(out["cls_y"][i]).astype(int).tolist() if "cls_y" in out else None,
-                        "prog": np.asarray(out["prog_y"][i]).astype(int).tolist() if "prog_y" in out else None})
+                        "cls": np.asarray(out["cls_y"][i]).astype(int).tolist() if "cls_y" in out else None})
     return res
 
 
@@ -89,6 +88,10 @@ def summarize(out: dict, goal: float) -> dict:
         "cvar10": float(cvar_lower(twr, 0.10, p)), "cvar5": float(cvar_lower(twr, 0.05, p)),
         "cvar1": float(cvar_lower(twr, 0.01, p)),
         "wealth_mean_bn": float(p @ out["wealth"]), "W0_bn": float(out["W0"]),
+        # the fund the owner sees: its size after the owner's distributions, and what the owner received
+        "p_preserve": float(p @ (nav[:, 5] >= nav[:, 0] - 1e-9)), "nav5_p50_bn": float(quantile_w(nav[:, 5], 0.5, p)),
+        "owner5_p50_bn": float(quantile_w(out["y_draw"].sum(1), 0.5, p)),
+        "owner_cum_fan": _fan(np.c_[np.zeros(len(twr)), np.cumsum(out["y_draw"], axis=1)], p),
         "goal_wealth_bn": float(out["W0"] * (1 + goal) ** 5),
         "shortfall_mean_bn": float(p @ np.maximum(out["W0"] * (1 + goal) ** 5 - out["wealth"], 0.0)),
         "hist": {"edges": hist_edges.tolist(), "p": hist.tolist()},

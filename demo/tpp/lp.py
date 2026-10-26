@@ -29,7 +29,7 @@ import scipy.sparse as sp
 
 from .buckets import BY_ID, LIQUID_RISK
 from .legacy import bpoe
-from .plan import PROGRESS, PROGRESS_BAND, STATES, Plan
+from .plan import STATES, Plan
 
 INF = highspy.kHighsInf
 
@@ -280,17 +280,16 @@ class TPPModel:
         self.freq_sd, self.freq_c = freq_sd, freq_c
         copies_sd = [sorted(set(int(c) for c in map_sd[tau])) for tau in range(3)]
         copies_c = [sorted(set(int(c) for c in map_c[tau])) for tau in range(5)]
-        # the synthetic beta held in years 2-5 follows progress against the goal at the start of the year (behind /
-        # on track / ahead on today's book held unchanged): the risk dial a goal-seeking fund turns as it goes;
-        # fixed schedule: one beta for all five years
-        goal = float(self._g("goal_rate", P.get("goal.rate")))
-        pctx = self.S.progress_ctx(goal, PROGRESS_BAND)
-        ctx_b = [np.zeros(m, int)] + [pctx[:, t] for t in range(1, 5)]
+        # the synthetic beta held in years 2-5 follows the market class at the start of the year, like the other
+        # later decisions (equity volatility is higher in stress at the same expected return); fixed schedule: one
+        # beta for all five years
+        ctx_b = [np.zeros(m, int)] + [cls[:, t] for t in range(1, 5)]
         map_b = [np.zeros(1, int)] + [ctx_map(ctx_b[t], NS) for t in range(1, 5)]
         freq_b = [np.ones(1)] + [np.bincount(ctx_b[t], weights=self.p, minlength=NS) for t in range(1, 5)]
         beta_ub = float(self._g("beta_max", P.get("overlay.beta_max_bn"))) if allow_beta else 0.0
-        ex_B = cl.add("beta_s", (4, NS), 0.0, beta_ub) if cont else None
-        B_col = lambda t, c: self.BETA if (t == 0 or not cont) else ex_B[t - 1, c]
+        self.cont_b = cont_b = cont and bool(self._g("contingent_beta", False))   # off by default: fits noise
+        ex_B = cl.add("beta_s", (4, NS), 0.0, beta_ub) if cont_b else None
+        B_col = lambda t, c: self.BETA if (t == 0 or not cont_b) else ex_B[t - 1, c]
         self.BI = [np.array([self.BETA])] + [np.array([B_col(t, int(map_b[t][k_])) for k_ in range(NS)]) for t in range(1, 5)]
         self.ctx_b, self.map_b, self.freq_b = ctx_b, map_b, freq_b
         copies_b = [[0]] + [sorted(set(int(c) for c in map_b[t])) for t in range(1, 5)]
@@ -327,9 +326,23 @@ class TPPModel:
                 if c not in copies_c[tau]:
                     lb[C_col(tau, c)] = 0.0
                     ub[C_col(tau, c)] = 0.0
-                if cont and c not in copies_b[tau]:
+                if cont_b and c not in copies_b[tau]:
                     lb[B_col(tau, c)] = 0.0
                     ub[B_col(tau, c)] = 0.0
+        # opportunistic secondaries (a countercyclical mandate): in a stress year, when sellers need liquidity and
+        # prices are low, LP-led and GP-led purchases may go up to the market's capacity, outside the program's
+        # pacing range and yearly caps (rows below). Only a plan that sees the stress can use it: the fixed schedule
+        # has one copy for every state and keeps the program's limits
+        opp = bool(self._g("opportunistic_secondaries", P.get("pe_cycle.opportunistic_secondaries")))
+        buy_cap = P.get("trading.buy_cap_year_bn")
+        sec_fam = {f_: np.array([b.startswith(f_) for b in self.tb]) for f_ in ("SEC_LP", "SEC_GP")}
+        is_sec = sec_fam["SEC_LP"] | sec_fam["SEC_GP"]
+        opp_copy = lambda tau, c: opp and cont and tau >= 1 and c == 2 and int(map_c[tau][2]) == 2
+        for tau in range(1, 5):
+            if opp_copy(tau, 2) and 2 in copies_c[tau]:
+                for f_, msk in sec_fam.items():
+                    ub[np.asarray(C_col(tau, 2))[msk]] = float(buy_cap[f_])
+        self.opp_secondaries = opp
         # every path's pair of later copies (year-2 by its year-1 state, year-3 by both): path-wise rows hold on each
         paths_sd = sorted({(int(map_sd[1][s1]), int(map_sd[2][s1 * NS + s2])) for s1 in range(NS) for s2 in range(NS)})
         nC = len(paths_sd)
@@ -371,11 +384,13 @@ class TPPModel:
         agg = float(self._g("commit_agg_mult", 1.25))
         co_extra = float(self._g("coinvest_extra_bn", P.get("trading.buy_cap_year_bn")["COINVEST"]))
         for tau in range(5):
-            cps = copies_c[tau]
-            R.add(f"commit_cap{tau}", np.stack([C_col(tau, c)[fund_t] for c in cps]), np.ones(int(fund_t.sum())), -INF,
-                  agg * pace[fund_t].sum(), nrows=len(cps))
-            R.add(f"deploy_cap{tau}", np.stack([C_col(tau, c)[~fund_t] for c in cps]), np.ones(int((~fund_t).sum())), -INF,
-                  pace[~fund_t].sum() + co_extra, nrows=len(cps))
+            for c in copies_c[tau]:
+                ex = is_sec if opp_copy(tau, c) else np.zeros(Tb, bool)            # stress copy: secondaries apart
+                fm, dm, col = fund_t & ~ex, ~fund_t & ~ex, np.asarray(C_col(tau, c))
+                R.add(f"commit_cap{tau}_{c}", col[fm], np.ones(int(fm.sum())), -INF, agg * pace[fund_t].sum())
+                R.add(f"deploy_cap{tau}_{c}", col[dm], np.ones(int(dm.sum())), -INF, pace[~fund_t].sum() + co_extra)
+                for f_, msk in (sec_fam.items() if ex.any() else ()):
+                    R.add(f"opp_cap{tau}_{c}_{f_}", col[msk], np.ones(int(msk.sum())), -INF, float(buy_cap[f_]))
         ltv = float(self._g("navf_ltv_max", P.get("corporate_finance.navf_ltv_max")))
         fund_v0 = self.nav0 * self.is_fund_u
         R.add("navf_ltv0", np.r_[self.DN, Sx[:, 0]], np.r_[1.0, ltv * fund_v0], -INF, ltv * fund_v0.sum())
@@ -758,9 +773,11 @@ class TPPModel:
             contingent = {"sell": c_sell, "commit": c_commit, "term": ts, "states": STATES,
                           "freq_commit": [f.tolist() for f in fc[1:]], "freq_sale": [f.tolist() for f in fsd[1:]],
                           "map_commit": [m_.tolist() for m_ in self.map_c[1:]],
-                          "map_sale": [m_.tolist() for m_ in self.map_sd[1:]],
-                          "beta": [self._by_state(x, self.BI[t]) for t in range(1, 5)], "progress": PROGRESS,
-                          "freq_beta": [f.tolist() for f in self.freq_b[1:]], "map_beta": [m_.tolist() for m_ in self.map_b[1:]]}
+                          "map_sale": [m_.tolist() for m_ in self.map_sd[1:]]}
+            if self.cont_b:
+                contingent.update({"beta": [self._by_state(x, self.BI[t]) for t in range(1, 5)],
+                                   "freq_beta": [f.tolist() for f in self.freq_b[1:]],
+                                   "map_beta": [m_.tolist() for m_ in self.map_b[1:]]})
         return Plan(name=name, sell=sell, liquid=liquid, cash=r0 * (1 - self.treasury_share),
                     treasury=r0 * self.treasury_share, commit=commit, term_bn=sum(sched), term_sched=sched,
                     navf_bn=float(x[self.DN]), beta_bn=float(x[self.BETA]),

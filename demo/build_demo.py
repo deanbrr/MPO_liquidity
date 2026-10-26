@@ -67,6 +67,18 @@ def flags_for(o: dict, o_sq: dict | None, house: dict) -> np.ndarray:
     return metrics.objective_flags(o, o_sq, float(house["lev_cap"]), float(house["overcommit"]), float(house["goal_rate"]))
 
 
+def owner_meta(pf) -> dict:
+    """The owner's distribution rule as the page needs it: the expected draw rate by year (base case, certification
+    paths) for the north star's fund-size path, and the band."""
+    v = pf.view("ic")
+    house = pf.house()
+    bkey, B, R = pf.book_for(v["prefs"], house)
+    S = pf.paths_for(bkey, B, "oos", "base", pf._pi(v["prefs"]), house)
+    w = S.prob / S.prob.sum()
+    return {"draw_mean": [float(w @ S.draw[:, t]) for t in range(5)],
+            "floor": float(pf.P.get("owner_distribution.rule_floor")), "cap": float(pf.P.get("owner_distribution.rule_cap"))}
+
+
 def brief(s: dict) -> dict:
     return service._brief(s)
 
@@ -137,9 +149,10 @@ def role_block(pf, role: str) -> dict:
 
 
 def adaptivity_extras(pf) -> dict:
-    """What adaptivity adds: the Strategy plan as built (later decisions by market state and progress) against the
-    same objective with one fixed schedule for every path, both with validated guards, paired on the same paths:
-    at the house limits under every stress, and with a 5% tail allowance."""
+    """What adaptivity adds: the Strategy plan as built (later decisions by the market class observed by then)
+    against the same objective with one fixed schedule for every path, both with validated guards, paired on the same
+    paths under every stress; and the adaptive plan without the countercyclical secondaries mandate (where the gain
+    comes from)."""
     v = pf.view("strategy")
     house = pf.house()
     g = float(house["goal_rate"])
@@ -147,25 +160,26 @@ def adaptivity_extras(pf) -> dict:
     sset = pf._sim_settings(house)
     say("Strategy: what adaptivity adds")
     adaptive = planmod.Plan.from_dict(pf.plans["strategy"]["plan"])
-    fixed = planmod.Plan.from_dict(pf.optimize("strategy", persist=False, house_override={"contingent": False},
-                                               progress=lambda m: None)["plan"])
-    pick = lambda s_: {k: s_[k] for k in ("p_goal", "p_goal_ci", "twr_mean", "cvar10", "p_red", "p_revolver")}
-    rows = []
+    quiet = lambda m: None
+    fixed = planmod.Plan.from_dict(pf.optimize("strategy", persist=False, house_override={"contingent": False}, progress=quiet)["plan"])
+    no_mand = planmod.Plan.from_dict(pf.optimize("strategy", persist=False, house_override={"opportunistic_secondaries": False},
+                                                 progress=quiet)["plan"])
+    pick = lambda s_: {k: s_[k] for k in ("p_goal", "p_goal_ci", "twr_mean", "cvar10", "p_red", "p_revolver", "p_preserve")}
+    rows, nm = [], None
     for st in paths.STRESSES:
         S = pf.paths_for(bkey, B, "oos", st, pf._pi(v["prefs"]), house)
         o_f, o_a = sim.simulate(S, fixed, pf.P, sset), sim.simulate(S, adaptive, pf.P, sset)
         d = metrics.paired_delta(o_a, o_f)
         rows.append({"stress": st, "fixed": pick(metrics.summarize(o_f, g)), "adaptive": pick(metrics.summarize(o_a, g)),
                      "d_p_goal": d["d_p_goal"], "d_p_goal_ci": d["d_p_goal_ci"]})
-    loose = {}
-    for name, ov in (("adaptive", {"depth_delta": 0.05}), ("fixed", {"contingent": False, "depth_delta": 0.05})):
-        op = pf.optimize("strategy", persist=False, house_override=ov, keep_paths=True, progress=lambda m: None)
-        loose[name] = {"metrics": pick(op["metrics"]), "_o": op["_paths"]["plan"]}
-    d = metrics.paired_delta(loose["adaptive"]["_o"], loose["fixed"]["_o"])
-    loose = {k: x["metrics"] for k, x in loose.items()} | {"d_p_goal": d["d_p_goal"], "d_p_goal_ci": d["d_p_goal_ci"]}
+        if st == v["stress"]:
+            o_n = sim.simulate(S, no_mand, pf.P, sset)
+            dn = metrics.paired_delta(o_n, o_f)
+            nm = {"adaptive": pick(metrics.summarize(o_n, g)), "d_p_goal": dn["d_p_goal"], "d_p_goal_ci": dn["d_p_goal_ci"]}
     base = next(r for r in rows if r["stress"] == v["stress"])
-    say(f"   adaptive minus fixed: {base['d_p_goal']:+.4f} at the house limits; {loose['d_p_goal']:+.4f} at a 5% tail allowance")
-    return {"stresses": rows, "loose": loose, "fixed_plan": fixed.to_dict()}
+    say(f"   adaptive minus fixed: {base['d_p_goal']:+.4f} {np.round(base['d_p_goal_ci'], 4).tolist()}; "
+        f"without the mandate {nm['d_p_goal']:+.4f}")
+    return {"stresses": rows, "no_mandate": nm, "fixed_plan": fixed.to_dict()}
 
 
 def strategy_extras(pf) -> dict:
@@ -174,7 +188,7 @@ def strategy_extras(pf) -> dict:
     base = pf.house()
 
     def run(name, house_patch, key):
-        r = pf.optimize("strategy", persist=False, house_override=house_patch, progress=lambda m: None)
+        r = pf.optimize("strategy", persist=False, house_override={**SWEEP, **house_patch}, progress=lambda m: None)
         s = r["metrics"]
         row = {"name": name, "key": key, "p_goal": s["p_goal"], "p_goal_ci": s["p_goal_ci"], "twr_mean": s["twr_mean"],
                "cvar10": s["cvar10"], "cvar1": s["cvar1"], "p_red": s["p_red"], "p_revolver": s["p_revolver"],
@@ -225,7 +239,7 @@ def target_only_extras(pf) -> dict:
     sq_house = {st: sim_pair(pf, "strategy", st, None)[2] for st in ("base", "crisis_y1", "hf_gates")}
     for key, name, lev, hf_mult in TARGET_ONLY:
         ov = sh.target_only(lev, {"HF": hf_mult * float(B.liquid["HF"])} if hf_mult else None)
-        r = pf.optimize("strategy", objective="gbo", persist=False, house_override=ov, progress=lambda m: None)
+        r = pf.optimize("strategy", objective="gbo", persist=False, house_override={**SWEEP, **ov}, progress=lambda m: None)
         p = planmod.Plan.from_dict(r["plan"])
         p.name = name
         plans[key] = (p, ov)
@@ -288,6 +302,9 @@ def ic_cases(pf, plans: list) -> dict:
 
 
 HF_GRID = [0, 5, 10, 15, 20, 25, 30, 40, 50, 60, 75, 100]
+# sensitivity sweeps compare levers with each other: the fixed-schedule optimizer on fewer in-sample scenarios keeps
+# the build quick (the groups' plans and the adaptivity comparison use the full adaptive optimizer)
+SWEEP = {"contingent": False, "n_lp_paths": 120}
 
 
 def _cross(rows, key, target, x="borrow_bn"):
@@ -384,7 +401,8 @@ def aa_extras(pf) -> dict:
     say("Asset Allocation: return basis comparison")
     for basis in ("strategy", "blend", "underwritten", "actual"):
         ev = pf.evaluate("asset_allocation", prefs_override={"basis": basis}, progress=lambda m: None)
-        r = pf.optimize("asset_allocation", persist=False, prefs_override={"basis": basis}, progress=lambda m: None)
+        r = pf.optimize("asset_allocation", persist=False, prefs_override={"basis": basis}, house_override=SWEEP,
+                        progress=lambda m: None)
         _, B, R = pf.book_for(pf._variant_view("asset_allocation", {"basis": basis})["prefs"], house)
         h = R["holdings"]
         w = h["nav_bn"].to_numpy()
@@ -473,7 +491,7 @@ def bs_extras(pf) -> dict:
     say("Balance Sheet: debt-capacity frontier (the hurdle objective under this group's view)")
     for cap, beta in ((0.0, False), (5.0, False), (10.0, False), (10.0, True), (20.0, True)):
         r = pf.optimize("balance_sheet", objective="gbo", persist=False,
-                        house_override={"new_term_max_bn": cap, "allow_beta": beta, "allow_debt": cap > 0},
+                        house_override={**SWEEP, "new_term_max_bn": cap, "allow_beta": beta, "allow_debt": cap > 0},
                         progress=lambda m: None)
         s = r["metrics"]
         out["debt_frontier"].append({"name": f"New term debt up to ${cap:.0f}bn" + (", synthetic beta allowed" if beta else ""),
@@ -561,7 +579,8 @@ def main():
     ov = pf.overview("strategy")
     data = {"meta": {"built": time.strftime("%Y-%m-%d %H:%M"), "files": pf.files, "n_oos": pf.n_oos, "n_lp": pf.n_lp,
                      "worlds": WORLDS, "hist_edges": None, "goal_rate": float(pf.house()["goal_rate"]),
-                     "W0": ov["book"]["W0_bn"], "Wstar": ov["book"]["Wstar_bn"], "quick": bool(a.quick)},
+                     "W0": ov["book"]["W0_bn"], "Wstar": ov["book"]["Wstar_bn"], "quick": bool(a.quick),
+                     "n_val": pf.n_val, "owner": owner_meta(pf)},
             "overview": ov, "stresses": paths.STRESSES, "objectives": sh.OBJECTIVES, "house": pf.house(),
             "owner": sh.SETTING_OWNER, "roles": {}}
     for role in sh.ROLES:

@@ -22,7 +22,7 @@ from __future__ import annotations
 import numpy as np
 
 from .buckets import BY_ID, LIQUID_RISK
-from .plan import PROGRESS_BAND, Plan, beta_paths, schedule_paths
+from .plan import Plan, beta_paths, schedule_paths
 
 NQ = 20
 
@@ -86,8 +86,7 @@ def simulate(S, plan: Plan, P, settings: dict | None = None, keep_paths: bool = 
     term = cfg["term0"] + sched[0]
     navf = np.full(m, float(plan.navf_bn))
     rev_cap = cfg["rev_signed"] + float(plan.rev_upsize_bn)
-    pctx = S.progress_ctx(cfg["goal"], PROGRESS_BAND)                            # (m, 6) behind / on track / ahead
-    beta_y = beta_paths(plan, pctx)                                                 # (5, m): year t+1's beta
+    beta_y = beta_paths(plan, S.cls_y)                                              # (5, m): year t+1's beta
     beta = beta_y[0]
     IM = np.zeros(m)
     # ---------------- records
@@ -319,7 +318,7 @@ def simulate(S, plan: Plan, P, settings: dict | None = None, keep_paths: bool = 
         "red": forced_q.sum(1) * 1.0 > cfg["red_thr"], "forced_total": forced_q.sum(1),
         "rev_max": rev_max, "rev_used": rev_max > 1e-6, "min_reserve_ratio": min_res_ratio,
         "lcr": lcr, "nav0_post": rec_t0, "W0": W0, "macro_y": S.macro_y, "exit_y": S.exit_y,
-        "cls_y": S.cls_y, "prog_y": pctx,
+        "cls_y": S.cls_y,
         "wealth": W0 * (1 + twr) ** 5,
         **{f"y_{k}": v for k, v in yr.items() if k != "lcr"},
         **{f"r_{k}": v for k, v in rec.items()},

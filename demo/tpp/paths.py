@@ -49,6 +49,11 @@ def stress_overrides(stress: str, P) -> tuple[dict, dict]:
     """Generator overrides and deterministic shocks for a named stress (combinable with '+')."""
     start_drought = float(P.get("exits.start_in_drought"))
     gen = {"regimes.exit.start": [0.0, 1.0 - start_drought, start_drought, 0.0]}
+    # the owner takes about what the fund earns (floor), more when oil is weak (up to the cap); an oil shock is a
+    # stress state when it pushes next year's draw 60% of the way up the band (the prototype's 8% in a 5-10% band)
+    lo, hi = float(P.get("owner_distribution.rule_floor")), float(P.get("owner_distribution.rule_cap"))
+    gen.update({"owner_draw.floor": lo, "owner_draw.cap": hi, "owner_draw.prior_rate": float(P.get("owner_distribution.rule_prior")),
+                "tree.str_draw_threshold": lo + 0.6 * (hi - lo)})
     shock = {"rate_bp": 0.0, "private_markdown": 0.0, "hf_liq": None, "draw_fixed": None, "call_mult": 1.0,
              "fshock": np.zeros((NQ, 6))}
     fs = shock["fshock"]                     # additive factor shocks by quarter: [eq, cr, rt, oil, ex, vol]
@@ -328,6 +333,17 @@ class PathSet:
         tsig = np.array([_idio(BY_ID[b], P) for b in self.tpl_buckets])
         is_fund = np.array([BY_ID[b].is_fund for b in self.tpl_buckets])
         tage = np.array([6.0 if b.startswith("SEC_LP") else 0.0 for b in self.tpl_buckets])
+        # PE cycle (ASSUMPTION, pe_cycle.*): a new PE or venture commitment earns a small vintage alpha set by the
+        # market class when it is made, and a secondary purchase buys economic value at the cyclical price (the bid
+        # ADIC would get as a seller); both are centred on the long-run class mix, so only timing earns them
+        pc = bool(P.get("pe_cycle.enabled"))
+        vint = np.asarray(P.get("pe_cycle.vintage_alpha"), float) if pc else np.zeros(3)
+        is_vint = np.isin(self.tpl_buckets, list(P.get("pe_cycle.vintage_buckets")))
+        G = np.ones((3, T))
+        for fam, g in (P.get("pe_cycle.secondary_entry") if pc else {}).items():
+            G[:, np.array([b.startswith(fam) for b in self.tpl_buckets])] = np.asarray(g, float)[:, None]
+        cls_start = np.c_[self.cls_y[:, :1], self.cls_q[:, :NQ - 1]]             # class known when each quarter starts
+        self.tpl_entry, self.tpl_vintage_alpha, self.tpl_is_vintage = G, vint, is_vint
         # levels at year ends only (t = 0..5); flows quarterly (float32: the certification set is large)
         self.tV = np.zeros((5, self.m, 6, T), np.float32)
         self.tU = np.zeros((5, self.m, 6, T), np.float32)
@@ -335,13 +351,18 @@ class PathSet:
         self.tC = np.zeros((5, self.m, NQ, T), np.float32)
         for tau in range(5):
             q0 = 4 * tau
-            V0t = np.where(is_fund, 0.0, 1.0)
+            c0 = self.cls_y[:, tau]                                                 # the class when $1 goes in
+            V0t = np.where(is_fund, 0.0, 1.0)[None, :] * G[c0]                      # a direct secondary buys G per $
             U0t = np.where(is_fund, 1.0, 0.0)
             s = teng.init_state(self.m, V0t, V0t, U0t, tage)
+            a_tau = ta_m + vint[c0][:, None] * is_vint[None, :]                     # the vintage's alpha, for life
             self.tV[tau, :, tau], self.tU[tau, :, tau] = s["V"], s["U"]
             for q in range(q0, NQ):
                 z = np.tile(rng.standard_normal((self.n, T)), (3, 1))
-                s, D, C, _ = teng.step(s, f[:, q], Eq[:, q], Sq[:, q], ta_m, tsig[None, :] / 2 * z)
+                s, D, C, _ = teng.step(s, f[:, q], Eq[:, q], Sq[:, q], a_tau, tsig[None, :] / 2 * z)
+                if pc:                                                              # a fund's calls buy at the
+                    gain = C * (G[cls_start[:, q]] - 1.0) * is_fund[None, :]        # price when the quarter starts
+                    s["V"], s["N"] = s["V"] + gain, s["N"] + gain
                 if (q + 1) % 4 == 0:
                     self.tV[tau, :, (q + 1) // 4], self.tU[tau, :, (q + 1) // 4] = s["V"], s["U"]
                 self.tD[tau, :, q], self.tC[tau, :, q] = D, C
@@ -375,16 +396,6 @@ class PathSet:
         r = np.zeros((self.m, 6))
         r[:, 1:] = (tot[:, 1:] + Dy[:, 1:] - Cy[:, 1:]) / np.maximum(tot[:, :-1], 1e-9) - 1.0
         self.r_sq = r
-
-    def progress_ctx(self, goal: float, band: float) -> np.ndarray:
-        """(m, 6) progress against the goal at each year end, from today's book held unchanged (markets only, so a
-        rule on it never sees the future): 0 behind (annualized return to date below goal - band), 1 on track,
-        2 ahead (above goal + band); today: on track."""
-        cum = np.cumprod(1.0 + self.r_sq[:, 1:], axis=1)
-        ann = cum ** (1.0 / np.arange(1, 6)) - 1.0
-        ctx = np.ones((self.m, 6), int)
-        ctx[:, 1:] = np.where(ann < goal - band, 0, np.where(ann > goal + band, 2, 1))
-        return ctx
 
     def accrual(self) -> np.ndarray:
         """A[m, t]: growth factor from the end of year t to year 5 at the status-quo return (t = 1..5; A[:, 5] = 1)."""

@@ -177,7 +177,7 @@ class Platform:
         return key, self._books[key][0], self._books[key][1]
 
     def paths_for(self, bkey: str, B, kind: str, stress: str, pi, house: dict):
-        n = {"lp": self.n_lp, "val": self.n_val}.get(kind, self.n_oos)
+        n = {"lp": int(house.get("n_lp_paths") or self.n_lp), "val": self.n_val}.get(kind, self.n_oos)  # a sweep may ask fewer
         seed = int(self.P.get({"lp": "simulation.seed_lp", "val": "simulation.seed_val"}.get(kind, "simulation.seed_oos")))
         dset = {k: house.get(k) for k in ("draw_mode", "draw_rate")}
         key = self._key(bkey, kind, stress, dset, n)
@@ -511,7 +511,8 @@ class Platform:
 def _brief(s: dict) -> dict:
     keys = ["p_goal", "p_goal_ci", "twr_mean", "twr_q", "cvar10", "cvar5", "cvar1", "p_red", "forced_mean_bn",
             "forced_p99_bn", "p_revolver", "rev_max_p95_bn", "min_reserve_ratio_p5", "lcr_min_p5", "lcr_min_p50",
-            "wealth_mean_bn", "shortfall_mean_bn", "by_world", "on_track", "leverage_t0", "debt_t0_bn", "ovc_t0"]
+            "wealth_mean_bn", "shortfall_mean_bn", "by_world", "on_track", "leverage_t0", "debt_t0_bn", "ovc_t0",
+            "p_preserve", "nav5_p50_bn", "owner5_p50_bn"]
     out = {k: s[k] for k in keys if k in s}
     out["lev_max_p95"] = max(s["fans"]["lev"]["p95"])
     out["debt_p95_bn"] = max(s["fans"]["debt"]["p95"])
