@@ -15,6 +15,8 @@ web/styles.css into web/template.html:
     reports P(10%), P(each group's objective) and P(both) live;
   - leverage on the hedge-fund allocation: the borrowing needed for 10% (status quo and consensus plan);
   - the five years, year by year: growth against the target path and representative paths;
+  - doing nothing (no sales, no new commitments, no rebalancing, no new debt) beside every plan, and the Strategy
+    group's north star (10% a year) as the reference path;
   - the Yale model (Takahashi-Alexander) as a benchmark on ADIC's book.
 
 Output: out/ADIC_TPP_Demo.html plus one copy per group that opens on its view. The files contain holding-level
@@ -76,6 +78,15 @@ def lean(s: dict) -> dict:
     return out
 
 
+def sim_do_nothing(pf, role, stress, house=None, prefs=None):
+    """Doing nothing on the same paths as sim_pair."""
+    v = pf._variant_view(role, prefs)
+    house = house or pf.house()
+    bkey, B, R = pf.book_for(v["prefs"], house)
+    S = pf.paths_for(bkey, B, "oos", stress, pf._pi(v["prefs"]), house)
+    return sim.simulate(S, planmod.do_nothing(B, pf.P, house), pf.P, {**pf._sim_settings(house), **planmod.DO_NOTHING_SIM})
+
+
 def sim_pair(pf, role, stress, plan_obj, house=None, prefs=None):
     v = pf._variant_view(role, prefs)
     house = house or pf.house()
@@ -106,16 +117,18 @@ def role_block(pf, role: str) -> dict:
     say(f"{lens['title']}: stresses")
     for st in paths.STRESSES:
         B, S, o_sq, o_np, o_pl = sim_pair(pf, role, st, plan_obj)
-        s_sq, s_np, s_pl = (metrics.summarize(o, g) for o in (o_sq, o_np, o_pl))
-        fl = {"sq": flags_for(o_sq, None, house), "np": flags_for(o_np, o_sq, house), "plan": flags_for(o_pl, o_sq, house)}
-        entry = {"twr": {"sq": enc_twr(o_sq), "np": enc_twr(o_np), "plan": enc_twr(o_pl)},
+        o_dn = sim_do_nothing(pf, role, st)
+        s_sq, s_np, s_pl, s_dn = (metrics.summarize(o, g) for o in (o_sq, o_np, o_pl, o_dn))
+        fl = {"sq": flags_for(o_sq, None, house), "np": flags_for(o_np, o_sq, house), "plan": flags_for(o_pl, o_sq, house),
+              "dn": flags_for(o_dn, o_sq, house)}
+        entry = {"twr": {"sq": enc_twr(o_sq), "np": enc_twr(o_np), "plan": enc_twr(o_pl), "dn": enc_twr(o_dn)},
                  "flags": {k: enc_flags(v_) for k, v_ in fl.items()},
                  "objectives": {k: metrics.objective_rates(o, fl[k], g)
-                                for k, o in (("sq", o_sq), ("np", o_np), ("plan", o_pl))},
-                 "brief": {"sq": brief(s_sq), "np": brief(s_np), "plan": brief(s_pl)},
+                                for k, o in (("sq", o_sq), ("np", o_np), ("plan", o_pl), ("dn", o_dn))},
+                 "brief": {"sq": brief(s_sq), "np": brief(s_np), "plan": brief(s_pl), "dn": brief(s_dn)},
                  "delta": metrics.paired_delta(o_pl, o_sq), "program_effect": metrics.paired_delta(o_sq, o_np),
                  # fans and cash flows for every stress, so each view's charts follow its stress control
-                 "full": {"sq": lean(s_sq), "plan": lean(s_pl)}}
+                 "full": {"sq": lean(s_sq), "plan": lean(s_pl), "dn": lean(s_dn)}}
         if st in (v["stress"], "base"):
             entry["full"]["np"] = lean(s_np)
             entry["program"] = op["change_list"]["pe_program"] if st == v["stress"] else None
@@ -530,6 +543,8 @@ def main():
     data["roles"]["balance_sheet"]["extras"] = bs_extras(pf)
     say("IC: every plan and the consensus plan on one view")
     extra = [(k, *to["plans"][k]) for k in ("to_none", "to_150")]
+    _, B_ic, _ = pf.book_for(pf.view("ic")["prefs"], pf.house())
+    extra = [("do_nothing", planmod.do_nothing(B_ic, pf.P, pf.house()), dict(planmod.DO_NOTHING_SIM))] + extra
     data["ic"] = pf.compare(include_consensus=True, progress=lambda m: None, extra_plans=extra)
     v = pf.view("ic")
     house = pf.house()

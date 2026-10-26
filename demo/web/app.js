@@ -645,7 +645,43 @@
       kpi("PE program effect on the status quo", F.pp(sq.pg - np.pg), el("span", { text: `without the program ${F.pct(np.pg, 1)}` })),
     ];
     if (extra) tiles.splice(4, 2, ...extra);
-    return el("div", null, el("div", { class: "kpis" }, ...tiles), objectivesCard(role), fiveYearsCard(role));
+    return el("div", null, northStarCard(role), el("div", { class: "kpis", style: "margin-top:14px" }, ...tiles), objectivesCard(role), fiveYearsCard(role));
+  }
+
+  // The Strategy group's north star (10% a year) against doing nothing, the status quo and this group's plan
+  const scaleFan = (f, k) => Object.fromEntries(Object.entries(f).map(([q, a]) => [q, a.map((x) => x * k)]));
+  function northStarCard(role) {
+    const e = entry(role), pi = piNow(), h = hurdle(), W0 = D.meta.W0;
+    const fP = fullOrBase(role, "plan"), fS = fullOrBase(role, "sq"), fD = (e.full || {}).dn;
+    if (!fD || !fP || !fP.cum_fan || !e.twr.dn) return el("div");
+    const star = YEARS.map((_, t) => W0 * Math.pow(1 + h, t));
+    const ob = (k) => objStats(twr(e.twr[k]), flags((e.flags || {})[k]), pi, h, k === "sq" ? null : twr(e.twr.sq));
+    const rD = ob("dn"), rS = ob("sq"), rP = ob("plan");
+    const med5 = (f) => f.cum_fan.p50[5] * W0;
+    const title = R(role).lens.title;
+    const tiles = el("div", { class: "kpis" },
+      kpi("North star (Strategy group), a year", F.pct(h, 0), el("span", { text: `${F.bn(W0, 0)} grows to ${F.bn(star[5], 0)} in five years` }), true),
+      kpi("Do nothing: chance of the north star", F.pct(rD.goal, 1), el("span", { text: `median ${F.bn(med5(fD), 0)} in year 5` })),
+      kpi("Status quo (PE program as decided)", F.pct(rS.goal, 1), deltaSpan(rS.goal - rD.goal, (x) => F.pp(x), true, " vs doing nothing")),
+      kpi(`${title} plan`, F.pct(rP.goal, 1), deltaSpan(rP.goal - rD.goal, (x) => F.pp(x), true, " vs doing nothing")),
+      kpi("Every objective together", F.pct(rP.all, 1), el("span", { text: `plan; doing nothing ${F.pct(rD.all, 1)}` })));
+    const chart = chartCard("Five years against the north star", `Growth of today's ${F.bn(W0, 0)} at each portfolio's time-weighted return (owner distributions added back): the plan's P5-P95 and P25-P75 bands and median, the status quo's and doing nothing's medians, and the north star (dashed).`,
+      (host) => { host.append(legend([{ name: "Plan P5-P95", color: "var(--wash-1b)", kind: "band" }, { name: `${title} plan, median`, color: cssv("--series-1"), kind: "line" }, { name: "Status quo, median", color: cssv("--deemph"), kind: "line" }, { name: "Do nothing, median", color: cssv("--series-3"), kind: "line" }, { name: `North star, ${F.pct(h, 0)} a year`, color: cssv("--text-secondary"), kind: "line" }])); fanChart(host, { labels: YEARS, fans: [{ name: "Plan", fan: scaleFan(fP.cum_fan, W0), color: cssv("--series-1") }], lines: [{ name: "Status quo", values: fS.cum_fan.p50.map((x) => x * W0), color: cssv("--deemph") }, { name: "Do nothing", values: fD.cum_fan.p50.map((x) => x * W0), color: cssv("--series-3") }], refs: [{ values: star, label: "North star", color: cssv("--text-secondary"), dash: true }], yfmt: (t) => F.bn(t, 0), h: 270 }); },
+      () => ({ cols: ["Year", "North star", "Plan P5", "Plan median", "Plan P95", "Status quo median", "Do nothing median"], rows: YEARS.map((y2, i) => [y2, F.bn(star[i], 0), F.bn(fP.cum_fan.p5[i] * W0, 0), F.bn(fP.cum_fan.p50[i] * W0, 0), F.bn(fP.cum_fan.p95[i] * W0, 0), F.bn(fS.cum_fan.p50[i] * W0, 0), F.bn(fD.cum_fan.p50[i] * W0, 0)]) }));
+    const yr5 = [["North star", star[5], 1, null], ["Do nothing", med5(fD), rD.goal, rD.all], ["Status quo", med5(fS), rS.goal, rS.all], [`${title} plan`, med5(fP), rP.goal, rP.all]];
+    const t5 = el("table", { class: "t" });
+    t5.append(el("thead", null, el("tr", null, ...["", "Median value in year 5", "Gap to the north star", `Chance of ${F.pct(h, 0)} a year`, "With every objective"].map((c, i) => el("th", { class: i ? "num" : "", text: c })))));
+    const tb5 = el("tbody");
+    for (const [nm, v5, pg, pa] of yr5) tb5.append(el("tr", null, el("td", { class: "nm", text: nm }), el("td", { class: "num", text: F.bn(v5, 0) }), el("td", { class: "num", text: nm === "North star" ? "\u2013" : F.sbn(v5 - star[5], 0) }), el("td", { class: "num", text: nm === "North star" ? "\u2013" : F.pct(pg, 1) }), el("td", { class: "num", text: pa == null ? "\u2013" : F.pct(pa, 1) })));
+    t5.append(tb5);
+    const side = el("div", { class: "card" }, el("h3", { text: "Where each lands in year 5" }),
+      el("p", { class: "sub", text: "The median path's value against the north star, and the chance of reaching it (alone, and with every group's objective met)." }),
+      el("div", { class: "tablewrap full" }, t5),
+      el("p", { class: "note", style: "margin-top:10px", text: `Doing nothing ${rD.goal >= rS.goal ? "beats" : "trails"} the status quo by ${(Math.abs(rD.goal - rS.goal) * 100).toFixed(1)}pp${rD.goal >= rS.goal ? ": the status quo sells PE at drought bids" : ""}; the ${title} plan ${rP.goal >= rD.goal ? "adds" : "gives up"} ${(Math.abs(rP.goal - rD.goal) * 100).toFixed(1)}pp against doing nothing.` }));
+    const grid = el("div", { class: "grid g2", style: "margin-top:12px" }, chart, side);
+    return el("div", { class: "card northstar" }, el("h3", { text: `The north star: ${F.pct(h, 0)} a year, and what doing nothing would do` }),
+      el("p", { class: "sub", text: `The Strategy group's north star is ${F.pct(h, 0)} a year for five years. Doing nothing means no decisions at all: no sales (the PE program is not executed), no new commitments, no rebalancing and no new debt; distributions pile up as cash while the owner's distribution and existing calls are paid. The status quo executes the PE program and keeps today's pacing and rebalancing. Probabilities follow the controls above.` }),
+      tiles, grid);
   }
 
   // The five years, year by year: growth against the target path, annualized return to date, and one path at a time
@@ -668,7 +704,7 @@
       el("p", { class: "sub", text: `How the plan travels toward the target over the five years, on this group's view and the current stress: the growth of $1 at the plan's time-weighted return (owner distributions come out of the return), the annualized return to date, and any single path in detail. The plan's decisions are dated: sales in three tranches, commitments every year, term debt drawn at the start of years 1-3; each year the reserve, liquid sales and the revolver meet what that path brings.` }));
     const g = el("div", { class: "grid g2" });
     g.append(chartCard("Growth of $1 against the target path", `Plan P5-P95 and P25-P75 bands and median; the status quo's median; ${F.pct(h, 0)} a year compounded (dashed).`,
-      (host) => { host.append(legend([{ name: "Plan P5-P95", color: "var(--wash-1b)", kind: "band" }, { name: "Plan median", color: cssv("--series-1"), kind: "line" }, { name: "Status quo median", color: cssv("--deemph"), kind: "line" }, { name: `${F.pct(h, 0)} a year`, color: cssv("--text-secondary"), kind: "line" }])); fanChart(host, { labels: YEARS, fans: [{ name: "Plan", fan: fP.cum_fan, color: cssv("--series-1") }], lines: [{ name: "Status quo", values: fS.cum_fan.p50, color: cssv("--deemph") }], refs: [{ values: tgt, label: `${F.pct(h, 0)}/yr`, color: cssv("--text-secondary"), dash: true }], yfmt: (t) => "$" + t.toFixed(2), h: 260 }); },
+      (host) => { const fD = (entry(role).full || {}).dn; host.append(legend([{ name: "Plan P5-P95", color: "var(--wash-1b)", kind: "band" }, { name: "Plan median", color: cssv("--series-1"), kind: "line" }, { name: "Status quo median", color: cssv("--deemph"), kind: "line" }].concat(fD ? [{ name: "Do nothing median", color: cssv("--series-3"), kind: "line" }] : [], [{ name: `North star, ${F.pct(h, 0)} a year`, color: cssv("--text-secondary"), kind: "line" }]))); fanChart(host, { labels: YEARS, fans: [{ name: "Plan", fan: fP.cum_fan, color: cssv("--series-1") }], lines: [{ name: "Status quo", values: fS.cum_fan.p50, color: cssv("--deemph") }].concat(fD ? [{ name: "Do nothing", values: fD.cum_fan.p50, color: cssv("--series-3") }] : []), refs: [{ values: tgt, label: "North star", color: cssv("--text-secondary"), dash: true }], yfmt: (t) => "$" + t.toFixed(2), h: 260 }); },
       () => ({ cols: ["Year", "Plan P5", "Plan P25", "Plan median", "Plan P75", "Plan P95", "Status quo median", `${F.pct(h, 0)} a year`], rows: YEARS.map((y2, i) => [y2, ...["p5", "p25", "p50", "p75", "p95"].map((k) => "$" + fP.cum_fan[k][i].toFixed(2)), "$" + fS.cum_fan.p50[i].toFixed(2), "$" + tgt[i].toFixed(2)]) })));
     g.append(chartCard("Annualized return to date", `Each year's annualized return since today: the plan's bands and median, the status quo's median, and the ${F.pct(h, 0)} target.`,
       (host) => { host.append(legend([{ name: "Plan P5-P95", color: "var(--wash-1b)", kind: "band" }, { name: "Plan median", color: cssv("--series-1"), kind: "line" }, { name: "Status quo median", color: cssv("--deemph"), kind: "line" }])); fanChart(host, { labels: FLOWYEARS, fans: [{ name: "Plan", fan: fP.ann_fan, color: cssv("--series-1") }], lines: [{ name: "Status quo", values: fS.ann_fan.p50, color: cssv("--deemph") }], refs: [{ y: h, label: F.pct(h, 0), color: cssv("--text-secondary"), dash: true }], yfmt: (t) => F.pct(t, 0), h: 260 }); },
@@ -676,12 +712,13 @@
     card.append(g);
     // one path at a time
     const pe = st.pathPick || (st.pathPick = { which: "plan", world: 1, q: "median" });
-    const src = pe.which === "plan" ? fP : fS, reps = src.rep_paths || [];
+    const fDn = (entry(role).full || {}).dn;
+    const src = pe.which === "plan" ? fP : pe.which === "dn" && fDn ? fDn : fS, reps = src.rep_paths || [];
     const pth = reps.find((r) => r.world === pe.world && r.q === pe.q) || reps[0];
     if (!pth) return card;
     const mk = (opts, cur, set, lab) => { const s2 = el("select", { "aria-label": lab, onchange: (e) => { set(e.target.value); render(); } }); for (const [v2, t] of opts) s2.append(el("option", { value: v2, text: t, selected: String(v2) === String(cur) ? "selected" : null })); return s2; };
     const sels = el("div", { class: "searchrow" },
-      mk([["plan", `${R(role).lens.title} plan`], ["sq", "Status quo"]], pe.which, (x) => { st.pathPick.which = x; }, "Plan"),
+      mk([["plan", `${R(role).lens.title} plan`], ["sq", "Status quo"]].concat(fDn ? [["dn", "Do nothing"]] : []), pe.which, (x) => { st.pathPick.which = x; }, "Plan"),
       mk(WORLDS.map((w, i) => [i, `${w} world`]), pe.world, (x) => { st.pathPick.world = +x; }, "ER world"),
       mk([["worst 10%", "Worst 10% path"], ["median", "Median path"], ["best 10%", "Best 10% path"]], pe.q, (x) => { st.pathPick.q = x; }, "Outcome"));
     const g2 = el("div", { class: "grid g2", style: "margin-top:14px" });
@@ -742,7 +779,7 @@
   function objectivesCard(role) {
     const pi = piNow(), h = hurdle(), o = OBJ[role], e = entry(role), own = (k) => k === o.key || k === o.both;
     const rec = (k, ent) => objStats(twr(ent.twr[k]), flags((ent.flags || {})[k]), pi, h, k === "sq" ? null : twr(ent.twr.sq));
-    const plans = [["Status quo (PE program as decided)", "sq"], [`${R(role).lens.title} plan`, "plan"], ["Status quo without the PE program", "np"]];
+    const plans = (e.twr.dn ? [["Do nothing", "dn"]] : []).concat([["Status quo (PE program as decided)", "sq"], [`${R(role).lens.title} plan`, "plan"], ["Status quo without the PE program", "np"]]);
     const S = Object.fromEntries(plans.map(([, k]) => [k, rec(k, e)]));
     const cols = [["goal", `Return of ${F.pct(h, 0)} a year`], ["bs", "Balance sheet within limits"], ["liq", "Calls and distributions met"], ["aa", "Never costs the target"]];
     if (o.both && o.both !== "all") cols.push([o.both, `${F.pct(h, 0)} a year and ${o.short}`]);
@@ -1148,30 +1185,31 @@
     const v = document.getElementById("v-ic");
     const ic = D.ic, pi = piNow(), h = hurdle();
     const sqRec = twr(ic.twr.status_quo);
-    const NAME = { status_quo: "Status quo (PE program as decided)", no_program: "Status quo without the PE program" };
+    const NAME = { do_nothing: "Do nothing", status_quo: "Status quo (PE program as decided)", no_program: "Status quo without the PE program" };
     const cs = (key, stress) => (ic.cases && ic.cases[key] ? ic.cases[key][stress] : null);
     const refOf = (key, stress) => (key === "status_quo" || !cs("status_quo", stress) ? null : twr(cs("status_quo", stress).twr));
-    const rows = ic.rows.map((r0) => { const r = Object.assign({}, r0, { name: NAME[r0.key] || r0.name }); const rec = twr(ic.twr[r.key]); const c = cs(r.key, ic.view.stress); return { r, s: stats(rec, pi, h), d: paired(rec, sqRec, pi, h), o: c ? objStats(twr(c.twr), flags(c.flags), pi, h, refOf(r.key, ic.view.stress)) : null }; });
+    const rows = ic.rows.slice().sort((a, b) => (b.key === "do_nothing") - (a.key === "do_nothing")).map((r0) => { const r = Object.assign({}, r0, { name: NAME[r0.key] || r0.name }); const rec = twr(ic.twr[r.key]); const c = cs(r.key, ic.view.stress); return { r, s: stats(rec, pi, h), d: paired(rec, sqRec, pi, h), o: c ? objStats(twr(c.twr), flags(c.flags), pi, h, refOf(r.key, ic.view.stress)) : null }; });
     // the best of the plans on the table (the status quo rows are references, not choices)
     const best = rows.filter((x) => !(x.r.key in NAME) && !x.r.key.startsWith("to_")).sort((a, b) => b.s.pg - a.s.pg)[0];
     v.replaceChildren(el("div", { class: "lead" }, el("h2", { text: "Investment Committee: every group's plan on one view" }),
       el("p", { text: `Each group optimized its own objective under every group's limits; here all plans run on the same ${F.int(D.meta.n_oos * 3)} fresh paths under the IC view (${ic.view.prefs.basis} returns, ${stressLabel(ic.view.stress)}). The consensus plan maximizes the buffered probability of the hurdle under every limit at once.` })));
     const t = el("table", { class: "t" });
-    const cols = ["Plan", `P(${F.pct(h, 0)})`, "vs status quo", "Balance sheet within limits", "Calls and distributions met", "Never costs the target", "Every objective together", "Mean TWR", "CVaR10", "Max lev P95", "Debt P95", "PE exposure sold"];
+    const star5 = D.meta.W0 * Math.pow(1 + h, 5);
+    const cols = ["Plan", `P(${F.pct(h, 0)})`, "vs status quo", "Balance sheet within limits", "Calls and distributions met", "Never costs the target", "Every objective together", `Year-5 median (north star ${F.bn(star5, 0)})`, "CVaR10", "Debt P95", "PE exposure sold"];
     t.append(el("thead", null, el("tr", null, ...cols.map((c, i) => el("th", { class: (i ? "num" : "") + (i >= 3 && i <= 6 ? " own" : ""), text: c })))));
     const tb = el("tbody");
     const op = (x) => (x == null ? "\u2013" : F.pct(x, 1));
     for (const { r, s: s2, d, o } of rows) {
       const m = r.metrics;
-      tb.append(el("tr", null, el("td", null, el("strong", { text: r.name })), el("td", { class: "num", text: `${F.pct(s2.pg)}` }), el("td", { class: "num", text: r.key === "status_quo" ? "\u2013" : `${F.pp(d.d)}` }), el("td", { class: "num own", text: op(o && o.bs) }), el("td", { class: "num own", text: op(o && o.liq) }), el("td", { class: "num own", text: r.key === "status_quo" ? "\u2013" : op(o && o.aa) }), el("td", { class: "num own", text: op(o && o.all) }), el("td", { class: "num", text: F.pct(s2.mean, 2) }), el("td", { class: "num", text: F.pct(s2.cvar10) }), el("td", { class: "num", text: F.x(m.lev_max_p95) }), el("td", { class: "num", text: F.bn(m.debt_p95_bn) }), el("td", { class: "num", text: F.bn(r.pe_program.exposure_bn) })));
+      tb.append(el("tr", null, el("td", null, el("strong", { text: r.name })), el("td", { class: "num", text: `${F.pct(s2.pg)}` }), el("td", { class: "num", text: r.key === "status_quo" ? "\u2013" : `${F.pp(d.d)}` }), el("td", { class: "num own", text: op(o && o.bs) }), el("td", { class: "num own", text: op(o && o.liq) }), el("td", { class: "num own", text: r.key === "status_quo" ? "\u2013" : op(o && o.aa) }), el("td", { class: "num own", text: op(o && o.all) }), el("td", { class: "num", text: F.bn(D.meta.W0 * Math.pow(1 + s2.p50, 5), 0) }), el("td", { class: "num", text: F.pct(s2.cvar10) }), el("td", { class: "num", text: F.bn(m.debt_p95_bn) }), el("td", { class: "num", text: F.bn(r.pe_program.exposure_bn) })));
     }
     t.append(tb);
-    v.append(el("div", { class: "card" }, el("h3", { text: "The comparison matrix" }), el("p", { class: "sub", text: `Every plan on the same paths. The shaded columns test each group's objective on every path against the house limits: the balance sheet within its leverage and overcommitment limits at every year-end; every call and owner distribution paid without a forced private sale; never costing the target where the status quo reaches it; and all of them with the ${F.pct(h, 0)} target. The probability columns, mean and CVaR10 follow the controls; the others are at the IC view's default weights.` }), el("div", { class: "tablewrap" }, t)));
+    v.append(el("div", { class: "card" }, el("h3", { text: "The comparison matrix" }), el("p", { class: "sub", text: `Every plan on the same paths. The shaded columns test each group's objective on every path against the house limits: the balance sheet within its leverage and overcommitment limits at every year-end; every call and owner distribution paid without a forced private sale; never costing the target where the status quo reaches it; and all of them with the ${F.pct(h, 0)} target. Do nothing takes no decisions: no sales, no new commitments, no rebalancing, no new debt. The probability columns, the year-5 median and CVaR10 follow the controls; the others are at the IC view's default weights.` }), el("div", { class: "tablewrap full" }, t)));
     // every plan under every stress
     if (ic.cases) {
       const metric = st.icMetric || "goal";
       const MET = [["goal", `${F.pct(h, 0)} a year`], ["bs", "Balance sheet within limits"], ["liq", "Calls and distributions met"], ["aa", "Never costs the target"], ["all", "Every objective together"]];
-      const SHORTP = { status_quo: "Status quo", no_program: "No PE program", strategy: "Strategy", balance_sheet: "Balance Sheet", liquidity: "Liquidity", asset_allocation: "Asset Allocation", consensus: "Consensus", to_none: "Target only", to_150: "Target only, 1.5x" };
+      const SHORTP = { do_nothing: "Do nothing", status_quo: "Status quo", no_program: "No PE program", strategy: "Strategy", balance_sheet: "Balance Sheet", liquidity: "Liquidity", asset_allocation: "Asset Allocation", consensus: "Consensus", to_none: "Target only", to_150: "Target only, 1.5x" };
       const SHORTS = { base: "Base", prolonged_drought: "DPI decline", crisis_y1: "Crisis Y1", oil_crash: "Oil crash", exit_window_opens: "Exits reopen", rate_shock: "Rates +200bp", stagflation: "Stagflation", hf_gates: "HF gates", private_markdown: "Markdown", calls_spike: "Call spike", draw_10: "Draw 10%" };
       const sel2 = el("select", { "aria-label": "Objective", onchange: (ev) => { st.icMetric = ev.target.value; render(); } });
       for (const [k, c] of MET) sel2.append(el("option", { value: k, text: c, selected: k === metric ? "selected" : null }));
@@ -1193,7 +1231,7 @@
     }
     const g = el("div", { class: "grid g2", style: "margin-top:14px" });
     g.append(chartCard("Return against tail risk, every plan", "P(hurdle) against the average of the worst 10% of 5-year returns (right is safer). The consensus plan is highlighted.",
-      (host) => scatter(host, { points: rows.map(({ r, s: s2 }) => ({ label: { status_quo: "Status quo", no_program: "No PE program", to_none: "Target only", to_150: "Target only, 1.5x" }[r.key] || r.name.replace(" plan", ""), x: s2.cvar10, y: s2.pg, emph: r.key === "consensus", extra: [{ value: F.pct(r.metrics.p_red, 2), name: "P(red event)" }] })), xfmt: (t2) => F.pct(t2, 1), yfmt: (t2) => F.pct(t2, 0), xlabel: "CVaR10 of the 5-year return (right is safer)", ylabel: "P(hurdle)", h: 300 }),
+      (host) => scatter(host, { points: rows.map(({ r, s: s2 }) => ({ label: { do_nothing: "Do nothing", status_quo: "Status quo", no_program: "No PE program", to_none: "Target only", to_150: "Target only, 1.5x" }[r.key] || r.name.replace(" plan", ""), x: s2.cvar10, y: s2.pg, emph: r.key === "consensus", extra: [{ value: F.pct(r.metrics.p_red, 2), name: "P(red event)" }] })), xfmt: (t2) => F.pct(t2, 1), yfmt: (t2) => F.pct(t2, 0), xlabel: "CVaR10 of the 5-year return (right is safer)", ylabel: "P(hurdle)", h: 300 }),
       () => ({ cols: ["Plan", "P(hurdle)", "CVaR10"], rows: rows.map(({ r, s: s2 }) => [r.name, F.pct(s2.pg), F.pct(s2.cvar10)]) })));
     const sel = st.icPick || (st.icPick = { a: "status_quo", b: "consensus" });
     const pa = rows.find((x) => x.r.key === sel.a) || rows[0], pb = rows.find((x) => x.r.key === sel.b) || rows[rows.length - 1];
@@ -1225,6 +1263,10 @@
     if (has("no_program")) {
       const dg = by.status_quo.s.pg - by.no_program.s.pg;
       lines.push(`The PE program as decided ${dg < 0 ? "lowers" : "raises"} the status quo's P(hurdle) by ${ppAbs(dg)} on this view: drought-level bids for underperformers sit below the value of holding them, and the buyers take future commitments with them.`);
+    }
+    if (has("do_nothing")) {
+      const dn = by.do_nothing, dsq = by.status_quo.s.pg - dn.s.pg, dbest = best.s.pg - dn.s.pg;
+      lines.push(`Doing nothing reaches the ${F.pct(h, 0)} north star in ${F.pct(dn.s.pg)} of paths: ${dsq < 0 ? `better than the status quo by ${F.pp(-dsq)}, because the status quo sells PE at drought bids` : `${F.pp(dsq)} behind the status quo`}. The best plan (${best.r.name}) adds ${F.pp(dbest)} to doing nothing.`);
     }
     if (has("to_none")) {
       const tn = by.to_none, tr = (R("strategy").extras.target_only || []).find((x) => x.key === "to_none");
@@ -1399,6 +1441,8 @@
       p("One linear program over five annual stages on in-sample scenarios: secondary sales in three dated tranches, today's liquid allocation and reserve, five years of commitments, dated term debt, the NAV facility and synthetic beta, all non-anticipative. Recourse is need-based only (reserve, liquid sales at their expected return, the revolver, forced sales as a last resort), so no path's future can be traded on. Every group's limits are rows: leverage, debt, LTV, overcommitment, the reserve floor, the forced-sale appetite, the depth guard (tail no worse than the status quo), IC ranges, market depth and the " + F.bn(D.house.pe_program_total_bn, 0) + " PE program. Objectives: GBO (maximum buffered probability of the hurdle, as the prototype), CRRA utility, liquidity risk at a return floor."),
       el("h4", { text: "4. Certification" }),
       p("Every plan is re-run on fresh paths the LP never saw by an exact quarterly simulator with the Liquidity group's waterfall (liquid sales, hedge funds behind gates, the revolver, then forced sales). The probabilities on this page are those out-of-sample results; the in-sample figure is shown beside them as the optimism gap."),
+      el("h4", { text: "North star and doing nothing" }),
+      p("The Strategy group's north star is 10% a year for five years (the hurdle control moves it). Doing nothing is the baseline of no decisions: no sales (the PE program is not executed), no new commitments, no rebalancing or reserve top-ups and no new debt; distributions accumulate as cash and the owner's distribution and existing calls are paid through the waterfall. The status quo is different: it executes the PE program as decided and keeps today's pacing and annual rebalancing."),
       el("h4", { text: "5. Objectives as tests" }),
       p(`Every case reports the probability that each group's objective is met, alone and with the return target, from the same paths. Strategy: the five-year return reaches the hurdle. Balance Sheet: gross leverage at or below ${F.x(D.house.lev_cap, 2)} and overcommitment at or below ${F.x(D.house.overcommit, 2)} of NAV at every year-end. Liquidity: every capital call and owner distribution paid without a forced private sale. Asset Allocation: the substitutions never cost the target (wherever the status quo reaches it on a path, the plan does too). Each test uses the house limits whatever plan is judged, so a plan built without them (the target alone) is held to them.`),
       el("h4", { text: "Limitations" }),

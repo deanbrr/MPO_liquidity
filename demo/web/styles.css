@@ -139,6 +139,8 @@ table.t.heat td.nm, table.t.heat th { white-space: nowrap; }
 table.t.path th { font-weight: 500; color: var(--text-secondary); white-space: nowrap; }
 table.t.path td.txt { font-size: 12px; min-width: 120px; }
 .objcard h4 { margin: 14px 0 6px; }
+.card.northstar { margin-top: 14px; border-left: 3px solid var(--series-1); }
+table.t td.nm { white-space: nowrap; }
 table.t.fixed th { white-space: normal; }
 table.t.fixed td { overflow-wrap: anywhere; }
 table.t tr:hover td { background: var(--surface-2); }

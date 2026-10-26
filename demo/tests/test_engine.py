@@ -108,3 +108,16 @@ def test_twr_encoding_round_trip():
     assert np.allclose(back, np.floor(t * 1e4 + 1e-9) / 1e4)
     for h in (0.085, 0.095, 0.1, 0.105):                         # the page's hurdle test agrees with the engine's
         assert np.array_equal(back >= h - 1e-9, t >= h)
+
+
+def test_do_nothing_takes_no_decisions(platform):
+    from tpp import plan as planmod, sim
+    v = platform.view("strategy")
+    house = platform.house()
+    bkey, B, _ = platform.book_for(v["prefs"], house)
+    dn = planmod.do_nothing(B, platform.P, house)
+    assert not dn.sell and all(sum(c) == 0 for c in dn.commit.values()) and sum(dn.term_sched) == 0
+    assert all(abs(dn.liquid[b] - B.liquid.get(b, 0.0)) < 1e-12 for b in dn.liquid)
+    S = platform.paths_for(bkey, B, "oos", "base", platform._pi(v["prefs"]), house)
+    o = sim.simulate(S, dn, platform.P, {**platform._sim_settings(house), **planmod.DO_NOTHING_SIM})
+    assert o["y_sales"].sum() == 0 and (o["r_reserve"][:, 1:] >= -1e-6).all()

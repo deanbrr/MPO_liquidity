@@ -86,6 +86,22 @@ def status_quo(book, P, settings: dict | None = None, program: bool = True) -> P
                 meta={"kind": "status_quo", "program": bool(sell)})
 
 
+# operating rules for doing nothing: no annual rebalancing and no reserve top-ups (obligations are still paid,
+# from cash first and then the liquid sleeves in the waterfall's order)
+DO_NOTHING_SIM = {"rebalance": False, "maintain_target": False}
+
+
+def do_nothing(book, P, settings: dict | None = None) -> Plan:
+    """No decisions at all: no sales (the PE program is not executed), no new commitments, no trades, no new debt.
+    Distributions accumulate as cash; the owner's distribution and existing commitments' calls are paid."""
+    st = settings or {}
+    return Plan(name="Do nothing", sell={}, liquid={b: float(book.liquid.get(b, 0.0)) for b in LIQUID_RISK},
+                cash=float(book.liquid.get("CASH", 0.0)), treasury=float(book.liquid.get("TREASURY", 0.0)),
+                commit={b: [0.0] * 5 for b in PRIVATE}, term_bn=0.0, term_sched=[0.0, 0.0, 0.0], navf_bn=0.0,
+                rev_upsize_bn=0.0, beta_bn=float(st.get("beta0_bn", P.get("overlay.beta0_bn"))),
+                meta={"kind": "do_nothing", "program": False})
+
+
 def program_summary(book, plan: Plan) -> dict:
     """Exposure, NAV and unfunded sold by the plan per tranche, PE vs other departments."""
     rows = []

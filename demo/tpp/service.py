@@ -253,7 +253,7 @@ class Platform:
     def _sim_settings(self, house):
         return {k: house[k] for k in ("floor_hard", "floor_target", "waterfall", "hf_quarterly_liquidity",
                                        "revolver_signed_bn", "revolver_drawn0_bn", "term_debt0_bn", "navf_ltv_max",
-                                       "goal_rate") if k in house}
+                                       "goal_rate", "rebalance", "maintain_target") if k in house}
 
     def _status_quo_pair(self, B, S, house, progress):
         sset = self._sim_settings(house)
