@@ -2,10 +2,16 @@
 
 Runs every computation on the engine (tpp.service.Platform), then embeds the results, web/app.js and
 web/styles.css into web/template.html:
-  - each group's status quo, optimized plan (its objective under every house limit), certified out of sample;
+  - can the fund reach 10%? (the opening tab): the opening balance sheet as reconciled, the ladder from doing nothing
+    to leverage (live from the IC cases), the cost of each group's limits (re-optimized with one group's limits
+    removed at a time) and the two exit models;
+  - each group's status quo, optimized plan (its objective under every house limit), certified out of sample, with
+    the dollar shortfall against the target account per path;
   - every stress for the status quo and each plan, with per-path results so the page recomputes P(hurdle), the
     distribution and the tails live when the reader moves the world probabilities or the hurdle;
-  - Strategy: the risk frontier and what each lever buys (re-optimized with one lever switched off);
+  - Strategy: the risk frontier and what each lever buys (re-optimized with one lever switched off); the benchmark
+    ladder: the static framework (one policy portfolio, Yale pacing), one fixed schedule, the adaptive plan, and the
+    fixed schedule re-planned each year, paired on the same paths under every stress;
   - Balance Sheet: the debt-capacity frontier and the whole-fund NAV sensitivity;
   - Liquidity: owner-distribution policies under the prolonged DPI decline;
   - Asset Allocation: the return basis (strategy / blend / underwritten / actual), PE-program variants, holding
@@ -41,10 +47,11 @@ import numpy as np  # noqa: E402
 
 from tpp import metrics, paths, plan as planmod, service, sim, stakeholders as sh, substitution, yale  # noqa: E402
 from tpp.legacy import quantile_w  # noqa: E402
-from tpp.buckets import BY_ID, CATALOG  # noqa: E402
+from tpp.buckets import BY_ID, CATALOG, PRIVATE  # noqa: E402
 from tpp.returns import WORLDS  # noqa: E402
 
 T0 = time.time()
+PRIVATE_SET = set(PRIVATE)
 
 
 def say(msg: str):
@@ -56,6 +63,12 @@ def enc_twr(o: dict) -> str:
     'TWR >= hurdle' is exact for any hurdle on the basis-point grid (it then matches the engine's own count)."""
     bp = np.clip(np.floor(np.asarray(o["twr"]) * 1e4 + 1e-9), -32767, 32767).astype("<i2")
     return base64.b64encode(bp.tobytes()).decode("ascii")
+
+
+def enc_short(o: dict) -> str:
+    """Per-path dollar shortfall against the target account, int16 in $0.01bn (capped at $327bn), base64."""
+    v = np.clip(np.round(np.asarray(o["short"], float) * 100), 0, 32767).astype("<i2")
+    return base64.b64encode(v.tobytes()).decode("ascii")
 
 
 def enc_flags(flags: np.ndarray) -> str:
@@ -134,6 +147,7 @@ def role_block(pf, role: str) -> dict:
         fl = {"sq": flags_for(o_sq, None, house), "np": flags_for(o_np, o_sq, house), "plan": flags_for(o_pl, o_sq, house),
               "dn": flags_for(o_dn, o_sq, house)}
         entry = {"twr": {"sq": enc_twr(o_sq), "np": enc_twr(o_np), "plan": enc_twr(o_pl), "dn": enc_twr(o_dn)},
+                 "short": {"sq": enc_short(o_sq), "np": enc_short(o_np), "plan": enc_short(o_pl), "dn": enc_short(o_dn)},
                  "flags": {k: enc_flags(v_) for k, v_ in fl.items()},
                  "objectives": {k: metrics.objective_rates(o, fl[k], g)
                                 for k, o in (("sq", o_sq), ("np", o_np), ("plan", o_pl), ("dn", o_dn))},
@@ -146,6 +160,16 @@ def role_block(pf, role: str) -> dict:
             entry["program"] = op["change_list"]["pe_program"] if st == v["stress"] else None
         block["stresses"][st] = entry
     return block
+
+
+def try_optimize(pf, *args, **kwargs):
+    """pf.optimize, or None when no plan meets the house limits. The sweep records the variant as infeasible: a limit
+    is never relaxed quietly to produce a number (external research shared 2026-10-27)."""
+    try:
+        return pf.optimize(*args, **kwargs)
+    except RuntimeError as ex:
+        say(f"   no feasible plan under the house limits ({ex})")
+        return None
 
 
 def adaptivity_extras(pf) -> dict:
@@ -161,10 +185,14 @@ def adaptivity_extras(pf) -> dict:
     say("Strategy: what adaptivity adds")
     adaptive = planmod.Plan.from_dict(pf.plans["strategy"]["plan"])
     quiet = lambda m: None
-    fixed = planmod.Plan.from_dict(pf.optimize("strategy", persist=False, house_override={"contingent": False}, progress=quiet)["plan"])
-    no_mand = planmod.Plan.from_dict(pf.optimize("strategy", persist=False, house_override={"opportunistic_secondaries": False},
-                                                 progress=quiet)["plan"])
-    pick = lambda s_: {k: s_[k] for k in ("p_goal", "p_goal_ci", "twr_mean", "cvar10", "p_red", "p_revolver", "p_preserve")}
+    r_f = try_optimize(pf, "strategy", persist=False, house_override={"contingent": False}, progress=quiet)
+    r_n = try_optimize(pf, "strategy", persist=False, house_override={"opportunistic_secondaries": False}, progress=quiet)
+    if r_f is None:
+        return None
+    fixed = planmod.Plan.from_dict(r_f["plan"])
+    no_mand = planmod.Plan.from_dict(r_n["plan"]) if r_n is not None else None
+    pick = lambda s_: {k: s_[k] for k in ("p_goal", "p_goal_ci", "twr_mean", "cvar10", "p_red", "p_revolver", "p_preserve",
+                                          "short_mean_bn", "short_cvar10_bn")}
     rows, nm = [], None
     for st in paths.STRESSES:
         S = pf.paths_for(bkey, B, "oos", st, pf._pi(v["prefs"]), house)
@@ -172,14 +200,95 @@ def adaptivity_extras(pf) -> dict:
         d = metrics.paired_delta(o_a, o_f)
         rows.append({"stress": st, "fixed": pick(metrics.summarize(o_f, g)), "adaptive": pick(metrics.summarize(o_a, g)),
                      "d_p_goal": d["d_p_goal"], "d_p_goal_ci": d["d_p_goal_ci"]})
-        if st == v["stress"]:
+        if st == v["stress"] and no_mand is not None:
             o_n = sim.simulate(S, no_mand, pf.P, sset)
             dn = metrics.paired_delta(o_n, o_f)
             nm = {"adaptive": pick(metrics.summarize(o_n, g)), "d_p_goal": dn["d_p_goal"], "d_p_goal_ci": dn["d_p_goal_ci"]}
     base = next(r for r in rows if r["stress"] == v["stress"])
-    say(f"   adaptive minus fixed: {base['d_p_goal']:+.4f} {np.round(base['d_p_goal_ci'], 4).tolist()}; "
-        f"without the mandate {nm['d_p_goal']:+.4f}")
-    return {"stresses": rows, "no_mandate": nm, "fixed_plan": fixed.to_dict()}
+    say(f"   adaptive minus fixed: {base['d_p_goal']:+.4f} {np.round(base['d_p_goal_ci'], 4).tolist()}"
+        + (f"; without the mandate {nm['d_p_goal']:+.4f}" if nm else ""))
+    return {"stresses": rows, "no_mandate": nm, "fixed_plan": fixed.to_dict(), "_fixed": r_f}
+
+
+LADDER = [("static", "Static: one policy portfolio, Yale pacing"),
+          ("fixed", "Multi-period: one fixed schedule"),
+          ("adaptive", "Multi-period: adaptive (the Strategy plan)"),
+          ("replan", "Multi-period: re-planned each year")]
+
+
+def ladder_extras(pf, r_f) -> tuple[dict, dict]:
+    """The benchmark ladder (external research shared 2026-10-27): the static framework (tpp.static), the multi-period
+    plan with one fixed schedule, the adaptive plan and the fixed plan re-planned each year from the observed history
+    (tpp.replan); the Strategy group's objective, view and house limits, paired on the certification paths under every
+    stress. Returns the payload and the static and re-planned plans (for the IC cases)."""
+    v = pf.view("strategy")
+    house = pf.house()
+    g = float(house["goal_rate"])
+    bkey, B, R = pf.book_for(v["prefs"], house)
+    sset = pf._sim_settings(house)
+    say("Strategy: the benchmark ladder (static, fixed schedule, adaptive, re-planned each year)")
+    sb = pf.static_benchmark("strategy", progress=say)
+    if not sb.get("ok"):
+        say(f"   static benchmark infeasible: {sb.get('message')}")
+        return None, {}
+    rp, info = pf.replan("strategy", r_f, progress=say)
+    say(f"   re-planned {info['n_replanned']} histories ({info['n_infeasible']} infeasible, kept), {info['time_s']:.0f}s")
+    plans = {"static": sb["plan"], "fixed": planmod.Plan.from_dict(r_f["plan"]),
+             "adaptive": planmod.Plan.from_dict(pf.plans["strategy"]["plan"]), "replan": rp}
+    keys = [k for k, _ in LADDER]
+    pick = ("p_goal", "p_goal_ci", "twr_mean", "cvar10", "p_red", "p_revolver", "p_preserve", "short_mean_bn",
+            "short_cvar10_bn", "short_obj_bn", "p_target_acct")
+    rows = []
+    for st in paths.STRESSES:
+        S = pf.paths_for(bkey, B, "oos", st, pf._pi(v["prefs"]), house)
+        o_sq = sim.simulate(S, planmod.status_quo(B, pf.P, house, program=True), pf.P, sset)
+        outs = {k: sim.simulate(S, plans[k], pf.P, sset) for k in keys}
+        res = {}
+        for k in keys:
+            s = metrics.summarize(outs[k], g)
+            rates = metrics.objective_rates(outs[k], flags_for(outs[k], o_sq, house), g)
+            res[k] = {**{x: s[x] for x in pick}, "p_bs": rates["p_bs"], "p_liq": rates["p_liq"], "p_all": rates["p_all"],
+                      "priv5_p50_bn": s["fans"]["priv"]["p50"][5], "ovc_p50": s["fans"]["ovc"]["p50"],
+                      "ovc_p95": s["fans"]["ovc"]["p95"], "nav5_p50_bn": s["nav5_p50_bn"]}
+        d = lambda a, b: {kk: metrics.paired_delta(outs[a], outs[b])[kk]
+                          for kk in ("d_p_goal", "d_p_goal_ci", "d_short", "d_short_ci")}
+        rows.append({"stress": st, "rungs": res, "fixed_vs_static": d("fixed", "static"),
+                     "adaptive_vs_fixed": d("adaptive", "fixed"), "replan_vs_fixed": d("replan", "fixed"),
+                     "replan_vs_static": d("replan", "static"), "adaptive_vs_static": d("adaptive", "static")})
+        if st == "base":
+            say("   " + " | ".join(f"{k} {res[k]['p_goal']:.3f}" for k in keys)
+                + f"; fixed - static {rows[-1]['fixed_vs_static']['d_p_goal']:+.4f}, re-planned - fixed "
+                  f"{rows[-1]['replan_vs_fixed']['d_p_goal']:+.4f}")
+    pol = sb["policy"]
+    groups = {"Private assets": [b for b in pol["ids"] if b in PRIVATE_SET], "Hedge funds": ["HF"],
+              "Public equities": ["GE_GLOBAL", "GE_DM", "GE_EM"], "Global Agg": ["AGG"], "MAO capital": ["MAO_INT", "MAO_EXT"],
+              "Reserve (cash + Treasury)": ["RESERVE"]}
+    fx = plans["fixed"]
+    fixed_w = {"Hedge funds": fx.liquid.get("HF", 0.0), "Public equities": sum(fx.liquid.get(b, 0.0) for b in groups["Public equities"]),
+               "Global Agg": fx.liquid.get("AGG", 0.0), "MAO capital": sum(fx.liquid.get(b, 0.0) for b in groups["MAO capital"]),
+               "Reserve (cash + Treasury)": fx.cash + fx.treasury}
+    sp = sb["plan"]
+    static_now = {"Hedge funds": sp.liquid.get("HF", 0.0), "Public equities": sum(sp.liquid.get(b, 0.0) for b in groups["Public equities"]),
+                  "Global Agg": sp.liquid.get("AGG", 0.0), "MAO capital": sum(sp.liquid.get(b, 0.0) for b in groups["MAO capital"]),
+                  "Reserve (cash + Treasury)": sp.cash + sp.treasury}
+    weights = [{"group": gname, "today": sum(pol["w0"].get(b, 0.0) for b in ids) * B.W0,
+                "policy": sum(pol["w"].get(b, 0.0) for b in ids) * B.W0,
+                "static_today": static_now.get(gname), "fixed_today": fixed_w.get(gname)} for gname, ids in groups.items()]
+    commit = lambda p_, t: float(sum(list(c)[t] for c in p_.commit.values()))
+    payload = {"rungs": [{"key": k, "name": nm} for k, nm in LADDER], "stresses": rows,
+               "static": {"weights": weights, "private_w": pol["private_w"], "private_w0": pol["private_w0"],
+                          "priv_cap": pol["priv_cap"], "reserve_w": pol["reserve_w"], "debt_bn": pol["debt_bn"],
+                          "in_sample": pol["in_sample"], "nav_mean_bn": pol["nav_mean_bn"], "yale_fit": sb["yale_fit"],
+                          "pacing": sb["pacing"]["rows"], "commit_bn": commit(sp, 0),
+                          "commit_sq_bn": float(sum(B.pacing_sq.values())), "commit_fixed_bn": [commit(fx, t) for t in range(5)],
+                          "commit_replan_bn": [commit(rp, t) for t in range(5)],
+                          "program_proceeds0_bn": sb["program_proceeds0_bn"]},
+               "replan": {k: info[k] for k in ("min_scenarios", "time_s", "n_replanned", "p_replanned", "n_infeasible",
+                                               "calibration") if k in info}
+                         | {"replans": [r for r in info["replans"] if r["status"] != "kept (too few scenarios)"],
+                            "n_histories": {str(t + 1): 3 ** t for t in range(1, 5)}},
+               "n_lp": int(house.get("n_lp_paths") or pf.n_lp)}
+    return payload, {"static": sb["plan"], "replan": rp}
 
 
 def strategy_extras(pf) -> dict:
@@ -188,10 +297,19 @@ def strategy_extras(pf) -> dict:
     base = pf.house()
 
     def run(name, house_patch, key):
-        r = pf.optimize("strategy", persist=False, house_override={**SWEEP, **house_patch}, progress=lambda m: None)
+        r = try_optimize(pf, "strategy", persist=False, house_override={**SWEEP, **house_patch}, progress=lambda m: None)
+        if r is None:
+            # which limit binds: re-solve without the balance-sheet guard (overcommitment and leverage at every year end)
+            r2 = try_optimize(pf, "strategy", persist=False, house_override={**SWEEP, **house_patch, "bs_guard_prob": 0.0},
+                              progress=lambda m: None)
+            say(f"   {name}: no feasible plan" + ("; feasible without the balance-sheet guard" if r2 else ""))
+            return {"name": name, "key": key, "infeasible": True, "binding": "bs_guard" if r2 else None,
+                    "without_guard": {"p_goal": r2["metrics"]["p_goal"], "short_mean_bn": r2["metrics"]["short_mean_bn"],
+                                      "p_red": r2["metrics"]["p_red"]} if r2 else None}
         s = r["metrics"]
         row = {"name": name, "key": key, "p_goal": s["p_goal"], "p_goal_ci": s["p_goal_ci"], "twr_mean": s["twr_mean"],
                "cvar10": s["cvar10"], "cvar1": s["cvar1"], "p_red": s["p_red"], "p_revolver": s["p_revolver"],
+               "short_mean_bn": s["short_mean_bn"], "short_cvar10_bn": s["short_cvar10_bn"],
                "lev_max_p95": max(s["fans"]["lev"]["p95"]), "d_p_goal": r["delta"]["d_p_goal"],
                "d_p_goal_ci": r["delta"]["d_p_goal_ci"], "label": r["label"],
                "financing": r["change_list"]["financing"], "r1": r["change_list"]["r1"]}
@@ -239,7 +357,9 @@ def target_only_extras(pf) -> dict:
     sq_house = {st: sim_pair(pf, "strategy", st, None)[2] for st in ("base", "crisis_y1", "hf_gates")}
     for key, name, lev, hf_mult in TARGET_ONLY:
         ov = sh.target_only(lev, {"HF": hf_mult * float(B.liquid["HF"])} if hf_mult else None)
-        r = pf.optimize("strategy", objective="gbo", persist=False, house_override={**SWEEP, **ov}, progress=lambda m: None)
+        r = try_optimize(pf, "strategy", objective="gbo", persist=False, house_override={**SWEEP, **ov}, progress=lambda m: None)
+        if r is None:
+            continue
         p = planmod.Plan.from_dict(r["plan"])
         p.name = name
         plans[key] = (p, ov)
@@ -257,6 +377,7 @@ def target_only_extras(pf) -> dict:
         rows.append({"key": key, "name": name, "lev_cap": lev,
                      "hf_cap_bn": hf_mult * float(B.liquid["HF"]) if hf_mult else None,
                      "p_goal": s["p_goal"], "p_goal_ci": s["p_goal_ci"], "by_world": s["by_world"],
+                     "short_mean_bn": s["short_mean_bn"], "short_cvar10_bn": s["short_cvar10_bn"],
                      "twr_mean": s["twr_mean"], "cvar10": s["cvar10"], "cvar1": s["cvar1"], "p_red": s["p_red"],
                      "p_revolver": s["p_revolver"], "objectives": rates, "stresses": stressed,
                      "liquid": dict(r["plan"]["liquid"]),
@@ -275,6 +396,103 @@ def target_only_extras(pf) -> dict:
         say(f"   {name}: P(goal) {s['p_goal']:.3f} CVaR10 {s['cvar10']:.4f} forced {s['p_red']:.3f} "
             f"objectives BS {rates['p_bs']:.2f} liquidity {rates['p_liq']:.2f} ahead {rates['p_aa']:.2f}")
     return {"rows": rows, "plans": plans}
+
+
+def _liquid_caps():
+    from tpp.buckets import LIQUID_RISK
+    return {b: [0.0, 1e4] for b in LIQUID_RISK}
+
+
+# the cost of each group's limits: the Strategy objective re-optimized with one group's limits removed at a time
+FEAS_LIMITS = [
+    ("all", "Every group's limits (the house)", {}),
+    ("bs", "Without the Balance Sheet group's guard and overcommitment ceiling", {"bs_guard_prob": 0.0, "overcommit": 50.0}),
+    ("liq", "Without the Liquidity group's floor, target and forced-sale appetite",
+     {"floor_hard": 0.0, "floor_target": 0.0, "forced_eps": 0.0}),
+    ("depth", "Without the Strategy group's depth guard", {"depth_guard": False}),
+    ("aa", "Without Asset Allocation's ranges and pacing bands",
+     {"range_band": [0.0, 1e3], "pace_mult": [0.0, 5.0], "commit_agg_mult": 5.0, "x_bounds": "liquid_caps"}),
+    ("prog", "Without the PE program", {"pe_program_enabled": False}),
+    ("none", "Without any group's limit (no borrowing)", "target_only"),
+]
+
+
+def feasibility_extras(pf) -> dict:
+    """Can the fund reach 10%? (external research shared 2026-10-27: a target-feasibility study first.) The opening
+    balance sheet as reconciled (61% private at NAV, the 7% floor), and the cost of each group's limits: the Strategy
+    group's objective re-optimized (one schedule, sweep size) with one group's limits removed at a time, judged against
+    every group's objective with the house limits. The ladder of portfolios (doing nothing to leverage) is computed
+    live on the page from the IC cases."""
+    v = pf.view("strategy")
+    house = pf.house()
+    g = float(house["goal_rate"])
+    _, B, _ = pf.book_for(pf.view("ic")["prefs"], house)
+    out = {"book": B.summary(), "notes": B.notes,
+           "floor_hard": float(house["floor_hard"]), "floor_target": float(house["floor_target"]),
+           "caps": {k: house[k] for k in ("lev_cap", "recourse_cap", "navf_ltv_max", "overcommit", "bs_guard_prob",
+                                          "forced_eps")},
+           "objective": v["objective"], "objective_text": sh.OBJECTIVES.get(v["objective"]), "limits": []}
+    say("Feasibility: the cost of each group's limits")
+    for key, name, ov in FEAS_LIMITS:
+        if ov == "target_only":
+            ov = sh.target_only(1.0)
+        else:
+            ov = {k: (_liquid_caps() if x == "liquid_caps" else x) for k, x in ov.items()}
+        try:
+            r = pf.optimize("strategy", persist=False, house_override={**SWEEP, **ov}, progress=lambda m: None,
+                            keep_paths=True)
+        except RuntimeError as ex:
+            out["limits"].append({"key": key, "name": name, "infeasible": str(ex)})
+            say(f"   {name}: infeasible ({ex})")
+            continue
+        s = r["metrics"]
+        o_pl, o_sq = r["_paths"]["plan"], r["_paths"]["status_quo"]
+        rates = metrics.objective_rates(o_pl, flags_for(o_pl, o_sq, house), g)
+        out["limits"].append({"key": key, "name": name, "label": r["label"], "p_goal": s["p_goal"],
+                              "p_goal_ci": s["p_goal_ci"], "short_mean_bn": s["short_mean_bn"],
+                              "short_cvar10_bn": s["short_cvar10_bn"], "twr_mean": s["twr_mean"], "cvar10": s["cvar10"],
+                              "p_red": s["p_red"], "p_bs": rates["p_bs"], "p_liq": rates["p_liq"],
+                              "p_all": rates["p_all"], "by_exit": s["by_exit"],
+                              "borrowing_bn": float(sum(r["plan"]["term_sched"]) + r["plan"]["navf_bn"]),
+                              "reserve_bn": r["plan"]["cash"] + r["plan"]["treasury"],
+                              "commit_y1_bn": float(sum(c[0] for c in r["plan"]["commit"].values()))})
+        say(f"   {name}: P(goal) {s['p_goal']:.3f} E[S] {s['short_mean_bn']:.1f} tail {s['short_cvar10_bn']:.1f} "
+            f"forced {s['p_red']:.3f} BS {rates['p_bs']:.2f}")
+    return out
+
+
+def objective_compare_extras(pf) -> dict:
+    """The Strategy group's plan under its objective against the same limits and view with the other objective
+    (the dollar shortfall against the target account vs the buffered probability of 10%), on the same paths."""
+    v = pf.view("strategy")
+    house = pf.house()
+    g = float(house["goal_rate"])
+    bkey, B, R = pf.book_for(v["prefs"], house)
+    S = pf.paths_for(bkey, B, "oos", v["stress"], pf._pi(v["prefs"]), house)
+    sset = pf._sim_settings(house)
+    own = v["objective"]
+    alt = "gbo" if own != "gbo" else "shortfall"
+    say(f"Strategy: the plan under {own} against {alt}")
+    p_own = planmod.Plan.from_dict(pf.plans["strategy"]["plan"])
+    r_alt = try_optimize(pf, "strategy", objective=alt, persist=False, progress=lambda m: None)
+    if r_alt is None:
+        return None
+    p_alt = planmod.Plan.from_dict(r_alt["plan"])
+    o_sq = sim.simulate(S, planmod.status_quo(B, pf.P, house, program=True), pf.P, sset)
+    rows = []
+    for key, p in ((own, p_own), (alt, p_alt)):
+        o = sim.simulate(S, p, pf.P, sset)
+        s = metrics.summarize(o, g)
+        rates = metrics.objective_rates(o, flags_for(o, o_sq, house), g)
+        rows.append({"objective": key, "text": sh.OBJECTIVES.get(key), "p_goal": s["p_goal"], "p_goal_ci": s["p_goal_ci"],
+                     "short_mean_bn": s["short_mean_bn"], "short_cvar10_bn": s["short_cvar10_bn"],
+                     "twr_mean": s["twr_mean"], "cvar10": s["cvar10"], "cvar1": s["cvar1"], "p_red": s["p_red"],
+                     "p_bs": rates["p_bs"], "p_all": rates["p_all"], "p_target_acct": s["p_target_acct"],
+                     "_o": o})
+    d = metrics.paired_delta(rows[1].pop("_o"), rows[0].pop("_o"))
+    say(f"   {own}: P {rows[0]['p_goal']:.3f} E[S] {rows[0]['short_mean_bn']:.1f} | {alt}: P {rows[1]['p_goal']:.3f} "
+        f"E[S] {rows[1]['short_mean_bn']:.1f}")
+    return {"rows": rows, "alt_minus_own": d}
 
 
 def ic_cases(pf, plans: list) -> dict:
@@ -296,7 +514,8 @@ def ic_cases(pf, plans: list) -> dict:
             if key == "status_quo":
                 o_sq = o
             fl = flags_for(o, None if key == "status_quo" else o_sq, house)
-            out[key][st] = {"twr": enc_twr(o), "flags": enc_flags(fl), "rates": metrics.objective_rates(o, fl, g)}
+            out[key][st] = {"twr": enc_twr(o), "short": enc_short(o), "flags": enc_flags(fl),
+                            "rates": metrics.objective_rates(o, fl, g)}
         say(f"   IC cases: {st}")
     return out
 
@@ -401,8 +620,8 @@ def aa_extras(pf) -> dict:
     say("Asset Allocation: return basis comparison")
     for basis in ("strategy", "blend", "underwritten", "actual"):
         ev = pf.evaluate("asset_allocation", prefs_override={"basis": basis}, progress=lambda m: None)
-        r = pf.optimize("asset_allocation", persist=False, prefs_override={"basis": basis}, house_override=SWEEP,
-                        progress=lambda m: None)
+        r = try_optimize(pf, "asset_allocation", persist=False, prefs_override={"basis": basis}, house_override=SWEEP,
+                         progress=lambda m: None)
         _, B, R = pf.book_for(pf._variant_view("asset_allocation", {"basis": basis})["prefs"], house)
         h = R["holdings"]
         w = h["nav_bn"].to_numpy()
@@ -410,11 +629,12 @@ def aa_extras(pf) -> dict:
                              "book_return_exp": float(np.average(h["r_exp"], weights=w)),
                              "book_return_ce": float(np.average(h["r_ce"], weights=w)),
                              "sq": brief(ev["status_quo"]), "np": brief(ev["no_program"]),
-                             "program_effect": ev["program_effect"], "plan": brief(r["metrics"]),
-                             "delta": r["delta"], "sells": r["change_list"]["sells"],
-                             "pe_program": r["change_list"]["pe_program"]})
+                             "program_effect": ev["program_effect"], "plan": brief(r["metrics"]) if r else None,
+                             "delta": r["delta"] if r else None, "sells": r["change_list"]["sells"] if r else [],
+                             "pe_program": r["change_list"]["pe_program"] if r else None})
         say(f"   {basis}: book E {out['basis'][-1]['book_return_exp']:.4f}  SQ {ev['status_quo']['p_goal']:.3f} "
-            f"program effect {ev['program_effect']['d_p_goal']:+.3f}  plan {r['metrics']['p_goal']:.3f}")
+            f"program effect {ev['program_effect']['d_p_goal']:+.3f}  plan "
+            + (f"{r['metrics']['p_goal']:.3f}" if r else "infeasible"))
     say("Asset Allocation: PE program variants")
     v = pf.view("asset_allocation")
     bkey, B, R = pf.book_for(v["prefs"], house)
@@ -491,9 +711,13 @@ def bs_extras(pf) -> dict:
     out = {"debt_frontier": [], "nav_sensitivity": []}
     say("Balance Sheet: debt-capacity frontier (the hurdle objective under this group's view)")
     for cap, beta in ((0.0, False), (5.0, False), (10.0, False), (10.0, True), (20.0, True)):
-        r = pf.optimize("balance_sheet", objective="gbo", persist=False,
-                        house_override={**SWEEP, "new_term_max_bn": cap, "allow_beta": beta, "allow_debt": cap > 0},
-                        progress=lambda m: None)
+        r = try_optimize(pf, "balance_sheet", objective="gbo", persist=False,
+                         house_override={**SWEEP, "new_term_max_bn": cap, "allow_beta": beta, "allow_debt": cap > 0},
+                         progress=lambda m: None)
+        if r is None:
+            out["debt_frontier"].append({"name": f"New term debt up to ${cap:.0f}bn" + (", synthetic beta allowed" if beta else ""),
+                                         "cap": cap, "beta": beta, "infeasible": True})
+            continue
         s = r["metrics"]
         out["debt_frontier"].append({"name": f"New term debt up to ${cap:.0f}bn" + (", synthetic beta allowed" if beta else ""),
                                      "cap": cap, "beta": beta, "p_goal": s["p_goal"], "twr_mean": s["twr_mean"],
@@ -581,23 +805,49 @@ def main():
     data = {"meta": {"built": time.strftime("%Y-%m-%d %H:%M"), "files": pf.files, "n_oos": pf.n_oos, "n_lp": pf.n_lp,
                      "worlds": WORLDS, "hist_edges": None, "goal_rate": float(pf.house()["goal_rate"]),
                      "W0": ov["book"]["W0_bn"], "Wstar": ov["book"]["Wstar_bn"], "quick": bool(a.quick),
-                     "n_val": pf.n_val, "owner": owner_meta(pf)},
+                     "n_val": pf.n_val, "owner": owner_meta(pf),
+                     # exit model per path: in each world block the first n - n_p paths follow the calibrated cycle,
+                     # the last n_p the persistent slowdown (tpp.paths.exit_split)
+                     "exit_design": {"share": float(pf.P.get("exits.persistent_share")),
+                                     "persistence": float(pf.P.get("exits.prolonged_drought_persistence")),
+                                     "n_p": {st: paths.exit_split(pf.P, st, pf.n_oos) for st in paths.STRESSES}},
+                     "short_alpha": float(pf.P.get("objective.shortfall_alpha")),
+                     "robust_pis": pf.robust_pis()},
             "overview": ov, "stresses": paths.STRESSES, "objectives": sh.OBJECTIVES, "house": pf.house(),
             "owner": sh.SETTING_OWNER, "roles": {}}
     for role in sh.ROLES:
         data["roles"][role] = role_block(pf, role)
     data["meta"]["hist_edges"] = np.linspace(-0.10, 0.25, 36).tolist()
     data["roles"]["strategy"]["extras"] = strategy_extras(pf)
-    data["roles"]["strategy"]["extras"]["adaptivity"] = adaptivity_extras(pf)
+    ad = adaptivity_extras(pf)
+    r_f = ad.pop("_fixed", None) if ad else None
+    data["roles"]["strategy"]["extras"]["adaptivity"] = ad
+    lad, lad_plans = ladder_extras(pf, r_f) if r_f is not None else (None, {})
+    data["roles"]["strategy"]["extras"]["ladder"] = lad
+    data["roles"]["strategy"]["extras"]["objective_compare"] = objective_compare_extras(pf)
     to = target_only_extras(pf)
     data["roles"]["strategy"]["extras"]["target_only"] = to["rows"]
+    data["feasibility"] = feasibility_extras(pf)
     data["roles"]["asset_allocation"]["extras"] = aa_extras(pf)
     data["roles"]["liquidity"]["extras"] = liquidity_extras(pf)
     data["roles"]["balance_sheet"]["extras"] = bs_extras(pf)
     say("IC: every plan and the consensus plan on one view")
-    extra = [(k, *to["plans"][k]) for k in ("to_none", "to_150")]
+    extra = [(k, *to["plans"][k]) for k in ("to_none", "to_115", "to_150", "to_200") if k in to["plans"]]
     _, B_ic, _ = pf.book_for(pf.view("ic")["prefs"], pf.house())
     extra = [("do_nothing", planmod.do_nothing(B_ic, pf.P, pf.house()), dict(planmod.DO_NOTHING_SIM))] + extra
+    for k, nm in (("static", "Static framework: policy portfolio + Yale pacing (Strategy objective)"),
+                  ("replan", "Strategy objective, one schedule re-planned each year")):
+        if k in lad_plans:
+            p_ = copy.deepcopy(lad_plans[k])
+            p_.name = nm
+            extra.append((k, p_, None))
+    say("IC: the consensus plan at the IC's world weights only (against the robust consensus)")
+    r_ic = try_optimize(pf, "consensus", objective="shortfall", persist=False, house_override={"robust": False},
+                        progress=lambda m: None)
+    if r_ic is not None:
+        p_ic = planmod.Plan.from_dict(r_ic["plan"])
+        p_ic.name = "Consensus plan, IC weights only"
+        extra.append(("consensus_ic", p_ic, None))
     data["ic"] = pf.compare(include_consensus=True, progress=lambda m: None, extra_plans=extra)
     v = pf.view("ic")
     house = pf.house()
@@ -631,7 +881,7 @@ def render(out_dir: Path, payload: str):
     main_file = out_dir / "ADIC_TPP_Demo.html"
     main_file.write_text(html, encoding="utf-8")
     for role in sh.ROLES + ["ic"]:
-        (out_dir / f"ADIC_TPP_{role}.html").write_text(html.replace('data-default-role="strategy"',
+        (out_dir / f"ADIC_TPP_{role}.html").write_text(html.replace('data-default-role="feasibility"',
                                                                     f'data-default-role="{role}"'), encoding="utf-8")
     say(f"wrote {main_file} ({main_file.stat().st_size / 1e6:.2f} MB) and one copy per group")
 

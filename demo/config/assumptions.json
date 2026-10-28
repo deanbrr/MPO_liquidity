@@ -1,13 +1,16 @@
 {
   "_doc": "Every non-data number the TPP demo uses. Leaves are {value, unit, rationale, source} as in examples/mpo_v2/params.json, so tpp.legacy.Params reads both. DATA comes from the user's two workbooks; everything here is an ASSUMPTION until replaced by ADIC figures. The regime / factor / owner-draw model is read from examples/mpo_v2/params.json (overridden where noted).",
   "fund": {
-    "total_nav_bn": {"value": 177.0, "unit": "$bn", "rationale": "Whole-fund NAV. The fund file holds only the externally managed fund and co-investment book; the gap is the internally managed sleeves below.", "source": "User, 2026-10-18 (about $177bn) and 2026-10-25 (probably over $170bn)"},
+    "total_nav_bn": {"value": 177.0, "unit": "$bn", "rationale": "Whole-fund NAV. The fund file holds only the externally managed fund and co-investment book; the gap is the private assets outside the file (below) and the internally managed sleeves.", "source": "User, 2026-10-18 (about $177bn) and 2026-10-25 (probably over $170bn)"},
+    "private_share": {"value": 0.61, "unit": "private NAV / whole-fund NAV", "rationale": "Private assets are 61% of the fund at NAV (unfunded commitments not counted); the other 39% is public markets. The fund file's private holdings fall short of it; the difference is derived from the current private strategies (private_outside_file).", "source": "User, 2026-10-28 (61% private at NAV, 39% public)"},
+    "private_outside_file": {"value": "replicate", "unit": "replicate | none", "rationale": "replicate: the private NAV needed to reach private_share, beyond the fund file's, is the current private book scaled up: the same mix by ER strategy, the same age profile and the same unfunded commitments per $ of NAV, earning each strategy's ER returns (no holding-level record, so no tilt and no quality discount in its bid), with the status-quo commitment pace scaled in proportion. It is never sold by a plan (no identified holdings) but is hit by forced sales pro rata. none: the fund file's private book only.", "source": "User, 2026-10-28 (derive the 61% from the current strategies and their returns)"},
     "max_stale_months": {"value": 12, "unit": "months", "rationale": "A row counts as a live holding when its latest performance date is within this window of the file's as-of date. Older marks are legacy rows, reported on the Data page.", "source": "Data review, 2026-10-25"},
     "include_legacy_rows": {"value": false, "unit": "flag", "rationale": "Rows last marked before the staleness window (pre-restructuring stakes, old deposits, futures and loans) are excluded unless the user confirms they are still held.", "source": "Data review, 2026-10-25"},
     "min_live_nav_usd": {"value": 1.0, "unit": "$", "rationale": "Rows below this NAV and with no unfunded commitment are fully realized and carry no exposure.", "source": "Design default"}
   },
   "internal_sleeves": {
-    "gap_split": {"value": {"GE_DM": 0.38, "GE_EM": 0.08, "GE_GLOBAL": 0.1, "AGG": 0.12, "TREASURY": 0.2, "CASH": 0.09, "MAO_INT": 0.02, "MAO_EXT": 0.01}, "unit": "share of (total NAV - fund-file NAV)", "rationale": "Sleeves priced in the ER file but absent from the fund file: Global Equities Division (DM, EM, global), Global Agg, Treasury, Cash and the multi-asset overlay's capital. Working split until the Balance Sheet group enters actual balances.", "source": "Assumption; prior working allocation v2 (long-only 20%, Treasury 8.5% of $177bn)"}
+    "gap_split": {"value": {"GE_DM": 0.38, "GE_EM": 0.08, "GE_GLOBAL": 0.1, "AGG": 0.12, "TREASURY": 0.2, "CASH": 0.09, "MAO_INT": 0.02, "MAO_EXT": 0.01}, "unit": "share of (total NAV - fund-file NAV - private NAV outside the file)", "rationale": "Liquid sleeves priced in the ER file but absent from the fund file: Global Equities Division (DM, EM, global), Global Agg, Treasury, Cash and the multi-asset overlay's capital. Working split until the Balance Sheet group enters actual balances.", "source": "Assumption; prior working allocation v2 (long-only 20%, Treasury 8.5% of $177bn)"},
+    "reserve_at_target": {"value": true, "unit": "flag", "rationale": "If the working split leaves the reserve (cash + Treasury) below the reserve target today, the shortfall moves into it from the other internal sleeves pro rata: a fund with a liquidity floor holds at least its target before any plan. Off: the split as given (the status quo then restores the floor by liquid sales in its first quarter).", "source": "Assumption (2026-10-28: the 7% floor with the 61% private book)"}
   },
   "rates": {
     "sofr": {"value": 0.0389, "unit": "per year", "rationale": "Financing base rate, held flat over the horizon (rate shocks are a stress, not a path).", "source": "examples/mpo_v2/params.json rates.sofr"}
@@ -22,9 +25,9 @@
     "term_spread": {"value": 0.0085, "unit": "per year over SOFR", "rationale": "Senior unsecured term loan margin.", "source": "examples/mpo_v2/params.json"},
     "navf_spread": {"value": 0.03, "unit": "per year over SOFR", "rationale": "NAV facility margin, PIK.", "source": "examples/mpo_v2/params.json corporate_finance.navf"},
     "navf_oid": {"value": 0.015, "unit": "share of amount drawn", "rationale": "Upfront fee / original-issue discount.", "source": "examples/mpo_v2/params.json"},
-    "navf_ltv_max": {"value": 0.1, "unit": "debt / pledged private NAV", "rationale": "Maximum loan-to-value on the private pledge pool.", "source": "examples/mpo_v2/params.json"},
+    "navf_ltv_max": {"value": 0.1, "unit": "debt / pledged private NAV", "rationale": "Maximum loan-to-value on the private pledge pool. A prototype placeholder, not ADIC policy.", "source": "examples/mpo_v2/params.json (prototype placeholder: user 2026-10-28)"},
     "navf_ltv_stress": {"value": 0.05, "unit": "debt / pledged private NAV", "rationale": "LTV covenant in a crisis; a breach forces repayment from the reserve.", "source": "examples/mpo_v2/params.json"},
-    "recourse_cap": {"value": 0.15, "unit": "share of NAV", "rationale": "Revolver + term debt cap.", "source": "examples/mpo_v2/params.json"},
+    "recourse_cap": {"value": 0.15, "unit": "share of NAV", "rationale": "Revolver + term debt cap. A prototype placeholder, not ADIC policy.", "source": "examples/mpo_v2/params.json (prototype placeholder: user 2026-10-28)"},
     "encumbrance_cap": {"value": 0.2, "unit": "share of total assets", "rationale": "Pledged collateral cap.", "source": "examples/mpo_v2/params.json"}
   },
   "overlay": {
@@ -42,8 +45,8 @@
     "rule_prior": {"value": 0.09, "unit": "share of opening-year NAV", "rationale": "Last year's rate (the rule smooths half toward it).", "source": "User 2026-10-26"}
   },
   "liquidity": {
-    "floor_hard": {"value": 0.04, "unit": "(cash + Treasury) / NAV", "rationale": "Hard liquidity floor; below it the waterfall sells liquid assets.", "source": "examples/mpo_v2/params.json constraints.floor_hard"},
-    "floor_target": {"value": 0.08, "unit": "(cash + Treasury) / NAV", "rationale": "Target reserve restored at year ends from surplus.", "source": "examples/mpo_v2/params.json constraints.floor_target"},
+    "floor_hard": {"value": 0.07, "unit": "(cash + Treasury) / NAV", "rationale": "ADIC's liquidity floor; below it the waterfall sells liquid assets, then draws the revolver, then sells private holdings. Read here on the reserve (cash + Treasury); which assets ADIC counts toward it is to confirm.", "source": "User, 2026-10-28 (7% is the liquidity floor)"},
+    "floor_target": {"value": 0.08, "unit": "(cash + Treasury) / NAV", "rationale": "Operating target above the floor, restored at year ends from surplus (an assumption: 1pp of headroom over the 7% floor).", "source": "Assumption (prototype target 8%, examples/mpo_v2/params.json constraints.floor_target)"},
     "waterfall": {"value": ["AGG", "GE_DM", "GE_GLOBAL", "GE_EM", "HF", "MAO_EXT", "MAO_INT", "REVOLVER", "FORCED"], "unit": "order", "rationale": "Liquid sales after the reserve, then the revolver, then forced secondary sales of private holdings (a red event).", "source": "Liquidity policy default; editable by the Liquidity group"},
     "hf_quarterly_liquidity": {"value": [0.25, 0.2, 0.1], "unit": "share of HF NAV redeemable per quarter by state", "rationale": "Quarterly dealing with gates in stress.", "source": "examples/mpo_v2 trading.redeem_phi (100/95/66% within 12 months), made quarterly"},
     "forced_sale_extra_discount": {"value": 0.1, "unit": "share of the stressed bid", "rationale": "Distressed-seller discount on top of the market bid.", "source": "Assumption"},
@@ -59,7 +62,8 @@
   },
   "exits": {
     "start_in_drought": {"value": 1.0, "unit": "probability", "rationale": "DPI has been falling: today's exit window is a drought (distributions at 0.47x normal).", "source": "User, 2026-10-25; examples/mpo_v2 regimes.exit (0.87)"},
-    "prolonged_drought_persistence": {"value": 0.95, "unit": "quarterly probability of staying in drought", "rationale": "The 'prolonged DPI decline' stress (base 0.88).", "source": "Assumption"}
+    "prolonged_drought_persistence": {"value": 0.95, "unit": "quarterly probability of staying in drought", "rationale": "The persistent exit slowdown (base 0.88): a drought then lasts about five years on average instead of two.", "source": "Assumption"},
+    "persistent_share": {"value": 0.3, "unit": "probability", "rationale": "Exit model uncertainty: in every scenario set this share of the factor paths follows the persistent exit slowdown (the drought persistence above) and the rest the calibrated cycle, so a lasting slowdown is a weighted world, not only a stress. The exit-window factor is a surprise against each model's own expectation, so the slowdown moves distributions, calls, bids and market classes, not expected returns. The 'prolonged DPI decline' stress sets every path to the slowdown.", "source": "Assumption; MSCI Private Capital Benchmarks Q1 2026 (distribution rate about half its pre-2022 level); external research shared by the user 2026-10-27"}
   },
   "returns": {
     "er_return_type": {"value": "geometric", "unit": "geometric | arithmetic", "rationale": "ER figures read as expected compound annual returns; the simulator matches their log mean.", "source": "Assumption about the ER file"},
@@ -103,8 +107,8 @@
     "mult_range": {"value": [0.0, 1.5], "unit": "x status-quo pacing", "rationale": "Bounds for the optimizer's pacing plan.", "source": "Assumption (prototype 0.25-1.25)"}
   },
   "constraints": {
-    "lev_cap": {"value": 1.15, "unit": "exposure / NAV", "rationale": "Gross exposure cap in today's drought state.", "source": "examples/mpo_v2 constraints.class_caps (1.30 / 1.15 / 1.10)"},
-    "overcommit": {"value": 0.8, "unit": "(private NAV + unfunded) / NAV", "rationale": "Overcommitment ceiling.", "source": "examples/mpo_v2 constraints.overcommit"},
+    "lev_cap": {"value": 1.15, "unit": "exposure / NAV", "rationale": "Gross exposure cap in today's drought state. A prototype placeholder, not ADIC policy.", "source": "examples/mpo_v2 constraints.class_caps (1.30 / 1.15 / 1.10) (prototype placeholder: user 2026-10-28)"},
+    "overcommit": {"value": 0.8, "unit": "(private NAV + unfunded) / NAV", "rationale": "Overcommitment ceiling. A prototype placeholder, not ADIC policy; with 61% of NAV in private assets plus their unfunded commitments the fund starts close to it.", "source": "examples/mpo_v2 constraints.overcommit (prototype placeholder: user 2026-10-28)"},
     "bs_guard_prob": {"value": 0.95, "unit": "share of paths", "rationale": "Every optimized plan keeps the leverage cap and the overcommitment ceiling at every year end on at least this share of paths (a buffered-probability constraint in the LP, re-checked on validation paths). The status quo is not held to it: with the owner taking about what the fund earns, the fund does not grow out of its private exposure.", "source": "User 2026-10-27 (guard at every year end, ~95%)"},
     "range_band": {"value": [0.5, 1.5], "unit": "x current weight", "rationale": "IC ranges for liquid sleeves.", "source": "examples/mpo_v2 constraints.range_band"},
     "forced_sale_eps": {"value": 0.01, "unit": "probability over 5 years", "rationale": "Liquidity appetite: tolerated probability of a forced private sale.", "source": "examples/mpo_v2 red_eps_certified"}
@@ -119,8 +123,11 @@
     "seed_factor_means": {"value": 41, "unit": "seed", "rationale": "Factor-mean estimate used to calibrate alphas.", "source": "examples/mpo_v2 seeds.factor_means"},
     "years": {"value": 5, "unit": "years", "rationale": "Goal horizon.", "source": "User: 10% over a multi-period horizon; prototype 5 years"}
   },
+  "replan": {
+    "min_scenarios": {"value": 60, "unit": "in-sample scenarios", "rationale": "Re-planning each year (the closed-loop benchmark) re-solves on the in-sample scenarios that share the observed history of market states. A history seen in fewer keeps the plan in force rather than re-planning on too little evidence: a re-plan has about a hundred free decisions.", "source": "Design default"}
+  },
   "goal": {
-    "rate": {"value": 0.1, "unit": "per year", "rationale": "The fund's hurdle: 10% a year time-weighted, gross of owner distributions.", "source": "User"},
+    "rate": {"value": 0.1, "unit": "per year", "rationale": "The fund's hurdle: 10% a year time-weighted over five years, nominal USD, gross of owner distributions. The target account B grows at this rate and pays the owner's actual distributions (B_t+1 = 1.10 B_t - payout_t+1, B_0 = NAV today); the dollar shortfall is max(B_5 - NAV_5, 0).", "source": "User (2026-10-28: five years); external research shared 2026-10-27 (the target account)"},
     "c_max_factor": {"value": 2.0, "unit": "x W*/W0", "rationale": "GBO buffer cap.", "source": "examples/mpo_v2 goal.c_max_factor"}
   },
   "objective": {
@@ -128,6 +135,8 @@
     "crra_w_range": {"value": [0.4, 3.0], "unit": "W~/W0", "rationale": "Tangent range.", "source": "examples/mpo_v2 objective.crra_w_range"},
     "tiebreak_tol": {"value": 0.005, "unit": "bPOE", "rationale": "GBO tie-break tolerance.", "source": "examples/mpo_v2 objective.tiebreak_tol"},
     "bisection_tol": {"value": 0.002, "unit": "bPOE", "rationale": "GBO fixed-point stopping rule.", "source": "examples/mpo_v2 objective.bisection_tol (0.001)"},
+    "shortfall_alpha": {"value": 0.1, "unit": "tail share", "rationale": "The shortfall objective minimizes the expected dollar shortfall against the target account plus its average in the worst outcomes of this share (tail severity), each in $.", "source": "Design default (external research shared 2026-10-27: minimize the expected magnitude and tail severity of missing the target)"},
+    "shortfall_tiebreak_rel": {"value": 0.01, "unit": "share of the optimum", "rationale": "Plans within this distance of the minimum shortfall are compared on CRRA utility of wealth (prefer more long-term wealth among comparable plans).", "source": "Design default"},
     "floor_breach_cost": {"value": 0.1, "unit": "per $ per year", "rationale": "LP cost of the reserve sitting below its TARGET (soft): above the cost of topping it up from liquid sales, far below a forced sale. The hard floor is never breached.", "source": "Design default"},
     "liquid_sale_cost": {"value": 0.004, "unit": "per $ per year", "rationale": "LP opportunity cost on liquid risk assets sold to fund needs, on top of their expected excess return.", "source": "Design default"}
   }

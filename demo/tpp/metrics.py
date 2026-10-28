@@ -9,7 +9,8 @@ common.cvar_lower). One summary feeds every lens:
                   coverage ratio, minimum reserve ratio
   Asset Allocation the same, plus the plan's change list (tpp.substitution)
 Each group's objective is also a pass/fail test on every path (objective_flags), so every case reports the
-probability that the 10% target and each group's objective are met, alone and together.
+probability that the 10% target and each group's objective are met, alone and together. Beside P(10%), the dollar
+shortfall against the target account (expected, worst-10% average) and every statistic by exit model (by_exit).
 """
 from __future__ import annotations
 
@@ -58,6 +59,37 @@ def rep_paths(out: dict) -> list[dict]:
     return res
 
 
+def short_stats(out: dict, p: np.ndarray, alpha: float = 0.10) -> dict:
+    """Dollar shortfall against the target account: mean, the average of the worst alpha share, P(no shortfall)."""
+    sh = np.asarray(out["short"], float)
+    o = np.argsort(-sh)
+    acc = tot = 0.0
+    for i in o:
+        w = min(float(p[i]), alpha - acc)
+        if w <= 0:
+            break
+        tot += w * sh[i]
+        acc += w
+    return {"short_mean_bn": float(p @ sh), "short_cvar10_bn": float(tot / max(acc, 1e-12)),
+            "p_target_acct": float(p @ (sh <= 1e-9)), "short_obj_bn": float(p @ sh + tot / max(acc, 1e-12))}
+
+
+def by_exit(out: dict, p: np.ndarray, goal: float) -> dict:
+    """P(hurdle), mean TWR and expected dollar shortfall within each exit model (calibrated cycle, persistent
+    slowdown), each conditional on its own paths."""
+    em = np.asarray(out.get("exit_model", np.zeros(len(p))), int)
+    res = {}
+    for k, name in ((0, "cycle"), (1, "persistent")):
+        mk = em == k
+        if mk.any() and p[mk].sum() > 0:
+            pw = p[mk] / p[mk].sum()
+            res[name] = {"share": float(p[mk].sum()), "p_goal": float(pw @ (np.asarray(out["twr"])[mk] >= goal - 1e-12)),
+                         "twr_mean": float(pw @ np.asarray(out["twr"])[mk]),
+                         "short_mean_bn": float(pw @ np.asarray(out["short"])[mk]),
+                         "p_red": float(pw @ np.asarray(out["red"], float)[mk])}
+    return res
+
+
 def summarize(out: dict, goal: float) -> dict:
     p = np.asarray(out["prob"], float)
     p = p / p.sum()
@@ -94,6 +126,12 @@ def summarize(out: dict, goal: float) -> dict:
         "owner_cum_fan": _fan(np.c_[np.zeros(len(twr)), np.cumsum(out["y_draw"], axis=1)], p),
         "goal_wealth_bn": float(out["W0"] * (1 + goal) ** 5),
         "shortfall_mean_bn": float(p @ np.maximum(out["W0"] * (1 + goal) ** 5 - out["wealth"], 0.0)),
+        # the target account (B_5: today's NAV grown at the hurdle, less the owner's distributions grown at the hurdle)
+        # and the dollar shortfall against it: expected, the worst-10% average, and the chance NAV_5 clears it
+        **short_stats(out, p),
+        "target5_mean_bn": float(p @ out["r_target"][:, 5]),
+        "target_fan": _fan(out["r_target"], p),
+        "by_exit": by_exit(out, p, goal),
         "hist": {"edges": hist_edges.tolist(), "p": hist.tolist()},
         "p_red": float(p @ out["red"].astype(float)), "forced_mean_bn": float(p @ out["forced_total"]),
         "forced_p95_bn": float(quantile_w(out["forced_total"], 0.95, p)),
@@ -146,14 +184,20 @@ def objective_rates(o: dict, flags: np.ndarray, goal: float) -> dict:
 
 
 def paired_delta(a: dict, b: dict) -> dict:
-    """Paired difference (plan a minus plan b) on common paths: P(goal), mean TWR, with a normal interval."""
+    """Paired difference (plan a minus plan b) on common paths: P(goal), mean TWR and the expected dollar shortfall
+    against the target account, with normal intervals."""
     p = np.asarray(a["prob"], float)
     p = p / p.sum()
     neff = 1.0 / float(np.sum(p ** 2))
-    dg = a["goal"].astype(float) - b["goal"].astype(float)
-    dt = a["twr"] - b["twr"]
-    mg, mt = float(p @ dg), float(p @ dt)
-    sg = float(np.sqrt(max(p @ (dg - mg) ** 2, 0.0) / neff))
-    st = float(np.sqrt(max(p @ (dt - mt) ** 2, 0.0) / neff))
-    return {"d_p_goal": mg, "d_p_goal_ci": [mg - 1.96 * sg, mg + 1.96 * sg], "d_twr": mt,
-            "d_twr_ci": [mt - 1.96 * st, mt + 1.96 * st]}
+
+    def mci(dx):
+        mx = float(p @ dx)
+        sx = float(np.sqrt(max(p @ (dx - mx) ** 2, 0.0) / neff))
+        return mx, [mx - 1.96 * sx, mx + 1.96 * sx]
+
+    mg, cg = mci(a["goal"].astype(float) - b["goal"].astype(float))
+    mt, ct = mci(a["twr"] - b["twr"])
+    out = {"d_p_goal": mg, "d_p_goal_ci": cg, "d_twr": mt, "d_twr_ci": ct}
+    if "short" in a and "short" in b:
+        out["d_short"], out["d_short_ci"] = mci(np.asarray(a["short"], float) - np.asarray(b["short"], float))
+    return out

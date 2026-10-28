@@ -15,9 +15,15 @@ margin, planned-sale proceeds, deployments), the NAV identity, liquid-sale capac
 overcommitment limits, IC ranges, secondary-market depth and the PE program (user, 2026-10-25).
 
 Goal wealth: W~_j = NAV_j,5 + sum_t draw_j,t x A_j,t (draws accrued to year 5 at the status-quo return; FD 4.2).
-Objectives (tpp.stakeholders picks the default per lens): GBO (minimum bPOE of the 10% miss, examples/mpo_v2
-optim.gbo, with a CRRA tie-break), CRRA utility, mean-CVaR, liquidity risk at a return floor, maximum mean.
-Epsilon constraints let every lens carry the others' limits: buffered P(goal) floor, forced-sale CVaR, return floor.
+Target account (settings shortfall = True): B_5 = W0 (1 + g)^5 - sum_t draw_j,t A10_t, the owner's actual
+distributions accrued at the goal rate g (paid quarterly, as in the simulator); WB_j = NAV_j,5 + sum_t draw_j,t A10_t,
+so the dollar shortfall is S_j = max(W* - WB_j, 0) = max(B_5 - NAV_5, 0).
+Objectives (tpp.stakeholders picks the default per lens): shortfall (minimum E[S] + CVaR_alpha(S), the expected and
+tail dollar shortfall, with a CRRA tie-break; with settings robust_pis, the worst of that measure over several ER-world
+weightings of the same paths: distributional robustness over the groups' views), GBO (minimum bPOE of the 10% miss,
+examples/mpo_v2 optim.gbo, with a CRRA tie-break), CRRA utility, mean-CVaR, liquidity risk at a return floor, maximum
+mean. Epsilon constraints let every lens carry the others' limits: buffered P(goal) floor, forced-sale CVaR, return
+floor.
 """
 from __future__ import annotations
 
@@ -149,6 +155,22 @@ class TPPModel:
             self.c_neg[mk] = r_lr[mk].mean() + sale_cost
         self.d = S.draw                                                             # (m, 5)
         self.A = S.accrual()                                                        # (m, 6)
+        # target account: a year-t distribution, paid in four quarterly instalments, grows at the goal rate to year 5
+        g = float(bk.goal_rate)
+        self.A10 = np.array([0.0] + [float(np.mean([(1 + g) ** (5 - (t - 1) - k / 4) for k in range(1, 5)]))
+                                     for t in range(1, 6)])
+        self.sf_on = bool(self._g("shortfall", False))
+        pis = self._g("robust_pis", None) if self.sf_on else None
+        if pis:
+            views = []
+            for pi in pis:
+                pi = np.asarray(pi, float) / float(np.sum(pi))
+                pk = pi[S.world] / S.n
+                views.append(pk / pk.sum())
+            self.sf_views = np.array(views)
+        else:
+            self.sf_views = self.p[None, :] if self.sf_on else np.zeros((0, m))
+        self.sf_alpha = float(P.get("objective.shortfall_alpha"))
         bsp = np.asarray(P.get("overlay.beta_fin_spread"), float)
         imr = np.asarray(P.get("overlay.im_rate"), float)
         eq = S.eq_excess_q.reshape(m, 5, 4)
@@ -204,6 +226,8 @@ class TPPModel:
                 sell_ub[k] = 0.0
             if not u.pe_program and not allow_other:
                 sell_ub[k] = 0.0
+            if u.part == "ext":                                                     # no identified holdings to sell
+                sell_ub[k] = 0.0
         if not prog_on and not bool(self._g("allow_pe_sales", True)):
             for k, u in enumerate(bk.units):
                 if u.pe_program:
@@ -220,6 +244,8 @@ class TPPModel:
         self.XP = cl.add("xp", (nLR,))
         self.XM = cl.add("xm", (nLR,))
         self.R0 = cl.add("r0", ())
+        self.U0 = cl.add("u0", ())                                               # reserve below target today (valve)
+        self.UO0 = cl.add("uo0", ())                                             # overcommitment above cap today (valve)
         pace = np.array([bk.pacing_sq.get(b, 0.0) for b in self.tb])
         self.pace = pace
         mult = list(self._g("pace_mult", P.get("pacing.mult_range")))
@@ -315,6 +341,16 @@ class TPPModel:
         self.ZL = cl.add("zl", (m,))
         self.ETAB = cl.add("etab", (), -INF, INF)                                  # balance-sheet guard
         self.ZB = cl.add("zb", (m,))
+        # target-account shortfall (only when the shortfall objective is used): WB, S, and per view k the CVaR
+        # auxiliaries; TT bounds every view's E[S] + CVaR_alpha(S) from above
+        Kv = len(self.sf_views)
+        self.K_sf = Kv
+        if self.sf_on:
+            self.WB = cl.add("wb", (m,), -INF, INF)
+            self.SH = cl.add("sh", (m,))
+            self.TT = cl.add("tt", (), -INF, INF)
+            self.ETAS = cl.add("etas", (Kv,), -INF, INF)
+            self.ZS = cl.add("zs", (Kv, m))
         self.cols = cl
         lb = np.concatenate(cl.lb)
         ub = np.concatenate(cl.ub)
@@ -398,13 +434,17 @@ class TPPModel:
         fund_v0 = self.nav0 * self.is_fund_u
         R.add("navf_ltv0", np.r_[self.DN, Sx[:, 0]], np.r_[1.0, ltv * fund_v0], -INF, ltv * fund_v0.sum())
         ovc = float(self._g("overcommit", P.get("constraints.overcommit")))
-        cols = np.r_[Sx[:, 0], self.Cc[:, 0], self.NAV0]
-        vals = np.r_[-(self.nav0 + self.unf0), np.ones(Tb), -ovc]
+        # (a fixed plan that starts above the ceiling - the status quo with 61% of NAV in private assets - is evaluated
+        # with the excess priced like a hard-floor breach; an optimized plan never uses the valve)
+        cols = np.r_[Sx[:, 0], self.Cc[:, 0], self.NAV0, self.UO0]
+        vals = np.r_[-(self.nav0 + self.unf0), np.ones(Tb), -ovc, -1.0]
         R.add("overcommit0", cols, vals, -INF, -(self.nav0 + self.unf0).sum())
         ft = float(self._g("floor_target", P.get("liquidity.floor_target")))
         fh = float(self._g("floor_hard", P.get("liquidity.floor_hard")))
         self.floor, self.floor_hard = ft, fh
-        R.add("reserve0", np.r_[self.R0, self.NAV0, self.BETA], np.r_[1.0, -ft, -self.im[0, 0]], 0.0, INF)
+        # today's reserve at its target; a fixed plan (the status quo) that falls short today is evaluated with the
+        # shortfall priced like a hard-floor breach (the simulator restores it from liquid sales in the first quarter)
+        R.add("reserve0", np.r_[self.R0, self.NAV0, self.BETA, self.U0], np.r_[1.0, -ft, -self.im[0, 0], 1.0], 0.0, INF)
         R.add("sell_total", np.concatenate([np.c_[self.Sx[:, 0], S_col(1, c1), S_col(2, c2)] for c1, c2 in paths_sd]),
               np.ones(3), 0.0, 1.0, nrows=K * nC)
         depth = self.depth[1] * float(self._g("depth_mult", 1.0))
@@ -516,7 +556,10 @@ class TPPModel:
         ovc_cap = float(self._g("overcommit", P.get("constraints.overcommit")))
         lcap = float(self._g("lev_cap", P.get("constraints.lev_cap")))
         iw = 1.0 / self.W0
-        for t in range(1, 6):
+        # a re-plan at the start of a later year guards only the year ends still ahead (bs_from_year); the past ones
+        # are history, whatever the LP's hindsight recourse would make of them
+        bs_from = int(self._g("bs_from_year", 1))
+        for t in range(bs_from, 6):
             ti = t - 1
             dts = np.stack([colD(k) for k in range(min(t, 2) + 1)], 1)
             nd, nfg = dts.shape[1], (1 + self.navf_rate) ** t
@@ -527,6 +570,11 @@ class TPPModel:
             vals = [np.full((m, 1), (1.0 - ovc_cap) * iw), np.full((m, 1), -iw), np.full((m, 1), iw), np.full((m, 1), iw),
                     -self.G[:, t, :] * iw, np.full((m, nd), iw), np.full((m, 1), nfg * iw), -np.ones((m, 1)),
                     -np.ones((m, 1))]
+            # private NAV as if no forced sale had happened: a forced sale is path-wise recourse chosen with hindsight,
+            # and the simulator forces sales only for liquidity, so it may not be used to meet the ceiling
+            for tp in range(1, t + 1):
+                cols.append(self.PHI[:, tp - 1][:, None])
+                vals.append((self.cont_v[tp][:, t] * iw)[:, None])
             for tau in range(min(t, 2) + 1):                                         # unfunded leaves with a sale
                 cols.append(colS(tau))
                 vals.append(-Ut * iw)
@@ -548,6 +596,23 @@ class TPPModel:
             cols.append(self.NAV[:, t - 2][:, None])
             vals.append(-(self.d[:, t - 1] * self.A[:, t])[:, None])
         R.add("wt", np.concatenate(cols, 1), np.concatenate(vals, 1), 0.0, 0.0, nrows=m)
+        if self.sf_on:
+            # target account: WB - NAV5 - sum_t d_t A10_t NAV_{t-1} = 0, so S_j >= (W* - WB_j) / W0 is the shortfall
+            cols = [self.WB[:, None], self.NAV[:, 4][:, None], np.full((m, 1), self.NAV0)]
+            vals = [np.ones((m, 1)), -np.ones((m, 1)), -(self.d[:, 0] * self.A10[1])[:, None]]
+            for t in range(2, 6):
+                cols.append(self.NAV[:, t - 2][:, None])
+                vals.append(-(self.d[:, t - 1] * self.A10[t])[:, None])
+            R.add("wb", np.concatenate(cols, 1), np.concatenate(vals, 1), 0.0, 0.0, nrows=m)
+            R.add("shrow", np.c_[self.SH, self.WB], np.c_[np.ones(m), np.full(m, 1 / self.W0)], self.Wstar / self.W0,
+                  INF, nrows=m)
+            a = self.sf_alpha
+            for k, pk in enumerate(self.sf_views):
+                # zs_kj >= S_j - etas_k;  TT >= sum p_k S + etas_k + sum p_k zs_k / alpha
+                R.add(f"zsrow{k}", np.c_[self.ZS[k], self.SH, np.full(m, self.ETAS[k])],
+                      np.c_[np.ones(m), -np.ones(m), np.ones(m)], 0.0, INF, nrows=m)
+                R.add(f"rob{k}", np.r_[self.TT, self.SH, self.ETAS[k], self.ZS[k]], np.r_[1.0, -pk, -1.0, -pk / a],
+                      0.0, INF)
         # CVaR of the goal miss X = (W* - WT)/W0:  z_j >= X_j - eta  ->  z_j + WT_j/W0 + eta >= W*/W0
         R.add("zrow", np.c_[self.Z, self.WT, np.full(m, self.ETA)], np.c_[np.ones(m), np.full(m, 1 / self.W0),
               np.ones(m)], self.Wstar / self.W0, INF, nrows=m)
@@ -644,6 +709,8 @@ class TPPModel:
         pen = float(self.P.get("objective.floor_breach_cost"))
         c[self.U.ravel()] = pen * np.repeat(self.p, 5) / self.W0                 # below target: costly, not fatal
         c[self.UH.ravel()] = 100.0 * np.repeat(self.p, 5) / self.W0              # below the hard floor: never
+        c[self.U0] = 100.0 / self.W0                                             # below target today: never
+        c[self.UO0] = 100.0 / self.W0                                            # over the ceiling today: never
         # revolver after liquid sales (the Liquidity group's waterfall): an ordering charge, not a wealth cost
         order = np.maximum(self.c_neg - self.rev_rate, 0.0) + 0.01
         c[self.RV.ravel()] = (order * self.p[:, None]).ravel() / self.W0
@@ -728,6 +795,8 @@ class TPPModel:
         bk = self.S.book
         vals = {}
         cont = plan.contingent or {}
+        if any(len(v) > len(STATES) for cc in (cont.get("commit") or {}).values() for v in cc):
+            raise ValueError("a plan by full history (re-planned) is certified by the simulator, not fixed in the LP")
         osd = [np.argsort(f) for f in self.freq_sd]                          # the most frequent context's value wins
         oc = [np.argsort(f) for f in self.freq_c]
         ctx_val = lambda arr, tau, k_: arr[k_] if len(arr) > k_ else arr[k_ % len(arr)]   # a 3-state plan on 9 histories
@@ -764,6 +833,34 @@ class TPPModel:
         v = np.array(list(vals.values()), float)
         h.changeColsBounds(len(idx), idx, v, v)
         self._fixed = (idx, lo[idx], hi[idx])
+
+    def fix_through(self, plan: Plan, t: int):
+        """Fix today's decisions and every dated decision taken before the start of year t + 1 (tau < t) to a plan's
+        one schedule, leaving tau >= t free: what a re-plan at the start of year t + 1 inherits (tpp.replan). Needs
+        the model built with contingent False (one copy of each decision)."""
+        if self.contingent_on:
+            raise ValueError("fix_through needs the fixed-schedule model (settings contingent = False)")
+        bk = self.S.book
+        vals = {}
+        for k, u in enumerate(bk.units):
+            fr = list(plan.sell.get(u.id, [0.0, 0.0, 0.0])) + [0.0] * 3
+            for tau in range(min(t, 3)):
+                vals[int(self.Sx[k, tau])] = float(fr[tau])
+        for i, b in enumerate(self.LR):
+            vals[int(self.X[i])] = float(plan.liquid.get(b, self.x0[i]))
+        for j, b in enumerate(self.tb):
+            cm = list(plan.commit.get(b, [0.0] * 5))
+            for tau in range(min(t, 5)):
+                vals[int(self.Cc[j, tau])] = float(cm[tau])
+        sched = list(getattr(plan, "term_sched", None) or [plan.term_bn, 0.0, 0.0])
+        for tau in range(min(t, 3)):
+            vals[int(self.DT[tau])] = float(sched[tau])
+        vals[int(self.DN)] = float(plan.navf_bn)
+        vals[int(self.BETA)] = float(plan.beta_bn)
+        idx = np.array(list(vals.keys()), np.int32)
+        v = np.clip(np.array(list(vals.values()), float), self.lb[idx], self.ub[idx])
+        self.highs().changeColsBounds(len(idx), idx, v, v)
+        self._fixed = (idx, self.lb[idx], self.ub[idx])
 
     def release(self):
         if getattr(self, "_fixed", None) is not None:
@@ -839,10 +936,15 @@ class TPPModel:
         twr = np.maximum(Wt / self.W0, 1e-9) ** 0.2 - 1
         Xm = self.X_miss(x)
         forced = sum(x[self.PHI[:, t - 1]] * self.cont_v[t][:, t] for t in range(1, 6))
-        return {"p_goal": float(self.p @ (Wt >= self.Wstar * (1 - 1e-9))), "E_W": float(self.p @ Wt),
-                "twr_mean": float(self.p @ twr), "bpoe": float(bpoe(Xm, self.p)),
-                "p_forced": float(self.p @ (forced > 1e-6)), "below_target": float(self.p @ (x[self.U].sum(1) > 1e-6)),
-                "floor_breach": float(self.p @ (x[self.UH].sum(1) > 1e-6))}
+        out = {"p_goal": float(self.p @ (Wt >= self.Wstar * (1 - 1e-9))), "E_W": float(self.p @ Wt),
+               "twr_mean": float(self.p @ twr), "bpoe": float(bpoe(Xm, self.p)),
+               "p_forced": float(self.p @ (forced > 1e-6)), "below_target": float(self.p @ (x[self.U].sum(1) > 1e-6)),
+               "floor_breach": float(self.p @ (x[self.UH].sum(1) > 1e-6))}
+        if self.sf_on:
+            sh = np.maximum(self.Wstar - x[self.WB], 0.0)
+            out.update({"short_mean_bn": float(self.p @ sh), "short_cvar_bn": float(cvar_upper(sh, self.sf_alpha, self.p)),
+                        "short_views": [float(pk @ sh + cvar_upper(sh, self.sf_alpha, pk)) for pk in self.sf_views]})
+        return out
 
     def duals(self, x, y, rc) -> dict:
         """Shadow prices read from the LP that made the decision (sign-normalized to 'value of $1 more')."""
@@ -880,7 +982,7 @@ class TPPModel:
         out["liquid"] = {b: float(-rc[self.X[i]] / lam0) if abs(lam0) > 1e-14 else 0.0 for i, b in enumerate(self.LR)}
         out["commit"] = {b: float(-rc[self.Cc[j, 0]] / lam0) if abs(lam0) > 1e-14 else 0.0 for j, b in enumerate(self.tb)}
         tags = self.rows.tags
-        for name in ("lev0", "recourse0", "navf_ltv0", "overcommit0", "reserve0", "program"):
+        for name in ("lev0", "recourse0", "navf_ltv0", "overcommit0", "reserve0", "program", "bscvar", "depth", "fcvar"):
             if name in tags:
                 out[f"row_{name}"] = float(-y[tags[name][0]] / lam0) if abs(lam0) > 1e-14 else 0.0
         fl = np.concatenate([tags[f"floor{t}"] for t in range(1, 6)])
@@ -889,10 +991,48 @@ class TPPModel:
 
 
 # ---------------------------------------------------------------------------------------------- solve flows
+def cvar_upper(x: np.ndarray, alpha: float, p: np.ndarray) -> float:
+    """Average of the worst (largest) alpha share of x under probabilities p."""
+    o = np.argsort(-np.asarray(x, float))
+    acc = tot = 0.0
+    for i in o:
+        w = min(float(p[i]), alpha - acc)
+        if w <= 0:
+            break
+        tot += w * float(x[i])
+        acc += w
+    return tot / max(acc, 1e-12)
+
+
 def solve(model: TPPModel, objective: str, gamma: float | None = None, tol=None) -> dict:
-    """objective: gbo | utility | mean | liquidity | mean_cvar. Returns x, y, rc, label and the solve log."""
+    """objective: shortfall | gbo | utility | mean | liquidity | mean_cvar. Returns x, y, rc, label and the solve log."""
     P = model.P
     log = []
+    if objective == "shortfall":
+        # the research's hierarchy: obligations and every group's limit are rows; within them, minimize the expected
+        # dollar shortfall against the target account plus its tail average (the worst over the views when robust);
+        # among plans within a tolerance of that minimum, prefer more risk-adjusted wealth (CRRA)
+        if not model.sf_on:
+            raise ValueError("the shortfall objective needs the model built with settings['shortfall'] = True")
+        h = model.highs()
+        h.changeColBounds(int(model.TT), -INF, INF)
+        c = model._penalty()
+        c[model.TT] = 1.0
+        model.set_cost(c)
+        tag = f" (worst of {model.K_sf} world weightings)" if model.K_sf > 1 else ""
+        x0, y0, rc0, rec = model.run("min expected + tail shortfall" + tag)
+        log.append(rec)
+        if x0 is None:
+            return {"x": None, "label": "INFEASIBLE", "log": log}
+        tstar = float(x0[int(model.TT)])
+        rel = float(P.get("objective.shortfall_tiebreak_rel"))
+        h.changeColBounds(int(model.TT), -INF, tstar * (1.0 + rel) + 1e-6)
+        model.set_cost(model.obj_util())
+        x, y, rc, rec = model.run(f"shortfall: CRRA({model.gamma:g}) tie-break")
+        log.append(rec)
+        if x is None:
+            x, y, rc = x0, y0, rc0
+        return {"x": x, "y": y, "rc": rc, "label": "SHORTFALL", "phi": tstar, "log": log}
     if objective == "mean":
         model.set_cost(model.obj_mean())
         x, y, rc, rec = model.run("max mean wealth")

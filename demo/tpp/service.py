@@ -10,6 +10,8 @@ Actions
   evaluate(role)            status quo with and without the PE program, out of sample, under the role's view
   optimize(role)            the role's objective under every house limit, certified out of sample, with the change
                             list, LEVER / REFINANCE labels, shadow prices and holding cards
+  static_benchmark(role)    the static framework at the role's view: one policy portfolio, Yale pacing (tpp.static)
+  replan(role, fixed)       the fixed-schedule plan re-planned each year on the observed history, validated (tpp.replan)
   compare()                 the IC matrix: status quo, each group's latest plan and the consensus plan on one view
   swap(role, codes, target) sell named holdings and redeploy into an ER bucket: paired change in every metric
 """
@@ -25,7 +27,8 @@ from pathlib import Path
 import numpy as np
 
 from . import book as bookmod
-from . import classify, ingest, lp, metrics, paths, plan as planmod, returns, sim, stakeholders as sh, substitution
+from . import classify, ingest, lp, metrics, paths, plan as planmod, replan, returns, sim, stakeholders as sh, static, \
+    substitution, yale
 from .buckets import BY_ID, CATALOG, PRIVATE
 from .legacy import DEMO, demo_params, wilson
 from .returns import WORLDS
@@ -161,8 +164,8 @@ class Platform:
     def _key(*objs) -> str:
         return hashlib.sha256(json.dumps(jsonable(objs), sort_keys=True).encode()).hexdigest()[:20]
 
-    BOOK_KEYS = ("total_nav_bn", "sleeve_split", "revolver_drawn0_bn", "term_debt0_bn", "pe_program_total_bn",
-                 "goal_rate")
+    BOOK_KEYS = ("total_nav_bn", "private_share", "sleeve_split", "revolver_drawn0_bn", "term_debt0_bn",
+                 "pe_program_total_bn", "goal_rate")
 
     def book_for(self, prefs: dict, house: dict, extra: dict | None = None):
         rp = {k: prefs[k] for k in ("basis", "weights", "persistence", "uw_debias")}
@@ -192,13 +195,23 @@ class Platform:
 
     def view(self, role: str) -> dict:
         if role == "ic":
-            return {"prefs": self.ic["prefs"], "stress": self.ic["stress"], "objective": "gbo"}
+            return {"prefs": self.ic["prefs"], "stress": self.ic["stress"], "objective": "shortfall"}
         st = self.states[role]
         return {"prefs": st["prefs"], "stress": st["stress"], "objective": st["objective"]}
 
     @staticmethod
     def _pi(prefs):
         return [prefs["scenario_probs"][w] for w in WORLDS]
+
+    def robust_pis(self) -> list:
+        """The distinct ER-world weightings of the four groups and the IC (the robust plan's ambiguity set)."""
+        out = []
+        for prefs in [self.states[r]["prefs"] for r in sh.ROLES] + [self.ic["prefs"]]:
+            pi = np.asarray(self._pi(prefs), float)
+            pi = pi / pi.sum()
+            if not any(np.allclose(pi, q, atol=1e-9) for q in out):
+                out.append(pi)
+        return [q.tolist() for q in out]
 
     # ------------------------------------------------------------------ actions
     def overview(self, role: str) -> dict:
@@ -303,11 +316,18 @@ class Platform:
         saved plan; keep_paths returns the out-of-sample per-path results of the plan and the status quo."""
         with self.lock:
             v = self._variant_view(role, prefs_override)
-            objective = objective or (v["objective"] if role != "consensus" else "gbo")
+            objective = objective or (v["objective"] if role != "consensus" else "shortfall")
             house = {**self.house(), **(house_override or {})}
             prefs = v["prefs"]
             stress = stress_override or (v["stress"] if role != "consensus" else self.ic["stress"])
             st_lp = sh.lp_settings(house, prefs, use_house, self.states.get(role, {}).get("settings"))
+            st_lp["shortfall"] = objective == "shortfall"
+            if objective == "shortfall" and role == "consensus" and house.get("robust", True):
+                # distributional robustness over the groups' views: the worst of the shortfall measure across every
+                # group's ER-world weights (and the IC's), on the same paths
+                st_lp["robust_pis"] = self.robust_pis()
+            elif objective == "shortfall" and house.get("robust_pis"):
+                st_lp["robust_pis"] = house["robust_pis"]
             progress(f"book and returns ({prefs['basis']} basis, worlds {np.round(self._pi(prefs), 2).tolist()}, "
                      f"risk aversion {prefs['risk_aversion']:g})")
             bkey, B, R = self.book_for(prefs, house)
@@ -364,8 +384,10 @@ class Platform:
             summary = {"name": name, "objective": objective, "label": res.get("label"), "p_goal": s_pl["p_goal"],
                        "p_goal_ci": s_pl["p_goal_ci"], "twr_mean": s_pl["twr_mean"], "cvar10": s_pl["cvar10"],
                        "p_red": s_pl["p_red"], "p_revolver": s_pl["p_revolver"], "lcr_min_p5": s_pl["lcr_min_p5"],
+                       "short_mean_bn": s_pl["short_mean_bn"], "short_cvar10_bn": s_pl["short_cvar10_bn"],
                        "d_p_goal": d["d_p_goal"], "d_p_goal_ci": d["d_p_goal_ci"], "stress": stress,
-                       "basis": prefs["basis"], "time": time.strftime("%Y-%m-%d %H:%M")}
+                       "basis": prefs["basis"], "robust_pis": st_lp.get("robust_pis"),
+                       "time": time.strftime("%Y-%m-%d %H:%M")}
             out = {"role": role, "objective": objective, "objective_text": sh.OBJECTIVES.get(objective, objective),
                    "label": res.get("label"), "plan": plan.to_dict(), "summary": summary, "metrics": s_pl,
                    "status_quo": s_sq, "delta": d, "in_sample": ins, "change_list": cl, "duals": duals,
@@ -437,6 +459,78 @@ class Platform:
             res = new
         return res, calib
 
+    def static_benchmark(self, role: str = "strategy", progress=print) -> dict:
+        """The static framework (tpp.static) at the role's view and house limits, with the shortfall objective: the
+        policy portfolio on the role's in-sample scenarios, implemented with Yale pacing fitted to ADIC's DPI by
+        vintage."""
+        with self.lock:
+            v = self._variant_view(role, None)
+            house = self.house()
+            prefs = v["prefs"]
+            stress = v["stress"] if role != "consensus" else self.ic["stress"]
+            st_lp = sh.lp_settings(house, prefs, True, self.states.get(role, {}).get("settings"))
+            if role == "consensus" and house.get("robust", True):
+                st_lp["robust_pis"] = self.robust_pis()
+            bkey, B, R = self.book_for(prefs, house)
+            S_lp = self.paths_for(bkey, B, "lp", stress, self._pi(prefs), house)
+            as_of = float(self.quality["as_of"][:4]) + float(self.quality["as_of"][5:7]) / 12
+            fit = yale.fit_to_vintages(R["holdings"], B.bucket_ret, self.P, as_of, {r["vintage"]: r["dpi"] for r in self.dpi})
+            fam = yale.families(self.P, fit["life_mult"], fit["bow_mult"])
+            out = static.static_plan(S_lp, self.P, st_lp, fam, log=progress)
+            out["yale_fit"] = {k: fit[k] for k in ("life_mult", "bow_mult")}
+            return out
+
+    def replan(self, role: str, fixed: dict, progress=print, min_scenarios: int | None = None,
+               rounds: int | None = None) -> tuple:
+        """Re-plan the role's fixed-schedule plan (an optimize result with house_override contingent False) at the
+        start of each later year on the same in-sample scenarios (tpp.replan), starting from the guards it was
+        validated at. Like every optimized plan, the re-planned plan must keep the balance-sheet guard and the
+        forced-sale appetite on the validation paths: if it does not, the re-plans' guards are tightened by the
+        measured gap and every re-plan is redone (up to `rounds` times; the result says how it ended)."""
+        with self.lock:
+            v = self._variant_view(role, None)
+            house = {**self.house(), "contingent": False}
+            prefs = v["prefs"]
+            objective = fixed["objective"]
+            stress = fixed["summary"]["stress"]
+            st_lp = sh.lp_settings(house, prefs, True, self.states.get(role, {}).get("settings"))
+            st_lp["shortfall"] = objective == "shortfall"
+            if objective == "shortfall" and role == "consensus" and house.get("robust", True):
+                st_lp["robust_pis"] = self.robust_pis()
+            bkey, B, R = self.book_for(prefs, house)
+            S_lp = self.paths_for(bkey, B, "lp", stress, self._pi(prefs), house)
+            S_val = self.paths_for(bkey, B, "val", stress, self._pi(prefs), house)
+            sset = self._sim_settings(house)
+            w = S_val.prob / S_val.prob.sum()
+            eps = fixed.get("eps") or {}
+            alpha, fe = (eps.get("bs_guard") or {}).get("alpha"), eps.get("forced_eps")
+            bsg = float(house.get("bs_guard_prob", self.P.get("constraints.bs_guard_prob")) or 0.0)
+            lcap, ocap = float(house["lev_cap"]), float(house["overcommit"])
+            n_min = int(min_scenarios or self.P.get("replan.min_scenarios"))
+            rounds = int(house.get("calibration_rounds", 3) if rounds is None else rounds)
+            base = planmod.Plan.from_dict(fixed["plan"])
+            calib = []
+            for it in range(rounds + 1):
+                plan, info = replan.replan_policy(S_lp, self.P, st_lp, objective, base, bs_alpha=alpha, forced_eps=fe,
+                                                  min_scenarios=n_min, log=progress)
+                o = sim.simulate(S_val, plan, self.P, sset)
+                within = float(w @ ((o["r_lev"].max(1) <= lcap + 1e-6) & (o["r_ovc"].max(1) <= ocap + 1e-6)))
+                red = float(w @ o["red"].astype(float))
+                calib.append({"round": it, "bs_alpha": alpha, "bs_within": within, "p_red": red, "forced_eps": fe,
+                              "n_replanned": info["n_replanned"], "n_infeasible": info["n_infeasible"]})
+                low = alpha is not None and 0.0 < bsg < 1.0 and within < bsg - 0.005
+                red_hi = bool(fe) and red > fe + 0.002
+                if not (low or red_hi) or it == rounds:
+                    break
+                if low:                                       # tighten only: the fixed plan's level is the start
+                    alpha = float(np.clip(alpha * (1.0 - bsg) / max(1.0 - within, 1e-3), alpha / 4, alpha))
+                if red_hi:
+                    fe = max(fe / 2, 0.001)
+                progress(f"   re-plans' validation round {it + 1}: within balance-sheet limits {within:.3f}, forced-sale "
+                         f"probability {red:.3f}; guard tightened to {alpha:.3f}, re-planning again")
+            info["calibration"] = calib
+            return plan, info
+
     def holdings(self, role: str) -> dict:
         with self.lock:
             v = self.view(role)
@@ -456,8 +550,9 @@ class Platform:
         objective tested on every path against the house limits."""
         with self.lock:
             if include_consensus:
-                progress("solving the consensus plan: the Strategy objective under every group's limits")
-                self.optimize("consensus", "gbo", True, progress=progress)
+                progress("solving the consensus plan: the Strategy objective under every group's limits, robust to "
+                         "every group's world weights")
+                self.optimize("consensus", "shortfall", True, progress=progress)
             v = self.view("ic")
             house = self.house()
             bkey, B, R = self.book_for(v["prefs"], house)
@@ -488,7 +583,7 @@ class Platform:
                                              float(house["overcommit"]), g)
                 cl = substitution.change_list(B, p, sq0, S)
                 rows.append({"key": key, "name": p.name, "metrics": _brief(s), "delta": d,
-                             "fans": {k: s["fans"][k] for k in ("nav", "reserve", "lev")},
+                             "fans": {**{k: s["fans"][k] for k in ("nav", "reserve", "lev")}, "target": s["target_fan"]},
                              "flows": {k: s["flows"][k] for k in ("draw", "dist", "calls", "forced", "rev_draw")},
                              "hist": s["hist"], "r1": cl["r1"], "financing": cl["financing"],
                              "pe_program": cl["pe_program"], "objective": p.meta.get("objective"),
@@ -534,7 +629,8 @@ def _brief(s: dict) -> dict:
     keys = ["p_goal", "p_goal_ci", "twr_mean", "twr_q", "cvar10", "cvar5", "cvar1", "p_red", "forced_mean_bn",
             "forced_p99_bn", "p_revolver", "rev_max_p95_bn", "min_reserve_ratio_p5", "lcr_min_p5", "lcr_min_p50",
             "wealth_mean_bn", "shortfall_mean_bn", "by_world", "on_track", "leverage_t0", "debt_t0_bn", "ovc_t0",
-            "p_preserve", "nav5_p50_bn", "owner5_p50_bn"]
+            "p_preserve", "nav5_p50_bn", "owner5_p50_bn", "short_mean_bn", "short_cvar10_bn", "p_target_acct",
+            "short_obj_bn", "target5_mean_bn", "by_exit"]
     out = {k: s[k] for k in keys if k in s}
     out["lev_max_p95"] = max(s["fans"]["lev"]["p95"])
     out["debt_p95_bn"] = max(s["fans"]["debt"]["p95"])

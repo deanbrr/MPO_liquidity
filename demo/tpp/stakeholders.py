@@ -5,7 +5,8 @@ a default objective, a default stress, and the house limits it OWNS. Every optim
 every group's current limits as constraints (the epsilon-constraint method), so the four objectives meet in one
 feasible set: the Strategy group cannot reach for 10% by breaching the Liquidity group's appetite, and the Liquidity
 group cannot hoard cash below the return the Strategy group needs. The IC view prices the conflicts: it compares each
-lens's plan, the status quo and the consensus plan (the Strategy objective under every limit) on one common view.
+lens's plan, the status quo and the consensus plan (the Strategy objective under every limit, judged at the worst of
+the groups' world weights) on one common view.
 """
 from __future__ import annotations
 
@@ -18,8 +19,8 @@ ROLES = ["strategy", "balance_sheet", "liquidity", "asset_allocation"]
 LENSES = {
     "strategy": {
         "title": "Strategy",
-        "subtitle": "Owns the 10% hurdle: the probability of reaching it over five years, and what each lever buys",
-        "objective": "gbo",
+        "subtitle": "Owns the 10% hurdle: how far short of it the fund may fall over five years, the chance of reaching it, and what each lever buys",
+        "objective": "shortfall",
         "prefs": {"basis": "strategy", "scenario_probs": {"Downside": 0.25, "Base": 0.50, "Upside": 0.25},
                   "risk_aversion": 2.0, "weights": {"underwritten": 0.15, "actual": 0.25}, "persistence": 0.30,
                   "uw_debias": True},
@@ -34,7 +35,7 @@ LENSES = {
                   "risk_aversion": 4.0, "weights": {"underwritten": 0.15, "actual": 0.25}, "persistence": 0.30,
                   "uw_debias": True},
         "stress": "base",
-        "owns": ["total_nav_bn", "sleeve_split", "lev_cap", "recourse_cap", "new_term_max_bn", "navf_ltv_max",
+        "owns": ["total_nav_bn", "private_share", "sleeve_split", "lev_cap", "recourse_cap", "new_term_max_bn", "navf_ltv_max",
                  "allow_debt", "allow_beta", "beta_max", "overcommit", "bs_guard_prob", "revolver_signed_bn", "revolver_drawn0_bn",
                  "term_debt0_bn"],
     },
@@ -66,10 +67,10 @@ LENSES = {
 # defaults for every house setting (the assumption file supplies the rest)
 HOUSE_DEFAULTS = {
     "goal_rate": 0.10, "depth_guard": True, "depth_delta": 0.0, "p_goal_min": 0.0,
-    "total_nav_bn": 177.0, "sleeve_split": {}, "lev_cap": 1.15, "recourse_cap": 0.15, "new_term_max_bn": 10.0,
+    "total_nav_bn": 177.0, "private_share": 0.61, "sleeve_split": {}, "lev_cap": 1.15, "recourse_cap": 0.15, "new_term_max_bn": 10.0,
     "navf_ltv_max": 0.10, "allow_debt": True, "allow_beta": True, "beta_max": 25.0, "overcommit": 0.80, "bs_guard_prob": 0.95,
     "revolver_signed_bn": 10.0, "revolver_drawn0_bn": 0.0, "term_debt0_bn": 0.0,
-    "floor_target": 0.08, "floor_hard": 0.04, "forced_eps": 0.01, "ret_min": 0.085,
+    "floor_target": 0.08, "floor_hard": 0.07, "forced_eps": 0.01, "ret_min": 0.085,
     "waterfall": ["AGG", "GE_DM", "GE_GLOBAL", "GE_EM", "HF", "MAO_EXT", "MAO_INT", "REVOLVER", "FORCED"],
     "draw_mode": "rule", "draw_rate": 0.07, "hf_quarterly_liquidity": [0.25, 0.20, 0.10],
     "range_band": [0.5, 1.5], "pace_mult": [0.0, 1.5], "commit_agg_mult": 1.25, "coinvest_extra_bn": 1.5,
@@ -79,6 +80,7 @@ HOUSE_DEFAULTS = {
 }
 
 OBJECTIVES = {
+    "shortfall": "Minimize the expected dollar shortfall against the 10% target account plus its worst-10% average, CRRA tie-break",
     "gbo": "Maximize the buffered probability of reaching the hurdle (GBO), CRRA tie-break",
     "utility": "Maximize CRRA utility of five-year wealth (risk-adjusted net worth)",
     "liquidity": "Minimize forced-sale and liquidity cost subject to the return floor",

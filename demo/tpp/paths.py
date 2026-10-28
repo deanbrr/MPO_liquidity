@@ -128,8 +128,27 @@ def pop_factor_mean(P, stress: str = "base", n: int = 8000) -> np.ndarray:
 
 
 def factor_means(P) -> np.ndarray:
-    """E[f] in the BASE case (today's state): calibrates every alpha, so a stress moves returns."""
-    return pop_factor_mean(P, "base")
+    """E[f] in the BASE case (today's state, both exit models at their weights): calibrates every alpha, so a stress
+    moves returns and the base case reproduces the ER returns in expectation."""
+    q = float(P.get("exits.persistent_share"))
+    return (1.0 - q) * pop_factor_mean(P, "base") + q * pop_factor_mean(P, "prolonged_drought")
+
+
+def exit_split(P, stress: str, n: int) -> int:
+    """Factor paths (of n per world) that follow the persistent exit slowdown: exits.persistent_share of them (exit
+    model uncertainty), or all of them under the 'prolonged DPI decline' stress."""
+    if "prolonged_drought" in stress.split("+"):
+        return n
+    return int(np.floor(float(P.get("exits.persistent_share")) * n + 0.5))
+
+
+def persistent_variant(stress: str) -> str:
+    """The same stress under the persistent exit model (its transition matrix first, so the stress's own starting
+    exit window still applies)."""
+    parts = [s for s in stress.split("+") if s and s != "base"]
+    if "prolonged_drought" in parts:
+        return stress
+    return "+".join(["prolonged_drought"] + parts)
 
 
 def _risk_override(P, b) -> dict:
@@ -168,12 +187,31 @@ class Factors:
     brent: np.ndarray        # (n, 21)
     vix: np.ndarray          # (n, 21)
     MP: object
+    persistent: np.ndarray = None   # (n,) bool: the path follows the persistent exit slowdown
 
 
 _FACTOR_CACHE: dict = {}
 
 
 def factors(P, stress: str, n: int, seed: int) -> Factors:
+    """n factor paths: the first n - n_p under the calibrated exit cycle, the last n_p (exit_split) under the
+    persistent slowdown; each block's mean factor return matched to its own model's population mean."""
+    n_p = exit_split(P, stress, n)
+    blocks = []
+    if n - n_p > 0:
+        blocks.append((_factor_block(P, stress, n - n_p, seed), False))
+    if n_p > 0:
+        blocks.append((_factor_block(P, persistent_variant(stress), n_p, seed + 104729), True))
+    if len(blocks) == 1:
+        F, pers = blocks[0]
+        return Factors(**{**F.__dict__, "persistent": np.full(n, pers)})
+    cat = lambda k: np.concatenate([getattr(b, k) for b, _ in blocks], 0)
+    keys = ("f", "S", "E", "Z", "draw", "cls_q", "cls_y", "brent", "vix")
+    return Factors(n, *[cat(k) for k in keys], blocks[0][0].MP,
+                   np.concatenate([np.full(b.n, pers) for b, pers in blocks]))
+
+
+def _factor_block(P, stress: str, n: int, seed: int) -> Factors:
     gen_over, shock = stress_overrides(stress, P)
     key = hashlib.sha256((json.dumps(gen_over, sort_keys=True) + f"|{n}|{seed}").encode()).hexdigest()
     if key in _FACTOR_CACHE:
@@ -209,7 +247,7 @@ class PathSet:
 
     def __init__(self, book, P, n: int, seed: int, stress: str = "base", pi=None, settings: dict | None = None):
         st = settings or {}
-        self.book, self.P, self.n, self.stress = book, P, n, stress
+        self.book, self.P, self.n, self.stress, self.seed = book, P, n, stress, seed
         self.W = 3
         self.m = 3 * n
         pi = np.asarray(pi if pi is not None else [0.25, 0.5, 0.25], float)
@@ -218,6 +256,9 @@ class PathSet:
         self.prob = self.pi[self.world] / n
         F = factors(P, stress, n, seed)
         self.F = F
+        # exit model per scenario (0 = calibrated cycle, 1 = persistent slowdown), the same in every world
+        self.exit_model = np.tile(np.asarray(F.persistent, bool), 3).astype(np.int8)
+        self.n_persistent = int(np.sum(F.persistent))
         # regimes at each year end on every path (macro: expansion / late cycle / crisis / recovery; exit window:
         # open / normal / drought / frozen), for the year-by-year view
         self.macro_y = np.tile(np.asarray(F.S)[:, 4::4][:, :5], (3, 1))
@@ -233,6 +274,7 @@ class PathSet:
         geo = P.get("returns.er_return_type") == "geometric"
         tile = lambda a: np.tile(a, (3,) + (1,) * (a.ndim - 1))
         f = tile(F.f) + shock["fshock"][None, :, :]      # (m, 20, 6), stress shocks added after mean matching
+        self.f = f
         self.cls_q, self.cls_y = tile(F.cls_q), tile(F.cls_y)
         if shock["draw_fixed"] is not None:
             self.draw = np.full((self.m, 5), float(shock["draw_fixed"]))
@@ -372,6 +414,51 @@ class PathSet:
         self._sq_return()
 
     # ------------------------------------------------------------------ helpers
+    # per-scenario arrays (axis 0), template arrays (axis 1) and per-bucket dicts: what subset() slices
+    _PER_PATH = ("world", "prob", "exit_model", "macro_y", "exit_y", "cls_q", "cls_y", "draw", "eq_excess_q", "f",
+                 "uV", "uU", "uD", "uC", "ubid", "r_sq")
+    _PER_PATH_T = ("tV", "tU", "tD", "tC")
+    _PER_PATH_D = ("G", "rq", "_pidx")
+
+    def subset(self, idx) -> "PathSet":
+        """The scenarios idx only (re-planning on the in-sample scenarios that share an observed history): every
+        per-scenario array sliced; TPPModel renormalizes the probabilities, so they become conditional on idx."""
+        idx = np.asarray(idx, int)
+        new = object.__new__(PathSet)
+        new.__dict__.update(self.__dict__)
+        for k in self._PER_PATH:
+            if getattr(self, k, None) is not None:
+                setattr(new, k, getattr(self, k)[idx])
+        for k in self._PER_PATH_T:
+            setattr(new, k, getattr(self, k)[:, idx])
+        for k in self._PER_PATH_D:
+            if getattr(self, k, None) is not None:
+                setattr(new, k, {b: a[idx] for b, a in getattr(self, k).items()})
+        new.m = len(idx)
+        new.idx = idx
+        return new
+
+    def private_index(self) -> dict:
+        """Each private bucket as if it traded at NAV: a quarterly total-return index (m, 21) on the same factor
+        paths, at the bucket's ER new-money return in each world, economic (no calls, distributions, bids, smoothing
+        or J-curve). Only the static benchmark's one-period model uses it (tpp.static)."""
+        if getattr(self, "_pidx", None) is None:
+            if getattr(self, "idx", None) is not None:
+                raise ValueError("compute the index on the full path set before taking a subset")
+            MP, br = self.F.MP, self.book.bucket_ret
+            rng = np.random.default_rng(self.seed + 13)
+            out = {}
+            for b in PRIVATE:
+                B = _loadings(MP, BY_ID[b], self.P)
+                a = np.array([np.log1p(br.loc[b, f"new_{w}"]) - self.rf - float(B @ self.Ef) for w in WORLDS])[self.world]
+                z = np.tile(rng.standard_normal((self.n, NQ)), (3, 1))
+                r = self.rf / 4 + self.f @ B + a[:, None] / 4 + _idio(BY_ID[b], self.P) / 2 * z
+                g = np.ones((self.m, NQ + 1))
+                g[:, 1:] = np.exp(np.cumsum(r, axis=1))
+                out[b] = g
+            self._pidx = out
+        return self._pidx
+
     def year_flows(self, X: np.ndarray) -> np.ndarray:
         """Quarterly flows (..., 20, k) -> annual sums (..., 5, k)."""
         sh = X.shape

@@ -143,6 +143,8 @@ table.t.path td.txt { font-size: 12px; min-width: 120px; }
 table.t td.nm { white-space: nowrap; }
 table.t.fixed th { white-space: normal; }
 table.t.fixed td { overflow-wrap: anywhere; }
+table.t.wrap th { white-space: normal; vertical-align: bottom; }
+table.t .ci { display: block; font-size: 11px; color: var(--text-muted); white-space: nowrap; }
 table.t tr:hover td { background: var(--surface-2); }
 table.t th.sortable { cursor: pointer; }
 table.t th.sortable:hover { color: var(--text-primary); }
@@ -154,6 +156,7 @@ table.t th.sortable:hover { color: var(--text-primary); }
 .tag.data { color: var(--accent-text); border-color: var(--series-1); }
 .tag.assume { color: var(--text-primary); border-color: var(--series-4); }
 .tag.derived { color: var(--text-secondary); }
+.tag.proto { color: var(--text-primary); border-color: var(--warning); border-style: dashed; }
 .callout { border-left: 3px solid var(--series-1); background: var(--surface-2); padding: 10px 12px; border-radius: 0 8px 8px 0; margin: 8px 0; font-size: 13px; color: var(--text-secondary); }
 .callout strong { color: var(--text-primary); }
 .callout.warn { border-left-color: var(--warning); }

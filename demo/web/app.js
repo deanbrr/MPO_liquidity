@@ -6,11 +6,12 @@
   "use strict";
   const D = JSON.parse(document.getElementById("tpp-data").textContent);
   const ROLES = ["strategy", "balance_sheet", "liquidity", "asset_allocation"];
-  const TABS = ROLES.concat(["ic", "yale", "data"]);
-  const TITLE = { strategy: "Strategy", balance_sheet: "Balance Sheet", liquidity: "Liquidity",
+  const TABS = ["feasibility"].concat(ROLES, ["ic", "yale", "data"]);
+  const TITLE = { feasibility: "Can we reach 10%?", strategy: "Strategy", balance_sheet: "Balance Sheet", liquidity: "Liquidity",
     asset_allocation: "Asset Allocation", ic: "Investment Committee", yale: "Yale model", data: "Data & method" };
   const WORLDS = ["Downside", "Base", "Upside"];
   const YEARS = ["Today", "Y1", "Y2", "Y3", "Y4", "Y5"];
+  const STRESS_SHORT = { base: "Base", prolonged_drought: "DPI decline", crisis_y1: "Crisis Y1", oil_crash: "Oil crash", exit_window_opens: "Exits reopen", rate_shock: "Rates +200bp", stagflation: "Stagflation", hf_gates: "HF gates", private_markdown: "Markdown", calls_spike: "Call spike", draw_10: "Draw 10%" };
   const FLOWYEARS = ["Y1", "Y2", "Y3", "Y4", "Y5"];
   const MINUS = "−";
 
@@ -22,7 +23,7 @@
     spct: (x, d = 1) => (ok(x) ? sgn(x) + Math.abs(x * 100).toFixed(d) + "%" : "–"),
     pp: (x, d = 1) => (ok(x) ? (+(x * 100).toFixed(d) === 0 ? (0).toFixed(d) + "pp" : sgn(x) + Math.abs(x * 100).toFixed(d) + "pp") : "–"),
     bn: (x, d = 1) => (ok(x) ? (x < 0 ? MINUS : "") + "$" + Math.abs(x).toFixed(d) + "bn" : "–"),
-    sbn: (x, d = 1) => (ok(x) ? sgn(x) + "$" + Math.abs(x).toFixed(d) + "bn" : "–"),
+    sbn: (x, d = 1) => (ok(x) ? (+Math.abs(x).toFixed(d) === 0 ? "$" + (0).toFixed(d) + "bn" : sgn(x) + "$" + Math.abs(x).toFixed(d) + "bn") : "–"),
     x: (x, d = 2) => (ok(x) ? x.toFixed(d) + "×" : "–"),
     n: (x, d = 2) => (ok(x) ? (x < 0 ? MINUS : "") + Math.abs(x).toFixed(d) : "–"),
     int: (x) => (ok(x) ? Math.round(x).toLocaleString("en-US") : "–"),
@@ -158,6 +159,57 @@
     const se = Math.sqrt(v);
     return { d: m, ci: [m - 1.96 * se, m + 1.96 * se] };
   }
+  // per-path dollar shortfall against the target account (int16, $0.01bn)
+  const SHORT = new Map();
+  function shortArr(b64) {
+    if (!b64) return null;
+    if (SHORT.has(b64)) return SHORT.get(b64);
+    const bin = atob(b64), n = bin.length / 2, a = new Float32Array(n);
+    for (let i = 0; i < n; i++) { let v = bin.charCodeAt(2 * i) | (bin.charCodeAt(2 * i + 1) << 8); if (v >= 32768) v -= 65536; a[i] = v / 100; }
+    SHORT.set(b64, a);
+    return a;
+  }
+  // its mean, the average of the worst alpha share and P(no shortfall); keep(w, j, n) selects paths (an exit model),
+  // with each world's weight spread over its selected paths
+  function shortStats(a, pi, keep) {
+    if (!a) return null;
+    const n = a.length / 3, w = [], idx = [];
+    for (let k = 0; k < 3; k++) {
+      let c = 0;
+      for (let j = 0; j < n; j++) if (!keep || keep(k, j, n)) c++;
+      for (let j = 0; j < n; j++) if (!keep || keep(k, j, n)) { w.push(c ? pi[k] / c : 0); idx.push(k * n + j); }
+    }
+    const tot = w.reduce((x, y) => x + y, 0) || 1;
+    let mean = 0, p0 = 0;
+    for (let i = 0; i < idx.length; i++) { const v = a[idx[i]]; mean += (w[i] / tot) * v; if (v <= 1e-9) p0 += w[i] / tot; }
+    const order = idx.map((_, i) => i).sort((x, y) => a[idx[y]] - a[idx[x]]);
+    const alpha = D.meta.short_alpha || 0.10;
+    let acc = 0, s2 = 0;
+    for (const i of order) { const ww = Math.min(w[i] / tot, alpha - acc); if (ww <= 0) break; s2 += ww * a[idx[i]]; acc += ww; }
+    return { mean, cvar: acc > 0 ? s2 / acc : 0, p0 };
+  }
+  // P(hurdle) and the objective bits on a subset of paths (an exit model)
+  function subStats(rec, fl, pi, h, keep) {
+    const n = rec.n;
+    let pg = 0, liq = 0, bs = 0;
+    for (let k = 0; k < 3; k++) {
+      let c = 0, g = 0, lq = 0, b = 0;
+      for (let j = 0; j < n; j++) {
+        if (keep && !keep(k, j, n)) continue;
+        const i = k * n + j, f = fl ? fl[i] : 7;
+        c++; g += rec.a[i] >= h - 1e-9; lq += (f & 2) > 0; b += (f & 1) > 0;
+      }
+      if (c) { pg += (pi[k] * g) / c; liq += (pi[k] * lq) / c; bs += (pi[k] * b) / c; }
+    }
+    return { pg, liq, bs };
+  }
+  // exit model of a path: in each world block, the last n_p paths follow the persistent slowdown
+  const exitKeep = (stress, model) => {
+    const ed = D.meta.exit_design;
+    if (!ed) return null;
+    const np_ = (ed.n_p || {})[stress] ?? Math.round(ed.share * (D.meta.n_oos || 0));
+    return (k, j, n) => (j >= n - np_) === (model === 1);
+  };
   function histo(rec, pi) {
     const edges = D.meta.hist_edges;
     const nb = edges.length - 1, out = new Array(nb).fill(0);
@@ -399,7 +451,7 @@
     const band = ns > 1 ? 14 * ns + 12 : 26, h = C.padT + rows.length * band + 26;
     const vals = rows.flatMap((r) => r.values.filter(ok));
     let lo = Math.min(0, ...vals), hi = Math.max(0, ...vals);
-    const dm = domain(lo, hi, 4, lo < 0 ? 0.22 : 0, hi > 0 ? 0.10 : 0);   // headroom so value labels clear the bars
+    const dm = o.fixed || domain(lo, hi, 4, lo < 0 ? 0.22 : 0, hi > 0 ? 0.10 : 0);   // headroom so value labels clear the bars
     lo = dm.lo; hi = dm.hi;
     const labW = o.labelW || 210;
     const svg = frame(host, h, { label: o.title });
@@ -603,7 +655,7 @@
     const good = goodUp ? d > 0 : d < 0;
     return el("span", null, el("span", { class: Math.abs(d) < 1e-9 ? "" : good ? "up" : "down", text: fmt(d) }), suffix);
   };
-  const tag = (kind) => el("span", { class: "tag " + kind, text: kind === "data" ? "DATA" : kind === "assume" ? "ASSUMPTION" : "DERIVED" });
+  const tag = (kind) => el("span", { class: "tag " + kind, text: kind === "data" ? "DATA" : kind === "assume" ? "ASSUMPTION" : kind === "proto" ? "PROTOTYPE" : "DERIVED" });
   const stressLabel = (k) => (D.stresses[k] || { label: k }).label;
   const R = (role) => D.roles[role];
   const entry = (role, stress) => R(role).stresses[stress || st.stress[role]];
@@ -631,16 +683,18 @@
     const sq = stats(twr(e.twr.sq), pi, h), pl = stats(twr(e.twr.plan), pi, h), np = stats(twr(e.twr.np), pi, h);
     const d = paired(twr(e.twr.plan), twr(e.twr.sq), pi, h);
     const b = e.brief.plan, bs = e.brief.sq;
-    return { sq, pl, np, d, b, bs };
+    const shP = e.short ? shortStats(shortArr(e.short.plan), pi) : null, shS = e.short ? shortStats(shortArr(e.short.sq), pi) : null;
+    return { sq, pl, np, d, b, bs, shP, shS };
   }
   function headTiles(role, extra) {
-    const { sq, pl, np, d, b, bs } = liveHead(role);
+    const { sq, pl, np, d, b, bs, shP, shS } = liveHead(role);
     const h = hurdle();
     const tiles = [
       kpi(`P(${F.pct(h, 0)} a year over 5 years), ${R(role).lens.title} plan`, F.pct(pl.pg, 1), el("span", { text: `95% CI ${F.pct(pl.ci[0], 1)} to ${F.pct(pl.ci[1], 1)}` }), true),
       kpi("Status quo (with the PE program)", F.pct(sq.pg, 1), deltaSpan(d.d, (x) => F.pp(x), true, ` plan vs status quo (CI ${F.pp(d.ci[0])} to ${F.pp(d.ci[1])})`)),
-      kpi("Mean 5-year return", F.pct(pl.mean, 2), deltaSpan(pl.mean - sq.mean, (x) => F.pp(x, 2), true, " vs status quo")),
-      kpi("Worst 10% average (CVaR10)", F.pct(pl.cvar10, 1), deltaSpan(pl.cvar10 - sq.cvar10, (x) => F.pp(x, 1), true, " vs status quo")),
+      shP ? kpi(`Expected shortfall against the ${F.pct(D.meta.goal_rate, 0)} target account`, F.bn(shP.mean), deltaSpan(shP.mean - shS.mean, (x) => F.sbn(x), false, ` vs status quo; worst 10% ${F.bn(shP.cvar, 0)} (status quo ${F.bn(shS.cvar, 0)})`))
+        : kpi("Worst 10% average (CVaR10)", F.pct(pl.cvar10, 1), deltaSpan(pl.cvar10 - sq.cvar10, (x) => F.pp(x, 1), true, " vs status quo")),
+      kpi("Mean 5-year return", F.pct(pl.mean, 2), deltaSpan(pl.mean - sq.mean, (x) => F.pp(x, 2), true, ` vs status quo; worst 10% ${F.pct(pl.cvar10, 1)} (status quo ${F.pct(sq.cvar10, 1)})`)),
       kpi("Forced private sale (red event)", F.pct(b.p_red, 2), el("span", { text: `status quo ${F.pct(bs.p_red, 2)}` })),
       kpi("PE program effect on the status quo", F.pp(sq.pg - np.pg), el("span", { text: `without the program ${F.pct(np.pg, 1)}` })),
     ];
@@ -880,6 +934,144 @@
     note.textContent = (sd ? `${sd.label}: ${sd.desc} ` : "") + "World weights and the hurdle re-weight the certified out-of-sample paths live; the plans themselves were optimized by the engine at each group's own view.";
   }
 
+  // ------------------------------------------------------------------ FEASIBILITY
+  // Can the fund reach 10%? A target-feasibility view first (external research shared 2026-10-27): the opening
+  // balance sheet as reconciled, the target account, the ladder from doing nothing to leverage (live, IC cases), the
+  // cost of each group's limits (static re-optimizations) and the two exit models (live)
+  const LADDER = [["do_nothing", "Do nothing"], ["status_quo", "Status quo (PE program as decided)"],
+    ["static", "Static framework: one policy portfolio, Yale pacing"],
+    ["consensus", "Consensus plan (every group's limits)"], ["to_none", "Every group's limit removed, no borrowing"],
+    ["to_115", "Every limit removed, leverage up to 1.15x"], ["to_150", "Every limit removed, leverage up to 1.5x"],
+    ["to_200", "Every limit removed, leverage up to 2.0x"]];
+  function viewFeasibility() {
+    const v = document.getElementById("v-feasibility");
+    const Fz = D.feasibility, ic = D.ic, pi = piNow(), h = hurdle(), stress = st.stress.feasibility || "base";
+    if (!Fz || !ic || !ic.cases) { v.replaceChildren(el("div", { class: "callout warn", text: "This build has no feasibility results: rebuild the page." })); return; }
+    const b = Fz.book, W0 = D.meta.W0;
+    const cs = (key) => (ic.cases[key] ? ic.cases[key][stress] : null);
+    const sqC = cs("status_quo");
+    const live = (key, keep) => {
+      const c = cs(key);
+      if (!c) return null;
+      const rec = twr(c.twr), fl = flags(c.flags);
+      return { key, s: stats(rec, pi, h), o: objStats(rec, fl, pi, h, key === "status_quo" ? null : twr(sqC.twr)),
+        sh: shortStats(shortArr(c.short), pi, keep), sub: keep ? subStats(rec, fl, pi, h, keep) : null };
+    };
+    const lad = LADDER.map(([k, nm]) => Object.assign({ nm }, live(k) || {})).filter((x) => x.s);
+    const by = Object.fromEntries(lad.map((x) => [x.key, x]));
+    const best = by.consensus, sq = by.status_quo, dn = by.do_nothing, none = by.to_none;
+    const levs = ["to_115", "to_150", "to_200"].filter((k) => by[k]);
+    // the cost of each group's limits (static: the Strategy group's weights, base case)
+    const L = (Fz.limits || []).filter((r) => !r.infeasible), base = L.find((r) => r.key === "all");
+    const others = base ? L.filter((r) => r.key !== "all") : [];
+    const costly = others.filter((r) => r.key !== "none").sort((a, c) => c.p_goal - a.p_goal);
+    v.replaceChildren(el("div", { class: "lead" }, el("h2", { text: `Can the fund reach ${F.pct(h, 0)} a year?` }),
+      el("p", { text: `The question comes first: before more optimization, can today's assets and opportunity set support ${F.pct(h, 0)} a year, the owner's distribution and the liquidity floor together, and what does each group's limit cost? The target is ${F.pct(h, 0)} a year over five years, time-weighted, in nominal dollars and before the owner's distributions. Its dollar twin is the target account: today's ${F.bn(W0, 0)} growing at ${F.pct(h, 0)} while paying the owner what the owner actually takes. The shortfall is how far the fund ends below it in year 5. Probabilities and shortfalls follow the controls above, on the IC's paths for the chosen stress.` })));
+    // verdict
+    const msg = [];
+    if (best && sq && dn) msg.push(`Inside every group's limits, the consensus plan (the smallest worst-case dollar shortfall across the groups' world weights) reaches ${F.pct(h, 0)} on ${F.pct(best.s.pg)} of paths (95% CI ${F.pct(best.s.ci[0])} to ${F.pct(best.s.ci[1])}), against ${F.pct(sq.s.pg)} for the status quo and ${F.pct(dn.s.pg)} for doing nothing. Its expected shortfall against the target account is ${F.bn(best.sh.mean)} and ${F.bn(best.sh.cvar)} on average in the worst 10% of outcomes (status quo ${F.bn(sq.sh.mean)} and ${F.bn(sq.sh.cvar)}).`);
+    const stc = by.static;
+    if (stc && best) msg.push(`A static framework (one policy portfolio chosen as if private assets traded at NAV, reached through Yale-model commitment pacing, with the Strategy group's objective) reaches ${F.pct(h, 0)} on ${F.pct(stc.s.pg)} of these paths with an expected shortfall of ${F.bn(stc.sh.mean)}, and keeps the balance sheet within the house limits at every year end on ${F.pct(stc.o.bs, 0)} of them (consensus plan ${F.pct(best.o.bs, 0)}). The Strategy tab sets it against the multi-period plans, rung by rung.`);
+    if (none && best) msg.push(`With every group's limit removed and no borrowing, the chance ${none.s.pg >= best.s.pg ? "rises" : "falls"} to ${F.pct(none.s.pg)}, with an expected shortfall of ${F.bn(none.sh.mean)} and a worst-10% average of ${F.bn(none.sh.cvar)}. The cost: the balance sheet stays within the house limits on ${F.pct(none.o.bs, 0)} of paths, and calls and distributions are paid without a forced sale on ${F.pct(none.o.liq, 0)}.`);
+    if (levs.length && none) {
+      const seq = [none].concat(levs.map((k) => by[k])), rising = seq.every((x, i) => i === 0 || x.s.pg > seq[i - 1].s.pg);
+      const deeper = seq.every((x, i) => i === 0 || x.sh.cvar >= seq[i - 1].sh.cvar - 1e-9);
+      msg.push(`${rising ? "Borrowing raises the chance at every step, with no interior optimum" : "With borrowing"}: ${levs.map((k) => `${{ to_115: "1.15x", to_150: "1.5x", to_200: "2.0x" }[k]} ${F.pct(by[k].s.pg)}`).join(", ")}, while the worst-10% shortfall ${deeper ? "deepens" : "moves"} to ${levs.map((k) => F.bn(by[k].sh.cvar, 0)).join(", ")}.${rising && deeper ? " Maximizing the chance alone rewards plans that fail badly when they fail." : ""}`);
+    }
+    if (base && costly.length) msg.push(`What each group's limits cost (re-optimized with one group's limits removed, the Strategy group's view, base case): ${costly.map((r) => `${r.name.replace("Without ", "").replace("the ", "")} ${F.pp(r.p_goal - base.p_goal)} of P(${F.pct(h, 0)}) and ${F.sbn(r.short_mean_bn - base.short_mean_bn)} of expected shortfall`).join("; ")}.`);
+    const xC = exitKeep(stress, 0), xP = exitKeep(stress, 1);
+    const bc = best && live("consensus", xC), bp = best && live("consensus", xP);
+    if (bc && bp && (D.meta.exit_design.n_p || {})[stress] < D.meta.n_oos) msg.push(`If exits recover on the usual cycle, the consensus plan reaches ${F.pct(h, 0)} on ${F.pct(bc.sub.pg)} of those paths; if the slowdown persists, on ${F.pct(bp.sub.pg)}, with forced private sales on ${F.pct(1 - bp.sub.liq, 1)} of them (expected shortfall ${F.bn(bc.sh.mean)} against ${F.bn(bp.sh.mean)}). The base case weights the persistent slowdown at ${F.pct(D.meta.exit_design.share, 0)}.`);
+    msg.push(`The balance-sheet limits (leverage ${F.x(Fz.caps.lev_cap, 2)}, overcommitment ${F.x(Fz.caps.overcommit, 2)}, recourse debt ${F.pct(Fz.caps.recourse_cap, 0)} of NAV, NAV-facility LTV ${F.pct(Fz.caps.navf_ltv_max, 0)}) are prototype placeholders, not ADIC policy. With ${F.pct(b.private_nav_bn / b.total_nav_bn, 0)} of NAV in private assets and ${F.bn(b.unfunded_bn, 0)} of unfunded commitments, the fund starts at overcommitment ${F.x(b.overcommit0, 2)}, so the ${F.x(Fz.caps.overcommit, 2)} placeholder shapes every plan.`);
+    v.append(el("div", { class: "card" }, el("h3", { text: "The answer on this build" }), el("ul", { class: "tight" }, ...msg.map((x) => el("li", { text: x })))));
+    // opening balance sheet
+    const ob = el("table", { class: "t" });
+    ob.append(el("thead", null, el("tr", null, ...["Item", "$bn", "Share of NAV", "Basis"].map((c, i) => el("th", { class: i === 1 || i === 2 ? "num" : "", text: c })))));
+    const obb = el("tbody");
+    const row = (lab, val, share, kind, note, sub) => obb.append(el("tr", null, el("td", { style: sub ? "padding-left:22px" : null, text: lab }), el("td", { class: "num", text: val == null ? "–" : F.n(val, 1) }), el("td", { class: "num", text: share == null ? "" : F.pct(share, 1) }), el("td", null, kind ? tag(kind) : null, note ? el("span", { class: "small", text: " " + note }) : null)));
+    const T = b.total_nav_bn;
+    row("Whole-fund NAV", T, 1, "data", "the user");
+    row("Private assets at NAV", b.private_nav_bn, b.private_nav_bn / T, "data", `${F.pct(b.private_share_target, 0)} of NAV (the user)`);
+    row("in the fund file", b.file_private_nav_bn, b.file_private_nav_bn / T, "data", "live holdings", true);
+    row("outside the file, derived from the current strategies", b.outside_nav_bn, b.outside_nav_bn / T, "derived", "the file's mix by strategy, age profile and unfunded per $ of NAV; ER strategy returns; never sold by a plan", true);
+    row("Unfunded commitments", b.unfunded_bn, b.unfunded_bn / T, "derived", `${F.bn(b.unfunded_bn - b.outside_unfunded_bn)} in the file, ${F.bn(b.outside_unfunded_bn)} derived`);
+    row("Liquid assets", b.liquid_bn, b.liquid_bn / T, "derived", "the rest of NAV");
+    row("fund-file managers (hedge funds, long-only mandates)", b.liquid_file_bn, b.liquid_file_bn / T, "data", "", true);
+    row("internal sleeves (Global Equities, Global Agg, Treasury, Cash, MAO)", b.liquid_sleeves_bn, b.liquid_sleeves_bn / T, "assume", "working split until actual balances are entered", true);
+    row("of which the reserve (cash + Treasury)", b.reserve_bn, b.reserve_bn / T, "assume", b.reserve_moved_bn > 0.05 ? `held at the ${F.pct(Fz.floor_target, 0)} target: ${F.bn(b.reserve_moved_bn)} moved in from the other internal sleeves` : "", true);
+    row("Liquidity floor", Fz.floor_hard * T, Fz.floor_hard, "data", `ADIC's ${F.pct(Fz.floor_hard, 0)} floor on cash + Treasury (which assets count is to confirm); operating target ${F.pct(Fz.floor_target, 0)} (assumption)`);
+    row("Overcommitment today: (private NAV + unfunded) / NAV", null, b.overcommit0, "proto", `ceiling ${F.x(Fz.caps.overcommit, 2)} is a prototype placeholder`);
+    row("Drawn debt (revolver, term)", (b.revolver_drawn0_bn || 0) + (b.term0_bn || 0), null, "assume", "zero until actual figures are entered");
+    row("Status-quo commitments a year", b.pacing_sq_bn, b.pacing_sq_bn / T, "derived", `average of the 2023-25 vintages${b.pace_scale > 1.0001 ? `, scaled ${F.x(b.pace_scale, 2)} with the private assets outside the file` : ""}`);
+    ob.append(obb);
+    const g0 = el("div", { class: "grid g2", style: "margin-top:14px" });
+    g0.append(el("div", { class: "card" }, el("h3", { text: "The opening balance sheet" }), el("p", { class: "sub", text: "As the engine starts it: DATA from the user's files and statements, DERIVED from them, ASSUMPTION where nothing is known yet, PROTOTYPE where a placeholder limit stands in for ADIC policy." }), el("div", { class: "tablewrap full" }, ob),
+      (Fz.notes || []).length ? el("p", { class: "note", style: "margin-top:8px", text: Fz.notes.join(" ") }) : null));
+    // the target account
+    const rowsIC = Object.fromEntries((ic.rows || []).map((r) => [r.key, r]));
+    const rc = rowsIC.consensus, rs = rowsIC.status_quo;
+    if (rc && rc.fans && rc.fans.target) {
+      g0.append(chartCard("The target account against the fund", `The target account (today's NAV growing at ${F.pct(D.meta.goal_rate, 0)} and paying the owner's actual distributions, median over the paths) against the fund's NAV after the owner: the consensus plan's P5-P95 band and median and the status quo's median. In year 5 the gap below the account is the dollar shortfall. IC view's default weights.`,
+        (host) => { host.append(legend([{ name: "Consensus P5-P95", color: "var(--wash-1b)", kind: "band" }, { name: "Consensus, median", color: cssv("--series-1"), kind: "line" }, { name: "Status quo, median", color: cssv("--deemph"), kind: "line" }, { name: "Target account, median", color: cssv("--text-secondary"), kind: "line" }])); fanChart(host, { labels: YEARS, fans: [{ name: "Consensus", fan: rc.fans.nav, color: cssv("--series-1") }], lines: [{ name: "Status quo", values: rs.fans.nav.p50, color: cssv("--deemph") }], refs: [{ values: rc.fans.target.p50, label: "Target account", color: cssv("--text-secondary"), dash: true }], yfmt: (t) => F.bn(t, 0), h: 270 }); },
+        () => ({ cols: ["Year", "Target account, median", "Consensus P5", "Consensus median", "Consensus P95", "Status quo median"], rows: YEARS.map((y2, i) => [y2, F.bn(rc.fans.target.p50[i], 0), F.bn(rc.fans.nav.p5[i], 0), F.bn(rc.fans.nav.p50[i], 0), F.bn(rc.fans.nav.p95[i], 0), F.bn(rs.fans.nav.p50[i], 0)]) })));
+    }
+    v.append(g0);
+    // the ladder (live)
+    const t = el("table", { class: "t" });
+    const cols = ["Portfolio", `P(${F.pct(h, 0)} a year)`, "95% CI", "Expected shortfall", "Worst-10% shortfall", "No shortfall", "Balance sheet within limits", "Calls and distributions met", "Every objective"];
+    t.append(el("thead", null, el("tr", null, ...cols.map((c, i) => el("th", { class: (i ? "num" : "") + (i >= 6 ? " own" : ""), text: c })))));
+    const tb = el("tbody");
+    for (const r of lad) tb.append(el("tr", null, el("td", null, r.key === "consensus" ? el("strong", { text: r.nm }) : document.createTextNode(r.nm)), el("td", { class: "num", text: F.pct(r.s.pg, 1) }), el("td", { class: "num", text: `${F.pct(r.s.ci[0], 1)} to ${F.pct(r.s.ci[1], 1)}` }), el("td", { class: "num", text: F.bn(r.sh.mean) }), el("td", { class: "num", text: F.bn(r.sh.cvar) }), el("td", { class: "num", text: F.pct(r.sh.p0, 1) }), el("td", { class: "num own", text: F.pct(r.o.bs, 1) }), el("td", { class: "num own", text: F.pct(r.o.liq, 1) }), el("td", { class: "num own", text: F.pct(r.o.all, 1) })));
+    t.append(tb);
+    const g1 = el("div", { class: "grid g2", style: "margin-top:14px" });
+    g1.append(chartCard(`From doing nothing to leverage: the chance of ${F.pct(h, 0)}`, "Each portfolio's probability of the target on the same paths (live weights, hurdle and stress).",
+      (host) => barsH(host, { rows: lad.map((r) => ({ label: r.nm.replace("Every limit removed, ", "No limits, ").replace("Every group's limit removed, ", "No limits, ").replace("Consensus plan (every group's limits)", "Consensus (every limit)").replace("Static framework: one policy portfolio, Yale pacing", "Static framework"), values: [r.s.pg] })), series: [{ name: `P(${F.pct(h, 0)})`, color: cssv("--series-1") }], fmt: (x) => F.pct(x, 0), labelW: 230 }),
+      () => ({ cols: ["Portfolio", `P(${F.pct(h, 0)})`], rows: lad.map((r) => [r.nm, F.pct(r.s.pg, 1)]) })));
+    g1.append(chartCard("And how far short it falls", "The expected dollar shortfall against the target account and its average in the worst 10% of outcomes ($bn, live).",
+      (host) => { host.append(legend([{ name: "Expected", color: cssv("--series-1") }, { name: "Worst 10%", color: cssv("--series-2") }])); barsH(host, { rows: lad.map((r) => ({ label: r.nm.replace("Every limit removed, ", "No limits, ").replace("Every group's limit removed, ", "No limits, ").replace("Consensus plan (every group's limits)", "Consensus (every limit)").replace("Static framework: one policy portfolio, Yale pacing", "Static framework"), values: [r.sh.mean, r.sh.cvar] })), series: [{ name: "Expected", color: cssv("--series-1") }, { name: "Worst 10%", color: cssv("--series-2") }], fmt: (x) => F.bn(x, 0), labelW: 230 }); },
+      () => ({ cols: ["Portfolio", "Expected shortfall", "Worst-10% shortfall"], rows: lad.map((r) => [r.nm, F.bn(r.sh.mean), F.bn(r.sh.cvar)]) })));
+    v.append(el("div", { class: "card", style: "margin-top:14px" }, el("h3", { text: "The ladder: what each step buys and what it costs" }),
+      el("p", { class: "sub", text: `The same paths for every portfolio (IC view, ${stressLabel(stress)}). The shaded columns judge every portfolio against the house limits, including those built without them. The consensus plan is optimized under every group's limits, minimizing the expected and worst-10% dollar shortfall at the worst of the groups' world weights; the no-limit portfolios maximize the buffered chance of ${F.pct(D.meta.goal_rate, 0)}.` }),
+      el("div", { class: "tablewrap full" }, t)), g1);
+    // the cost of each group's limits (static)
+    if (base) {
+      const lt = el("table", { class: "t" });
+      lt.append(el("thead", null, el("tr", null, ...["Re-optimized", `P(${F.pct(D.meta.goal_rate, 0)})`, "Change", "Expected shortfall", "Change", "Worst-10% shortfall", "Forced private sale", "Balance sheet within limits", "Calls and distributions met"].map((c, i) => el("th", { class: i ? "num" : "", text: c })))));
+      const ltb = el("tbody");
+      for (const r of [base].concat(others)) ltb.append(el("tr", null, el("td", null, r.key === "all" ? el("strong", { text: r.name }) : document.createTextNode(r.name)), el("td", { class: "num", text: F.pct(r.p_goal, 1) }), el("td", { class: "num", text: r.key === "all" ? "–" : F.pp(r.p_goal - base.p_goal) }), el("td", { class: "num", text: F.bn(r.short_mean_bn) }), el("td", { class: "num", text: r.key === "all" ? "–" : F.sbn(r.short_mean_bn - base.short_mean_bn) }), el("td", { class: "num", text: F.bn(r.short_cvar10_bn) }), el("td", { class: "num", text: F.pct(r.p_red, 1) }), el("td", { class: "num", text: F.pct(r.p_bs, 1) }), el("td", { class: "num", text: F.pct(r.p_liq, 1) })));
+      for (const r of (Fz.limits || []).filter((x) => x.infeasible)) ltb.append(el("tr", null, el("td", { text: r.name }), el("td", { colspan: 8, class: "note", text: "no feasible plan" })));
+      lt.append(ltb);
+      const g2 = el("div", { class: "grid g2", style: "margin-top:14px" });
+      g2.append(chartCard("The cost of each group's limits", `What removing one group's limits adds to P(${F.pct(D.meta.goal_rate, 0)}) (and, in the table, takes off the expected shortfall), re-optimized each time.`,
+        (host) => barsH(host, { rows: others.map((r) => ({ label: { bs: "Balance Sheet: guard, overcommitment", liq: "Liquidity: floor, target, appetite", depth: "Strategy: depth guard", aa: "Asset Allocation: ranges, pacing", prog: "The PE program", none: "Every group's limit" }[r.key] || r.name.replace("Without ", ""), values: [r.p_goal - base.p_goal] })), series: [{ name: "P(target) added", color: cssv("--series-1") }], fmt: (x) => F.pp(x, 1), colorFn: (val) => (val >= 0 ? cssv("--series-1") : cssv("--div-neg")), labelW: 300 }),
+        () => ({ cols: ["Limits removed", "P added", "Expected shortfall change"], rows: others.map((r) => [r.name, F.pp(r.p_goal - base.p_goal), F.sbn(r.short_mean_bn - base.short_mean_bn)]) })));
+      g2.append(el("div", { class: "card" }, el("h3", { text: "How to read it" }), el("ul", { class: "tight" },
+        el("li", { text: `Each row re-optimizes the Strategy group's objective (${Fz.objective_text}) with one group's limits removed, everything else as the house sets it. One schedule for every path on the sweep's scenario set, so the rows compare with each other, not with the adaptive plans.` }),
+        el("li", { text: "Every row is judged against the house limits, so a row built without a group's limits shows what breaking them would mean on the paths." }),
+        el("li", { text: "A limit that costs little is cheap insurance; one that costs a lot is where the IC trades return against safety. The PE program row is a decision already taken, not a limit." }),
+        el("li", { text: `The Strategy group's weights (${WORLDS.map((w) => `${w} ${F.pct(D.roles.strategy.prefs.scenario_probs[w], 0)}`).join(" / ")}), base case; static, not moved by the controls.` }))));
+      v.append(el("div", { class: "card", style: "margin-top:14px" }, el("h3", { text: "What each group's limits cost" }), el("div", { class: "tablewrap full" }, lt)), g2);
+    }
+    // the two exit models (live)
+    if (D.meta.exit_design && (D.meta.exit_design.n_p || {})[stress] < D.meta.n_oos) {
+      const et = el("table", { class: "t" });
+      et.append(el("thead", null, el("tr", null, el("th", { text: "" }), el("th", { class: "num grp", colspan: 3, text: "Exits recover on the usual cycle" }), el("th", { class: "num grp", colspan: 3, text: "The slowdown persists" })),
+        el("tr", null, el("th", { text: "Portfolio" }), ...[0, 1].flatMap(() => [`P(${F.pct(h, 0)})`, "Expected shortfall", "Forced private sale"].map((c) => el("th", { class: "num", text: c }))))));
+      const etb = el("tbody");
+      for (const [k, nm] of [["do_nothing", "Do nothing"], ["status_quo", "Status quo"], ["consensus", "Consensus"], ["to_none", "Every limit removed, no borrowing"]]) {
+        const a = live(k, xC), c = live(k, xP);
+        if (!a || !c) continue;
+        etb.append(el("tr", null, el("td", { text: nm }), ...[a, c].flatMap((x) => [F.pct(x.sub.pg, 1), F.bn(x.sh.mean), F.pct(1 - x.sub.liq, 1)].map((s2) => el("td", { class: "num", text: s2 })))));
+      }
+      et.append(etb);
+      v.append(el("div", { class: "card", style: "margin-top:14px" }, el("h3", { text: "If the exit slowdown persists" }),
+        el("p", { class: "sub", text: `Two exit models run side by side on every path set: the calibrated cycle (an exit drought lasts about two years on average) and a persistent slowdown (about five years: drought persistence ${F.n(D.meta.exit_design.persistence, 2)} a quarter). Distribution rates are still about half their pre-2022 level (MSCI Private Capital Benchmarks, Q1 2026). The base case weights the slowdown at ${F.pct(D.meta.exit_design.share, 0)}; the slowdown changes distributions, calls, secondary prices and market classes, not expected returns. Each half below is conditional on its own paths (live weights, hurdle and stress).` }),
+        el("div", { class: "tablewrap full" }, et)));
+    }
+    v.append(el("div", { class: "callout", style: "margin-top:14px" }, el("strong", { text: "Not yet in this build. " }),
+      "A ten-year evaluation, or a terminal value for commitments still unfunded in year 5. Three liquidity tests: compliance today, survival of each named stress without a forced sale, and the chance of a breach anywhere on the path. A quarterly coverage ladder with stressed haircuts. Re-planning from each path's exact position: the yearly re-plan on the Strategy tab conditions on the observed history of market states, and today's liquid allocation, NAV facility and synthetic beta stay as decided."));
+  }
+
   // ------------------------------------------------------------------ STRATEGY
   function viewStrategy() {
     const role = "strategy", v = document.getElementById("v-strategy");
@@ -900,19 +1092,24 @@
     const ex = R(role).extras;
     const g2 = el("div", { class: "grid g2", style: "margin-top:14px" });
     const fullRow = ex.levers[0];
-    const lev = ex.levers.slice(1).map((r) => ({ label: r.name, values: [fullRow.p_goal - r.p_goal], r }));
+    const NF = "no feasible plan under the house limits";
+    const lev = ex.levers.slice(1).filter((r) => !r.infeasible).map((r) => ({ label: r.name, values: [fullRow.p_goal - r.p_goal], r }));
     g2.append(chartCard("What each lever buys", "Re-optimized with one lever switched off: the loss in P(hurdle) against the full plan (out of sample, the group's view).",
       (host) => barsH(host, { rows: lev, series: [{ name: "P(hurdle) the lever adds", color: cssv("--series-1") }], fmt: (t) => F.pp(t, 1), colorFn: (val) => (val >= 0 ? cssv("--series-1") : cssv("--div-neg")), labelW: 250 }),
-      () => ({ cols: ["Lever switched off", "P(hurdle)", "Lever adds", "CVaR10", "Max leverage P95"], rows: ex.levers.map((r) => [r.name, F.pct(r.p_goal), F.pp(fullRow.p_goal - r.p_goal), F.pct(r.cvar10), F.x(r.lev_max_p95)]) })));
-    const pts = ex.frontier.map((r) => ({ label: r.name.replace("Tail allowance", "Tail +").replace(" of NAV", ""), x: r.cvar10, y: r.p_goal, emph: r.key === "delta0", extra: [{ value: F.pct(r.p_red, 2), name: "P(red event)" }, { value: F.x(r.lev_max_p95), name: "max leverage P95" }] }));
+      () => ({ cols: ["Lever switched off", "P(hurdle)", "Lever adds", "Expected shortfall", "Lever saves", "CVaR10", "Max leverage P95"], rows: ex.levers.map((r) => (r.infeasible ? [r.name, NF, "", "", "", "", ""] : [r.name, F.pct(r.p_goal), F.pp(fullRow.p_goal - r.p_goal), F.bn(r.short_mean_bn), F.sbn(r.short_mean_bn - fullRow.short_mean_bn), F.pct(r.cvar10), F.x(r.lev_max_p95)])) })));
+    const infL = ex.levers.filter((r) => r.infeasible);
+    if (infL.length) g2.append(el("p", { class: "note", style: "grid-column: 1 / -1", text: infL.map((r) => `${r.name}: ${NF}.` + (r.binding === "bs_guard" && r.without_guard ? ` The binding limit is the balance-sheet guard (leverage within ${F.x(D.house.lev_cap, 2)} and overcommitment within ${F.x(D.house.overcommit, 2)} at every year end on ${F.pct(D.house.bs_guard_prob, 0)} of paths): without it the plan reaches ${F.pct(r.without_guard.p_goal, 1)}, with an expected shortfall of ${F.bn(r.without_guard.short_mean_bn)} and forced sales on ${F.pct(r.without_guard.p_red, 1)} of paths.` : "")).join(" ") }));
+    const pts = ex.frontier.filter((r) => !r.infeasible).map((r) => ({ label: r.name.replace("Tail allowance", "Tail +").replace(" of NAV", ""), x: r.cvar10, y: r.p_goal, emph: r.key === "delta0", extra: [{ value: F.pct(r.p_red, 2), name: "P(red event)" }, { value: F.x(r.lev_max_p95), name: "max leverage P95" }] }));
     const sqb = entry(role, "base").brief.sq;
     pts.push({ label: "Status quo", x: sqb.cvar10, y: sqb.p_goal, emph: false });
     g2.append(chartCard("Risk frontier: what each extra unit of tail risk buys", "P(hurdle) against the average of the worst 10% of outcomes. 'Tail +x%' lets the plan's tail be up to x% of NAV worse than the status quo's (the depth guard); the house setting is 0%.",
       (host) => scatter(host, { points: pts, xfmt: (t) => F.pct(t, 1), yfmt: (t) => F.pct(t, 0), xlabel: "CVaR10 of the 5-year return (right is safer)", ylabel: "P(hurdle)", h: 290 }),
-      () => ({ cols: ["Variant", "P(hurdle)", "CVaR10", "P(red)", "Max lev P95", "Term debt", "Beta"], rows: ex.frontier.map((r) => [r.name, F.pct(r.p_goal), F.pct(r.cvar10), F.pct(r.p_red, 2), F.x(r.lev_max_p95), F.bn(r.financing.term_total_bn), F.bn(r.financing.beta_bn)]) })));
+      () => ({ cols: ["Variant", "P(hurdle)", "CVaR10", "P(red)", "Max lev P95", "Term debt", "Beta"], rows: ex.frontier.map((r) => (r.infeasible ? [r.name, NF, "", "", "", "", ""] : [r.name, F.pct(r.p_goal), F.pct(r.cvar10), F.pct(r.p_red, 2), F.x(r.lev_max_p95), F.bn(r.financing.term_total_bn), F.bn(r.financing.beta_bn)])) })));
     v.append(g2, el("p", { class: "note", style: "margin-top:8px", text: "Sweeps re-optimize with one schedule for every path on 360 in-sample scenarios, for speed; the groups' plans and the adaptivity comparison use the adaptive optimizer on 900." }));
+    if (ex.objective_compare) v.append(objectiveCompareCard());
     if ((ex.target_only || []).length) v.append(targetOnlyCard());
-    if (ex.adaptivity) v.append(adaptivityCard());
+    if (ex.ladder) v.append(ladderCard());
+    else if (ex.adaptivity) v.append(adaptivityCard());
     // fans and on-track
     const fP = fullOrBase(role, "plan"), fS = fullOrBase(role, "sq");
     const g3 = el("div", { class: "grid g2", style: "margin-top:14px" });
@@ -927,29 +1124,56 @@
     v.append(solveCard(role));
   }
 
+  // The Strategy group's objective against the other: the dollar shortfall against the target account vs the
+  // buffered probability of the hurdle (same limits, same view, same paths; static)
+  function objectiveCompareCard() {
+    const X = R("strategy").extras.objective_compare;
+    if (!X || !X.rows || X.rows.length < 2) return el("div");
+    const [own, alt] = X.rows, d = X.alt_minus_own, g = D.meta.goal_rate;
+    const NM = { shortfall: "Smallest dollar shortfall (expected + worst 10%)", gbo: `Highest buffered chance of ${F.pct(g, 0)} (GBO)` };
+    const t = el("table", { class: "t" });
+    const cols = ["Objective", `P(${F.pct(g, 0)})`, "95% CI", "Expected shortfall", "Worst-10% shortfall", "Mean 5-year return", "Worst 10% return", "Worst 1% return", "Forced private sale", "Balance sheet within limits", "Every objective"];
+    t.append(el("thead", null, el("tr", null, ...cols.map((c, i) => el("th", { class: i ? "num" : "", text: c })))));
+    const tb = el("tbody");
+    for (const r of [own, alt]) tb.append(el("tr", null, el("td", null, r === own ? el("strong", { text: `${NM[r.objective] || r.objective} (this group's)` }) : document.createTextNode(NM[r.objective] || r.objective)), ...[F.pct(r.p_goal, 1), `${F.pct(r.p_goal_ci[0], 1)} to ${F.pct(r.p_goal_ci[1], 1)}`, F.bn(r.short_mean_bn), F.bn(r.short_cvar10_bn), F.pct(r.twr_mean, 2), F.pct(r.cvar10, 1), F.pct(r.cvar1, 1), F.pct(r.p_red, 1), F.pct(r.p_bs, 1), F.pct(r.p_all, 1)].map((x) => el("td", { class: "num", text: x }))));
+    t.append(tb);
+    const sig = d.d_p_goal_ci[0] > 0 ? "significantly higher" : d.d_p_goal_ci[1] < 0 ? "significantly lower" : "not significantly different";
+    const msg = [
+      `Optimizing for the chance of ${F.pct(g, 0)} instead gives P(${F.pct(g, 0)}) ${F.pp(d.d_p_goal)} (95% CI ${F.pp(d.d_p_goal_ci[0])} to ${F.pp(d.d_p_goal_ci[1])}): ${sig}, paired on the same paths.`,
+      `The dollar view: the expected shortfall is ${F.bn(own.short_mean_bn)} for this group's plan against ${F.bn(alt.short_mean_bn)}, and ${F.bn(own.short_cvar10_bn)} against ${F.bn(alt.short_cvar10_bn)} on average in the worst 10% of outcomes.`,
+      "Why the shortfall objective: a plan that maximizes the chance of the target can buy that chance with deeper misses when it fails. Minimizing the expected and tail shortfall weighs how far the fund falls short, not only how often, inside the same limits. Either way the page reports both.",
+    ];
+    return el("div", { class: "card", style: "margin-top:14px" }, el("h3", { text: "Which objective: the chance of 10%, or how far short?" }),
+      el("p", { class: "sub", text: "The Strategy group's plan optimized twice with the same view, limits and in-sample scenarios: once for the smallest dollar shortfall against the target account, once for the highest buffered chance of the hurdle. Both are certified on the same fresh paths; this group's default weights, base case." }),
+      el("div", { class: "tablewrap full" }, t), el("ul", { class: "tight", style: "margin-top:10px" }, ...msg.map((x) => el("li", { text: x }))));
+  }
+
   // The 10% target alone: every group's limit removed (static: this group's default view, base case)
   function targetOnlyCard() {
     const role = "strategy", to = R(role).extras.target_only, e = entry(role, "base"), sp = R(role).plan;
     const hf = D.overview.buckets.find((b) => b.bucket === "HF"), eq = D.overview.buckets.find((b) => b.bucket === "GE_DM");
     const ref = [
-      { name: "Status quo (PE program as decided)", p: e.brief.sq.p_goal, cvar10: e.brief.sq.cvar10, cvar1: e.brief.sq.cvar1, red: e.brief.sq.p_red, ob: e.objectives.sq, hf: to[0].liquid_sq.HF, res: to[0].reserve_sq_bn, debt: 0, prog: true },
-      { name: "Strategy plan (every group's limits)", p: e.brief.plan.p_goal, cvar10: e.brief.plan.cvar10, cvar1: e.brief.plan.cvar1, red: e.brief.plan.p_red, ob: e.objectives.plan, hf: sp.liquid.HF, res: sp.cash + sp.treasury, debt: sp.term_sched.reduce((a, b) => a + b, 0) + sp.navf_bn, prog: true, emph: true },
+      { name: "Status quo (PE program as decided)", p: e.brief.sq.p_goal, s: e.brief.sq.short_mean_bn, cvar10: e.brief.sq.cvar10, cvar1: e.brief.sq.cvar1, red: e.brief.sq.p_red, ob: e.objectives.sq, hf: to[0].liquid_sq.HF, res: to[0].reserve_sq_bn, debt: 0, prog: true },
+      { name: "Strategy plan (every group's limits)", p: e.brief.plan.p_goal, s: e.brief.plan.short_mean_bn, cvar10: e.brief.plan.cvar10, cvar1: e.brief.plan.cvar1, red: e.brief.plan.p_red, ob: e.objectives.plan, hf: sp.liquid.HF, res: sp.cash + sp.treasury, debt: sp.term_sched.reduce((a, b) => a + b, 0) + sp.navf_bn, prog: true, emph: true },
     ];
-    const rows = ref.concat(to.map((r) => ({ name: r.name, p: r.p_goal, cvar10: r.cvar10, cvar1: r.cvar1, red: r.p_red, ob: r.objectives, hf: r.liquid.HF, res: r.reserve_bn, debt: r.borrowing_bn, prog: r.pe_program_sold, r })));
+    const rows = ref.concat(to.map((r) => ({ name: r.name, p: r.p_goal, s: r.short_mean_bn, cvar10: r.cvar10, cvar1: r.cvar1, red: r.p_red, ob: r.objectives, hf: r.liquid.HF, res: r.reserve_bn, debt: r.borrowing_bn, prog: r.pe_program_sold, r })));
     const t = el("table", { class: "t" });
-    const cols = ["Portfolio", "P(10% a year)", "CVaR10", "Worst 1%", "Forced private sale", "Balance sheet within limits", "Calls and distributions met", "Hedge funds", "Reserve", "Borrowing", "Sells the PE program"];
+    const cols = ["Portfolio", "P(10% a year)", "Expected shortfall", "CVaR10", "Worst 1%", "Forced private sale", "Balance sheet within limits", "Calls and distributions met", "Hedge funds", "Reserve", "Borrowing", "Sells the PE program"];
     t.append(el("thead", null, el("tr", null, ...cols.map((c, i) => el("th", { class: i ? "num" : "", text: c })))));
     const tb = el("tbody");
-    for (const r of rows) tb.append(el("tr", null, el("td", null, r.emph ? el("strong", { text: r.name }) : document.createTextNode(r.name)), el("td", { class: "num", text: F.pct(r.p, 1) }), el("td", { class: "num", text: F.pct(r.cvar10, 1) }), el("td", { class: "num", text: F.pct(r.cvar1, 1) }), el("td", { class: "num", text: F.pct(r.red, 1) }), el("td", { class: "num", text: F.pct(r.ob.p_bs, 1) }), el("td", { class: "num", text: F.pct(r.ob.p_liq, 1) }), el("td", { class: "num", text: F.bn(r.hf) }), el("td", { class: "num", text: F.bn(r.res) }), el("td", { class: "num", text: F.bn(r.debt) }), el("td", { class: "num", text: r.prog ? "yes" : "no" })));
+    for (const r of rows) tb.append(el("tr", null, el("td", null, r.emph ? el("strong", { text: r.name }) : document.createTextNode(r.name)), el("td", { class: "num", text: F.pct(r.p, 1) }), el("td", { class: "num", text: F.bn(r.s) }), el("td", { class: "num", text: F.pct(r.cvar10, 1) }), el("td", { class: "num", text: F.pct(r.cvar1, 1) }), el("td", { class: "num", text: F.pct(r.red, 1) }), el("td", { class: "num", text: F.pct(r.ob.p_bs, 1) }), el("td", { class: "num", text: F.pct(r.ob.p_liq, 1) }), el("td", { class: "num", text: F.bn(r.hf) }), el("td", { class: "num", text: F.bn(r.res) }), el("td", { class: "num", text: F.bn(r.debt) }), el("td", { class: "num", text: r.prog ? "yes" : "no" })));
     t.append(tb);
     const none = to.find((r) => r.key === "to_none"), lev = to.filter((r) => r.lev_cap > 1).sort((a, b) => a.lev_cap - b.lev_cap);
+    if (!none) return el("div", { class: "card", style: "margin-top:14px" }, el("h3", { text: "The 10% target alone: every group's limit removed" }), el("div", { class: "tablewrap" }, t));
     const er = (b) => `${b.er.map((x) => F.pct(x, 1)).join(" / ")}`;
+    const cut = Object.keys(none.liquid).filter((k) => k !== "HF" && none.liquid_sq[k] > 0.5 && none.liquid[k] < 0.5 * none.liquid_sq[k]).map((k) => BLABEL[k] || k);
+    const rising = lev.every((r, i) => i === 0 || r.p_goal > lev[i - 1].p_goal) && lev.length && lev[0].p_goal > none.p_goal;
     const msg = [
-      `With nothing but the target, the optimizer sells the equity, Global Agg and MAO sleeves, puts ${F.bn(none.liquid.HF)} in hedge funds (today ${F.bn(none.liquid_sq.HF)}), runs the reserve down and commits up to ${F.x(Math.max(...none.commit_by_year) / none.commit_sq_bn, 1)} today's pace, much of it called after year 5.`,
-      `Why hedge funds: the ER file gives them ${er(hf)} in the Downside / Base / Upside worlds against ${er(eq)} for developed-market equities, at less than half the volatility in this model. Capped at twice today's program, the optimizer moves to the next such sleeve.`,
-      `There is no interior optimum: P(10%) rises with every turn of leverage (${lev.map((r) => `${F.x(r.lev_cap, 2)}: ${F.pct(r.p_goal, 1)}`).join(", ")}) while the worst 1% of outcomes deepens to ${F.pct(lev[lev.length - 1].cvar1, 0)} a year.`,
+      `With nothing but the target, the optimizer ${cut.length ? `cuts ${cut.join(", ")} by more than half, ` : ""}puts ${F.bn(none.liquid.HF)} in hedge funds (today ${F.bn(none.liquid_sq.HF)}), ${none.reserve_bn < none.reserve_sq_bn - 0.05 ? `runs the reserve down to ${F.bn(none.reserve_bn)} (today ${F.bn(none.reserve_sq_bn)})` : `holds ${F.bn(none.reserve_bn)} of reserve`} and commits up to ${F.x(Math.max(...none.commit_by_year) / none.commit_sq_bn, 1)} today's pace in a year.`,
+      none.liquid.HF > 1.5 * none.liquid_sq.HF ? `Why hedge funds: the ER file gives them ${er(hf)} in the Downside / Base / Upside worlds against ${er(eq)} for developed-market equities, at less than half the volatility in this model.` : null,
+      lev.length ? `${rising ? "There is no interior optimum: P(10%) rises with every turn of leverage" : "With leverage"} (${lev.map((r) => `${F.x(r.lev_cap, 2)}: ${F.pct(r.p_goal, 1)}`).join(", ")}) while the worst 1% of outcomes moves to ${F.pct(lev[lev.length - 1].cvar1, 0)} a year.` : null,
       `Without borrowing, the four groups' limits cost ${F.pp(none.p_goal - ref[1].p)} of P(10%). What they buy: the balance sheet stays within limits (${F.pct(ref[1].ob.p_bs, 0)} of paths vs ${F.pct(none.objectives.p_bs, 0)}) and calls and distributions are met without forced sales (${F.pct(ref[1].ob.p_liq, 0)} vs ${F.pct(none.objectives.p_liq, 0)}).`,
-    ];
+    ].filter(Boolean);
     return el("div", { class: "card", style: "margin-top:14px" }, el("h3", { text: "The 10% target alone: every group's limit removed" }),
       el("p", { class: "sub", text: "The Strategy objective re-optimized with no leverage, debt, LTV or overcommitment caps, no reserve floor, forced-sale appetite or depth guard, no IC ranges or pacing bands, and the PE program optional. What stays is fact: the owner's distribution and capital calls must be paid, the secondary market's depth, co-invest deal flow, and fund commitments up to 5x today's pace. This group's default view, base case; objectives judged against the house limits." }),
       el("div", { class: "tablewrap" }, t), el("ul", { class: "tight", style: "margin-top:10px" }, ...msg.map((x) => el("li", { text: x }))));
@@ -987,26 +1211,108 @@
     const ci = (r) => `${F.pp(r.d_p_goal)} (${F.pp(r.d_p_goal_ci[0])} to ${F.pp(r.d_p_goal_ci[1])})`;
     const sig = (r) => (r.d_p_goal_ci[0] > 0 ? "ahead of" : r.d_p_goal_ci[1] < 0 ? "behind" : "level with");
     const t = el("table", { class: "t" });
-    t.append(el("thead", null, el("tr", null, ...["Stress", "Fixed: P(target)", "Adaptive: P(target)", "Adaptive minus fixed (95% CI)", "Fund keeps its size: fixed / adaptive", "Forced sale: fixed / adaptive"].map((c, i) => el("th", { class: i ? "num" : "", text: c })))));
+    const hasSh = A.stresses.every((r) => ok(r.fixed.short_mean_bn) && ok(r.adaptive.short_mean_bn));
+    t.append(el("thead", null, el("tr", null, ...["Stress", "Fixed: P(target)", "Adaptive: P(target)", "Adaptive minus fixed (95% CI)"].concat(hasSh ? ["Expected shortfall: fixed / adaptive"] : [], ["Fund keeps its size: fixed / adaptive", "Forced sale: fixed / adaptive"]).map((c, i) => el("th", { class: i ? "num" : "", text: c })))));
     const tb = el("tbody");
-    for (const r of A.stresses) tb.append(el("tr", null, el("td", { text: stressLabel(r.stress) }), el("td", { class: "num", text: F.pct(r.fixed.p_goal, 1) }), el("td", { class: "num", text: F.pct(r.adaptive.p_goal, 1) }), el("td", { class: "num", text: ci(r) }), el("td", { class: "num", text: `${F.pct(r.fixed.p_preserve, 1)} / ${F.pct(r.adaptive.p_preserve, 1)}` }), el("td", { class: "num", text: `${F.pct(r.fixed.p_red, 1)} / ${F.pct(r.adaptive.p_red, 1)}` })));
+    for (const r of A.stresses) tb.append(el("tr", null, el("td", { text: stressLabel(r.stress) }), el("td", { class: "num", text: F.pct(r.fixed.p_goal, 1) }), el("td", { class: "num", text: F.pct(r.adaptive.p_goal, 1) }), el("td", { class: "num", text: ci(r) }), hasSh ? el("td", { class: "num", text: `${F.bn(r.fixed.short_mean_bn)} / ${F.bn(r.adaptive.short_mean_bn)}` }) : null, el("td", { class: "num", text: `${F.pct(r.fixed.p_preserve, 1)} / ${F.pct(r.adaptive.p_preserve, 1)}` }), el("td", { class: "num", text: `${F.pct(r.fixed.p_red, 1)} / ${F.pct(r.adaptive.p_red, 1)}` })));
     t.append(tb);
     const up = A.stresses.filter((r) => r.d_p_goal_ci[0] > 0).length, down = A.stresses.filter((r) => r.d_p_goal_ci[1] < 0).length;
     const nm = A.no_mandate, lc = (r) => { const t = stressLabel(r.stress); return t.charAt(0).toLowerCase() + t.slice(1); };
     const msg = [
-      `In the ${lc(base)}, the adaptive plan is ${sig(base)} the fixed schedule: ${ci(base)} of P(target) on the same ${F.int(D.meta.n_oos * 3)} paths. Across the ${A.stresses.length} stresses it is significantly ahead in ${up}${down ? ` and significantly behind in ${down}` : " and never significantly behind"}.`,
-      nm ? `Where the gain comes from: without the countercyclical secondaries mandate, the market-class rules alone add ${ci(nm)}. The mandate lets the plan buy secondaries when sellers need liquidity and prices are low, which a fixed schedule cannot time.` : null,
+      `In the ${lc(base)}, the adaptive plan is ${sig(base)} the fixed schedule: ${ci(base)} of P(target) on the same ${F.int(D.meta.n_oos * 3)} paths${hasSh ? `, with an expected shortfall of ${F.bn(base.adaptive.short_mean_bn)} against ${F.bn(base.fixed.short_mean_bn)} (the shortfall is what this group's plan minimizes)` : ""}. Across the ${A.stresses.length} stresses it is significantly ahead in ${up}${down ? ` and significantly behind in ${down}` : " and never significantly behind"}.`,
+      nm ? (base.d_p_goal_ci[0] > 0 ? `Where the gain comes from: without the countercyclical secondaries mandate, the market-class rules alone add ${ci(nm)}. The mandate lets the plan buy secondaries when sellers need liquidity and prices are low, which a fixed schedule cannot time.`
+        : `Without the countercyclical secondaries mandate (buying secondaries in stress years, up to the market's capacity), the market-class rules alone add ${ci(nm)}.`) : null,
       (() => {
         const app = (D.house && D.house.forced_eps) || 0.01, lbl = lc;
         const over = A.stresses.filter((r) => r.adaptive.p_red > app + 1e-9 && r.adaptive.p_red > r.fixed.p_red + 0.002);
         const head = `Forced private sales: ${F.pct(base.adaptive.p_red, 1)} of paths in the ${lbl(base)} (fixed: ${F.pct(base.fixed.p_red, 1)}), within the ${F.pct(app, 0)} appetite the plan was validated against.`;
         return over.length ? `${head} The cost shows in harsher stresses: buying in a stress year leaves less cash for what follows, and forced sales exceed the appetite in ${over.map((r) => `${lbl(r)} (${F.pct(r.adaptive.p_red, 1)} against ${F.pct(r.fixed.p_red, 1)} fixed)`).join(", ")}. Requiring the guard to hold in those stresses too would give back part of the gain.` : head;
       })(),
-      "Why the gain is not larger: returns are not predictable in this model (regimes move risk, not expected returns), realistic timing gains in private equity are small (Brown, Harris, Hu, Jenkinson, Kaplan and Robinson, JFE 2021), and most decisions sit at their limits whatever happens. The owner's distribution, about what the fund earns, is what makes timing worth something: cash is scarce exactly when prices are low.",
+      base.d_p_goal_ci[0] > 0 ? "Why the gain is not larger: returns are not predictable in this model (regimes move risk, not expected returns), realistic timing gains in private equity are small (Brown, Harris, Hu, Jenkinson, Kaplan and Robinson, JFE 2021), and most decisions sit at their limits whatever happens. The owner's distribution, about what the fund earns, is what makes timing worth something: cash is scarce exactly when prices are low."
+        : "Why adapting buys little here: returns are not predictable in this model (regimes move risk, not expected returns), realistic timing gains in private equity are small (Brown, Harris, Hu, Jenkinson, Kaplan and Robinson, JFE 2021), and most decisions sit at their limits whatever happens, here the overcommitment ceiling and the liquidity floor above all.",
     ].filter(Boolean);
     return el("div", { class: "card", style: "margin-top:14px" }, el("h3", { text: "What adaptivity adds: the adaptive plan against one fixed schedule" }),
       el("p", { class: "sub", text: "The same objective and house limits, optimized twice: later decisions by the market class observed by then, or one schedule for every path. Both plans' tail and forced-sale guards are re-checked on validation paths the optimizer never saw; the comparison is paired on the certification paths. This group's default weights." }),
       el("div", { class: "tablewrap full" }, t), el("ul", { class: "tight", style: "margin-top:10px" }, ...msg.map((x) => el("li", { text: x }))));
+  }
+
+  // the benchmark ladder (external research shared 2026-10-27): the static framework against the multi-period plans,
+  // one fixed schedule, adaptive and re-planned each year; the Strategy group's objective, view and limits
+  function ladderCard() {
+    const L = R("strategy").extras.ladder, A = R("strategy").extras.adaptivity, Sx = L.static;
+    const cur = st.stress.strategy || R("strategy").stress;
+    const row = L.stresses.find((r) => r.stress === cur) || L.stresses.find((r) => r.stress === "base") || L.stresses[0];
+    const base = L.stresses.find((r) => r.stress === "base") || row;
+    const ci = (d) => `${F.pp(d.d_p_goal)} (${F.pp(d.d_p_goal_ci[0])} to ${F.pp(d.d_p_goal_ci[1])})`;
+    const sig = (d) => (d.d_p_goal_ci[0] > 0 ? "significantly ahead of" : d.d_p_goal_ci[1] < 0 ? "significantly behind" : "level with");
+    const lc = (s) => { const t = stressLabel(s); return t.charAt(0).toLowerCase() + t.slice(1); };
+    const R4 = (r) => r.rungs, keys = L.rungs.map((x) => x.key), nm = Object.fromEntries(L.rungs.map((x) => [x.key, x.name]));
+    const peak = (a) => Math.max(...a);
+    const ciS = (d) => (d && ok(d.d_short) ? `${F.sbn(d.d_short)} (${F.sbn(d.d_short_ci[0])} to ${F.sbn(d.d_short_ci[1])})` : "–");
+    const neg = (d) => ({ d_p_goal: -d.d_p_goal, d_p_goal_ci: [-d.d_p_goal_ci[1], -d.d_p_goal_ci[0]], d_short: ok(d.d_short) ? -d.d_short : null, d_short_ci: d.d_short_ci ? [-d.d_short_ci[1], -d.d_short_ci[0]] : null });
+    const SHORTR = { static: "Static", fixed: "Fixed schedule", adaptive: "Adaptive", replan: "Re-planned each year" };
+    // a number with its 95% interval on a second, smaller line
+    const td2 = (main, sub, cls) => el("td", { class: "num" + (cls ? " " + cls : "") }, document.createTextNode(main), sub ? el("span", { class: "ci", text: sub }) : null);
+    const dP = (d) => (d ? td2(F.pp(d.d_p_goal), `${F.pp(d.d_p_goal_ci[0])} to ${F.pp(d.d_p_goal_ci[1])}`) : td2("–"));
+    const dS = (d) => (d && ok(d.d_short) ? td2(F.sbn(d.d_short), `${F.sbn(d.d_short_ci[0])} to ${F.sbn(d.d_short_ci[1])}`) : td2("–"));
+    // the four rungs in the chosen stress
+    const vsS = { fixed: row.fixed_vs_static, adaptive: row.adaptive_vs_static, replan: row.replan_vs_static };
+    const vsF = { static: neg(row.fixed_vs_static), adaptive: row.adaptive_vs_fixed, replan: row.replan_vs_fixed };
+    const t1 = el("table", { class: "t wrap" });
+    t1.append(el("thead", null, el("tr", null, ...["How the plan is made", `P(${F.pct(D.meta.goal_rate, 0)}), 95% CI`, "vs static", "vs fixed schedule", "Expected shortfall", "vs fixed schedule", "Worst-10% shortfall", "Objective: expected + worst 10%", "Forced private sale", "Balance sheet within limits", "Every objective", "Over-commitment peak (median)"].map((c, i) => el("th", { class: (i ? "num" : "") + (i === 9 || i === 10 ? " own" : ""), text: c })))));
+    const tb1 = el("tbody");
+    for (const k of keys) {
+      const x = R4(row)[k];
+      tb1.append(el("tr", null, el("td", { class: "nm", title: nm[k] }, k === "adaptive" ? el("strong", { text: SHORTR[k] }) : document.createTextNode(SHORTR[k])), td2(F.pct(x.p_goal, 1), `${F.pct(x.p_goal_ci[0], 1)} to ${F.pct(x.p_goal_ci[1], 1)}`), dP(vsS[k]), dP(vsF[k]), td2(F.bn(x.short_mean_bn)), dS(vsF[k]), td2(F.bn(x.short_cvar10_bn)), td2(F.bn(x.short_obj_bn)), td2(F.pct(x.p_red, 1)), td2(F.pct(x.p_bs, 1), null, "own"), td2(F.pct(x.p_all, 1), null, "own"), td2(F.x(peak(x.ovc_p50), 2))));
+    }
+    t1.append(tb1);
+    // every stress
+    const t2 = el("table", { class: "t wrap" });
+    t2.append(el("thead", null, el("tr", null, ...["Stress", "Static", "Fixed schedule", "Adaptive", "Re-planned", "Fixed minus static", "Re-planned minus fixed", "Adaptive minus fixed", "Expected shortfall: fixed minus static", "Expected shortfall: re-planned minus fixed", "Balance sheet within limits: static / fixed / re-planned"].map((c, i) => el("th", { class: i ? "num" : "", text: c })))));
+    const tb2 = el("tbody");
+    for (const r of L.stresses) tb2.append(el("tr", { class: r.stress === row.stress ? "cur" : "" }, el("td", { class: "nm", title: stressLabel(r.stress), text: STRESS_SHORT[r.stress] || stressLabel(r.stress) }), ...keys.map((k) => td2(F.pct(R4(r)[k].p_goal, 1))), dP(r.fixed_vs_static), dP(r.replan_vs_fixed), dP(r.adaptive_vs_fixed), dS(r.fixed_vs_static), dS(r.replan_vs_fixed), td2(["static", "fixed", "replan"].map((k) => F.pct(R4(r)[k].p_bs, 0)).join(" / "))));
+    t2.append(tb2);
+    // the static policy against today and the multi-period plan's first decisions (share of today's NAV; $bn on hover)
+    const t3 = el("table", { class: "t wrap" });
+    t3.append(el("thead", null, el("tr", null, ...["", "Today", "Static policy", "Static plan today", "Fixed schedule today"].map((c, i) => el("th", { class: i ? "num" : "", text: c })))));
+    const tb3 = el("tbody"), W0 = D.meta.W0, cellW = (x) => el("td", { class: "num", title: ok(x) ? F.bn(x, 1) : "", text: ok(x) ? F.pct(x / W0, 1) : "–" });
+    for (const g of Sx.weights) tb3.append(el("tr", null, el("td", { text: g.group }), cellW(g.today), cellW(g.policy), cellW(g.static_today), cellW(g.fixed_today)));
+    tb3.append(el("tr", null, el("td", { text: "Commitments in year 1 ($bn)" }), td2(F.bn(Sx.commit_sq_bn)), td2(F.bn(Sx.commit_bn), "a year for five years"), td2(F.bn(Sx.commit_bn)), td2(F.bn(Sx.commit_fixed_bn[0]))));
+    tb3.append(el("tr", null, el("td", { text: "New term debt ($bn)" }), td2("–"), td2(F.bn(Sx.debt_bn)), td2(F.bn(Sx.debt_bn)), td2("–")));
+    t3.append(tb3);
+    // the narrative (computed from this build's numbers)
+    const s = R4(base), rs = R4(row);
+    const up = (fld) => L.stresses.filter((r) => r[fld].d_p_goal_ci[0] > 0).length, down = (fld) => L.stresses.filter((r) => r[fld].d_p_goal_ci[1] < 0).length;
+    const tally = (fld) => `significantly ahead in ${up(fld)} of the ${L.stresses.length} stresses${down(fld) ? ` and behind in ${down(fld)}` : ", never behind"}`;
+    const rp = L.replan, years = Object.keys(rp.p_replanned || {}).sort();
+    const msg = [
+      `In the ${lc(row.stress)}, the multi-period plan with one fixed schedule is ${sig(row.fixed_vs_static)} the static framework on the chance of ${F.pct(D.meta.goal_rate, 0)}: ${ci(row.fixed_vs_static)} on the same ${F.int(D.meta.n_oos * 3)} paths (${F.pct(rs.fixed.p_goal, 1)} against ${F.pct(rs.static.p_goal, 1)}); across stresses it is ${tally("fixed_vs_static")}. On the objective both minimize, the expected plus worst-10% dollar shortfall, it scores ${F.bn(rs.fixed.short_obj_bn)} against ${F.bn(rs.static.short_obj_bn)}: expected shortfall ${ciS(row.fixed_vs_static)}, worst-10% ${F.sbn(rs.fixed.short_cvar10_bn - rs.static.short_cvar10_bn)}.`,
+      `The static framework treats private assets as if they traded at NAV, so its policy takes them from ${F.pct(Sx.private_w0, 0)} of NAV to ${F.pct(Sx.private_w, 0)}${Sx.reserve_w > 0.1 ? ` and holds ${F.pct(Sx.reserve_w, 0)} in cash and Treasury` : ""}. It can only get there through pacing: the Yale model (fitted to ADIC's DPI by vintage) sets commitments of ${F.bn(Sx.commit_bn)} a year against ${F.bn(Sx.commit_sq_bn)} today, and private assets are still ${F.bn(s.static.priv5_p50_bn, 0)} in year 5 (median, base case). On its own scenarios the one-period model expects ${F.pct(Sx.in_sample.p_goal, 1)}; the simulator certifies ${F.pct(s.static.p_goal, 1)} in the base case.`,
+      `What a one-period model cannot see is the path. The static plan keeps the balance sheet within the house limits at every year end on ${F.pct(rs.static.p_bs, 0)} of paths (overcommitment peaks at ${F.x(peak(rs.static.ovc_p50), 2)} at the median), against ${F.pct(rs.fixed.p_bs, 0)} for the fixed schedule, whose guard holds it to ${F.pct(D.house.bs_guard_prob, 0)}${rs.static.p_red > rs.fixed.p_red + 0.002 ? `; it also forces private sales on ${F.pct(rs.static.p_red, 1)} of paths (fixed schedule ${F.pct(rs.fixed.p_red, 1)})` : ""}.`,
+      `Re-planning each year from the observed history of market states is ${sig(row.replan_vs_fixed)} the fixed schedule on the chance of ${F.pct(D.meta.goal_rate, 0)}: ${ci(row.replan_vs_fixed)}; across stresses ${tally("replan_vs_fixed")}. On the objective it scores ${F.bn(rs.replan.short_obj_bn)} against ${F.bn(rs.fixed.short_obj_bn)} (expected shortfall ${ciS(row.replan_vs_fixed)}, worst-10% ${F.sbn(rs.replan.short_cvar10_bn - rs.fixed.short_cvar10_bn)}): each re-plan minimizes the shortfall measure for its own history, which is not the same as minimizing it over all paths, and each fits fewer scenarios. It re-planned ${rp.n_replanned} histor${rp.n_replanned === 1 ? "y" : "ies"} of market states, covering ${years.map((y) => F.pct(rp.p_replanned[y], 0)).join(" / ")} of paths at the starts of years ${years.join(" / ")}; a history seen in fewer than ${rp.min_scenarios} of the ${F.int(L.n_lp * 3)} in-sample scenarios kept the plan in force${rp.n_infeasible ? `, as did ${rp.n_infeasible} whose re-plan could not meet the house limits (a limit is never relaxed to re-plan)` : ""}. Like every plan it was checked on ${F.int(D.meta.n_val * 3)} validation paths the optimizer never saw${(() => { const cal = rp.calibration || [], last = cal[cal.length - 1]; return last ? `: within the balance-sheet limits on ${F.pct(last.bs_within, 1)} of them${cal.length > 1 ? ` after the re-plans' guard was tightened ${cal.length === 2 ? "once" : cal.length === 3 ? "twice" : `${cal.length - 1} times`}` : ""}` : ""; })()}. On the certification paths the balance sheet stays within its limits on ${F.pct(rs.replan.p_bs, 0)} re-planned against ${F.pct(rs.fixed.p_bs, 0)} fixed.`,
+      `The adaptive plan (later decisions by the market class observed, solved once) is ${sig(row.adaptive_vs_fixed)} the fixed schedule: ${ci(row.adaptive_vs_fixed)}; across stresses ${tally("adaptive_vs_fixed")}.` + (A && A.no_mandate ? ` Without the countercyclical secondaries mandate the market-class rules alone add ${ci(A.no_mandate)}.` : ""),
+      (() => {
+        const dm = row.fixed_vs_static, relT = (rs.fixed.short_cvar10_bn - rs.static.short_cvar10_bn) / Math.max(rs.static.short_cvar10_bn, 1e-9);
+        const mean = dm.d_short_ci && dm.d_short_ci[1] < 0 ? "a lower expected shortfall" : dm.d_short_ci && dm.d_short_ci[0] > 0 ? "a higher expected shortfall" : "about the same expected shortfall";
+        const obj = `with ${mean} and ${Math.abs(relT) < 0.02 ? "about the same" : relT < 0 ? "a smaller" : "a larger"} worst-10% shortfall`;
+        const head = row.fixed_vs_static.d_p_goal_ci[0] > 0
+          ? `What multi-period planning buys here comes from modelling the book as it is (calls, distributions, secondary prices, the limits at every year end): it reaches ${F.pct(D.meta.goal_rate, 0)} more often than the static framework ${obj}, ${rs.fixed.p_bs > rs.static.p_bs + 0.1 ? "and keeps the balance sheet within its limits, which the static plan cannot see" : "with the balance sheet about as often within its limits"}.`
+          : `Multi-period planning is not ahead of the static framework on the chance of ${F.pct(D.meta.goal_rate, 0)} in this stress; it reaches its result ${obj}${rs.fixed.p_bs > rs.static.p_bs + 0.1 ? " and keeps the balance sheet within its limits" : ""}.`;
+        const react = Math.max(row.replan_vs_fixed.d_p_goal, row.adaptive_vs_fixed.d_p_goal) < 0.01;
+        return head + (react ? " Reacting to the state (rules by market class, re-planning each year) adds little on top: returns are not predictable in this model (regimes move risk, not expected returns), realistic timing gains in private equity are small (Brown, Harris, Hu, Jenkinson, Kaplan and Robinson, JFE 2021), and most decisions sit at their limits whatever happens."
+          : " Reacting to the state adds on top of that; the table under every stress shows where.");
+      })(),
+    ];
+    const g1 = el("div", { class: "grid g2", style: "margin-top:12px" });
+    g1.append(chartCard("Four ways to plan, the same paths", `P(${F.pct(D.meta.goal_rate, 0)}), the balance sheet within the house limits at every year end, and every group's objective together (${lc(row.stress)}; the Strategy group's weights).`,
+      (host) => { const ser = [{ name: `P(${F.pct(D.meta.goal_rate, 0)})`, color: cssv("--series-1") }, { name: "Balance sheet within limits", color: cssv("--series-2") }, { name: "Every objective", color: cssv("--series-3") }]; host.append(legend(ser)); barsH(host, { rows: keys.map((k) => ({ label: SHORTR[k], values: [rs[k].p_goal, rs[k].p_bs, rs[k].p_all] })), series: ser, fmt: (x) => F.pct(x, 0), labelW: 160, fixed: { lo: 0, hi: 1, ticks: [0, 0.25, 0.5, 0.75, 1] } }); },
+      () => ({ cols: ["Plan", `P(${F.pct(D.meta.goal_rate, 0)})`, "Balance sheet within limits", "Every objective"], rows: keys.map((k) => [nm[k], F.pct(rs[k].p_goal, 1), F.pct(rs[k].p_bs, 1), F.pct(rs[k].p_all, 1)]) })));
+    g1.append(el("div", { class: "card" }, el("h3", { text: "The static policy and what it does today" }), el("p", { class: "sub", text: `Share of today's NAV (hover for $bn). The static plan sets every liquid sleeve pro rata to its policy weight on the liquid money there is, inside the IC ranges, the reserve never below its ${F.pct(D.house.floor_target, 0)} target, and runs the PE program as decided. Private ceiling in the one-period model: ${F.pct(Sx.priv_cap, 0)} of NAV (the overcommitment ceiling at today's unfunded per $ of private NAV).` }), el("div", { class: "tablewrap full" }, t3)));
+    return el("div", { class: "card", style: "margin-top:14px" }, el("h3", { text: "Static against multi-period: the benchmark ladder" }),
+      el("p", { class: "sub", text: `Four ways to plan with the same objective (the Strategy group's: the expected and worst-10% dollar shortfall against the target account), the same ${F.int(L.n_lp * 3)} in-sample scenarios and world weights, and the house limits as far as each method can express them; all four certified on the same ${F.int(D.meta.n_oos * 3)} fresh paths and compared path by path. Static: one policy portfolio chosen from five-year returns as if private assets traded at NAV, reached through Yale-model commitment pacing; nothing dated, nothing state-dependent. Fixed schedule: the multi-period model of the book (calls, distributions, secondary bids, the reserve ledger, every limit at every year end) with one dated schedule for every path. Adaptive: later decisions by the market class observed by then, solved once. Re-planned: the fixed schedule re-solved at the start of each year on the in-sample scenarios that share the observed history, keeping the decisions already made. The table follows the stress control.` }),
+      el("div", { class: "tablewrap full" }, t1), g1,
+      el("ul", { class: "tight", style: "margin-top:10px" }, ...msg.map((x) => el("li", { text: x }))),
+      el("h3", { text: "Every stress", style: "margin-top:12px" }), el("div", { class: "tablewrap full" }, t2));
   }
 
   // ------------------------------------------------------------------ change list (shared)
@@ -1043,7 +1349,7 @@
         el("span", { class: "k", text: "Solves" }), el("span", { class: "v", text: logs }),
         el("span", { class: "k", text: "House limits applied" }), el("span", { class: "v", text: Object.keys(r.eps || {}).map((k) => ({ depth_guard: "depth guard (tail no worse than the status quo)", forced_eps: `forced-sale appetite ${F.pct(r.eps.forced_eps, 1)}`, ret_min: `return floor ${F.pct(r.eps.ret_min, 1)}`, p_goal_min: `P(hurdle) floor ${F.pct(r.eps.p_goal_min, 0)}`, bs_guard: `balance sheet within its leverage and overcommitment limits at every year end on ${F.pct(r.eps.bs_guard.prob, 0)} of paths` }[k] || k)).join("; ") + "; leverage, debt, LTV, overcommitment, IC ranges, pacing and market-depth caps" }),
         el("span", { class: "k", text: "Validation" }), el("span", { class: "v", text: (() => { const cb = r.calibration || []; if (!cb.length) return "\u2013"; const last = cb[cb.length - 1]; return cb.length === 1 ? `the house guards held on ${F.int(D.meta.n_val * 3)} validation paths the optimizer never saw` : `the guards were breached on ${F.int(D.meta.n_val * 3)} validation paths and tightened ${cb.length - 1} time${cb.length > 2 ? "s" : ""} (tail guard by ${F.pp(last.tighten)}, forced-sale appetite to ${F.pct(last.forced_eps, 2)}) before the plan was accepted; forced sales on ${F.pct(last.p_red, 1)} of validation paths`; })() + (() => { const cb = r.calibration || []; const last = cb[cb.length - 1]; return last && last.bs_within != null ? `; balance sheet within its limits at every year end on ${F.pct(last.bs_within, 1)} of them` : ""; })() }),
-        el("span", { class: "k", text: "In-sample vs certified" }), el("span", { class: "v", text: `P(hurdle) ${F.pct(ins.p_goal)} on the LP's own scenarios vs ${F.pct(b.p_goal)} on ${F.int(D.meta.n_oos * 3)} fresh paths (the optimism gap is ${F.pp(ins.p_goal - b.p_goal)})` })));
+        el("span", { class: "k", text: "In-sample vs certified" }), el("span", { class: "v", text: `P(hurdle) ${F.pct(ins.p_goal)} on the LP's own scenarios vs ${F.pct(b.p_goal)} on ${F.int(D.meta.n_oos * 3)} fresh paths (the optimism gap is ${F.pp(ins.p_goal - b.p_goal)})` + (ok(ins.short_mean_bn) && ok(b.short_mean_bn) ? `; expected shortfall ${F.bn(ins.short_mean_bn)} in sample vs ${F.bn(b.short_mean_bn)} certified` : "") })));
   }
 
   // ------------------------------------------------------------------ BALANCE SHEET
@@ -1070,8 +1376,8 @@
     const ex = R(role).extras;
     const g2 = el("div", { class: "grid g2", style: "margin-top:14px" });
     g2.append(chartCard("Debt capacity: what borrowing buys toward the hurdle", "The hurdle objective (GBO) re-optimized under this group's view at each debt allowance, every other house limit unchanged (out of sample). Hover for the balance-sheet cost.",
-      (host) => dumbbell(host, { rows: ex.debt_frontier.map((r) => ({ label: r.name, short: r.name.replace("New term debt up to", "Debt up to").replace(", synthetic beta allowed", " + synthetic beta"), a:entry(role, R(role).stress).brief.sq.p_goal, b: r.p_goal, extra: [{ value: F.bn(r.debt_p95_bn), name: "debt P95" }, { value: F.x(r.lev_max_p95), name: "max leverage P95" }, { value: F.pct(r.cvar10), name: "CVaR10" }] })), colorA: cssv("--deemph"), colorB: cssv("--series-1"), nameA: "Status quo", nameB: "Re-optimized", fmt: (t) => F.pct(t, 1), labelW: 260 }),
-      () => ({ cols: ["Allowance", "P(hurdle)", "Mean TWR", "CVaR10", "Debt P95", "Max lev P95", "LEVER", "REFINANCE"], rows: ex.debt_frontier.map((r) => [r.name, F.pct(r.p_goal), F.pct(r.twr_mean, 2), F.pct(r.cvar10), F.bn(r.debt_p95_bn), F.x(r.lev_max_p95), F.bn(r.r1.LEVER_bn), F.bn(r.r1.REFINANCE_bn)]) })));
+      (host) => dumbbell(host, { rows: ex.debt_frontier.filter((r) => !r.infeasible).map((r) => ({ label: r.name, short: r.name.replace("New term debt up to", "Debt up to").replace(", synthetic beta allowed", " + synthetic beta"), a:entry(role, R(role).stress).brief.sq.p_goal, b: r.p_goal, extra: [{ value: F.bn(r.debt_p95_bn), name: "debt P95" }, { value: F.x(r.lev_max_p95), name: "max leverage P95" }, { value: F.pct(r.cvar10), name: "CVaR10" }] })), colorA: cssv("--deemph"), colorB: cssv("--series-1"), nameA: "Status quo", nameB: "Re-optimized", fmt: (t) => F.pct(t, 1), labelW: 260 }),
+      () => ({ cols: ["Allowance", "P(hurdle)", "Mean TWR", "CVaR10", "Debt P95", "Max lev P95", "LEVER", "REFINANCE"], rows: ex.debt_frontier.map((r) => (r.infeasible ? [r.name, "no feasible plan under the house limits", "", "", "", "", "", ""] : [r.name, F.pct(r.p_goal), F.pct(r.twr_mean, 2), F.pct(r.cvar10), F.bn(r.debt_p95_bn), F.x(r.lev_max_p95), F.bn(r.r1.LEVER_bn), F.bn(r.r1.REFINANCE_bn)])) })));
     const sl = D.overview.buckets.filter((r) => r.sleeve_bn > 0.001 || r.tier === "reserve");
     const t = el("table", { class: "t" });
     t.append(el("thead", null, el("tr", null, ...["Sleeve", "In the fund file", "Internal sleeve", "Source"].map((c, i) => el("th", { class: i && i < 3 ? "num" : "", text: c })))));
@@ -1177,7 +1483,7 @@
     const bas = ex.basis;
     g1.append(chartCard("The return basis decides what the PE program is worth", `Effect of the ${F.bn(D.house.pe_program_total_bn, 0)} program on the status quo's P(hurdle), and the book's forward return, under each return basis (out of sample).`,
       (host) => barsH(host, { rows: bas.map((r) => ({ label: { strategy: "ER strategy returns", blend: "Blend (ER + evidence)", underwritten: "Debiased underwriting", actual: "Actual performance persists" }[r.basis], values: [r.program_effect.d_p_goal] })), series: [{ name: "Program effect on P(hurdle)", color: cssv("--series-1") }], fmt: (t) => F.pp(t, 1), colorFn: (val) => (val >= 0 ? cssv("--series-1") : cssv("--div-neg")), labelW: 200 }),
-      () => ({ cols: ["Return basis", "Book forward return", "SQ P(hurdle)", "Program effect", "Plan P(hurdle)", "Plan vs SQ"], rows: bas.map((r) => [r.basis, F.pct(r.book_return_exp, 2), F.pct(r.sq.p_goal), F.pp(r.program_effect.d_p_goal), F.pct(r.plan.p_goal), F.pp(r.delta.d_p_goal)]) })));
+      () => ({ cols: ["Return basis", "Book forward return", "SQ P(hurdle)", "Program effect", "Plan P(hurdle)", "Plan vs SQ"], rows: bas.map((r) => [r.basis, F.pct(r.book_return_exp, 2), F.pct(r.sq.p_goal), F.pp(r.program_effect.d_p_goal), r.plan ? F.pct(r.plan.p_goal) : "no feasible plan", r.delta ? F.pp(r.delta.d_p_goal) : "–"]) })));
     const pv = ex.program_variants;
     g1.append(chartCard("PE program variants (status quo plus each variant)", "P(hurdle) against no program; NAV sold and proceeds in the table.",
       (host) => barsH(host, { rows: pv.map((r) => ({ label: r.name, short: r.name.length > 38 ? r.name.split(",")[0] : r.name, values: [r.vs_no_program.d_p_goal] })), series: [{ name: "vs no program", color: cssv("--series-1") }], fmt: (t) => F.pp(t, 1), colorFn: (val) => (val >= 0 ? cssv("--series-1") : cssv("--div-neg")), labelW: 260 }),
@@ -1272,29 +1578,52 @@
     const NAME = { do_nothing: "Do nothing", status_quo: "Status quo (PE program as decided)", no_program: "Status quo without the PE program" };
     const cs = (key, stress) => (ic.cases && ic.cases[key] ? ic.cases[key][stress] : null);
     const refOf = (key, stress) => (key === "status_quo" || !cs("status_quo", stress) ? null : twr(cs("status_quo", stress).twr));
-    const rows = ic.rows.slice().sort((a, b) => (b.key === "do_nothing") - (a.key === "do_nothing")).map((r0) => { const r = Object.assign({}, r0, { name: NAME[r0.key] || r0.name }); const rec = twr(ic.twr[r.key]); const c = cs(r.key, ic.view.stress); return { r, s: stats(rec, pi, h), d: paired(rec, sqRec, pi, h), o: c ? objStats(twr(c.twr), flags(c.flags), pi, h, refOf(r.key, ic.view.stress)) : null }; });
-    // the best of the plans on the table (the status quo rows are references, not choices)
-    const best = rows.filter((x) => !(x.r.key in NAME) && !x.r.key.startsWith("to_")).sort((a, b) => b.s.pg - a.s.pg)[0];
+    const rows = ic.rows.slice().sort((a, b) => (b.key === "do_nothing") - (a.key === "do_nothing")).map((r0) => { const r = Object.assign({}, r0, { name: NAME[r0.key] || r0.name }); const rec = twr(ic.twr[r.key]); const c = cs(r.key, ic.view.stress); return { r, s: stats(rec, pi, h), d: paired(rec, sqRec, pi, h), o: c ? objStats(twr(c.twr), flags(c.flags), pi, h, refOf(r.key, ic.view.stress)) : null, sh: c && c.short ? shortStats(shortArr(c.short), pi) : null }; });
+    // the best of the plans on the table (the status quo rows and the benchmark ladder's rows are references, not choices)
+    const best = rows.filter((x) => !(x.r.key in NAME) && !x.r.key.startsWith("to_") && x.r.key !== "static" && x.r.key !== "replan").sort((a, b) => b.s.pg - a.s.pg)[0];
     v.replaceChildren(el("div", { class: "lead" }, el("h2", { text: "Investment Committee: every group's plan on one view" }),
-      el("p", { text: `Each group optimized its own objective under every group's limits; here all plans run on the same ${F.int(D.meta.n_oos * 3)} fresh paths under the IC view (${ic.view.prefs.basis} returns, ${stressLabel(ic.view.stress)}). The consensus plan maximizes the buffered probability of the hurdle under every limit at once.` })));
+      el("p", { text: `Each group optimized its own objective under every group's limits; here all plans run on the same ${F.int(D.meta.n_oos * 3)} fresh paths under the IC view (${ic.view.prefs.basis} returns, ${stressLabel(ic.view.stress)}). The consensus plan takes every group's limits at once and minimizes the expected and worst-10% dollar shortfall against the target account at the worst of the groups' world weights, so no group's view of the world is ignored.` })));
     const t = el("table", { class: "t" });
     const star5 = starPath(h).nav[5];
-    const cols = ["Plan", `P(${F.pct(h, 0)})`, "vs status quo", "Balance sheet within limits", "Calls and distributions met", "Never costs the target", "Every objective together", `Fund in year 5, median (north star ${F.bn(star5, 0)})`, "CVaR10", "Debt P95", "PE exposure sold"];
-    t.append(el("thead", null, el("tr", null, ...cols.map((c, i) => el("th", { class: (i ? "num" : "") + (i >= 3 && i <= 6 ? " own" : ""), text: c })))));
+    const cols = ["Plan", `P(${F.pct(h, 0)})`, "vs status quo", "Expected shortfall", "Balance sheet within limits", "Calls and distributions met", "Never costs the target", "Every objective together", `Fund in year 5, median (north star ${F.bn(star5, 0)})`, "CVaR10", "Debt P95", "PE exposure sold"];
+    t.append(el("thead", null, el("tr", null, ...cols.map((c, i) => el("th", { class: (i ? "num" : "") + (i >= 4 && i <= 7 ? " own" : ""), text: c })))));
     const tb = el("tbody");
     const op = (x) => (x == null ? "\u2013" : F.pct(x, 1));
-    for (const { r, s: s2, d, o } of rows) {
+    for (const { r, s: s2, d, o, sh } of rows) {
       const m = r.metrics;
-      tb.append(el("tr", null, el("td", null, el("strong", { text: r.name })), el("td", { class: "num", text: `${F.pct(s2.pg)}` }), el("td", { class: "num", text: r.key === "status_quo" ? "\u2013" : `${F.pp(d.d)}` }), el("td", { class: "num own", text: op(o && o.bs) }), el("td", { class: "num own", text: op(o && o.liq) }), el("td", { class: "num own", text: r.key === "status_quo" ? "\u2013" : op(o && o.aa) }), el("td", { class: "num own", text: op(o && o.all) }), el("td", { class: "num", text: F.bn(m.nav5_p50_bn, 0) }), el("td", { class: "num", text: F.pct(s2.cvar10) }), el("td", { class: "num", text: F.bn(m.debt_p95_bn) }), el("td", { class: "num", text: F.bn(r.pe_program.exposure_bn) })));
+      tb.append(el("tr", null, el("td", { style: "min-width:170px" }, el("strong", { text: r.name })), el("td", { class: "num", text: `${F.pct(s2.pg)}` }), el("td", { class: "num", text: r.key === "status_quo" ? "\u2013" : `${F.pp(d.d)}` }), el("td", { class: "num", text: sh ? F.bn(sh.mean) : "\u2013" }), el("td", { class: "num own", text: op(o && o.bs) }), el("td", { class: "num own", text: op(o && o.liq) }), el("td", { class: "num own", text: r.key === "status_quo" ? "\u2013" : op(o && o.aa) }), el("td", { class: "num own", text: op(o && o.all) }), el("td", { class: "num", text: F.bn(m.nav5_p50_bn, 0) }), el("td", { class: "num", text: F.pct(s2.cvar10) }), el("td", { class: "num", text: F.bn(m.debt_p95_bn) }), el("td", { class: "num", text: F.bn(r.pe_program.exposure_bn) })));
     }
     t.append(tb);
-    v.append(el("div", { class: "card" }, el("h3", { text: "The comparison matrix" }), el("p", { class: "sub", text: `Every plan on the same paths. The shaded columns test each group's objective on every path against the house limits: the balance sheet within its leverage and overcommitment limits at every year-end; every call and owner distribution paid without a forced private sale; never costing the target where the status quo reaches it; and all of them with the ${F.pct(h, 0)} target. Do nothing takes no decisions: no sales, no new commitments, no rebalancing, no new debt. The probability columns, the year-5 median and CVaR10 follow the controls; the others are at the IC view's default weights.` }), el("div", { class: "tablewrap full" }, t)));
+    v.append(el("div", { class: "card" }, el("h3", { text: "The comparison matrix" }), el("p", { class: "sub", text: `Every plan on the same paths. The expected shortfall is in dollars against the target account (today's NAV growing at ${F.pct(D.meta.goal_rate, 0)} while paying the owner's actual distributions). The shaded columns test each group's objective on every path against the house limits: the balance sheet within its leverage and overcommitment limits at every year-end; every call and owner distribution paid without a forced private sale; never costing the target where the status quo reaches it; and all of them with the ${F.pct(h, 0)} target. Do nothing takes no decisions: no sales, no new commitments, no rebalancing, no new debt. The probability and shortfall columns, the year-5 median and CVaR10 follow the controls; the others are at the IC view's default weights.` }), el("div", { class: "tablewrap full" }, t)));
+    // robust to every group's view: the consensus plan against the same plan optimized at the IC's weights only
+    if (cs("consensus", ic.view.stress) && cs("consensus_ic", ic.view.stress)) {
+      const views = [["IC", D.ic.view.prefs.scenario_probs]].concat(ROLES.map((r2) => [TITLE[r2], R(r2).prefs.scenario_probs]));
+      const seen = new Set(), vrows = [];
+      for (const [nm, sp] of views) { const p3 = WORLDS.map((w) => sp[w]); const key = p3.map((x) => x.toFixed(4)).join(","); if (seen.has(key)) { vrows.find((x) => x.key === key).nm += `, ${nm}`; continue; } seen.add(key); vrows.push({ key, nm, p3 }); }
+      const cR = cs("consensus", ic.view.stress), cI = cs("consensus_ic", ic.view.stress);
+      const rt = el("table", { class: "t" });
+      rt.append(el("thead", null, el("tr", null, el("th", { text: "World weights (whose)" }), el("th", { class: "num grp", colspan: 3, text: "Consensus, robust" }), el("th", { class: "num grp", colspan: 3, text: "Consensus, IC weights only" })),
+        el("tr", null, el("th", { text: "" }), ...[0, 1].flatMap(() => [`P(${F.pct(h, 0)})`, "Expected shortfall", "Worst-10% shortfall"].map((c) => el("th", { class: "num", text: c }))))));
+      const rtb = el("tbody");
+      let worstR = -1, worstI = -1;
+      for (const r2 of vrows) {
+        const a = shortStats(shortArr(cR.short), r2.p3), b2 = shortStats(shortArr(cI.short), r2.p3);
+        const pa = stats(twr(cR.twr), r2.p3, h).pg, pb = stats(twr(cI.twr), r2.p3, h).pg;
+        worstR = Math.max(worstR, a.mean + a.cvar); worstI = Math.max(worstI, b2.mean + b2.cvar);
+        rtb.append(el("tr", null, el("td", { text: `${r2.p3.map((x) => F.pct(x, 0)).join(" / ")} (${r2.nm})` }), ...[F.pct(pa, 1), F.bn(a.mean), F.bn(a.cvar), F.pct(pb, 1), F.bn(b2.mean), F.bn(b2.cvar)].map((x) => el("td", { class: "num", text: x }))));
+      }
+      rt.append(rtb);
+      v.append(el("div", { class: "card", style: "margin-top:14px" }, el("h3", { text: "Robust to every group's view of the world" }),
+        el("p", { class: "sub", text: `The groups weigh the ER file's Downside / Base / Upside worlds differently. The consensus plan is chosen for the worst of those weightings (distributional robustness over the groups' views, on the same paths); the alternative optimizes at the IC's weights only. Both run on fresh paths, ${stressLabel(ic.view.stress)}; hurdle from the controls.` }),
+        el("div", { class: "tablewrap full" }, rt),
+        el("p", { class: "note", style: "margin-top:8px", text: `Worst case over the weightings of the expected plus worst-10% shortfall: robust ${F.bn(worstR, 1)}, IC weights only ${F.bn(worstI, 1)}. A small difference means the groups' disagreement about the worlds barely changes the best plan; the limits decide more than the world weights.` })));
+    }
     // every plan under every stress
     if (ic.cases) {
       const metric = st.icMetric || "goal";
       const MET = [["goal", `${F.pct(h, 0)} a year`], ["bs", "Balance sheet within limits"], ["liq", "Calls and distributions met"], ["aa", "Never costs the target"], ["all", "Every objective together"]];
-      const SHORTP = { do_nothing: "Do nothing", status_quo: "Status quo", no_program: "No PE program", strategy: "Strategy", balance_sheet: "Balance Sheet", liquidity: "Liquidity", asset_allocation: "Asset Allocation", consensus: "Consensus", to_none: "Target only", to_150: "Target only, 1.5x" };
-      const SHORTS = { base: "Base", prolonged_drought: "DPI decline", crisis_y1: "Crisis Y1", oil_crash: "Oil crash", exit_window_opens: "Exits reopen", rate_shock: "Rates +200bp", stagflation: "Stagflation", hf_gates: "HF gates", private_markdown: "Markdown", calls_spike: "Call spike", draw_10: "Draw 10%" };
+      const SHORTP = { do_nothing: "Do nothing", status_quo: "Status quo", no_program: "No PE program", strategy: "Strategy", balance_sheet: "Balance Sheet", liquidity: "Liquidity", asset_allocation: "Asset Allocation", consensus: "Consensus", consensus_ic: "Consensus, IC wts", static: "Static framework", replan: "Re-planned yearly", to_none: "Target only", to_115: "Target only, 1.15x", to_150: "Target only, 1.5x", to_200: "Target only, 2.0x" };
+      const SHORTS = STRESS_SHORT;
       const sel2 = el("select", { "aria-label": "Objective", onchange: (ev) => { st.icMetric = ev.target.value; render(); } });
       for (const [k, c] of MET) sel2.append(el("option", { value: k, text: c, selected: k === metric ? "selected" : null }));
       const SK = Object.keys(D.stresses);
@@ -1315,7 +1644,7 @@
     }
     const g = el("div", { class: "grid g2", style: "margin-top:14px" });
     g.append(chartCard("Return against tail risk, every plan", "P(hurdle) against the average of the worst 10% of 5-year returns (right is safer). The consensus plan is highlighted.",
-      (host) => scatter(host, { points: rows.map(({ r, s: s2 }) => ({ label: { do_nothing: "Do nothing", status_quo: "Status quo", no_program: "No PE program", to_none: "Target only", to_150: "Target only, 1.5x" }[r.key] || r.name.replace(" plan", ""), x: s2.cvar10, y: s2.pg, emph: r.key === "consensus", extra: [{ value: F.pct(r.metrics.p_red, 2), name: "P(red event)" }] })), xfmt: (t2) => F.pct(t2, 1), yfmt: (t2) => F.pct(t2, 0), xlabel: "CVaR10 of the 5-year return (right is safer)", ylabel: "P(hurdle)", h: 300 }),
+      (host) => scatter(host, { points: rows.filter(({ r }) => r.key !== "consensus_ic").map(({ r, s: s2 }) => ({ label: { do_nothing: "Do nothing", status_quo: "Status quo", no_program: "No PE program", static: "Static framework", replan: "Re-planned yearly", to_none: "Target only", to_115: "Target only, 1.15x", to_150: "Target only, 1.5x", to_200: "Target only, 2.0x" }[r.key] || r.name.replace(" plan", ""), x: s2.cvar10, y: s2.pg, emph: r.key === "consensus", extra: [{ value: F.pct(r.metrics.p_red, 2), name: "P(red event)" }] })), xfmt: (t2) => F.pct(t2, 1), yfmt: (t2) => F.pct(t2, 0), xlabel: "CVaR10 of the 5-year return (right is safer)", ylabel: "P(hurdle)", h: 300 }),
       () => ({ cols: ["Plan", "P(hurdle)", "CVaR10"], rows: rows.map(({ r, s: s2 }) => [r.name, F.pct(s2.pg), F.pct(s2.cvar10)]) })));
     const sel = st.icPick || (st.icPick = { a: "status_quo", b: "consensus" });
     const pa = rows.find((x) => x.r.key === sel.a) || rows[0], pb = rows.find((x) => x.r.key === sel.b) || rows[rows.length - 1];
@@ -1346,7 +1675,7 @@
     }
     if (has("no_program")) {
       const dg = by.status_quo.s.pg - by.no_program.s.pg;
-      lines.push(`The PE program as decided ${dg < 0 ? "lowers" : "raises"} the status quo's P(hurdle) by ${ppAbs(dg)} on this view: drought-level bids for underperformers sit below the value of holding them, and the buyers take future commitments with them.`);
+      lines.push(`The PE program as decided ${dg < 0 ? "lowers" : "raises"} the status quo's P(hurdle) by ${ppAbs(dg)} on this view${dg < 0 ? ": drought-level bids for underperformers sit below the value of holding them, and the buyers take future commitments with them" : ": the sale proceeds and the commitments the buyers take over relieve the liquidity the owner's distribution and the calls would otherwise strain"}.`);
     }
     if (has("do_nothing")) {
       const dn = by.do_nothing, dsq = by.status_quo.s.pg - dn.s.pg, dbest = best.s.pg - dn.s.pg;
@@ -1520,9 +1849,13 @@
       p("Three return sources per holding: the ER strategy forward return (Downside / Base / Upside), the underwritten base IRR (debiased by the underwriting optimism measured in this book), and the since-inception actual IRR (relative to same-strategy, same-vintage peers). Each group chooses the basis and weights, the ER world probabilities, and its risk aversion:"),
       fm("level_i = ER_base + w_U x youth_i x clip(UW_i - beta_b - ER_base) + w_A x clip(phi x cred_i x (actual_i - peer_i))\nr_i,s = clip(level_i + (ER_s - ER_base))     E_i = sum_s pi_s r_i,s     CE_i = [sum_s pi_s (1 + r_i,s)^(5(1 - gamma))]^(1/(5(1 - gamma))) - 1"),
       el("h4", { text: "2. Scenarios" }),
-      p("The MPO v2 prototype's quarterly regime generator (macro, exit window, oil; six factors with fat tails) and private-market engine (calls and distributions by age and exit window) run every holding group at full size; each ER column is a world, and each bucket's alpha is set so its mean return in each world equals the ER (or preference) return. Stresses shock the factor paths (crisis, oil, rates) or the regimes (prolonged drought)."),
+      p(`The MPO v2 prototype's quarterly regime generator (macro, exit window, oil; six factors with fat tails) and private-market engine (calls and distributions by age and exit window) run every holding group at full size; each ER column is a world, and each bucket's alpha is set so its mean return in each world equals the ER (or preference) return. Two exit models share every path set: the calibrated cycle and a persistent slowdown (${F.pct((D.meta.exit_design || {}).share || 0, 0)} of paths), each matched to its own expected factor returns, so the slowdown moves cash flows, prices and market classes rather than expected returns. Stresses shock the factor paths (crisis, oil, rates) or the regimes (the prolonged DPI decline puts every path in the slowdown).`),
       el("h4", { text: "3. Optimization" }),
-      p("One linear program over five annual stages on in-sample scenarios: secondary sales in three dated tranches, today's liquid allocation and reserve, five years of commitments, dated term debt, the NAV facility and synthetic beta, all non-anticipative. Recourse is need-based only (reserve, liquid sales at their expected return, the revolver, forced sales as a last resort), so no path's future can be traded on. Every group's limits are rows: leverage, debt, LTV, overcommitment, the reserve floor, the forced-sale appetite, the depth guard (tail no worse than the status quo), IC ranges, market depth and the " + F.bn(D.house.pe_program_total_bn, 0) + " PE program. Objectives: GBO (maximum buffered probability of the hurdle, as the prototype), CRRA utility, liquidity risk at a return floor."),
+      p("One linear program over five annual stages on in-sample scenarios: secondary sales in three dated tranches, today's liquid allocation and reserve, five years of commitments, dated term debt, the NAV facility and synthetic beta, all non-anticipative. Recourse is need-based only (reserve, liquid sales at their expected return, the revolver, forced sales as a last resort), so no path's future can be traded on. Every group's limits are rows: leverage, debt, LTV, overcommitment, the reserve floor, the forced-sale appetite, the depth guard (tail no worse than the status quo), IC ranges, market depth and the " + F.bn(D.house.pe_program_total_bn, 0) + " PE program. The order follows the research the IC was shown: obligations and limits first; within them the Strategy objective minimizes the expected dollar shortfall against the target account plus its worst-10% average; among plans within 1% of that minimum, CRRA utility of wealth decides. The consensus plan takes the worst of that measure across the groups' world weights (distributional robustness over their views). Other lenses: GBO (maximum buffered probability of the hurdle), CRRA utility, liquidity risk at a return floor."),
+      el("h4", { text: "The target account" }),
+      p(`Today's NAV grows at ${F.pct(D.meta.goal_rate, 0)} a year and pays the owner's actual distributions, quarter by quarter, on every path: B_t+1 = B_t x 1.10 - distribution_t+1. The dollar shortfall is how far the fund's NAV ends below it in year 5. It complements the time-weighted P(${F.pct(D.meta.goal_rate, 0)}): it counts years by the fund's size and says how far short, not only how often.`),
+      el("h4", { text: "The benchmark ladder" }),
+      p("Four ways to plan, with the same objective, scenarios, world weights and house limits as far as each can express them, certified on the same paths. Static: a one-period model picks a policy portfolio from five-year returns as if private assets traded at NAV (an index per strategy at its ER new-money return on the same factor paths), holds it with the owner's distribution taken pro rata, and reaches it through Yale-model commitment pacing fitted to ADIC's DPI by vintage; it has no form for the limits along the path (the balance-sheet guard at every year end, the forced-sale appetite, the depth guard). Fixed schedule: the multi-period model with one dated schedule for every path. Adaptive: later decisions by the market class observed by then, solved once. Re-planned (model predictive control): the fixed schedule re-solved at the start of each year on the in-sample scenarios that share the observed history of market states, keeping the decisions already made, under the balance-sheet guard for the year ends still ahead and the forced-sale appetite; a history seen too rarely keeps the plan in force, and a limit is never relaxed to re-plan."),
       el("h4", { text: "4. Certification" }),
       p("Every plan is re-run on fresh paths the LP never saw by an exact quarterly simulator with the Liquidity group's waterfall (liquid sales, hedge funds behind gates, the revolver, then forced sales). The probabilities on this page are those out-of-sample results; the in-sample figure is shown beside them as the optimism gap."),
       el("h4", { text: "North star and doing nothing" }),
@@ -1530,14 +1863,14 @@
       el("h4", { text: "5. Objectives as tests" }),
       p(`Every case reports the probability that each group's objective is met, alone and with the return target, from the same paths. Strategy: the five-year return reaches the hurdle. Balance Sheet: gross leverage at or below ${F.x(D.house.lev_cap, 2)} and overcommitment at or below ${F.x(D.house.overcommit, 2)} of NAV at every year-end. Liquidity: every capital call and owner distribution paid without a forced private sale. Asset Allocation: the substitutions never cost the target (wherever the status quo reaches it on a path, the plan does too). Each test uses the house limits whatever plan is judged, so a plan built without them (the target alone) is held to them.`),
       el("h4", { text: "Limitations" }),
-      el("ul", { class: "tight" }, ...["The fund file has no strategy column: mappings are rule-based (" + mapShare + " of NAV high or medium confidence) and editable.", "Internal sleeves (Global Equities Division, Treasury, Cash, Global Agg, MAO capital) and today's drawn debt are assumptions until actual balances are entered.", "ER returns are read as compound (geometric) annual returns; if they are arithmetic, every P(hurdle) here is optimistic.", "Secondary bids are modeled (strategy, age, market state, relative performance), not quotes.", "Liquid sleeves are held at their plan weights (annual rebalancing); there is no rate-level path beyond the stresses, and SOFR is flat."].map((x) => el("li", { text: x }))));
+      el("ul", { class: "tight" }, ...["The fund file has no strategy column: mappings are rule-based (" + mapShare + " of NAV high or medium confidence) and editable.", `Private assets are ${F.pct(D.overview.book.private_share_target || 0, 0)} of NAV (the user); the part beyond the fund file (${F.bn(D.overview.book.outside_nav_bn || 0)}) is derived from the current strategies (same mix, age profile and unfunded per dollar, ER returns) and is never sold by a plan.`, "Internal sleeves (Global Equities Division, Treasury, Cash, Global Agg, MAO capital) and today's drawn debt are assumptions until actual balances are entered; the leverage, recourse, NAV-facility and overcommitment caps are prototype placeholders.", "ER returns are read as compound (geometric) annual returns; if they are arithmetic, every P(hurdle) here is optimistic.", "Secondary bids are modeled (strategy, age, market state, relative performance), not quotes.", "Liquid sleeves are held at their plan weights (annual rebalancing); there is no rate-level path beyond the stresses, and SOFR is flat."].map((x) => el("li", { text: x }))));
     return m;
   }
 
   // ------------------------------------------------------------------ shell
   function renderStamp() {
     const b = D.overview.book, box = document.getElementById("stamp");
-    box.replaceChildren(el("span", { class: "chip", text: `Book ${D.meta.files.as_of}` }), el("span", { class: "chip", text: `Whole fund ${F.bn(b.total_nav_bn, 0)} · fund file ${F.bn(b.file_nav_bn)}` }),
+    box.replaceChildren(el("span", { class: "chip", text: `Book ${D.meta.files.as_of}` }), el("span", { class: "chip", text: `Whole fund ${F.bn(b.total_nav_bn, 0)} · ${F.pct(b.private_nav_bn / b.total_nav_bn, 0)} private · fund file ${F.bn(b.file_nav_bn)}` }),
       el("span", { class: "chip", text: `${F.int(D.meta.n_oos * 3)} certification paths` }), D.meta.files.sensitivity_label ? el("span", { class: "chip conf", text: "Confidential: holding-level data" }) : null,
       el("button", { class: "btn", text: "Light / dark", onclick: () => { const cur = document.documentElement.getAttribute("data-theme"); const dark = cur ? cur === "dark" : matchMedia("(prefers-color-scheme: dark)").matches; document.documentElement.setAttribute("data-theme", dark ? "light" : "dark"); render(); } }));
     document.getElementById("foot").textContent = "Numbers are engine outputs on the user's fund file and ER strategy returns plus documented assumptions; none is a forecast or a recommendation to trade. Plans are inputs to IC discussion: the IC approves, amends or rejects each change. Built " + D.meta.built + ".";
@@ -1546,7 +1879,7 @@
     const box = document.getElementById("tabs");
     box.replaceChildren(...TABS.map((t) => el("button", { role: "tab", "aria-selected": String(t === st.tab), class: t === st.tab ? "active" : "", text: TITLE[t], onclick: () => { st.tab = t; history.replaceState(null, "", "#" + t); render(); window.scrollTo({ top: 0 }); } })));
   }
-  const VIEWS = { strategy: viewStrategy, balance_sheet: viewBS, liquidity: viewLiquidity, asset_allocation: viewAA, ic: viewIC, yale: viewYale, data: viewData };
+  const VIEWS = { feasibility: viewFeasibility, strategy: viewStrategy, balance_sheet: viewBS, liquidity: viewLiquidity, asset_allocation: viewAA, ic: viewIC, yale: viewYale, data: viewData };
   function render() {
     hideTip();
     renderTabs();

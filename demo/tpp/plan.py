@@ -17,7 +17,9 @@
                    by the year-1 and year-2 states together (9 histories, year-1 state major); sell, commit and
                    term_sched then hold today's decisions and the probability-weighted average of the later ones;
                    beta: the synthetic beta for years 2-5 by the market class at the start of the year (beta_bn
-                   is year 1's)
+                   is year 1's). A list of 3^tau values instead of 3 follows the whole history of year-end states
+                   up to the decision (the re-planned plan, tpp.replan: 3, 9, 27 and 81 histories in years 2-5),
+                   coded year-1 state major
 The status quo is today's book, status-quo pacing from the 2023-25 vintages, no new debt and, if enabled, the PE
 program as decided: $20bn of exposure over three years, underperformers first.
 """
@@ -143,7 +145,7 @@ def schedule_paths(plan: Plan, unit_ids: list, tpl_buckets: list, cls_y) -> tupl
         cc = (c.get("commit") or {}).get(b)
         if cc is not None:
             for tau in range(1, 5):
-                amt[tau, :, j] = np.asarray(cc[tau - 1], float)[cls_y[:, tau]]
+                amt[tau, :, j] = np.asarray(cc[tau - 1], float)[_ctx(cc[tau - 1], tau, cls_y)]
     ts = list(plan.term_sched or [plan.term_bn, 0.0, 0.0])
     sched = np.repeat(np.asarray(ts, float)[:3, None], m, 1)
     if c.get("term"):
@@ -163,12 +165,22 @@ def beta_paths(plan: Plan, cls_y) -> np.ndarray:
     return b
 
 
+def history_code(cls_y, tau: int) -> np.ndarray:
+    """Each path's history of year-end states up to year tau as one integer in [0, 3^tau), year-1 state major."""
+    cls_y = np.asarray(cls_y, int)
+    code = np.zeros(cls_y.shape[0], int)
+    for s in range(1, tau + 1):
+        code = code * len(STATES) + cls_y[:, s]
+    return code
+
+
 def _ctx(values, tau: int, cls_y):
-    """The context a later sale or debt draw follows: the year-2 one the year-1 state; the year-3 one the year-1 and
-    year-2 states together (9 histories), or the year-2 state alone for a plan stored by state (3 values)."""
-    if tau == 2 and len(values) == len(STATES) ** 2:
-        return cls_y[:, 1] * len(STATES) + cls_y[:, 2]
-    return cls_y[:, tau]
+    """The context a later decision follows: the state observed when it is taken (3 values), or the whole history of
+    year-end states up to it (3^tau values: the year-3 sale and debt draw of an adaptive plan, every later decision
+    of a re-planned plan)."""
+    if tau >= 2 and len(values) == len(STATES) ** tau:
+        return history_code(cls_y, tau)
+    return np.asarray(cls_y, int)[:, tau]
 
 
 def program_summary(book, plan: Plan) -> dict:

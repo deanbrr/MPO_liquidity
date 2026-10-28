@@ -71,8 +71,15 @@ def test_optimizer_respects_house_limits_and_duals_match_finite_differences(plat
     S = platform.paths_for(bkey, B, "lp", "base", platform._pi(v["prefs"]), house)
     st = sh.lp_settings(house, v["prefs"])
     M = lp.TPPModel(S, platform.P, st)
-    ev = M.evaluate_plan(planmod.status_quo(B, platform.P, house))
-    assert ev is not None and ev["in_sample"]["p_forced"] < 0.01   # no look-ahead forced sales for the status quo
+    sq = planmod.status_quo(B, platform.P, house)
+    ev = M.evaluate_plan(sq)
+    # no look-ahead forced sales: the LP forces a sale no more often than the simulator needs one on the same paths
+    # (with 61% of NAV in private assets the status quo has genuine forced sales on some paths)
+    from tpp import sim
+    o = sim.simulate(S, sq, platform.P, platform._sim_settings(house))
+    p = S.prob / S.prob.sum()
+    p_sim = float(p @ (o["forced_total"] > 1e-6))
+    assert ev is not None and ev["in_sample"]["p_forced"] <= p_sim + 0.01, (ev["in_sample"]["p_forced"], p_sim)
     res = lp.solve(M, "utility")
     x = res["x"]
     plan = M.extract(x, "t")

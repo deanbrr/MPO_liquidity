@@ -136,6 +136,17 @@ def fit_to_vintages(holdings, bucket_ret, P, as_of_year: float, actual: dict, vi
     return best
 
 
+def cohort_nav(f: dict, nav: float, unf: float, age: float, years: int = 5) -> float:
+    """The Yale model's NAV of one existing cohort (NAV, unfunded, fund age today) after `years` years."""
+    v, k0 = float(nav), int(np.floor(float(age))) + 1
+    for k in range(k0, k0 + years):
+        c = _rc(f, k) * unf
+        grown = v * (1 + f["G"])
+        unf -= c
+        v = grown + c - _rd(f, k) * grown
+    return v
+
+
 def project(book, plan, fam: dict, years: int = 5) -> dict:
     """The Yale model's deterministic projection of the private book under a plan's commitments (no secondary
     sales: the status quo without the program): calls, distributions and private NAV by year."""

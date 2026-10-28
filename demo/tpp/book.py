@@ -9,9 +9,14 @@ cash-flow engine, unfunded commitments, and a secondary-bid factor
   bid_i(state, tau) = rho[bid key][state] x agemult(age_i + tau) x exp(q x clip(perf_i, -15%, 15%) x min(D_i, 4))
 (underperformers trade at deeper discounts: buyers price q = 50% of their relative underperformance to persist).
 
+The fund file does not hold every private asset: private NAV is fund.private_share of the whole fund (DATA, the user).
+The difference is derived from the current private strategies (fund.private_outside_file = replicate): one OUTSIDE unit
+per ER bucket that scales the bucket's book up (same age profile, same unfunded per $ of NAV), earns the ER strategy
+returns and is never sold by a plan; status-quo pacing scales in proportion.
 Liquid and reserve buckets hold the fund-file managers (hedge funds, long-only mandates) plus the internally managed
 sleeves that the fund file does not contain, sized so the whole fund equals fund.total_nav_bn (ASSUMPTION; the Balance
-Sheet group edits the split). Status-quo pacing per private bucket is the average original commitment of the
+Sheet group edits the split), with the reserve (cash + Treasury) at least at its target today
+(internal_sleeves.reserve_at_target). Status-quo pacing per private bucket is the average original commitment of the
 pacing.basis_vintages (DATA-derived).
 """
 from __future__ import annotations
@@ -32,7 +37,8 @@ AGE_EDGES = [3.0, 6.0, 9.0]
 class Unit:
     id: str
     bucket: str
-    part: str                      # "tail" | "core" | "swap" (holdings singled out for a substitution test)
+    part: str                      # "tail" | "core" | "swap" (holdings singled out for a substitution test) | "ext"
+                                   # (private NAV outside the fund file, derived from the current strategies)
     nav0: float
     unf0: float
     n: int
@@ -66,6 +72,9 @@ class Book:
     goal_rate: float
     years: int
     notes: list = field(default_factory=list)
+    private_share: float = 0.0     # private NAV / whole-fund NAV asked for (fund.private_share)
+    pace_scale: float = 1.0        # status-quo pacing multiplier (1 + outside NAV / fund-file private NAV)
+    reserve_moved: float = 0.0     # $bn moved into the reserve today (internal_sleeves.reserve_at_target)
 
     @property
     def private_nav(self) -> float:
@@ -75,6 +84,14 @@ class Book:
     def unfunded(self) -> float:
         return float(sum(u.unf0 for u in self.units))
 
+    @property
+    def outside_nav(self) -> float:
+        return float(sum(u.nav0 for u in self.units if u.part == "ext"))
+
+    @property
+    def outside_unfunded(self) -> float:
+        return float(sum(u.unf0 for u in self.units if u.part == "ext"))
+
     def summary(self) -> dict:
         by_dept = {}
         for u in self.units:
@@ -83,8 +100,16 @@ class Book:
         for b, v in self.liquid.items():
             d = BY_ID[b].department
             by_dept[d] = by_dept.get(d, 0.0) + v
+        reserve = float(self.liquid.get("CASH", 0.0) + self.liquid.get("TREASURY", 0.0))
         return {"total_nav_bn": self.total_nav, "file_nav_bn": self.file_nav, "private_nav_bn": self.private_nav,
+                "file_private_nav_bn": self.private_nav - self.outside_nav, "outside_nav_bn": self.outside_nav,
+                "outside_unfunded_bn": self.outside_unfunded, "private_share_target": self.private_share,
                 "unfunded_bn": self.unfunded, "liquid_bn": float(sum(self.liquid.values())),
+                "liquid_file_bn": float(sum(v["file"] for v in self.liquid_src.values())),
+                "liquid_sleeves_bn": float(sum(v["sleeve"] for v in self.liquid_src.values())),
+                "reserve_bn": reserve, "reserve_moved_bn": self.reserve_moved, "pace_scale": self.pace_scale,
+                "pacing_sq_bn": float(sum(self.pacing_sq.values())),
+                "overcommit0": (self.private_nav + self.unfunded) / max(self.W0, 1e-9),
                 "W0_bn": self.W0, "Wstar_bn": self.Wstar, "by_department_bn": by_dept,
                 "revolver_drawn0_bn": self.revolver_drawn0, "term0_bn": self.term0}
 
@@ -208,13 +233,52 @@ def build_book(holdings: pd.DataFrame, bucket_ret: pd.DataFrame, er: pd.DataFram
                 bf.append(float(f @ w / w.sum()) if w.sum() > 1e-9 else 1.0)
             units.append(Unit(uid, b, part, nav, unf, int(len(gg)), gg["FUND_CODE"].tolist(), cohorts, r_w, bf, perf,
                               bk.pe_program and part != "swap"))
-    # ---- liquid buckets: fund-file managers + internal sleeves filling the total NAV
+    notes = []
     file_nav = float(h["nav_bn"].sum())
     total = float(st.get("total_nav_bn", P.get("fund.total_nav_bn")))
+    # ---- private NAV outside the fund file (fund.private_share, DATA: the user): the current private strategies
+    # scaled up to it, one unit per ER bucket with the bucket's age profile and unfunded per $ of NAV, earning the ER
+    # strategy returns (no holding record: no tilt, no quality discount in the bid)
+    file_priv = float(sum(u.nav0 for u in units))
+    share = float(st.get("private_share", P.get("fund.private_share")) or 0.0)
+    mode = st.get("private_outside_file", P.get("fund.private_outside_file"))
+    outside = max(share * total - file_priv, 0.0) if (mode == "replicate" and file_priv > 1e-9) else 0.0
+    k_out = outside / file_priv if file_priv > 1e-9 else 0.0
+    if share * total < file_priv - 1e-6 and mode == "replicate":
+        notes.append(f"The fund file's private NAV ({file_priv:.1f}) already exceeds {share:.0%} of the whole fund; "
+                     f"no private assets are added outside the file.")
+    if k_out > 1e-12:
+        for b in PRIVATE:
+            us = [u for u in units if u.bucket == b]
+            if sum(u.nav0 for u in us) <= 1e-9:
+                continue
+            band = {}
+            for u in us:
+                for c in u.cohorts:
+                    j = int(np.digitize(c["age"], AGE_EDGES))
+                    a = band.setdefault(j, {"nav": 0.0, "unf": 0.0, "w": 0.0, "aw": 0.0})
+                    a["nav"] += c["nav"]
+                    a["unf"] += c["unf"]
+                    a["w"] += c["nav"] + c["unf"]
+                    a["aw"] += c["age"] * (c["nav"] + c["unf"])
+            cohorts = [{"nav": k_out * a["nav"], "unf": k_out * a["unf"], "age": a["aw"] / max(a["w"], 1e-12)}
+                       for j, a in sorted(band.items()) if a["w"] > 1e-12]
+            nav = float(sum(c["nav"] for c in cohorts))
+            unf = float(sum(c["unf"] for c in cohorts))
+            sg = segment(MP, BY_ID[b].segment)
+            ages = np.array([c["age"] for c in cohorts])
+            wts = np.array([c["nav"] for c in cohorts])
+            bf = [float(_agemult(MP, ages + tau, sg["edges"]) @ wts / max(wts.sum(), 1e-12)) for tau in range(3)]
+            r_w = [float(bucket_ret.loc[b, f"new_{x}"]) for x in WORLDS]
+            units.append(Unit(f"{b}:ext", b, "ext", nav, unf, 0, [], cohorts, r_w, bf, 0.0, False))
+    # ---- liquid buckets: fund-file managers + internal sleeves filling the total NAV
     split = dict(P.get("internal_sleeves.gap_split"))
     split.update(st.get("sleeve_split", {}))
     ssum = sum(split.values())
-    gap = max(total - file_nav, 0.0)
+    gap = max(total - file_nav - outside, 0.0)
+    if total - file_nav - outside < 0:
+        notes.append(f"Total NAV {total:.1f} is below the fund-file NAV plus the private assets outside it "
+                     f"({file_nav + outside:.1f}); sleeves set to zero.")
     liquid, src = {}, {}
     for b in CATALOG:
         if b.private:
@@ -225,18 +289,39 @@ def build_book(holdings: pd.DataFrame, bucket_ret: pd.DataFrame, er: pd.DataFram
         src[b.id] = {"file": f, "sleeve": s}
     rev0 = float(st.get("revolver_drawn0_bn", P.get("corporate_finance.revolver_drawn0_bn")))
     term0 = float(st.get("term_debt0_bn", P.get("corporate_finance.term_debt0_bn")))
-    assets = file_nav + gap
+    assets = file_nav + outside + gap
     W0 = assets - rev0 - term0
+    # the reserve (cash + Treasury) starts at least at its target: any shortfall moves in from the other internal
+    # sleeves pro rata (ASSUMPTION internal_sleeves.reserve_at_target). Today's balances are a fact about the book, so
+    # the assumption file's target sets them, not a variant's policy (a run without the Liquidity group's limits starts
+    # from the same balance sheet)
+    moved = 0.0
+    if bool(P.get("internal_sleeves.reserve_at_target")):
+        ft = float(P.get("liquidity.floor_target"))
+        short = ft * W0 - (liquid.get("CASH", 0.0) + liquid.get("TREASURY", 0.0))
+        donors = [b for b in SLEEVES if b not in ("CASH", "TREASURY") and src.get(b, {}).get("sleeve", 0.0) > 1e-12]
+        pool = float(sum(src[b]["sleeve"] for b in donors))
+        moved = float(min(max(short, 0.0), pool))
+        if moved > 1e-9:
+            for b in donors:
+                take = moved * src[b]["sleeve"] / pool
+                src[b]["sleeve"] -= take
+                liquid[b] -= take
+            rs = src["CASH"]["sleeve"] + src["TREASURY"]["sleeve"]
+            for b in ("CASH", "TREASURY"):
+                add = moved * (src[b]["sleeve"] / rs if rs > 1e-12 else 0.5)
+                src[b]["sleeve"] += add
+                liquid[b] += add
+            notes.append(f"Today's reserve is held at its {ft:.0%} target: {moved:.1f} moved into cash and Treasury "
+                         f"from the other internal sleeves (working split).")
     goal = float(st.get("goal_rate", P.get("goal.rate")))
     years = int(P.get("simulation.years"))
-    # ---- status-quo pacing from recent vintages (DATA-derived)
+    # ---- status-quo pacing from recent vintages (DATA-derived), scaled with the private book outside the file
     vint = list(P.get("pacing.basis_vintages"))
     pacing = {}
     for b in PRIVATE:
         g = h[(h["bucket"] == b) & h["vintage"].isin(vint)]
-        pacing[b] = float(g["commit_bn"].sum()) / len(vint)
-    notes = []
-    if total - file_nav < 0:
-        notes.append(f"Total NAV {total:.1f} is below the fund-file NAV {file_nav:.1f}; sleeves set to zero.")
+        pacing[b] = float(g["commit_bn"].sum()) / len(vint) * (1.0 + k_out)
     return Book(units, liquid, src, h, bucket_ret, er, pacing, rev0, term0, file_nav, assets, W0,
-                W0 * (1 + goal) ** years, goal, years, notes)
+                W0 * (1 + goal) ** years, goal, years, notes, private_share=share, pace_scale=1.0 + k_out,
+                reserve_moved=moved)

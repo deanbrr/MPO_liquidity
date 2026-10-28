@@ -15,7 +15,9 @@ unfunded), the year's commitments are made (co-investments deploy at once), the 
 tested (a breach forces repayment), surplus reserve repays the revolver and is rebalanced into the liquid-risk
 targets, and a reserve below its target is topped up from liquid sales (never by borrowing).
 Returns are annual modified-Dietz time-weighted returns, gross of owner distributions; the goal is met when the
-five-year annualized TWR reaches the hurdle.
+five-year annualized TWR reaches the hurdle. The target account runs beside the ledger: it starts at today's NAV,
+grows at the hurdle and pays the owner's actual distributions (B_q+1 = B_q (1 + g)^(1/4) - draw_q); the dollar
+shortfall is max(B_5 - NAV_5, 0) (external research shared 2026-10-27).
 """
 from __future__ import annotations
 
@@ -98,6 +100,10 @@ def simulate(S, plan: Plan, P, settings: dict | None = None, keep_paths: bool = 
     min_res_ratio = np.full(m, np.inf)
     nav_start = np.zeros(m)
     dq = np.zeros(m)
+    g_q = (1.0 + cfg["goal"]) ** 0.25
+    tacc = np.zeros((m, 6))                                                         # target account at year ends
+    tacc[:, 0] = book.W0
+    B_acc = np.full(m, float(book.W0))
 
     def tpl_level(t_idx):
         """Value and unfunded of all templates at year end t_idx (sum over start years <= t_idx)."""
@@ -257,6 +263,9 @@ def simulate(S, plan: Plan, P, settings: dict | None = None, keep_paths: bool = 
         dIM = im_new - IM
         IM = im_new
         cash = cash + dist - calls - dq - interest + vm - dIM
+        B_acc = B_acc * g_q - dq
+        if (q + 1) % 4 == 0:
+            tacc[:, (q + 1) // 4] = B_acc
         yr["draw"][:, t] += dq
         yr["dist"][:, t] += dist
         yr["calls"][:, t] += calls
@@ -318,8 +327,10 @@ def simulate(S, plan: Plan, P, settings: dict | None = None, keep_paths: bool = 
         "red": forced_q.sum(1) * 1.0 > cfg["red_thr"], "forced_total": forced_q.sum(1),
         "rev_max": rev_max, "rev_used": rev_max > 1e-6, "min_reserve_ratio": min_res_ratio,
         "lcr": lcr, "nav0_post": rec_t0, "W0": W0, "macro_y": S.macro_y, "exit_y": S.exit_y,
-        "cls_y": S.cls_y,
+        "cls_y": S.cls_y, "exit_model": getattr(S, "exit_model", np.zeros(m, np.int8)),
         "wealth": W0 * (1 + twr) ** 5,
+        # the target account and the dollar shortfall against it (positive: NAV_5 below the account)
+        "r_target": tacc, "short": np.maximum(tacc[:, 5] - nv5, 0.0), "target_gap": tacc[:, 5] - nv5,
         **{f"y_{k}": v for k, v in yr.items() if k != "lcr"},
         **{f"r_{k}": v for k, v in rec.items()},
     }
